@@ -1,7 +1,5 @@
 # ARCHIVE NOTES — Archive, Audit, and Reproduction Maintenance
 
-[English](ARCHIVE_NOTES.md) | [简体中文](ARCHIVE_NOTES.zh-CN.md)
-
 ## 1. Archive Root: Where to Find Files
 
 All paths are relative to the unzipped `jlens_archive_stage1_8/`.
