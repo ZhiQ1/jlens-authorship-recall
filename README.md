@@ -1,4 +1,4 @@
-# READ ME FIRST — How Do Titles Support Author Prediction?
+# README
 
 ## One-Page Summary
 
