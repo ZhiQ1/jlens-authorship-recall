@@ -84,9 +84,21 @@ Fidelity, provenance audit, and the historical Split-half run through all three 
 - Judgment: Moderate measurement consistency; independent replication and a J-Lens increment are not established.
 
 ### Stage 8 · Does the signal hold on new papers?
-- Approach: Exclude Pilot50; freeze 200 papers / 100 pairs, the candidates, and the titles; L56 is the pre-specified primary layer.
+- Approach: Exclude Pilot50; freeze 200 papers / 100 pairs, the candidates, and the titles; L56 is the headline layer (the frozen `analysis_plan.json` lists the 7-layer integrated endpoint as primary and L56 as a secondary, pilot-selected layer; see the note below).
 - Key numbers: RQ1 +5.18 pp; RQ2 +4.98 pp.
 - Judgment: The new targets retain the mean title effect; read the group difference together with the influence analysis.
+
+**Frozen primary endpoint vs. L56 (please read).** The Stage 8A freeze (`config/analysis_plan.json`) defines the primary endpoint as the paper-level mean over the seven fixed layers; L56 is listed there as a secondary, pilot-selected layer. `351_stage8_PROTOCOL.md` and the 8D report later call L56 the predeclared main layer, but that document is not part of the hashed 8A manifest. Both are therefore reported (J-Lens, paired by paper/pair, 95% percentile bootstrap, 10,000 resamples; `351_stage8D_supplement.py`, outputs in `experiment_files/351_stage8/stage8D_supplement/`):
+
+| Endpoint | Estimate (pp) | 95% CI (pp) |
+|---|---:|---|
+| 7-layer integrated Title Advantage (frozen primary), 200 papers | +2.33 | [+1.50, +3.19] |
+| 7-layer integrated matched A−B (frozen primary), 100 pairs | +2.41 | [+0.91, +4.00] |
+| L56 Title Advantage (secondary), 200 papers | +5.18 | [+2.93, +7.48] |
+| L56 matched A−B (secondary), 100 pairs | +4.98 | [+0.32, +9.91] |
+| 7-layer integrated J-Lens − Vanilla | −0.02 | [−0.69, +0.64] |
+
+The direction agrees across endpoints, but the integrated effect is about half the L56 effect. Per-layer A−B rows are descriptive and not Holm-adjusted; Holm adjustment and leave-one-pair-out, listed in the frozen plan, have not been run.
 
 ## Directory Map: Where to Find the Evidence
 
