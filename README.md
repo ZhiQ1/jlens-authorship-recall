@@ -1,7 +1,5 @@
 # READ ME FIRST — How Do Titles Support Author Prediction?
 
-[English](README.md) | [简体中文](README.zh-CN.md)
-
 ## One-Page Summary
 
 **Question: Can a paper's title raise the readout score of the correct author?**
