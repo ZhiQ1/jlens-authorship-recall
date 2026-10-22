@@ -1,0 +1,31 @@
+{
+  "protocol": "stage4_multi_gold_first_and_teacher_forcing_v4_forced_token_ids",
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "data_sha": "c7c79bbbe3e0f9272aed34041657938d0cdf57d19d9604d44d22585817aea180",
+  "lens": "/scratch/zhang.zhiqi2/jlens/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt",
+  "seed": 3514,
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "max_name_tokens": 16,
+  "max_seq_len": 512,
+  "tokenization": "encode(prompt) + encode(ASCII_SPACE + name); forced suffix IDs; no joint retokenization",
+  "prompt_template": "Who are the authors of the paper titled \"{title}\" ({year})?\nAuthors:",
+  "name_prefix": "ASCII space",
+  "sampling": "fixed seeded 20-paper plan 8A8B3C1D, prefix --n <=20; 50-plan for >20",
+  "scores": "primary first-listed author first token RR at beginning-of-list; exploratory all-authors paper weighted; teacher forced token MRR separate",
+  "requested_n": 20,
+  "completed_n": 20,
+  "lens_sha256": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+  "source_csv": "/scratch/zhang.zhiqi2/jlens/351_all/351_four_groups.csv",
+  "raw_source": "/scratch/zhang.zhiqi2/jlens/351_all/351_stage4_readout.jsonl",
+  "report_created_utc": "2026-10-18T08:51:49.710303+00:00",
+  "report_generator": "351_stage4_readout.py"
+}

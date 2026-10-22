@@ -1,0 +1,21 @@
+{
+  "actual": {
+    "high": 25,
+    "low": 25,
+    "mid": 50
+  },
+  "authors_gap_mean": 0.0,
+  "available_greedy": {
+    "high": 314,
+    "low": 194,
+    "mid": 1154
+  },
+  "excludes_pilot_target_ids": 50,
+  "rejections": {},
+  "requested_quotas": {
+    "high": 25,
+    "low": 25,
+    "mid": 50
+  },
+  "year_gap_mean": 0.0
+}

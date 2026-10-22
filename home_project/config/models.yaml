@@ -1,0 +1,91 @@
+# Exact model identifiers, access paths, and decoding parameters for every
+# model reported in the paper.
+#
+# READ THIS FIRST. Temperature 0 is not a determinism guarantee for hosted
+# APIs, and two of the three behavioural models were reached through aliases
+# that float. Re-running these configurations will NOT reproduce the shipped
+# responses token for token. The responses in data/release/responses/ are the
+# reproducible artifact; the configurations below record how they were made.
+
+behavioral:
+  # Section 4.3 / Section 5. Three closed-source models, open-ended
+  # authorship attribution over the 9,108-paper evaluation sample.
+
+  gpt-4o:
+    display_name: GPT-4o
+    access: openai
+    model_id: chatgpt-4o-latest      # CAVEAT: floating alias, not a dated snapshot
+    endpoint: https://api.openai.com/v1/chat/completions
+    temperature: 0
+    max_tokens: null                  # provider default
+    collected: 2025-10                # exact per-call timestamps were not retained
+    prompt: authorship_fewshot_paper.txt
+    notes: >
+      Collected with a separate script from the other two models. The archived
+      records carry no per-call timestamp, no raw response envelope, and no
+      resolved model string. See README.md.
+
+  deepseek-r1:
+    display_name: DeepSeek-R1
+    access: openrouter
+    model_id: deepseek/deepseek-r1-0528
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    temperature: 0
+    max_tokens: 500
+    collected: 2025-10-22/2025-10-23
+    prompt: authorship_fewshot_openrouter.txt
+    notes: >
+      OpenRouter routed these calls across eight upstream providers (Together,
+      Hyperbolic, Crusoe, SiliconFlow, Fireworks, SambaNova, DeepInfra,
+      Friendli). The serving provider is recorded per record in
+      api_response_full.provider.
+
+  claude-sonnet-4.5:
+    display_name: Claude Sonnet 4.5
+    access: openrouter
+    model_id: anthropic/claude-sonnet-4.5   # CAVEAT: floating alias
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    temperature: 0
+    max_tokens: 500
+    collected: 2025-10-22/2025-10-23
+    prompt: authorship_fewshot_openrouter.txt
+    notes: >
+      Routed by OpenRouter across Google Vertex and Amazon Bedrock.
+
+recognition:
+  # Section 6 / Appendix A7. Multiple-choice recognition, same 9,108 papers.
+  gpt-4o:
+    display_name: GPT-4o
+    access: openai
+    model_id: chatgpt-4o-latest
+    temperature: 0
+    prompt: mc_recognition.txt
+
+self_eval:
+  # Appendix A6.5. LLM-as-judge comparison against the hard-coded matcher.
+  gpt-4o:
+    display_name: GPT-4o
+    access: openai
+    model_id: chatgpt-4o-latest
+    temperature: 0
+    prompt: self_eval.txt
+    max_retries: 5
+
+probing:
+  # Section 7 / Appendix A8. Open-weight models, run locally with
+  # transformers. These ARE deterministic given the same weights, dtype, and
+  # hardware; record the revision you pulled.
+  qwen3-32b:
+    display_name: Qwen3-32B
+    hf_id: Qwen/Qwen3-32B
+    revision: main
+    dtype: bfloat16
+    n_layers: 63
+    peak_layer: 48
+  mistral-small-3.2-24b:
+    display_name: Mistral-Small-3.2-24B
+    hf_id: mistralai/Mistral-Small-3.2-24B-Instruct-2506
+    revision: main
+    dtype: bfloat16
+    n_layers: 39
+    peak_layer: 22

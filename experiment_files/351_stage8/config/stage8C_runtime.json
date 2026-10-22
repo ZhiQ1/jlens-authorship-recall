@@ -1,0 +1,40 @@
+{
+  "gpu_layers": 29,
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "metric": "first_token_gold_author_weighted_win_ties_half_v1",
+  "model": "Qwen/Qwen3-32B",
+  "modes": [
+    "final_L63",
+    "jlens_L16",
+    "jlens_L24",
+    "jlens_L32",
+    "jlens_L40",
+    "jlens_L48",
+    "jlens_L56",
+    "jlens_L62",
+    "vanilla_L16",
+    "vanilla_L24",
+    "vanilla_L32",
+    "vanilla_L40",
+    "vanilla_L48",
+    "vanilla_L56",
+    "vanilla_L62"
+  ],
+  "protocol_hash": "272715c94309e8aa2e9db5cf20b9c30c1fbdcd8f3f5546bdd6839ab0efa8f2cd",
+  "public_lens_sha256": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "runtime_hash": "6dcf396173cdc572875fc7db17aae919246e6ba04042005114fbf8d75e25ae1c",
+  "scorer": "stage8c_v1",
+  "stage5_code_sha256": "4fd4c9fb7027e6fe0127d94efe653c52c349cbdab13fc45d2ffdec4e7940c339",
+  "stage5_prompt": "Who are the authors of the paper titled \"{title}\" ({year})?\nAuthors:",
+  "stage8A_sha256": "7e4b878e9ee037fe822cc42821218459ff48b203cd026de6995a79ca13486f55",
+  "stage8B_sha256": "b3c8c5a7e98523c668408884a8e91bac0dba5bcccc560b05a0a94b90133a5309"
+}

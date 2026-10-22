@@ -1,0 +1,7 @@
+pool,condition,direction,alpha,n,mean_hr2,hallucination_rate_pct,mean_output_tokens,pct_degenerate,pct_dup_names,mean_type_token_ratio
+eval_low,baseline_refresh,none,0.0,100,0.999643,100.0,28.11,0.0,12.0,0.8568
+eval_low,random_norm_matched_control,random,1.0,100,0.998261,100.0,26.45,0.0,9.0,0.8801
+eval_low,random_norm_matched_control,random,2.0,100,0.996486,100.0,26.55,0.0,13.0,0.8676
+eval_high,baseline_refresh,none,0.0,50,0.667,36.0,13.4,0.0,0.0,0.9747
+eval_high,random_norm_matched_control,random,1.0,50,0.646286,44.0,16.94,0.0,2.0,0.964
+eval_high,random_norm_matched_control,random,2.0,50,0.693416,52.0,16.72,0.0,2.0,0.9757

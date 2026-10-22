@@ -1,0 +1,38 @@
+{
+  "candidate_rows": 5050,
+  "collision_definition": "gold first token id == incorrect author first token id; count as tie (0.5), not forced replacement",
+  "first_token_collision_count_by_group": {
+    "A": 79,
+    "B": 62,
+    "C": 9,
+    "D": 6
+  },
+  "gold_definition": "First listed real author of each paper",
+  "group_counts": {
+    "A": 20,
+    "B": 20,
+    "C": 7,
+    "D": 3
+  },
+  "limitations": [
+    "String-normalized membership check; author entity aliases are not independently validated",
+    "Same first-token for different names is possible; first-token scores cannot distinguish such candidates",
+    "Matching uses tokenizer token count and field/year proxy, not global first-token base frequency",
+    "Gold Win Rate against 100 named candidates is not full-name identity classification",
+    "Pilot has exploratory sample size; no causal attribution"
+  ],
+  "matching_tiers": {
+    "0": 2159,
+    "1": 182,
+    "2": 135,
+    "3": 24
+  },
+  "paper_count": 50,
+  "pool_counts": {
+    "gold": 50,
+    "matched": 2500,
+    "random": 2500
+  },
+  "pool_sampling": "matched: lexicographic tier then seeded hash; random: seeded uniform sample without replacement after matched names are removed",
+  "status": "FROZEN"
+}

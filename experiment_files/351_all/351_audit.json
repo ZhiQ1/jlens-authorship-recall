@@ -1,0 +1,14 @@
+{
+  "source": "/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv",
+  "source_sha256": "b4ff5e1d045c6f9ec2f42226e537dbb32be32d7df9684545917bad04b09faf0e",
+  "total": 9108,
+  "four_group_total": 6841,
+  "group_counts": {
+    "B": 2186,
+    "A": 4110,
+    "excluded": 2267,
+    "C": 511,
+    "D": 34
+  },
+  "notes": "No split, no matching, no GPU analysis, no J-Lens metrics; candidates only."
+}

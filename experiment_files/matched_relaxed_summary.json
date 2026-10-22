@@ -1,0 +1,54 @@
+{
+  "method": "maximum-cardinality minimum-cost matching",
+  "seed": 42,
+  "known_pool": 384,
+  "unknown_pool": 228,
+  "pairs": 83,
+  "papers": 166,
+  "exact_match": [
+    "field",
+    "citation_bin",
+    "correct_label"
+  ],
+  "max_year_gap": 20,
+  "max_author_gap": 3,
+  "mean_year_gap": 7.01,
+  "median_year_gap": 6,
+  "max_observed_year_gap": 19,
+  "mean_author_gap": 1.18,
+  "median_author_gap": 1,
+  "max_observed_author_gap": 3,
+  "splits_pairs": {
+    "build": 42,
+    "tune": 8,
+    "test": 33
+  },
+  "correct_labels": {
+    "C": 19,
+    "D": 33,
+    "B": 26,
+    "A": 5
+  },
+  "fields": {
+    "computer science": 11,
+    "mathematics": 7,
+    "medicine": 12,
+    "materials science": 16,
+    "biology": 8,
+    "psychology": 12,
+    "chemistry": 10,
+    "physics": 7
+  },
+  "citation_bins": {
+    "0-2": 7,
+    "33-64": 13,
+    "5-8": 7,
+    "129-256": 8,
+    "65-128": 9,
+    "3-4": 13,
+    "17-32": 8,
+    "9-16": 10,
+    "513-1024": 5,
+    "257-512": 3
+  }
+}

@@ -1,0 +1,1629 @@
+{
+  "candidate_manifest_sha256": "a1128370da37542c94532ff60bab1c579f3cb61a06fead673a969b257d02bd4b",
+  "citation_bin_0_2": [
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.22999999999999998,
+      "mean_tie_rate": 0.02,
+      "mode": "final_L63",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.32,
+      "mean_tie_rate": 0.02,
+      "mode": "final_L63",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.14,
+      "mean_tie_rate": 0.02,
+      "mode": "final_L63",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.18,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L16",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.17,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L16",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.19,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L16",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.185,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L24",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.18,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L24",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.19,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L24",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.095,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L32",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.07,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L32",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.12,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L32",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.255,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L40",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.29,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L40",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.22,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L40",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.305,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L48",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.31999999999999995,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L48",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.29,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L48",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.44,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L56",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.4,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L56",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.48000000000000004,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L56",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.29000000000000004,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L62",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.4,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L62",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.18,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L62",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.76,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L16",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.74,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L16",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.78,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L16",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.6,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L24",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.49,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L24",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.71,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L24",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.5700000000000001,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L32",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.53,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L32",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.61,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L32",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.7,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L40",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.69,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L40",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.71,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L40",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.6000000000000001,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L48",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.69,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L48",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.51,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L48",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.595,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L56",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.59,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L56",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.6,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L56",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.28,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L62",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.385,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L62",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "A",
+      "mean_gold_win_rate": 0.175,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L62",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.59,
+      "mean_tie_rate": 0.01,
+      "mode": "final_L63",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.62,
+      "mean_tie_rate": 0.0,
+      "mode": "final_L63",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.5599999999999999,
+      "mean_tie_rate": 0.02,
+      "mode": "final_L63",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.64,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L16",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.645,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L16",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.635,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L16",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.635,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L24",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.53,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L24",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.74,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L24",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.47,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L32",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.27,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L32",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.6699999999999999,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L32",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.36,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L40",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.39,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L40",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.32999999999999996,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L40",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.1775,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L48",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.22999999999999998,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L48",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.125,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L48",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.6950000000000001,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L56",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.53,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L56",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.8600000000000001,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L56",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.61,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L62",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.64,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L62",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.58,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L62",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.895,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L16",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.9299999999999999,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L16",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.86,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L16",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.7949999999999999,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L24",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.8,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L24",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.79,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L24",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.5549999999999999,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L32",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.52,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L32",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.5900000000000001,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L32",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.615,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L40",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.64,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L40",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.59,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L40",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.7,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L48",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.72,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L48",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.6799999999999999,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L48",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.8775,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L56",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.8300000000000001,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L56",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.925,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L56",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.6825,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L62",
+      "n_papers": 2,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.7849999999999999,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L62",
+      "n_papers": 2,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "B",
+      "mean_gold_win_rate": 0.58,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L62",
+      "n_papers": 2,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.985,
+      "mean_tie_rate": 0.03,
+      "mode": "final_L63",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.99,
+      "mean_tie_rate": 0.02,
+      "mode": "final_L63",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.98,
+      "mean_tie_rate": 0.04,
+      "mode": "final_L63",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.185,
+      "mean_tie_rate": 0.03,
+      "mode": "jlens_L16",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.25,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L16",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.12,
+      "mean_tie_rate": 0.04,
+      "mode": "jlens_L16",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.055,
+      "mean_tie_rate": 0.03,
+      "mode": "jlens_L24",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.07,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L24",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.04,
+      "mean_tie_rate": 0.04,
+      "mode": "jlens_L24",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.085,
+      "mean_tie_rate": 0.03,
+      "mode": "jlens_L32",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.07,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L32",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.1,
+      "mean_tie_rate": 0.04,
+      "mode": "jlens_L32",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.165,
+      "mean_tie_rate": 0.03,
+      "mode": "jlens_L40",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.19,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L40",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.14,
+      "mean_tie_rate": 0.04,
+      "mode": "jlens_L40",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.175,
+      "mean_tie_rate": 0.03,
+      "mode": "jlens_L48",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.13,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L48",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.22,
+      "mean_tie_rate": 0.04,
+      "mode": "jlens_L48",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.695,
+      "mean_tie_rate": 0.03,
+      "mode": "jlens_L56",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.69,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L56",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.7,
+      "mean_tie_rate": 0.04,
+      "mode": "jlens_L56",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.945,
+      "mean_tie_rate": 0.03,
+      "mode": "jlens_L62",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.91,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L62",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.98,
+      "mean_tie_rate": 0.04,
+      "mode": "jlens_L62",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.805,
+      "mean_tie_rate": 0.03,
+      "mode": "vanilla_L16",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.79,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L16",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.82,
+      "mean_tie_rate": 0.04,
+      "mode": "vanilla_L16",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.595,
+      "mean_tie_rate": 0.03,
+      "mode": "vanilla_L24",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.59,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L24",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.6,
+      "mean_tie_rate": 0.04,
+      "mode": "vanilla_L24",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.825,
+      "mean_tie_rate": 0.03,
+      "mode": "vanilla_L32",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.85,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L32",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.8,
+      "mean_tie_rate": 0.04,
+      "mode": "vanilla_L32",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.495,
+      "mean_tie_rate": 0.03,
+      "mode": "vanilla_L40",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.53,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L40",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.46,
+      "mean_tie_rate": 0.04,
+      "mode": "vanilla_L40",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.665,
+      "mean_tie_rate": 0.03,
+      "mode": "vanilla_L48",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.69,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L48",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.64,
+      "mean_tie_rate": 0.04,
+      "mode": "vanilla_L48",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.945,
+      "mean_tie_rate": 0.03,
+      "mode": "vanilla_L56",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.99,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L56",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.9,
+      "mean_tie_rate": 0.04,
+      "mode": "vanilla_L56",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.985,
+      "mean_tie_rate": 0.03,
+      "mode": "vanilla_L62",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.99,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L62",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "C",
+      "mean_gold_win_rate": 0.98,
+      "mean_tie_rate": 0.04,
+      "mode": "vanilla_L62",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.295,
+      "mean_tie_rate": 0.01,
+      "mode": "final_L63",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.39,
+      "mean_tie_rate": 0.02,
+      "mode": "final_L63",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.2,
+      "mean_tie_rate": 0.0,
+      "mode": "final_L63",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.955,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L16",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.93,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L16",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.98,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L16",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.995,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L24",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.99,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L24",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 1.0,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L24",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.975,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L32",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.97,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L32",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.98,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L32",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.375,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L40",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.53,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L40",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.22,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L40",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.255,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L48",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.39,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L48",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.12,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L48",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.995,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L56",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.99,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L56",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 1.0,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L56",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.93,
+      "mean_tie_rate": 0.01,
+      "mode": "jlens_L62",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.93,
+      "mean_tie_rate": 0.02,
+      "mode": "jlens_L62",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.93,
+      "mean_tie_rate": 0.0,
+      "mode": "jlens_L62",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.125,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L16",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.11,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L16",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.14,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L16",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.765,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L24",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.73,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L24",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.8,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L24",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.895,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L32",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.87,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L32",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.92,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L32",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.635,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L40",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.63,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L40",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.64,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L40",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.575,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L48",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.61,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L48",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.54,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L48",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.595,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L56",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.59,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L56",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.6,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L56",
+      "n_papers": 1,
+      "pool": "random"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.165,
+      "mean_tie_rate": 0.01,
+      "mode": "vanilla_L62",
+      "n_papers": 1,
+      "pool": "combined"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.25,
+      "mean_tie_rate": 0.02,
+      "mode": "vanilla_L62",
+      "n_papers": 1,
+      "pool": "matched"
+    },
+    {
+      "citation_bin": "0-2",
+      "group": "D",
+      "mean_gold_win_rate": 0.08,
+      "mean_tie_rate": 0.0,
+      "mode": "vanilla_L62",
+      "n_papers": 1,
+      "pool": "random"
+    }
+  ],
+  "matched_complete_pairs": 20,
+  "n_papers": 50,
+  "protocol_hash": "65aae65ab2115cd8b71524b45c91cd8bf7f02ac12c9b29dad08cfea5d9ad41b2",
+  "readout_description": "first-token only; author-weighted gold win with tie=0.5; unique-token and non-collision sensitivity; no title shuffle in Stage7.2"
+}

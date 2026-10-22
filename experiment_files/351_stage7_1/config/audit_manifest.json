@@ -1,0 +1,29 @@
+{
+  "stage": "stage7.1",
+  "raw_stage6": "/scratch/zhang.zhiqi2/jlens/351_stage6/raw/pilot50_full_author.jsonl",
+  "raw_sha256": "89551cf92010e18d1ceace496421b6e3355be06dee9edf24b8e47896747a215a",
+  "pairs": "/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/matching/pilot50_ab_pairs.csv",
+  "pairs_sha256": "9ebfc7e27163020fd00881a96d59d226aecbedf6d5a9ae6af8ca50fc12521537",
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "groups": {
+    "A": 20,
+    "B": 20,
+    "C": 7,
+    "D": 3
+  },
+  "seed": 35171,
+  "bootstrap": 10000,
+  "stage6_reconciliation": {
+    "rows_checked": 750,
+    "max_abs_difference": 1.1102230246251565e-16
+  },
+  "notes": "CPU retrospective decomposition; no model invoked"
+}

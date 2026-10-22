@@ -1,0 +1,12 @@
+pass_min_orders: 3
+strong_orders: 4
+uncertain_orders: 2
+tightened:
+  min_orders: 4
+  min_p_true: 0.5
+floor_bin: 0-2
+floor_max_pass_rate: 0.1
+letter_mass_min: 0.5
+low_mass_max_share: 0.1
+known_positive_min_pass_rate: 0.9
+recall_failure_threshold: 0.5

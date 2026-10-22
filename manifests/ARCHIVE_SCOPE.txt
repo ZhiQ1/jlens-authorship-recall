@@ -1,0 +1,6 @@
+Archive scope: completed Stage 1–8A–D and historical supporting artifacts.
+Excluded: 351_stage7_1B_terminal/ — running; archive after completion.
+Excluded: Stage 9 — running; archive separately after completion.
+Stage 8E — not executed.
+final_missing_files.csv: all 50 listed entries belong to excluded Stage 7.1B.
+Final coverage scan compared paths and sizes; individual completed transfers were checked with rsync checksums.

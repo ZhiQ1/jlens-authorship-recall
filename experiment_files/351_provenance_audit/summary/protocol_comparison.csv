@@ -1,0 +1,14 @@
+parameter,self100,neuronpedia,status,note
+model,"""Qwen/Qwen3-32B""","""Qwen/Qwen3-32B""",SAME,verified from local artifacts or configuration; inspect source revision for exact implementation
+model_revision,"""9216db5781bf21249d130ec9da846c4624c16137""","""unknown""",UNKNOWN_PUBLIC,not verifiable from available provenance
+fitting_prompt_count,100,557,DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation
+source_layers,"[24, 32, 40, 48, 56, 62]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]",DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation
+target_layer,63,null,UNKNOWN_PUBLIC,not verifiable from available provenance
+skip_first,16,"""unknown""",UNKNOWN_PUBLIC,not verifiable from available provenance
+dim_batch,8,64,DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation
+max_seq_len,128,128,SAME,verified from local artifacts or configuration; inspect source revision for exact implementation
+dataset,"""WikiText-103 corpus JSONL (manifest-pinned)""","{""name"": ""Salesforce/wikitext"", ""config"": ""wikitext-103-raw-v1"", ""split"": ""train"", ""text_field"": ""text"", ""max_chars"": 2000}",DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation
+dataset_split,"""inspect manifest.json""","""train""",DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation
+prompt_selection,"""first 100 of stored 1000""","""public fitting prompts not supplied""",DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation
+jacobian_average,"""unweighted mean over successfully fitted prompts""","""verify public source / wrapper""",DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation
+early_stopping,"""none (fixed 100)""",0.002,DIFFERENT,verified from local artifacts or configuration; inspect source revision for exact implementation

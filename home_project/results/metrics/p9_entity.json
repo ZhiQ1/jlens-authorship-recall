@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "generated_by": "pytest",
+    "generated_at_utc": "2026-10-15T04:05:18+00:00",
+    "git_commit": "unknown",
+    "seed": 42,
+    "source": "dua.probing.tables"
+  },
+  "p9_entity": {
+    "qwen3_32b": {
+      "layer_idx": 48,
+      "layer_depth_pct": 76.2,
+      "n_names": 48012,
+      "n_matched": 1286,
+      "n_hallucinated": 46726,
+      "hallucinated_positive_rate": 0.973215,
+      "probe_auroc": 0.814412,
+      "probe_auprc": 0.991365,
+      "probe_auprc_lift_over_baseline": 1.01865,
+      "probe_balanced_accuracy": 0.672975,
+      "centroid_l2_over_pooled_rms": 0.245996,
+      "nearest_centroid_balanced_accuracy": 0.760094
+    },
+    "mistral_small_3_2_24b": {
+      "layer_idx": 20,
+      "layer_depth_pct": 51.3,
+      "n_names": 51263,
+      "n_matched": 1303,
+      "n_hallucinated": 49960,
+      "hallucinated_positive_rate": 0.974582,
+      "probe_auroc": 0.818164,
+      "probe_auprc": 0.992463,
+      "probe_auprc_lift_over_baseline": 1.018348,
+      "probe_balanced_accuracy": 0.643631,
+      "centroid_l2_over_pooled_rms": 0.208784,
+      "nearest_centroid_balanced_accuracy": 0.743278
+    }
+  }
+}

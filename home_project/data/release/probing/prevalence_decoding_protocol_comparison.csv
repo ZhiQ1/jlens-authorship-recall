@@ -1,0 +1,7 @@
+model,strategy,layer_idx,protocol,n,r2_cv,spearman_rho_cv,best_alpha
+qwen3_32b,p1,48,stage5_global_svd_unscaled,9108,0.376371,0.602679,0.01
+qwen3_32b,p1,48,stage8_global_svd_scaled,9108,0.614692,0.776056,100.0
+qwen3_32b,p1,48,fold_safe_pca_scaled,9108,0.614666,0.776169,0.01
+mistral_small_3_2_24b,p1,22,stage5_global_svd_unscaled,9108,0.309062,0.559795,0.1
+mistral_small_3_2_24b,p1,22,stage8_global_svd_scaled,9108,0.58501,0.759362,100.0
+mistral_small_3_2_24b,p1,22,fold_safe_pca_scaled,9108,0.584697,0.759167,0.01

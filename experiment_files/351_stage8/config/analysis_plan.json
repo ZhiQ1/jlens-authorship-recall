@@ -1,0 +1,49 @@
+{
+  "candidate_rule": "must be newly frozen solely from source metadata and tokenizer, with no Stage8 readout scores; false authors exclude all actual authors of target paper",
+  "comparison": "J-Lens minus Vanilla within paper and context using identical candidate set",
+  "data_leakage": "stage8 target papers excluded from prior pilot; source author/title pool overlaps must be logged; J-Lens and prompt design fixed before outcomes",
+  "decision_boundary": "association not causal, first token not full-name identity, citation bin not direct training frequency; no selection by outcomes",
+  "final_reference_layer": 63,
+  "floor_primary": "low citation 0-2: paper-specific integrated true-minus-shuffle effect plus empirical tail fractions; compare to high 129+ among matched A/B pairs, control for group",
+  "gold_candidate": "first listed ground-truth author",
+  "group_C_D": "retained in 6841 source table; not injected into matched A/B confirmatory test; optional independently labelled descriptive cohort in later version",
+  "groups": {
+    "A": "recognition-pass, free-recall R0",
+    "B": "recognition-fail, free-recall R0"
+  },
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "main_readout": "J-Lens; Vanilla and Final as fixed comparators",
+  "multiplicity": "primary 7-layer integrated one comparison; seven layer-specific comparisons exploratory and Holm-adjusted",
+  "null_empirical_tail": "(1 + number of shuffled-context win rates >= true-context win rate)/(K+1), K=20; this is reference-tail fraction, not calibrated randomization p-value",
+  "pilot_exclusion": "all 50 Stage5 Pilot target paper IDs; possible shared original author-source universe remains a limitation",
+  "primary_endpoint": "paper-level mean over 7 layers of [true-title author-weighted first-token Gold Win Rate minus mean of 20 frozen shuffled-title win rates], 100 pre-frozen false authors (50 random,50 matched); ties=0.5",
+  "primary_global_title_test": "paper-level integrated true-minus-shuffle J-Lens advantage; bootstrap papers, treating related-paper dependence as a limitation",
+  "primary_group_test": "within exact field+citation_bin matched A/B pairs; pair-bootstrap two-sided 95% CI on integrated A-B; paper pair is resampling unit",
+  "protocol_version": "stage8_v1",
+  "quota_pairs": {
+    "high": 25,
+    "low": 25,
+    "mid": 50
+  },
+  "sampling": "greedy nearest-year/author-count within exact field+citation_bin, disjoint listed author names; deterministic; without replacement; not globally optimal",
+  "secondary_l56": "L56 advantage; exploratory pilot-selected layer, must be clearly labeled prior-discovery validation",
+  "seed": 3518001,
+  "sensitivity": [
+    "source-author false-pool overlap excluded",
+    "unique-first-token",
+    "noncollision",
+    "shuffle matching tiers",
+    "low-high by group",
+    "leave-one-pair-out"
+  ],
+  "shuffle_rule": "20 title sources per target same field priority exact citation bin, year and token-length matching; exclude actual shared author; year held at target year",
+  "status": "FROZEN_BEFORE_STAGE8_SCORING"
+}

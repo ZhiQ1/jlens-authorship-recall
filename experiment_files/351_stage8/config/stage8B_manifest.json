@@ -1,0 +1,18 @@
+{
+  "analysis_status": "CONTROLS_ONLY_NOT_GPU_SCORED",
+  "files": {
+    "controls/stage8_author_candidates.csv": "d0d0bf583cc6909f4303ef645077ffc69269695056b11c45bac86538b797484c",
+    "controls/stage8_control_quality.csv": "e05f5aefb30826c78d47299181e8b29a9e6fe32c1210b364e55122dee3fb253e",
+    "controls/stage8_shuffled_titles.csv": "331570e947cedebc3fb92747beaf60f3dc352e9a6a39acd64f639e13d908c879"
+  },
+  "full_manifest_sha256": "a63316ef28bdf6079370e7b946026cf705bc58c017fa5724fa9631255a845bcb",
+  "n_authors": 20200,
+  "n_papers": 200,
+  "n_titles": 4000,
+  "protocol": "50 matched +50 random false authors; 20 closest field/bin/year/title-length wrong titles; no true coauthors; no lens outcomes",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "seed": 3518201,
+  "stage8A_manifest_sha256": "7e4b878e9ee037fe822cc42821218459ff48b203cd026de6995a79ca13486f55",
+  "tokenizer": "Qwen/Qwen3-32B",
+  "version": "stage8B_v1"
+}

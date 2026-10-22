@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dua"
+version = "1.0.0"
+description = "Dreaming Up Authors: factual prevalence and LLM hallucinations in academic authorship attribution"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Sijia Zhong" },
+  { name = "Tamir Yirga" },
+  { name = "Yijia Ma" },
+  { name = "Thai Le" },
+  { name = "Yifan Hu" },
+]
+
+# Core: everything needed to reproduce every table and figure in the paper
+# from the shipped artifacts in data/release/. No network, no GPU, no API key.
+dependencies = [
+  "numpy==1.26.4",
+  "pandas==2.2.3",
+  "scipy==1.13.1",
+  "matplotlib==3.9.4",
+  "statsmodels==0.14.4",
+  "scikit-learn==1.5.2",
+  "pyyaml==6.0.2",
+  "nameparser==1.1.3",
+  "Unidecode==1.3.8",
+  "tqdm==4.67.1",
+  "python-dotenv==1.0.1",
+]
+
+[project.optional-dependencies]
+# Stage A: rebuilding the 1.92M-paper corpus from the OAG sample.
+data = [
+  "fasttext-wheel==0.9.2",
+  "pyarrow==17.0.0",
+]
+# Stages C/D/E3/F: anything that talks to an external API.
+api = [
+  "requests==2.32.3",
+  "tenacity==9.0.0",
+]
+# Appendix A6.6: surname -> coarse ethnicity classification.
+ethnicity = [
+  "ethnicseer==0.1.2",
+  # ethnicseer imports pkg_resources, which setuptools removed in 81.
+  "setuptools<81",
+]
+# Section 7 / Appendix A8: hidden-state probing and activation steering.
+# Install the torch build that matches your CUDA version first.
+probing = [
+  "torch>=2.4",
+  "transformers>=4.51",
+  "accelerate>=0.34",
+  "sentence-transformers>=3.0",
+]
+dev = [
+  "pytest==8.3.4",
+  "ruff==0.8.4",
+]
+
+[project.scripts]
+dua = "dua.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+# Ported verbatim from the source repositories. These are long-running GPU
+# scripts whose behaviour produced published results; reformatting them for
+# style would risk changing that for no benefit. dua/evaluate/{matcher,splitter}
+# is the same argument -- it reproduces all 27,324 published (M, H, U) triples
+# exactly, and that guarantee is worth more than tidy imports.
+extend-exclude = [
+  "src/dua/probing/stages",
+  "src/dua/probing/scholar_utils.py",
+  "src/dua/evaluate/matcher.py",
+  "src/dua/evaluate/splitter.py",
+  "tests/test_probing_utils.py",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]

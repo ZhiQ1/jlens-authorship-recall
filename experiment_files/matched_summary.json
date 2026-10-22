@@ -1,0 +1,21 @@
+{
+  "seed": 42,
+  "known_pool": 384,
+  "unknown_pool": 228,
+  "pairs": 116,
+  "papers": 232,
+  "matching": "exact field + citation_bin + correct_label",
+  "mean_year_gap": 11.0,
+  "mean_author_gap": 1.9051724137931034,
+  "splits": {
+    "build": 58,
+    "tune": 11,
+    "test": 47
+  },
+  "correct_labels": {
+    "B": 39,
+    "D": 42,
+    "C": 29,
+    "A": 6
+  }
+}

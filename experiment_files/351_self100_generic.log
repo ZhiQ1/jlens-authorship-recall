@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/home/zhang.zhiqi2/351_self_jlens_validation.py", line 239, in <module>
+    if __name__=='__main__':main()
+  File "/home/zhang.zhiqi2/351_self_jlens_validation.py", line 236, in main
+    if a.mode in ('generic','all'):validate(a,'generic')
+  File "/home/zhang.zhiqi2/351_self_jlens_validation.py", line 87, in validate
+    import torch,transformers,jlens
+ModuleNotFoundError: No module named 'torch'
+generic planned 20 complete 0
+1 0 Explain why a bicycle remains easier to balance while moving than while standing still. | An
+2 1 A library is organizing returned books by subject and author. Describe a sensible procedur
+3 2 In a distributed computing system, a request may wait for one slow server. Explain the res
+4 3 A farmer observes that tomatoes grow poorly when the soil stays waterlogged. Give a biolog
+5 4 Describe the role of a checksum when transferring a file between two computers. | Answer:
+6 5 Why does a metal spoon feel colder than a wooden spoon at the same room temperature? | Answe
+7 6 A train arrives every fifteen minutes. Explain how a traveler could estimate the expected 
+8 7 Summarize how sediment accumulates at the bottom of a river delta. | Answer:
+9 8 Explain the distinction between a database transaction and a database query. | Answer:
+10 9 In an orchestra, why must musicians coordinate rhythm even when playing different notes? | A
+11 10 Describe a method for testing whether a new algorithm is faster on large datasets. | Answer:
+12 11 How do ocean currents influence coastal temperatures? | Answer:
+13 12 Explain what happens to network throughput when packet loss becomes frequent. | Answer:
+14 13 Describe the basic purpose of error-correcting codes in digital communication. | Answer:
+15 14 Why might a desert become cold shortly after sunset despite being very hot during the day?
+16 15 A city adds dedicated bus lanes. Explain one possible effect on traffic patterns. | Answer:
+17 16 Compare the roles of producers and consumers in an ecosystem. | Answer:
+18 17 How does a compiler differ from an interpreter when processing source code? | Answer:
+19 18 Explain why repeated measurements are useful in a scientific experiment. | Answer:
+20 19 Describe how a telescope collects light from distant astronomical objects. | Answer:
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:01<22:18,  1.90s/it]Loading weights:   0%|          | 3/707 [00:02<06:23,  1.84it/s]Loading weights:   1%|          | 6/707 [00:02<02:53,  4.05it/s]Loading weights:   2%|▏         | 15/707 [00:02<00:58, 11.83it/s]Loading weights:   3%|▎         | 18/707 [00:02<00:52, 13.15it/s]Loading weights:   3%|▎         | 21/707 [00:02<00:47, 14.47it/s]Loading weights:   4%|▍         | 27/707 [00:02<00:33, 20.33it/s]Loading weights:   4%|▍         | 30/707 [00:03<00:35, 18.97it/s]Loading weights:   5%|▌         | 37/707 [00:03<00:25, 26.75it/s]Loading weights:   6%|▌         | 41/707 [00:03<00:25, 26.11it/s]Loading weights:   7%|▋         | 47/707 [00:03<00:21, 31.17it/s]Loading weights:   7%|▋         | 51/707 [00:03<00:22, 29.53it/s]Loading weights:   8%|▊         | 55/707 [00:03<00:24, 26.97it/s]Loading weights:   8%|▊         | 59/707 [00:04<00:34, 18.90it/s]Loading weights:   9%|▉         | 62/707 [00:05<01:06,  9.69it/s]Loading weights:  10%|▉         | 70/707 [00:05<00:38, 16.37it/s]Loading weights:  10%|█         | 74/707 [00:05<00:35, 17.60it/s]Loading weights:  11%|█▏        | 81/707 [00:05<00:25, 24.70it/s]Loading weights:  12%|█▏        | 86/707 [00:05<00:25, 24.16it/s]Loading weights:  13%|█▎        | 92/707 [00:05<00:27, 22.77it/s]Loading weights:  14%|█▎        | 96/707 [00:06<00:26, 23.12it/s]Loading weights:  15%|█▍        | 103/707 [00:06<00:33, 17.85it/s]Loading weights:  15%|█▍        | 106/707 [00:07<00:46, 12.99it/s]Loading weights:  16%|█▌        | 111/707 [00:07<00:43, 13.63it/s]Loading weights:  16%|█▋        | 115/707 [00:07<00:48, 12.09it/s]Loading weights:  18%|█▊        | 125/707 [00:08<00:28, 20.24it/s]Loading weights:  18%|█▊        | 129/707 [00:09<01:02,  9.27it/s]Loading weights:  19%|█▊        | 132/707 [00:09<01:06,  8.68it/s]Loading weights:  19%|█▉        | 136/707 [00:10<01:10,  8.05it/s]Loading weights:  20%|█▉        | 138/707 [00:10<01:08,  8.26it/s]Loading weights:  21%|██        | 146/707 [00:10<00:40, 13.89it/s]Loading weights:  21%|██        | 149/707 [00:10<00:37, 14.97it/s]Loading weights:  22%|██▏       | 159/707 [00:10<00:21, 25.30it/s]Loading weights:  24%|██▍       | 170/707 [00:11<00:14, 37.55it/s]Loading weights:  25%|██▌       | 180/707 [00:11<00:11, 47.20it/s]Loading weights:  27%|██▋       | 192/707 [00:11<00:08, 59.33it/s]Loading weights:  29%|██▊       | 202/707 [00:11<00:07, 66.27it/s]Loading weights:  30%|███       | 214/707 [00:11<00:06, 76.52it/s]Loading weights:  32%|███▏      | 225/707 [00:11<00:06, 80.17it/s]Loading weights:  33%|███▎      | 236/707 [00:11<00:05, 82.13it/s]Loading weights:  35%|███▍      | 246/707 [00:11<00:05, 81.12it/s]Loading weights:  36%|███▋      | 257/707 [00:12<00:06, 65.69it/s]Loading weights:  37%|███▋      | 265/707 [00:12<00:06, 65.46it/s]Loading weights:  39%|███▊      | 273/707 [00:12<00:09, 44.89it/s]Loading weights:  39%|███▉      | 279/707 [00:13<00:18, 23.32it/s]Loading weights:  41%|████      | 288/707 [00:13<00:13, 30.45it/s]Loading weights:  42%|████▏     | 296/707 [00:13<00:11, 36.75it/s]Loading weights:  43%|████▎     | 303/707 [00:13<00:09, 41.31it/s]Loading weights:  44%|████▍     | 313/707 [00:13<00:07, 51.76it/s]Loading weights: 100%|██████████| 707/707 [00:13<00:00, 51.22it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+1/20 0 t=12.1s peak=29.49GiB L32KL=4.291
+2/20 1 t=5.7s peak=29.49GiB L32KL=7.126
+3/20 2 t=5.8s peak=29.49GiB L32KL=3.439
+4/20 3 t=5.7s peak=29.49GiB L32KL=6.621
+5/20 4 t=5.8s peak=29.49GiB L32KL=7.795
+6/20 5 t=5.7s peak=29.49GiB L32KL=8.067
+7/20 6 t=5.8s peak=29.49GiB L32KL=10.729
+8/20 7 t=5.7s peak=29.49GiB L32KL=10.178
+9/20 8 t=5.8s peak=29.49GiB L32KL=7.434
+10/20 9 t=5.8s peak=29.49GiB L32KL=6.962
+11/20 10 t=5.7s peak=29.49GiB L32KL=4.545
+12/20 11 t=5.7s peak=29.49GiB L32KL=12.597
+13/20 12 t=5.7s peak=29.49GiB L32KL=4.654
+14/20 13 t=5.6s peak=29.49GiB L32KL=9.564
+15/20 14 t=5.6s peak=29.49GiB L32KL=4.878
+16/20 15 t=5.5s peak=29.49GiB L32KL=5.472
+17/20 16 t=5.7s peak=29.49GiB L32KL=14.928
+18/20 17 t=5.6s peak=29.49GiB L32KL=7.701
+19/20 18 t=5.9s peak=29.49GiB L32KL=9.719
+20/20 19 t=5.9s peak=29.49GiB L32KL=9.828
+Saved /scratch/zhang.zhiqi2/jlens/351_self100_validation/raw/generic.jsonl

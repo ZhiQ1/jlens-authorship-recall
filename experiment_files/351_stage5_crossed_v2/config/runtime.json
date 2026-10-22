@@ -1,0 +1,14 @@
+{
+  "runtime_hash": "00f844bdd2497a89789e7de487c23ed5c48a1ce2f66c3bc90b1fa34586649192",
+  "lens_sha256": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+  "model_revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ]
+}

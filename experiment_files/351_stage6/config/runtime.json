@@ -1,0 +1,15 @@
+{
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "lens_sha256": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+  "scoring_protocol": "stage6_v1_conditional_full_author_same_stage4"
+}

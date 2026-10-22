@@ -1,0 +1,53 @@
+Prepared 1 papers; names lengths: [(2, 2)]
+Loading public lens...
+Loading Qwen3-32B...
+BF16 CPU offload, GPU limit 33GiB CPU limit 45GiB
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 2/707 [00:05<32:06,  2.73s/it]Loading weights:   1%|          | 5/707 [00:07<16:53,  1.44s/it]Loading weights:   1%|          | 6/707 [00:09<17:27,  1.49s/it]Loading weights:   1%|▏         | 10/707 [00:10<09:08,  1.27it/s]Loading weights:   2%|▏         | 15/707 [00:12<06:23,  1.81it/s]Loading weights:   2%|▏         | 16/707 [00:14<08:14,  1.40it/s]Loading weights:   2%|▏         | 17/707 [00:15<09:56,  1.16it/s]Loading weights:   3%|▎         | 21/707 [00:16<06:01,  1.90it/s]Loading weights:   3%|▎         | 22/707 [00:17<06:26,  1.77it/s]Loading weights:   4%|▎         | 26/707 [00:19<06:12,  1.83it/s]Loading weights:   4%|▍         | 27/707 [00:21<08:37,  1.31it/s]Loading weights:   4%|▍         | 28/707 [00:23<11:13,  1.01it/s]Loading weights:   5%|▍         | 32/707 [00:24<06:28,  1.74it/s]Loading weights:   5%|▍         | 34/707 [00:24<05:45,  1.95it/s]Loading weights:   5%|▌         | 37/707 [00:26<06:12,  1.80it/s]Loading weights:   5%|▌         | 38/707 [00:28<07:59,  1.39it/s]Loading weights:   6%|▌         | 39/707 [00:30<10:23,  1.07it/s]Loading weights:   6%|▌         | 42/707 [00:31<07:03,  1.57it/s]Loading weights:   6%|▌         | 44/707 [00:31<06:10,  1.79it/s]Loading weights:   7%|▋         | 48/707 [00:35<08:23,  1.31it/s]Loading weights:   7%|▋         | 50/707 [00:37<08:49,  1.24it/s]Loading weights:   8%|▊         | 54/707 [00:38<06:23,  1.70it/s]Loading weights:   8%|▊         | 56/707 [00:39<05:50,  1.86it/s]Loading weights:   8%|▊         | 57/707 [00:39<05:10,  2.09it/s]Loading weights:   8%|▊         | 59/707 [00:41<06:28,  1.67it/s]Loading weights:   8%|▊         | 60/707 [00:43<08:20,  1.29it/s]Loading weights:   9%|▊         | 61/707 [00:44<09:47,  1.10it/s]Loading weights:   9%|▉         | 65/707 [00:45<05:17,  2.02it/s]Loading weights:   9%|▉         | 67/707 [00:45<04:29,  2.38it/s]Loading weights:  10%|▉         | 69/707 [00:47<05:48,  1.83it/s]Loading weights:  10%|█         | 71/707 [00:48<06:21,  1.67it/s]Loading weights:  10%|█         | 72/707 [00:50<09:11,  1.15it/s]Loading weights:  11%|█         | 75/707 [00:51<05:28,  1.93it/s]Loading weights:  11%|█         | 76/707 [00:51<05:58,  1.76it/s]Loading weights:  11%|█         | 78/707 [00:52<05:12,  2.01it/s]Loading weights:  11%|█▏        | 81/707 [00:55<07:29,  1.39it/s]Loading weights:  12%|█▏        | 82/707 [00:57<09:58,  1.04it/s]Loading weights:  12%|█▏        | 83/707 [01:00<13:29,  1.30s/it]Loading weights:  12%|█▏        | 86/707 [01:00<07:36,  1.36it/s]Loading weights:  12%|█▏        | 87/707 [01:01<07:43,  1.34it/s]Loading weights:  13%|█▎        | 89/707 [01:02<07:13,  1.43it/s]Loading weights:  13%|█▎        | 91/707 [01:04<07:30,  1.37it/s]Loading weights:  13%|█▎        | 93/707 [01:06<07:55,  1.29it/s]Loading weights:  13%|█▎        | 94/707 [01:07<09:04,  1.13it/s]Loading weights:  15%|█▍        | 103/707 [01:07<02:44,  3.66it/s]Loading weights:  16%|█▌        | 114/707 [01:07<01:15,  7.82it/s]Loading weights:  17%|█▋        | 119/707 [01:08<01:06,  8.86it/s]Loading weights:  18%|█▊        | 127/707 [01:08<00:43, 13.31it/s]Loading weights:  19%|█▉        | 137/707 [01:09<00:55, 10.20it/s]Loading weights:  20%|█▉        | 141/707 [01:11<01:49,  5.16it/s]Loading weights:  20%|██        | 144/707 [01:12<01:39,  5.67it/s]Loading weights:  22%|██▏       | 155/707 [01:12<00:54, 10.15it/s]Loading weights:  23%|██▎       | 166/707 [01:12<00:34, 15.85it/s]Loading weights:  25%|██▌       | 180/707 [01:12<00:21, 24.84it/s]Loading weights:  27%|██▋       | 191/707 [01:12<00:16, 32.16it/s]Loading weights:  29%|██▊       | 203/707 [01:12<00:11, 42.22it/s]Loading weights:  30%|███       | 214/707 [01:12<00:09, 51.75it/s]Loading weights:  32%|███▏      | 225/707 [01:12<00:07, 61.27it/s]Loading weights:  33%|███▎      | 236/707 [01:13<00:11, 39.51it/s]Loading weights:  35%|███▍      | 244/707 [01:16<00:46,  9.97it/s]Loading weights:  36%|███▋      | 257/707 [01:16<00:30, 14.74it/s]Loading weights:  38%|███▊      | 269/707 [01:16<00:21, 20.25it/s]Loading weights:  40%|███▉      | 280/707 [01:16<00:16, 26.44it/s]Loading weights:  41%|████      | 291/707 [01:16<00:12, 33.75it/s]Loading weights:  43%|████▎     | 303/707 [01:16<00:09, 42.83it/s]Loading weights:  44%|████▍     | 313/707 [01:18<00:26, 14.96it/s]Loading weights:  46%|████▌     | 325/707 [01:18<00:18, 20.59it/s]Loading weights:  48%|████▊     | 336/707 [01:18<00:13, 27.05it/s]Loading weights:  49%|████▉     | 347/707 [01:19<00:14, 25.54it/s]Loading weights:  50%|█████     | 357/707 [01:20<00:19, 18.00it/s]Loading weights:  51%|█████▏    | 363/707 [01:23<00:54,  6.36it/s]Loading weights:  52%|█████▏    | 367/707 [01:24<00:58,  5.83it/s]Loading weights:  81%|████████  | 572/707 [01:24<00:01, 69.48it/s]Loading weights:  89%|████████▉ | 631/707 [01:25<00:00, 80.22it/s]Loading weights:  96%|█████████▌| 677/707 [01:25<00:00, 85.33it/s]Loading weights: 100%|██████████| 707/707 [01:25<00:00,  8.23it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Device map: {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 0, 'model.layers.9': 0, 'model.layers.10': 0, 'model.layers.11': 0, 'model.layers.12': 0, 'model.layers.13': 0, 'model.layers.14': 0, 'model.layers.15': 0, 'model.layers.16': 0, 'model.layers.17': 0, 'model.layers.18': 0, 'model.layers.19': 0, 'model.layers.20': 0, 'model.layers.21': 0, 'model.layers.22': 0, 'model.layers.23': 0, 'model.layers.24': 0, 'model.layers.25': 0, 'model.layers.26': 0, 'model.layers.27': 0, 'model.layers.28': 0, 'model.layers.29': 0, 'model.layers.30': 0, 'model.layers.31': 0, 'model.layers.32': 0, 'model.layers.33': 'cpu', 'model.layers.34': 'cpu', 'model.layers.35': 'cpu', 'model.layers.36': 'cpu', 'model.layers.37': 'cpu', 'model.layers.38': 'cpu', 'model.layers.39': 'cpu', 'model.layers.40': 'cpu', 'model.layers.41': 'cpu', 'model.layers.42': 'cpu', 'model.layers.43': 'cpu', 'model.layers.44': 'cpu', 'model.layers.45': 'cpu', 'model.layers.46': 'cpu', 'model.layers.47': 'cpu', 'model.layers.48': 'cpu', 'model.layers.49': 'cpu', 'model.layers.50': 'cpu', 'model.layers.51': 'cpu', 'model.layers.52': 'cpu', 'model.layers.53': 'cpu', 'model.layers.54': 'cpu', 'model.layers.55': 'cpu', 'model.layers.56': 'cpu', 'model.layers.57': 'cpu', 'model.layers.58': 'cpu', 'model.layers.59': 'cpu', 'model.layers.60': 'cpu', 'model.layers.61': 'cpu', 'model.layers.62': 'cpu', 'model.layers.63': 'cpu', 'model.norm': 'cpu', 'model.rotary_emb': 'cpu', 'lm_head': 'cpu'}
+Traceback (most recent call last):
+  File "/home/zhang.zhiqi2/351_validate_public_lens_offload.py", line 187, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/zhang.zhiqi2/351_validate_public_lens_offload.py", line 168, in main
+    jlogs,actual,ids=lens.apply(model,prompt,layers=layers,positions=[-1],max_seq_len=512,use_jacobian=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/projects/jacobian-lens/jlens/lens.py", line 213, in apply
+    lens_logits[layer] = model.unembed(residual).float().cpu()
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/projects/jacobian-lens/jlens/hf.py", line 170, in unembed
+    self._final_norm(residual.to(target_dtype).to(target_device))
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/accelerate/hooks.py", line 187, in new_forward
+    args, kwargs = module._hf_hook.pre_forward(module, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/accelerate/hooks.py", line 50, in wrapper
+    return wrapper._compiled_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1263, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/accelerate/hooks.py", line 397, in pre_forward
+    return send_to_device(args, self.execution_device), send_to_device(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/accelerate/utils/operations.py", line 176, in send_to_device
+    return honor_type(
+           ^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/accelerate/utils/operations.py", line 82, in honor_type
+    return type(obj)(generator)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/accelerate/utils/operations.py", line 177, in <genexpr>
+    tensor, (send_to_device(t, device, non_blocking=non_blocking, skip_keys=skip_keys) for t in tensor)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhang.zhiqi2/conda-envs/jlens/lib/python3.11/site-packages/accelerate/utils/operations.py", line 160, in send_to_device
+    return tensor.to(device, non_blocking=non_blocking)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError: Cannot copy out of meta tensor; no data!

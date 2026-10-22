@@ -1,0 +1,351 @@
+{
+  "n_pairs": 20,
+  "layers": [
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "summary": [
+    {
+      "layer": 24,
+      "lens": "self100",
+      "n_pairs": 20,
+      "first_win_rate": 0.7,
+      "full_win_rate": 0.7,
+      "mean_full_delta": 0.47769800106684357
+    },
+    {
+      "layer": 24,
+      "lens": "neuronpedia",
+      "n_pairs": 20,
+      "first_win_rate": 0.7,
+      "full_win_rate": 0.65,
+      "mean_full_delta": 0.6420184858640036
+    },
+    {
+      "layer": 24,
+      "lens": "vanilla",
+      "n_pairs": 20,
+      "first_win_rate": 0.7,
+      "full_win_rate": 0.65,
+      "mean_full_delta": 0.23008899291356394
+    },
+    {
+      "layer": 24,
+      "lens": "final",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.6,
+      "mean_full_delta": 1.2448217426350312
+    },
+    {
+      "layer": 32,
+      "lens": "self100",
+      "n_pairs": 20,
+      "first_win_rate": 0.55,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 0.28252430756886804
+    },
+    {
+      "layer": 32,
+      "lens": "neuronpedia",
+      "n_pairs": 20,
+      "first_win_rate": 0.6,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 0.45267483154932664
+    },
+    {
+      "layer": 32,
+      "lens": "vanilla",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 0.5151431540648141
+    },
+    {
+      "layer": 32,
+      "lens": "final",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.6,
+      "mean_full_delta": 1.2448217426350312
+    },
+    {
+      "layer": 40,
+      "lens": "self100",
+      "n_pairs": 20,
+      "first_win_rate": 0.4,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 0.16904422044754036
+    },
+    {
+      "layer": 40,
+      "lens": "neuronpedia",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.45,
+      "mean_full_delta": 0.12835899869600942
+    },
+    {
+      "layer": 40,
+      "lens": "vanilla",
+      "n_pairs": 20,
+      "first_win_rate": 0.45,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 0.06920064051945998
+    },
+    {
+      "layer": 40,
+      "lens": "final",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.6,
+      "mean_full_delta": 1.2448217426350312
+    },
+    {
+      "layer": 48,
+      "lens": "self100",
+      "n_pairs": 20,
+      "first_win_rate": 0.55,
+      "full_win_rate": 0.7,
+      "mean_full_delta": 0.732613307237625
+    },
+    {
+      "layer": 48,
+      "lens": "neuronpedia",
+      "n_pairs": 20,
+      "first_win_rate": 0.45,
+      "full_win_rate": 0.7,
+      "mean_full_delta": 0.765730857451757
+    },
+    {
+      "layer": 48,
+      "lens": "vanilla",
+      "n_pairs": 20,
+      "first_win_rate": 0.55,
+      "full_win_rate": 0.45,
+      "mean_full_delta": 0.18048785130182896
+    },
+    {
+      "layer": 48,
+      "lens": "final",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.6,
+      "mean_full_delta": 1.2448217426350312
+    },
+    {
+      "layer": 56,
+      "lens": "self100",
+      "n_pairs": 20,
+      "first_win_rate": 0.75,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 0.3542049692074457
+    },
+    {
+      "layer": 56,
+      "lens": "neuronpedia",
+      "n_pairs": 20,
+      "first_win_rate": 0.75,
+      "full_win_rate": 0.5,
+      "mean_full_delta": 0.34409269531567876
+    },
+    {
+      "layer": 56,
+      "lens": "vanilla",
+      "n_pairs": 20,
+      "first_win_rate": 0.6,
+      "full_win_rate": 0.65,
+      "mean_full_delta": 0.629312724371751
+    },
+    {
+      "layer": 56,
+      "lens": "final",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.6,
+      "mean_full_delta": 1.2448217426350312
+    },
+    {
+      "layer": 62,
+      "lens": "self100",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 1.2566899405608032
+    },
+    {
+      "layer": 62,
+      "lens": "neuronpedia",
+      "n_pairs": 20,
+      "first_win_rate": 0.45,
+      "full_win_rate": 0.55,
+      "mean_full_delta": 1.2738351828682548
+    },
+    {
+      "layer": 62,
+      "lens": "vanilla",
+      "n_pairs": 20,
+      "first_win_rate": 0.6,
+      "full_win_rate": 0.6,
+      "mean_full_delta": 0.97824085106787
+    },
+    {
+      "layer": 62,
+      "lens": "final",
+      "n_pairs": 20,
+      "first_win_rate": 0.5,
+      "full_win_rate": 0.6,
+      "mean_full_delta": 1.2448217426350312
+    }
+  ],
+  "paired_ci": [
+    {
+      "layer": 24,
+      "metric": "first_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0,
+      "ci95_low": -0.15,
+      "ci95_high": 0.15
+    },
+    {
+      "layer": 24,
+      "metric": "full_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0.05,
+      "ci95_low": -0.1,
+      "ci95_high": 0.25
+    },
+    {
+      "layer": 24,
+      "metric": "gold_minus_false_full_logprob",
+      "n_pairs": 20,
+      "mean_self_minus_public": -0.16432048479715994,
+      "ci95_low": -0.635428009033203,
+      "ci95_high": 0.303646810054779
+    },
+    {
+      "layer": 32,
+      "metric": "first_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": -0.05,
+      "ci95_low": -0.15,
+      "ci95_high": 0.0
+    },
+    {
+      "layer": 32,
+      "metric": "full_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0,
+      "ci95_low": -0.15,
+      "ci95_high": 0.15
+    },
+    {
+      "layer": 32,
+      "metric": "gold_minus_false_full_logprob",
+      "n_pairs": 20,
+      "mean_self_minus_public": -0.1701505239804586,
+      "ci95_low": -0.5513269400596617,
+      "ci95_high": 0.21792910416920988
+    },
+    {
+      "layer": 40,
+      "metric": "first_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": -0.1,
+      "ci95_low": -0.25,
+      "ci95_high": 0.0
+    },
+    {
+      "layer": 40,
+      "metric": "full_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0.1,
+      "ci95_low": 0.0,
+      "ci95_high": 0.25
+    },
+    {
+      "layer": 40,
+      "metric": "gold_minus_false_full_logprob",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0.040685221751530956,
+      "ci95_low": -0.3068201752503713,
+      "ci95_high": 0.30980684638023376
+    },
+    {
+      "layer": 48,
+      "metric": "first_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0.1,
+      "ci95_low": 0.0,
+      "ci95_high": 0.25
+    },
+    {
+      "layer": 48,
+      "metric": "full_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    },
+    {
+      "layer": 48,
+      "metric": "gold_minus_false_full_logprob",
+      "n_pairs": 20,
+      "mean_self_minus_public": -0.033117550214131965,
+      "ci95_low": -0.19529190937678065,
+      "ci95_high": 0.12657936970392844
+    },
+    {
+      "layer": 56,
+      "metric": "first_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0,
+      "ci95_low": -0.15,
+      "ci95_high": 0.15
+    },
+    {
+      "layer": 56,
+      "metric": "full_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0.05,
+      "ci95_low": 0.0,
+      "ci95_high": 0.15
+    },
+    {
+      "layer": 56,
+      "metric": "gold_minus_false_full_logprob",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0.010112273891766943,
+      "ci95_low": -0.0727451674143472,
+      "ci95_high": 0.09804467717806502
+    },
+    {
+      "layer": 62,
+      "metric": "first_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0.05,
+      "ci95_low": 0.0,
+      "ci95_high": 0.15
+    },
+    {
+      "layer": 62,
+      "metric": "full_win",
+      "n_pairs": 20,
+      "mean_self_minus_public": 0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    },
+    {
+      "layer": 62,
+      "metric": "gold_minus_false_full_logprob",
+      "n_pairs": 20,
+      "mean_self_minus_public": -0.01714524230745158,
+      "ci95_low": -0.05253923806478258,
+      "ci95_high": 0.01714457617238314
+    }
+  ]
+}

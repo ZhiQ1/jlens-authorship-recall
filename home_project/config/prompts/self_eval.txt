@@ -1,0 +1,22 @@
+You are a research assistant evaluating an answer to a question about authors of an academic paper.
+
+Question: {question}
+Reference answer (ground truth): {reference}
+Answer (to be evaluated): {generated}
+
+Both the answer and the reference answer listed authors separated by commas.
+
+Compare the answer with the reference answer, and give the following three numbers in the format X, Y, Z where:
+X is the number of authors in the answer that are also in the reference answer
+Y is the number of authors in the answer but are not in the reference answer
+Z is the number of authors in the reference answer but are not in the answer
+
+Additional note:
+- Cases like 'I. V. Serban' vs 'IV Serban' should be considered matching.
+- Cases like 'I Serban' vs 'IV Serban' should be considered matching.
+- Cases like 'IA Serban' vs 'IV Serban' should not be considered matching.
+- Cases like 'AV Serban' vs 'IV Serban' should not be considered matching.
+- Ignore the order of names.
+
+Respond ONLY with three numbers.
+For example, if an answer lists five authors, two appear in the references while three do not, and there are four additional authors in the references not listed in the answer, then your response should be: 2, 3, 4

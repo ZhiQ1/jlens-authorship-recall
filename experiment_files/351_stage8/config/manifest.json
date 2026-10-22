@@ -1,0 +1,22 @@
+{
+  "inputs": {
+    "full_manifest": "a63316ef28bdf6079370e7b946026cf705bc58c017fa5724fa9631255a845bcb",
+    "pilot50": "c8637f36288847774afd97ef021f7320fea4dd96e2d84b131d1c9401345c2214"
+  },
+  "n_pairs": 100,
+  "n_papers": 200,
+  "outputs": {
+    "cohort/stage8_papers.csv": "c12a15d3d1e1645f9f139b9ca875224f9701323b8b092a8d7f4430907a6e4d62",
+    "config/analysis_plan.json": "7ff662e07798de70c09e30c387f675db0c47c6e6723270f590809e4874942b9c",
+    "matching/stage8_ab_pairs.csv": "9505d324edbaf5f5c11ca58716f5b78d7aba61062e827fe4abf7b6a8c75f3539",
+    "reports/freeze_report.md": "7f710191e73faf84de7cbedc42df3fbaad9f0f17c4c609f940bb268921d6f336",
+    "summary/matching_audit.json": "f35454c860c82e1957b79f9350a248204d30e51c8364ee8ea1240c54186c36b4"
+  },
+  "quotas": {
+    "high": 25,
+    "low": 25,
+    "mid": 50
+  },
+  "seed": 3518001,
+  "version": "stage8_v1"
+}

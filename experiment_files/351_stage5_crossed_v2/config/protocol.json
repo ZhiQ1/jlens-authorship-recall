@@ -1,0 +1,53 @@
+{
+  "protocol": "stage5_crossed_title_author_v2",
+  "pilot_id": "pilot50_v1",
+  "seed": 35150,
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "group_counts_full": {
+    "B": 2186,
+    "A": 4110,
+    "C": 511,
+    "D": 34
+  },
+  "group_counts_pilot": {
+    "A": 20,
+    "B": 20,
+    "C": 7,
+    "D": 3
+  },
+  "n_matched_pairs": 20,
+  "comparison": "A/B observational matched descriptive; C/D separately; no label changes",
+  "endpoints": [
+    "first_token_gold_logit",
+    "first_token_false_logit",
+    "title_specific_margin (difference of margins)"
+  ],
+  "controls": [
+    "true_title_gold",
+    "true_title_false",
+    "crossed_source_title_gold",
+    "crossed_source_title_false"
+  ],
+  "limitations": [
+    "first-token may not discriminate names sharing first token",
+    "false author identity disjointness checked by name, not external authorship registry",
+    "unmatched A/B retained"
+  ],
+  "parent_csv": "/scratch/zhang.zhiqi2/jlens/351_all/351_four_groups.csv",
+  "parent_csv_sha256": "c7c79bbbe3e0f9272aed34041657938d0cdf57d19d9604d44d22585817aea180",
+  "stage4_raw_sha256": "1a488beca1c98435a01b4c7f1f0ac6aab7598dbbcd08b19a6dcc5302c92f9ff0",
+  "model": "Qwen/Qwen3-32B",
+  "model_revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "lens": "/scratch/zhang.zhiqi2/jlens/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt",
+  "prompt": "Who are the authors of the paper titled \"{title}\" ({year})?\nAuthors:",
+  "token_protocol": "encode(prompt) + encode(ASCII_SPACE+author) first token",
+  "scoring_version": "crossed_source_same_candidate_logits_v2"
+}

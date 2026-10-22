@@ -1,0 +1,74 @@
+{
+  "n_prompts_each": 50,
+  "source_layers": [
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "matrix_metrics": [
+    {
+      "layer": 24,
+      "frob_A": 41.43352326841194,
+      "frob_B": 45.36964662804569,
+      "cosine": 0.6776281115854377,
+      "relative_frobenius_difference": 0.8072439957063297,
+      "entry_std_A": 0.008092477421813142,
+      "entry_std_B": 0.008861250502406211,
+      "nonfinite_count": 0
+    },
+    {
+      "layer": 32,
+      "frob_A": 51.48246228364933,
+      "frob_B": 52.05481443255117,
+      "cosine": 0.849493833918276,
+      "relative_frobenius_difference": 0.5487489115903327,
+      "entry_std_A": 0.010055151071373067,
+      "entry_std_B": 0.010166937561126315,
+      "nonfinite_count": 0
+    },
+    {
+      "layer": 40,
+      "frob_A": 88.60793728271518,
+      "frob_B": 87.41007681380972,
+      "cosine": 0.9394697642808881,
+      "relative_frobenius_difference": 0.34819551236055324,
+      "entry_std_A": 0.017306185327622327,
+      "entry_std_B": 0.01707222523539487,
+      "nonfinite_count": 0
+    },
+    {
+      "layer": 48,
+      "frob_A": 105.86472519304007,
+      "frob_B": 105.49346445870724,
+      "cosine": 0.9803374310394048,
+      "relative_frobenius_difference": 0.1983364777945357,
+      "entry_std_A": 0.020676189124953715,
+      "entry_std_B": 0.020603654584909342,
+      "nonfinite_count": 0
+    },
+    {
+      "layer": 56,
+      "frob_A": 93.33380092882312,
+      "frob_B": 93.13172034955774,
+      "cosine": 0.9957101912327896,
+      "relative_frobenius_difference": 0.0926515269576439,
+      "entry_std_A": 0.01822809519670103,
+      "entry_std_B": 0.01818861572825048,
+      "nonfinite_count": 0
+    },
+    {
+      "layer": 62,
+      "frob_A": 80.82592897880494,
+      "frob_B": 80.6910083492265,
+      "cosine": 0.999845562061199,
+      "relative_frobenius_difference": 0.01765408721937706,
+      "entry_std_A": 0.015785051574254964,
+      "entry_std_B": 0.01575869885065682,
+      "nonfinite_count": 0
+    }
+  ],
+  "interpretation": "Matrix-only stability; does not establish held-out output/rank stability"
+}

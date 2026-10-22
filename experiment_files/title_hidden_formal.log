@@ -1,0 +1,108 @@
+Input items: 772
+Already completed: 0
+Remaining: 772
+
+Loading tokenizer...
+Loading model...
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<01:13,  9.57it/s]Loading weights:   0%|          | 2/707 [00:00<01:33,  7.50it/s]Loading weights:   1%|▏         | 10/707 [00:00<00:20, 34.29it/s]Loading weights:   3%|▎         | 21/707 [00:00<00:11, 57.92it/s]Loading weights:   5%|▍         | 32/707 [00:00<00:09, 73.98it/s]Loading weights:   6%|▌         | 43/707 [00:00<00:07, 83.31it/s]Loading weights:   8%|▊         | 54/707 [00:00<00:07, 89.30it/s]Loading weights:   9%|▉         | 65/707 [00:00<00:06, 93.41it/s]Loading weights:  11%|█         | 76/707 [00:01<00:06, 96.68it/s]Loading weights:  12%|█▏        | 87/707 [00:01<00:06, 99.10it/s]Loading weights:  14%|█▎        | 97/707 [00:01<00:06, 99.00it/s]Loading weights:  15%|█▌        | 107/707 [00:01<00:06, 98.06it/s]Loading weights:  17%|█▋        | 117/707 [00:01<00:06, 97.27it/s]Loading weights:  19%|█▊        | 131/707 [00:01<00:05, 107.94it/s]Loading weights:  20%|██        | 142/707 [00:01<00:05, 105.52it/s]Loading weights:  22%|██▏       | 157/707 [00:01<00:04, 117.40it/s]Loading weights:  24%|██▍       | 169/707 [00:01<00:05, 107.01it/s]Loading weights:  26%|██▌       | 181/707 [00:01<00:04, 109.20it/s]Loading weights:  27%|██▋       | 193/707 [00:02<00:04, 105.77it/s]Loading weights:  29%|██▉       | 207/707 [00:02<00:04, 114.34it/s]Loading weights:  31%|███▏      | 221/707 [00:02<00:04, 118.31it/s]Loading weights:  33%|███▎      | 233/707 [00:02<00:04, 116.97it/s]Loading weights:  35%|███▍      | 245/707 [00:02<00:03, 117.06it/s]Loading weights:  36%|███▋      | 257/707 [00:02<00:04, 111.24it/s]Loading weights:  38%|███▊      | 269/707 [00:02<00:04, 107.22it/s]Loading weights:  40%|███▉      | 281/707 [00:02<00:04, 102.78it/s]Loading weights:  42%|████▏     | 296/707 [00:03<00:03, 114.74it/s]Loading weights:  44%|████▎     | 308/707 [00:03<00:03, 115.02it/s]Loading weights:  46%|████▌     | 322/707 [00:03<00:03, 114.60it/s]Loading weights:  47%|████▋     | 334/707 [00:03<00:03, 116.02it/s]Loading weights:  49%|████▉     | 346/707 [00:03<00:03, 112.71it/s]Loading weights:  51%|█████     | 358/707 [00:03<00:03, 108.54it/s]Loading weights:  53%|█████▎    | 373/707 [00:03<00:02, 118.47it/s]Loading weights:  55%|█████▍    | 388/707 [00:03<00:02, 119.88it/s]Loading weights:  57%|█████▋    | 401/707 [00:03<00:02, 117.23it/s]Loading weights:  58%|█████▊    | 413/707 [00:04<00:02, 98.53it/s] Loading weights:  60%|█████▉    | 424/707 [00:04<00:03, 75.85it/s]Loading weights:  61%|██████▏   | 434/707 [00:04<00:03, 78.78it/s]Loading weights:  63%|██████▎   | 443/707 [00:04<00:03, 80.36it/s]Loading weights:  64%|██████▍   | 452/707 [00:04<00:03, 81.89it/s]Loading weights:  65%|██████▌   | 461/707 [00:04<00:03, 76.97it/s]Loading weights:  66%|██████▋   | 470/707 [00:04<00:03, 75.43it/s]Loading weights:  68%|██████▊   | 479/707 [00:05<00:03, 72.65it/s]Loading weights:  69%|██████▉   | 489/707 [00:05<00:02, 76.73it/s]Loading weights:  71%|███████   | 499/707 [00:05<00:02, 78.44it/s]Loading weights:  72%|███████▏  | 507/707 [00:05<00:02, 75.51it/s]Loading weights:  73%|███████▎  | 515/707 [00:05<00:02, 73.91it/s]Loading weights:  74%|███████▍  | 523/707 [00:05<00:02, 68.86it/s]Loading weights:  75%|███████▌  | 533/707 [00:05<00:02, 74.94it/s]Loading weights:  77%|███████▋  | 543/707 [00:05<00:02, 79.36it/s]Loading weights:  78%|███████▊  | 553/707 [00:05<00:01, 81.54it/s]Loading weights:  80%|███████▉  | 565/707 [00:06<00:01, 84.86it/s]Loading weights:  81%|████████  | 574/707 [00:06<00:01, 86.12it/s]Loading weights:  82%|████████▏ | 583/707 [00:06<00:01, 86.36it/s]Loading weights:  84%|████████▎ | 592/707 [00:06<00:01, 85.39it/s]Loading weights:  85%|████████▌ | 601/707 [00:06<00:01, 79.72it/s]Loading weights:  86%|████████▋ | 610/707 [00:06<00:01, 80.98it/s]Loading weights:  88%|████████▊ | 621/707 [00:06<00:01, 85.40it/s]Loading weights:  89%|████████▉ | 632/707 [00:06<00:00, 85.16it/s]Loading weights:  91%|█████████ | 642/707 [00:07<00:00, 85.60it/s]Loading weights:  93%|█████████▎| 654/707 [00:07<00:00, 85.87it/s]Loading weights:  94%|█████████▍| 665/707 [00:07<00:00, 87.47it/s]Loading weights:  95%|█████████▌| 675/707 [00:07<00:00, 90.49it/s]Loading weights:  97%|█████████▋| 686/707 [00:07<00:00, 88.51it/s]Loading weights:  99%|█████████▊| 697/707 [00:07<00:00, 77.55it/s]Loading weights: 100%|██████████| 707/707 [00:07<00:00, 91.33it/s]
+8/772 complete
+16/772 complete
+24/772 complete
+32/772 complete
+40/772 complete
+48/772 complete
+56/772 complete
+64/772 complete
+72/772 complete
+80/772 complete
+88/772 complete
+96/772 complete
+104/772 complete
+112/772 complete
+120/772 complete
+128/772 complete
+136/772 complete
+144/772 complete
+152/772 complete
+160/772 complete
+168/772 complete
+176/772 complete
+184/772 complete
+192/772 complete
+200/772 complete
+208/772 complete
+216/772 complete
+224/772 complete
+232/772 complete
+240/772 complete
+248/772 complete
+256/772 complete
+264/772 complete
+272/772 complete
+280/772 complete
+288/772 complete
+296/772 complete
+304/772 complete
+312/772 complete
+320/772 complete
+328/772 complete
+336/772 complete
+344/772 complete
+352/772 complete
+360/772 complete
+368/772 complete
+376/772 complete
+384/772 complete
+392/772 complete
+400/772 complete
+408/772 complete
+416/772 complete
+424/772 complete
+432/772 complete
+440/772 complete
+448/772 complete
+456/772 complete
+464/772 complete
+472/772 complete
+480/772 complete
+488/772 complete
+496/772 complete
+504/772 complete
+512/772 complete
+520/772 complete
+528/772 complete
+536/772 complete
+544/772 complete
+552/772 complete
+560/772 complete
+568/772 complete
+576/772 complete
+584/772 complete
+592/772 complete
+600/772 complete
+608/772 complete
+616/772 complete
+624/772 complete
+632/772 complete
+640/772 complete
+648/772 complete
+656/772 complete
+664/772 complete
+672/772 complete
+680/772 complete
+688/772 complete
+696/772 complete
+704/772 complete
+712/772 complete
+720/772 complete
+728/772 complete
+736/772 complete
+744/772 complete
+752/772 complete
+760/772 complete
+768/772 complete
+772/772 complete
+
+===== COMPLETE =====
+Saved:
+/scratch/zhang.zhiqi2/jlens/title_hidden_random_field_772_results.jsonl

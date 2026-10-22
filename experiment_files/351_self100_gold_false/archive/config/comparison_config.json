@@ -1,0 +1,17 @@
+{
+  "public_file": "/scratch/zhang.zhiqi2/jlens/351_all/351_offload_fixed_validation.jsonl",
+  "public_sha256": "9a90020b9f7b0c03c5af74c7854b4e3bc73d742940598aff890e47b30e4a2790",
+  "self_file": "/scratch/zhang.zhiqi2/jlens/351_self100_gold_false/self_results.jsonl",
+  "self_sha256": "5e624fc78285513fee55596b820e1aaaf32385dcc16b0aa16a3bee6dd710201c",
+  "n_pairs": 20,
+  "layers": [
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "protocol": "reuse_original_public_pair_and_strict_tokenization_v1",
+  "fit100_model_revision": "9216db5781bf21249d130ec9da846c4624c16137"
+}

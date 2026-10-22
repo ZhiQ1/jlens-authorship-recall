@@ -1,0 +1,26 @@
+{
+  "gpu_layers": 29,
+  "lens_sha256": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+  "protocol": {
+    "candidate_jsonl_sha256": "1f1a9a669f7c9ba9e500d366a60af7bce54392a83f6fcc22876af503c873f039",
+    "candidate_manifest_sha256": "a1128370da37542c94532ff60bab1c579f3cb61a06fead673a969b257d02bd4b",
+    "layers": [
+      16,
+      24,
+      32,
+      40,
+      48,
+      56,
+      62
+    ],
+    "metric": "first_token_author_weighted_ties_half_v1",
+    "model": "Qwen/Qwen3-32B",
+    "prompt": "Who are the authors of the paper titled \"{title}\" ({year})?\nAuthors:",
+    "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+    "scorer": "stage7_2_v1",
+    "stage5_cohort_sha256": "c8637f36288847774afd97ef021f7320fea4dd96e2d84b131d1c9401345c2214"
+  },
+  "protocol_hash": "65aae65ab2115cd8b71524b45c91cd8bf7f02ac12c9b29dad08cfea5d9ad41b2",
+  "readout_sha256": "4fd4c9fb7027e6fe0127d94efe653c52c349cbdab13fc45d2ffdec4e7940c339",
+  "runtime_hash": "3c131134c8324cfa3e45c7c717436ca619b9ad97bfbc7f61cb97cf308aedc77b"
+}

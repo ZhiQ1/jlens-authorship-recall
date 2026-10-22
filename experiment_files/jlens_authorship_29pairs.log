@@ -1,0 +1,76 @@
+Already completed: 0
+Selected pairs: 29
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<01:34,  7.48it/s]Loading weights:   0%|          | 2/707 [00:00<02:03,  5.71it/s]Loading weights:   1%|          | 6/707 [00:00<00:42, 16.68it/s]Loading weights:   2%|▏         | 17/707 [00:00<00:16, 42.15it/s]Loading weights:   4%|▍         | 28/707 [00:00<00:11, 57.35it/s]Loading weights:   6%|▌         | 39/707 [00:00<00:10, 66.79it/s]Loading weights:   7%|▋         | 50/707 [00:00<00:08, 73.07it/s]Loading weights:   9%|▊         | 61/707 [00:01<00:08, 76.48it/s]Loading weights:  10%|█         | 72/707 [00:01<00:08, 79.24it/s]Loading weights:  12%|█▏        | 83/707 [00:01<00:07, 80.33it/s]Loading weights:  13%|█▎        | 94/707 [00:01<00:07, 81.28it/s]Loading weights:  15%|█▍        | 105/707 [00:01<00:07, 82.67it/s]Loading weights:  16%|█▋        | 116/707 [00:01<00:07, 83.17it/s]Loading weights:  18%|█▊        | 126/707 [00:01<00:06, 86.33it/s]Loading weights:  19%|█▉        | 137/707 [00:01<00:06, 85.83it/s]Loading weights:  21%|██        | 148/707 [00:02<00:06, 86.94it/s]Loading weights:  22%|██▏       | 159/707 [00:02<00:06, 87.52it/s]Loading weights:  24%|██▍       | 170/707 [00:02<00:06, 87.84it/s]Loading weights:  26%|██▌       | 181/707 [00:02<00:06, 86.97it/s]Loading weights:  27%|██▋       | 191/707 [00:02<00:05, 88.43it/s]Loading weights:  28%|██▊       | 200/707 [00:02<00:05, 87.07it/s]Loading weights:  30%|██▉       | 209/707 [00:02<00:06, 80.50it/s]Loading weights:  31%|███       | 218/707 [00:02<00:06, 76.21it/s]Loading weights:  32%|███▏      | 226/707 [00:03<00:06, 69.25it/s]Loading weights:  33%|███▎      | 236/707 [00:03<00:06, 75.49it/s]Loading weights:  35%|███▍      | 246/707 [00:03<00:05, 80.23it/s]Loading weights:  36%|███▌      | 255/707 [00:03<00:05, 81.29it/s]Loading weights:  37%|███▋      | 264/707 [00:03<00:05, 76.56it/s]Loading weights:  38%|███▊      | 272/707 [00:03<00:06, 71.31it/s]Loading weights:  40%|███▉      | 281/707 [00:03<00:06, 70.39it/s]Loading weights:  41%|████      | 291/707 [00:03<00:05, 77.61it/s]Loading weights:  43%|████▎     | 301/707 [00:04<00:04, 83.04it/s]Loading weights:  44%|████▍     | 312/707 [00:04<00:04, 82.13it/s]Loading weights:  46%|████▌     | 323/707 [00:04<00:04, 81.48it/s]Loading weights:  47%|████▋     | 334/707 [00:04<00:04, 81.84it/s]Loading weights:  49%|████▉     | 345/707 [00:04<00:04, 82.18it/s]Loading weights:  50%|█████     | 354/707 [00:04<00:04, 82.54it/s]Loading weights:  51%|█████▏    | 363/707 [00:04<00:04, 81.11it/s]Loading weights:  53%|█████▎    | 372/707 [00:04<00:04, 79.97it/s]Loading weights:  54%|█████▍    | 381/707 [00:05<00:04, 76.43it/s]Loading weights:  55%|█████▌    | 391/707 [00:05<00:04, 76.75it/s]Loading weights:  57%|█████▋    | 402/707 [00:05<00:03, 79.10it/s]Loading weights:  58%|█████▊    | 413/707 [00:05<00:03, 80.61it/s]Loading weights:  60%|█████▉    | 424/707 [00:05<00:03, 81.77it/s]Loading weights:  62%|██████▏   | 435/707 [00:05<00:03, 83.87it/s]Loading weights:  63%|██████▎   | 446/707 [00:05<00:03, 84.74it/s]Loading weights:  65%|██████▍   | 457/707 [00:05<00:02, 85.85it/s]Loading weights:  66%|██████▌   | 468/707 [00:06<00:02, 86.46it/s]Loading weights:  68%|██████▊   | 479/707 [00:06<00:02, 86.51it/s]Loading weights:  69%|██████▉   | 490/707 [00:06<00:02, 86.70it/s]Loading weights:  71%|███████   | 501/707 [00:06<00:02, 86.87it/s]Loading weights:  72%|███████▏  | 512/707 [00:06<00:02, 87.25it/s]Loading weights:  74%|███████▍  | 523/707 [00:06<00:02, 86.25it/s]Loading weights:  75%|███████▌  | 533/707 [00:06<00:01, 88.29it/s]Loading weights:  77%|███████▋  | 542/707 [00:06<00:01, 87.36it/s]Loading weights:  78%|███████▊  | 551/707 [00:07<00:01, 86.66it/s]Loading weights:  79%|███████▉  | 560/707 [00:07<00:01, 79.78it/s]Loading weights:  80%|████████  | 569/707 [00:07<00:01, 75.91it/s]Loading weights:  82%|████████▏ | 577/707 [00:07<00:01, 75.61it/s]Loading weights:  83%|████████▎ | 587/707 [00:07<00:01, 80.58it/s]Loading weights:  84%|████████▍ | 596/707 [00:07<00:01, 81.55it/s]Loading weights:  86%|████████▌ | 605/707 [00:07<00:01, 77.11it/s]Loading weights:  87%|████████▋ | 613/707 [00:07<00:01, 73.87it/s]Loading weights:  88%|████████▊ | 622/707 [00:07<00:01, 71.80it/s]Loading weights:  90%|████████▉ | 633/707 [00:08<00:00, 75.14it/s]Loading weights:  91%|█████████ | 643/707 [00:08<00:00, 79.52it/s]Loading weights:  92%|█████████▏| 653/707 [00:08<00:00, 81.51it/s]Loading weights:  94%|█████████▍| 664/707 [00:08<00:00, 83.49it/s]Loading weights:  95%|█████████▌| 673/707 [00:08<00:00, 84.83it/s]Loading weights:  96%|█████████▋| 682/707 [00:08<00:00, 80.48it/s]Loading weights:  98%|█████████▊| 691/707 [00:08<00:00, 79.11it/s]Loading weights:  99%|█████████▉| 699/707 [00:08<00:00, 72.58it/s]Loading weights: 100%|██████████| 707/707 [00:08<00:00, 78.78it/s]
+optimized_0008 G_known gold: 'A. Paolino' token: ' A' ranks: {'24': 84320, '32': 6910, '40': 4469, '48': 1822, '56': 3722, '62': 210} final: 22
+optimized_0008 G_unknown gold: 'Wenjun Su' token: ' Wen' ranks: {'24': 3477, '32': 329, '40': 3752, '48': 1219, '56': 366, '62': 32} final: 60
+optimized_0009 G_known gold: 'R. Mikkonen' token: ' R' ranks: {'24': 64599, '32': 232, '40': 13746, '48': 1122, '56': 1276, '62': 23} final: 5
+optimized_0009 G_unknown gold: 'A. Radchik' token: ' A' ranks: {'24': 135472, '32': 13496, '40': 10837, '48': 2696, '56': 2935, '62': 2} final: 2
+optimized_0012 G_known gold: 'S. J. Schweitzer' token: ' S' ranks: {'24': 131780, '32': 2425, '40': 1477, '48': 740, '56': 3060, '62': 64} final: 4
+optimized_0012 G_unknown gold: 'Ashutosh Gupta' token: ' Ash' ranks: {'24': 142012, '32': 29656, '40': 210, '48': 563, '56': 4296, '62': 1202} final: 717
+optimized_0013 G_known gold: 'B. Tripathy' token: ' B' ranks: {'24': 46499, '32': 152, '40': 216, '48': 1031, '56': 6589, '62': 50} final: 14
+optimized_0013 G_unknown gold: 'Vijindra' token: ' Vij' ranks: {'24': 113860, '32': 3836, '40': 11805, '48': 2283, '56': 116, '62': 36} final: 45
+optimized_0016 G_known gold: 'Cornelia Schön' token: ' Corn' ranks: {'24': 64732, '32': 531, '40': 237, '48': 724, '56': 12160, '62': 956} final: 578
+optimized_0016 G_unknown gold: 'Carlos Hernandez-Matas' token: ' Carlos' ranks: {'24': 91185, '32': 10599, '40': 971, '48': 995, '56': 66, '62': 43} final: 96
+optimized_0020 G_known gold: 'J. Simmank' token: ' J' ranks: {'24': 128907, '32': 8091, '40': 3577, '48': 1719, '56': 1317, '62': 184} final: 17
+optimized_0020 G_unknown gold: 'T. Heinen' token: ' T' ranks: {'24': 127854, '32': 16011, '40': 10819, '48': 5220, '56': 3066, '62': 167} final: 10
+optimized_0023 G_known gold: 'Melanie Grabmüller' token: ' Melanie' ranks: {'24': 45231, '32': 1204, '40': 1401, '48': 2931, '56': 28, '62': 81} final: 188
+optimized_0023 G_unknown gold: 'I. Kanamori' token: ' I' ranks: {'24': 147120, '32': 20713, '40': 29445, '48': 9709, '56': 29461, '62': 488} final: 26
+optimized_0024 G_known gold: 'Y. Dappe' token: ' Y' ranks: {'24': 131829, '32': 4960, '40': 4707, '48': 3680, '56': 1299, '62': 59} final: 20
+optimized_0024 G_unknown gold: 'R. Szczęsny' token: ' R' ranks: {'24': 60856, '32': 166, '40': 5664, '48': 594, '56': 1509, '62': 60} final: 13
+optimized_0025 G_known gold: 'Deborah Pelosi-Pinhas' token: ' Deborah' ranks: {'24': 79440, '32': 48886, '40': 7275, '48': 6114, '56': 1605, '62': 3082} final: 6040
+optimized_0025 G_unknown gold: 'N. Toohey' token: ' N' ranks: {'24': 99410, '32': 1725, '40': 878, '48': 1006, '56': 1579, '62': 26} final: 11
+optimized_0027 G_known gold: 'J. Graef' token: ' J' ranks: {'24': 144472, '32': 1376, '40': 4435, '48': 3323, '56': 2018, '62': 107} final: 13
+optimized_0027 G_unknown gold: 'Rezvan Nasiri' token: ' Re' ranks: {'24': 128533, '32': 135, '40': 4182, '48': 9609, '56': 77031, '62': 1629} final: 300
+optimized_0028 G_known gold: 'D. Kang' token: ' D' ranks: {'24': 144830, '32': 66451, '40': 5267, '48': 4873, '56': 2339, '62': 8} final: 4
+optimized_0028 G_unknown gold: 'A. El-Gendy' token: ' A' ranks: {'24': 129072, '32': 5465, '40': 5448, '48': 1679, '56': 2145, '62': 4} final: 3
+optimized_0030 G_known gold: 'Yanji Xu' token: ' Yan' ranks: {'24': 144137, '32': 3745, '40': 4259, '48': 10417, '56': 248, '62': 298} final: 380
+optimized_0030 G_unknown gold: 'F. P. H. Wragg' token: ' F' ranks: {'24': 133511, '32': 4599, '40': 6137, '48': 3408, '56': 3369, '62': 189} final: 28
+optimized_0033 G_known gold: 'D. Chae' token: ' D' ranks: {'24': 143923, '32': 68788, '40': 2854, '48': 2232, '56': 827, '62': 13} final: 1
+optimized_0033 G_unknown gold: 'Li' token: ' Li' ranks: {'24': 131247, '32': 2045, '40': 2057, '48': 5361, '56': 652, '62': 62} final: 48
+optimized_0034 G_known gold: 'Sergio A. Useche' token: ' Sergio' ranks: {'24': 66434, '32': 16403, '40': 9788, '48': 10166, '56': 969, '62': 2427} final: 3208
+optimized_0034 G_unknown gold: 'J. Bose' token: ' J' ranks: {'24': 122844, '32': 4745, '40': 5280, '48': 1169, '56': 3196, '62': 140} final: 10
+optimized_0039 G_known gold: 'Steve DeNeefe' token: ' Steve' ranks: {'24': 144145, '32': 3902, '40': 536, '48': 98, '56': 391, '62': 217} final: 368
+optimized_0039 G_unknown gold: 'Juan Pedro Caraça-Valente' token: ' Juan' ranks: {'24': 18457, '32': 959, '40': 2080, '48': 4112, '56': 1773, '62': 989} final: 1176
+optimized_0043 G_known gold: 'Mel Limson' token: ' Mel' ranks: {'24': 2856, '32': 42, '40': 33, '48': 1048, '56': 39, '62': 154} final: 112
+optimized_0043 G_unknown gold: 'Joonhee Kim' token: ' J' ranks: {'24': 134116, '32': 3338, '40': 3102, '48': 1558, '56': 741, '62': 48} final: 6
+optimized_0045 G_known gold: 'Manuela Missana' token: ' Man' ranks: {'24': 86566, '32': 872, '40': 929, '48': 1247, '56': 8974, '62': 433} final: 226
+optimized_0045 G_unknown gold: 'G. Welk' token: ' G' ranks: {'24': 122356, '32': 2879, '40': 5805, '48': 6197, '56': 3663, '62': 328} final: 40
+optimized_0051 G_known gold: 'S. T. Teo' token: ' S' ranks: {'24': 100128, '32': 2739, '40': 1882, '48': 2564, '56': 7165, '62': 383} final: 14
+optimized_0051 G_unknown gold: 'S. Stanley' token: ' S' ranks: {'24': 107922, '32': 1983, '40': 2733, '48': 734, '56': 1261, '62': 59} final: 3
+optimized_0053 G_known gold: 'Sang Dong Kim' token: ' Sang' ranks: {'24': 100897, '32': 52200, '40': 19920, '48': 9597, '56': 6531, '62': 686} final: 986
+optimized_0053 G_unknown gold: 'L. Papie' token: ' L' ranks: {'24': 116429, '32': 2323, '40': 1318, '48': 2864, '56': 4448, '62': 28} final: 10
+optimized_0057 G_known gold: 'P. Saulnier' token: ' P' ranks: {'24': 149342, '32': 17995, '40': 43043, '48': 1811, '56': 4013, '62': 225} final: 21
+optimized_0057 G_unknown gold: 'Chih-Chung Lo' token: ' Ch' ranks: {'24': 148386, '32': 12137, '40': 21656, '48': 6706, '56': 2201, '62': 83} final: 30
+optimized_0058 G_known gold: 'J. Grigsby' token: ' J' ranks: {'24': 147194, '32': 7172, '40': 4530, '48': 825, '56': 333, '62': 1} final: 1
+optimized_0058 G_unknown gold: 'D. Honeyfield' token: ' D' ranks: {'24': 147030, '32': 70065, '40': 4460, '48': 2790, '56': 644, '62': 3} final: 1
+optimized_0059 G_known gold: 'J. Mohanty' token: ' J' ranks: {'24': 129601, '32': 4364, '40': 3549, '48': 2757, '56': 1514, '62': 69} final: 4
+optimized_0059 G_unknown gold: 'B. Tang' token: ' B' ranks: {'24': 35763, '32': 375, '40': 187, '48': 683, '56': 15567, '62': 414} final: 71
+optimized_0060 G_known gold: 'Weikang Hu' token: ' We' ranks: {'24': 77464, '32': 1596, '40': 1966, '48': 1170, '56': 1363, '62': 95} final: 31
+optimized_0060 G_unknown gold: 'D. Dong' token: ' D' ranks: {'24': 145563, '32': 69295, '40': 4792, '48': 2481, '56': 1159, '62': 31} final: 7
+optimized_0065 G_known gold: 'T. Liang' token: ' T' ranks: {'24': 126237, '32': 10797, '40': 6461, '48': 9027, '56': 25280, '62': 1157} final: 58
+optimized_0065 G_unknown gold: 'U. Ballehaninna' token: ' U' ranks: {'24': 45187, '32': 1260, '40': 6850, '48': 3410, '56': 5441, '62': 286} final: 51
+optimized_0066 G_known gold: 'Jin-Guen Kim' token: ' Jin' ranks: {'24': 40667, '32': 16812, '40': 22286, '48': 8427, '56': 40, '62': 10} final: 28
+optimized_0066 G_unknown gold: 'Yu. V. Khlebnikova' token: ' Yu' ranks: {'24': 129081, '32': 3157, '40': 5075, '48': 6765, '56': 525, '62': 178} final: 145
+optimized_0069 G_known gold: 'R. Goel' token: ' R' ranks: {'24': 79928, '32': 293, '40': 5209, '48': 1069, '56': 1892, '62': 34} final: 4
+optimized_0069 G_unknown gold: 'S. Charette' token: ' S' ranks: {'24': 106997, '32': 2640, '40': 1522, '48': 1155, '56': 1937, '62': 179} final: 12
+optimized_0071 G_known gold: 'S. Godavarthi' token: ' S' ranks: {'24': 118335, '32': 1607, '40': 2078, '48': 2357, '56': 1585, '62': 97} final: 16
+optimized_0071 G_unknown gold: 'K. Shimonaga' token: ' K' ranks: {'24': 136641, '32': 23640, '40': 916, '48': 1350, '56': 709, '62': 36} final: 9
+optimized_0072 G_known gold: 'S. Ali' token: ' S' ranks: {'24': 98223, '32': 2700, '40': 1029, '48': 1216, '56': 9664, '62': 480} final: 27
+optimized_0072 G_unknown gold: 'Margaret Mahlin' token: ' Margaret' ranks: {'24': 73489, '32': 285, '40': 93, '48': 135, '56': 15, '62': 3} final: 9
+optimized_0074 G_known gold: 'J. Keilp' token: ' J' ranks: {'24': 136988, '32': 7801, '40': 4429, '48': 1227, '56': 2321, '62': 109} final: 3
+optimized_0074 G_unknown gold: 'Ines B Wu' token: ' In' ranks: {'24': 56650, '32': 2109, '40': 7450, '48': 2490, '56': 7406, '62': 1086} final: 244
+
+===== GROUP COMPARISON =====
+G_known L24 median rank: 100897
+G_known L32 median rank: 3902
+G_known L40 median rank: 4259
+G_known L48 median rank: 1822
+G_known L56 median rank: 1605
+G_known L62 median rank: 109
+G_unknown L24 median rank: 122844
+G_unknown L32 median rank: 3157
+G_unknown L40 median rank: 4460
+G_unknown L48 median rank: 2481
+G_unknown L56 median rank: 1937
+G_unknown L62 median rank: 62
+RESULTS SAVED: /scratch/zhang.zhiqi2/jlens/jlens_authorship_29pairs.jsonl

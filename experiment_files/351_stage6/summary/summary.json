@@ -1,0 +1,16 @@
+{
+  "completed": 50,
+  "planned": 50,
+  "groups": {
+    "A": 20,
+    "B": 20,
+    "C": 7,
+    "D": 3
+  },
+  "reused_stage4": 20,
+  "measured_gpu": 30,
+  "matching_total_pairs": 20,
+  "matched_pairs_observed": 20,
+  "protocol": "stage6_v1_conditional_full_author_same_stage4",
+  "notes": "Stage6 is conditional teacher forcing, not free recall; Stage5 measures separate first-token crossed control."
+}

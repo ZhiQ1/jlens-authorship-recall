@@ -1,0 +1,4 @@
+metric,model,coef_log_cit,se_log_cit,t_log_cit,p_log_cit,coef_n_gt_authors,p_n_gt_authors,r2,r2_adj,n
+HR2,HR ~ log_cit + n_gt_authors + field,-0.017515,0.000625,-28.0396,0.0,0.003712,8.177902799388903e-13,0.1032,0.1023,9108
+HR4,HR ~ log_cit + n_gt_authors + field,-0.020731,0.000708,-29.2662,0.0,0.001958,0.0008566098580422565,0.1064,0.1055,9108
+HR5,HR ~ log_cit + n_gt_authors + field,-0.023569,0.000806,-29.2525,0.0,0.005721,0.0,0.1086,0.1077,9108

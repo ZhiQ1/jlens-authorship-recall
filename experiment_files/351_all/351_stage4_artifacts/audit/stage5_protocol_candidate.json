@@ -1,0 +1,31 @@
+{
+  "status": "PROPOSED; controls and matching NOT YET RUN",
+  "primary": "first-listed gold author first-token RR, Authors: position, per layer",
+  "primary_weighting": "one paper one weight, A/B matched pair-bootstrap after pairing",
+  "auxiliary": [
+    "paper-mean all gold-author first-token RR; list-start order confound",
+    "teacher-forced full-name token MRR; not free recall",
+    "within-paper J-Lens minus Vanilla"
+  ],
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "prompt_and_token_ids": "reuse exact Stage4 frozen run_config and forced token IDs",
+  "matching": "one-to-one A/B; citation_bin and field exact where possible, then year and n_authors near; record balance; no silent fallback",
+  "control_plan": [
+    "matched-false author with similar name-token length",
+    "shuffled title-year while preserving gold author",
+    "unrelated-title/name-prior baseline",
+    "Vanilla Lens (existing)",
+    "final model (existing)"
+  ],
+  "control_status": "matched-false, shuffled-title, name-prior NOT RUN",
+  "inference": "matched pair bootstrap; prespecify layer or adjust multiple comparisons",
+  "scope": "Stage4 n=20 exploration, no confirmatory claims"
+}

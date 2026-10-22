@@ -1,0 +1,123 @@
+# Single source of truth for every path, seed, bin edge, and field list.
+# Nothing in src/dua/ hardcodes any of these values. Override any entry with
+# a local config/config.local.yaml (gitignored) or the DUA_* environment
+# variables listed in .env.example.
+
+seed: 42
+
+paths:
+  # All relative paths resolve against the repository root.
+  data: data
+  raw: data/raw
+  release: data/release
+  cache: data/cache
+  results: results
+  figures: results/figures
+  tables: results/tables
+  metrics: results/metrics
+
+  # Stage A inputs. These are NOT in the repository; see README.md for how
+  # to obtain them. Point `corpus` at your local copy or set DUA_CORPUS.
+  corpus: data/raw/all_batches_filtered.ndjson.gz   # 1,921,209 curated papers
+  oag_pool: data/raw/oag_sample_10m.ndjson.gz       # 9,999,863 OAG records
+  fasttext_lid: data/raw/lid.176.bin                # language-ID model
+
+dataset:
+  # Counts asserted by `make verify`. They come from the paper, Section 2.1.
+  oag_pool_size: 9999863
+  curated_size: 1921209
+  eval_sample_size: 9108
+
+# The eight disciplines analysed in the paper, in the canonical order used by
+# every table and figure. Keys are the lowercase labels stored in the data;
+# values are the display labels used in figures and LaTeX.
+fields:
+  medicine: Medicine
+  biology: Biology
+  chemistry: Chemistry
+  computer science: Computer Sci.
+  materials science: Materials Sci.
+  physics: Physics
+  psychology: Psychology
+  mathematics: Mathematics
+
+# Thirteen exponentially spaced citation bins (Appendix A3.1). `lo` and `hi`
+# are inclusive; the final bin is open-ended.
+citation_bins:
+  - {label: "0-2",       lo: 0,    hi: 2}
+  - {label: "3-4",       lo: 3,    hi: 4}
+  - {label: "5-8",       lo: 5,    hi: 8}
+  - {label: "9-16",      lo: 9,    hi: 16}
+  - {label: "17-32",     lo: 17,   hi: 32}
+  - {label: "33-64",     lo: 33,   hi: 64}
+  - {label: "65-128",    lo: 65,   hi: 128}
+  - {label: "129-256",   lo: 129,  hi: 256}
+  - {label: "257-512",   lo: 257,  hi: 512}
+  - {label: "513-1024",  lo: 513,  hi: 1024}
+  - {label: "1025-2048", lo: 1025, hi: 2048}
+  - {label: "2049-4096", lo: 2049, hi: 4096}
+  - {label: "4097+",     lo: 4097, hi: null}
+
+sampling:
+  # Stage B: the 9,108-paper evaluation sample (Section 4.1).
+  per_stratum: 100          # target papers per (field, citation bin)
+  theoretical_max: 10400    # 100 x 8 x 13
+
+proxy:
+  # Stage C: the 6,048-paper proxy sub-sample (Section 3).
+  per_bin: 500
+  outlier_percentile: 80    # per-bin Google-hit cutoff -> 4,185 papers
+  infinigram_index_olmo: v4_olmo-2-0325-32b-instruct_llama
+  infinigram_index_redpajama: v4_rpj_llama_s4
+  infinigram_endpoint: https://api.infini-gram.io/
+  brightdata_endpoint: https://api.brightdata.com/request
+
+evaluation:
+  # A ground-truth author counts as retrieved only if BOTH the last name and
+  # the first initial match after normalisation (Section 4.5). In matcher
+  # terms: accept levels L1-L4, reject L5 (last name only).
+  match_level_threshold: 4
+  # Primary metric reported throughout the paper.
+  primary_metric: hr2
+  # HR2 above this counts as "recall substantially fails" (Appendix A7.2).
+  recall_failure_threshold: 0.5
+
+recognition:
+  # Section 6 / Appendix A7: multiple-choice recognition.
+  n_options: 4
+  chance: 0.25
+  distractor_modes: [random_field, same_field_swap, collaborator_swap]
+
+probing:
+  # Section 7 / Appendix A8: hidden-state probing.
+  models:
+    qwen3_32b:
+      hf_id: Qwen/Qwen3-32B
+      peak_layer: 48
+      n_layers: 63
+    mistral_small_3_2_24b:
+      hf_id: mistralai/Mistral-Small-3.2-24B-Instruct-2506
+      peak_layer: 22
+      n_layers: 39
+  positions: [P1, P2, P3, P4, P5, P9]
+  svd_components: 100
+  cv_folds: 5
+
+analysis:
+  # A handful of answers are runaway generations rather than attribution
+  # attempts -- the longest lists 4,096 names. The corpus caps ground truth at
+  # 20 authors (Section 2.1, filter 2), so any answer longer than this is
+  # excluded from the output-length analyses in Appendix A6.9, where a single
+  # such row would dominate a mean. 106 of 27,324 rows (0.4%) are affected.
+  # Every rate-based analysis keeps them: HR1 is designed to be robust to
+  # exactly this, and dropping them would change the headline numbers.
+  runaway_generation_threshold: 50
+
+figures:
+  format: pdf
+  dpi: 300
+  # Colour per model, kept identical across every figure in the paper.
+  model_colors:
+    gpt-4o: "#1f77b4"
+    deepseek-r1: "#d62728"
+    claude-sonnet-4.5: "#2ca02c"

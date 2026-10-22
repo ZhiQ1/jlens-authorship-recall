@@ -1,0 +1,19 @@
+{
+  "dataset": "Salesforce/wikitext",
+  "dataset_revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "dataset_config": "wikitext-103-raw-v1",
+  "split": "train",
+  "model_tokenizer": "Qwen/Qwen3-32B",
+  "model_revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "seed": 42,
+  "sequence_length": 128,
+  "sequences": 1000,
+  "candidate_chunks_seen": 970664,
+  "min_retokenized_length": 128,
+  "max_retokenized_length": 128,
+  "source_shards_sha256": {
+    "train-00000-of-00002.parquet": "74da360f23826045b3e6ac6375411fdb15f003030aa74f2596ed08b857cb9212",
+    "train-00001-of-00002.parquet": "ba090ac30dbf5461e8dcbdd1a1b8e6f3cf9c2c756d64f0c1220450acd514f720"
+  },
+  "corpus_sha256": "1af8dbff1b6e5b9f5bdd55b31d2d7bfadf28c8ab256a47e69d45db6b5ebc0b06"
+}

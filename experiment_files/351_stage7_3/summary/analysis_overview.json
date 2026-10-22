@@ -1,0 +1,12 @@
+{
+  "complete_papers": 50,
+  "expected_contexts": 1000,
+  "matched_complete_pairs": 20,
+  "n_low_bin_0_2_at_L56": 6,
+  "null_sampling": "20 metadata-selected titles, not exchangeable random permutations; tail fractions are descriptive",
+  "readout": "First token only; title-conditioned candidate discrimination; empirical null is matched wrong titles, not a claim about total model ignorance",
+  "scored_contexts": 1000,
+  "stage72_true_raw_sha256": "bb3f706e55efd9ca95a1d304bccf5d92e8c44c731f236f180dcb438c53df7cc0",
+  "stage73_manifest_sha256": "f1712eabab1853fafaba08d774faf2eda7d341a908f2027104147e29ca8f0bcd",
+  "status": "COMPLETE"
+}

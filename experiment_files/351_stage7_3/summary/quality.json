@@ -1,0 +1,22 @@
+{
+  "mean_title_token_gap": 4.358,
+  "mean_year_gap": 1.852,
+  "notes": [
+    "All 20 shuffles are selected by metadata only; scored outputs were not read",
+    "Same original target year retained in all shuffled prompts; source title year may differ",
+    "Author overlap is checked against target paper authors by normalized name strings, not external registry",
+    "Matched title source may have a real author included in frozen false candidates; flagged, not hidden",
+    "Repeated source title use across distinct target papers is allowed; dependent null contexts require care"
+  ],
+  "papers": 50,
+  "same_bin_fraction": 0.821,
+  "same_field_fraction": 1.0,
+  "shuffles_per_paper": 20,
+  "source_author_in_false_pool": 199,
+  "tier_counts": {
+    "0": 334,
+    "1": 487,
+    "2": 179
+  },
+  "total_shuffles": 1000
+}

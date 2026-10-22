@@ -1,0 +1,24 @@
+{
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 3518401,
+  "files": {
+    "stage8D/figures/jlens_L56_citation_bands.pdf": "b1d390849cf12a6121fcd72c789f0690d47631579565e047952c95c69d97acbc",
+    "stage8D/figures/jlens_L56_citation_bands.png": "0206edd9059e30988b9ffa99655c46bc0b62a911f75268046f0713464198d779",
+    "stage8D/figures/jlens_seven_layers.pdf": "bb651adb863e23d02e732cc2b6b8443aef19100d7daa6f68c20948dc4b8bbd1d",
+    "stage8D/figures/jlens_seven_layers.png": "14cece2fbaba9309d22a9ae5b43794257fd470c419cc2db05fb79e5e981f6f94",
+    "stage8D/figures/vanilla_seven_layers.pdf": "c9d160510c32b3ccbb903f202f7bbb6d4f5479ded82d2dad58a016d5fdfb3df0",
+    "stage8D/figures/vanilla_seven_layers.png": "5c635488a12a6541953a3972b9fe96b89c199b2b0b7d994cf8e596ecfc2d76be",
+    "stage8D/reports/stage8_results.md": "40ad6baede060fd1a949f27b40301335e15f39464a2b0ce25619d5c68b4654d5",
+    "stage8D/summary/context_level_scores.csv": "fea970b569e20ece6e10b854f9c7a995db5c192d7a92d6f6db378af9a67df6da",
+    "stage8D/summary/jlens_minus_vanilla.csv": "8dbb03cb8f89dd85f55d4913080e153f8580ce76c257903f07d6a9d091a61c4e",
+    "stage8D/summary/layer_and_band_summary.csv": "08e1798bcd0e810c0f8501f8f665d4e092ab194e83e9bae852ddcb3859bf349c",
+    "stage8D/summary/matched_pair_differences.csv": "087dc551b6b513739ba34a5d71ca6e7bbdaa81c8e4b3c88b5d6b957eeb50da3e",
+    "stage8D/summary/paper_layer_advantage.csv": "ea8211b532b9e6e73dd8d126cbc5be10149aefd1d5a390c9b12eccf2798a3945",
+    "stage8D/summary/primary_questions.csv": "6bcb724dee0a5f8e31c512b09430ff6c9d4cb42c7b36a8bb04656cfa710eece3",
+    "stage8D/summary/sensitivity.csv": "c333b55d7b75d8172d7c8dff53e06501bd45705a60e44d75c9f8e5b3fcd77d65"
+  },
+  "runtime_sha256": "0b23521c564136dff8ef469573e314fd9dbb2f90f7d5aa7143f9ec7c0259d2e5",
+  "stage8A_manifest_sha256": "7e4b878e9ee037fe822cc42821218459ff48b203cd026de6995a79ca13486f55",
+  "stage8B_manifest_sha256": "b3c8c5a7e98523c668408884a8e91bac0dba5bcccc560b05a0a94b90133a5309",
+  "stage8C_raw_sha256": "ace40bc238517c2c736e5c8353485cd28390858ed4c97a904c4bcdaec9b37b23"
+}

@@ -1,0 +1,15 @@
+{
+  "reference_steering_vector_path": "$DUA_SCRATCH/scholar_qwen/steering_mistral_small_3_2_24b/steering_vector.npy",
+  "reference_norm": 1.2735216617584229,
+  "random_control_norm": 1.2735216617584229,
+  "seed": 42,
+  "alphas": [
+    1.0,
+    2.0
+  ],
+  "layer": 22,
+  "pool_sizes": {
+    "eval_low": 100,
+    "eval_high": 50
+  }
+}

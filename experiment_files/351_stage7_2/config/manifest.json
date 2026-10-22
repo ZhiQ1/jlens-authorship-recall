@@ -1,0 +1,34 @@
+{
+  "input_sha256": {
+    "full6841": "a63316ef28bdf6079370e7b946026cf705bc58c017fa5724fa9631255a845bcb",
+    "pilot50": "c8637f36288847774afd97ef021f7320fea4dd96e2d84b131d1c9401345c2214"
+  },
+  "output_sha256": {
+    "candidates/pilot50_author_candidates.csv": "b72f0d5ca24c837a7e219efb5ccec45dae314eaf54d01a1249c876b36ff92f1d",
+    "candidates/pilot50_author_candidates.jsonl": "1f1a9a669f7c9ba9e500d366a60af7bce54392a83f6fcc22876af503c873f039",
+    "reports/candidate_audit.md": "4e8658b4187aa1b942be1ddcfc6eca7e0d7fd3613966ee800229da1750fe1c49",
+    "summary/pilot50_candidate_quality.csv": "e8b1ed9522c5010f30d44b717624a908cb38da01788d2c302cbe4cb958cdd606",
+    "summary/quality.json": "e44097624a6bb5f1e0cec97ed31b8c6e51650db0c2902adb87f1f47f65659582"
+  },
+  "protocol": "stage7_2_candidate_freeze_v1",
+  "scoring_plan": {
+    "gold_win_rate": "mean over 100 false candidates: score_gold>score_false -> 1; equal -> 0.5; else -> 0",
+    "layers": [
+      16,
+      24,
+      32,
+      40,
+      48,
+      56,
+      62
+    ],
+    "rank_not_identity": "first-token scores only",
+    "readouts": [
+      "jlens",
+      "vanilla",
+      "final_reference"
+    ]
+  },
+  "seed": 35172,
+  "tokenizer": "Qwen/Qwen3-32B"
+}

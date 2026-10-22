@@ -1,0 +1,115 @@
+Prepared 1 papers; names lengths: [(2, 2)]
+Loading public lens...
+Loading Qwen3-32B...
+BF16 explicit CPU offload; GPU blocks 29 CPU blocks 35
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:09<1:56:00,  9.86s/it]Loading weights:   0%|          | 2/707 [00:10<48:51,  4.16s/it]  Loading weights:   2%|▏         | 12/707 [00:10<05:13,  2.22it/s]Loading weights:   3%|▎         | 23/707 [00:10<02:12,  5.17it/s]Loading weights:   5%|▍         | 32/707 [00:10<01:22,  8.22it/s]Loading weights:   6%|▌         | 39/707 [00:12<01:48,  6.13it/s]Loading weights:   6%|▌         | 44/707 [00:13<01:48,  6.10it/s]Loading weights:   7%|▋         | 48/707 [00:14<02:22,  4.64it/s]Loading weights:   7%|▋         | 51/707 [00:16<03:22,  3.25it/s]Loading weights:   9%|▊         | 61/707 [00:16<01:48,  5.96it/s]Loading weights:  11%|█         | 76/707 [00:16<00:54, 11.50it/s]Loading weights:  12%|█▏        | 84/707 [00:17<00:42, 14.75it/s]Loading weights:  13%|█▎        | 93/707 [00:17<00:31, 19.48it/s]Loading weights:  15%|█▍        | 104/707 [00:17<00:22, 26.81it/s]Loading weights:  16%|█▋        | 116/707 [00:17<00:16, 35.90it/s]Loading weights:  18%|█▊        | 127/707 [00:17<00:12, 45.59it/s]Loading weights:  20%|█▉        | 138/707 [00:17<00:10, 52.30it/s]Loading weights:  21%|██        | 149/707 [00:17<00:09, 60.70it/s]Loading weights:  23%|██▎       | 164/707 [00:17<00:07, 77.19it/s]Loading weights:  25%|██▌       | 177/707 [00:18<00:06, 87.77it/s]Loading weights:  27%|██▋       | 191/707 [00:18<00:05, 94.04it/s]Loading weights:  29%|██▊       | 203/707 [00:18<00:05, 93.79it/s]Loading weights:  30%|███       | 214/707 [00:18<00:05, 97.33it/s]Loading weights:  32%|███▏      | 225/707 [00:18<00:04, 99.88it/s]Loading weights:  33%|███▎      | 236/707 [00:18<00:04, 101.10it/s]Loading weights:  35%|███▍      | 247/707 [00:18<00:05, 87.08it/s] Loading weights:  37%|███▋      | 263/707 [00:18<00:04, 104.26it/s]Loading weights:  39%|███▉      | 275/707 [00:18<00:03, 108.22it/s]Loading weights:  41%|████      | 290/707 [00:19<00:03, 114.62it/s]Loading weights:  43%|████▎     | 302/707 [00:19<00:03, 111.15it/s]Loading weights:  44%|████▍     | 314/707 [00:19<00:03, 102.26it/s]Loading weights: 100%|██████████| 707/707 [00:19<00:00, 36.42it/s] 
+Some parameters are on the meta device because they were offloaded to the cpu.
+Device map: {'model.embed_tokens': 0, 'model.norm': 0, 'model.rotary_emb': 0, 'lm_head': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 0, 'model.layers.9': 0, 'model.layers.10': 0, 'model.layers.11': 0, 'model.layers.12': 0, 'model.layers.13': 0, 'model.layers.14': 0, 'model.layers.15': 0, 'model.layers.16': 0, 'model.layers.17': 0, 'model.layers.18': 0, 'model.layers.19': 0, 'model.layers.20': 0, 'model.layers.21': 0, 'model.layers.22': 0, 'model.layers.23': 0, 'model.layers.24': 0, 'model.layers.25': 0, 'model.layers.26': 0, 'model.layers.27': 0, 'model.layers.28': 0, 'model.layers.29': 'cpu', 'model.layers.30': 'cpu', 'model.layers.31': 'cpu', 'model.layers.32': 'cpu', 'model.layers.33': 'cpu', 'model.layers.34': 'cpu', 'model.layers.35': 'cpu', 'model.layers.36': 'cpu', 'model.layers.37': 'cpu', 'model.layers.38': 'cpu', 'model.layers.39': 'cpu', 'model.layers.40': 'cpu', 'model.layers.41': 'cpu', 'model.layers.42': 'cpu', 'model.layers.43': 'cpu', 'model.layers.44': 'cpu', 'model.layers.45': 'cpu', 'model.layers.46': 'cpu', 'model.layers.47': 'cpu', 'model.layers.48': 'cpu', 'model.layers.49': 'cpu', 'model.layers.50': 'cpu', 'model.layers.51': 'cpu', 'model.layers.52': 'cpu', 'model.layers.53': 'cpu', 'model.layers.54': 'cpu', 'model.layers.55': 'cpu', 'model.layers.56': 'cpu', 'model.layers.57': 'cpu', 'model.layers.58': 'cpu', 'model.layers.59': 'cpu', 'model.layers.60': 'cpu', 'model.layers.61': 'cpu', 'model.layers.62': 'cpu', 'model.layers.63': 'cpu'}
+1/1 d07552b69 56.1s peak=29.49GiB L32full_delta=3.953
+===== TASK VALIDATION SUMMARY ===== 1 papers
+L16 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=2.706
+L16 vanilla first_win=1.000 full_win=1.000 mean_full_logprob_delta=1.605
+L16 final   first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.847
+L24 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=4.793
+L24 vanilla first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.978
+L24 final   first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.847
+L32 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=3.953
+L32 vanilla first_win=0.000 full_win=0.000 mean_full_logprob_delta=-0.277
+L32 final   first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.847
+L40 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=3.303
+L40 vanilla first_win=1.000 full_win=0.000 mean_full_logprob_delta=-0.371
+L40 final   first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.847
+L48 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=1.887
+L48 vanilla first_win=1.000 full_win=0.000 mean_full_logprob_delta=-1.344
+L48 final   first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.847
+L56 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=1.548
+L56 vanilla first_win=1.000 full_win=1.000 mean_full_logprob_delta=1.709
+L56 final   first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.847
+L62 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=1.314
+L62 vanilla first_win=1.000 full_win=1.000 mean_full_logprob_delta=2.123
+L62 final   first_win=1.000 full_win=1.000 mean_full_logprob_delta=0.847
+Saved: /scratch/zhang.zhiqi2/jlens/351_all/351_offload_fixed_validation.jsonl
+Prepared 4 papers; names lengths: [(2, 2), (2, 2), (4, 4), (4, 4)]
+Loading public lens...
+Loading Qwen3-32B...
+BF16 explicit CPU offload; GPU blocks 29 CPU blocks 35
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<03:15,  3.60it/s]Loading weights:   2%|▏         | 12/707 [00:00<00:17, 39.18it/s]Loading weights:   3%|▎         | 21/707 [00:00<00:12, 54.71it/s]Loading weights:   5%|▍         | 33/707 [00:00<00:09, 73.90it/s]Loading weights:   6%|▌         | 43/707 [00:00<00:08, 80.07it/s]Loading weights:   7%|▋         | 53/707 [00:03<01:06,  9.79it/s]Loading weights:   9%|▊         | 61/707 [00:03<00:49, 13.03it/s]Loading weights:  11%|█         | 76/707 [00:03<00:29, 21.42it/s]Loading weights:  12%|█▏        | 85/707 [00:03<00:23, 26.07it/s]Loading weights:  13%|█▎        | 94/707 [00:03<00:20, 29.96it/s]Loading weights:  15%|█▌        | 109/707 [00:04<00:13, 43.28it/s]Loading weights:  17%|█▋        | 122/707 [00:04<00:10, 55.36it/s]Loading weights:  19%|█▉        | 133/707 [00:04<00:08, 64.43it/s]Loading weights:  20%|██        | 144/707 [00:04<00:08, 66.12it/s]Loading weights:  22%|██▏       | 154/707 [00:04<00:07, 72.65it/s]Loading weights:  24%|██▍       | 169/707 [00:04<00:06, 85.49it/s]Loading weights:  26%|██▌       | 181/707 [00:04<00:05, 88.86it/s]Loading weights:  27%|██▋       | 193/707 [00:04<00:05, 90.98it/s]Loading weights:  29%|██▉       | 204/707 [00:04<00:05, 94.90it/s]Loading weights:  30%|███       | 215/707 [00:05<00:04, 98.69it/s]Loading weights:  32%|███▏      | 226/707 [00:05<00:04, 101.39it/s]Loading weights:  34%|███▎      | 237/707 [00:05<00:04, 95.11it/s] Loading weights:  35%|███▌      | 248/707 [00:05<00:04, 95.81it/s]Loading weights:  37%|███▋      | 263/707 [00:05<00:04, 107.30it/s]Loading weights:  39%|███▉      | 276/707 [00:05<00:03, 112.40it/s]Loading weights:  41%|████      | 290/707 [00:05<00:03, 114.81it/s]Loading weights:  43%|████▎     | 302/707 [00:05<00:03, 111.23it/s]Loading weights:  44%|████▍     | 314/707 [00:06<00:03, 102.05it/s]Loading weights: 100%|██████████| 707/707 [00:06<00:00, 116.66it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Device map: {'model.embed_tokens': 0, 'model.norm': 0, 'model.rotary_emb': 0, 'lm_head': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 0, 'model.layers.9': 0, 'model.layers.10': 0, 'model.layers.11': 0, 'model.layers.12': 0, 'model.layers.13': 0, 'model.layers.14': 0, 'model.layers.15': 0, 'model.layers.16': 0, 'model.layers.17': 0, 'model.layers.18': 0, 'model.layers.19': 0, 'model.layers.20': 0, 'model.layers.21': 0, 'model.layers.22': 0, 'model.layers.23': 0, 'model.layers.24': 0, 'model.layers.25': 0, 'model.layers.26': 0, 'model.layers.27': 0, 'model.layers.28': 0, 'model.layers.29': 'cpu', 'model.layers.30': 'cpu', 'model.layers.31': 'cpu', 'model.layers.32': 'cpu', 'model.layers.33': 'cpu', 'model.layers.34': 'cpu', 'model.layers.35': 'cpu', 'model.layers.36': 'cpu', 'model.layers.37': 'cpu', 'model.layers.38': 'cpu', 'model.layers.39': 'cpu', 'model.layers.40': 'cpu', 'model.layers.41': 'cpu', 'model.layers.42': 'cpu', 'model.layers.43': 'cpu', 'model.layers.44': 'cpu', 'model.layers.45': 'cpu', 'model.layers.46': 'cpu', 'model.layers.47': 'cpu', 'model.layers.48': 'cpu', 'model.layers.49': 'cpu', 'model.layers.50': 'cpu', 'model.layers.51': 'cpu', 'model.layers.52': 'cpu', 'model.layers.53': 'cpu', 'model.layers.54': 'cpu', 'model.layers.55': 'cpu', 'model.layers.56': 'cpu', 'model.layers.57': 'cpu', 'model.layers.58': 'cpu', 'model.layers.59': 'cpu', 'model.layers.60': 'cpu', 'model.layers.61': 'cpu', 'model.layers.62': 'cpu', 'model.layers.63': 'cpu'}
+SKIP already completed d07552b69b33993e7e135bfda2214c1069070af4
+2/4 17778ed54 20.3s peak=29.50GiB L32full_delta=-2.212
+3/4 1330d924a 42.7s peak=29.50GiB L32full_delta=-0.070
+4/4 e17914492 40.7s peak=29.50GiB L32full_delta=0.564
+===== TASK VALIDATION SUMMARY ===== 4 papers
+L16 jlens   first_win=1.000 full_win=0.500 mean_full_logprob_delta=0.484
+L16 vanilla first_win=0.750 full_win=0.500 mean_full_logprob_delta=-0.476
+L16 final   first_win=0.500 full_win=0.500 mean_full_logprob_delta=0.929
+L24 jlens   first_win=1.000 full_win=0.500 mean_full_logprob_delta=1.051
+L24 vanilla first_win=0.750 full_win=0.750 mean_full_logprob_delta=-0.687
+L24 final   first_win=0.500 full_win=0.500 mean_full_logprob_delta=0.929
+L32 jlens   first_win=0.750 full_win=0.500 mean_full_logprob_delta=0.559
+L32 vanilla first_win=0.750 full_win=0.500 mean_full_logprob_delta=-0.350
+L32 final   first_win=0.500 full_win=0.500 mean_full_logprob_delta=0.929
+L40 jlens   first_win=1.000 full_win=0.500 mean_full_logprob_delta=0.874
+L40 vanilla first_win=0.500 full_win=0.500 mean_full_logprob_delta=-0.083
+L40 final   first_win=0.500 full_win=0.500 mean_full_logprob_delta=0.929
+L48 jlens   first_win=1.000 full_win=1.000 mean_full_logprob_delta=1.291
+L48 vanilla first_win=0.500 full_win=0.250 mean_full_logprob_delta=-1.291
+L48 final   first_win=0.500 full_win=0.500 mean_full_logprob_delta=0.929
+L56 jlens   first_win=1.000 full_win=0.500 mean_full_logprob_delta=-0.477
+L56 vanilla first_win=0.500 full_win=0.500 mean_full_logprob_delta=-1.254
+L56 final   first_win=0.500 full_win=0.500 mean_full_logprob_delta=0.929
+L62 jlens   first_win=0.500 full_win=0.750 mean_full_logprob_delta=0.030
+L62 vanilla first_win=0.750 full_win=0.500 mean_full_logprob_delta=0.464
+L62 final   first_win=0.500 full_win=0.500 mean_full_logprob_delta=0.929
+Saved: /scratch/zhang.zhiqi2/jlens/351_all/351_offload_fixed_validation.jsonl
+Prepared 20 papers; names lengths: [(2, 2), (2, 2), (4, 4), (4, 4), (4, 4), (5, 5), (2, 2), (4, 4), (4, 4), (4, 4), (3, 3), (3, 3), (5, 5), (5, 5), (3, 3), (3, 2), (4, 4), (5, 5), (5, 5), (4, 4)]
+Loading public lens...
+Loading Qwen3-32B...
+BF16 explicit CPU offload; GPU blocks 29 CPU blocks 35
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<04:18,  2.73it/s]Loading weights:   2%|▏         | 17/707 [00:00<00:15, 45.94it/s]Loading weights:   4%|▍         | 28/707 [00:00<00:10, 62.75it/s]Loading weights:   6%|▌         | 39/707 [00:00<00:09, 72.74it/s]Loading weights:   7%|▋         | 50/707 [00:00<00:08, 80.57it/s]Loading weights:   9%|▊         | 61/707 [00:00<00:07, 88.03it/s]Loading weights:  11%|█         | 76/707 [00:01<00:06, 103.42it/s]Loading weights:  12%|█▏        | 88/707 [00:01<00:06, 89.65it/s] Loading weights:  14%|█▍        | 98/707 [00:01<00:07, 80.04it/s]Loading weights:  16%|█▌        | 111/707 [00:01<00:06, 91.05it/s]Loading weights:  17%|█▋        | 122/707 [00:01<00:06, 95.67it/s]Loading weights:  19%|█▉        | 133/707 [00:01<00:05, 99.23it/s]Loading weights:  20%|██        | 144/707 [00:01<00:06, 88.58it/s]Loading weights:  22%|██▏       | 154/707 [00:01<00:06, 91.16it/s]Loading weights:  24%|██▍       | 169/707 [00:02<00:05, 100.55it/s]Loading weights:  25%|██▌       | 180/707 [00:02<00:05, 97.22it/s] Loading weights:  27%|██▋       | 193/707 [00:02<00:05, 98.49it/s]Loading weights:  29%|██▉       | 204/707 [00:02<00:04, 100.62it/s]Loading weights:  31%|███       | 218/707 [00:02<00:04, 110.89it/s]Loading weights:  33%|███▎      | 230/707 [00:02<00:04, 110.53it/s]Loading weights:  34%|███▍      | 242/707 [00:02<00:04, 100.96it/s]Loading weights:  36%|███▌      | 253/707 [00:02<00:04, 102.88it/s]Loading weights:  37%|███▋      | 265/707 [00:02<00:04, 106.85it/s]Loading weights:  39%|███▉      | 279/707 [00:03<00:03, 110.45it/s]Loading weights:  41%|████      | 291/707 [00:03<00:03, 107.69it/s]Loading weights:  43%|████▎     | 303/707 [00:03<00:03, 106.28it/s]Loading weights:  44%|████▍     | 314/707 [00:03<00:03, 102.95it/s]Loading weights: 100%|██████████| 707/707 [00:03<00:00, 203.29it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Device map: {'model.embed_tokens': 0, 'model.norm': 0, 'model.rotary_emb': 0, 'lm_head': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 0, 'model.layers.9': 0, 'model.layers.10': 0, 'model.layers.11': 0, 'model.layers.12': 0, 'model.layers.13': 0, 'model.layers.14': 0, 'model.layers.15': 0, 'model.layers.16': 0, 'model.layers.17': 0, 'model.layers.18': 0, 'model.layers.19': 0, 'model.layers.20': 0, 'model.layers.21': 0, 'model.layers.22': 0, 'model.layers.23': 0, 'model.layers.24': 0, 'model.layers.25': 0, 'model.layers.26': 0, 'model.layers.27': 0, 'model.layers.28': 0, 'model.layers.29': 'cpu', 'model.layers.30': 'cpu', 'model.layers.31': 'cpu', 'model.layers.32': 'cpu', 'model.layers.33': 'cpu', 'model.layers.34': 'cpu', 'model.layers.35': 'cpu', 'model.layers.36': 'cpu', 'model.layers.37': 'cpu', 'model.layers.38': 'cpu', 'model.layers.39': 'cpu', 'model.layers.40': 'cpu', 'model.layers.41': 'cpu', 'model.layers.42': 'cpu', 'model.layers.43': 'cpu', 'model.layers.44': 'cpu', 'model.layers.45': 'cpu', 'model.layers.46': 'cpu', 'model.layers.47': 'cpu', 'model.layers.48': 'cpu', 'model.layers.49': 'cpu', 'model.layers.50': 'cpu', 'model.layers.51': 'cpu', 'model.layers.52': 'cpu', 'model.layers.53': 'cpu', 'model.layers.54': 'cpu', 'model.layers.55': 'cpu', 'model.layers.56': 'cpu', 'model.layers.57': 'cpu', 'model.layers.58': 'cpu', 'model.layers.59': 'cpu', 'model.layers.60': 'cpu', 'model.layers.61': 'cpu', 'model.layers.62': 'cpu', 'model.layers.63': 'cpu'}
+SKIP already completed d07552b69b33993e7e135bfda2214c1069070af4
+SKIP already completed 17778ed5452c975e4ced8bafb8807ee383a6fd4b
+SKIP already completed 1330d924a60bc8d30c7f4a8c76148400a652243f
+SKIP already completed e179144926efaebeb561b1beecbf883ebcc99dfa
+5/20 0ab2644a6 44.9s peak=29.50GiB L32full_delta=-0.247
+6/20 a4aa2321e 56.3s peak=29.50GiB L32full_delta=0.505
+7/20 abb88b92c 18.0s peak=29.50GiB L32full_delta=1.327
+8/20 6f42a6509 41.9s peak=29.50GiB L32full_delta=-3.329
+9/20 43a6b8ceb 41.9s peak=29.50GiB L32full_delta=3.206
+10/20 22ada7745 41.9s peak=29.50GiB L32full_delta=2.412
+11/20 67e338f82 29.9s peak=29.49GiB L32full_delta=1.161
+12/20 326df75dc 30.0s peak=29.50GiB L32full_delta=-0.104
+13/20 dee38668a 53.8s peak=29.50GiB L32full_delta=-0.025
+14/20 39bc8bc7c 56.1s peak=29.50GiB L32full_delta=1.105
+15/20 5ce0f70ff 29.9s peak=29.50GiB L32full_delta=-0.029
+16/20 5b586d133 24.0s peak=29.50GiB L32full_delta=2.132
+17/20 4a0e1b188 41.9s peak=29.50GiB L32full_delta=0.348
+18/20 b56b667c9 53.8s peak=29.50GiB L32full_delta=-2.166
+19/20 01091d57f 53.8s peak=29.49GiB L32full_delta=3.096
+20/20 27282e9b2 41.8s peak=29.49GiB L32full_delta=-2.573
+===== TASK VALIDATION SUMMARY ===== 20 papers
+L16 jlens   first_win=0.550 full_win=0.650 mean_full_logprob_delta=0.481
+L16 vanilla first_win=0.700 full_win=0.600 mean_full_logprob_delta=0.178
+L16 final   first_win=0.500 full_win=0.600 mean_full_logprob_delta=1.245
+L24 jlens   first_win=0.700 full_win=0.650 mean_full_logprob_delta=0.642
+L24 vanilla first_win=0.700 full_win=0.650 mean_full_logprob_delta=0.230
+L24 final   first_win=0.500 full_win=0.600 mean_full_logprob_delta=1.245
+L32 jlens   first_win=0.600 full_win=0.550 mean_full_logprob_delta=0.453
+L32 vanilla first_win=0.500 full_win=0.550 mean_full_logprob_delta=0.515
+L32 final   first_win=0.500 full_win=0.600 mean_full_logprob_delta=1.245
+L40 jlens   first_win=0.500 full_win=0.450 mean_full_logprob_delta=0.128
+L40 vanilla first_win=0.450 full_win=0.550 mean_full_logprob_delta=0.069
+L40 final   first_win=0.500 full_win=0.600 mean_full_logprob_delta=1.245
+L48 jlens   first_win=0.450 full_win=0.700 mean_full_logprob_delta=0.766
+L48 vanilla first_win=0.550 full_win=0.450 mean_full_logprob_delta=0.180
+L48 final   first_win=0.500 full_win=0.600 mean_full_logprob_delta=1.245
+L56 jlens   first_win=0.750 full_win=0.500 mean_full_logprob_delta=0.344
+L56 vanilla first_win=0.600 full_win=0.650 mean_full_logprob_delta=0.629
+L56 final   first_win=0.500 full_win=0.600 mean_full_logprob_delta=1.245
+L62 jlens   first_win=0.450 full_win=0.550 mean_full_logprob_delta=1.274
+L62 vanilla first_win=0.600 full_win=0.600 mean_full_logprob_delta=0.978
+L62 final   first_win=0.500 full_win=0.600 mean_full_logprob_delta=1.245
+Saved: /scratch/zhang.zhiqi2/jlens/351_all/351_offload_fixed_validation.jsonl

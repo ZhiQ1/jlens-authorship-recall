@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "requested_papers": 20,
+  "completed_papers": 20,
+  "groups": {
+    "A": 8,
+    "B": 8,
+    "C": 3,
+    "D": 1
+  },
+  "authors_scored": 93,
+  "authors_skipped": 0,
+  "skip_reasons": {},
+  "papers_with_no_scored_authors": 0,
+  "mean_seconds_per_paper": 90.682,
+  "max_gpu_gib": 29.5,
+  "metrics_file": "summary/layer_metrics.csv",
+  "contrasts_file": "summary/a_vs_b_exploratory.csv",
+  "control_analysis": "NOT RUN: no matched-false or title-shuffle controls in Stage 4",
+  "precision_note": "The public lens was fit on a separately sourced model whose exact revision is not recorded in lens provenance."
+}

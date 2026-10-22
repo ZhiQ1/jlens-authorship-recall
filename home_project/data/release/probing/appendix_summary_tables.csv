@@ -1,0 +1,11 @@
+model,evidence,metric,value,detail
+qwen3_32b,stage5_best_p1_prevalence_decoding,r2_cv,0.3764,"layer 48, rho 0.603"
+qwen3_32b,stage5_p1_hr2_mediation,pct_mediated,30.73,indirect_ab -0.005111
+mistral_small_3_2_24b,stage5_best_p1_prevalence_decoding,r2_cv,0.3109,"layer 20, rho 0.556"
+mistral_small_3_2_24b,stage5_p1_hr2_mediation,pct_mediated,23.86,indirect_ab -0.00323
+qwen3_32b,stage6_p1_hallucination_probe,auroc,0.879643,layer 48
+mistral_small_3_2_24b,stage6_p1_hallucination_probe,auroc,0.781522,layer 20
+qwen3_32b,stage6_p1_hr2_regression_probe,r2_cv,0.319937,layer 48
+mistral_small_3_2_24b,stage6_p1_hr2_regression_probe,r2_cv,0.162965,layer 20
+qwen3_32b,stage6_p9_entity_geometry,probe_auroc,0.814413,layer 48
+mistral_small_3_2_24b,stage6_p9_entity_geometry,probe_auroc,0.818183,layer 20

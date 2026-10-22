@@ -1,0 +1,59 @@
+STAGE 5: 0/50 already complete, 2 queued
+STAGE 5: 0/50 already complete, 2 queued
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<03:52,  3.03it/s]Loading weights:   1%|          | 6/707 [00:00<00:43, 16.08it/s]Loading weights:   2%|▏         | 16/707 [00:00<00:17, 38.71it/s]Loading weights:   4%|▎         | 26/707 [00:00<00:12, 54.25it/s]Loading weights:   5%|▍         | 33/707 [00:00<00:11, 56.92it/s]Loading weights:   6%|▌         | 40/707 [00:00<00:11, 56.48it/s]Loading weights:   7%|▋         | 49/707 [00:01<00:10, 63.37it/s]Loading weights:   8%|▊         | 60/707 [00:01<00:09, 69.75it/s]Loading weights:  10%|▉         | 70/707 [00:01<00:08, 74.56it/s]Loading weights:  11%|█         | 78/707 [00:01<00:08, 75.36it/s]Loading weights:  12%|█▏        | 86/707 [00:01<00:08, 73.12it/s]Loading weights:  13%|█▎        | 94/707 [00:01<00:08, 71.83it/s]Loading weights:  15%|█▍        | 105/707 [00:01<00:07, 80.01it/s]Loading weights:  16%|█▋        | 116/707 [00:01<00:07, 80.56it/s]Loading weights:  18%|█▊        | 126/707 [00:01<00:07, 82.99it/s]Loading weights:  19%|█▉        | 136/707 [00:02<00:06, 87.37it/s]Loading weights:  21%|██        | 147/707 [00:02<00:06, 91.60it/s]Loading weights:  22%|██▏       | 158/707 [00:02<00:05, 94.35it/s]Loading weights:  24%|██▍       | 168/707 [00:02<00:05, 95.10it/s]Loading weights:  25%|██▌       | 178/707 [00:02<00:05, 90.30it/s]Loading weights:  27%|██▋       | 188/707 [00:02<00:05, 87.09it/s]Loading weights:  28%|██▊       | 197/707 [00:02<00:05, 86.92it/s]Loading weights:  29%|██▉       | 208/707 [00:02<00:05, 91.28it/s]Loading weights:  31%|███       | 219/707 [00:02<00:05, 91.56it/s]Loading weights:  33%|███▎      | 230/707 [00:03<00:04, 95.84it/s]Loading weights:  34%|███▍      | 240/707 [00:03<00:04, 95.31it/s]Loading weights:  35%|███▌      | 250/707 [00:03<00:04, 93.99it/s]Loading weights:  37%|███▋      | 260/707 [00:03<00:05, 83.41it/s]Loading weights:  38%|███▊      | 269/707 [00:03<00:05, 83.49it/s]Loading weights:  39%|███▉      | 279/707 [00:03<00:04, 87.79it/s]Loading weights:  41%|████      | 290/707 [00:03<00:05, 80.58it/s]Loading weights:  43%|████▎     | 302/707 [00:03<00:04, 83.33it/s]Loading weights:  44%|████▍     | 313/707 [00:04<00:04, 83.02it/s]Loading weights: 100%|██████████| 707/707 [00:04<00:00, 169.94it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+1/50 A 7eebe31fcc6a title controls complete t=14.2s same_first_token=False
+2/50 B fcebb695629a title controls complete t=11.5s same_first_token=False
+Saved: /scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/raw/pilot50_results.jsonl
+STAGE 5: 2/50 already complete, 48 queued
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<01:33,  7.54it/s]Loading weights:   0%|          | 2/707 [00:00<02:04,  5.67it/s]Loading weights:   1%|          | 6/707 [00:00<00:47, 14.87it/s]Loading weights:   2%|▏         | 16/707 [00:00<00:18, 38.14it/s]Loading weights:   4%|▎         | 26/707 [00:00<00:12, 53.93it/s]Loading weights:   5%|▍         | 34/707 [00:00<00:11, 59.40it/s]Loading weights:   6%|▌         | 41/707 [00:00<00:11, 58.21it/s]Loading weights:   7%|▋         | 49/707 [00:01<00:10, 61.94it/s]Loading weights:   8%|▊         | 60/707 [00:01<00:09, 68.79it/s]Loading weights:  10%|▉         | 70/707 [00:01<00:08, 76.59it/s]Loading weights:  11%|█         | 78/707 [00:01<00:08, 76.77it/s]Loading weights:  12%|█▏        | 86/707 [00:01<00:08, 73.90it/s]Loading weights:  13%|█▎        | 94/707 [00:01<00:08, 72.39it/s]Loading weights:  15%|█▍        | 105/707 [00:01<00:07, 80.40it/s]Loading weights:  16%|█▋        | 116/707 [00:01<00:07, 80.72it/s]Loading weights:  18%|█▊        | 126/707 [00:01<00:06, 83.02it/s]Loading weights:  19%|█▉        | 136/707 [00:02<00:06, 87.27it/s]Loading weights:  21%|██        | 147/707 [00:02<00:06, 90.81it/s]Loading weights:  22%|██▏       | 158/707 [00:02<00:05, 93.55it/s]Loading weights:  24%|██▍       | 168/707 [00:02<00:08, 65.04it/s]Loading weights:  25%|██▍       | 176/707 [00:02<00:07, 67.48it/s]Loading weights:  26%|██▋       | 187/707 [00:02<00:06, 75.82it/s]Loading weights:  28%|██▊       | 197/707 [00:02<00:06, 80.22it/s]Loading weights:  29%|██▉       | 208/707 [00:03<00:05, 86.35it/s]Loading weights:  31%|███       | 219/707 [00:03<00:05, 90.28it/s]Loading weights:  32%|███▏      | 229/707 [00:03<00:05, 92.02it/s]Loading weights:  34%|███▍      | 239/707 [00:03<00:05, 89.90it/s]Loading weights:  35%|███▌      | 249/707 [00:03<00:05, 86.93it/s]Loading weights:  36%|███▋      | 258/707 [00:03<00:05, 84.59it/s]Loading weights:  38%|███▊      | 268/707 [00:03<00:05, 85.60it/s]Loading weights:  39%|███▉      | 277/707 [00:03<00:04, 86.32it/s]Loading weights:  40%|████      | 286/707 [00:03<00:05, 82.02it/s]Loading weights:  42%|████▏     | 295/707 [00:04<00:05, 70.76it/s]Loading weights:  43%|████▎     | 303/707 [00:04<00:06, 66.43it/s]Loading weights:  44%|████▍     | 313/707 [00:04<00:05, 73.08it/s]Loading weights: 100%|██████████| 707/707 [00:04<00:00, 160.30it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+3/50 C 5589af33dbdc title controls complete t=13.6s same_first_token=False
+4/50 D be2506e6e2ac title controls complete t=14.1s same_first_token=False
+5/50 A a6779fed7d19 title controls complete t=11.2s same_first_token=False
+6/50 B bd98e7f54daf title controls complete t=11.2s same_first_token=False
+7/50 C 216fe9609d4a title controls complete t=11.4s same_first_token=False
+8/50 A 1e987cda3490 title controls complete t=11.3s same_first_token=False
+9/50 B a7969a1cf518 title controls complete t=11.3s same_first_token=False
+10/50 C 2fec9f47120a title controls complete t=11.4s same_first_token=False
+11/50 A d53aa1eec231 title controls complete t=11.4s same_first_token=False
+12/50 B 49ae32ee4b0d title controls complete t=11.4s same_first_token=False
+13/50 A d8146bfbbdc9 title controls complete t=11.3s same_first_token=False
+14/50 B 1fd533cd17ab title controls complete t=11.4s same_first_token=False
+15/50 A a6ad8bbf89e6 title controls complete t=11.4s same_first_token=False
+16/50 B a1820b62fabe title controls complete t=11.4s same_first_token=False
+17/50 A e3672a1c7ad4 title controls complete t=11.4s same_first_token=False
+18/50 B 8865fa52879c title controls complete t=11.4s same_first_token=False
+19/50 A c16e598710d0 title controls complete t=11.6s same_first_token=False
+20/50 B 73a2925323e3 title controls complete t=11.4s same_first_token=False
+21/50 B d3522d90f922 title controls complete t=11.5s same_first_token=False
+22/50 B 1b0a15b28350 title controls complete t=11.4s same_first_token=False
+23/50 B e7d9d313a504 title controls complete t=11.3s same_first_token=False
+24/50 B b5ba91cfa40c title controls complete t=11.5s same_first_token=False
+25/50 B 3a8703dd6a7a title controls complete t=11.3s same_first_token=False
+26/50 B 72776329fa2f title controls complete t=11.4s same_first_token=False
+27/50 B 3db83bb254be title controls complete t=11.7s same_first_token=False
+28/50 B 5c2dc4b9c813 title controls complete t=11.3s same_first_token=False
+29/50 A 294c80dd99f3 title controls complete t=11.3s same_first_token=False
+30/50 A 3461ca717e71 title controls complete t=13.6s same_first_token=False
+31/50 A 0dfe922df5ad title controls complete t=11.6s same_first_token=False
+32/50 A 7ec9fee5beaf title controls complete t=11.5s same_first_token=False
+33/50 A f993b855be99 title controls complete t=11.4s same_first_token=False
+34/50 A 85e2d1956fae title controls complete t=11.6s same_first_token=False
+35/50 A 00e7c3d8b32c title controls complete t=11.4s same_first_token=False
+36/50 A 0cc090030500 title controls complete t=11.4s same_first_token=False
+37/50 A 474060b4bde9 title controls complete t=11.5s same_first_token=False
+38/50 B 365765212245 title controls complete t=11.3s same_first_token=False
+39/50 A 23154deb9225 title controls complete t=11.5s same_first_token=False
+40/50 B c4494c5e702a title controls complete t=11.3s same_first_token=False
+41/50 A 5b08de6b883a title controls complete t=11.5s same_first_token=False
+42/50 B 2193d522e19a title controls complete t=11.4s same_first_token=False
+43/50 A fb5ae7aeadd8 title controls complete t=11.3s same_first_token=False
+44/50 B 5c5f5c11c6a6 title controls complete t=11.6s same_first_token=False
+45/50 C 95880bede25d title controls complete t=11.2s same_first_token=False
+46/50 C 3d91dd09f87f title controls complete t=11.5s same_first_token=False
+47/50 C 4c4a8b954edc title controls complete t=11.5s same_first_token=False
+48/50 C 95ac2dee3497 title controls complete t=11.4s same_first_token=False
+49/50 D 2918a6df04ce title controls complete t=11.5s same_first_token=False
+50/50 D 17778ed5452c title controls complete t=11.3s same_first_token=False
+Saved: /scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/raw/pilot50_results.jsonl

@@ -1,0 +1,21 @@
+{
+  "fixed_candidate_manifest_sha256": "a1128370da37542c94532ff60bab1c579f3cb61a06fead673a969b257d02bd4b",
+  "input_sha256": {
+    "candidate_manifest": "a1128370da37542c94532ff60bab1c579f3cb61a06fead673a969b257d02bd4b",
+    "frozen_candidates": "b72f0d5ca24c837a7e219efb5ccec45dae314eaf54d01a1249c876b36ff92f1d",
+    "full6841": "a63316ef28bdf6079370e7b946026cf705bc58c017fa5724fa9631255a845bcb",
+    "pilot50": "c8637f36288847774afd97ef021f7320fea4dd96e2d84b131d1c9401345c2214"
+  },
+  "k": 20,
+  "output_sha256": {
+    "reports/freeze_audit.md": "e2c8ffb8300d71465446553ab200435d03e0e0ed4e7e951345ca932ad3941824",
+    "summary/quality.json": "356216997f9435619acb8650bc7d9d2d5762a9d4586920222799e1ac84857bd5",
+    "summary/title_matching_quality.csv": "e768bc1deff194e596e625ae9941818f97c8e4f01b99b9285ba8f9b370a185cf",
+    "titles/pilot50_shuffled_titles.csv": "5da704999705cf46e9ae8f8e923365d2e98e7b63c5a33958732ed2cbfe37dc21"
+  },
+  "protocol": "stage7_3a_title_freeze_v1",
+  "scoring_rule": "Original target year, identical prompt/candidates/readouts; only title text replaced",
+  "seed": 35173,
+  "selection": "Sort by match tier, year gap, title token gap, stable seeded hash. No score-based selection.",
+  "tokenizer": "Qwen/Qwen3-32B"
+}

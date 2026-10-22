@@ -1,0 +1,25 @@
+{
+  "version": "stage6_v1_conditional_full_author_same_stage4",
+  "layers": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "model": "Qwen/Qwen3-32B",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "prompt": "Who are the authors of the paper titled \"{title}\" ({year})?\nAuthors:",
+  "tokenization": "encode(prompt) + encode(ASCII_SPACE + full_author); forced token ID prefixes",
+  "ranking": "1+number_of_vocab_logits_strictly_greater_than_gold_logit",
+  "author_mean": "arithmetic mean reciprocal rank of each author token",
+  "paper_layer": "arithmetic mean over all authors; all gold authors",
+  "paper_integrated": "arithmetic mean across exactly 7 selected layers",
+  "log10rank": "mean_author(mean_token(log10(rank)))",
+  "scoring": "conditional teacher forcing; not free recall",
+  "stage5_cohort_sha256": "c8637f36288847774afd97ef021f7320fea4dd96e2d84b131d1c9401345c2214",
+  "stage5_manifest_sha256": "1e8657865bf52fa855725b8af0bfc1a3834a0ad8390e18a62c60ab7656d7b9e2",
+  "sample": "pilot50_v1; A20/B20/C7/D3; fixed stage5 cohort"
+}

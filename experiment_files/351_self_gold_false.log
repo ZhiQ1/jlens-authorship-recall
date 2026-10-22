@@ -1,0 +1,60 @@
+Reference public data: 20 papers; target 4 exact pairs
+Exact pair/token match PASS: 4 / 4
+Loading self-100 lens and BF16 Qwen3-32B
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<04:55,  2.39it/s]Loading weights:   1%|          | 6/707 [00:00<00:51, 13.67it/s]Loading weights:   2%|▏         | 16/707 [00:00<00:19, 34.57it/s]Loading weights:   4%|▎         | 26/707 [00:00<00:13, 50.03it/s]Loading weights:   5%|▍         | 33/707 [00:00<00:12, 53.63it/s]Loading weights:   6%|▌         | 40/707 [00:01<00:12, 54.22it/s]Loading weights:   7%|▋         | 49/707 [00:01<00:10, 61.62it/s]Loading weights:   8%|▊         | 59/707 [00:01<00:09, 65.98it/s]Loading weights:  10%|▉         | 70/707 [00:01<00:08, 74.31it/s]Loading weights:  11%|█         | 78/707 [00:01<00:08, 75.22it/s]Loading weights:  12%|█▏        | 86/707 [00:01<00:08, 73.09it/s]Loading weights:  13%|█▎        | 94/707 [00:01<00:08, 71.87it/s]Loading weights:  15%|█▍        | 105/707 [00:01<00:07, 79.94it/s]Loading weights:  16%|█▋        | 116/707 [00:01<00:07, 80.49it/s]Loading weights:  18%|█▊        | 126/707 [00:02<00:07, 82.88it/s]Loading weights:  19%|█▉        | 136/707 [00:02<00:06, 87.15it/s]Loading weights:  21%|██        | 147/707 [00:02<00:06, 91.03it/s]Loading weights:  22%|██▏       | 158/707 [00:02<00:06, 90.26it/s]Loading weights:  24%|██▍       | 168/707 [00:02<00:10, 53.65it/s]Loading weights:  25%|██▍       | 176/707 [00:02<00:09, 55.98it/s]Loading weights:  26%|██▌       | 183/707 [00:02<00:08, 58.23it/s]Loading weights:  27%|██▋       | 193/707 [00:03<00:08, 63.41it/s]Loading weights:  29%|██▉       | 204/707 [00:03<00:07, 69.80it/s]Loading weights:  30%|███       | 215/707 [00:03<00:06, 74.06it/s]Loading weights:  32%|███▏      | 226/707 [00:03<00:06, 76.52it/s]Loading weights:  34%|███▎      | 237/707 [00:03<00:06, 77.95it/s]Loading weights:  35%|███▍      | 247/707 [00:03<00:05, 77.12it/s]Loading weights:  36%|███▋      | 258/707 [00:03<00:05, 75.85it/s]Loading weights:  38%|███▊      | 266/707 [00:04<00:05, 76.69it/s]Loading weights:  39%|███▉      | 274/707 [00:04<00:06, 69.72it/s]Loading weights:  40%|███▉      | 282/707 [00:04<00:06, 69.25it/s]Loading weights:  41%|████      | 291/707 [00:04<00:06, 64.91it/s]Loading weights:  43%|████▎     | 301/707 [00:04<00:05, 69.60it/s]Loading weights:  44%|████▍     | 310/707 [00:04<00:05, 74.41it/s]Loading weights:  45%|████▍     | 318/707 [00:04<00:06, 64.42it/s]Loading weights: 100%|██████████| 707/707 [00:04<00:00, 144.70it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+1/4 d07552b69b33 10.56s peak=29.49GiB L32_delta=+1.924
+2/4 17778ed5452c 8.57s peak=29.5GiB L32_delta=-2.297
+3/4 1330d924a60b 20.23s peak=29.5GiB L32_delta=+0.645
+4/4 e179144926ef 20.03s peak=29.5GiB L32_delta=+2.120
+ARCHIVE /scratch/zhang.zhiqi2/jlens/351_self100_gold_false/archive paired 4 of 4
+L24 self100     n=4 first_win=1.000 full_win=0.750 full_delta=+0.832
+L24 neuronpedia n=4 first_win=1.000 full_win=0.500 full_delta=+1.051
+L32 self100     n=4 first_win=0.750 full_win=0.750 full_delta=+0.598
+L32 neuronpedia n=4 first_win=0.750 full_win=0.500 full_delta=+0.559
+L40 self100     n=4 first_win=1.000 full_win=0.500 full_delta=+0.420
+L40 neuronpedia n=4 first_win=1.000 full_win=0.500 full_delta=+0.874
+L48 self100     n=4 first_win=1.000 full_win=1.000 full_delta=+1.060
+L48 neuronpedia n=4 first_win=1.000 full_win=1.000 full_delta=+1.291
+L56 self100     n=4 first_win=1.000 full_win=0.500 full_delta=-0.444
+L56 neuronpedia n=4 first_win=1.000 full_win=0.500 full_delta=-0.477
+L62 self100     n=4 first_win=0.500 full_win=0.750 full_delta=+0.023
+L62 neuronpedia n=4 first_win=0.500 full_win=0.750 full_delta=+0.030
+Reference public data: 20 papers; target 20 exact pairs
+Exact pair/token match PASS: 20 / 20
+Loading self-100 lens and BF16 Qwen3-32B
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<03:51,  3.05it/s]Loading weights:   1%|          | 6/707 [00:00<00:43, 16.13it/s]Loading weights:   2%|▏         | 16/707 [00:00<00:17, 38.86it/s]Loading weights:   4%|▎         | 26/707 [00:00<00:12, 54.22it/s]Loading weights:   5%|▍         | 34/707 [00:00<00:11, 59.48it/s]Loading weights:   6%|▌         | 41/707 [00:00<00:11, 57.99it/s]Loading weights:   7%|▋         | 49/707 [00:01<00:10, 61.76it/s]Loading weights:   8%|▊         | 60/707 [00:01<00:09, 68.49it/s]Loading weights:  10%|▉         | 70/707 [00:01<00:08, 76.37it/s]Loading weights:  11%|█         | 78/707 [00:01<00:08, 76.64it/s]Loading weights:  12%|█▏        | 86/707 [00:01<00:08, 73.88it/s]Loading weights:  13%|█▎        | 94/707 [00:01<00:08, 72.32it/s]Loading weights:  15%|█▍        | 105/707 [00:01<00:07, 80.21it/s]Loading weights:  16%|█▋        | 116/707 [00:01<00:07, 80.58it/s]Loading weights:  18%|█▊        | 126/707 [00:01<00:07, 82.94it/s]Loading weights:  19%|█▉        | 136/707 [00:02<00:06, 87.21it/s]Loading weights:  21%|██        | 147/707 [00:02<00:06, 90.93it/s]Loading weights:  22%|██▏       | 157/707 [00:02<00:06, 91.17it/s]Loading weights:  24%|██▍       | 169/707 [00:02<00:05, 97.48it/s]Loading weights:  25%|██▌       | 180/707 [00:02<00:05, 99.40it/s]Loading weights:  27%|██▋       | 191/707 [00:02<00:05, 99.74it/s]Loading weights:  29%|██▊       | 202/707 [00:02<00:05, 99.55it/s]Loading weights:  30%|███       | 213/707 [00:02<00:04, 100.42it/s]Loading weights:  32%|███▏      | 224/707 [00:02<00:04, 99.18it/s] Loading weights:  33%|███▎      | 234/707 [00:03<00:04, 96.16it/s]Loading weights:  35%|███▍      | 244/707 [00:03<00:05, 83.83it/s]Loading weights:  36%|███▌      | 253/707 [00:03<00:05, 81.62it/s]Loading weights:  37%|███▋      | 262/707 [00:03<00:06, 74.15it/s]Loading weights:  38%|███▊      | 270/707 [00:03<00:06, 68.63it/s]Loading weights:  40%|███▉      | 281/707 [00:03<00:05, 73.17it/s]Loading weights:  41%|████▏     | 292/707 [00:03<00:05, 79.87it/s]Loading weights:  43%|████▎     | 303/707 [00:03<00:04, 84.40it/s]Loading weights:  44%|████▍     | 314/707 [00:04<00:04, 88.05it/s]Loading weights: 100%|██████████| 707/707 [00:04<00:00, 171.34it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+SKIP 1 d07552b69b33
+SKIP 2 17778ed5452c
+SKIP 3 1330d924a60b
+SKIP 4 e179144926ef
+5/20 0ab2644a6bb3 22.53s peak=29.5GiB L32_delta=-1.234
+6/20 a4aa2321e773 26.11s peak=29.5GiB L32_delta=+2.348
+7/20 abb88b92c287 8.62s peak=29.5GiB L32_delta=+2.055
+8/20 6f42a6509a39 20.01s peak=29.5GiB L32_delta=-3.205
+9/20 43a6b8ceb631 22.56s peak=29.5GiB L32_delta=+3.250
+10/20 22ada774560f 20.13s peak=29.5GiB L32_delta=+2.149
+11/20 67e338f82e02 14.49s peak=29.49GiB L32_delta=+0.973
+12/20 326df75dc92f 14.62s peak=29.5GiB L32_delta=-0.289
+13/20 dee38668a076 25.9s peak=29.5GiB L32_delta=-0.109
+14/20 39bc8bc7cc25 26.01s peak=29.5GiB L32_delta=+0.245
+15/20 5ce0f70ffdbb 14.39s peak=29.5GiB L32_delta=-0.643
+16/20 5b586d1330ac 11.58s peak=29.5GiB L32_delta=+0.505
+17/20 4a0e1b188206 20.19s peak=29.5GiB L32_delta=-0.121
+18/20 b56b667c9c71 26.01s peak=29.5GiB L32_delta=-2.546
+19/20 01091d57ff84 25.91s peak=29.49GiB L32_delta=+2.457
+20/20 27282e9b2094 20.0s peak=29.49GiB L32_delta=-2.577
+ARCHIVE /scratch/zhang.zhiqi2/jlens/351_self100_gold_false/archive paired 20 of 20
+L24 self100     n=20 first_win=0.700 full_win=0.700 full_delta=+0.478
+L24 neuronpedia n=20 first_win=0.700 full_win=0.650 full_delta=+0.642
+L32 self100     n=20 first_win=0.550 full_win=0.550 full_delta=+0.283
+L32 neuronpedia n=20 first_win=0.600 full_win=0.550 full_delta=+0.453
+L40 self100     n=20 first_win=0.400 full_win=0.550 full_delta=+0.169
+L40 neuronpedia n=20 first_win=0.500 full_win=0.450 full_delta=+0.128
+L48 self100     n=20 first_win=0.550 full_win=0.700 full_delta=+0.733
+L48 neuronpedia n=20 first_win=0.450 full_win=0.700 full_delta=+0.766
+L56 self100     n=20 first_win=0.750 full_win=0.550 full_delta=+0.354
+L56 neuronpedia n=20 first_win=0.750 full_win=0.500 full_delta=+0.344
+L62 self100     n=20 first_win=0.500 full_win=0.550 full_delta=+1.257
+L62 neuronpedia n=20 first_win=0.450 full_win=0.550 full_delta=+1.274

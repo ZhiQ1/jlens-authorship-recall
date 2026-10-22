@@ -1,0 +1,37 @@
+{
+  "seed": 42,
+  "unique_papers": 166,
+  "connected_components": 81,
+  "largest_component": 4,
+  "universe_split_papers": {
+    "build": 84,
+    "test": 66,
+    "tune": 16
+  },
+  "cohorts": {
+    "optimized": {
+      "pairs": 53,
+      "splits_pairs": {
+        "test": 23,
+        "build": 26,
+        "tune": 4
+      }
+    },
+    "moderate": {
+      "pairs": 75,
+      "splits_pairs": {
+        "build": 39,
+        "tune": 7,
+        "test": 29
+      }
+    },
+    "relaxed": {
+      "pairs": 83,
+      "splits_pairs": {
+        "test": 33,
+        "build": 42,
+        "tune": 8
+      }
+    }
+  }
+}

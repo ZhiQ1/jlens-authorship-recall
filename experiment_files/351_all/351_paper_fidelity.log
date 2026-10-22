@@ -1,0 +1,92 @@
+Prepared paper prompts: 4
+  1 161e00333493 bin=0-2 title=ITIMs: episode 1 of the inhibitory saga
+  2 ce403c4a91c6 bin=3-4 title=Optical Properties of Nonlinear Periodic Structures
+  3 ffd68763324a bin=5-8 title=Hybrid composite materials based on chitosan and gelatin and reinforced with hydroxya
+  4 85da3e67f9da bin=9-16 title=THE HALO MASS FUNCTION CONDITIONED ON DENSITY FROM THE MILLENNIUM SIMULATION: INSIGHT
+Loading pretrained public J-Lens...
+Loading Qwen3-32B BF16: 29 blocks GPU, 35 CPU; final norm/head on GPU
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<03:17,  3.57it/s]Loading weights:   2%|▏         | 12/707 [00:00<00:18, 38.61it/s]Loading weights:   3%|▎         | 23/707 [00:00<00:11, 60.01it/s]Loading weights:   5%|▍         | 34/707 [00:00<00:09, 73.88it/s]Loading weights:   6%|▌         | 43/707 [00:00<00:08, 75.90it/s]Loading weights:   7%|▋         | 52/707 [00:00<00:08, 79.90it/s]Loading weights:   9%|▊         | 61/707 [00:00<00:07, 82.23it/s]Loading weights:  11%|█         | 76/707 [00:01<00:06, 99.89it/s]Loading weights:  12%|█▏        | 87/707 [00:01<00:07, 87.96it/s]Loading weights:  14%|█▎        | 97/707 [00:01<00:07, 76.83it/s]Loading weights:  15%|█▌        | 109/707 [00:01<00:06, 86.53it/s]Loading weights:  17%|█▋        | 120/707 [00:01<00:06, 92.39it/s]Loading weights:  19%|█▊        | 131/707 [00:01<00:05, 96.86it/s]Loading weights:  20%|██        | 142/707 [00:01<00:06, 87.91it/s]Loading weights:  22%|██▏       | 153/707 [00:01<00:06, 92.03it/s]Loading weights:  23%|██▎       | 166/707 [00:02<00:05, 100.71it/s]Loading weights:  25%|██▌       | 180/707 [00:02<00:05, 105.02it/s]Loading weights:  27%|██▋       | 192/707 [00:02<00:05, 102.56it/s]Loading weights:  29%|██▊       | 203/707 [00:02<00:04, 104.36it/s]Loading weights:  30%|███       | 214/707 [00:02<00:04, 105.10it/s]Loading weights:  32%|███▏      | 225/707 [00:02<00:04, 105.59it/s]Loading weights:  33%|███▎      | 236/707 [00:02<00:04, 106.36it/s]Loading weights:  35%|███▍      | 247/707 [00:02<00:04, 95.76it/s] Loading weights:  37%|███▋      | 259/707 [00:02<00:04, 97.08it/s]Loading weights:  39%|███▉      | 274/707 [00:03<00:03, 110.76it/s]Loading weights:  41%|████      | 288/707 [00:03<00:03, 118.42it/s]Loading weights:  43%|████▎     | 301/707 [00:03<00:03, 116.21it/s]Loading weights:  44%|████▍     | 313/707 [00:03<00:03, 104.61it/s]Loading weights: 100%|██████████| 707/707 [00:03<00:00, 204.26it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Model loaded. Performing paired final-logit checks...
+1/4 161e00333493 9.1s 29.49GiB L32_KL_J=10.475
+2/4 ce403c4a91c6 6.0s 29.49GiB L32_KL_J=9.036
+3/4 ffd68763324a 6.0s 29.50GiB L32_KL_J=12.752
+4/4 85da3e67f9da 6.0s 29.50GiB L32_KL_J=10.894
+===== PAPER PROMPT FIDELITY SUMMARY ===== 4 papers
+L16 jlens   Top1=0.000 Top10Overlap=0.000 KL=10.185 MRR_finalTop1=0.0001 AvgRank=22778.8
+L16 vanilla Top1=0.000 Top10Overlap=0.000 KL=7.936 MRR_finalTop1=0.0000 AvgRank=84572.5
+L24 jlens   Top1=0.000 Top10Overlap=0.000 KL=9.399 MRR_finalTop1=0.0001 AvgRank=46967.8
+L24 vanilla Top1=0.000 Top10Overlap=0.000 KL=8.918 MRR_finalTop1=0.0000 AvgRank=101766.2
+L32 jlens   Top1=0.000 Top10Overlap=0.000 KL=10.789 MRR_finalTop1=0.0002 AvgRank=17736.0
+L32 vanilla Top1=0.000 Top10Overlap=0.000 KL=8.260 MRR_finalTop1=0.0000 AvgRank=77891.5
+L40 jlens   Top1=0.000 Top10Overlap=0.000 KL=7.586 MRR_finalTop1=0.0032 AvgRank=608.0
+L40 vanilla Top1=0.000 Top10Overlap=0.000 KL=7.639 MRR_finalTop1=0.0000 AvgRank=37222.5
+L48 jlens   Top1=0.000 Top10Overlap=0.000 KL=7.252 MRR_finalTop1=0.0016 AvgRank=760.2
+L48 vanilla Top1=0.000 Top10Overlap=0.000 KL=9.336 MRR_finalTop1=0.0001 AvgRank=36194.5
+L56 jlens   Top1=0.000 Top10Overlap=0.025 KL=4.581 MRR_finalTop1=0.0009 AvgRank=2288.8
+L56 vanilla Top1=0.000 Top10Overlap=0.000 KL=7.317 MRR_finalTop1=0.0003 AvgRank=6588.8
+L62 jlens   Top1=0.000 Top10Overlap=0.200 KL=0.548 MRR_finalTop1=0.1313 AvgRank=16.5
+L62 vanilla Top1=0.250 Top10Overlap=0.775 KL=0.691 MRR_finalTop1=0.4357 AvgRank=5.0
+Saved: /scratch/zhang.zhiqi2/jlens/351_all/351_paper_prompt_fidelity.jsonl
+Prepared paper prompts: 20
+  1 161e00333493 bin=0-2 title=ITIMs: episode 1 of the inhibitory saga
+  2 ce403c4a91c6 bin=3-4 title=Optical Properties of Nonlinear Periodic Structures
+  3 ffd68763324a bin=5-8 title=Hybrid composite materials based on chitosan and gelatin and reinforced with hydroxya
+  4 85da3e67f9da bin=9-16 title=THE HALO MASS FUNCTION CONDITIONED ON DENSITY FROM THE MILLENNIUM SIMULATION: INSIGHT
+  5 4df68792ed3d bin=17-32 title=Effect of Mn substituents on the domain and local structures of Na1/2Bi1/2TiO3–BaTiO3
+  6 da91e04e5a70 bin=33-64 title=Advanced practice nurses and attending physicians: a collaboration to improve quality
+  7 cb538fab25ae bin=65-128 title=Immunocytochemical and Biochemical Analysis of Carbonic Anhydrase in Primary Astrocyt
+  8 860d9de84e73 bin=129-256 title=Barium Titanate Piezoelectric Ceramics Manufactured by Two-Step Sintering
+  9 6253a85dd8b6 bin=257-512 title=Effect of starch granule structure, associated components and processing on nutritive
+ 10 5f5bee0818c9 bin=513-1024 title=On a short-coming of Saaty's method of analytic hierarchies
+ 11 de2be42659be bin=1025-2048 title=AID: A Benchmark Data Set for Performance Evaluation of Aerial Scene Classification
+ 12 fa432d07dd66 bin=2049-4096 title=Cognitive, affective, and attribute bases of the satisfaction response.
+ 13 5a94cedb709e bin=4097+ title=Phytozome: a comparative platform for green plant genomics
+ 14 63d3a02d6604 bin=0-2 title=Aduno: Real-time collaborative work design in a shared workspace
+ 15 1565eb375ff5 bin=3-4 title=On the number of unique subgraphs of a graph
+ 16 e0d5d8373e6b bin=5-8 title=HPTLC analysis of organotin compounds in preservative solutions and preservative-trea
+ 17 d9ae652e720e bin=9-16 title=Industrial prospects of aqueous two-phase processes
+ 18 2100196f2a42 bin=17-32 title=Electrical and electron spin resonance measurements of amorphous hydrogenated carbon 
+ 19 62e1f193b514 bin=33-64 title=A SPECTROSCOPIC ANALYSIS OF WHITE DWARFS IN THE KISO SURVEY
+ 20 732a518366f6 bin=65-128 title=Electronic Mach-Zehnder interferometer as a tool to probe fractional statistics
+Loading pretrained public J-Lens...
+Loading Qwen3-32B BF16: 29 blocks GPU, 35 CPU; final norm/head on GPU
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<03:18,  3.55it/s]Loading weights:   2%|▏         | 11/707 [00:00<00:19, 35.31it/s]Loading weights:   3%|▎         | 23/707 [00:00<00:11, 61.06it/s]Loading weights:   5%|▍         | 33/707 [00:00<00:09, 71.53it/s]Loading weights:   6%|▌         | 42/707 [00:00<00:08, 75.54it/s]Loading weights:   7%|▋         | 51/707 [00:00<00:08, 79.73it/s]Loading weights:   9%|▊         | 61/707 [00:00<00:07, 85.42it/s]Loading weights:  11%|█         | 75/707 [00:01<00:06, 99.47it/s]Loading weights:  12%|█▏        | 86/707 [00:01<00:06, 91.22it/s]Loading weights:  14%|█▎        | 96/707 [00:01<00:07, 76.70it/s]Loading weights:  15%|█▌        | 109/707 [00:01<00:06, 88.68it/s]Loading weights:  17%|█▋        | 120/707 [00:01<00:06, 93.79it/s]Loading weights:  19%|█▊        | 131/707 [00:01<00:05, 98.04it/s]Loading weights:  20%|██        | 142/707 [00:01<00:06, 88.73it/s]Loading weights:  22%|██▏       | 153/707 [00:01<00:05, 92.80it/s]Loading weights:  23%|██▎       | 166/707 [00:02<00:05, 101.35it/s]Loading weights:  25%|██▌       | 180/707 [00:02<00:05, 105.17it/s]Loading weights:  27%|██▋       | 192/707 [00:02<00:05, 101.70it/s]Loading weights:  29%|██▊       | 203/707 [00:02<00:04, 103.19it/s]Loading weights:  30%|███       | 214/707 [00:02<00:04, 104.19it/s]Loading weights:  32%|███▏      | 225/707 [00:02<00:04, 104.82it/s]Loading weights:  33%|███▎      | 236/707 [00:02<00:04, 104.55it/s]Loading weights:  35%|███▍      | 247/707 [00:02<00:04, 94.80it/s] Loading weights:  37%|███▋      | 259/707 [00:02<00:04, 96.38it/s]Loading weights:  39%|███▉      | 274/707 [00:03<00:03, 110.19it/s]Loading weights:  41%|████      | 287/707 [00:03<00:03, 115.00it/s]Loading weights:  43%|████▎     | 301/707 [00:03<00:03, 116.30it/s]Loading weights:  44%|████▍     | 313/707 [00:03<00:03, 104.21it/s]Loading weights: 100%|██████████| 707/707 [00:03<00:00, 202.75it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Model loaded. Performing paired final-logit checks...
+SKIP 1 161e00333493
+SKIP 2 ce403c4a91c6
+SKIP 3 ffd68763324a
+SKIP 4 85da3e67f9da
+5/20 4df68792ed3d 9.2s 29.50GiB L32_KL_J=11.566
+6/20 da91e04e5a70 6.3s 29.50GiB L32_KL_J=14.520
+7/20 cb538fab25ae 6.4s 29.50GiB L32_KL_J=9.483
+8/20 860d9de84e73 6.3s 29.50GiB L32_KL_J=12.979
+9/20 6253a85dd8b6 6.4s 29.50GiB L32_KL_J=12.634
+10/20 5f5bee0818c9 6.4s 29.50GiB L32_KL_J=9.206
+11/20 de2be42659be 6.3s 29.50GiB L32_KL_J=10.781
+12/20 fa432d07dd66 6.4s 29.50GiB L32_KL_J=8.293
+13/20 5a94cedb709e 6.3s 29.50GiB L32_KL_J=15.928
+14/20 63d3a02d6604 8.5s 29.49GiB L32_KL_J=10.945
+15/20 1565eb375ff5 6.4s 29.49GiB L32_KL_J=9.725
+16/20 e0d5d8373e6b 6.3s 29.50GiB L32_KL_J=11.037
+17/20 d9ae652e720e 6.3s 29.49GiB L32_KL_J=10.645
+18/20 2100196f2a42 6.5s 29.50GiB L32_KL_J=9.344
+19/20 62e1f193b514 6.4s 29.50GiB L32_KL_J=10.804
+20/20 732a518366f6 6.4s 29.50GiB L32_KL_J=11.659
+===== PAPER PROMPT FIDELITY SUMMARY ===== 20 papers
+L16 jlens   Top1=0.000 Top10Overlap=0.000 KL=10.961 MRR_finalTop1=0.0001 AvgRank=29699.8
+L16 vanilla Top1=0.000 Top10Overlap=0.000 KL=8.234 MRR_finalTop1=0.0001 AvgRank=54451.3
+L24 jlens   Top1=0.000 Top10Overlap=0.000 KL=9.460 MRR_finalTop1=0.0000 AvgRank=57679.8
+L24 vanilla Top1=0.000 Top10Overlap=0.000 KL=9.422 MRR_finalTop1=0.0000 AvgRank=82479.4
+L32 jlens   Top1=0.000 Top10Overlap=0.000 KL=11.135 MRR_finalTop1=0.0001 AvgRank=30786.7
+L32 vanilla Top1=0.000 Top10Overlap=0.000 KL=8.810 MRR_finalTop1=0.0000 AvgRank=76704.2
+L40 jlens   Top1=0.000 Top10Overlap=0.000 KL=8.869 MRR_finalTop1=0.0048 AvgRank=980.1
+L40 vanilla Top1=0.000 Top10Overlap=0.000 KL=8.299 MRR_finalTop1=0.0001 AvgRank=47649.2
+L48 jlens   Top1=0.000 Top10Overlap=0.000 KL=8.479 MRR_finalTop1=0.0017 AvgRank=1903.3
+L48 vanilla Top1=0.000 Top10Overlap=0.000 KL=9.922 MRR_finalTop1=0.0001 AvgRank=43384.8
+L56 jlens   Top1=0.000 Top10Overlap=0.040 KL=5.207 MRR_finalTop1=0.0137 AvgRank=5735.4
+L56 vanilla Top1=0.000 Top10Overlap=0.005 KL=8.286 MRR_finalTop1=0.0070 AvgRank=14425.0
+L62 jlens   Top1=0.200 Top10Overlap=0.345 KL=0.584 MRR_finalTop1=0.3650 AvgRank=8.8
+L62 vanilla Top1=0.350 Top10Overlap=0.720 KL=0.808 MRR_finalTop1=0.5486 AvgRank=3.6
+Saved: /scratch/zhang.zhiqi2/jlens/351_all/351_paper_prompt_fidelity.jsonl

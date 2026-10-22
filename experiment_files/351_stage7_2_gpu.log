@@ -1,0 +1,58 @@
+STAGE 7.2: 0/50 completed; 2 queued
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<03:37,  3.25it/s]Loading weights:   0%|          | 2/707 [00:00<03:56,  2.98it/s]Loading weights:   2%|▏         | 14/707 [00:00<00:26, 25.69it/s]Loading weights:   3%|▎         | 19/707 [00:01<00:29, 23.53it/s]Loading weights:   4%|▎         | 26/707 [00:01<00:27, 25.08it/s]Loading weights:   4%|▍         | 30/707 [00:01<00:26, 25.47it/s]Loading weights:   5%|▌         | 37/707 [00:01<00:23, 29.00it/s]Loading weights:   6%|▌         | 41/707 [00:02<00:34, 19.52it/s]Loading weights:   6%|▋         | 45/707 [00:02<00:29, 22.15it/s]Loading weights:   7%|▋         | 48/707 [00:02<00:28, 22.76it/s]Loading weights:   7%|▋         | 51/707 [00:02<00:37, 17.56it/s]Loading weights:   8%|▊         | 55/707 [00:02<00:33, 19.54it/s]Loading weights:   8%|▊         | 59/707 [00:03<00:39, 16.44it/s]Loading weights:   9%|▉         | 62/707 [00:03<00:53, 12.11it/s]Loading weights:   9%|▉         | 66/707 [00:03<00:41, 15.47it/s]Loading weights:  10%|▉         | 70/707 [00:03<00:41, 15.30it/s]Loading weights:  10%|█         | 73/707 [00:04<00:54, 11.70it/s]Loading weights:  11%|█▏        | 81/707 [00:04<00:36, 17.06it/s]Loading weights:  12%|█▏        | 84/707 [00:04<00:44, 14.03it/s]Loading weights:  12%|█▏        | 88/707 [00:05<00:36, 17.18it/s]Loading weights:  13%|█▎        | 93/707 [00:05<00:31, 19.77it/s]Loading weights:  14%|█▎        | 96/707 [00:05<00:28, 21.40it/s]Loading weights:  15%|█▍        | 103/707 [00:05<00:21, 28.57it/s]Loading weights:  15%|█▌        | 107/707 [00:05<00:21, 28.26it/s]Loading weights:  16%|█▌        | 114/707 [00:05<00:16, 36.00it/s]Loading weights:  18%|█▊        | 125/707 [00:05<00:11, 49.42it/s]Loading weights:  19%|█▊        | 132/707 [00:05<00:10, 52.84it/s]Loading weights:  20%|█▉        | 138/707 [00:06<00:11, 47.78it/s]Loading weights:  21%|██        | 149/707 [00:06<00:09, 58.22it/s]Loading weights:  23%|██▎       | 160/707 [00:06<00:08, 68.07it/s]Loading weights:  24%|██▍       | 170/707 [00:06<00:07, 71.58it/s]Loading weights:  26%|██▌       | 181/707 [00:06<00:06, 79.16it/s]Loading weights:  27%|██▋       | 190/707 [00:07<00:20, 25.80it/s]Loading weights:  28%|██▊       | 197/707 [00:08<00:28, 18.03it/s]Loading weights:  29%|██▊       | 202/707 [00:08<00:30, 16.38it/s]Loading weights:  29%|██▉       | 206/707 [00:09<00:44, 11.26it/s]Loading weights:  30%|███       | 215/707 [00:09<00:30, 16.38it/s]Loading weights:  32%|███▏      | 226/707 [00:09<00:19, 24.27it/s]Loading weights:  34%|███▎      | 237/707 [00:09<00:14, 33.02it/s]Loading weights:  35%|███▌      | 248/707 [00:09<00:10, 42.66it/s]Loading weights:  36%|███▋      | 258/707 [00:10<00:08, 51.01it/s]Loading weights:  38%|███▊      | 268/707 [00:10<00:07, 56.99it/s]Loading weights:  39%|███▉      | 277/707 [00:10<00:12, 34.70it/s]Loading weights:  40%|████      | 284/707 [00:11<00:15, 28.07it/s]Loading weights:  41%|████▏     | 292/707 [00:11<00:12, 32.94it/s]Loading weights:  42%|████▏     | 300/707 [00:11<00:17, 22.81it/s]Loading weights:  43%|████▎     | 304/707 [00:12<00:19, 20.80it/s]Loading weights:  44%|████▍     | 313/707 [00:12<00:13, 28.20it/s]Loading weights:  63%|██████▎   | 444/707 [00:12<00:01, 202.38it/s]Loading weights: 100%|██████████| 707/707 [00:12<00:00, 56.81it/s] 
+Some parameters are on the meta device because they were offloaded to the cpu.
+1/50 A 7eebe31fcc6a modes=15 unique_tokens=67 t=16.3s
+2/50 B fcebb695629a modes=15 unique_tokens=74 t=5.7s
+Saved: /scratch/zhang.zhiqi2/jlens/351_stage7_2/raw/pilot50_firsttoken_scores.jsonl
+STAGE 7.2: 2/50 completed; 48 queued
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:   0%|          | 1/707 [00:00<01:11,  9.90it/s]Loading weights:   0%|          | 2/707 [00:00<02:01,  5.80it/s]Loading weights:   1%|          | 5/707 [00:00<00:55, 12.76it/s]Loading weights:   2%|▏         | 15/707 [00:00<00:19, 36.24it/s]Loading weights:   3%|▎         | 20/707 [00:00<00:28, 23.76it/s]Loading weights:   4%|▎         | 26/707 [00:01<00:24, 27.47it/s]Loading weights:   4%|▍         | 30/707 [00:01<00:27, 24.23it/s]Loading weights:   5%|▌         | 37/707 [00:01<00:24, 27.49it/s]Loading weights:   6%|▌         | 41/707 [00:01<00:35, 18.82it/s]Loading weights:   6%|▋         | 45/707 [00:02<00:30, 21.76it/s]Loading weights:   7%|▋         | 48/707 [00:02<00:28, 22.96it/s]Loading weights:   7%|▋         | 51/707 [00:02<00:36, 18.04it/s]Loading weights:   8%|▊         | 55/707 [00:02<00:32, 20.06it/s]Loading weights:   8%|▊         | 59/707 [00:03<00:52, 12.41it/s]Loading weights:   9%|▊         | 61/707 [00:03<00:52, 12.31it/s]Loading weights:  10%|▉         | 70/707 [00:03<00:45, 13.99it/s]Loading weights:  10%|█         | 72/707 [00:04<00:47, 13.41it/s]Loading weights:  11%|█         | 79/707 [00:04<00:31, 20.25it/s]Loading weights:  12%|█▏        | 83/707 [00:04<00:40, 15.29it/s]Loading weights:  13%|█▎        | 89/707 [00:04<00:29, 20.70it/s]Loading weights:  13%|█▎        | 93/707 [00:04<00:31, 19.51it/s]Loading weights:  14%|█▍        | 98/707 [00:05<00:26, 23.35it/s]Loading weights:  15%|█▍        | 104/707 [00:05<00:22, 27.07it/s]Loading weights:  16%|█▌        | 111/707 [00:05<00:17, 34.46it/s]Loading weights:  16%|█▋        | 116/707 [00:05<00:16, 35.58it/s]Loading weights:  18%|█▊        | 126/707 [00:05<00:12, 48.15it/s]Loading weights:  19%|█▉        | 136/707 [00:05<00:11, 48.82it/s]Loading weights:  21%|██        | 147/707 [00:05<00:09, 57.01it/s]Loading weights:  22%|██▏       | 158/707 [00:06<00:08, 65.83it/s]Loading weights:  23%|██▎       | 166/707 [00:06<00:08, 66.64it/s]Loading weights:  25%|██▍       | 175/707 [00:06<00:07, 70.89it/s]Loading weights:  26%|██▌       | 183/707 [00:06<00:07, 73.02it/s]Loading weights:  27%|██▋       | 191/707 [00:06<00:14, 35.29it/s]Loading weights:  28%|██▊       | 199/707 [00:07<00:12, 41.83it/s]Loading weights:  29%|██▉       | 206/707 [00:07<00:10, 46.08it/s]Loading weights:  30%|███       | 215/707 [00:07<00:09, 53.79it/s]Loading weights:  32%|███▏      | 226/707 [00:07<00:07, 63.87it/s]Loading weights:  34%|███▎      | 237/707 [00:07<00:06, 71.67it/s]Loading weights:  35%|███▌      | 248/707 [00:07<00:05, 78.04it/s]Loading weights:  36%|███▋      | 258/707 [00:07<00:05, 81.25it/s]Loading weights:  38%|███▊      | 268/707 [00:07<00:05, 82.65it/s]Loading weights:  39%|███▉      | 279/707 [00:07<00:05, 81.67it/s]Loading weights:  41%|████      | 290/707 [00:08<00:04, 84.97it/s]Loading weights:  43%|████▎     | 301/707 [00:08<00:04, 88.91it/s]Loading weights:  44%|████▍     | 312/707 [00:08<00:04, 90.93it/s]Loading weights:  82%|████████▏ | 581/707 [00:08<00:00, 781.58it/s]Loading weights: 100%|██████████| 707/707 [00:08<00:00, 84.17it/s] 
+Some parameters are on the meta device because they were offloaded to the cpu.
+3/50 C 5589af33dbdc modes=15 unique_tokens=47 t=7.9s
+4/50 D be2506e6e2ac modes=15 unique_tokens=42 t=5.7s
+5/50 A a6779fed7d19 modes=15 unique_tokens=39 t=5.7s
+6/50 B bd98e7f54daf modes=15 unique_tokens=44 t=5.9s
+7/50 C 216fe9609d4a modes=15 unique_tokens=41 t=5.7s
+8/50 A 1e987cda3490 modes=15 unique_tokens=42 t=5.8s
+9/50 B a7969a1cf518 modes=15 unique_tokens=46 t=5.7s
+10/50 C 2fec9f47120a modes=15 unique_tokens=49 t=5.8s
+11/50 A d53aa1eec231 modes=15 unique_tokens=48 t=5.7s
+12/50 B 49ae32ee4b0d modes=15 unique_tokens=34 t=5.8s
+13/50 A d8146bfbbdc9 modes=15 unique_tokens=45 t=5.8s
+14/50 B 1fd533cd17ab modes=15 unique_tokens=43 t=5.8s
+15/50 A a6ad8bbf89e6 modes=15 unique_tokens=52 t=5.8s
+16/50 B a1820b62fabe modes=15 unique_tokens=34 t=5.8s
+17/50 A e3672a1c7ad4 modes=15 unique_tokens=37 t=5.9s
+18/50 B 8865fa52879c modes=15 unique_tokens=44 t=5.8s
+19/50 A c16e598710d0 modes=15 unique_tokens=45 t=5.8s
+20/50 B 73a2925323e3 modes=15 unique_tokens=35 t=5.9s
+21/50 B d3522d90f922 modes=15 unique_tokens=53 t=5.8s
+22/50 B 1b0a15b28350 modes=15 unique_tokens=41 t=5.7s
+23/50 B e7d9d313a504 modes=15 unique_tokens=43 t=6.0s
+24/50 B b5ba91cfa40c modes=15 unique_tokens=49 t=5.8s
+25/50 B 3a8703dd6a7a modes=15 unique_tokens=46 t=5.8s
+26/50 B 72776329fa2f modes=15 unique_tokens=57 t=5.8s
+27/50 B 3db83bb254be modes=15 unique_tokens=37 t=5.8s
+28/50 B 5c2dc4b9c813 modes=15 unique_tokens=35 t=5.7s
+29/50 A 294c80dd99f3 modes=15 unique_tokens=46 t=5.7s
+30/50 A 3461ca717e71 modes=15 unique_tokens=53 t=6.0s
+31/50 A 0dfe922df5ad modes=15 unique_tokens=33 t=5.7s
+32/50 A 7ec9fee5beaf modes=15 unique_tokens=37 t=5.8s
+33/50 A f993b855be99 modes=15 unique_tokens=40 t=5.8s
+34/50 A 85e2d1956fae modes=15 unique_tokens=39 t=5.7s
+35/50 A 00e7c3d8b32c modes=15 unique_tokens=50 t=5.8s
+36/50 A 0cc090030500 modes=15 unique_tokens=47 t=5.7s
+37/50 A 474060b4bde9 modes=15 unique_tokens=51 t=5.9s
+38/50 B 365765212245 modes=15 unique_tokens=43 t=5.8s
+39/50 A 23154deb9225 modes=15 unique_tokens=36 t=5.7s
+40/50 B c4494c5e702a modes=15 unique_tokens=42 t=5.8s
+41/50 A 5b08de6b883a modes=15 unique_tokens=36 t=5.9s
+42/50 B 2193d522e19a modes=15 unique_tokens=36 t=5.7s
+43/50 A fb5ae7aeadd8 modes=15 unique_tokens=56 t=5.7s
+44/50 B 5c5f5c11c6a6 modes=15 unique_tokens=58 t=8.3s
+45/50 C 95880bede25d modes=15 unique_tokens=47 t=5.8s
+46/50 C 3d91dd09f87f modes=15 unique_tokens=53 t=5.8s
+47/50 C 4c4a8b954edc modes=15 unique_tokens=69 t=5.7s
+48/50 C 95ac2dee3497 modes=15 unique_tokens=43 t=5.9s
+49/50 D 2918a6df04ce modes=15 unique_tokens=44 t=5.8s
+50/50 D 17778ed5452c modes=15 unique_tokens=72 t=5.8s
+Saved: /scratch/zhang.zhiqi2/jlens/351_stage7_2/raw/pilot50_firsttoken_scores.jsonl

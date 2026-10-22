@@ -1,0 +1,51 @@
+paper_id,group,citation_bin,field,gold_author,gold_first_token_id,n_gold_tokens,n_matched,n_random,matched_first_token_collisions,random_first_token_collisions,matched_tier_0,matched_tier_1,matched_tier_2,matched_tier_3,matched_tier_4,matched_tier_5,matched_tier_6,source_pilot_count
+7eebe31fcc6a050e7e8e37580b19cda2f5af375d,A,0-2,computer science,Reagan Moore,34126,2,50,50,0,0,50,0,0,0,0,0,0,6
+fcebb695629ae330450fd31869e6c6a3f985fb7a,B,0-2,computer science,Gan Yong,49081,2,50,50,0,0,26,24,0,0,0,0,0,7
+5589af33dbdc9c402ec0d48b97097d2ae230e96b,C,0-2,biology,H. Clevers,472,4,50,50,1,2,50,0,0,0,0,0,0,2
+be2506e6e2ac67a7f962917c103f0f91ccf4de91,D,0-2,materials science,Xiaolin Wang,40135,3,50,50,1,0,50,0,0,0,0,0,0,4
+a6779fed7d19f21f67d7028c46a7a46d36931be5,A,3-4,biology,K. Hashimoto,730,4,50,50,2,4,50,0,0,0,0,0,0,1
+bd98e7f54daf0db19a43ce1a9b1034012d5d7f8d,B,3-4,materials science,G. Liang,479,4,50,50,0,0,50,0,0,0,0,0,0,1
+216fe9609d4a44a2fbbefc9787dbf703bb83560e,C,3-4,physics,T. Onaka,350,4,50,50,2,2,50,0,0,0,0,0,0,1
+1e987cda34904e8d7b8d3b515b26e16052c49e75,A,5-8,mathematics,G. Trejo-Caballero,479,8,50,50,3,2,8,4,14,24,0,0,0,1
+a7969a1cf5187a5ca95580ba060f5bc32160c8b2,B,5-8,medicine,C. Einspieler,356,5,50,50,1,0,50,0,0,0,0,0,0,1
+2fec9f47120a5026fe98a945ea5e29b297191714,C,5-8,computer science,Zhiyin Wang,1863,5,50,50,0,1,50,0,0,0,0,0,0,2
+d53aa1eec23170bf82567a988a17b75e12315a59,A,9-16,psychology,J. Sobański,619,5,50,50,3,5,50,0,0,0,0,0,0,3
+49ae32ee4b0d71fa50aa56eab6268a7116c6ce4d,B,9-16,physics,S. Tokonami,328,5,50,50,5,3,50,0,0,0,0,0,0,2
+d8146bfbbdc949ab5954dd8db504e9dfe9737fb5,A,17-32,psychology,K. Sheehy,730,5,50,50,3,4,50,0,0,0,0,0,0,1
+1fd533cd17aba624c1f76090c3c3e2811303c983,B,17-32,medicine,C. Chou,356,4,50,50,1,2,50,0,0,0,0,0,0,5
+a6ad8bbf89e655185ead2cb995d290c70c01bf5e,A,33-64,computer science,Pia Nielsen-Englyst,393,7,50,50,1,1,27,23,0,0,0,0,0,1
+a1820b62fabeb1ed4fd8d8672295cc0248a99fff,B,33-64,medicine,Jing Zeng,85439,3,50,50,0,1,50,0,0,0,0,0,0,2
+e3672a1c7ad45a1d4960b8cedbc12d180bfb55ae,A,65-128,medicine,Janice L. Walker,4350,5,50,50,0,0,50,0,0,0,0,0,0,3
+8865fa52879cdfe82d3c7fc9f399b2b17dc02547,B,65-128,materials science,Zhan-Yong Zhao,1863,5,50,50,0,0,50,0,0,0,0,0,0,1
+c16e598710d00940be1b06fe260b2d87022ba7c7,A,129-256,mathematics,Zhenya Yan,1863,4,50,50,0,0,50,0,0,0,0,0,0,2
+73a2925323e3baf330d982b7867c17e53277e972,B,129-256,chemistry,M. Runnegar,386,5,50,50,6,0,50,0,0,0,0,0,0,4
+d3522d90f922825a99e7fc428132da58e2fb731b,B,0-2,computer science,Yifei Chen,809,4,50,50,0,2,50,0,0,0,0,0,0,1
+1b0a15b2835075fcbdf28416539a0041a8ab8ef3,B,3-4,biology,A. Schön,362,3,50,50,2,4,50,0,0,0,0,0,0,1
+e7d9d313a504ec456a0c5f1430d8a745c61a8af9,B,5-8,mathematics,T. Shimada,350,4,50,50,2,1,50,0,0,0,0,0,0,2
+b5ba91cfa40c569b4fd23b938bef077f5a6d0631,B,9-16,psychology,W. Butollo,467,4,50,50,0,1,50,0,0,0,0,0,0,3
+3a8703dd6a7a8029ad06626448b99ebdacb80054,B,17-32,psychology,Patricia M. Rodriguez Mosquera,53934,7,50,50,1,0,19,22,9,0,0,0,0,1
+72776329fa2fdddd813b991c7be40f56b7e45121,B,33-64,computer science,Chang-Shing Lee,43372,4,50,50,0,0,50,0,0,0,0,0,0,2
+3db83bb254beab5f213d3ceb19f24976fc051c09,B,65-128,medicine,A. Geffroy,362,5,50,50,3,3,50,0,0,0,0,0,0,2
+5c2dc4b9c81377d3fdd12809ea7e17b609b18e5e,B,129-256,mathematics,B. Blankenship,425,5,50,50,2,2,50,0,0,0,0,0,0,1
+294c80dd99f3075508215448f6d67a548d7cd8c9,A,0-2,computer science,W. Gernand,467,5,50,50,2,2,50,0,0,0,0,0,0,1
+3461ca717e71a759e0b957f63adf06af3e360801,A,3-4,materials science,M. Kantor,386,4,50,50,1,2,50,0,0,0,0,0,0,1
+0dfe922df5ad5943fb437d680d68ff9c5b1c1983,A,5-8,medicine,R. Sherman,431,3,50,50,5,1,50,0,0,0,0,0,0,1
+7ec9fee5beaf0da144f1f847713c97d4815d9552,A,9-16,physics,A. Kuramata,362,5,50,50,2,3,50,0,0,0,0,0,0,1
+f993b855be99cc04166f78d0d5a6091f827bf95f,A,17-32,medicine,D. Kopans,422,4,50,50,3,3,50,0,0,0,0,0,0,1
+85e2d1956faed9512a3e79ae5be73342eb48693e,A,33-64,medicine,Xiaofeng Wang,40135,4,50,50,1,0,50,0,0,0,0,0,0,4
+00e7c3d8b32ceea021ae00ea67ec1223a5fbe993,A,65-128,materials science,J. Ewen,619,4,50,50,5,2,50,0,0,0,0,0,0,1
+0cc090030500af98de09528ea07b5a3d0c97cc7b,A,129-256,chemistry,A. Fox,362,3,50,50,2,3,32,18,0,0,0,0,0,0
+474060b4bde9b25f946c37586bae07d962d77bf2,A,65-128,computer science,David Sturzenegger,6798,6,50,50,1,0,50,0,0,0,0,0,0,2
+365765212245007664524e3f4942ccdc3e22378f,B,65-128,computer science,M. Siddiqui,386,5,50,50,1,5,50,0,0,0,0,0,0,5
+23154deb92253233ecc42bb838bd4f7f2bc5beb3,A,5-8,computer science,C. Kay,356,3,50,50,3,4,9,10,31,0,0,0,0,2
+c4494c5e702a9117111056adab64ff38baab61b6,B,5-8,computer science,F. Lichtenberger,434,5,50,50,2,2,8,14,28,0,0,0,0,1
+5b08de6b883a53c374b72928131424c751934149,A,1025-2048,biology,M. Michael,386,3,50,50,2,3,50,0,0,0,0,0,0,1
+2193d522e19a221790323c1343cf2b4328e33750,B,1025-2048,biology,M. Fussenegger,386,6,50,50,7,3,35,15,0,0,0,0,0,2
+fb5ae7aeadd84402d88e7b70fe597a69fcf1cefd,A,5-8,computer science,C. Kaklamanis,356,6,50,50,0,1,50,0,0,0,0,0,0,3
+5c5f5c11c6a646a72e0f03662f243a960ee89994,B,5-8,computer science,Wakana Nakai,85537,4,50,50,0,0,50,0,0,0,0,0,0,1
+95880bede25dc10b4ea922b26be82edfd43179bf,C,1025-2048,computer science,Zhengyou Zhang,76447,3,50,50,0,0,35,15,0,0,0,0,0,1
+3d91dd09f87f4e700b63a30d86780275efd25efe,C,513-1024,biology,B. Xavier,425,3,50,50,1,0,50,0,0,0,0,0,0,1
+4c4a8b954edcdf63372b4a0cc7d0b98fb7876d43,C,513-1024,chemistry,Joseph Wang,15115,2,50,50,0,0,11,16,23,0,0,0,0,2
+95ac2dee3497073f6f139ba0f16cf64c5e9d327c,C,513-1024,computer science,Alessandro De Luca,69785,4,50,50,0,0,50,0,0,0,0,0,0,2
+2918a6df04ce0af7f415f6faaac2167ccae583fa,D,1025-2048,biology,M. Chartier-Harlin,386,7,50,50,2,3,7,13,30,0,0,0,0,1
+17778ed5452c975e4ced8bafb8807ee383a6fd4b,D,5-8,computer science,Yu Wu,27273,2,50,50,0,0,42,8,0,0,0,0,0,6

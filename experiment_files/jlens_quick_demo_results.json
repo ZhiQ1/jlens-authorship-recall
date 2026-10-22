@@ -1,0 +1,236 @@
+[
+  {
+    "example": "capital",
+    "layer": 24,
+    "gold_first_token": " Paris",
+    "gold_rank": 8246,
+    "top5": [
+      ".\n\n",
+      ".",
+      "圭",
+      " passing",
+      " facing"
+    ]
+  },
+  {
+    "example": "capital",
+    "layer": 32,
+    "gold_first_token": " Paris",
+    "gold_rank": 4,
+    "top5": [
+      " city",
+      " London",
+      ".\n\n",
+      " Paris",
+      " England"
+    ]
+  },
+  {
+    "example": "capital",
+    "layer": 40,
+    "gold_first_token": " Paris",
+    "gold_rank": 62,
+    "top5": [
+      ".\n\n",
+      ".\n\n\n",
+      ",",
+      ".\n",
+      "."
+    ]
+  },
+  {
+    "example": "capital",
+    "layer": 48,
+    "gold_first_token": " Paris",
+    "gold_rank": 268,
+    "top5": [
+      ".\r\n",
+      ".\r\n\r\n",
+      ".\"",
+      "?\"",
+      ","
+    ]
+  },
+  {
+    "example": "capital",
+    "layer": 56,
+    "gold_first_token": " Paris",
+    "gold_rank": 2,
+    "top5": [
+      "巴黎",
+      " Paris",
+      "Paris",
+      "____",
+      "法国"
+    ]
+  },
+  {
+    "example": "capital",
+    "layer": 62,
+    "gold_first_token": " Paris",
+    "gold_rank": 1,
+    "top5": [
+      " Paris",
+      " London",
+      "Paris",
+      " Lyon",
+      " paris"
+    ]
+  },
+  {
+    "example": "scientist",
+    "layer": 24,
+    "gold_first_token": " Albert",
+    "gold_rank": 53806,
+    "top5": [
+      ".",
+      "传出",
+      " Ride",
+      ".\n",
+      ".\n\n"
+    ]
+  },
+  {
+    "example": "scientist",
+    "layer": 32,
+    "gold_first_token": " Albert",
+    "gold_rank": 37922,
+    "top5": [
+      " scientists",
+      " Scientists",
+      " Australian",
+      " Japanese",
+      "科学家"
+    ]
+  },
+  {
+    "example": "scientist",
+    "layer": 40,
+    "gold_first_token": " Albert",
+    "gold_rank": 356,
+    "top5": [
+      " scientists",
+      " Einstein",
+      " scientist",
+      "科学家",
+      "scient"
+    ]
+  },
+  {
+    "example": "scientist",
+    "layer": 48,
+    "gold_first_token": " Albert",
+    "gold_rank": 133,
+    "top5": [
+      ".",
+      "____",
+      " ______",
+      ",",
+      "________"
+    ]
+  },
+  {
+    "example": "scientist",
+    "layer": 56,
+    "gold_first_token": " Albert",
+    "gold_rank": 3,
+    "top5": [
+      " Einstein",
+      "____",
+      " Albert",
+      " ____",
+      "________"
+    ]
+  },
+  {
+    "example": "scientist",
+    "layer": 62,
+    "gold_first_token": " Albert",
+    "gold_rank": 1,
+    "top5": [
+      " Albert",
+      " Einstein",
+      "Albert",
+      " ____",
+      " ______"
+    ]
+  },
+  {
+    "example": "author",
+    "layer": 24,
+    "gold_first_token": " Jane",
+    "gold_rank": 4198,
+    "top5": [
+      "stand",
+      "隐藏",
+      "创作者",
+      "模特",
+      "."
+    ]
+  },
+  {
+    "example": "author",
+    "layer": 32,
+    "gold_first_token": " Jane",
+    "gold_rank": 71,
+    "top5": [
+      " British",
+      " England",
+      " Mr",
+      ".\n",
+      " .\n"
+    ]
+  },
+  {
+    "example": "author",
+    "layer": 40,
+    "gold_first_token": " Jane",
+    "gold_rank": 33,
+    "top5": [
+      " ______",
+      " ____",
+      " _____",
+      " Mary",
+      " England"
+    ]
+  },
+  {
+    "example": "author",
+    "layer": 48,
+    "gold_first_token": " Jane",
+    "gold_rank": 420,
+    "top5": [
+      "____",
+      "________",
+      ".",
+      " ______",
+      " ____"
+    ]
+  },
+  {
+    "example": "author",
+    "layer": 56,
+    "gold_first_token": " Jane",
+    "gold_rank": 18,
+    "top5": [
+      "____",
+      "________",
+      " ______",
+      " ____",
+      "_____"
+    ]
+  },
+  {
+    "example": "author",
+    "layer": 62,
+    "gold_first_token": " Jane",
+    "gold_rank": 1,
+    "top5": [
+      " Jane",
+      " ______",
+      "____",
+      "Jane",
+      " ____"
+    ]
+  }
+]

@@ -1,0 +1,301 @@
+group,mode,layer,metric,n_papers,mean,ci95_low,ci95_high,ci_method
+ALL,final,63,first_listed_first_rr,20,0.2012335150766856,0.08919135269864699,0.34511032433558253,percentile paper bootstrap (2000 replicates)
+ALL,final,63,all_author_first_rr,20,0.22486982572016703,0.11895194831136335,0.3582001456519702,percentile paper bootstrap (2000 replicates)
+ALL,final,63,conditional_token_mrr,20,0.4784246494235362,0.38283140000279303,0.5795524615766056,percentile paper bootstrap (2000 replicates)
+ALL,final,63,conditional_mean_logprob,20,-3.8202035800632554,-4.710511874382787,-3.042181483209273,percentile paper bootstrap (2000 replicates)
+ALL,jlens,16,first_listed_first_rr,20,0.00022101488845710808,7.220493941072261e-05,0.0004182088479492405,percentile paper bootstrap (2000 replicates)
+ALL,jlens,16,all_author_first_rr,20,0.00014662605089910152,8.403247102929452e-05,0.0002368387648842521,percentile paper bootstrap (2000 replicates)
+ALL,jlens,16,conditional_token_mrr,20,0.0018187515839478289,0.0006221357712060026,0.0035745106425546873,percentile paper bootstrap (2000 replicates)
+ALL,jlens,16,conditional_mean_logprob,20,-16.006123976379026,-16.665997029978552,-15.300427821760358,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,16,first_listed_first_rr,20,5.741763123241845e-05,2.498806496648816e-05,9.699549643433967e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,16,all_author_first_rr,20,4.657930311199103e-05,3.009983390631311e-05,6.63866045487201e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,16,conditional_token_mrr,20,0.000970004059009048,0.000376817229404553,0.001795805450331876,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,16,conditional_mean_logprob,20,-12.889291877037678,-13.15132997859369,-12.626269533054932,percentile paper bootstrap (2000 replicates)
+ALL,jlens,24,first_listed_first_rr,20,4.568608502052674e-05,2.8688145963218387e-05,7.060343394645563e-05,percentile paper bootstrap (2000 replicates)
+ALL,jlens,24,all_author_first_rr,20,3.996723697357147e-05,3.0506822386687147e-05,5.0350151854043246e-05,percentile paper bootstrap (2000 replicates)
+ALL,jlens,24,conditional_token_mrr,20,0.0008950313840579497,0.00040199609080918494,0.001603732055634812,percentile paper bootstrap (2000 replicates)
+ALL,jlens,24,conditional_mean_logprob,20,-14.671238396163362,-15.19946816937868,-14.139358094914893,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,24,first_listed_first_rr,20,2.5224518864586433e-05,1.5838430468687873e-05,3.648178758993307e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,24,all_author_first_rr,20,3.6767688308749876e-05,1.932677432714672e-05,6.647278292208657e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,24,conditional_token_mrr,20,0.0006563868581245773,0.000283444737579348,0.0011249615172308181,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,24,conditional_mean_logprob,20,-13.288679909206706,-13.564161595353937,-12.996180005453459,percentile paper bootstrap (2000 replicates)
+ALL,jlens,32,first_listed_first_rr,20,0.00021924926144067933,6.778986960212905e-05,0.00047442328794992234,percentile paper bootstrap (2000 replicates)
+ALL,jlens,32,all_author_first_rr,20,0.00019013047524049797,0.00010274975709441132,0.00029297298522079786,percentile paper bootstrap (2000 replicates)
+ALL,jlens,32,conditional_token_mrr,20,0.002403638011386623,0.0007992615390037079,0.004739562544374634,percentile paper bootstrap (2000 replicates)
+ALL,jlens,32,conditional_mean_logprob,20,-15.689344432822633,-16.270456991967517,-15.028649789028632,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,32,first_listed_first_rr,20,2.2688393486788207e-05,1.7551480062387966e-05,2.7735019880783236e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,32,all_author_first_rr,20,2.787243129846442e-05,1.9787840199696874e-05,4.079922623051063e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,32,conditional_token_mrr,20,0.002486779845466679,0.0003600482045050617,0.005478174273552174,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,32,conditional_mean_logprob,20,-13.156502926269896,-13.48630574528153,-12.880102095246688,percentile paper bootstrap (2000 replicates)
+ALL,jlens,40,first_listed_first_rr,20,0.0014415364643468236,0.001007520164685011,0.0018969785055136087,percentile paper bootstrap (2000 replicates)
+ALL,jlens,40,all_author_first_rr,20,0.0014093973146386057,0.0010200845526755294,0.0018848478661921747,percentile paper bootstrap (2000 replicates)
+ALL,jlens,40,conditional_token_mrr,20,0.00548105085051686,0.0027643098419085663,0.008730784097163278,percentile paper bootstrap (2000 replicates)
+ALL,jlens,40,conditional_mean_logprob,20,-13.24498801321636,-13.740856528076185,-12.75520227949596,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,40,first_listed_first_rr,20,3.2471972352059345e-05,1.6369078994678697e-05,6.172700315487252e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,40,all_author_first_rr,20,4.953278310943132e-05,2.8505429074515968e-05,7.761738116380069e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,40,conditional_token_mrr,20,0.009703202733793445,0.001720157146719006,0.023164072675189874,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,40,conditional_mean_logprob,20,-12.825183608128505,-13.0686140295222,-12.570946708703799,percentile paper bootstrap (2000 replicates)
+ALL,jlens,48,first_listed_first_rr,20,0.0013332325031095577,0.0007829456238280735,0.001958411425869927,percentile paper bootstrap (2000 replicates)
+ALL,jlens,48,all_author_first_rr,20,0.0012320342419440036,0.0008320433219030304,0.0016449552282322155,percentile paper bootstrap (2000 replicates)
+ALL,jlens,48,conditional_token_mrr,20,0.05604097630759581,0.03704882102212882,0.07799705747896861,percentile paper bootstrap (2000 replicates)
+ALL,jlens,48,conditional_mean_logprob,20,-11.133850273857053,-11.777953221900948,-10.547279066230729,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,48,first_listed_first_rr,20,2.3253024689561392e-05,1.6909950085756173e-05,3.315579855585604e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,48,all_author_first_rr,20,2.9946728795868602e-05,2.458657336486341e-05,3.612713802785901e-05,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,48,conditional_token_mrr,20,0.012760219872532806,0.0018978930633126087,0.028423753087633827,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,48,conditional_mean_logprob,20,-14.041375475408776,-14.435836709909525,-13.66115966925791,percentile paper bootstrap (2000 replicates)
+ALL,jlens,56,first_listed_first_rr,20,0.00703960875954923,0.0011959311346929288,0.017408786799552323,percentile paper bootstrap (2000 replicates)
+ALL,jlens,56,all_author_first_rr,20,0.0052167543783199,0.0017375287056184605,0.009997669518458732,percentile paper bootstrap (2000 replicates)
+ALL,jlens,56,conditional_token_mrr,20,0.04707049285753484,0.027838859637976308,0.06918146249840365,percentile paper bootstrap (2000 replicates)
+ALL,jlens,56,conditional_mean_logprob,20,-11.2086295533799,-12.301792510844082,-10.144321139415778,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,56,first_listed_first_rr,20,0.0002996921713074973,0.0001279242614514174,0.0005188807588386242,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,56,all_author_first_rr,20,0.0004440124803021011,0.00023854390991755894,0.0006787001986011473,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,56,conditional_token_mrr,20,0.05204608622988717,0.03209643958285949,0.07432780315122968,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,56,conditional_mean_logprob,20,-11.849807025651527,-12.735046720339245,-10.961675274498786,percentile paper bootstrap (2000 replicates)
+ALL,jlens,62,first_listed_first_rr,20,0.05592338108287503,0.02561236481626282,0.09653020577739144,percentile paper bootstrap (2000 replicates)
+ALL,jlens,62,all_author_first_rr,20,0.07165065307354951,0.03314437619346026,0.12044915362272894,percentile paper bootstrap (2000 replicates)
+ALL,jlens,62,conditional_token_mrr,20,0.3977210194622525,0.3220635021869493,0.481107307958522,percentile paper bootstrap (2000 replicates)
+ALL,jlens,62,conditional_mean_logprob,20,-4.660512163916297,-5.554056514121116,-3.8035649105392912,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,62,first_listed_first_rr,20,0.19657868000533146,0.08489289444466781,0.33334852457779957,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,62,all_author_first_rr,20,0.18894979635552694,0.08834168999584721,0.32371616384823304,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,62,conditional_token_mrr,20,0.4017228871654937,0.313382332427195,0.4972589129024836,percentile paper bootstrap (2000 replicates)
+ALL,vanilla,62,conditional_mean_logprob,20,-4.505993037688333,-5.383744318870519,-3.6583405300564285,percentile paper bootstrap (2000 replicates)
+A,final,63,first_listed_first_rr,8,0.21459747709435237,0.02724496971972109,0.46257720606933644,percentile paper bootstrap (2000 replicates)
+A,final,63,all_author_first_rr,8,0.22114160475015535,0.07880231316206403,0.45488991277848284,percentile paper bootstrap (2000 replicates)
+A,final,63,conditional_token_mrr,8,0.5557240329455087,0.4560341744193916,0.6960606995467776,percentile paper bootstrap (2000 replicates)
+A,final,63,conditional_mean_logprob,8,-3.349535008618382,-4.087723688816838,-2.4086494991208873,percentile paper bootstrap (2000 replicates)
+A,jlens,16,first_listed_first_rr,8,8.796678407074362e-05,4.475034830428137e-05,0.00013780392509482757,percentile paper bootstrap (2000 replicates)
+A,jlens,16,all_author_first_rr,8,9.522251372812973e-05,7.047287093269524e-05,0.00013751202453160196,percentile paper bootstrap (2000 replicates)
+A,jlens,16,conditional_token_mrr,8,0.0032568686293818387,0.0006325341837677715,0.006901307320357201,percentile paper bootstrap (2000 replicates)
+A,jlens,16,conditional_mean_logprob,8,-16.021724486606125,-17.22546384177443,-14.636427151315855,percentile paper bootstrap (2000 replicates)
+A,vanilla,16,first_listed_first_rr,8,5.6984906659789e-05,1.8588691651045745e-05,0.00010655826195894886,percentile paper bootstrap (2000 replicates)
+A,vanilla,16,all_author_first_rr,8,3.9923371767023325e-05,2.4964559706906494e-05,5.459840114479379e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,16,conditional_token_mrr,8,0.0011331966100725634,0.00034364411209043973,0.002017607965540239,percentile paper bootstrap (2000 replicates)
+A,vanilla,16,conditional_mean_logprob,8,-13.260558419569888,-13.411815134029531,-13.112104944772764,percentile paper bootstrap (2000 replicates)
+A,jlens,24,first_listed_first_rr,8,3.1152695237537695e-05,2.1099367704519823e-05,4.190324745824477e-05,percentile paper bootstrap (2000 replicates)
+A,jlens,24,all_author_first_rr,8,3.2797385315457415e-05,2.4499337927669578e-05,4.108004097884011e-05,percentile paper bootstrap (2000 replicates)
+A,jlens,24,conditional_token_mrr,8,0.0013927050977221415,0.0003001825495922877,0.0030902322674951186,percentile paper bootstrap (2000 replicates)
+A,jlens,24,conditional_mean_logprob,8,-14.626597578712062,-15.38021887003514,-13.816629755091505,percentile paper bootstrap (2000 replicates)
+A,vanilla,24,first_listed_first_rr,8,2.4098485973223393e-05,1.510778197969941e-05,3.5950874911834265e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,24,all_author_first_rr,8,2.2399383677915024e-05,1.6746288492997522e-05,2.8907982634920362e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,24,conditional_token_mrr,8,0.0009419167375963267,0.00014190902308630515,0.0019595553192187642,percentile paper bootstrap (2000 replicates)
+A,vanilla,24,conditional_mean_logprob,8,-13.48616413746595,-13.682775219590011,-13.342867386684059,percentile paper bootstrap (2000 replicates)
+A,jlens,32,first_listed_first_rr,8,7.312583960938784e-05,5.1432626356414954e-05,9.326000984183365e-05,percentile paper bootstrap (2000 replicates)
+A,jlens,32,all_author_first_rr,8,0.00010205489711940122,6.311017439995598e-05,0.00015774410593950296,percentile paper bootstrap (2000 replicates)
+A,jlens,32,conditional_token_mrr,8,0.004208677230328672,0.0007671324074924948,0.009158191614670215,percentile paper bootstrap (2000 replicates)
+A,jlens,32,conditional_mean_logprob,8,-15.699728322461619,-16.697198307609984,-14.523866958092315,percentile paper bootstrap (2000 replicates)
+A,vanilla,32,first_listed_first_rr,8,2.7511865426548026e-05,2.108628572151096e-05,3.423293739121731e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,32,all_author_first_rr,8,2.193474554849244e-05,1.791536223275992e-05,2.6011036923213567e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,32,conditional_token_mrr,8,0.005378335063757481,0.00039314480493227123,0.011650395864335378,percentile paper bootstrap (2000 replicates)
+A,vanilla,32,conditional_mean_logprob,8,-13.307541002500422,-13.609227468038016,-13.028187345957294,percentile paper bootstrap (2000 replicates)
+A,jlens,40,first_listed_first_rr,8,0.0018953008239798216,0.0011917658245979847,0.002604337300353007,percentile paper bootstrap (2000 replicates)
+A,jlens,40,all_author_first_rr,8,0.002000772717395672,0.0013356858585531824,0.00279916334237285,percentile paper bootstrap (2000 replicates)
+A,jlens,40,conditional_token_mrr,8,0.006926180789173406,0.0023373665224920423,0.012231640511302225,percentile paper bootstrap (2000 replicates)
+A,jlens,40,conditional_mean_logprob,8,-13.276741900274745,-14.125601143275519,-12.451433203485953,percentile paper bootstrap (2000 replicates)
+A,vanilla,40,first_listed_first_rr,8,5.341416899093569e-05,1.5178917650733315e-05,0.0001235917511864224,percentile paper bootstrap (2000 replicates)
+A,vanilla,40,all_author_first_rr,8,4.658540818801631e-05,2.729449208373411e-05,6.509257568899087e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,40,conditional_token_mrr,8,0.018253086142588127,0.0009432698084708306,0.049338341831977446,percentile paper bootstrap (2000 replicates)
+A,vanilla,40,conditional_mean_logprob,8,-12.878122320117392,-13.145884445805459,-12.595534425882535,percentile paper bootstrap (2000 replicates)
+A,jlens,48,first_listed_first_rr,8,0.0019570195886767293,0.0008642149972583789,0.00316714834720373,percentile paper bootstrap (2000 replicates)
+A,jlens,48,all_author_first_rr,8,0.0015538638046504198,0.0009296391411341009,0.0022329094294558744,percentile paper bootstrap (2000 replicates)
+A,jlens,48,conditional_token_mrr,8,0.04339507120650958,0.021938822511438576,0.0651760360020399,percentile paper bootstrap (2000 replicates)
+A,jlens,48,conditional_mean_logprob,8,-11.413781587407838,-12.256783382265981,-10.664654264859603,percentile paper bootstrap (2000 replicates)
+A,vanilla,48,first_listed_first_rr,8,2.582155159415782e-05,1.2892435506946786e-05,4.816694149997302e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,48,all_author_first_rr,8,3.0422779864433964e-05,1.9884566555722246e-05,4.2066744289824305e-05,percentile paper bootstrap (2000 replicates)
+A,vanilla,48,conditional_token_mrr,8,0.025206156884021277,0.0011205846419550629,0.05849622496839135,percentile paper bootstrap (2000 replicates)
+A,vanilla,48,conditional_mean_logprob,8,-14.037828737112974,-14.53600876521733,-13.544994076893236,percentile paper bootstrap (2000 replicates)
+A,jlens,56,first_listed_first_rr,8,0.002386292402982789,0.0011484724593500682,0.0037398276007178386,percentile paper bootstrap (2000 replicates)
+A,jlens,56,all_author_first_rr,8,0.002108273667839214,0.0012888778590489374,0.0032817240338442236,percentile paper bootstrap (2000 replicates)
+A,jlens,56,conditional_token_mrr,8,0.07087129314725872,0.03849959659994525,0.1086135617966594,percentile paper bootstrap (2000 replicates)
+A,jlens,56,conditional_mean_logprob,8,-10.077058377915037,-10.885006528011868,-9.208781077988846,percentile paper bootstrap (2000 replicates)
+A,vanilla,56,first_listed_first_rr,8,0.0003843707013634015,0.0001472309550769829,0.0007111388345076786,percentile paper bootstrap (2000 replicates)
+A,vanilla,56,all_author_first_rr,8,0.0005770593631439236,0.00024113669030080133,0.0009752195112842008,percentile paper bootstrap (2000 replicates)
+A,vanilla,56,conditional_token_mrr,8,0.07958124504344267,0.044610696695298824,0.117613961326138,percentile paper bootstrap (2000 replicates)
+A,vanilla,56,conditional_mean_logprob,8,-10.887906497223097,-11.706368711748288,-10.066280449981903,percentile paper bootstrap (2000 replicates)
+A,jlens,62,first_listed_first_rr,8,0.05191052693244323,0.006160515651135512,0.13419149012119339,percentile paper bootstrap (2000 replicates)
+A,jlens,62,all_author_first_rr,8,0.05215667161083529,0.00887090599869568,0.13437968474136053,percentile paper bootstrap (2000 replicates)
+A,jlens,62,conditional_token_mrr,8,0.4654740342161763,0.3769909728133413,0.5798626479965792,percentile paper bootstrap (2000 replicates)
+A,jlens,62,conditional_mean_logprob,8,-4.266014387454701,-5.170134188413671,-3.173301232652377,percentile paper bootstrap (2000 replicates)
+A,vanilla,62,first_listed_first_rr,8,0.2074959024964574,0.018935238869304417,0.46373325939118043,percentile paper bootstrap (2000 replicates)
+A,vanilla,62,all_author_first_rr,8,0.20145722643762368,0.060528621120737335,0.43436942474411055,percentile paper bootstrap (2000 replicates)
+A,vanilla,62,conditional_token_mrr,8,0.4717834609928338,0.3666248566365317,0.637989478674869,percentile paper bootstrap (2000 replicates)
+A,vanilla,62,conditional_mean_logprob,8,-3.9624152773786143,-4.890304813987558,-2.6920674663807613,percentile paper bootstrap (2000 replicates)
+B,final,63,first_listed_first_rr,8,0.11281343275057076,0.061914684992436006,0.16145833333333334,percentile paper bootstrap (2000 replicates)
+B,final,63,all_author_first_rr,8,0.18080433624491968,0.08233127063969412,0.288344019331725,percentile paper bootstrap (2000 replicates)
+B,final,63,conditional_token_mrr,8,0.3444079607523063,0.21890968136546343,0.4572885061996343,percentile paper bootstrap (2000 replicates)
+B,final,63,conditional_mean_logprob,8,-4.946047090953191,-6.484632856855312,-3.77662505283388,percentile paper bootstrap (2000 replicates)
+B,jlens,16,first_listed_first_rr,8,0.00023749677465811372,3.884336790721798e-05,0.000581522264236809,percentile paper bootstrap (2000 replicates)
+B,jlens,16,all_author_first_rr,8,0.00014728252384358875,6.273569264490728e-05,0.00024792657445392674,percentile paper bootstrap (2000 replicates)
+B,jlens,16,conditional_token_mrr,8,0.0010569694575543402,0.00021018653143207612,0.0021957748262625195,percentile paper bootstrap (2000 replicates)
+B,jlens,16,conditional_mean_logprob,8,-16.16997060261312,-17.16069830769762,-15.1836916868025,percentile paper bootstrap (2000 replicates)
+B,vanilla,16,first_listed_first_rr,8,7.673418265276048e-05,1.2338273555471721e-05,0.00015869413153515044,percentile paper bootstrap (2000 replicates)
+B,vanilla,16,all_author_first_rr,8,6.498505185213585e-05,3.1183482861215424e-05,0.00010474920435896078,percentile paper bootstrap (2000 replicates)
+B,vanilla,16,conditional_token_mrr,8,0.0012135969034636675,0.00021204700548078733,0.0027933619821880144,percentile paper bootstrap (2000 replicates)
+B,vanilla,16,conditional_mean_logprob,8,-12.752654582664134,-13.258084781709764,-12.299041419639474,percentile paper bootstrap (2000 replicates)
+B,jlens,24,first_listed_first_rr,8,3.835695849253619e-05,2.05387977670066e-05,6.385131181832644e-05,percentile paper bootstrap (2000 replicates)
+B,jlens,24,all_author_first_rr,8,4.0277443542938435e-05,2.3680171852666582e-05,5.929823866160288e-05,percentile paper bootstrap (2000 replicates)
+B,jlens,24,conditional_token_mrr,8,0.0006197909971109376,0.00029345632570053804,0.0010721813924745936,percentile paper bootstrap (2000 replicates)
+B,jlens,24,conditional_mean_logprob,8,-14.803378041425631,-15.419484705918334,-14.241608732057115,percentile paper bootstrap (2000 replicates)
+B,vanilla,24,first_listed_first_rr,8,3.2546616614068504e-05,1.1761742008115209e-05,5.8012002016042226e-05,percentile paper bootstrap (2000 replicates)
+B,vanilla,24,all_author_first_rr,8,5.627758492275954e-05,1.614050578437034e-05,0.00012616592224344271,percentile paper bootstrap (2000 replicates)
+B,vanilla,24,conditional_token_mrr,8,0.000595794561717975,0.00017384919802189736,0.0011542806826116054,percentile paper bootstrap (2000 replicates)
+B,vanilla,24,conditional_mean_logprob,8,-13.303410464998276,-13.793909680668914,-12.83862242031665,percentile paper bootstrap (2000 replicates)
+B,jlens,32,first_listed_first_rr,8,0.00012090015309725595,4.1756799511866554e-05,0.0002500167857802355,percentile paper bootstrap (2000 replicates)
+B,jlens,32,all_author_first_rr,8,0.00022727203489246965,8.648141492668412e-05,0.000394134190904868,percentile paper bootstrap (2000 replicates)
+B,jlens,32,conditional_token_mrr,8,0.0015411747955598667,0.0005270783056183974,0.002860552695153631,percentile paper bootstrap (2000 replicates)
+B,jlens,32,conditional_mean_logprob,8,-15.901889268066439,-16.758381930240212,-15.078007442047968,percentile paper bootstrap (2000 replicates)
+B,vanilla,32,first_listed_first_rr,8,1.5460047449243324e-05,9.812169426312103e-06,2.210381395200681e-05,percentile paper bootstrap (2000 replicates)
+B,vanilla,32,all_author_first_rr,8,3.2559506105491545e-05,1.542218987219326e-05,6.173651855106466e-05,percentile paper bootstrap (2000 replicates)
+B,vanilla,32,conditional_token_mrr,8,0.0007148645919449129,0.00011854031978055391,0.001464799915531131,percentile paper bootstrap (2000 replicates)
+B,vanilla,32,conditional_mean_logprob,8,-13.219536399214514,-13.904733393939715,-12.743854239777265,percentile paper bootstrap (2000 replicates)
+B,jlens,40,first_listed_first_rr,8,0.0010038348478519775,0.0004120112615669421,0.0016824541529619898,percentile paper bootstrap (2000 replicates)
+B,jlens,40,all_author_first_rr,8,0.0010230022996978764,0.0005548779663306023,0.001642724227235783,percentile paper bootstrap (2000 replicates)
+B,jlens,40,conditional_token_mrr,8,0.005956820178183767,0.0020519400829904994,0.01160577655017547,percentile paper bootstrap (2000 replicates)
+B,jlens,40,conditional_mean_logprob,8,-13.314115892368413,-14.167701185007271,-12.476468756029915,percentile paper bootstrap (2000 replicates)
+B,vanilla,40,first_listed_first_rr,8,1.861449462745139e-05,1.3421083485913789e-05,2.462437446992333e-05,percentile paper bootstrap (2000 replicates)
+B,vanilla,40,all_author_first_rr,8,6.772254445557009e-05,2.112060531373353e-05,0.00013037425263313836,percentile paper bootstrap (2000 replicates)
+B,vanilla,40,conditional_token_mrr,8,0.005873410428109934,0.001353387539200907,0.01238309474331168,percentile paper bootstrap (2000 replicates)
+B,vanilla,40,conditional_mean_logprob,8,-12.858201507041379,-13.306836325101083,-12.449527218793003,percentile paper bootstrap (2000 replicates)
+B,jlens,48,first_listed_first_rr,8,0.00090138595053197,0.00030731586863739135,0.0016138210234328777,percentile paper bootstrap (2000 replicates)
+B,jlens,48,all_author_first_rr,8,0.0009720518848250507,0.0003989888286691937,0.0016192404367102156,percentile paper bootstrap (2000 replicates)
+B,jlens,48,conditional_token_mrr,8,0.07060052696946319,0.03177074240191361,0.11303032604564553,percentile paper bootstrap (2000 replicates)
+B,jlens,48,conditional_mean_logprob,8,-11.098263602242952,-12.293724244574255,-9.908687385548808,percentile paper bootstrap (2000 replicates)
+B,vanilla,48,first_listed_first_rr,8,2.1756469835124737e-05,1.535817087567605e-05,2.8585292905955043e-05,percentile paper bootstrap (2000 replicates)
+B,vanilla,48,all_author_first_rr,8,3.013086602220137e-05,2.3129733649337907e-05,3.732934392627122e-05,percentile paper bootstrap (2000 replicates)
+B,vanilla,48,conditional_token_mrr,8,0.006547279395687476,0.00155788852933874,0.013861331819089544,percentile paper bootstrap (2000 replicates)
+B,vanilla,48,conditional_mean_logprob,8,-14.139187414562773,-14.878010450655907,-13.465060713203137,percentile paper bootstrap (2000 replicates)
+B,jlens,56,first_listed_first_rr,8,0.002154913324759806,0.0003011512859190914,0.005512667963445152,percentile paper bootstrap (2000 replicates)
+B,jlens,56,all_author_first_rr,8,0.004617975591570249,0.0005932566973424321,0.011450629837586147,percentile paper bootstrap (2000 replicates)
+B,jlens,56,conditional_token_mrr,8,0.029787036482691508,0.007537303249024582,0.05477845114705616,percentile paper bootstrap (2000 replicates)
+B,jlens,56,conditional_mean_logprob,8,-12.377744589319882,-14.404969383393016,-10.137631828401252,percentile paper bootstrap (2000 replicates)
+B,vanilla,56,first_listed_first_rr,8,0.00027040496002196944,3.233970411905554e-05,0.0006866989161154693,percentile paper bootstrap (2000 replicates)
+B,vanilla,56,all_author_first_rr,8,0.00036203864815389977,7.098687053297797e-05,0.0007632562771476126,percentile paper bootstrap (2000 replicates)
+B,vanilla,56,conditional_token_mrr,8,0.03150354957956256,0.009872880064645784,0.05485911355903124,percentile paper bootstrap (2000 replicates)
+B,vanilla,56,conditional_mean_logprob,8,-13.187767424979913,-14.687917920135494,-11.587234096414011,percentile paper bootstrap (2000 replicates)
+B,jlens,62,first_listed_first_rr,8,0.037476298790617354,0.01637371778109147,0.061313990043084146,percentile paper bootstrap (2000 replicates)
+B,jlens,62,all_author_first_rr,8,0.08891799265021048,0.0281426452423998,0.17003316283661057,percentile paper bootstrap (2000 replicates)
+B,jlens,62,conditional_token_mrr,8,0.29346671504886845,0.1994434481490379,0.3823972000946199,percentile paper bootstrap (2000 replicates)
+B,jlens,62,conditional_mean_logprob,8,-5.776162561274593,-7.282187221443689,-4.549016651030982,percentile paper bootstrap (2000 replicates)
+B,vanilla,62,first_listed_first_rr,8,0.10964524196131568,0.03979838657409808,0.19656018122146102,percentile paper bootstrap (2000 replicates)
+B,vanilla,62,all_author_first_rr,8,0.11246802638012006,0.06641114661344213,0.1606824856310672,percentile paper bootstrap (2000 replicates)
+B,vanilla,62,conditional_token_mrr,8,0.2827130296492284,0.177049927675161,0.3793712826595438,percentile paper bootstrap (2000 replicates)
+B,vanilla,62,conditional_mean_logprob,8,-5.6365629771107155,-6.943366962886842,-4.524893863059045,percentile paper bootstrap (2000 replicates)
+C,final,63,first_listed_first_rr,3,0.45396825396825397,0.02857142857142857,1.0,percentile paper bootstrap (2000 replicates)
+C,final,63,all_author_first_rr,3,0.41946334089191234,0.0857142857142857,1.0,percentile paper bootstrap (2000 replicates)
+C,final,63,conditional_token_mrr,3,0.710267032819569,0.5036011904761905,1.0,percentile paper bootstrap (2000 replicates)
+C,final,63,conditional_mean_logprob,3,-1.7216330159955153,-2.792083800651016,-0.5286022648069775,percentile paper bootstrap (2000 replicates)
+C,jlens,16,first_listed_first_rr,3,0.0005120805560829284,4.6085073044840775e-05,0.001440922190201729,percentile paper bootstrap (2000 replicates)
+C,jlens,16,all_author_first_rr,3,0.0002954745743230243,4.6085073044840775e-05,0.0007860090762230459,percentile paper bootstrap (2000 replicates)
+C,jlens,16,conditional_token_mrr,3,0.00034304354256570695,4.095037245136374e-05,0.0006520263963641446,percentile paper bootstrap (2000 replicates)
+C,jlens,16,conditional_mean_logprob,3,-16.12507027898516,-16.562895945140294,-15.78015947341919,percentile paper bootstrap (2000 replicates)
+C,vanilla,16,first_listed_first_rr,3,2.3487208132161243e-05,7.728811463373163e-06,3.6086752553137746e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,16,all_author_first_rr,3,2.468745566451684e-05,1.6825040690146452e-05,3.6086752553137746e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,16,conditional_token_mrr,3,0.0001511351037215431,5.631813063657528e-05,0.0003044604572885553,percentile paper bootstrap (2000 replicates)
+C,vanilla,16,conditional_mean_logprob,3,-12.585185941060384,-13.255813598632812,-11.922300815582275,percentile paper bootstrap (2000 replicates)
+C,jlens,24,first_listed_first_rr,3,4.239220694499394e-05,2.2155264090747962e-05,5.605695386512697e-05,percentile paper bootstrap (2000 replicates)
+C,jlens,24,all_author_first_rr,3,4.149467155628539e-05,2.2155264090747962e-05,5.8426249898005195e-05,percentile paper bootstrap (2000 replicates)
+C,jlens,24,conditional_token_mrr,3,0.0004601808010039467,6.89916189407025e-05,0.0007452496290794938,percentile paper bootstrap (2000 replicates)
+C,jlens,24,conditional_mean_logprob,3,-15.275307521365937,-16.916053676605223,-14.042210578918457,percentile paper bootstrap (2000 replicates)
+C,vanilla,24,first_listed_first_rr,3,1.2539635386712308e-05,6.819607736163016e-06,1.784089489928815e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,24,all_author_first_rr,3,2.6120283141529524e-05,1.295840352468576e-05,5.205905931874706e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,24,conditional_token_mrr,3,0.00019616128951583698,3.580347413299802e-05,0.0003695913140914927,percentile paper bootstrap (2000 replicates)
+C,vanilla,24,conditional_mean_logprob,3,-13.271997962679182,-14.126539952414376,-12.548736333847046,percentile paper bootstrap (2000 replicates)
+C,jlens,32,first_listed_first_rr,3,0.0001371565937023891,5.882698982293076e-05,0.0002910360884749709,percentile paper bootstrap (2000 replicates)
+C,jlens,32,all_author_first_rr,3,0.0001041316077420824,5.882698982293076e-05,0.0001917629572970489,percentile paper bootstrap (2000 replicates)
+C,jlens,32,conditional_token_mrr,3,0.0004578762097028371,8.899413546681827e-05,0.0007653819567515879,percentile paper bootstrap (2000 replicates)
+C,jlens,32,conditional_mean_logprob,3,-15.893290796734037,-17.00833301544189,-15.324248790740967,percentile paper bootstrap (2000 replicates)
+C,vanilla,32,first_listed_first_rr,3,2.4154024401147836e-05,7.43549706297866e-06,3.8770208971426355e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,32,all_author_first_rr,3,2.5711546859292606e-05,1.7106383051440517e-05,3.8770208971426355e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,32,conditional_token_mrr,3,0.00018115046705041252,4.0920595047460295e-05,0.0003373406519062069,percentile paper bootstrap (2000 replicates)
+C,vanilla,32,conditional_mean_logprob,3,-13.008705752236501,-13.511230734416417,-12.694240808486938,percentile paper bootstrap (2000 replicates)
+C,jlens,40,first_listed_first_rr,3,0.0011608238328296573,0.0006349206349206349,0.0014925373134328358,percentile paper bootstrap (2000 replicates)
+C,jlens,40,all_author_first_rr,3,0.0010248607303457585,0.0006349206349206349,0.0012215764159817877,percentile paper bootstrap (2000 replicates)
+C,jlens,40,conditional_token_mrr,3,0.0013853660219253323,0.0005693591150362049,0.0020540614737698847,percentile paper bootstrap (2000 replicates)
+C,jlens,40,conditional_mean_logprob,3,-13.397909977322533,-14.080458068847657,-12.50977555002485,percentile paper bootstrap (2000 replicates)
+C,vanilla,40,first_listed_first_rr,3,1.9178473282383585e-05,1.7722640673460346e-05,2.2089196174151222e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,40,all_author_first_rr,3,1.8771275792250023e-05,1.7081204065730173e-05,2.150998263755955e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,40,conditional_token_mrr,3,0.0002507183569940761,0.00012802626540005412,0.0004602418241556141,percentile paper bootstrap (2000 replicates)
+C,vanilla,40,conditional_mean_logprob,3,-12.910914945602416,-13.452169179916382,-12.224613380432126,percentile paper bootstrap (2000 replicates)
+C,jlens,48,first_listed_first_rr,3,0.0010221371988249248,0.00017448961786773688,0.001718213058419244,percentile paper bootstrap (2000 replicates)
+C,jlens,48,all_author_first_rr,3,0.00108468256715664,0.00017448961786773688,0.0020529498856015145,percentile paper bootstrap (2000 replicates)
+C,jlens,48,conditional_token_mrr,3,0.06882065257773884,0.03614023056148634,0.10220128645872684,percentile paper bootstrap (2000 replicates)
+C,jlens,48,conditional_mean_logprob,3,-10.51401590023722,-11.09934044480324,-9.784931019374303,percentile paper bootstrap (2000 replicates)
+C,vanilla,48,first_listed_first_rr,3,2.262228772803827e-05,1.662593313049695e-05,2.7607531334548064e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,48,all_author_first_rr,3,2.6889042704818505e-05,1.5072920597561054e-05,3.79866761823464e-05,percentile paper bootstrap (2000 replicates)
+C,vanilla,48,conditional_token_mrr,3,0.00013268579921247325,2.1579956008469387e-05,0.0002579132660764937,percentile paper bootstrap (2000 replicates)
+C,vanilla,48,conditional_mean_logprob,3,-14.246168579374041,-14.732009172439575,-13.951707690102713,percentile paper bootstrap (2000 replicates)
+C,jlens,56,first_listed_first_rr,3,0.0014875097896812806,9.237875288683603e-05,0.0035714285714285713,percentile paper bootstrap (2000 replicates)
+C,jlens,56,all_author_first_rr,3,0.004525756961272834,9.237875288683603e-05,0.01108113087364754,percentile paper bootstrap (2000 replicates)
+C,jlens,56,conditional_token_mrr,3,0.038679925797630285,0.0034662372072445332,0.0903233286084313,percentile paper bootstrap (2000 replicates)
+C,jlens,56,conditional_mean_logprob,3,-12.068949288874865,-13.430530309677124,-11.151159008592368,percentile paper bootstrap (2000 replicates)
+C,vanilla,56,first_listed_first_rr,3,0.0001834612064892122,7.127583749109053e-05,0.00040160642570281126,percentile paper bootstrap (2000 replicates)
+C,vanilla,56,all_author_first_rr,3,0.0004087881431263776,7.654071668270672e-05,0.0007482172869936148,percentile paper bootstrap (2000 replicates)
+C,vanilla,56,conditional_token_mrr,3,0.047843859585266615,0.015362658459676277,0.09417962830431582,percentile paper bootstrap (2000 replicates)
+C,vanilla,56,conditional_mean_logprob,3,-11.414795892809828,-12.386045813560486,-10.065170526504517,percentile paper bootstrap (2000 replicates)
+C,jlens,62,first_listed_first_rr,3,0.06779100529100529,0.015873015873015872,0.125,percentile paper bootstrap (2000 replicates)
+C,jlens,62,all_author_first_rr,3,0.0667461862768118,0.02517788724685276,0.125,percentile paper bootstrap (2000 replicates)
+C,jlens,62,conditional_token_mrr,3,0.5542940360925761,0.34925126372388043,0.78125,percentile paper bootstrap (2000 replicates)
+C,jlens,62,conditional_mean_logprob,3,-2.7007668256520923,-4.505781757564545,-1.0088413289631717,percentile paper bootstrap (2000 replicates)
+C,vanilla,62,first_listed_first_rr,3,0.4611111111111111,0.05000000000000001,1.0,percentile paper bootstrap (2000 replicates)
+C,vanilla,62,all_author_first_rr,3,0.4198134567398244,0.10833333333333334,1.0,percentile paper bootstrap (2000 replicates)
+C,vanilla,62,conditional_token_mrr,3,0.6032448514501276,0.49291666666666667,0.8000000000000002,percentile paper bootstrap (2000 replicates)
+C,vanilla,62,conditional_mean_logprob,3,-2.470819034735628,-3.2981511875987053,-1.534501128247939,percentile paper bootstrap (2000 replicates)
+D,final,63,first_listed_first_rr,1,0.043478260869565216,,,unavailable: n<2
+D,final,63,all_author_first_rr,1,0.02343896376700334,,,unavailable: n<2
+D,final,63,conditional_token_mrr,1,0.23663594042949748,,,unavailable: n<2
+D,final,63,conditional_mean_logprob,1,-4.874515756705983,,,unavailable: n<2
+D,jlens,16,first_listed_first_rr,1,0.0002803476310625175,,,unavailable: n<2
+D,jlens,16,all_author_first_rr,1,0.00010605699443920946,,,unavailable: n<2
+D,jlens,16,conditional_token_mrr,1,0.0008351963557700234,,,unavailable: n<2
+D,jlens,16,conditional_mean_logprob,1,-14.213707976871067,,,unavailable: n<2
+D,vanilla,16,first_listed_first_rr,1,8.138285751489307e-06,,,unavailable: n<2
+D,vanilla,16,all_author_first_rr,1,1.825630629299663e-05,,,unavailable: n<2
+D,vanilla,16,conditional_token_mrr,1,0.00017232776072648357,,,unavailable: n<2
+D,vanilla,16,conditional_mean_logprob,1,-11.924575699700249,,,unavailable: n<2
+D,jlens,24,first_listed_first_rr,1,0.00023046784973496196,,,unavailable: n<2
+D,jlens,24,all_author_first_rr,1,9.026209393540645e-05,,,unavailable: n<2
+D,jlens,24,conditional_token_mrr,1,0.0004201165194825232,,,unavailable: n<2
+D,jlens,24,conditional_mean_logprob,1,-12.159040398067898,,,unavailable: n<2
+D,vanilla,24,first_listed_first_rr,1,1.3710650433256554e-05,,,unavailable: n<2
+D,vanilla,24,all_author_first_rr,1,2.75771679450124e-05,,,unavailable: n<2
+D,vanilla,24,conditional_token_mrr,1,0.00023756289942962157,,,unavailable: n<2
+D,vanilla,24,conditional_mean_logprob,1,-11.641007476382786,,,unavailable: n<2
+D,jlens,32,first_listed_first_rr,1,0.002421307506053269,,,unavailable: n<2
+D,jlens,32,all_author_first_rr,1,0.0008555992254887455,,,unavailable: n<2
+D,jlens,32,conditional_token_mrr,1,0.0007003153915156441,,,unavailable: n<2
+D,jlens,32,conditional_mean_logprob,1,-13.294075542026096,,,unavailable: n<2
+D,vanilla,32,first_listed_first_rr,1,3.7530493525989866e-05,,,unavailable: n<2
+D,vanilla,32,all_author_first_rr,1,4.435997215953872e-05,,,unavailable: n<2
+D,vanilla,32,conditional_token_mrr,1,0.0004465482625631875,,,unavailable: n<2
+D,vanilla,32,conditional_mean_logprob,1,-11.887322054968939,,,unavailable: n<2
+D,jlens,40,first_listed_first_rr,1,0.0021551724137931034,,,unavailable: n<2
+D,jlens,40,all_author_first_rr,1,0.0009231639649864511,,,unavailable: n<2
+D,jlens,40,conditional_token_mrr,1,0.0024009112057038293,,,unavailable: n<2
+D,jlens,40,conditional_mean_logprob,1,-11.979167991214329,,,unavailable: n<2
+D,vanilla,40,first_listed_first_rr,1,1.567471824693951e-05,,,unavailable: n<2
+D,vanilla,40,all_author_first_rr,1,1.9878213663185088e-05,,,unavailable: n<2
+D,vanilla,40,conditional_token_mrr,1,0.000299927039302216,,,unavailable: n<2
+D,vanilla,40,conditional_mean_logprob,1,-11.880336708492703,,,unavailable: n<2
+D,jlens,48,first_listed_first_rr,1,0.0007309941520467836,,,unavailable: n<2
+D,jlens,48,all_author_first_rr,1,0.0011793116216063876,,,unavailable: n<2
+D,jlens,48,conditional_token_mrr,1,0.0023927830109174305,,,unavailable: n<2
+D,jlens,48,conditional_mean_logprob,1,-11.03859625922309,,,unavailable: n<2
+D,vanilla,48,first_listed_first_rr,1,1.65694591728526e-05,,,unavailable: n<2
+D,vanilla,48,all_author_first_rr,1,3.383828070983384e-05,,,unavailable: n<2
+D,vanilla,48,conditional_token_mrr,1,0.0007788498153486991,,,unavailable: n<2
+D,vanilla,48,conditional_mean_logprob,1,-12.672874556647407,,,unavailable: n<2
+D,jlens,56,first_listed_first_rr,1,0.1,,,unavailable: n<2
+D,jlens,56,all_author_first_rr,1,0.036947822607303796,,,unavailable: n<2
+D,jlens,56,conditional_token_mrr,1,0.020103442718204155,,,unavailable: n<2
+D,jlens,56,conditional_mean_logprob,1,-8.327319463094076,,,unavailable: n<2
+D,vanilla,56,first_listed_first_rr,1,0.00020525451559934318,,,unavailable: n<2
+D,vanilla,56,all_author_first_rr,1,0.0001411010862803014,,,unavailable: n<2
+D,vanilla,56,conditional_token_mrr,1,0.008711788857901666,,,unavailable: n<2
+D,vanilla,56,conditional_mean_logprob,1,-10.146361456976997,,,unavailable: n<2
+D,jlens,62,first_listed_first_rr,1,0.2,,,unavailable: n<2
+D,jlens,62,all_author_first_rr,1,0.10417718855218855,,,unavailable: n<2
+D,jlens,62,conditional_token_mrr,1,0.22001228684696428,,,unavailable: n<2
+D,jlens,62,conditional_mean_logprob,1,-4.770527211535308,,,unavailable: n<2
+D,vanilla,62,first_listed_first_rr,1,0.011111111111111112,,,unavailable: n<2
+D,vanilla,62,all_author_first_rr,1,0.008153534349115593,,,unavailable: n<2
+D,vanilla,62,conditional_token_mrr,1,0.1887512638229935,,,unavailable: n<2
+D,vanilla,62,conditional_mean_logprob,1,-5.91557761364513,,,unavailable: n<2

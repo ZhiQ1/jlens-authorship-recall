@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "generated_by": "build_release.py",
+    "generated_at_utc": "2026-08-29T01:51:44+00:00",
+    "git_commit": "3379af2",
+    "seed": 42
+  },
+  "sample": {
+    "rows": 9108,
+    "citation_bin_recomputed_mismatches": 0
+  },
+  "responses": {
+    "gpt-4o": {
+      "rows": 9108,
+      "unparsable_dropped": 0,
+      "llm_judge_unparsable": 1,
+      "origin": "csv"
+    },
+    "deepseek-r1": {
+      "rows": 9108,
+      "unparsable_dropped": 0,
+      "llm_judge_unparsable": 0,
+      "origin": "ndjson-derived"
+    },
+    "claude-sonnet-4.5": {
+      "rows": 9108,
+      "unparsable_dropped": 0,
+      "llm_judge_unparsable": 0,
+      "origin": "ndjson-derived"
+    }
+  },
+  "surname_tallies": {
+    "dataset": {
+      "unique_surnames": 715837,
+      "total_occurrences": 5375403
+    },
+    "gpt-4o": {
+      "unique_surnames": 18962,
+      "total_paper_appearances": 35017
+    },
+    "claude-sonnet-4.5": {
+      "unique_surnames": 16790,
+      "total_paper_appearances": 28603
+    },
+    "deepseek-r1": {
+      "unique_surnames": 16587,
+      "total_paper_appearances": 28551
+    }
+  },
+  "expected_rows": 9108
+}

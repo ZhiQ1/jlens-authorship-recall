@@ -1,0 +1,9 @@
+{
+  "pilot_id": "pilot50_v1",
+  "n_completed": 50,
+  "n_same_first_token": 0,
+  "protocol_sha": "138b51f13563920dea85babedd05a9e47acc721e04010113278a900726a54fe4",
+  "n_frozen_pairs": 20,
+  "n_pair_layer_rows": 280,
+  "status": "complete"
+}

@@ -1,0 +1,632 @@
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_author_specificity.py | SHA256 76f06dd90ef19d56dab17dcfa6fcce5da2ddcb19b9066af65587aab53de9b500 ===
+82:         raise ValueError('Nonfinite output logits')
+88:     ap.add_argument('--data',default=f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_all/351_four_groups.jsonl')
+89:     ap.add_argument('--lens',default=f'/scratch/{os.environ.get("USER","unknown")}/jlens/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+90:     ap.add_argument('--output',default=f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_all/351_author_specificity.jsonl')
+116:     out=Path(args.output)
+124:                 raise RuntimeError('Existing output configuration differs; use another --output')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_jlens_provenance_audit.py | SHA256 bc034f2c26a4e65295e58f084e07946ac79b3642cd4d1cea796bac20b2c64814 ===
+3: Two checkpoint files are inspected only for metadata; existing fitting and result artifacts are never changed.
+9: ROOT=Path('/scratch')/os.getenv('USER','unknown')/'jlens'
+29: def inspection_checkpoint(path,name):
+30:  info={'checkpoint':name,'path':str(path),'exists':path.exists()}
+39:    info['schema']='running_jacobian_sum_checkpoint'
+102:  root=a.root; public=a.public_lens or root/'public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt'
+103:  config=a.public_config or public.parent/'config.yaml';selflens=a.self_lens or root/'qwen32b_jlens_prelim_100.pt'
+110:   ck[label]=inspection_checkpoint(path,label) if not a.no_weight_read else {'checkpoint':label,'path':str(path),'exists':path.exists(),'not_read':'--no-weight-read'}
+111:  corpus=root/'fitting_corpus/wikitext103_qwen32b_1000.jsonl';manifest=root/'fitting_corpus/manifest.json'
+115:  for typ,path in [('generic',root/'351_self100_validation/raw/generic.jsonl'),('paper',root/'351_self100_validation/raw/paper.jsonl')]:
+118:    pubpath=root/('351_all/351_public_fidelity.jsonl' if typ=='generic' else '351_all/351_paper_prompt_fidelity.jsonl')
+127:  write_csv(out/'raw/self_fitting_vs_evaluation_overlap.csv',all_overlap,keys)
+135:  '- CAUTION: historical Neuronpedia Qwen3-32B checkpoint (80 prompts) was replaced by a finalized 557-prompt artifact in 2026. Do not infer the actual local file version from its filename.',
+136:  '- The public fit version is confirmed only if local checkpoint schema/n_prompts and SHA256 are recorded. The comparison must be tied to this exact SHA256 used in prior tests.',
+143:  '- Public Neuronpedia: no 557 individual fitting prompt strings supplied by public checkpoint or config; per-prompt exact overlap **UNDETERMINED** until its original fitting text/indices are obtained.',
+146:  '- See `summary/protocol_comparison.csv` for evidence-status rows; public config is read if present (otherwise marked unknown).',
+148:  '- A public `prompts_fitted` count from config cannot override local checkpoint metadata; verify artifact version and any refit provenance.',
+152:  '- Both audits are provenance checks, not GPU performance experiments. No original outputs or weights are overwritten.',
+163:  write_csv(out/'summary/protocol_comparison.csv',comp,['parameter','self100','neuronpedia','status','note'])
+164:  summary={'self_meta':self_meta,'checkpoint':ck,'public_config':pubconf,'self_config':ownconf,'eval_file_paths':{k:v['path'] for k,v in evalsets.items()},'eval_counts':{k:len(v['rows']) for k,v in evalsets.items()},'overlap_counts':{'evaluations_checked':len(all_overlap),'exact':sum(bool(x['exact_normalized_match']) for x in all_overlap),'lexical_flags':sum(bool(x['lexical_overlap_flag']) for x in all_overlap)},'protocol':comp,'limitations':['Neuronpedia fitting texts unavailable for exact matching','Config may not match checkpoint revision; compare actual hashes']}
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_paper_prompt_fidelity_offload.py | SHA256 1d1c0ad4184da5827091f784ade1e1a03bd0550be33daa18432861dfd44df520 ===
+49:     root=f'/scratch/{os.environ.get("USER","unknown")}/jlens'
+50:     ap.add_argument('--data',default=f'{root}/351_all/351_four_groups.csv')
+51:     ap.add_argument('--lens',default=f'{root}/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+52:     ap.add_argument('--output',default=f'{root}/351_all/351_paper_prompt_fidelity.jsonl')
+73:     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
+79:             if r['config']!=config:raise RuntimeError('Output contains different configuration; use another --output file')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_prepare_all.py | SHA256 cc8deca7955c43c41147b2186f47531cfbdb8e07ff4b62ef156ffc48062bbb9f ===
+7:  p=argparse.ArgumentParser(); p.add_argument('--labels',required=True);p.add_argument('--outdir',required=True);a=p.parse_args()
+8:  src=Path(a.labels); out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True)
+23:  with (out/'351_all_papers.csv').open('w',newline='',encoding='utf-8') as f:
+26:  with (out/'351_four_groups.csv').open('w',newline='',encoding='utf-8') as f:
+28:  with (out/'351_four_groups.jsonl').open('w',encoding='utf-8') as f:
+31:  with (out/'351_bin_counts.csv').open('w',newline='',encoding='utf-8') as f:
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_public_jlens_smoke.py | SHA256 142e45b173d9de9a890fd0245b6b049ad7c3161384816ffe5ea36b8356582aae ===
+15: DEFAULT_LENS = '/scratch/{user}/jlens/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt'
+16: DEFAULT_DATA = '/scratch/{user}/jlens/351_all/351_four_groups.jsonl'
+17: DEFAULT_OUTPUT = '/scratch/{user}/jlens/351_all/351_public_smoke_result.json'
+43:     p.add_argument('--output', default=DEFAULT_OUTPUT.format(user=os.environ['USER']))
+77:     path = Path(a.output)
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_public_lens_fidelity.py | SHA256 b9b24715ca7837685fc214151e29ffc4b7f0d90ab815a96939df667db9affc2d ===
+57:     ap.add_argument('--output', default='/scratch/{user}/jlens/351_all/351_public_fidelity.jsonl'.format(user=os.environ.get('USER', 'unknown')))
+60:     ap.add_argument('--lens', default='/scratch/{user}/jlens/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt'.format(user=os.environ.get('USER', 'unknown')))
+67:     output = Path(args.output)
+68:     output.parent.mkdir(parents=True, exist_ok=True)
+70:     if output.exists():
+71:         for line in output.read_text().splitlines():
+75:                     raise ValueError('Existing output has incompatible configuration; specify a new --output')
+106:         with output.open('a') as f:
+112:     valid = [json.loads(x) for x in output.read_text().splitlines() if x.strip() and json.loads(x)['prompt_index'] < args.n]
+120:     print('Output:',output,flush=True)
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_self_gold_false.py | SHA256 0c17e6f1153f7a8427a8433cc0c69adb8dac816c03bb87a3cf0d57a85841e194 ===
+21:  # EXACT original pilot protocol. Do not replace with stage4 forced-token protocol.
+88:  writecsv(folders['raw']/'token_scores.csv',raw_csv)
+89:  writecsv(folders['summary']/'per_paper_pair.csv',pair_metrics)
+90:  writecsv(folders['summary']/'layer_summary.csv',summary)
+91:  writecsv(folders['summary']/'paired_bootstrap_ci.csv',ci)
+93:  (folders['raw']/'self_results.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for _,r in pairs),encoding='utf-8')
+112:  report += ['', '## Interpretation', '- A higher gold-win rate on this small, selected set is suggestive but not a fidelity certificate.','- Bootstrap intervals pair the **same papers**; compare their deltas with uncertainty.','- The Public lens original task pilot must NOT be confused with the 20-paper Paper-Prompt Fidelity test.','- This archive does not perform title shuffle or independent split-half stability.','- Outputs: raw JSONL/CSV, per-paper metrics, layer summary, paired bootstrap CI, PNG/PDF plots.']
+121:  root=Path('/scratch')/os.environ.get('USER','unknown')/'jlens'
+122:  ap.add_argument('--public-results',default=str(root/'351_all/351_offload_fixed_validation.jsonl'))
+123:  ap.add_argument('--lens',default=str(root/'qwen32b_jlens_prelim_100.pt'))
+124:  ap.add_argument('--output',default=str(root/'351_self100_gold_false/self_results.jsonl'))
+132:  public_path=Path(args.public_results);out=Path(args.output);archive_dir=Path(args.archive_dir)
+153:   data=Path(root/'351_all/351_four_groups.csv')
+177:     if r['paper_id'] in done:raise RuntimeError('Duplicate output paper ID')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_self_jlens_split_half.py | SHA256 922f4bc18d73dde8e60693ad139a80150d0c3b6fda839d2a8571b92f02ec4f70 ===
+11: fitting checkpoints. No claim of independent evaluation from this script:
+12: for held-out output-fidelity comparison reuse separate 20 generic + 20 paper
+17: ROOT=Path(f'/scratch/{os.environ.get("USER", "zhang.zhiqi2")}/jlens')
+18: CORPUS=ROOT/'fitting_corpus/wikitext103_qwen32b_1000.jsonl'
+47:     return base/f'lens_{half}.pt',base/f'checkpoint_{half}.pt',base/f'config_{half}.json'
+59:         if json.loads(conf.read_text())!=c:raise RuntimeError('Split checkpoint config mismatch; no overwrite')
+60:     elif ckpt.exists():raise RuntimeError('Checkpoint exists without config manifest')
+68:     print(f'Starting split {half}, indices {c["indices"]}, checkpoint={ckpt}',flush=True)
+74:                   max_seq_len=128,skip_first=16,checkpoint_path=str(ckpt),checkpoint_every=1,resume=True)
+75:     if obj.n_prompts!=50:raise RuntimeError(f'Expected 50 valid fitting prompts, got {obj.n_prompts}. Check checkpoint.')
+77:     (OUT/'fits'/f'complete_{half}.json').write_text(json.dumps({'config':c,'n_prompts':obj.n_prompts,'lens':str(p),'checkpoint':str(ckpt),'elapsed_seconds':round(time.time()-t,2)},indent=2)+'\n')
+106:     dest=OUT/'summary'/'matrix_stability.csv'
+109:     (OUT/'summary'/'matrix_stability.json').write_text(json.dumps({'n_prompts_each':50,'source_layers':LAYERS,'matrix_metrics':summary,'interpretation':'Matrix-only stability; does not establish held-out output/rank stability'},indent=2)+'\n')
+122:          'This is a MATRIX-LEVEL split-half check, not yet a complete readout-stability validation. Neither high cosine nor low norm difference proves the two lenses agree on vocabulary ranks, KL, or gold author readouts. Those require the same held-out 20 generic and 20 paper prompts, and the same output-scoring code.',
+124:          '', '## Artifacts', '`fits/lens_A.pt`, `fits/lens_B.pt`, `summary/matrix_stability.csv`, `figures/matrix_cosine.{png,pdf}`, `figures/matrix_relative_difference.{png,pdf}`.']
+136:             print(h,'indices=',c['indices'],'lens_exists=',lens.exists(),'checkpoint_exists=',ckpt.exists())
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_self_jlens_validation.py | SHA256 3b2d37cc1010d64dbf9c7114dbc343ff4c229b78079543f2298d74a48a7b9e23 ===
+83:  with (p/'matrices.csv').open('w',newline='') as f:
+88:  requested=plans(args.data,args.n,which);output=args.out/'raw'/f'{which}.jsonl';output.parent.mkdir(parents=True,exist_ok=True)
+91:  if output.exists():
+92:   for line in output.read_text().splitlines():
+103:  if lens.d_model!=5120 or sorted(lens.source_layers)!=LAYERS:raise RuntimeError('Lens is not the 6-layer fitted checkpoint')
+121:   with output.open('a') as f:f.write(json.dumps(record,ensure_ascii=False)+'\n');f.flush();os.fsync(f.fileno())
+124:  print('Saved',output)
+134:   path=args.out/'raw'/f'{which}.jsonl'
+169:  with (summary/'metrics.csv').open('w',newline='') as f:
+171:  with (summary/'paired_self_vs_public.csv').open('w',newline='') as f:
+182:  with (summary/'paired_bootstrap_ci.csv').open('w',newline='') as f:
+220:    with (summary/'author_pilot_paired.csv').open('w',newline='') as f:
+222:    report_lines.append(f'## Gold-vs-False task pilot: paired {len(set(x["paper_id"] for x in pa))} papers; score comparison exported to `summary/author_pilot_paired.csv`. Not an independent fidelity validation.')
+227:  report_lines.extend(['## Interpretation boundaries','- Numerical finite matrices do not prove readout fidelity.','- Compare only six shared layers and exact same examples. Generic and Paper are separately evaluated.','- MRR and KL may disagree; neither certifies hidden factual knowledge.','- 20 prompts per task yield exploratory rather than conclusive uncertainty estimates.','- A gold-vs-false author pilot is not an independent fidelity standard.','- Published Neuronpedia fitting dataset overlaps WikiText provenance; exact fit/eval overlap is unverified, so do not claim universally held-out evaluation.','', '## Outputs','- `numerical/matrices.csv`, `numerical/matrices.json`','- `raw/generic.jsonl`, `raw/paper.jsonl`','- `summary/metrics.csv`, `summary/paired_self_vs_public.csv`, `summary/paired_bootstrap_ci.csv`','- `figures/*.png`, `figures/*.pdf`',''])
+231:  root=f'/scratch/{os.environ.get("USER","unknown")}/jlens'
+234:  ap.add_argument('--lens',default=f'{root}/qwen32b_jlens_prelim_100.pt')
+235:  ap.add_argument('--data',default=f'{root}/351_all/351_four_groups.csv')
+236:  ap.add_argument('--public-generic',default=f'{root}/351_all/351_public_fidelity.jsonl')
+237:  ap.add_argument('--public-paper',default=f'{root}/351_all/351_paper_prompt_fidelity.jsonl')
+238:  ap.add_argument('--self-author',default=f'{root}/351_self100_author_pilot.jsonl')
+239:  ap.add_argument('--public-author',default=f'{root}/351_all/351_offload_fixed_validation.jsonl')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_split_readout_compare.py | SHA256 a83a0db6abd39d4177981ba267ae227b46e5d333d143c8de02849c7e2d2f87d4 ===
+3: Inputs are JSONL outputs generated by 351_self_jlens_validation.py --mode generic/paper
+4: with --lens lens_A.pt or lens_B.pt and separate --out folders.
+44:   if not (root/'fits'/f'lens_{half}.pt').is_file():raise RuntimeError(f'{half} lens missing')
+53:   A=read(raw/'A'/'raw'/f'{task}.jsonl',task)
+54:   B=read(raw/'B'/'raw'/f'{task}.jsonl',task)
+70:  for fn,rr in (('paired_summary.csv',rows),('paired_per_prompt.csv',detail)):
+94:  lines+=['','## Provenance','',f"- Lens A SHA256: {sha(root/'fits'/'lens_A.pt')}",f"- Lens B SHA256: {sha(root/'fits'/'lens_B.pt')}",f"- Model revision: {ca['model_revision']}",f"- Corpus SHA256: {ca['corpus_sha256']}",'- n=20 independently scored prompts for each distribution; 6 common source layers.','- Missing or mismatched examples cause hard failure; no silent dropping.']
+96:  (out/'config'/'run_config.json').write_text(json.dumps({'protocol':'351_split_readout_compare_v1','n_paired_per_task':args.n,'n_bootstrap':2000,'seed_base':20261018,'lens_A_sha256':sha(root/'fits'/'lens_A.pt'),'lens_B_sha256':sha(root/'fits'/'lens_B.pt'),'fit_A':ca,'fit_B':cb},indent=2)+'\n')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage4_audit.py | SHA256 aac681b2f7d8934ab009aa5799f2b1542e1e1b7220b5941adfe8adb2c87d2e05 ===
+28:     root=Path(a.root or f'/scratch/{os.environ["USER"]}/jlens/351_all/351_stage4_artifacts')
+29:     source=root/'summary/paper_metrics.csv';raw=root/'raw/results.jsonl'
+70:     savecsv(out/'paper_first_token_ranks.csv',ranks,['paper_id','group','mode','layer','rr','implied_rank'])
+71:     savecsv(out/'distribution_and_ci.csv',dist,list(dist[0]))
+72:     savecsv(out/'ab_unmatched_bootstrap.csv',contrast,list(contrast[0]))
+73:     savecsv(out/'paired_jlens_vanilla.csv',paired,list(paired[0]))
+111:        'layers':layers,'prompt_and_token_ids':'reuse exact Stage4 frozen run_config and forced token IDs',
+116:        'scope':'Stage4 n=20 exploration, no confirmatory claims'}
+117:     (out/'stage5_protocol_candidate.json').write_text(json.dumps(protocol,indent=2),encoding='utf-8')
+147:       'Stage4 demonstrated end-to-end execution and saved outputs. It cannot by itself establish internal gold-author knowledge or an A>B accessibility difference.',
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage4_readout.py | SHA256 c30cb8b2081b86d889405739b36a91d34fd687616ad0354e2db055c72911b4a3 ===
+50:     """Explicit token-ID continuation. Do not re-tokenize prompt+name.
+156:     raw_snapshot=dirs['raw']/'results.jsonl'
+163:                 'report_generator':'351_stage4_readout.py'}
+197:     write_csv(dirs['raw']/'token_scores.csv',token_rows,token_cols)
+198:     write_csv(dirs['raw']/'skipped_authors.csv',skip_rows,['paper_id','group','author_name','reason'])
+201:     write_csv(dirs['summary']/'paper_metrics.csv',paper_rows,paper_cols)
+215:     write_csv(dirs['summary']/'layer_metrics.csv',group_metrics,gcols)
+227:     write_csv(dirs['summary']/'a_vs_b_exploratory.csv',contrasts,['mode','layer','metric','group_a_n','group_b_n','a_minus_b','ci95_low','ci95_high','inference'])
+237:         'metrics_file':'summary/layer_metrics.csv','contrasts_file':'summary/a_vs_b_exploratory.csv',
+313:       '- Findings for omitted authors could be biased by strict tokenizer checks; see skipped_authors.csv.',
+315:       f'- Observed {len(rows)} completed papers with {summary["authors_scored"]} scored authors. This establishes pipeline output coverage only.',
+318:       '- `raw/results.jsonl`: raw per-paper checkpoint snapshot.',
+319:       '- `raw/token_scores.csv`: paper–author–token–layer scores.',
+320:       '- `raw/skipped_authors.csv`: omissions and reasons.',
+321:       '- `summary/paper_metrics.csv`: paper-level aggregates.',
+322:       '- `summary/layer_metrics.csv`: layer/group estimates with paper-bootstrap CI where estimable.',
+323:       '- `summary/a_vs_b_exploratory.csv`: descriptive A–B differences, not a formal test.',
+378:     root=f'/scratch/{os.environ.get("USER","unknown")}/jlens'
+379:     p.add_argument('--data',default=f'{root}/351_all/351_four_groups.csv')
+380:     p.add_argument('--lens',default=f'{root}/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+381:     p.add_argument('--output',default=f'{root}/351_all/351_stage4_readout.jsonl')
+390:     p.add_argument('--report-dir',default=None,help='Artifact directory (default sibling 351_stage4_artifacts)')
+400:     print('STAGE4 plan:',len(selection),'papers; sampled group counts:',dict(collections.Counter(r['group_351'] for r in selection)),flush=True)
+414:         print('TOKENIZER CHECK (forced token-ID continuation):',valid,'/',total,'valid; skipped by reason:',dict(reasons),flush=True)
+419:     config={'protocol':'stage4_multi_gold_first_and_teacher_forcing_v4_forced_token_ids','model':MODEL,'revision':REV,'data_sha':hashlib.sha256(Path(args.data).read_bytes()).hexdigest(),'lens':str(Path(args.lens).resolve()),'seed':args.seed,'layers':layers,'max_name_tokens':args.max_name_tokens,'max_seq_len':args.max_seq_len,'tokenization':'encode(prompt) + encode(ASCII_SPACE + name); forced suffix IDs; no joint retokenization','prompt_template':PROMPT,'name_prefix':'ASCII space','sampling':'fixed seeded 20-paper plan 8A8B3C1D, prefix --n <=20; 50-plan for >20','scores':'primary first-listed author first token RR at beginning-of-list; exploratory all-authors paper weighted; teacher forced token MRR separate'}
+420:     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
+426:             if r['config']!=config:raise RuntimeError('Resume configuration mismatch. Change --output.')
+429:     report_dir=Path(args.report_dir) if args.report_dir else out.parent/'351_stage4_artifacts'
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage5.py | SHA256 4fd4c9fb7027e6fe0127d94efe653c52c349cbdab13fc45d2ffdec4e7940c339 ===
+12: ROOT=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_stage5')
+13: DATA=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_all/351_four_groups.csv')
+14: LENS=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+15: STAGE4=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_all/351_stage4_artifacts/raw/results.jsonl')
+48:     stage4=[]
+49:     if Path(a.stage4).exists():
+50:         with open(a.stage4,encoding='utf-8') as f:
+51:             stage4=[json.loads(line) for line in f if line.strip()]
+53:     for p in stage4:
+54:         if p['paper_id'] not in by:raise ValueError('Stage4 ID absent in cohort')
+55:         if p['paper_id'] in ids:raise ValueError('Duplicate Stage4 ID')
+56:         if p['group']!=grp(by[p['paper_id']]):raise ValueError('Stage4 group mismatch')
+59:         raise ValueError('Expected validated Stage4 20 IDs (A8 B8 C3 D1); do not silently resample. Path: '+str(a.stage4))
+62:     # Select new A/B jointly to favor matched citation-bin+field, without relabeling or dropping Stage4 IDs.
+95:         out.append(dict(pilot_id='pilot50_v1',sampling_seed=SEED,sampling_rank=idx,paper_id=pid,group=grp(r),
+97:             field=r['field'],citation_bin=r['citation_bin'],n_authors=r['n_authors'],stage4_existing=(pid in ids)))
+98:     # Crossed negative control: false author AND counterfactual title MUST
+119:         if not candidates:raise ValueError('No crossed negative control for '+x['paper_id'])
+124:             matching_fields='field,citation_bin',control_seed=SEED,control_design='crossed_source_paper_v2'))
+149:     manifest={'protocol':'stage5_crossed_title_author_v2','pilot_id':'pilot50_v1','seed':SEED,'layers':LAYERS,'group_counts_full':dict(counts),
+153:       'controls':['true_title_gold','true_title_false','crossed_source_title_gold','crossed_source_title_false'],
+156:       'stage4_raw_sha256':hashlib.sha256(Path(a.stage4).read_bytes()).hexdigest(),
+157:       'model':MODEL,'model_revision':REV,'lens':str(a.lens),'prompt':PROMPT,'token_protocol':'encode(prompt) + encode(ASCII_SPACE+author) first token', 'scoring_version':'crossed_source_same_candidate_logits_v2'}
+158:     if (root/'cohort'/'pilot50_v1.json').exists() or (root/'raw'/'pilot50_results.jsonl').exists():
+160:     csvwrite(root/'cohort'/'pilot50_v1.csv',out,list(out[0]));csvwrite(root/'cohort'/'full_6841_manifest.csv', [dict(paper_id=r['paper_id'],group=grp(r),title=r['title'],year=r['year'],authors=r['authors'],field=r['field'],citation_bin=r['citation_bin'],n_authors=r['n_authors']) for r in data],['paper_id','group','title','year','authors','field','citation_bin','n_authors'])
+161:     csvwrite(root/'controls'/'pilot50_controls.csv',control,list(control[0]));csvwrite(root/'matching'/'pilot50_ab_pairs.csv',pairs,['pair_id','A_id','B_id','field','citation_bin','year_gap','author_count_gap'])
+164:     write_json(root/'cohort'/'pilot50_v1.json',{'manifest':manifest,'paper_ids':selected,
+165:         'cohort_sha256':sha(csvread(root/'cohort'/'pilot50_v1.csv')),
+166:         'control_sha256':sha(csvread(root/'controls'/'pilot50_controls.csv')),
+167:         'pairs_sha256':sha(csvread(root/'matching'/'pilot50_ab_pairs.csv')),
+168:         'full_manifest_sha256':hashlib.sha256((root/'cohort'/'full_6841_manifest.csv').read_bytes()).hexdigest()})
+169:     print('PREPARE SUCCESS',root,'cohort=',len(out),'Stage4 reused IDs=',len(ids),'exact A/B matched pairs=',len(pairs),'SHA',sha(out)[:16]);print('Groups:',collections.Counter(x['group'] for x in out));print('No GPU used')
+172:     cohort=csvread(root/'cohort'/'pilot50_v1.csv');controls=csvread(root/'controls'/'pilot50_controls.csv')
+173:     meta=json.loads((root/'cohort'/'pilot50_v1.json').read_text())
+179:     if sha(csvread(root/'matching'/'pilot50_ab_pairs.csv'))!=meta['pairs_sha256']:raise ValueError('Frozen match pairs modified')
+180:     if hashlib.sha256((root/'cohort'/'full_6841_manifest.csv').read_bytes()).hexdigest()!=meta['full_manifest_sha256']:raise ValueError('Full cohort manifest modified')
+182:         if c['false_source_paper_id']!=c['shuffle_title_source_paper_id']:raise ValueError('Crossed control source mismatch')
+194:     if base.ndim!=2 or base.shape[0]!=1:raise RuntimeError('model.encode unexpected output shape')
+212:     raw=root/'raw'/'pilot50_results.jsonl';raw.parent.mkdir(parents=True,exist_ok=True)
+266:         out={'paper_id':r['paper_id'],'group':r['group'],'pilot_id':'pilot50_v1','protocol_sha':protocol_hash,'runtime_hash':runtime_hash,
+270:             'crossed_control':True,'false_source_paper_id':c['false_source_paper_id'],'shuffle_title_source_paper_id':c['shuffle_title_source_paper_id'],
+286:     p=root/'raw'/'pilot50_results.jsonl'
+303:     csvwrite(d/'paper_layer_contrasts.csv',long,cols)
+311:     csvwrite(d/'layer_summary.csv',summaries,list(summaries[0]))
+312:     pairs=csvread(root/'matching'/'pilot50_ab_pairs.csv');pair_rows=[]
+320:     csvwrite(d/'matched_pair_contrasts.csv',pair_rows,['pair_id','layer','mode','A_minus_B'])
+338:     csvwrite(d/'matched_ab_summary.csv',paired_summary,list(paired_summary[0]))
+344:     csvwrite(d/'first_token_collision_audit.csv',collision,list(collision[0]))
+365:     report=['# Stage 5 · Pilot50 v1 Controlled Readout','',f'Status: {len(rows)}/50 completed; same-first-token (non-discriminable): {same}.',
+368:      'Two model contexts per paper: true paper title and crossed-source matched paper title.',
+373:      f'Frozen exact citation-bin+field A/B pairs: {len(pairs)}; paired summaries in matched_ab_summary.csv.',
+375:      'This is a RESOURCE-CONSTRAINED PILOT, not a confirmatory result. Stage4 first-token/teacher-forced results are separate.',
+388:       '', '## Artifacts','Raw: raw/pilot50_results.jsonl; frozen samples: cohort/pilot50_v1.csv; controls: controls/pilot50_controls.csv.',
+389:       'Summary: summary/paper_layer_contrasts.csv, layer_summary.csv, matched_pair_contrasts.csv, matched_ab_summary.csv, first_token_collision_audit.csv.',
+391:       'Future full-cohort work MUST reuse the exact pilot50_v1 IDs and frozen control mappings, including non-discriminable cases.']
+392:     (rep/'pilot50_experiment_report.md').write_text('\n'.join(report)+'\n',encoding='utf-8')
+393:     write_json(rep/'pilot50_audit_manifest.json',{'pilot_id':'pilot50_v1','n_completed':len(rows),'n_same_first_token':same,'protocol_sha':sha(meta['manifest']),'n_frozen_pairs':len(pairs),'n_pair_layer_rows':len(pair_rows),'status':'complete' if len(rows)==50 else 'partial'})
+397:     p=argparse.ArgumentParser();p.add_argument('command',choices=['prepare','run','analyze']);p.add_argument('--root',default=str(ROOT()));p.add_argument('--data',default=str(DATA()));p.add_argument('--stage4',default=str(STAGE4()));p.add_argument('--lens',default=str(LENS()));p.add_argument('--gpu-layers',type=int,default=29);p.add_argument('--max-papers',type=int,default=None);p.add_argument('--max-seconds',type=int,default=4500);p.add_argument('--paper-reserve-seconds',type=int,default=450)
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage6.py | SHA256 3f12d4214fea578c07c3672aa16f7ac7b945788d9d51fc689a03f969dd6cf440 ===
+4: Uses frozen Stage5 pilot50_v1, optionally reuses Stage4 per-author readouts only after
+5: strict consistency checks. Stage4 and Stage6 source protocols are not silently mixed.
+16: ROOT=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_stage6')
+17: STAGE5=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_stage5_crossed_v2')
+18: STAGE4=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/351_all/351_stage4_artifacts/raw/results.jsonl')
+19: LENS=lambda:Path(f'/scratch/{os.environ.get("USER","unknown")}/jlens/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+55:     s=Path(a.stage5);cohort=readcsv(s/'cohort/pilot50_v1.csv')
+56:     if len(cohort)!=50 or len({r['paper_id'] for r in cohort})!=50:raise RuntimeError('Frozen pilot50 invalid')
+58:     if sum(str(r['stage4_existing']).lower()=='true' for r in cohort)!=20:raise RuntimeError('Stage4 reuse cohort not 20')
+67:         if r['protocol']!=protocol:raise RuntimeError('Stage6 scoring protocol mismatch in existing data')
+68:         if r['paper_id'] in done:raise RuntimeError('Duplicate Stage6 paper: '+r['paper_id'])
+72: def stage4_reuse(source,cohort,model_tokenizer=None):
+73:     """Do not reinterpret old scores without verifying stage4 schema and prompt.
+80:         if str(p['stage4_existing']).lower()!='true':continue
+82:         if not r:reasons[pid]='stage4_missing';continue
+111:         reused[pid]={'paper_id':pid,'group':p['group'],'protocol':'stage6_v1_conditional_full_author_same_stage4',
+112:            'source':'stage4_verified_reuse','rows':rr,'n_authors':len(expected),'seconds':0.0,
+117:     obj=dict(version='stage6_v1_conditional_full_author_same_stage4',layers=LAYERS,
+124:         scoring='conditional teacher forcing; not free recall',stage5_cohort_sha256=sha_file(s/'cohort/pilot50_v1.csv'),
+125:         stage5_manifest_sha256=sha_file(s/'config/protocol.json'),
+126:         sample='pilot50_v1; A20/B20/C7/D3; fixed stage5 cohort')
+134:     data=root/'raw/pilot50_full_author.jsonl';done=existing(data,cohort,protocol['version'])
+139:     print('Stage6: saved',len(done),'of',len(cohort),'papers',flush=True)
+140:     if a.reuse_stage4 and not a.no_reuse_stage4:
+141:         reused,reasons=stage4_reuse(a.stage4,cohort)
+144:             print('Stage4 reusable:',len(reused),'out of 20; rejected:',reasons,flush=True)
+145:             if a.strict_reuse:raise RuntimeError('Stage4 reuse not fully compatible; rerun originals or inspect reasons')
+163:     # Same token-ID readout implementation as the successful Stage5, loaded from local script.
+164:     helper=Path(a.stage5_script)
+166:     if s5.LAYERS!=LAYERS or s5.PROMPT!=PROMPT:raise RuntimeError('Stage5 readout layers/prompt differ')
+167:     if not callable(s5.readout):raise RuntimeError('Missing stage5 readout')
+191:         rec={'paper_id':p['paper_id'],'group':p['group'],'protocol':protocol['version'],'source':'stage6_gpu',
+205:     done=existing(root/'raw/pilot50_full_author.jsonl',cohort,protocol['version'])
+206:     if not done:raise RuntimeError('No Stage6 raw data')
+230:                 stage4_existing=c['stage4_existing'],mode=mode,layer=layer,n_authors=len(av),
+232:     papercols=['paper_id','group','citation_bin','field','year','stage4_existing','mode','layer','n_authors','jmrr','log10rank']
+233:     writecsv(root/'summary/paper_layer_trajectories.csv',paperrows,papercols)
+235:     writecsv(root/'raw/token_layer_scores.csv',token_rows,['paper_id','group','author','author_index','token_index','token_id','mode','layer','rank','rr','logprob'])
+243:     writecsv(root/'summary/paper_integrated.csv',ip,['paper_id','group','citation_bin','mode','paper_jmrr','paper_log10rank'])
+254:     writecsv(root/'summary/group_bin_layer.csv',groups,gcols)
+270:     writecsv(root/'summary/a_minus_b_bin_layer.csv',contrasts,['citation_bin','mode','layer','n_A','n_B','A_minus_B','ci95_low','ci95_high','inference'])
+277:     writecsv(root/'summary/integrated_group.csv',integrated,['group','mode','n_papers','mean_paper_jmrr','ci95_low','ci95_high'])
+278:     # Keep Stage5 crossed first-token scores analytically separate; paper-ID join is traceability only.
+279:     stage5raw={r['paper_id']:r for r in load_jsonl(s/'raw/pilot50_results.jsonl')}
+282:         sr=stage5raw.get(r['paper_id']);key=f"{r['mode']}_L56"
+284:         joint.append(dict(**r,stage5_first_token_title_specific_L56=value))
+285:     writecsv(root/'summary/stage5_stage6_paper_join.csv',joint,['paper_id','group','citation_bin','mode','paper_jmrr','paper_log10rank','stage5_first_token_title_specific_L56'])
+287:     pairs=readcsv(s/'matching/pilot50_ab_pairs.csv');pairrows=[]
+291:         if not a_id or not b_id:raise RuntimeError('Unknown Stage5 pair column names: '+str(list(pair)))
+297:     writecsv(root/'summary/matched_pair_layer.csv',pairrows,['a_paper_id','b_paper_id','mode','layer','A_minus_B'])
+305:     writecsv(root/'summary/matched_ab_bootstrap.csv',ps,['mode','layer','n_pairs','mean_A_minus_B','ci95_low','ci95_high','matched'])
+316:         ax.set(title=f'Stage6 {mode} · conditional full-author JMRR',xlabel='Source layer',ylabel='Paper mean JMRR',xticks=LAYERS);ax.legend();ax.grid(alpha=.2)
+322:         ax.set(title=f'Stage6 {mode} · mean log10 token rank',xlabel='Source layer',ylabel='mean(log10 rank)',xticks=LAYERS);ax.legend();ax.grid(alpha=.2)
+337:         'reused_stage4':sum(v.get('source')=='stage4_verified_reuse' for v in done.values()),'measured_gpu':sum(v.get('source')=='stage6_gpu' for v in done.values()),
+339:         'protocol':'stage6_v1_conditional_full_author_same_stage4','notes':'Stage6 is conditional teacher forcing, not free recall; Stage5 measures separate first-token crossed control.'}
+341:     lines=['# Stage 6 · Full-author Conditional JMRR Pilot','',f"**Completion:** {len(done)}/50; groups: {summary['groups']}; Stage4 verified reused: {summary['reused_stage4']}; new GPU measured: {summary['measured_gpu']}.",
+344:        f'- Seven source layers: {LAYERS}; final model output excluded from integrated score.',
+348:        '- Stage5 title/author controls are a separate measurement, and were not implicitly applied to these full-name scores.',
+353:     lines += ['','## Matching','',f"{summary['matched_pairs_observed']} complete A/B pairs of {summary['matching_total_pairs']} planned pairs. Pair-bootstrap summaries are in `summary/matched_ab_bootstrap.csv`.",
+358:        '- Stage4 reuse depends on exact prompt and token/rank parity; records failing checks are recomputed.',
+359:        '- All 100-incorrect-author and empirical-null controls belong to planned Stage7 (NOT RUN).',
+360:        '', '## Files','- `raw/pilot50_full_author.jsonl` — incremental per-paper results',
+361:        '- `raw/token_layer_scores.csv` — complete paper×author×token×layer scores',
+362:        '- `summary/paper_layer_trajectories.csv` — equal-author paper JMRR and log10 Rank',
+363:        '- `summary/paper_integrated.csv` — seven-layer paper score',
+364:        '- `summary/stage5_stage6_paper_join.csv` — aligned but distinct conditional and title-control measures',
+365:        '- `summary/group_bin_layer.csv` — A/B/C/D and citation-bin bootstrap summaries',
+366:        '- `summary/a_minus_b_bin_layer.csv` — unmatched differences',
+367:        '- `summary/matched_pair_layer.csv` and `matched_ab_bootstrap.csv` — matched comparisons',
+379:         p.add_argument('--root',default=str(ROOT()));p.add_argument('--stage5',default=str(STAGE5()));p.add_argument('--stage4',default=str(STAGE4()))
+380:         p.add_argument('--lens',default=str(LENS()));p.add_argument('--stage5-script',default=str(Path.home()/'351_stage5.py'))
+383:         p.add_argument('--no-reuse-stage4',action='store_true');p.add_argument('--strict-reuse',action='store_true')
+384:         p.set_defaults(reuse_stage4=True)
+387:         _,cohort=inputs(a);r,reasons=stage4_reuse(a.stage4,cohort)
+388:         print('Reusable Stage4:',len(r),'of 20');print('Rejected:',json.dumps(reasons,indent=2))
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage7.py | SHA256 325efa1c5011ad808133ce7003ee93b7c30b2f3538b6ebd2a049095999582ec3 ===
+2: """Stage 7.1 CPU audit: decompose Stage 6 full-name conditional JMRR.
+43:  root=Path(args.stage6_root).expanduser(); s5=Path(args.stage5_root).expanduser(); out=Path(args.output).expanduser()
+44:  raw=root/'raw/pilot50_full_author.jsonl'; pairpath=s5/'matching/pilot50_ab_pairs.csv'
+45:  if not raw.exists():raise SystemExit(f'Missing Stage6 raw: {raw}')
+46:  if not pairpath.exists():raise SystemExit(f'Missing Stage5 pairs: {pairpath}')
+47:  if (out.resolve()==root.resolve() or out.resolve()==s5.resolve()):raise SystemExit('Output must be separate from frozen stage5/6 roots')
+65:  # Equal weighting; within each author, first token and continuation tokens independently.
+81:    author_rows.append(dict(paper_id=pid,group=group,author_index=ai,author=name,mode=m,layer=ly,n_tokens=len(tokens),first_rr=float(np.mean(first)),continuation_rr=float(np.mean(cont)) if cont else None,all_rr=float(np.mean(allrr)),first_log10rank=float(np.log10(tokens[0][1])),continuation_log10rank=float(np.mean([math.log10(t[1]) for t in tokens[1:]])) if cont else None,all_log10rank=float(np.mean([math.log10(t[1]) for t in tokens]))))
+86:     # continuation available only for multi-token authors. Do not artificially zero-fill one-token authors.
+87:     cont=[a for a in ars if a['continuation_rr'] is not None]
+89:     len_stats[(group,m,ly,'continuation')]+=len(cont)
+90:     paper_rows.append(dict(paper_id=pid,group=group,source=d.get('source'),mode=m,layer=ly,n_authors=len(ars),n_continuation_authors=len(cont),n_first_tokens=len(ars),n_continuation_tokens=sum(a['n_tokens']-1 for a in ars),first_jmrr=float(np.mean([a['first_rr'] for a in ars])),continuation_jmrr=float(np.mean([a['continuation_rr'] for a in cont])) if cont else None,all_jmrr=float(np.mean([a['all_rr'] for a in ars])),first_log10rank=float(np.mean([a['first_log10rank'] for a in ars])),continuation_log10rank=float(np.mean([a['continuation_log10rank'] for a in cont])) if cont else None,all_log10rank=float(np.mean([a['all_log10rank'] for a in ars]))))
+92:  # Check original all-JMRR against Stage6 saved summaries.
+93:  old=root/'summary/paper_layer_trajectories.csv';comparison=None
+95:   oldrows=readcsv(old);print('Previous Stage6 summary columns:',list(oldrows[0]))
+103:    if comparison['max_abs_difference']>1e-8:raise SystemExit(f'Stage6 recompute mismatch: {comparison}')
+104:  writecsv(out/'raw/author_token_position_scores.csv',author_rows)
+105:  writecsv(out/'summary/paper_layer_decomposition.csv',paper_rows)
+112:     for metric in ['first_jmrr','continuation_jmrr','all_jmrr','first_log10rank','continuation_log10rank','all_log10rank']:
+114:      diffs.append(dict(pair_id=pair['pair_id'],A_id=pair['A_id'],B_id=pair['B_id'],mode=m,layer=ly,metric=metric,A=av,B=bv,difference=av-bv if av is not None and bv is not None else None,A_n_continuation_authors=A['n_continuation_authors'],B_n_continuation_authors=B['n_continuation_authors']))
+115:  writecsv(out/'summary/matched_pair_position_differences.csv',diffs)
+119:    for metric in ['first_jmrr','continuation_jmrr','all_jmrr','first_log10rank','continuation_log10rank','all_log10rank']:
+122:  writecsv(out/'summary/layer_position_effects.csv',effects)
+127:    for metric in ['first_jmrr','continuation_jmrr','all_jmrr']:
+132:  writecsv(out/'summary/matched_integrated_position_differences.csv',integ)
+134:   for metric in ['first_jmrr','continuation_jmrr','all_jmrr']:
+138:  writecsv(out/'summary/layer_and_integrated_effects.csv',effects)
+142:   for metric in ['first_jmrr','continuation_jmrr','all_jmrr']:
+144:     for source in ['stage4_verified_reuse','stage6_gpu']:
+147:  writecsv(out/'summary/reuse_vs_new_diagnostic.csv',source_rows)
+151:   for metric,label in [('first_jmrr','First token'),('continuation_jmrr','Continuation tokens'),('all_jmrr','All tokens')]:
+156:   ax.axhline(0,linestyle='--',linewidth=.8);ax.set_xticks(LAYERS);ax.set_xlabel('Source Layer');ax.set_ylabel('Matched A − B mean JMRR');ax.set_title(f'Stage 7.1 | {mode} · First vs Continuation');ax.legend();fig.tight_layout()
+157:   for ext in ['png','pdf']:fig.savefig(out/f'figures/{mode}_first_vs_continuation.{ext}',dpi=180)
+160:  lines=['# Stage 7.1 — Token-position Decomposition (CPU Only)','',f'- Stage6 raw: `{raw}` (SHA256 `{sha(raw)}`)',f'- Matching: `{pairpath}` (SHA256 `{sha(pairpath)}`)',f'- Papers: {len(papers)}, raw scored rows: {nrows}, matched pairs: {len(pairs)}',f'- Equal-weight Token→Author→Paper; 7-layer integrated; {args.bootstrap} pair-bootstrap replicates (seed {SEED}).',f'- Historical Stage6 JMRR reconciliation: `{comparison}`.','','## Main matched effects','', '| Readout | Position | n paired | Integrated A−B | 95% bootstrap CI | Positive pairs |','|---|---|---:|---:|---|---:|']
+166:   if x['layer']==62 and x['metric'] in ('first_jmrr','continuation_jmrr','all_jmrr'):
+168:  lines+=['','## Interpretation boundaries','', '- First-token score is measured without any revealed tokens of the *current* author, but for later listed authors the surrounding prompt may still contain earlier author names if that is how Stage4/6 constructed it; inspect the frozen prompt protocol before making a truly unconditioned claim.','- Continuation scores condition on a revealed correct-name prefix. They do not establish free recall of the full author identity.','- A/B comparisons are observational; split and integrated layer results are exploratory.','- Multi-token and one-token authors differ: continuation JMRR excludes authors with no continuation; each paper records the eligible count.','- A large JMRR at L62 and positive A−B, if found, does not by itself prove factual title–author association. Stage 7.2 matched false-author and title-shuffle controls are needed.','- Bootstrap CIs are paper-pair resampling. Pair dependence through shared authors/candidate sources has not been corrected.','', '## Files','', '- `summary/layer_and_integrated_effects.csv`: full effects and bootstrap CIs','- `summary/matched_pair_position_differences.csv`: per-pair per-layer differences','- `summary/paper_layer_decomposition.csv`: per-paper all/first/continuation metrics','- `raw/author_token_position_scores.csv`: per-author metrics','- `figures/`: PNG/PDF trajectory figures','']
+171:  dump(out/'config/audit_manifest.json',dict(stage='stage7.1',raw_stage6=str(raw),raw_sha256=sha(raw),pairs=str(pairpath),pairs_sha256=sha(pairpath),layers=LAYERS,groups={'A':20,'B':20,'C':7,'D':3},seed=SEED,bootstrap=args.bootstrap,stage6_reconciliation=comparison,notes='CPU retrospective decomposition; no model invoked'))
+172:  print('STAGE 7.1 COMPLETE papers=',len(papers),'raw_rows=',nrows,'pairs=',len(pairs),'output=',out)
+178:  ap.add_argument('--stage6-root',default=None)
+179:  ap.add_argument('--stage5-root',default=None)
+180:  ap.add_argument('--output',default=None)
+183:  base=Path('/scratch')/Path.home().name/'jlens'
+184:  a.stage6_root=a.stage6_root or str(base/'351_stage6')
+185:  a.stage5_root=a.stage5_root or str(base/'351_stage5_crossed_v2')
+186:  a.output=a.output or str(base/'351_stage7_1')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage7_2.py | SHA256 dea1aee1780ced59e79e1a1a4001d17a204a032dbe594b6e5a5c5f9bbd0ea2a7 ===
+3: Never loads a language model, only the tokenizer. Outputs a frozen candidate set.
+32:     ap.add_argument('--stage5-root',default=None)
+37:     home=Path('/scratch')/os.environ.get('USER',os.environ.get('LOGNAME',''))/'jlens'
+38:     s5=Path(a.stage5_root) if a.stage5_root else home/'351_stage5_crossed_v2'
+39:     out=Path(a.root) if a.root else home/'351_stage7_2'
+40:     cohort_path=s5/'cohort/pilot50_v1.csv';pool_path=s5/'cohort/full_6841_manifest.csv'
+48:     # Immutable existing outputs: never overwrite candidate assignment, even if seed changes.
+52:         if manifest['input_sha256']!={'pilot50':sha(cohort_path.read_bytes()),'full6841':sha(pool_path.read_bytes())}:
+53:             raise RuntimeError('Existing frozen outputs were built using a different cohort/pool; do not overwrite.')
+55:             raise RuntimeError('Existing frozen outputs do not match seed/tokenizer; do not overwrite.')
+56:         for rel,digest in manifest['output_sha256'].items():
+57:             if not (out/rel).exists() or sha((out/rel).read_bytes())!=digest:raise RuntimeError('Frozen output missing or mutated: '+rel)
+59:     if out.exists() and any(out.rglob('*')):raise RuntimeError('Stage7.2 root is not empty and not frozen; choose a new --root')
+150:     writecsv(out/'candidates/pilot50_author_candidates.csv',candidate_rows,cfields)
+151:     with (out/'candidates/pilot50_author_candidates.jsonl').open('w',encoding='utf-8') as f:
+157:     writecsv(out/'summary/pilot50_candidate_quality.csv',summary,sfields)
+173:     rels=['candidates/pilot50_author_candidates.csv','candidates/pilot50_author_candidates.jsonl','summary/pilot50_candidate_quality.csv','summary/quality.json','reports/candidate_audit.md']
+174:     manifest={'protocol':'stage7_2_candidate_freeze_v1','seed':a.seed,'tokenizer':a.tokenizer,
+175:         'input_sha256':{'pilot50':sha(cohort_path.read_bytes()),'full6841':sha(pool_path.read_bytes())},
+176:         'output_sha256':{x:sha((out/x).read_bytes()) for x in rels},
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage7_2_score.py | SHA256 b88b3fe365b90cd32cd9e3d54c07713c7752d187754607fe7184796f6c057c67 ===
+3: Run: python 351_stage7_2_score.py audit | run | analyze
+4: Requires 351_stage5.py in same directory for the validated readout implementation.
+32:  root=Path(a.root);s5=Path(a.stage5_root);manifest_path=root/'config/manifest.json';manifest=json.loads(manifest_path.read_text())
+33:  if manifest['protocol']!='stage7_2_candidate_freeze_v1' or manifest['scoring_plan']['layers']!=LAYERS:raise RuntimeError('Unrecognized frozen candidate protocol')
+34:  for rel,digest in manifest['output_sha256'].items():
+37:  for k,p in [('pilot50',s5/'cohort/pilot50_v1.csv'),('full6841',s5/'cohort/full_6841_manifest.csv')]:
+38:   if fhash(p)!=manifest['input_sha256'][k]:raise RuntimeError('Frozen Stage5 inputs differ: '+k)
+39:  cohort=readcsv(s5/'cohort/pilot50_v1.csv');by={r['paper_id']:r for r in cohort}
+42:  with (root/'candidates/pilot50_author_candidates.jsonl').open(encoding='utf-8') as f:
+75: def read_stage5(a):
+76:  p=Path(a.stage5_script)
+77:  if not p.is_file():raise FileNotFoundError('Validated Stage5 scorer required: '+str(p))
+78:  spec=importlib.util.spec_from_file_location('stage5_fixed_reader',str(p));m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+79:  if m.LAYERS!=LAYERS or m.PROMPT!=PROMPT or m.REV!=REV:raise RuntimeError('Stage5 lens readout protocol differs')
+83:  root,s5,cohort,cs,manifest=inputs(a);stage5=read_stage5(a)
+84:  raw=root/'raw/pilot50_firsttoken_scores.jsonl';raw.parent.mkdir(parents=True,exist_ok=True)
+87:  protocol={'candidate_manifest_sha256':fhash(root/'config/manifest.json'),'candidate_jsonl_sha256':manifest['output_sha256']['candidates/pilot50_author_candidates.jsonl'],'stage5_cohort_sha256':manifest['input_sha256']['pilot50'],'layers':LAYERS,'prompt':PROMPT,'model':MODEL,'revision':REV,'metric':'first_token_author_weighted_ties_half_v1','scorer':'stage7_2_v1'}
+88:  ph=jhash(protocol);rh=jhash({'protocol_hash':ph,'lens_sha256':fhash(lens_path),'stage5_readout_sha256':fhash(Path(a.stage5_script)),'revision':REV,'gpu_layers':a.gpu_layers})
+94:  if not rp.exists():dump(rp,{'protocol':protocol,'protocol_hash':ph,'runtime_hash':rh,'lens_sha256':fhash(lens_path),'readout_sha256':fhash(Path(a.stage5_script)),'gpu_layers':a.gpu_layers})
+118:   scores=stage5.readout(lens,model,prompt,pids,torch)
+139:  runtime=json.loads(rp.read_text());raw=load_raw(root/'raw/pilot50_firsttoken_scores.jsonl',cs,runtime['protocol_hash'],runtime['runtime_hash'])
+140:  print('Analyzing',len(raw),'of 50; incomplete output is descriptive only',flush=True)
+159:  pairs=readcsv(s5/'matching/pilot50_ab_pairs.csv')
+176:  out=root/'summary';writecsv(out/'paper_layer_pool.csv',measures);writecsv(out/'candidate_pairwise_scores.csv',rank);writecsv(out/'matched_pair_layer.csv',prs);writecsv(out/'matched_ab_bootstrap.csv',summary);writecsv(out/'citation_bin_layer.csv',binrows)
+177:  dump(out/'analysis_overview.json',{'n_papers':len(raw),'matched_complete_pairs':len({x['pair_id'] for x in prs}),'candidate_manifest_sha256':runtime['protocol']['candidate_manifest_sha256'],'protocol_hash':runtime['protocol_hash'],'readout_description':'first-token only; author-weighted gold win with tie=0.5; unique-token and non-collision sensitivity; no title shuffle in Stage7.2','citation_bin_0_2': [r for r in binrows if r['citation_bin'] in ['0-2','0–2','0–2 citations']]})
+194:  (root/'reports').mkdir(exist_ok=True);(root/'reports/stage7_2_gpu_report.md').write_text('\n'.join(lines),encoding='utf-8')
+195:  print(f'ANALYSIS SAVED papers={len(raw)}/50 complete_pairs={len({x["pair_id"] for x in prs})}/20 output={root}',flush=True)
+198:  p=argparse.ArgumentParser();p.add_argument('cmd',choices=['audit','run','analyze']);p.add_argument('--root',default=None);p.add_argument('--stage5-root',default=None);p.add_argument('--stage5-script',default=str(Path(__file__).with_name('351_stage5.py')));p.add_argument('--lens',default=None);p.add_argument('--gpu-layers',type=int,default=29);p.add_argument('--max-papers',type=int,default=None);p.add_argument('--max-seconds',type=int,default=4500);p.add_argument('--paper-reserve-seconds',type=int,default=450)
+199:  a=p.parse_args();base=Path('/scratch')/os.environ.get('USER','unknown')/'jlens';a.root=a.root or str(base/'351_stage7_2');a.stage5_root=a.stage5_root or str(base/'351_stage5_crossed_v2');a.lens=a.lens or str(base/'public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage7_3.py | SHA256 dfa38460b1d6c62b4e15080aaffd176942e23b06aa751c9a1e7f5a172649827f ===
+3: No J-Lens scores are used to select titles. Does not touch prior stage outputs.
+40:     ap.add_argument('--stage5-root');ap.add_argument('--stage72-root');ap.add_argument('--root')
+44:     base=Path('/scratch')/os.environ.get('USER','')/'jlens'
+45:     s5=Path(args.stage5_root or base/'351_stage5_crossed_v2')
+46:     s72=Path(args.stage72_root or base/'351_stage7_2')
+47:     out=Path(args.root or base/'351_stage7_3')
+48:     pilotfile=s5/'cohort/pilot50_v1.csv';poolfile=s5/'cohort/full_6841_manifest.csv'
+49:     candidatefile=s72/'candidates/pilot50_author_candidates.csv';candmanifest=s72/'config/manifest.json'
+50:     inputs={'pilot50':pilotfile,'full6841':poolfile,'frozen_candidates':candidatefile,'candidate_manifest':candmanifest}
+54:     if sha(candidatefile)!=prev['output_sha256']['candidates/pilot50_author_candidates.csv']:
+55:         raise ValueError('Stage7.2 Candidate CSV hash mismatch')
+56:     for key,v in [('pilot50','pilot50'),('full6841','full6841')]:
+57:         if sha(inputs[key])!=prev['input_sha256'][v]:raise ValueError('Stage5 input hash mismatch vs frozen candidate manifest: '+key)
+63:         for rel,h in manifest['output_sha256'].items():
+64:             if sha(out/rel)!=h:raise ValueError('Frozen output changed: '+rel)
+66:         rows=readcsv(out/'titles/pilot50_shuffled_titles.csv')
+69:     if args.command=='audit':raise FileNotFoundError('No frozen Stage7.3 manifest; run freeze first')
+70:     if out.exists() and any(out.iterdir()):raise FileExistsError('Output path is nonempty without manifest; refuse overwrite: '+str(out))
+72:     if len(pilot)!=50 or Counter(r['group'] for r in pilot)!=GROUPS:raise ValueError('Frozen pilot50 invalid')
+73:     if len(candidates)!=5050:raise ValueError('Stage7.2 candidate count invalid')
+113:     mainfile=out/'titles/pilot50_shuffled_titles.csv';quality=out/'summary/title_matching_quality.csv'
+122:         'notes':['All 20 shuffles are selected by metadata only; scored outputs were not read',
+130:     outputs={str(p.relative_to(out)):sha(p) for p in [mainfile,quality,summaryfile,report]}
+131:     manifest={'protocol':'stage7_3a_title_freeze_v1','k':args.k,'seed':args.seed,'tokenizer':'Qwen/Qwen3-32B',
+132:         'input_sha256':{k:sha(p) for k,p in inputs.items()},'output_sha256':outputs,
+140:     print('Manifest SHA256:',sha(frozen_path));print('No GPU used. Stage7.3B scoring NOT run.')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage7_3_score.py | SHA256 da9791ddd54deddc99a2265dcb45a0ba8c0c38ef47cac826bf9cbe1b120074bd ===
+3: Commands: audit, run, analyze. Never writes Stage5/7.2 or Stage7.3A frozen files.
+4: Requires 351_stage5.py in same directory (identical readout implementation).
+29:  root=Path(a.root);s72=Path(a.stage72_root);s5=Path(a.stage5_root)
+31:  if m['protocol']!='stage7_3a_title_freeze_v1' or m['k']!=20:raise ValueError('Wrong frozen titles protocol')
+32:  for rel,h in m['output_sha256'].items():
+34:  expected={'pilot50':s5/'cohort/pilot50_v1.csv','full6841':s5/'cohort/full_6841_manifest.csv','frozen_candidates':s72/'candidates/pilot50_author_candidates.csv','candidate_manifest':s72/'config/manifest.json'}
+38:  for rel,h in cs['output_sha256'].items():
+40:  rt=json.loads((s72/'config/gpu_scoring_runtime.json').read_text());truefile=s72/'raw/pilot50_firsttoken_scores.jsonl'
+41:  paper=csvread(expected['pilot50']);pby={r['paper_id']:r for r in paper}
+42:  shuffles=csvread(root/'titles/pilot50_shuffled_titles.csv')
+43:  if len(paper)!=50 or len(pby)!=50 or Counter(r['group'] for r in paper)!=Counter(A=20,B=20,C=7,D=3):raise ValueError('Pilot50 corrupted')
+53:  with (s72/'candidates/pilot50_author_candidates.jsonl').open(encoding='utf-8') as f:
+66:  if len(true)!=50:raise ValueError('Stage7.2 true-title score is not 50/50')
+71:  if sha(Path(a.stage5_script))!=rt['readout_sha256']:raise ValueError('Stage5 readout script changed versus Stage7.2')
+72:  if sha(Path(a.lens))!=rt['lens_sha256']:raise ValueError('J-Lens weights changed versus Stage7.2')
+73:  if a.gpu_layers!=rt['gpu_layers']:raise ValueError('GPU layer placement must match Stage7.2')
+74:  protocol={'stage73_manifest_sha256':sha(mfile),'stage72_candidate_manifest_sha256':sha(s72/'config/manifest.json'),'stage72_runtime_hash':rt['runtime_hash'],'stage72_true_raw_sha256':sha(truefile),'prompt':PROMPT,'model':MODEL,'revision':REV,'modes':MODES,'k':20,'comparison':'same candidate first-token logits, same target year; title only differs','scorer':'stage7_3b_v1'}
+97:  readout_file=Path(a.stage5_script)
+99:  if mod.LAYERS!=LAYERS or mod.PROMPT!=PROMPT or mod.REV!=REV:raise ValueError('Stage5 readout implementation incompatible')
+100:  cfg=runtime_config(a,info);runtime=root/'config/stage73b_runtime.json';raw=root/'raw/shuffled_firsttoken_scores.jsonl'
+162:  runtime=root/'config/stage73b_runtime.json'
+164:  cfg=json.loads(runtime.read_text());done=raw_read(root/'raw/shuffled_firsttoken_scores.jsonl',cfg['protocol_hash'],cfg['runtime_hash'])
+187:  writecsv(root/'summary/shuffle_context_pool.csv',out);writecsv(root/'summary/paper_null_distribution.csv',summary)
+189:  pairs=csvread(s5/'matching/pilot50_ab_pairs.csv');pr=[];effects=[]
+202:  writecsv(root/'summary/matched_pair_differences.csv',pr);writecsv(root/'summary/matched_ab_bootstrap.csv',effects)
+209:  writecsv(root/'summary/paper_integrated.csv',integration)
+221:  writecsv(root/'summary/integrated_pair_differences.csv',integ_pairs);writecsv(root/'summary/integrated_ab_bootstrap.csv',integ_effect)
+237:  overview={'scored_contexts':len(done),'expected_contexts':1000,'complete_papers':sum(all((p['paper_id'],i) in done for i in range(1,21)) for p in paper),'matched_complete_pairs':len({x['pair_id'] for x in integ_pairs}),'n_low_bin_0_2_at_L56':len(low),'stage73_manifest_sha256':sha(mfile),'stage72_true_raw_sha256':sha(truefile),'readout':'First token only; title-conditioned candidate discrimination; empirical null is matched wrong titles, not a claim about total model ignorance','null_sampling':'20 metadata-selected titles, not exchangeable random permutations; tail fractions are descriptive','status':'COMPLETE' if len(done)==1000 else 'PARTIAL, exploratory only'}
+242:  (root/'reports').mkdir(exist_ok=True);(root/'reports/stage7_3_null_report.md').write_text('\n'.join(report),encoding='utf-8')
+246:  p=argparse.ArgumentParser();p.add_argument('cmd',choices=['audit','run','analyze']);p.add_argument('--root');p.add_argument('--stage72-root');p.add_argument('--stage5-root');p.add_argument('--stage5-script',default=str(Path(__file__).with_name('351_stage5.py')));p.add_argument('--lens');p.add_argument('--gpu-layers',type=int,default=29);p.add_argument('--max-papers',type=int);p.add_argument('--shuffles-per-paper',type=int);p.add_argument('--max-contexts',type=int);p.add_argument('--max-seconds',type=int,default=4500);p.add_argument('--paper-reserve-seconds',type=int,default=450)
+247:  a=p.parse_args();base=Path('/scratch')/os.environ.get('USER','unknown')/'jlens';a.root=a.root or str(base/'351_stage7_3');a.stage72_root=a.stage72_root or str(base/'351_stage7_2');a.stage5_root=a.stage5_root or str(base/'351_stage5_crossed_v2');a.lens=a.lens or str(base/'public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage7_4.py | SHA256 25b37ecebd3e42274f2b6c98337407ffe68a8d52f9845332d885fa905c0f3a5d ===
+17:     ap=argparse.ArgumentParser();ap.add_argument('--source',default='/scratch/'+__import__('os').environ.get('USER','')+'/jlens');ap.add_argument('--out',default=None);a=ap.parse_args()
+18:     src=Path(a.source);out=Path(a.out or (src/'351_stage7_4'));(out/'summary').mkdir(parents=True,exist_ok=True);(out/'figures').mkdir(exist_ok=True);(out/'reports').mkdir(exist_ok=True)
+23:     s5=read('351_stage5_crossed_v2/summary/paper_layer_contrasts.csv')
+24:     s6=read('351_stage6/summary/paper_integrated.csv')
+25:     s72=read('351_stage7_2/summary/paper_layer_pool.csv')
+26:     s73=read('351_stage7_3/summary/paper_null_distribution.csv')
+27:     ctx=read('351_stage7_3/summary/shuffle_context_pool.csv')
+28:     pairs=read('351_stage5_crossed_v2/matching/pilot50_ab_pairs.csv')
+29:     cohort=read('351_stage5_crossed_v2/cohort/pilot50_v1.csv')
+39:     joined=s5.rename(columns={'mode':'lens','title_specific_advantage':'stage5_margin'}).merge(
+43:     joined.to_csv(out/'summary'/'cross_stage_paper_layer.csv',index=False)
+46:         x=g.stage5_margin.to_numpy();y=g.title_advantage.to_numpy()
+48:         consistency.append(dict(lens=lens,layer=L,n=len(g),pearson=float(pearsonr(x,y).statistic),spearman=float(spearmanr(x,y).statistic),same_sign_rate=float(np.mean(np.sign(x)==np.sign(y))),stage5_positive=int((x>0).sum()),stage73_positive=int((y>0).sum())))
+49:     pd.DataFrame(consistency).sort_values(['lens','layer']).to_csv(out/'summary'/'cross_stage_correlations.csv',index=False)
+54:     wide.to_csv(out/'summary'/'jlens_vs_vanilla_paper_layer.csv',index=False)
+59:     pd.DataFrame(comparisons).to_csv(out/'summary'/'jlens_increment_bootstrap.csv',index=False)
+65:     p.to_csv(out/'summary'/'matched_lens_increment_pairs.csv',index=False)
+73:     floor.to_csv(out/'summary'/'floor_L56_all_papers.csv',index=False)
+75:     low.to_csv(out/'summary'/'floor_L56_low_six.csv',index=False)
+77:     highcmp.to_csv(out/'summary'/'floor_L56_ranges.csv',index=False)
+83:     stability.to_csv(out/'summary'/'overlap_sensitivity.csv',index=False)
+86:     fig,ax=plt.subplots(figsize=(8,4.5));ax.plot(cor.layer,cor.pearson,'o-',label='Pearson');ax.plot(cor.layer,cor.spearman,'s-',label='Spearman');ax.axhline(0,color='gray',lw=.8);ax.set(xlabel='Layer',ylabel='Within-paper correlation',title='Stage 5 margin vs Stage 7.3 title advantage');ax.legend();fig.tight_layout();fig.savefig(out/'figures'/'stage5_stage73_correlations.png',dpi=170);fig.savefig(out/'figures'/'stage5_stage73_correlations.pdf');plt.close(fig)
+89:     overview={'n_papers':50,'n_pairs':20,'n_shuffle_contexts':1000,'matching_manifest':'f1712eabab1853fafaba08d774faf2eda7d341a908f2027104147e29ca8f0bcd','integrated_jlens_minus_vanilla':comparisons[-1],'matched_ab_difference_of_lens_increment':{'mean':float(vals.mean()),'ci_low':abci[0],'ci_high':abci[1]},'L56_jlens_stage5_stage73':next(z for z in consistency if z['lens']=='jlens' and z['layer']==56),'floor_low_six_L56':{'n':len(low),'mean_adv':float(low.title_advantage.mean()),'positive':int((low.title_advantage>0).sum()),'pct90':int((low.null_percentile_midrank>=.9).sum()),'tail05':int((low.empirical_tail_fraction<=.05).sum())}}
+91:     report=f'''# Stage 7.4 — Cross-stage Measurement Validity Audit\n\nCPU-only, read-only exploration over frozen Pilot50. All bootstrap CIs are paper-level (or pair-level for matched AB), 20,000 draws, percentile 95%, unadjusted. No causal claims.\n\n## Main findings\n\nStage5 vs Stage7.3 L56 J-Lens same-paper Pearson r = {overview['L56_jlens_stage5_stage73']['pearson']:.4f}; Spearman rho = {overview['L56_jlens_stage5_stage73']['spearman']:.4f}. Both metrics use First-token but different contrasts, units and number of shuffled titles.\n\nIntegrated J-Lens minus Vanilla title advantage: {comparisons[-1]['mean']:+.5f}, 95% CI [{comparisons[-1]['ci_low']:+.5f}, {comparisons[-1]['ci_high']:+.5f}] over 50 papers. This is a **difference in title-specific advantage**, NOT J-Lens fidelity proof.\n\nMatched 20-pair A-B difference of lens increment: {vals.mean():+.5f}, 95% CI [{abci[0]:+.5f}, {abci[1]:+.5f}].\n\nBin 0-2 (6 papers) J-Lens L56 mean advantage {low.title_advantage.mean():+.5f}, {int((low.title_advantage>0).sum())}/6 positive, {int((low.null_percentile_midrank>=.9).sum())}/6 midrank percentile >=90%, {int((low.empirical_tail_fraction<=.05).sum())}/6 corrected empirical tail <=0.05. These six papers are NOT evidence of a population-wide floor.\n\n## Caveats\n\n* This cohort and L56 were inspected before Stage7.4. All conclusions exploratory; multiple comparisons and winner's curse apply.\n* Stage5 has one crossed shuffled source; Stage7.3 has 20 metadata-matched sources and a 100-author win-rate outcome. Correlation can be modest without either being invalid.\n* Matched shuffle titles are not exchangeable, so empirical tail fractions are reference fractions, not necessarily calibrated permutation p-values.\n* Frozen Stage7.2 first-token pools have repeated token IDs; Gold Win Rate measures candidate token discrimination, NOT full-name identification.\n* Source-author presence in false pool and lenient matched title tiers require sensitivity analysis.\n* Paper sharing/authors/contexts create possible dependence; conventional bootstrap may understate uncertainty.\n\nAll derived CSVs and figures are in summary/ and figures/. Stage 5-7.3 inputs were read, never overwritten.\n'''
+93:     print('STAGE 7.4 COMPLETE',out,'stage5_l56_r',round(overview['L56_jlens_stage5_stage73']['pearson'],4),'lens_increment',round(comparisons[-1]['mean'],5),'ci',[round(comparisons[-1]['ci_low'],5),round(comparisons[-1]['ci_high'],5)],'floor_low',overview['floor_low_six_L56'])
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage8.py | SHA256 5dce8e481dcd24dda983ae1b7f2488448fc77704d20ffd9618235e4a4ce27ba6 ===
+11: PILOT_SHA_LABEL='pilot50_v1'
+55:  # Quotas applied *after* possible pairs have been generated, without inspecting model outputs.
+66:   for p in (a,b):members.append(dict(validation_id='stage8_v1',pair_id=pid,citation_band=cat,**p))
+72:  ap.add_argument('--stage5-root',default=None)
+75:  base=Path('/scratch')/os.getenv('USER','')/'jlens'
+76:  s5=Path(args.stage5_root or base/'351_stage5_crossed_v2')
+77:  root=Path(args.root or base/'351_stage8')
+78:  input_files={'full_manifest':s5/'cohort/full_6841_manifest.csv','pilot50':s5/'cohort/pilot50_v1.csv'}
+86:   for rel,h in m['outputs'].items():
+87:    if digest(root/rel)!=h:raise ValueError('FROZEN OUTPUT CHANGED '+rel)
+93:  full=read(input_files['full_manifest']);pilot=read(input_files['pilot50'])
+103:  write(root/'matching/stage8_ab_pairs.csv',pairs,list(pairs[0]))
+104:  write(root/'cohort/stage8_papers.csv',papers,list(papers[0]))
+107:  protocol={'status':'FROZEN_BEFORE_STAGE8_SCORING','protocol_version':'stage8_v1','seed':SEED,
+108:  'pilot_exclusion':'all 50 Stage5 Pilot target paper IDs; possible shared original author-source universe remains a limitation',
+121:  'candidate_rule':'must be newly frozen solely from source metadata and tokenizer, with no Stage8 readout scores; false authors exclude all actual authors of target paper',
+123:  'data_leakage':'stage8 target papers excluded from prior pilot; source author/title pool overlaps must be logged; J-Lens and prompt design fixed before outcomes',
+129:  outputs={str(p.relative_to(root)):digest(p) for p in sorted(root.rglob('*')) if p.is_file()}
+130:  dump(manifest,{'version':'stage8_v1','seed':SEED,'quotas':QUOTA,'inputs':{k:digest(v) for k,v in input_files.items()},'outputs':outputs,'n_pairs':len(pairs),'n_papers':len(papers)})
+131:  print('STAGE8 FREEZE SUCCESS',root,'pairs=',len(pairs),'papers=',len(papers),'bands=',balance['actual'],'available=',dict(available),'manifest_sha256=',digest(manifest))
+132:  print('CPU only. Stage8 candidate selection and title freeze NOT RUN; Stage8 GPU scoring NOT RUN.')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage8B.py | SHA256 472b400c41b37954ad8773a4020da323339746bdd17a40e28cb72289d420162e ===
+88:  cohort=root/'cohort/stage8_papers.csv'
+632:  cpath=root/'controls/stage8_author_candidates.csv'
+634:  tpath=root/'controls/stage8_shuffled_titles.csv'
+636:  qpath=root/'controls/stage8_control_quality.csv'
+638:  mpath=root/'config/stage8B_manifest.json'
+646:    'Stage 8B frozen output already exists; use audit, no overwrite'
+662:   'version':'stage8B_v1',
+666:   'stage8A_manifest_sha256':digest(manifest),
+726:  mfile=root/'config/stage8B_manifest.json'
+738:  if digest(root/'config/manifest.json')!=m['stage8A_manifest_sha256']:
+752:  c=readcsv(root/'controls/stage8_author_candidates.csv')
+754:  t=readcsv(root/'controls/stage8_shuffled_titles.csv')
+886:   default=Path('/scratch')/os.environ.get('USER','')/'jlens/351_stage8'
+896:   default=Path('/scratch')/os.environ.get('USER','')/
+898:           'jlens/351_stage5_crossed_v2/cohort/full_6841_manifest.csv'
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage8C.py | SHA256 ab879966f33447735789fd97f67a6c5e2271d85d56a00b6ea5cc47b2fcf430e0 ===
+62:  bman=root/'config/stage8B_manifest.json'
+70:  if sha(manifest)!=bm['stage8A_manifest_sha256']:
+72:   raise RuntimeError('Stage8A manifest changed')
+78:    raise RuntimeError('Frozen 8B output modified: '+p)
+80:  cps=csvread(root/'cohort/stage8_papers.csv')
+82:  cand=csvread(root/'controls/stage8_author_candidates.csv')
+84:  titles=csvread(root/'controls/stage8_shuffled_titles.csv')
+146:  script=Path(a.stage5_script)
+150:   raise FileNotFoundError('Stage5 readout source required: '+str(script))
+152:  spec=importlib.util.spec_from_file_location('frozen_stage5_readout',str(script))
+160:   raise RuntimeError('Stage5 readout mismatch')
+164:   raise RuntimeError('Unexpected Stage5 prompt template')
+182:   'stage8A_sha256':sha(root/'config/manifest.json'),
+184:   'stage8B_sha256':sha(bman),
+186:   'stage5_code_sha256':sha(script),
+188:   'stage5_prompt':mod.PROMPT,
+204:   'scorer':'stage8c_v1'
+212:  path=root/'config/stage8C_runtime.json'
+216:   raise RuntimeError('Stage8C runtime changed; refusing mixed data')
+282:  raw=root/'raw/stage8C_context_scores.jsonl'
+286:  print(f'STAGE8C AUDIT PASS frozen=4200 existing={len(done)} remaining={4200-len(done)} stage8B={sha(bman)} lens={cfg["public_lens_sha256"]}')
+298:  raw=root/'raw/stage8C_context_scores.jsonl'
+306:  print('Stage8C to score:',len(todo),'already:',len(done),flush=True)
+440:  base=Path('/scratch')/os.getenv('USER','')/'jlens'
+442:  p.add_argument('--root',type=Path,default=base/'351_stage8')
+444:  p.add_argument('--stage5-script',default=str(Path.home()/'351_stage5.py'))
+446:  p.add_argument('--lens',default=str(base/'public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt'))
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_stage8D.py | SHA256 3862df8b5a29994b25ad14fce698856a9b6573e1c11262aad0a0a823a57d5130 ===
+59:  m8b=cfg/'stage8B_manifest.json'
+60:  runtime=cfg/'stage8C_runtime.json'
+65:  if bm['stage8A_manifest_sha256']!=sha(m8a):
+66:   raise RuntimeError('Stage8A checksum mismatch')
+69:    raise RuntimeError('Stage8B frozen file changed: '+name)
+72:  if rc['stage8A_sha256']!=sha(m8a) or rc['stage8B_sha256']!=sha(m8b):
+73:   raise RuntimeError('Stage8C input checksums mismatch')
+79:  papers=readcsv(root/'cohort/stage8_papers.csv')
+80:  pairs=readcsv(root/'matching/stage8_ab_pairs.csv')
+81:  cand=readcsv(root/'controls/stage8_author_candidates.csv')
+82:  shuffles=readcsv(root/'controls/stage8_shuffled_titles.csv')
+138:  rawpath=root/'raw/stage8C_context_scores.jsonl'
+176:  print('STAGE8D INTEGRITY PASS: 200 papers, 100 pairs, 4200 contexts, 15 modes',flush=True)
+178:  summarydir=root/'stage8D/summary'
+179:  figdir=root/'stage8D/figures'
+180:  reportdir=root/'stage8D/reports'
+228:  writecsv(summarydir/'context_level_scores.csv',contextrows)
+229:  writecsv(summarydir/'paper_layer_advantage.csv',paperrows)
+240:  writecsv(summarydir/'matched_pair_differences.csv',pairrows)
+271:  writecsv(summarydir/'primary_questions.csv',primary)
+281:  writecsv(summarydir/'layer_and_band_summary.csv',secondary)
+290:  writecsv(summarydir/'jlens_minus_vanilla.csv',[
+300:  writecsv(summarydir/'sensitivity.csv',sensitivity)
+354:  (reportdir/'stage8_results.md').write_text('\n'.join(lines),encoding='utf-8')
+356:  output_files=sorted(
+357:   [p for p in (root/'stage8D').rglob('*') if p.is_file() and p.name!='output_manifest.json']
+359:  writejson(root/'stage8D/output_manifest.json',{
+360:   'stage8C_raw_sha256':sha(root/'raw/stage8C_context_scores.jsonl'),
+361:   'stage8A_manifest_sha256':sha(root/'config/manifest.json'),
+362:   'stage8B_manifest_sha256':sha(root/'config/stage8B_manifest.json'),
+363:   'runtime_sha256':sha(root/'config/stage8C_runtime.json'),
+366:   'files':{str(p.relative_to(root)):sha(p) for p in output_files}
+374:  print('STAGE 8D ANALYSIS SAVED:',root/'stage8D',flush=True)
+380:   default=Path('/scratch')/os.getenv('USER','')/'jlens/351_stage8')
+384:   print('STAGE8D INTEGRITY PASS: 200 papers / 100 pairs / 4200 contexts / 15 modes')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_validate_public_lens.py | SHA256 cba04d05262991b63c6b0da5562d5596ee9bc6a25a56bb7383c5d966b0f031f7 ===
+99:     root=f'/scratch/{os.environ.get("USER","unknown")}/jlens'
+100:     ap.add_argument('--data',default=f'{root}/351_all/351_four_groups.csv')
+101:     ap.add_argument('--lens',default=f'{root}/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+102:     ap.add_argument('--output',default=f'{root}/351_all/351_public_task_validation.jsonl')
+131:     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
+137:             if r['config']!=config:raise RuntimeError('Existing output config differs. Use a new --output.')
+160:                     if not torch.equal(ids.cpu(),ids2.cpu()) or (actual-actual2).abs().max().item()>0.1:raise RuntimeError('Paired output mismatch')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_validate_public_lens_offload.py | SHA256 3d569ec4f6262ed91e6f99d64e7e761bff6ec667b9758bf54ea32873bb05c803 ===
+99:     root=f'/scratch/{os.environ.get("USER","unknown")}/jlens'
+100:     ap.add_argument('--data',default=f'{root}/351_all/351_four_groups.csv')
+101:     ap.add_argument('--lens',default=f'{root}/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+102:     ap.add_argument('--output',default=f'{root}/351_all/351_public_task_validation.jsonl')
+134:     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
+140:             if r['config']!=config:raise RuntimeError('Existing output config differs. Use a new --output.')
+170:                     if not torch.equal(ids.cpu(),ids2.cpu()) or (actual-actual2).abs().max().item()>0.1:raise RuntimeError('Paired output mismatch')
+
+=== /scratch/zhang.zhiqi2/jlens/scripts/351_validate_public_lens_offload_fixed.py | SHA256 716d248d8d4b15367fe4e637806935f99421f4d350d6538127c337900e5cc86d ===
+99:     root=f'/scratch/{os.environ.get("USER","unknown")}/jlens'
+100:     ap.add_argument('--data',default=f'{root}/351_all/351_four_groups.csv')
+101:     ap.add_argument('--lens',default=f'{root}/public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt')
+102:     ap.add_argument('--output',default=f'{root}/351_all/351_public_task_validation.jsonl')
+135:     out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
+141:             if r['config']!=config:raise RuntimeError('Existing output config differs. Use a new --output.')
+179:                     if not torch.equal(ids.cpu(),ids2.cpu()) or (actual-actual2).abs().max().item()>0.1:raise RuntimeError('Paired output mismatch')

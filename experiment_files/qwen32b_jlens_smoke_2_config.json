@@ -1,0 +1,21 @@
+{
+  "model": "Qwen/Qwen3-32B",
+  "model_revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "corpus_sha256": "1af8dbff1b6e5b9f5bdd55b31d2d7bfadf28c8ab256a47e69d45db6b5ebc0b06",
+  "selected_prompt_indices": [
+    0,
+    1
+  ],
+  "source_layers": [
+    24,
+    32,
+    40,
+    48,
+    56,
+    62
+  ],
+  "target_layer": 63,
+  "dim_batch": 8,
+  "max_seq_len": 128,
+  "skip_first": 16
+}
