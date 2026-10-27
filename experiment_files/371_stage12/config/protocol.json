@@ -1,0 +1,78 @@
+{
+ "created": "2026-10-27T14:44:21",
+ "doc": "Stage 12 - follow-ups to Stage 11 + name-prior measurements (2026-10-27; user: run everything except a second model).\n\nReuses the frozen Stage 10 cohort and the Stage 11 sample/code read-only; outputs in /scratch/$USER/jlens/371_stage12/.\n\nP1 patch_pos    Like Stage 11 E1 (true -> false_0, model output), but ONE post-title position at a time: each of the\n                aligned prompt-tail tokens (closing quote / year / ')?\\n' / 'Authors' / ':'), 'names' (all name inputs\n                after ':'), 'all' (= Stage 11 E1) and 'none' (unpatched false run in the SAME batch = baseline), at\n                PP_LAYERS. Which token carries the paper information?\nP2 patch_comp   Component patching on the whole aligned tail: replace only the attention output or only the MLP\n                output of ONE layer with the true run's, at PC_LAYERS (+ 'none'). Is the title moved by attention or\n                computed by MLPs inside L24-L50?\nN1 prior_mc     Name prior of the multiple-choice options: every one of the 4 author lists shown in the Stage 1\n                multiple choice (option 0 = true list, 1-3 = real teams of other papers) scored as a chain\n                (\"Authors: A1, A2, ...\") with NO title (delete prompt) and with the TRUE title; model output.\nN2 prior_pure   Pure name prior: each author alone after a prompt with no paper at all (PURE_PROMPT); model output and\n                logit / public J-lens at PURE_LAYERS. Rows keep Stage 10 row ids (paired with Stage 10 true/delete).\nF1 alens_fit    A Jacobian lens fitted on AUTHOR prompts (FIT_N papers outside the Stage 11 sample: prompt + true\n                author list), layers FIT_LAYERS, resumable checkpoint (jlens.fit), one prompt-batch per job.\nF2 alens_read   With that lens: Stage-10-style readout of the Stage 11 sample (each author alone, name tokens) for true\n                + 5 false titles and at the last title token; available once F1 is complete.\nCheck policy (user rule 2026-10-27): agreement checks are recorded as WARN and never stop GPU work; only a crash holds\nthe queue. Commands: freeze | work | remaining | analyze\n",
+ "fit": {
+  "dim_batch": 1,
+  "layers": [
+   24,
+   32,
+   40,
+   44,
+   48,
+   52,
+   56,
+   62
+  ],
+  "max_seq_len": 128,
+  "n": 40,
+  "seed": 12,
+  "sha256": "be0c3ab7d2a1783f52d55654df78e6bf01a316b3c5cc41db7d15e1d999d1f92a",
+  "skip_first": 16
+ },
+ "pc_layers": [
+  8,
+  16,
+  24,
+  28,
+  32,
+  36,
+  40,
+  44,
+  48,
+  52,
+  56
+ ],
+ "pp_layers": [
+  32,
+  40,
+  44,
+  48,
+  50,
+  52,
+  56
+ ],
+ "pure_plan": [
+  [
+   "final",
+   63
+  ],
+  [
+   "logit",
+   48
+  ],
+  [
+   "logit",
+   56
+  ],
+  [
+   "logit",
+   62
+  ],
+  [
+   "jlens_public",
+   48
+  ],
+  [
+   "jlens_public",
+   56
+  ],
+  [
+   "jlens_public",
+   62
+  ]
+ ],
+ "pure_prompt": "The following is the name of a researcher.\nName:",
+ "script_sha256": "d695fabae61eb65dab2a9a9b0af5ff19c623a550ddcab2857ea4e50179e65016",
+ "stage11_sample_sha256": "9c490cee068f76a7e295d14b724946c7eb28029a3a6a7ae0a29cfec4da20c374",
+ "version": "stage12_v1"
+}

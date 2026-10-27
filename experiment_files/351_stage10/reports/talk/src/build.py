@@ -185,16 +185,28 @@ chart(s, 'c12_patch_knockout', 0.5, 1.6, 9.2)
 note(s, 9.95, 1.9, 2.9, 3.6, [[B('L52+', TGT), T(': title no longer needed')], [T('info moved to the tokens '), B('right after'), T(' the title')], [T('same timing for target and control')]], rot=1.5, size=18)
 
 # S11c title position -----------------------------------------------------------------
-s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more, 0.04 at L16 rising to 0.08 at L56, and a little more for target papers. Caution: a probe trained across papers can also pick up topic-to-name associations, not only this paper.')
-title(s, 'Not readable at the title token itself', 'title-specific signal at the last title token · all 9,108 papers')
+s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more, 0.04 at L16 rising to 0.08 at L56, and a little more for target papers. The controls on the next slide show this probe signal is specific to the paper, not a topic-to-name association.')
+title(s, 'Lenses cannot read it at the title token', 'title-specific signal at the last title token · all 9,108 papers')
 chart(s, 'c13_title_position', 0.5, 1.6, 9.2)
-note(s, 9.95, 1.9, 2.9, 3.6, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.04 -> 0.08', GRN)], [T('target a bit higher; may include topic -> name associations')]], rot=-1.5, size=18)
+note(s, 9.95, 1.9, 2.9, 3.6, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.04 -> 0.08', GRN)], [T('target higher; paper-specific (next slide)')]], rot=-1.5, size=18)
 
 # S11d chain -----------------------------------------------------------------
 s = new_slide('Author chain. When the earlier authors are in the context, later authors become easier: plus 0.17 to 0.23 for target, 0.12 to 0.18 for control. But the title matters less: the title-specific signal drops from 0.45 to 0.26 for later target authors, because the co-authors already identify the paper. Target still beats control within bins, plus 0.11 to 0.15.')
 title(s, 'Co-authors help, and partly replace the title', 'model output · all 9,108 papers · 95% CI')
 chart(s, 'c14_author_chain', 0.5, 1.6, 9.2)
 note(s, 9.95, 1.9, 2.9, 3.6, [[T('later authors '), B('+0.17 to +0.23', TGT)], [T('title-specific part '), B('shrinks')], [T('target > control still')]], rot=1.5, size=18)
+
+# S12a name prior -----------------------------------------------------------------
+s = new_slide('How much is just the name prior? We score the same names with no title at all. Without a title the correct name already sits around rank 12 on average: punctuation and the rest of a surname are easy once the prefix is given. The true title improves the surname first token the most: for target papers from about rank 146 to rank 24. Split the target minus control gap within citation bins: about 0.09 is already there without a title (target names are a bit easier to guess), false titles take back 0.05, and 0.21 is paper-specific. On the surname first token the prior part is about zero and 0.42 is paper-specific. The prior barely tracks multiple-choice recognition (Spearman 0.09 vs 0.33 for the paper-specific part).')
+title(s, 'How much is just the name prior?', 'model output · no title vs false title vs true title · all 9,108 papers')
+chart(s, 'c15_name_prior', 0.5, 1.6, 9.2)
+note(s, 9.95, 1.9, 2.9, 3.9, [[T('no title: rank '), B('~12')], [T('target - control: '), B('+0.09', MUTE), T(' prior, '), B('+0.21', TGT), T(' paper')], [T('surname 1st: prior ~0, paper '), B('+0.42', TGT)], [T('prior vs recognition rho '), B('0.09')]], rot=1.5, size=17)
+
+# S12b probe controls -----------------------------------------------------------------
+s = new_slide('Is the probe at the title token reading real paper knowledge, or just topic to name associations? If we score its output against the authors of another paper, or of another paper in the same field, the signal drops to zero. If we train it only on false-title pairs it gets even stronger. So the last title token carries linearly decodable, paper-specific author information already at L24, more for target papers, even though the lenses cannot read it.')
+title(s, 'The probe signal is paper-specific', 'last title token · 5-fold ridge probe · controls · all 9,108 papers')
+chart(s, 'c16_probe_controls', 0.6, 1.6, 8.0)
+note(s, 9.0, 1.9, 3.7, 3.6, [[T('another paper\'s authors: '), B('0')], [T('same-field paper: '), B('0')], [T('so it is '), B('this paper', TGT), T(', already at L24')], [T('lenses cannot read it')]], rot=-1.5, size=18)
 
 # 9 lens quality -----------------------------------------------------------------
 s = new_slide('Comparing lenses. On readout quality fitA is best in most middle layers, self100 at L40; at L48 the Jacobian lenses put the right token in the top 10 for 15-18% of tokens versus 1% for the logit lens. At L62 the plain logit lens is best.')
@@ -239,7 +251,7 @@ title(s, 'What we learned')
 pts = [('Late', 'Paper-specific author knowledge builds up from about L50, fastest over L57-L61, peaking at L61-L62.'),
        ('Read early', 'Causally, the title is read in L24-L50 and moved into the tokens after it; after L52 it is no longer needed.'),
        ('No head start', 'Target papers are not ahead of control in middle layers; the +0.21 gap is at the end.'),
-       ('Real knowledge', 'The gap is title-specific and grows with citations, so it is not name guessing.'),
+       ('Real knowledge', 'Name prior is ~1/3 of the gap overall but ~0 on surnames; the rest is paper-specific and grows with citations.'),
        ('Lenses agree', 'Jacobian lenses read more in middle layers, but nothing target-specific.'),
        ('Name format', 'Initials carry little; full given names carry as much as surnames and help predict them.')]
 for i, (h, b) in enumerate(pts):

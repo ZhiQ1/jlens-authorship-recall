@@ -224,3 +224,41 @@ axs[0].set_title('previous authors help (true title)'); axs[0].set_ylabel('chain
 for a in axs: a.set_xticks(xs); a.set_xticklabels(['1st', '2nd', '3rd', '4th+']); a.set_xlabel('author position')
 axs[0].axhline(0, color=MUTE, lw=1.2, ls='--'); axs[0].legend(loc='upper left'); axs[1].set_ylim(0, 0.8); axs[1].legend(loc='upper right', fontsize=12)
 save(fig, 'c14_author_chain')
+
+# ================= Stage 12 CPU: name prior, probe controls =================
+R12 = Path('/scratch/zhang.zhiqi2/jlens/371_stage12/summary_cpu')
+A = pd.read_csv(R12 / 'A_prior_decomposition.csv'); A = A[A.readout == 'final']
+roles = [('all_tokens', 'all tokens'), ('surname_first', 'surname\n1st'), ('surname_cont', 'surname\nrest'), ('given_first', 'given\n1st'), ('initial_first', 'initial')]
+fig, axs = plt.subplots(1, 2, figsize=(10.6, 5.0))
+ax = axs[0]
+for j, (g, col, dx) in enumerate((('target', TGT, -0.13), ('control', CTL, 0.13))):
+    for i, (r, lab) in enumerate(roles):
+        x = A[(A.role == r) & (A.group == g)].iloc[0]; pr, fa, tr = x.prior, x.prior + x.topic, x.true
+        ax.plot([i + dx] * 2, [pr, tr], color=col, lw=2.2)
+        ax.plot(i + dx, pr, 'o', color=MUTE, ms=7); ax.plot(i + dx, fa, 'x', color=INK, ms=7); ax.plot(i + dx, tr, 'o', color=col, ms=8, label=g if i == 0 else None)
+ax.plot([], [], 'o', color=MUTE, label='no title (name prior)'); ax.plot([], [], 'x', color=INK, label='false title')
+ax.set_xticks(range(len(roles))); ax.set_xticklabels([l for _, l in roles], fontsize=13); ax.set_ylabel('log10(1 / rank), model output'); ax.set_title('prior -> false title -> true title')
+ax.set_ylim(-2.6, 0.55); ax.legend(loc='upper right', fontsize=11, ncol=2)
+ax = axs[1]
+parts = [('prior', 'name prior', MUTE), ('topic', 'topic', INK), ('spec', 'paper-specific', TGT)]
+xs = np.arange(2); w = 0.26
+for k, (key, lab, col) in enumerate(parts):
+    vals = [A[(A.role == r) & (A.group == f'tc_{key}')].iloc[0] for r in ('all_tokens', 'surname_first')]
+    v = [x[key] for x in vals]; lo = [x[f'{key}_lo'] for x in vals]; hi = [x[f'{key}_hi'] for x in vals]
+    ax.bar(xs + (k - 1) * w, v, w, color=col, alpha=.85, edgecolor=INK, lw=1.2, label=lab)
+    ax.errorbar(xs + (k - 1) * w, v, yerr=[np.array(v) - lo, np.array(hi) - v], fmt='none', ecolor=INK, capsize=4, lw=1.4)
+ax.axhline(0, color=MUTE, lw=1.2, ls='--'); ax.set_xticks(xs); ax.set_xticklabels(['all tokens', 'surname 1st token']); ax.set_title('target - control, split (within bin)')
+ax.legend(loc='upper left', fontsize=13)
+save(fig, 'c15_name_prior')
+
+X1 = pd.read_csv(R12 / 'X1_probe_controls.csv')
+fig, ax = plt.subplots(figsize=(8.6, 4.9))
+ctrls = [('probe (as in Stage 11)', 'probe', TGT), ('gold = random other paper', 'gold of another paper', MUTE), ('gold = random paper of the same field', 'gold of a same-field paper', CTL), ('probe trained on FALSE-title pairs', 'trained on false titles', GRN)]
+lays = sorted(X1.layer.unique()); xs = np.arange(len(lays)); w = 0.2
+for k, (c, lab, col) in enumerate(ctrls):
+    d = X1[X1.control == c].set_index('layer').loc[lays]
+    ax.bar(xs + (k - 1.5) * w, d.spec_all, w, color=col, alpha=.85, edgecolor=INK, lw=1.1, label=lab)
+    ax.errorbar(xs + (k - 1.5) * w, d.spec_all, yerr=[d.spec_all - d.spec_all_lo, d.spec_all_hi - d.spec_all], fmt='none', ecolor=INK, capsize=3, lw=1.2)
+ax.axhline(0, color=MUTE, lw=1.2, ls='--'); ax.set_xticks(xs); ax.set_xticklabels([f'L{l}' for l in lays]); ax.set_ylabel('title-specific signal at the last title token')
+ax.set_ylim(-0.015, 0.135); ax.legend(loc='upper left', fontsize=12, ncol=2)
+save(fig, 'c16_probe_controls')

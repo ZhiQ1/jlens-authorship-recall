@@ -490,7 +490,7 @@ def stop_queue(reason):
     try:
         (R10 / 'logs/pool/PAUSED').write_text(json.dumps(dict(created=now(), reason=reason, by=os.environ.get('SLURM_JOB_ID'))))
         q = subprocess.run(['squeue', '-u', os.environ['USER'], '-h', '-t', 'PENDING', '-o', '%i|%j'], capture_output=True, text=True, timeout=90).stdout
-        ids = [l.split('|')[0] for l in q.split() if l.split('|')[1].startswith(('s11w', 's10p_'))]
+        ids = [l.split('|')[0] for l in q.split() if l.split('|')[1].startswith(('s11w', 's10p_', 's12'))]
         if ids: subprocess.run(['scontrol', 'hold', ','.join(ids)], timeout=90)
         log('STOP:', reason, '- held', len(ids), 'pending jobs; release with: scontrol release <ids>')
     except Exception as e: log('stop_queue failed:', e)
@@ -567,7 +567,14 @@ def work(a, budget=None, t_start=None):
         for v in U:
             if out_path(v).exists(): continue
             if claim(CL / '_'.join(str(x) for x in v if x is not None), me): u = v; break
-        if u is None: log('stage11: nothing left to claim'); return
+        if u is None:
+            log('stage11: nothing left to claim')
+            s12 = Path.home() / 'jlens_work/12_stage12/371_stage12.py'
+            if (Path('/scratch') / os.environ.get('USER', '') / 'jlens/371_stage12/logs/accept_handover').exists() and s12.exists():
+                # 2026-10-27: queued Stage 10/11 jobs that find no work run Stage 12 units instead (same claims and budget rules)
+                sp = importlib.util.spec_from_file_location('s12', s12); m12 = importlib.util.module_from_spec(sp); sp.loader.exec_module(m12)
+                m12.work(argparse.Namespace(max_minutes=budget - (time.monotonic() - t_start) / 60, fit=False))
+            return
         if budget and C is not None and (time.monotonic() - t_start) / 60 + 1.5 * last / 60 > budget:
             d = CL / '_'.join(str(x) for x in u if x is not None); os.rename(d, d.with_name(d.name + f'.released_{me}'))
             log('time budget reached; released', u); return

@@ -759,8 +759,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <tr><td>E2n ":" + names only · all</td><td class="pos">+0.153<span class="ci">[+0.136, +0.172]</span></td><td class="pos">+0.120<span class="ci">[+0.104, +0.136]</span></td><td class="pos">+0.097<span class="ci">[+0.082, +0.112]</span></td><td class="pos">+0.073<span class="ci">[+0.059, +0.086]</span></td><td class="pos">+0.051<span class="ci">[+0.040, +0.062]</span></td><td class="pos">+0.014<span class="ci">[+0.006, +0.022]</span></td><td>+0.006<span class="ci">[-0.000, +0.012]</span></td><td class="pos">+0.007<span class="ci">[+0.004, +0.010]</span></td></tr>
   </tbody></table></div>
   <div class="pair">
-    <p class="zh"><b>标题位置能不能读出作者。</b>在标题最后一个 token 上用 lens 读，标题特异信号只有约 0.01–0.03，而且中间层目标组和对照组没有差别：lens 在标题位置几乎读不出作者。换成线性 probe（5 折 ridge 回归，把标题位置的表示映射到模型在 ":" 处 L63 的表示）能读出一些：L16 约 +0.04，L52–56 约 +0.08，目标组比对照组高 +0.02 到 +0.04（置信区间在 0 以上）。需要注意，probe 是在不同论文之间训练的，读出的可能部分是"某类题目常配某类名字"的关联，不一定全是模型对这一篇论文的记忆。</p>
-    <p class="en"><b>Can the author be read at the title position?</b> Lenses at the last title token give only about 0.01–0.03 title-specific signal, with no target − control difference in middle layers, so the lenses can hardly read the author there. A linear probe (5-fold ridge from the title-position state to the model's own L63 ":" state) reads a little more: about +0.04 at L16 and +0.08 at L52–56, with target above control by +0.02 to +0.04 (CIs above zero). Because the probe is trained across papers, part of it may be topic → name association rather than memory of this paper.</p>
+    <p class="zh"><b>标题位置能不能读出作者。</b>在标题最后一个 token 上用 lens 读，标题特异信号只有约 0.01–0.03，而且中间层目标组和对照组没有差别：lens 在标题位置几乎读不出作者。换成线性 probe（5 折 ridge 回归，把标题位置的表示映射到模型在 ":" 处 L63 的表示）能读出一些：L16 约 +0.04，L52–56 约 +0.08，目标组比对照组高 +0.02 到 +0.04（置信区间在 0 以上）。对照检验（§6.12）表明，这部分信号是这篇论文特有的，不是题目与名字的泛泛关联。</p>
+    <p class="en"><b>Can the author be read at the title position?</b> Lenses at the last title token give only about 0.01–0.03 title-specific signal, with no target − control difference in middle layers, so the lenses can hardly read the author there. A linear probe (5-fold ridge from the title-position state to the model's own L63 ":" state) reads a little more: about +0.04 at L16 and +0.08 at L52–56, with target above control by +0.02 to +0.04 (CIs above zero). Controls (§6.12) show the signal is specific to the paper, not a generic topic → name association.</p>
   </div>
   <div class="tbl"><table><thead><tr><th>标题最后一个 token 上的标题特异信号</th><th>L16</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L52</th><th>L56</th><th>L60</th></tr></thead><tbody>
 <tr><td>logit lens · target</td><td>-0.005<span class="ci">[-0.014, +0.004]</span></td><td>+0.002<span class="ci">[-0.006, +0.010]</span></td><td>-0.001<span class="ci">[-0.008, +0.006]</span></td><td class="pos">+0.007<span class="ci">[+0.001, +0.013]</span></td><td class="pos">+0.009<span class="ci">[+0.004, +0.014]</span></td><td class="pos">+0.010<span class="ci">[+0.006, +0.014]</span></td><td class="pos">+0.011<span class="ci">[+0.007, +0.016]</span></td><td class="pos">+0.012<span class="ci">[+0.007, +0.018]</span></td></tr>
@@ -788,9 +788,66 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <tr><td>4+ · 目标−对照 target − control</td><td></td><td class="pos">+0.169<span class="ci">[+0.147, +0.189]</span></td><td class="pos">+0.114<span class="ci">[+0.097, +0.130]</span></td></tr>
   </tbody></table></div>
   <div class="pair">
-    <p class="zh"><b>小结。</b>论文特有的信息在 L24–L50 被从标题读出、搬到标题之后的几个 token 上，比它在名字位置变得可读（L56–62）早了约 10 层；但它不以 lens 能读的形式停在标题 token 上。目标组和对照组的时间点完全相同，目标组只是信号更强（真假差距 0.42 对 0.21）。GPU 自检里有两项一致性核对略低于阈值（GPU 批量计算的 bf16 舍入），不影响以上结果：L63 的替换恰好恢复 1（标题之后的位置）和 0（标题最后一个 token）。</p>
-    <p class="en"><b>Summary.</b> The paper-specific information is read from the title and moved into the tokens after it in L24–L50, about ten layers before it becomes readable at the name positions (L56–62), but it does not sit on the title token in a lens-readable form. Target and control share the same timing; target simply carries a stronger signal (true − false gap 0.42 vs 0.21). Two agreement checks in the GPU smoke test fell slightly below threshold because of bf16 rounding in batched GPU runs; they do not affect these results, as patching at L63 recovers exactly 1 (tokens after the title) and 0 (last title token).</p>
+    <p class="zh"><b>小结。</b>论文特有的信息在 L24–L50 被从标题读出、搬到标题之后的几个 token 上，比它在名字位置变得可读（L56–62）早了约 10 层；标题最后一个 token 上已有可被线性 probe 读出、属于这篇论文的作者信息，但不是现有 lens 能读的形式。目标组和对照组的时间点完全相同，目标组只是信号更强（真假差距 0.42 对 0.21）。GPU 自检里有两项一致性核对略低于阈值（GPU 批量计算的 bf16 舍入），不影响以上结果：L63 的替换恰好恢复 1（标题之后的位置）和 0（标题最后一个 token）。</p>
+    <p class="en"><b>Summary.</b> The paper-specific information is read from the title and moved into the tokens after it in L24–L50, about ten layers before it becomes readable at the name positions (L56–62), the last title token already carries paper-specific author information that a linear probe can decode, but not in a form the current lenses can read. Target and control share the same timing; target simply carries a stronger signal (true − false gap 0.42 vs 0.21). Two agreement checks in the GPU smoke test fell slightly below threshold because of bf16 rounding in batched GPU runs; they do not affect these results, as patching at L63 recovers exactly 1 (tokens after the title) and 0 (last title token).</p>
   </div>
+
+  <h3>6.12 名字先验（name prior）有多大？以及标题位置 probe 的对照检验 <span class="en">How large is the name prior? And controls for the title-position probe</span></h3>
+  <div class="pair">
+    <p class="zh"><b>拆解方法。</b>同一批名字 token 在三种条件下打分：不给标题（只剩"名字本身好不好猜"，即名字先验）、给匹配的假标题、给真标题。三者之差分别是"主题"（假标题 − 不给标题）和"论文特有"（真标题 − 假标题）。下面是模型最终输出上的结果，单位 log10(1/名次)。</p>
+    <p class="en"><b>Decomposition.</b> The same name tokens are scored with no title (only how guessable the name is: the name prior), with matched false titles, and with the true title. The differences are "topic" (false − no title) and "paper-specific" (true − false). Values below are at the model output, in log10(1/rank).</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>token 类型 · 组</th><th>不给标题（先验）</th><th>假标题</th><th>真标题</th><th>论文特有</th></tr></thead><tbody>
+<tr><td>全部 token all tokens · target</td><td>-1.061</td><td>-1.189</td><td>-0.708</td><td>+0.481</td></tr>
+<tr><td>全部 token all tokens · control</td><td>-1.150</td><td>-1.203</td><td>-1.004</td><td>+0.200</td></tr>
+<tr><td>姓的第一个 token surname 1st · target</td><td>-2.164</td><td>-2.302</td><td>-1.380</td><td>+0.921</td></tr>
+<tr><td>姓的第一个 token surname 1st · control</td><td>-2.169</td><td>-2.208</td><td>-1.917</td><td>+0.291</td></tr>
+<tr><td>姓的其余 surname rest · target</td><td>-0.812</td><td>-0.960</td><td>-0.242</td><td>+0.718</td></tr>
+<tr><td>姓的其余 surname rest · control</td><td>-0.890</td><td>-0.943</td><td>-0.607</td><td>+0.336</td></tr>
+<tr><td>名的第一个 token given 1st · target</td><td>-2.235</td><td>-2.417</td><td>-2.005</td><td>+0.412</td></tr>
+<tr><td>名的第一个 token given 1st · control</td><td>-2.246</td><td>-2.324</td><td>-2.089</td><td>+0.236</td></tr>
+<tr><td>首字母 initial · target</td><td>-0.871</td><td>-1.070</td><td>-0.924</td><td>+0.146</td></tr>
+<tr><td>首字母 initial · control</td><td>-0.884</td><td>-1.004</td><td>-0.923</td><td>+0.081</td></tr>
+<tr><td>标点 punctuation · target</td><td>-0.020</td><td>-0.032</td><td>-0.029</td><td>+0.003</td></tr>
+<tr><td>标点 punctuation · control</td><td>-0.038</td><td>-0.048</td><td>-0.041</td><td>+0.007</td></tr>
+  </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>名字先验很大，但集中在好猜的 token 上。</b>不给标题时，正确名字平均已排在第 12 名左右（−1.09），因为标点、姓的后半段在给定前缀后本来就好猜。真标题让平均名次再好约 2.4 倍。真正需要"认识这篇论文"的是姓的第一个 token：目标组从约第 146 名提高到约第 24 名。首字母几乎只靠先验。</p>
+    <p class="en"><b>The name prior is large, but concentrated on easy tokens.</b> With no title the correct name already ranks about 12th on average (−1.09), because punctuation and the rest of a surname are easy once the prefix is given. The true title improves the average rank by about 2.4×. What really needs knowledge of the paper is the first surname token: for target papers from about rank 146 to rank 24. Initials depend almost only on the prior.</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>目标 − 对照（引用档内）</th><th>先验</th><th>主题</th><th>论文特有</th><th>真标题</th></tr></thead><tbody>
+<tr><td>全部 token all tokens</td><td class="pos">+0.087<span class="ci">[+0.070, +0.103]</span></td><td class="neg">-0.047<span class="ci">[-0.055, -0.038]</span></td><td class="pos">+0.207<span class="ci">[+0.195, +0.220]</span></td><td class="pos">+0.247<span class="ci">[+0.229, +0.265]</span></td></tr>
+<tr><td>姓的第一个 token surname 1st</td><td>+0.022<span class="ci">[-0.019, +0.063]</span></td><td class="neg">-0.055<span class="ci">[-0.072, -0.038]</span></td><td class="pos">+0.423<span class="ci">[+0.393, +0.454]</span></td><td class="pos">+0.391<span class="ci">[+0.345, +0.435]</span></td></tr>
+<tr><td>姓的其余 surname rest</td><td class="pos">+0.063<span class="ci">[+0.028, +0.096]</span></td><td class="neg">-0.076<span class="ci">[-0.094, -0.058]</span></td><td class="pos">+0.279<span class="ci">[+0.254, +0.305]</span></td><td class="pos">+0.266<span class="ci">[+0.236, +0.296]</span></td></tr>
+<tr><td>名的第一个 token given 1st</td><td>+0.036<span class="ci">[-0.021, +0.090]</span></td><td class="neg">-0.060<span class="ci">[-0.086, -0.035]</span></td><td class="pos">+0.180<span class="ci">[+0.141, +0.220]</span></td><td class="pos">+0.156<span class="ci">[+0.096, +0.217]</span></td></tr>
+<tr><td>首字母 initial</td><td>+0.010<span class="ci">[-0.011, +0.031]</span></td><td class="neg">-0.028<span class="ci">[-0.045, -0.012]</span></td><td class="pos">+0.052<span class="ci">[+0.033, +0.070]</span></td><td class="pos">+0.033<span class="ci">[+0.010, +0.057]</span></td></tr>
+  </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>目标组和对照组的差距里有多少是先验？</b>全部 token 上，真标题下的差距 +0.247 可以拆成：先验 +0.087（目标组的名字即使不给标题也略好猜），主题 −0.047（假标题把一部分拉回），论文特有 +0.207。所以以"不给标题"为基线时，先验约占差距的三分之一；以假标题为基线（本报告的标题特异信号）时，差距主要是论文特有的。在姓的第一个 token 上，先验差距约为 0（+0.022，区间跨过 0），论文特有 +0.42。</p>
+    <p class="en"><b>How much of the target − control gap is prior?</b> Over all tokens, the true-title gap of +0.247 splits into prior +0.087 (target names are a bit easier to guess even without a title), topic −0.047 (false titles take part of it back), and paper-specific +0.207. Against a no-title baseline the prior is about a third of the gap; against false titles (this report's title-specific signal) the gap is mainly paper-specific. On the first surname token the prior gap is about 0 (+0.022, CI includes 0) and the paper-specific part is +0.42.</p>
+  </div>
+  <div class="pair">
+    <p class="zh"><b>先验会不会就是"认得出名单"的原因？</b>在写不出作者的论文里（R0/R1），按引用档中心化后，先验与多选题答对次数的 Spearman 相关只有 +0.085 [+0.063, +0.106]，而论文特有部分是 +0.329 [+0.312, +0.346]。所以"认出名单"主要不是名字好猜造成的。名字常见程度（姓在全部作者中的出现次数）与先验呈负相关（ρ = -0.215），目标组的姓反而略不常见：语料里常见的姓并不更容易被猜中，先验更可能来自名字的字面规律（前缀、拼写）而不是常见度。</p>
+    <p class="en"><b>Does the prior explain recognition?</b> Among papers whose authors the model cannot write (R0/R1), centred within citation bins, the Spearman correlation of the prior with multiple-choice orders right is only +0.085 [+0.063, +0.106], against +0.329 [+0.312, +0.346] for the paper-specific part, so recognition is mostly not driven by easy names. Name commonness (how often the surname appears among all cohort authors) correlates negatively with the prior (ρ = -0.215), and target surnames are slightly less common: common surnames are not easier to guess here, so the prior seems to come from the form of the name (prefix, spelling) more than from frequency.</p>
+  </div>
+  <div class="pair">
+    <p class="zh"><b>标题位置 probe 的对照检验。</b>§6.11 中线性 probe 能在标题最后一个 token 上读出少量信号，当时担心它学到的只是"这类题目常配这类名字"。现在做了三个对照：把评分用的正确作者换成随机另一篇论文的作者、换成同领域另一篇论文的作者，信号都降为 0；只用假标题数据训练 probe，信号反而更强。因此这部分信号是这篇论文特有的：标题最后一个 token 上从 L24 起就有可被线性读出的、属于这篇论文的作者信息（目标组更多），只是现有 lens 读不出来。</p>
+    <p class="en"><b>Controls for the title-position probe.</b> §6.11 found a small probe signal at the last title token, with the concern that it might only be "this kind of title goes with these kinds of names". Three controls: scoring against the authors of a random other paper, or of a random paper in the same field, drops the signal to 0; training the probe only on false-title pairs makes it stronger. The signal is therefore specific to the paper: from L24 the last title token carries linearly decodable author information about this paper (more for target papers), which the current lenses cannot read.</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>层 · 对照</th><th>标题特异信号（全部论文）</th><th>目标 − 对照</th></tr></thead><tbody>
+<tr><td>L24 · 原 probe / probe (as in Stage 11)</td><td class="pos">+0.045<span class="ci">[+0.040, +0.050]</span></td><td class="pos">+0.024<span class="ci">[+0.010, +0.038]</span></td></tr>
+<tr><td>L24 · 答案换成随机另一篇论文的作者 / gold = random other paper</td><td>-0.002<span class="ci">[-0.007, +0.003]</span></td><td>-0.012<span class="ci">[-0.025, +0.002]</span></td></tr>
+<tr><td>L24 · 答案换成同领域另一篇论文的作者 / gold = random paper of the same field</td><td>+0.002<span class="ci">[-0.003, +0.007]</span></td><td>-0.003<span class="ci">[-0.017, +0.011]</span></td></tr>
+<tr><td>L24 · 只用假标题数据训练 probe / probe trained on FALSE-title pairs</td><td class="pos">+0.068<span class="ci">[+0.063, +0.073]</span></td><td class="pos">+0.050<span class="ci">[+0.034, +0.065]</span></td></tr>
+<tr><td>L40 · 原 probe / probe (as in Stage 11)</td><td class="pos">+0.062<span class="ci">[+0.056, +0.067]</span></td><td class="pos">+0.032<span class="ci">[+0.017, +0.048]</span></td></tr>
+<tr><td>L40 · 答案换成随机另一篇论文的作者 / gold = random other paper</td><td>-0.003<span class="ci">[-0.008, +0.003]</span></td><td>-0.009<span class="ci">[-0.024, +0.007]</span></td></tr>
+<tr><td>L40 · 答案换成同领域另一篇论文的作者 / gold = random paper of the same field</td><td>-0.004<span class="ci">[-0.010, +0.002]</span></td><td>-0.001<span class="ci">[-0.016, +0.013]</span></td></tr>
+<tr><td>L40 · 只用假标题数据训练 probe / probe trained on FALSE-title pairs</td><td class="pos">+0.081<span class="ci">[+0.076, +0.087]</span></td><td class="pos">+0.051<span class="ci">[+0.034, +0.067]</span></td></tr>
+<tr><td>L56 · 原 probe / probe (as in Stage 11)</td><td class="pos">+0.081<span class="ci">[+0.075, +0.087]</span></td><td class="pos">+0.038<span class="ci">[+0.021, +0.055]</span></td></tr>
+<tr><td>L56 · 答案换成随机另一篇论文的作者 / gold = random other paper</td><td>+0.001<span class="ci">[-0.005, +0.006]</span></td><td>-0.006<span class="ci">[-0.024, +0.010]</span></td></tr>
+<tr><td>L56 · 答案换成同领域另一篇论文的作者 / gold = random paper of the same field</td><td>+0.000<span class="ci">[-0.006, +0.006]</span></td><td>-0.009<span class="ci">[-0.025, +0.008]</span></td></tr>
+<tr><td>L56 · 只用假标题数据训练 probe / probe trained on FALSE-title pairs</td><td class="pos">+0.094<span class="ci">[+0.088, +0.100]</span></td><td class="pos">+0.052<span class="ci">[+0.035, +0.069]</span></td></tr>
+  </tbody></table></div>
 </section>
 
 <section>
@@ -816,7 +873,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     <li>每位作者单独打分（接在 "Authors:" 后），不涉及作者顺序和合作者关系。<span class="en">Each author is scored alone after "Authors:"; author order and co-authorship are not tested.</span></li>
     <li>名次基于 bf16 输出的 logits，并列时按有利方向计（只数严格更大的 logit）。<span class="en">Ranks use bf16 logits; ties are counted favourably (only strictly greater logits count).</span></li>
     <li>细层（L50–55、L57–61）只算了 public Jacobian lens 和 logit lens（self100 和 fitA 只拟合了 6–7 个层，要加细层需要重新拟合）；§6.7–6.9 的补充分析只用了主轮的 6 个层。<span class="en">The fine layers (L50–55, L57–61) were computed for the public Jacobian lens and the logit lens only (self100 and fitA were fitted at 6–7 layers, so fine layers would need new fits); the follow-up analyses in §6.7–6.9 use the 6 main-round layers.</span></li>
-    <li>Stage 11 的替换和阻断确定了标题信息被读取的时间（L24–L50）和路径（经过标题之后的 token），但还没有确定这些层内部具体由哪些注意力头或 MLP 完成；E4b 的 probe 可能包含跨论文的题目与名字关联。<span class="en">Stage 11 patching and knockout fix when (L24–L50) and through which positions (the tokens after the title) the title is read, but not which attention heads or MLPs do it inside those layers; the E4b probe may include cross-paper topic → name associations.</span></li>
+    <li>Stage 11 的替换和阻断确定了标题信息被读取的时间（L24–L50）和路径（经过标题之后的 token），但还没有确定这些层内部具体由哪些注意力头或 MLP 完成<span class="en">Stage 11 patching and knockout fix when (L24–L50) and through which positions (the tokens after the title) the title is read, but not which attention heads or MLPs do it inside those layers</span></li>
     <li>6.7 中"第 1 个 token 是否进前 10"的分组是观察性的，两组作者在名字格式、长度等方面不同；按名字格式分开后结论才稳定。<span class="en">The top-10 split in 6.7 is observational; the two sets of authors differ in name format and length, and the conclusion is stable only after separating name formats.</span></li>
   </ul>
 </section>
