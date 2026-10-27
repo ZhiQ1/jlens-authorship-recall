@@ -96,7 +96,7 @@ s = new_slide('Opening. One question: when Qwen3-32B "knows" who wrote a paper, 
 text(s, 0.9, 1.6, 11.5, 1.2, 'Where does Qwen3-32B', size=66, font=TITLE_F, bold=True)
 text(s, 0.9, 2.65, 11.5, 1.2, [[('hold', {'color': TGT, 'bold': True}), (" a paper's authors?", {'bold': True})]], size=66, font=TITLE_F)
 text(s, 0.95, 4.05, 10.5, 0.6, 'A layer-by-layer readout of author names for 9,108 papers', size=26, color=MUTE)
-note(s, 8.9, 5.0, 3.6, 1.45, [[B('Stage 10 · jlens')], [T('Qwen3-32B · 2026-10-26')]], rot=2, size=20)
+note(s, 8.9, 5.0, 3.6, 1.45, [[B('Stages 10-11 · jlens')], [T('Qwen3-32B · 2026-10-27')]], rot=2, size=20)
 
 # 2 question -----------------------------------------------------------------
 s = new_slide('Earlier labels: for about half of the papers the model cannot write the authors when asked openly, but picks the true author list in a 4-option multiple choice. We call these target papers. Control papers: cannot write, cannot pick. If recognition is already computed in middle layers, a lens should read the right names better for target than control there.')
@@ -108,18 +108,29 @@ text(s, 6.9, 2.0, 5.8, 3.5, [[T('If the model already '), B('knows'), T(' target
 note(s, 7.4, 5.25, 4.6, 1.2, [[B('So: at which layer does target pull ahead of control?')]], rot=-2, size=20)
 
 # 3 data -----------------------------------------------------------------
-s = new_slide('Data: 9,108 papers across 8 fields, years 1817-2020, citations 0 to 63,901 in 13 bins. Each author is scored alone: 33,811 author contexts, 149,999 name tokens.')
+s = new_slide('Data: the evaluation set of the Dreaming Up Authors study, reused as is. It started from 9,999,863 random OAG v2 records, enriched with Semantic Scholar (citations, canonical names, fields, September 2025) and filtered: journal and conference papers, 1 to 19 authors, English (FastText at least 0.8), clean person names, title and first-author surname agreeing between OAG and Semantic Scholar. 1.92 million papers remained. 8 fields chosen by frequency (77 percent of the data), 13 exponential citation bins, up to 100 papers per field and bin: 9,108 papers. Each author is scored alone: 33,811 author contexts, 149,999 name tokens.')
 title(s, 'The data')
 stats = [('9,108', 'papers, 8 fields'), ('33,811', 'author names'), ('149,999', 'name tokens scored'), ('13', 'citation bins (0 to 63,901)')]
 for i, (n, lab) in enumerate(stats):
     x = 0.9 + i * 3.1
     text(s, x, 1.75, 2.9, 1.0, n, size=54, font=TITLE_F, bold=True, color=[TGT, CTL, GRN, INK][i])
     text(s, x, 2.75, 2.8, 0.6, lab, size=19, color=MUTE)
-text(s, 0.9, 3.9, 6.6, 2.8, [[B('Groups'), T(' (from an earlier labelling run of the same model)')],
+text(s, 0.9, 3.55, 11.6, 0.8, [[B('Source: '), T('the '), B('Dreaming Up Authors'), T(' evaluation set. 9,999,863 random OAG v2 records + Semantic Scholar metadata (Sep 2025) -> quality filters -> 1.92 M papers -> up to 100 per field x citation bin')]], size=18, color=INK)
+text(s, 0.9, 4.45, 6.6, 2.4, [[B('Groups'), T(' (group lead\'s labelling run, same model)')],
                             [B('target', TGT), T('  4,621   ·   '), B('control', CTL), T('  2,220')],
                             [T('guard (writes the authors)  214   ·   excluded  2,053')],
                             [T('Medicine, biology, CS, psychology, chemistry, maths, physics, materials science: ~1,100 papers each')]], size=20, space=12)
-note(s, 8.2, 4.1, 4.3, 2.3, [[B('Name formats')], [T('73% start with an initial  ("S. Bree")')], [T('26% start with a full given name  ("Yan Zhao")')]], rot=1.5)
+note(s, 8.2, 4.55, 4.3, 2.1, [[B('Name formats')], [T('73% start with an initial  ("S. Bree")')], [T('26% start with a full given name  ("Yan Zhao")')]], rot=1.5)
+
+# 3b labels, distractors, false titles, statistics ---------------------------------------
+s = new_slide('The rules behind every number. Open answer: greedy decoding inside the chat template; a deterministic fuzzy name match counts matched, hallucinated and unretrieved authors; HR2 = (H+U)/(M+H+U); R2 if HR2 is at most 0.5, otherwise R0 if nothing matched and R1 if something did. No human or model judge. Multiple choice: the true list against the real teams of 3 other papers from the same field, with similar team size, the same citation bin and a similar year; 4 orders; the letter probabilities come from the next-token distribution, A and space-A summed, not renormalised (mass is 1.00 on average). Target: 4 of 4 orders right and mean true-letter probability at least 0.5; control: at most 1 of 4. False titles: 5 per paper from the same field, year kept, minimum-cost matching on year, author count, title length and citation bin, no shared surname, word Jaccard at most 0.6; 79 percent strict tier. Statistics: target versus control only within citation bins with at least 30 papers per group, weighted n_t n_c over n_t plus n_c; bootstrap over papers 2,000 times; sensitivity without bins 0-4.')
+title(s, 'How groups and contrasts are built', 'labels: group lead\'s pipeline on the same Qwen3-32B · we use them unchanged')
+cards = [('open answer -> R0 / R1 / R2', ['greedy, chat template', 'fuzzy name match: M, H, U', 'HR2 = (H+U) / (M+H+U)', 'R2: HR2 <= 0.5 · R0: M = 0 · R1: M > 0', 'a fixed rule, no human or model judge'], INK, -0.6),
+         ('multiple choice -> target / control', ['true list + 3 real teams of other papers', '(same field, team size, citation bin, ~year)', '4 orders · p(letter) from next token', 'target: 4/4 and mean p(true) >= 0.5', 'control: <= 1/4'], TGT, 0.6),
+         ('5 false titles per paper', ['same field, own year kept', 'min-cost on |dyear|/5 + |dauthors|', '+ |dtitle tokens| + 1.5 |dcitation bin|', 'no shared surname, Jaccard <= 0.6', '79% strict tier'], CTL, 0.5),
+         ('statistics', ['target vs control only within citation bin', '10 bins with >= 30 per group', 'weight n_t n_c / (n_t + n_c)', '95% bootstrap over papers, 2,000', 'sensitivity: drop bins 0-4'], GRN, -0.5)]
+for i, (h, lines, col, rot) in enumerate(cards):
+    box(s, 0.75 + (i % 2) * 6.15, 1.65 + (i // 2) * 2.7, 5.85, 2.5, [[B(h, col)]] + [[T(l)] for l in lines], color=col, size=16, rot=rot)
 
 # 4 method -----------------------------------------------------------------
 s = new_slide('Method. Prompt: Who are the authors of the paper titled "..." (year)? Authors: then one author name. Teacher forcing: at each name token we ask what rank the correct token gets. Readouts: logit lens, three Jacobian lenses (public from Neuronpedia, self100, fitA), and the real model output. Layers 24 to 62. Metric log10(1/rank): 0 = rank 1, -1 = rank 10. Each paper is also run with 5 matched false titles and with no title; title-specific signal = true minus mean of the false titles, so name guessability cancels out.')
@@ -132,7 +143,7 @@ box(s, 9.4, 1.55, 3.3, 1.9, [[B('readouts')], [T('logit lens')], [T('3 Jacobian 
 text(s, 0.85, 3.85, 5.9, 2.6, [[B('Score'), T(' = rank of the correct next name token,')], [T('as log10(1 / rank):  0 = rank 1,  -1 = rank 10')],
                               [B('7 title conditions'), T(': the true title, 5 matched false titles, no title')]], size=20, space=12)
 note(s, 7.3, 4.0, 5.2, 2.3, [[B('title-specific signal')], [T('= true title  -  mean(5 false titles)')], [T('Same name, same tokens: what is left is knowing ')], [B('this paper', TGT)]], rot=-1.5, size=20)
-cap(s, 'Target vs control is always compared within a citation bin. 95% bootstrap CIs over papers (2,000 draws).')
+cap(s, 'Lenses (model weights never change; Jacobians to L63 averaged over prompts): public = 557 WikiText-103 prompts (Neuronpedia) · self100 = 100 frozen WikiText-103 prompts · fitA = 100 other WikiText-103 prompts (Stage 9: one skipped prompt replaced -> 100 valid)', y=6.7)
 
 # 5 checks -----------------------------------------------------------------
 s = new_slide('Checks before trusting numbers: the fast path matches a per-prefix reference up to bf16 rounding; ranks match a previous stage on 972 tokens; punctuation tokens, which cannot depend on the title, show no title-specific signal. The parity tolerance was raised from 0.25 to 0.5 after seeing the results - say this openly.')
@@ -169,9 +180,9 @@ note(s, 9.95, 1.9, 2.9, 3.4, [[T('Logit lens: target - control')], [B('+0.007 at
 
 # S11a method -----------------------------------------------------------------
 s = new_slide('Stage 11 turns the readout question into interventions. 593 target and 593 control papers, matched within citation bins. Patching: run the paper with its true title and with a matched false title, and copy the true run hidden state into the false run at one layer. Knockout: forbid attention to the title tokens from layer l to the end. Probe: train a linear map from the last title token to the output state. Chain: score every author after the previous ones.')
-title(s, 'Stage 11: intervene, do not just read', '593 target + 593 control papers (balanced within citation bins) · all 9,108 for probe and chain')
+title(s, 'Stage 11: intervene, do not just read', '593 + 593 papers: min(60, n_t, n_c) per citation bin, seed 11 · patch uses false_0 · knockout masks all heads · all 9,108 for probe and chain')
 items = [('patch', 'copy the true-title hidden state into the false-title run at one layer', TGT, -1),
-         ('knock out', 'block attention to the title tokens from layer l on', CTL, 1),
+         ('knock out', 'block attention to the title tokens (all heads) from layer l to the last layer', CTL, 1),
          ('probe', 'linear map from the last title token to the output state', GRN, -0.5),
          ('chain', '"Authors: A1, A2, ..." instead of each author alone', INK, 0.8)]
 for i, (h, d, col, rot) in enumerate(items):
@@ -185,10 +196,10 @@ chart(s, 'c12_patch_knockout', 0.5, 1.6, 9.2)
 note(s, 9.95, 1.9, 2.9, 3.6, [[B('L52+', TGT), T(': title no longer needed')], [T('info moved to the tokens '), B('right after'), T(' the title')], [T('same timing for target and control')]], rot=1.5, size=18)
 
 # S11c title position -----------------------------------------------------------------
-s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more, 0.04 at L16 rising to 0.08 at L56, and a little more for target papers. The controls on the next slide show this probe signal is specific to the paper, not a topic-to-name association.')
-title(s, 'Lenses cannot read it at the title token', 'title-specific signal at the last title token · all 9,108 papers')
+s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more, 0.04 at L16 rising to 0.08 at L56, and a little more for target papers. The controls (appendix) show this probe signal is specific to the paper, not a topic-to-name association. This is not in conflict with the lens result: the title is read early, at the title token, but names only become readable at the name positions in L57 to L61. Read early, spoken late.')
+title(s, 'Read early: a probe finds it at the title', 'title-specific signal at the last title token · all 9,108 papers')
 chart(s, 'c13_title_position', 0.5, 1.6, 9.2)
-note(s, 9.95, 1.9, 2.9, 3.6, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.04 -> 0.08', GRN)], [T('target higher; paper-specific (next slide)')]], rot=-1.5, size=18)
+note(s, 9.95, 1.9, 2.9, 4.2, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.04 -> 0.08', GRN)], [T('target > control by '), B('+0.02-0.04', TGT)], [B('read early', GRN), T(' (title, L16-24), '), B('spoken late', TGT), T(' (names, L57-61)')]], rot=-1.5, size=18)
 
 # S11d chain -----------------------------------------------------------------
 s = new_slide('Author chain. When the earlier authors are in the context, later authors become easier: plus 0.17 to 0.23 for target, 0.12 to 0.18 for control. But the title matters less: the title-specific signal drops from 0.45 to 0.26 for later target authors, because the co-authors already identify the paper. Target still beats control within bins, plus 0.11 to 0.15.')
@@ -246,11 +257,11 @@ chart(s, 'c10_graded', 7.9, 1.9, 5.0)
 cap(s, 'Right: R0/R1 papers, centred within citation bin; Spearman rho = 0.27, p < 0.001.')
 
 # 15 conclusions -----------------------------------------------------------------
-s = new_slide('Wrap up the five findings.')
-title(s, 'What we learned')
-pts = [('Late', 'Paper-specific author knowledge builds up from about L50, fastest over L57-L61, peaking at L61-L62.'),
-       ('Read early', 'Causally, the title is read in L24-L50 and moved into the tokens after it; after L52 it is no longer needed.'),
-       ('No head start', 'Target papers are not ahead of control in middle layers; the +0.21 gap is at the end.'),
+s = new_slide('Wrap up. One line: read early, spoken late. The title is taken in during L24 to L50 (patching, knockout, probe at the title token), but the author names only become readable at the name positions in L57 to L61. The lens result (no middle-layer lead for target) and the probe result (a small target lead at the title token) are about different positions and do not conflict.')
+title(s, 'What we learned: read early, spoken late')
+pts = [('Read early', 'Causally the title is read in L24-L50 and moved into the tokens after it; after L52 it is no longer needed. A probe at the title token reads a little of it from L16-L24.'),
+       ('Spoken late', 'At the name positions, paper-specific author knowledge becomes lens-readable only from ~L50, fastest over L57-L61.'),
+       ('No lens lead', 'Read with a lens at the names, target is not ahead of control in middle layers; the +0.21 gap is at the end (probe at the title: +0.02-0.04).'),
        ('Real knowledge', 'Name prior is ~1/3 of the gap overall but ~0 on surnames; the rest is paper-specific and grows with citations.'),
        ('Lenses agree', 'Jacobian lenses read more in middle layers, but nothing target-specific.'),
        ('Name format', 'Initials carry little; full given names carry as much as surnames and help predict them.')]
@@ -260,10 +271,20 @@ for i, (h, b) in enumerate(pts):
     text(s, 4.0, y + 0.1, 8.6, 0.85, b, size=20)
 
 # 16 caveats & next -----------------------------------------------------------------
-s = new_slide('Limits and next steps. Patching and knockout now fix when the title is read (L24-L50) but not what happens inside those layers. Next: patch single positions after the title, localise the computation inside L24-L50, and repeat on a second model.')
+s = new_slide('Limits and next steps. Patching and knockout fix when the title is read (L24-L50) but not what happens inside those layers. Stage 12 is running: single-position patching, attention versus MLP patching, a lens fitted on author prompts, and two name-prior baselines. A second model is out of scope: the groups come from the group lead labelling run of Qwen3-32B.')
 title(s, 'Caveats and next steps')
 text(s, 0.9, 1.6, 6.0, 4.8, [[B('Caveats')], [T('- Readout is correlational; patching/knockout fix the timing, not the mechanism inside L24-L50')], [T('- Parity tolerance raised 0.25 -> 0.5 after the fact')],
-                            [T('- Groups are model-specific; low-citation "recognition" is near chance')], [T('- Few control papers above 1,000 citations')]], size=21, space=10)
-note(s, 7.4, 1.7, 5.1, 3.6, [[B('Next')], [T('1. Patch single positions (quote, year, "Authors:") to find which token carries the paper')], [T('2. Patch / probe per layer inside L24-L50 to see when it is computed')], [T('3. Repeat on a second model')]], rot=1.5, size=19)
+                            [T('- Groups are model-specific; low-citation "recognition" is near chance')], [T('- Few control papers above 1,000 citations')], [T('- Label run settings (max length, thinking mode) not in the package')]], size=21, space=10)
+note(s, 7.4, 1.7, 5.1, 3.9, [[B('Stage 12 (running)')], [T('1. Patch single positions (quote, year, "Authors:") - done, analysing')], [T('2. Attention vs MLP patching in L8-L56')], [T('3. A lens fitted on author prompts, read at L24-L62')], [T('4. Name-prior baselines: distractor lists without a title; a prompt with no paper')]], rot=1.5, size=19)
 
-out = HERE / 'Stage10_author_readout_talk.pptx'; prs.save(out); print('saved', out)
+# appendix divider -----------------------------------------------------------------
+s = new_slide('Appendix: backup slides for questions - checks, readout levels, the author chain, probe controls, lens comparisons, citations and name formats.')
+text(s, 0.9, 2.6, 11.5, 1.2, 'Appendix', size=72, font=TITLE_F, bold=True)
+text(s, 0.95, 3.9, 11, 0.8, 'checks · readout levels · author chain · probe controls · lenses · citations · name formats', size=24, color=MUTE)
+
+# order: main line (14 slides), then the appendix. Indices are build order.
+ORDER = [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 14, 22, 23,   24,   5, 6, 13, 15, 16, 17, 18, 19, 20, 21]
+lst = prs.slides._sldIdLst; ids = list(lst); assert sorted(ORDER) == list(range(len(ids))), (len(ids), ORDER)
+for e in ids: lst.remove(e)
+for i in ORDER: lst.append(ids[i])
+out = HERE / 'Stage10_author_readout_talk.pptx'; prs.save(out); print('saved', out, len(ids), 'slides')

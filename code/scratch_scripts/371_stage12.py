@@ -277,30 +277,46 @@ def save(u, d, env, root=None):
     tmp = f.with_name(f.stem + f'.tmp{os.getpid()}.npz'); np.savez(tmp, meta=np.array(json.dumps(dict(unit=list(u), created=now(), **env))), **d); os.replace(tmp, f)
 
 
-# ------------------------------------------------------------------ work loop (claims as in Stage 11; fit jobs are separate)
+# ------------------------------------------------------------------ work loop (claims as in Stage 11; any job may take the fit)
 def work(a):
     budget = a.max_minutes; t0 = time.monotonic(); me = os.environ.get('SLURM_JOB_ID', f'local{os.getpid()}')
     left = s11.slurm_minutes_left()
     if left is not None and (budget is None or left - 8 < budget): budget = left - 8
     CL = ROOT / 'logs/claims'; CL.mkdir(parents=True, exist_ok=True)
-    C, last = None, 0.0
-    if a.fit:                                            # fit job: one at a time, resumable
-        if fit_done(): log('author lens already complete; doing ordinary units instead')
-        elif s11.claim(CL / 'alens_fit', me):
-            C = s11.Ctx()
-            try: fit_step(C, budget - (time.monotonic() - t0) / 60)
-            except Exception as e:
-                import traceback; log('FIT ERROR (recorded, not stopping the queue):', repr(e)); dump(ROOT / f'logs/fit_error_{me}.json', dict(error=repr(e), tb=traceback.format_exc()))
-            finally: os.rename(CL / 'alens_fit', CL / f'alens_fit.done_{me}_{int(time.time())}')
-            if not fit_done() and (ROOT / f'logs/fit_error_{me}.json').exists(): return   # after a fit error, do not reuse this CUDA context
-        else: log('another job is fitting; doing ordinary units')
+    C, last, last_try = None, 0.0, 0.0
+
+    def try_fit(C):
+        """2026-10-27: ANY job (s12w, s12fit, or a s10p/s11w hand-over) continues the author-lens fit when no other job
+        holds it, so the fit (critical path for the 144 alens_read units) never waits for a dedicated s12fit job and no
+        GPU leaves while fitting is still open. Returns (C, stop)."""
+        nonlocal last_try; last_try = time.monotonic()
+        rest = budget - (time.monotonic() - t0) / 60
+        if fit_done() or any((ROOT / 'logs').glob('fit_error_*.json')) or rest < 20 or not s11.claim(CL / 'alens_fit', me): return C, False
+        if C is None: C = s11.Ctx()
+        try: fit_step(C, rest)
+        except Exception as e:
+            import traceback; log('FIT ERROR (recorded, not stopping the queue):', repr(e)); dump(ROOT / f'logs/fit_error_{me}.json', dict(error=repr(e), tb=traceback.format_exc()))
+        finally: os.rename(CL / 'alens_fit', CL / f'alens_fit.done_{me}_{int(time.time())}')
+        # after a fit error, do not reuse this CUDA context
+        return C, (not fit_done() and (ROOT / f'logs/fit_error_{me}.json').exists())
+
+    C, stop = try_fit(C)                                          # an unresolved fit_error_*.json disables fitting until fixed
+    if stop: return
     log(f'stage12 work: job {me}, budget {budget:.0f} min')
     while True:
+        if not fit_done() and time.monotonic() - last_try > 600:      # the fit job may have ended: take the fit over
+            C, stop = try_fit(C)
+            if stop: return
         U = units(); u = None
         for v in U:
             if out_path(v).exists(): continue
             if s11.claim(CL / '_'.join(str(x) for x in v if x is not None), me): u = v; break
-        if u is None: log('stage12: nothing left to claim'); return
+        if u is None:
+            if not fit_done():
+                C, stop = try_fit(C)
+                if stop: return
+                if fit_done(): continue                      # the alens_read units are now open
+            log('stage12: nothing left to claim', '' if fit_done() else '(author-lens fit held by another job)'); return
         if C is not None and (time.monotonic() - t0) / 60 + 1.5 * last / 60 > budget:
             d = CL / '_'.join(str(x) for x in u if x is not None); os.rename(d, d.with_name(d.name + f'.released_{me}')); log('time budget reached; released', u); return
         if C is None: C = s11.Ctx()
