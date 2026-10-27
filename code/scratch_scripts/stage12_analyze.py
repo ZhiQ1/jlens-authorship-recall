@@ -46,11 +46,13 @@ def main(ROOT, R10, s10, s11):
     d = load_dir(ROOT / 'raw/patch_pos'); items = list(d['items']); layers = list(d['layers'])
     pid = toks.set_index('row_id').loc[d['row_id']].paper_id.to_numpy(); nt = nlr(d['rank_true']); P = nlr(d['rank_patch'])   # [n, L, I]
     none = P[:, :, items.index('none')]
+    valid = d['valid'] if 'valid' in d else np.ones((P.shape[0], P.shape[2]), bool)   # offset the paper's tail does not have
     rows = []
     for li, l in enumerate(layers):
         for ii, it in enumerate(items):
             if it == 'none': continue
-            df = pd.DataFrame({'paper_id': pid, 'num': P[:, li, ii] - none[:, li], 'den': nt - none[:, li]}).groupby('paper_id').mean().join(smp.set_index('paper_id'))
+            ok = valid[:, ii]
+            df = pd.DataFrame({'paper_id': pid[ok], 'num': (P[:, li, ii] - none[:, li])[ok], 'den': (nt - none[:, li])[ok]}).groupby('paper_id').mean().join(smp.set_index('paper_id'))
             for g in ['all', 'target', 'control']:
                 s = df if g == 'all' else df[df.group == g]; r = boot_ratio(s.num, s.den)
                 rows.append(dict(layer=l, item=it, group=g, recovery=r[0], lo=r[1], hi=r[2]))

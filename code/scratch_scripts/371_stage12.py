@@ -33,6 +33,7 @@ s10 = s11.s10; R10 = s11.R10
 ROOT = Path('/scratch') / os.environ.get('USER', '') / 'jlens/371_stage12'
 LABELS = Path(s10.LABELS).parent
 PP_LAYERS = [32, 40, 44, 48, 50, 52, 56]
+MAX_TAIL = 9                       # longest aligned prompt tail in the Stage 11 sample (8 or 9 tokens)
 PC_LAYERS = [8, 16, 24, 28, 32, 36, 40, 44, 48, 52, 56]
 PURE_PROMPT = 'The following is the name of a researcher.\nName:'
 PURE_PLAN = [('final', 63)] + [(r, l) for r in ('logit', 'jlens_public') for l in (48, 56, 62)]
@@ -71,7 +72,8 @@ def units():
     U = [('patch_pos', None, k) for k in range(n11)] + [('patch_comp', None, k) for k in range(n11)] + \
         [('prior_mc', c, k) for c in ('delete', 'true') for k in range(m['n_shards'])] + [('prior_pure', None, k) for k in range(m['n_shards'])]
     if fit_done(): U += [('alens_read', c, k) for c in TC for k in range(n11)]
-    return U
+    broken = {f.stem[len('broken_'):] for f in (ROOT / 'logs').glob('broken_*.json')}
+    return [u for u in U if u[0] not in broken]
 
 
 def all_units():
@@ -111,9 +113,14 @@ def do_patch_pos(C, shard):
             gold = torch.tensor(name, device=C.model.input_device)
             acts = s11.record(C, T, PP_LAYERS)
             # items: ('none'), each prompt-tail offset (from the end of the prompt), 'names', 'all'
-            items = [('none', [])] + [(f'p{S - i}', [len(pt) - S + i]) for i in range(S)] + [('names', list(range(len(pt), len(T))))] + [('all', list(range(len(T) - tail, len(T))))]
+            # fixed item set (the aligned prompt tail is 8 or 9 tokens long): offsets the paper does not have stay unpatched
+            # and are marked invalid, so every context has the same columns
+            have = {f'p{S - i}': [len(pt) - S + i] for i in range(S)}
+            items = [('none', [])] + [(f'p{k}', have.get(f'p{k}', [])) for k in range(MAX_TAIL, 0, -1)] + \
+                    [('names', list(range(len(pt), len(T)))), ('all', list(range(len(T) - tail, len(T))))]
             names = [n for n, _ in items]
             if items_all is None: items_all = names
+            out.setdefault('valid', []).append(np.tile([n == 'none' or n in ('names', 'all') or n in have for n in names], (len(name), 1)))
             elems, patch = [], {}
             for li, l in enumerate(PP_LAYERS):
                 for nm, posl in items:
@@ -131,7 +138,7 @@ def do_patch_pos(C, shard):
             out['row_id'] += rids; out['rank_true'].append(s11.ranks(lt, gold, torch)); out['rank_patch'].append(rk)
             out['tail_tokens'].append(json.dumps(C.tok.convert_ids_to_tokens(pt[-S:])))
     return dict(row_id=np.array(out['row_id']), rank_true=np.concatenate(out['rank_true']), rank_patch=np.concatenate(out['rank_patch']),
-                layers=np.array(PP_LAYERS), items=np.array(items_all), tail_tokens=np.array(out['tail_tokens']))
+                valid=np.concatenate(out['valid']), layers=np.array(PP_LAYERS), items=np.array(items_all), tail_tokens=np.array(out['tail_tokens']))
 
 
 def do_patch_comp(C, shard):
@@ -300,7 +307,11 @@ def work(a):
         t1 = time.monotonic()
         try: d = compute(C, u)
         except Exception as e:
-            stop(f'stage12 {u} crashed: {e!r}'); raise
+            # 2026-10-27 user rule: never give up the GPU. A crash marks only this unit TYPE as broken (skipped by every
+            # job until fixed: delete or move logs/broken_<type>.json), the claim is released, and the job goes on.
+            import traceback; dump(ROOT / f'logs/broken_{u[0]}.json', dict(unit=list(u), error=repr(e), job=me, at=now(), tb=traceback.format_exc()))
+            dd = CL / '_'.join(str(x) for x in u if x is not None); os.rename(dd, dd.with_name(dd.name + f'.crashed_{me}'))
+            log('UNIT CRASH (type disabled, job continues):', u, repr(e)); continue
         save(u, d, C.env); last = time.monotonic() - t1
         log(f'stage12 {u[0]} {u[1] or ""} shard {u[2]:03d} rows={len(d["row_id"])} {last:.0f}s total={(time.monotonic() - t0) / 60:.1f}min')
 
