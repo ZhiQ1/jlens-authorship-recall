@@ -404,9 +404,12 @@ def smoke(a):
 
 
 def smoke_run(C):
-    """4 sample papers + 2 chain papers into a temp root, then checks; writes reports/smoke.json (PASS needed by work)."""
+    """4 sample papers + 2 chain papers into a temp root, then checks; writes reports/smoke.json (PASS or WARN: work goes on; ERROR = the code crashed: queue held)."""
     orig = (C.smp, C.papers)
     try: return _smoke(C)
+    except Exception as e:                 # the code itself crashed: a real bug, every job would crash the same way
+        import traceback; rep = dict(status='ERROR', created=now(), error=repr(e), traceback=traceback.format_exc())
+        dump(ROOT / 'reports/smoke.json', rep); stop_queue(f'Stage 11 smoke test crashed: {e!r}'); raise
     finally: C.smp, C.papers = orig
 
 
@@ -469,9 +472,13 @@ def _smoke(C):
           and checks['ko_name_baseline_equals_ko_baseline'] >= .99
           and checks['titlepos_colon_matches_stage10_first_token'] >= .75 and checks['titlepos_colon_mean_abs_dlog10rank'] <= .05
           and checks['titlepos_has_residuals'] and checks['probe_vocab_size'] > 1000)
-    rep = dict(status='PASS' if ok else 'FAIL', created=now(), checks=checks, gpu=C.env['gpu'], script_sha256=C.env['script_sha256'])
+    # 2026-10-27 user rule: a numeric agreement / tolerance check that misses its threshold must NOT throw away the GPU
+    # allocation. It is recorded as WARN (thresholds and values kept in smoke.json for the report) and the work goes on.
+    # Only a crash of the code itself (status ERROR, above) holds the queue.
+    rep = dict(status='PASS' if ok else 'WARN', created=now(), checks=checks, gpu=C.env['gpu'], script_sha256=C.env['script_sha256'],
+               note=None if ok else 'some agreement checks missed their thresholds; work continues; review smoke.json before interpreting')
     dump(ROOT / 'reports/smoke.json', rep); print(json.dumps(rep, indent=1), flush=True)
-    if not ok: stop_queue('Stage 11 smoke test FAIL')
+    if not ok: log('SMOKE WARN: thresholds missed - continuing (user rule: never give up a GPU over a tolerance)')
     return rep
 
 
@@ -496,23 +503,50 @@ def running_jobs():
     return set(r.stdout.split()) if r.returncode == 0 else None
 
 
+def _write_owner(d, me):
+    tmp = d / f'.owner.{me}.{os.getpid()}'; tmp.write_text(me); os.replace(tmp, d / 'owner')   # atomic: never seen half-written
+
+
 def claim(d, me):
-    try: d.mkdir(parents=True); (d / 'owner').write_text(me); return True
+    try: d.mkdir(parents=True); _write_owner(d, me); return True
     except FileExistsError: pass
     try: owner = (d / 'owner').read_text().strip()
-    except FileNotFoundError: return False
+    except FileNotFoundError: owner = ''
+    if not owner:                          # another job is between mkdir and writing owner - or died exactly there:
+        try: age = time.time() - d.stat().st_mtime
+        except FileNotFoundError: return False
+        if age < 600: return False         # wait; an ownerless claim older than 10 min is abandoned
+        owner = '(none)'
     if owner == me: return True
     run = running_jobs()
     if run is None or owner in run: return False
     moved = d.with_name(f'{d.name}.stale_{owner}_{me}')
     try: os.rename(d, moved)
     except OSError: return False
-    if (moved / 'owner').read_text().strip() != owner: os.rename(moved, d); return False
+    try: now_owner = (moved / 'owner').read_text().strip() or '(none)'
+    except FileNotFoundError: now_owner = '(none)'
+    if now_owner != owner: os.rename(moved, d); return False
     return claim(d, me)
+
+
+def slurm_minutes_left():
+    """minutes left before this job's time limit (squeue %L: [D-]HH:MM:SS / MM:SS), None outside Slurm or on error."""
+    jid = os.environ.get('SLURM_JOB_ID')
+    if not jid: return None
+    try:
+        s = subprocess.run(['squeue', '-h', '-j', jid, '-o', '%L'], capture_output=True, text=True, timeout=90).stdout.strip()
+        d, _, hms = s.rpartition('-'); parts = [int(x) for x in hms.split(':')]
+        while len(parts) < 3: parts.insert(0, 0)
+        return (int(d or 0) * 1440) + parts[0] * 60 + parts[1] + parts[2] / 60
+    except Exception: return None
 
 
 def work(a, budget=None, t_start=None):
     budget = budget if budget is not None else a.max_minutes; t_start = t_start or time.monotonic()
+    left = slurm_minutes_left()                # 2026-10-27: time limits were shortened to 90 min after submission;
+    if left is not None:                       # never plan past the job's real limit (8 min margin for the last save)
+        cap = (time.monotonic() - t_start) / 60 + left - 8
+        if budget is None or cap < budget: log(f'budget capped by the job time limit: {budget} -> {cap:.0f} min'); budget = cap
     me = os.environ.get('SLURM_JOB_ID', f'local{os.getpid()}')
     verify(); CL = ROOT / 'logs/claims'; CL.mkdir(parents=True, exist_ok=True)
     C, last, U = None, 0.0, units()
@@ -523,8 +557,10 @@ def work(a, budget=None, t_start=None):
             if sm.exists(): break
             if claim(ROOT / 'logs/smoke.lock', me): log('running smoke test'); smoke_run(C); break
             log('waiting for the smoke test of another job'); time.sleep(20)
-    if not sm.exists() or load(sm)['status'] != 'PASS':
-        stop_queue(f'smoke test not PASS ({sm})'); raise RuntimeError(f'smoke test not PASS: {sm}')
+    if not sm.exists():                    # smoke owner still busy after 30 min: do not idle the GPU - work anyway
+        log('smoke report not there yet; continuing without waiting longer')
+    elif load(sm)['status'] == 'ERROR':
+        stop_queue(f'smoke test crashed ({sm})'); raise RuntimeError(f'smoke test crashed: {sm}')
     log(f'stage11 work: job {me}, budget {budget} min, {len(U)} units')
     while True:
         u = None

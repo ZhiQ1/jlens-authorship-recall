@@ -128,6 +128,10 @@ Historical fitting A/B, behavior-group A/B, and the new Stage 9 Fit A/B are thre
 - **Not included:** `351_stage10/raw/` (per-token ranks, 1.2 GB; regenerable with `351_stage10_fix1.py run`), `summary/paper_scores.parquet` and `summary_title/paper_title_contrasts.parquet` (paper-level tables, 55 MB and 104 MB; regenerable with `analyze` / `analyze-title`), logs, the model and lens weights.
 - **Fine layers:** L50–55 and L57–61 exist for the public J-Lens and Vanilla only; Self100 and Fit A were fitted at 6–7 layers and would need new fits.
 - **Stage 11** was running at the time of this update; only its frozen `config/` is included.
+- **Check policy from 2026-10-27 (Stage 11 onward):** a numeric agreement or parity check that misses its threshold never stops a GPU job. It is recorded as WARN, with the values and thresholds, in `361_stage11/reports/smoke.json`; the computation continues, and the data is reviewed afterwards. Only a crash of the code itself holds the queue. The reason is Stage 10: its 0.25 tolerance equalled one bf16 step for logits of magnitude 32–64.
+- **Stage 11 queue tooling:**
+  - `stage11_keeper.py` refills the A100 submit slots with 90-min workers while units remain, and resubmits itself before its 2-day limit.
+  - Workers claim units with an atomic `mkdir` and an atomically written owner. A unit killed mid-way leaves no output and is redone.
 
 ## 5. Work Not Yet Included in This Package
 
