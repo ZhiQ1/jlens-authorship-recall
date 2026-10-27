@@ -57,6 +57,8 @@ Stage 4–8A dates are as given by the experiment lead (2026-10-15).
 
 ## Start Here
 
+**Stage overview table (Stages 4–12: question, status and date, code, results, main conclusion, git commit): [`STAGES.md`](STAGES.md).** Finished stages are tagged `stage10-done`, `stage11-done`.
+
 | Your task | Reading path |
 |---|---|
 | Understand the study | Summary → Concepts → Research thread → Stage 8 results |

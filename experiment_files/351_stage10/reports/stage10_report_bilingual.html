@@ -72,6 +72,9 @@ figure { margin: 0; display: grid; gap: 8px; }
 .finding .en { font-family: var(--font-en); color: var(--muted); font-size: 15px; line-height: 1.55; }
 footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; color: var(--muted); }
 @media (max-width: 480px) { body { font-size: 15px; } .finding { grid-template-columns: 24px 1fr; } }
+.stag { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .04em; padding: 1px 7px; margin-left: 8px; border: 1.5px solid var(--accent, currentColor); border-radius: 5px; vertical-align: middle; white-space: nowrap; }
+.files { font-size: 13px; color: var(--muted, inherit); border-left: 3px solid var(--rule, #ccc); padding: 4px 0 4px 12px; margin: 10px 0 4px; overflow-wrap: anywhere; }
+.files b { font-weight: 600; }
 </style>
 
 <main>
@@ -85,8 +88,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <section>
   <h2><span class="num">§1</span>摘要 <span class="en">Summary</span></h2>
   <div class="pair">
-    <p class="zh">本实验用 9,108 篇论文，逐层读出 Qwen3-32B 内部对作者名字的预测，看模型在哪一层开始"拿着"某篇论文的作者。我们比较了两组论文：一组是模型写不出作者、但在多选题里能认出正确作者名单的"目标组"（target），另一组是既写不出也认不出的"对照组"（control）。为了区分"认识这篇论文"和"名字本身好猜"，每篇论文还换成 5 个匹配好的假标题和删掉标题再测一遍。</p>
-    <p class="en">Using 9,108 papers, we read out Qwen3-32B's internal predictions of author-name tokens layer by layer to find where the model starts to hold a specific paper's authors. We compare a target group (the model cannot write the authors but recognises the true author list in a multiple-choice test) with a control group (neither writes nor recognises them). To separate knowing the paper from names that are simply easy to guess, every paper is also scored with 5 matched false titles and with the title deleted.</p>
+    <p class="zh">本实验用 9,108 篇论文，逐层读出 Qwen3-32B 内部对作者名字的预测，看模型在哪一层开始"拿着"某篇论文的作者。我们比较了两组论文：一组是模型写不全作者（R0/R1：一个都没写对，或只写对少数）、但在多选题里能认出正确作者名单的"目标组"（target），另一组是既写不全出也认不出的"对照组"（control）。为了区分"认识这篇论文"和"名字本身好猜"，每篇论文还换成 5 个匹配好的假标题和删掉标题再测一遍。</p>
+    <p class="en">Using 9,108 papers, we read out Qwen3-32B's internal predictions of author-name tokens layer by layer to find where the model starts to hold a specific paper's authors. We compare a target group (the model cannot write the author list, R0/R1: none or only a few right, but recognises the true author list in a multiple-choice test) with a control group (neither writes nor recognises them). To separate knowing the paper from names that are simply easy to guess, every paper is also scored with 5 matched false titles and with the title deleted.</p>
   </div>
   <div class="pair">
     <p class="zh">主要结论：针对具体论文的作者信息只在最后几层才读得出来。L24 到 L48 层，真标题相对假标题的优势（下称"标题特异信号"）几乎为 0；从 L50 前后开始逐层积累，L57–L61 上升最快，L61–L62 和最终输出最强。目标组比对照组多出的部分也集中在 L62/L63（在引用数分档内比较，<strong class="k">+0.21 到 +0.23</strong>，95% 置信区间都在 0 以上），而且几乎全部是标题特异的，不能用名字好猜来解释。在名字位置用 lens 读，中间层没有看到"提前拿着作者"的迹象（标题位置的 probe 结果见下一段和 §6.11）。</p>
@@ -105,8 +108,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <section>
   <h2><span class="num">§2</span>研究问题 <span class="en">Question</span></h2>
   <div class="pair">
-    <p class="zh">此前的标注实验发现，Qwen3-32B 对大约一半的论文"写不出作者、但认得出作者名单"。本阶段要回答的是：这种"认得"在网络内部是什么时候形成的？如果模型在中间层就已经把作者信息算出来、只是没能输出，那么用 lens 读中间层时，目标组应该比对照组更容易读出正确的名字；如果信息只在最后几层才组装出来，差异就只会出现在输出附近。</p>
-    <p class="en">An earlier labelling run found that for roughly half of the papers Qwen3-32B cannot write the authors yet recognises the true author list. This stage asks when that recognition forms inside the network. If the model already computes the author information in middle layers and only fails to emit it, a lens applied to those layers should read the correct name more easily for target papers than for control papers. If the information is assembled only in the last layers, the difference should appear only near the output.</p>
+    <p class="zh">此前的标注实验发现，Qwen3-32B 对大约一半的论文"写不全作者、但认得出作者名单"。本阶段要回答的是：这种"认得"在网络内部是什么时候形成的？如果模型在中间层就已经把作者信息算出来、只是没能输出，那么用 lens 读中间层时，目标组应该比对照组更容易读出正确的名字；如果信息只在最后几层才组装出来，差异就只会出现在输出附近。</p>
+    <p class="en">An earlier labelling run found that for roughly half of the papers Qwen3-32B cannot write the author list yet recognises the true author list. This stage asks when that recognition forms inside the network. If the model already computes the author information in middle layers and only fails to emit it, a lens applied to those layers should read the correct name more easily for target papers than for control papers. If the information is assembled only in the last layers, the difference should appear only near the output.</p>
   </div>
 </section>
 
@@ -127,8 +130,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
   </div>
   <h3>3.2 分组是怎么定的 <span class="en">How the groups are defined</span></h3>
   <div class="pair">
-    <p class="zh">分组沿用标注包的 <span class="mono">group_tight</span>：先让模型开放回答"这篇论文的作者是谁"，再给 4 个候选作者名单（真名单 + 同领域、相近年份和引用档的 3 个真实团队）按 4 种顺序做多选。能写出作者的是 guard（R2）；写不出、但 4 次全对且真选项平均概率 ≥ 0.5 的是 target；写不出且最多对 1 次的是 control；其余为 excluded。</p>
-    <p class="en">Groups follow the package's <span class="mono">group_tight</span> label. The model first answers openly "who wrote this paper", then picks among 4 candidate author lists (the true list plus 3 real teams from papers of the same field, similar year and citation bin) in 4 orders. Papers whose authors it can write are guard (R2); papers it cannot write but gets right in all 4 orders with mean true-option probability ≥ 0.5 are target; papers it cannot write and gets right at most once are control; the rest are excluded.</p>
+    <p class="zh">分组沿用标注包的 <span class="mono">group_tight</span>：先让模型开放回答"这篇论文的作者是谁"，再给 4 个候选作者名单（真名单 + 同领域、相近年份和引用档的 3 个真实团队）按 4 种顺序做多选。能写出作者的是 guard（R2）；写不全（R0/R1）、但 4 次全对且真选项平均概率 ≥ 0.5 的是 target；写不全且最多对 1 次的是 control；其余为 excluded。</p>
+    <p class="en">Groups follow the package's <span class="mono">group_tight</span> label. The model first answers openly "who wrote this paper", then picks among 4 candidate author lists (the true list plus 3 real teams from papers of the same field, similar year and citation bin) in 4 orders. Papers whose authors it can write are guard (R2); papers it cannot fully write (R0/R1) but gets right in all 4 orders with mean true-option probability ≥ 0.5 are target; papers it cannot fully write and gets right at most once are control; the rest are excluded.</p>
   </div>
   <div class="pair">
     <p class="zh"><b>操作细节。</b>标注由组长的标注流程在同一个 Qwen3-32B（本地 bf16 权重、A100-80GB）上生成，我们直接使用，没有改动。
@@ -149,8 +152,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
   <div class="tbl"><table>
     <thead><tr><th>组 Group</th><th>论文数 Papers</th><th>定义 Definition</th></tr></thead>
     <tbody>
-      <tr><td>target 目标组</td><td>4,621</td><td style="text-align:left">写不出 · 4/4 认出 &nbsp;/&nbsp; cannot write · recognises 4/4</td></tr>
-      <tr><td>control 对照组</td><td>2,220</td><td style="text-align:left">写不出 · 认不出 (≤1/4) &nbsp;/&nbsp; cannot write · does not recognise</td></tr>
+      <tr><td>target 目标组</td><td>4,621</td><td style="text-align:left">写不全（R0/R1）· 4/4 认出 &nbsp;/&nbsp; cannot write the list (R0/R1) · recognises 4/4</td></tr>
+      <tr><td>control 对照组</td><td>2,220</td><td style="text-align:left">写不全（R0/R1）· 认不出 (≤1/4) &nbsp;/&nbsp; cannot write the list (R0/R1) · does not recognise</td></tr>
       <tr><td>guard 能写出</td><td>214</td><td style="text-align:left">开放回答基本正确 (R2) &nbsp;/&nbsp; writes the authors</td></tr>
       <tr><td>excluded 排除</td><td>2,053</td><td style="text-align:left">介于两者之间 &nbsp;/&nbsp; in between</td></tr>
     </tbody></table></div>
@@ -227,7 +230,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <section>
   <h2><span class="num">§6</span>结果 <span class="en">Results</span></h2>
 
-  <h3>6.1 逐层读出水平（真标题）<span class="en">Readout level by layer, true title</span></h3>
+  <h3>6.1 逐层读出水平（真标题）<span class="en">Readout level by layer, true title</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">所有读出方式都随层数加深而变好。logit lens 在 L48 之前几乎读不出名字（约 −4.4 到 −4.6，相当于排在几万名），L56 到 −3.5，L62 跳到约 −1.0。Jacobian lens 从 L40 起明显好于 logit lens（约 −3.0），说明中间层已经有与名字相关的信息，但这并不区分具体论文（见 6.3）。</p>
     <p class="en">Every readout improves with depth. The logit lens barely reads the name before L48 (about −4.4 to −4.6, i.e. ranks in the tens of thousands), reaches −3.5 at L56 and jumps to about −1.0 at L62. The Jacobian lenses beat the logit lens from L40 on (about −3.0), so middle layers already carry name-related information, but that information is not specific to the paper (see 6.3).</p>
@@ -245,7 +248,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     </tbody></table></div>
   <p class="cap">平均 log10(1/名次)，未按引用档调整；95% 置信区间宽度约 ±0.01–0.03。 <span class="en">Mean log10(1/rank), not adjusted for citation bin; 95% CIs are about ±0.01–0.03.</span></p>
 
-  <h3>6.2 目标组 − 对照组（真标题，引用档内）<span class="en">Target − control within citation bin, true title</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/351_stage10.py</span> <span class="mono">analyze</span>（经 <span class="mono">351_stage10_fix1.py</span>、<span class="mono">stage10_analyze.sbatch</span> MODE=main）<br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary/A_group_layer.csv</span> · <span class="mono">summary/A_group_bin_layer.csv</span> · <span class="mono">figures/A_mean_nlr_by_group.png</span> · <span class="mono">reports/stage10_report.md</span></div>
+
+  <h3>6.2 目标组 − 对照组（真标题，引用档内）<span class="en">Target − control within citation bin, true title</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">在同一引用档内比较，目标组的优势只出现在最后：最终输出 <strong class="k">+0.247</strong> [0.230, 0.265]，各种读出在 L62 为 +0.225 到 +0.247。中间层反而是负的：Jacobian lens 在 L48 为 −0.10 到 −0.15、L56 为 −0.09 到 −0.11，置信区间都在 0 以下；logit lens 在 L48 之前约为 0。</p>
     <p class="en">Within citation bins the target advantage appears only at the end: final output <strong class="k">+0.247</strong> [0.230, 0.265], and +0.225 to +0.247 for every readout at L62. Middle layers are negative: the Jacobian lenses give −0.10 to −0.15 at L48 and −0.09 to −0.11 at L56, with CIs below zero; the logit lens is about zero up to L48.</p>
@@ -261,7 +266,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     </tbody></table></div>
   <p class="cap">着色项的 95% 置信区间不含 0。 <span class="en">Coloured cells have 95% CIs that exclude zero.</span></p>
 
-  <h3>6.3 标题特异信号 <span class="en">Title-specific signal</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/351_stage10.py</span> <span class="mono">analyze</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary/B_target_vs_control_within_bin.csv</span> · <span class="mono">summary/B_sens_*.csv</span> · <span class="mono">figures/B_target_minus_control.png</span></div>
+
+  <h3>6.3 标题特异信号 <span class="en">Title-specific signal</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">把真标题和 5 个假标题对比后，名字本身好不好猜的影响就被抵消了。结果很清楚：L24–L48 层，两组的标题特异信号都不超过 0.05；L56 开始上升（+0.10 到 +0.18）；L62 达到最大，目标组 +0.48 到 +0.58，对照组 +0.20 到 +0.25。对照组也有一定的标题特异信号，说明"认不出名单"的论文模型也并非完全不认识。</p>
     <p class="en">Contrasting the true title with 5 false titles cancels out how guessable a name is. The picture is clear: at L24–L48 the title-specific signal is at most 0.05 in both groups; it rises at L56 (+0.10 to +0.18) and peaks at L62, +0.48 to +0.58 for target and +0.20 to +0.25 for control. The control group also shows some title-specific signal, so papers whose author list the model fails to pick are not entirely unknown to it.</p>
@@ -305,7 +312,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     <p class="cap">标题特异信号 = 真标题 − 5 个假标题平均，单位 log10(1/名次)。 <span class="en">Title-specific signal = true − mean of 5 false titles, in log10(1/rank).</span></p>
   </figure>
 
-  <h3>6.4 目标组 − 对照组的标题特异差异 <span class="en">Target − control difference in the title-specific signal</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/351_stage10.py</span> <span class="mono">analyze-title</span>（<span class="mono">stage10_analyze.sbatch</span> MODE=title）<br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/A_group_layer.csv</span> · <span class="mono">summary_title/paper_title_contrasts.parquet</span> · <span class="mono">figures/title_*_by_group.png</span> · <span class="mono">reports/stage10_title_summary.md</span></div>
+
+  <h3>6.4 目标组 − 对照组的标题特异差异 <span class="en">Target − control difference in the title-specific signal</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">这是本实验最关键的比较。L24–L40 约为 0；L48 Jacobian lens 略负（−0.04 到 −0.05）；L56 约为 0（logit lens +0.065）；L62/L63 为 <strong class="k">+0.21 到 +0.23</strong>。6.2 中目标组在输出处的优势（+0.22 到 +0.25）几乎全部由标题特异部分构成。去掉 0-4 低引用档后结果不变（L62/L63 为 +0.21 到 +0.24）。</p>
     <p class="en">This is the key comparison. It is about zero at L24–L40, slightly negative for the Jacobian lenses at L48 (−0.04 to −0.05), about zero at L56 (logit lens +0.065), and <strong class="k">+0.21 to +0.23</strong> at L62/L63. The target advantage at the output in 6.2 (+0.22 to +0.25) is therefore almost entirely title-specific. Dropping citation bins 0-4 does not change this (+0.21 to +0.24 at L62/L63).</p>
@@ -321,19 +330,25 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     </tbody></table></div>
   <p class="cap">着色项的 95% 置信区间不含 0。 <span class="en">Coloured cells have 95% CIs that exclude zero.</span></p>
 
-  <h3>6.5 阴性对照与 token 角色 <span class="en">Negative control and token roles</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/351_stage10.py</span> <span class="mono">analyze-title</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv</span> · <span class="mono">summary_title/B_sens_drop_low_bins.csv</span></div>
+
+  <h3>6.5 阴性对照与 token 角色 <span class="en">Negative control and token roles</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">标点 token（名字里的点和空格）不应该依赖论文标题。它们的标题特异信号在所有层都接近 0（最大 0.014），说明对比方法本身不会凭空产生信号。信号主要落在姓的第一个 token 上（L62 为 +0.80 到 +0.88），名的第一个 token 次之，首字母最少。</p>
     <p class="en">Punctuation tokens (the dots and spaces in names) should not depend on the title. Their title-specific signal is near zero at every layer (at most 0.014), so the contrast does not create signal by itself. The signal sits mostly on the first surname token (+0.80 to +0.88 at L62), less on the first given-name token, and least on initials.</p>
   </div>
 
-  <h3>6.6 与多选题成绩的等级关系 <span class="en">Graded relation with the multiple-choice score</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/351_stage10.py</span> <span class="mono">analyze-title</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/negative_control_by_role.csv</span></div>
+
+  <h3>6.6 与多选题成绩的等级关系 <span class="en">Graded relation with the multiple-choice score</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">不分组、直接按多选题答对次数（0–4）看最终输出（在引用档内中心化）：答对 0 次 −0.137、1 次 −0.122、2 次 −0.047、3 次 −0.018、4 次 +0.076，单调上升，档内 Spearman ρ = 0.27（p &lt; 0.001）。多选题"认得"越稳，输出时越容易说出作者。</p>
     <p class="en">Without grouping, by the number of correct multiple-choice orders (0–4), the final output (centred within citation bin) rises monotonically: −0.137, −0.122, −0.047, −0.018, +0.076, with a within-bin Spearman ρ of 0.27 (p &lt; 0.001). The more consistently the model recognises the author list, the more easily it produces the authors at the output.</p>
   </div>
 
-  <h3>6.7 第一个 token 与后续 token <span class="en">First token vs later tokens</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/351_stage10.py</span> <span class="mono">analyze-title</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/C_graded_mc_team_a.csv</span></div>
+
+  <h3>6.7 第一个 token 与后续 token <span class="en">First token vs later tokens</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">每位作者的名字被切成若干 token（平均 4.4 个）。这里把第 1 个 token 和后续 token 分开统计。要注意，在教师强制下，后续 token 前面已经给出了正确的前缀（例如名字的前半部分），所以它们本来就更容易猜，这是预期内的，不能直接解读成"模型更认识姓"。</p>
     <p class="en">Each author name is split into several tokens (4.4 on average). Here the first token is analysed separately from the later tokens. Under teacher forcing the later tokens already have the correct prefix in front of them (for example the first part of the name), so they are easier to guess by construction; this is expected and does not by itself mean the model knows surnames better.</p>
@@ -400,7 +415,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     </tbody></table></div>
   <p class="cap">真标题；置信区间为按论文聚类的 bootstrap。 <span class="en">True title; CIs from a bootstrap clustered by paper.</span></p>
 
-  <h3>6.8 引用数的影响 <span class="en">Effect of citation count</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/stage10_extra.py</span>（X1）、<span class="mono">stage10_extra_format.py</span>、<span class="mono">stage10_extra_cond_role.py</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X1_*.csv</span></div>
+
+  <h3>6.8 引用数的影响 <span class="en">Effect of citation count</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">按 13 个引用档分别计算最终输出的读出水平和标题特异信号。目标组的标题特异信号从 0-2 档的 +0.347 [0.317, 0.377] 单调升到 4097+ 档的 <strong class="k">+0.644</strong> [0.591, 0.701]；对照组从 +0.158 [0.136, 0.179] 升到 257-512 档的 +0.274 [0.240, 0.309] 左右，高引用档对照组论文很少，区间变宽。在每一个引用档内，目标组都高于对照组。</p>
     <p class="en">The output readout level and title-specific signal were computed in each of the 13 citation bins. The target group's title-specific signal rises monotonically from +0.347 [0.317, 0.377] in bin 0-2 to <strong class="k">+0.644</strong> [0.591, 0.701] in bin 4097+; the control group's rises from +0.158 [0.136, 0.179] to about +0.274 [0.240, 0.309] in bin 257-512, with wide intervals in high bins where control papers are few. In every bin the target group is above the control group.</p>
@@ -494,7 +511,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <tr><td>jlens_public L62 · control</td><td>2,220</td><td class="pos">+0.051<span class="ci">[+0.009, +0.095]</span></td><td class="pos">+0.196<span class="ci">[+0.155, +0.237]</span></td></tr>
     </tbody></table></div>
 
-  <h3>6.9 三种 Jacobian lens 与 logit lens 的比较 <span class="en">Three Jacobian lenses vs the logit lens</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/stage10_extra.py</span>（X2）；<span class="mono">~/jlens_work/10_stage10/351_stage10.py</span> <span class="mono">analyze-title</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X2_by_bin.csv</span> · <span class="mono">summary_extra/X2_spearman.csv</span> · <span class="mono">summary_title/E_citation_within_group.csv</span></div>
+
+  <h3>6.9 三种 Jacobian lens 与 logit lens 的比较 <span class="en">Three Jacobian lenses vs the logit lens</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">对同一批论文、同一批 token 逐层配对比较。读出水平上，fitA 在 L24、L32、L48、L56 最好（L48 为 −2.69，logit lens 为 −4.42），L40 是 self100 略好，public 居中；到 L62 反而是 logit lens 最好（−1.02 对 −1.05 到 −1.09）。前 10 命中率上，L48 的 Jacobian lens 为 15%–18%，logit lens 只有 1.1%；L62 则 logit lens 最高（59.3% 对 53.6%–54.6%）。</p>
     <p class="en">All comparisons are paired on the same papers and tokens. On readout level, fitA is best at L24, L32, L48 and L56 (−2.69 at L48 versus −4.42 for the logit lens), self100 is slightly better at L40, and public lies in between; at L62 the logit lens is best (−1.02 versus −1.05 to −1.09). On top-10 hit rate, the Jacobian lenses reach 15%–18% at L48 versus 1.1% for the logit lens; at L62 the logit lens is highest (59.3% versus 53.6%–54.6%).</p>
@@ -552,7 +571,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     </tbody></table></div>
   <p class="cap">引用档内的目标−对照差；着色项 95% 置信区间不含 0。 <span class="en">Target − control within citation bin; coloured cells have 95% CIs excluding zero.</span></p>
 
-  <h3>6.10 细层：L48–L62 <span class="en">Fine layers: L48–L62</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/stage10_extra.py</span>（X3）<br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X3_means.csv</span> · <span class="mono">summary_extra/X3_pairwise.csv</span> · <span class="mono">summary_extra/X3_tc_spec_vs_logit.csv</span></div>
+
+  <h3>6.10 细层：L48–L62 <span class="en">Fine layers: L48–L62</span><span class="stag">Stage 10</span></h3>
   <div class="pair">
     <p class="zh">扩展计算补齐了 L50–L55 和 L57–L61（public Jacobian lens 和 logit lens，7 个标题条件全部），用来确定目标组的优势具体从哪一层开始。结果显示它不是在 L62 突然出现的，而是从 L50 前后开始逐层积累。logit lens 的目标−对照标题特异差在 L48 约为 0，L50 为 +0.007 [0.001, 0.014]，之后逐层上升：L52 +0.018、L54 +0.030、L56 +0.065、L58 +0.114、L60 +0.178、L62 +0.229，上升最快的是 L57–L61。public Jacobian lens 在 L48–L54 为负（−0.02 到 −0.05），L55–L56 约为 0，L57 起转正（+0.029 [0.009, 0.048]），到 L61 为 +0.207。</p>
     <p class="en">The extension filled in L50–L55 and L57–L61 (public Jacobian lens and logit lens, all 7 title conditions) to locate where the target advantage starts. It does not appear suddenly at L62; it accumulates layer by layer from about L50. For the logit lens, the target − control title-specific difference is about 0 at L48 and +0.007 [0.001, 0.014] at L50, then rises steadily: L52 +0.018, L54 +0.030, L56 +0.065, L58 +0.114, L60 +0.178, L62 +0.229, rising fastest over L57–L61. For the public Jacobian lens it is negative at L48–L54 (−0.02 to −0.05), about 0 at L55–L56, positive from L57 (+0.029 [0.009, 0.048]), and +0.207 at L61.</p>
@@ -636,7 +657,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     </tbody></table></div>
   <p class="cap">着色项 95% 置信区间不含 0。L56 和 L62 的数值来自主轮，其余层来自扩展计算。 <span class="en">Coloured cells have 95% CIs excluding zero. L56 and L62 come from the main round, the other layers from the extension.</span></p>
 
-  <h3>6.11 Stage 11：干预实验——标题信息在哪几层被读取、搬到哪里 <span class="en">Stage 11: interventions — when the title is read and where it goes</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/351_stage10_fix1.py</span> + <span class="mono">stage10_ext_wait / ext_parity / ext_worker / ext_analyze.sbatch</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv（L50–61 行）</span> · <span class="mono">snapshot_main_round/（扩展前的分析）</span></div>
+
+  <h3>6.11 Stage 11：干预实验——标题信息在哪几层被读取、搬到哪里 <span class="en">Stage 11: interventions — when the title is read and where it goes</span><span class="stag">Stage 11</span></h3>
   <div class="pair">
     <p class="zh">前面的结果都是"读出来"的相关性。Stage 11 直接动手干预模型内部，来确定信息形成的时间和路径。样本是 593 篇目标组和 593 篇对照组论文，在引用档内配平；标题位置读出和作者连写两项用全部 9,108 篇论文。干预后都看模型最终输出里正确名字 token 的名次，用"真标题与假标题差距中恢复（或损失）了多少比例"来衡量。</p>
     <p class="en">The results above are correlational readouts. Stage 11 intervenes inside the model to fix when and where the information forms. The sample is 593 target and 593 control papers, balanced within citation bins; the title-position readout and the author chain use all 9,108 papers. Every intervention is scored at the model output, as the share of the true-title vs false-title gap that is recovered (or lost).</p>
@@ -827,7 +850,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     <p class="en"><b>Summary.</b> The paper-specific information is read from the title and moved into the tokens after it in L24–L50, about ten layers before it becomes readable at the name positions (L56–62), the last title token already carries paper-specific author information that a linear probe can decode, but not in a form the current lenses can read. Target and control share the same timing; target simply carries a stronger signal (true − false gap 0.42 vs 0.21). Two agreement checks in the GPU smoke test fell slightly below threshold because of bf16 rounding in batched GPU runs; they do not affect these results, as patching at L63 recovers exactly 1 (tokens after the title) and 0 (last title token).</p>
   </div>
 
-  <h3>6.12 名字先验（name prior）有多大？以及标题位置 probe 的对照检验 <span class="en">How large is the name prior? And controls for the title-position probe</span></h3>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/11_stage11/361_stage11.py</span>（work 单元 patch / knockout / patch_title / knockout_name / titlepos / chain）、<span class="mono">stage11_analyze.py</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E1*.csv, E2*.csv, E3_chain.csv, E4_*.csv</span> · <span class="mono">reports/stage11_report.md</span> · <span class="mono">config/protocol.json, protocol_amendment_1.json, sample.parquet</span></div>
+
+  <h3>6.12 名字先验（name prior）有多大？以及标题位置 probe 的对照检验 <span class="en">How large is the name prior? And controls for the title-position probe</span><span class="stag">Stage 12 · CPU</span></h3>
   <div class="pair">
     <p class="zh"><b>拆解方法。</b>同一批名字 token 在三种条件下打分：不给标题（只剩"名字本身好不好猜"，即名字先验）、给匹配的假标题、给真标题。三者之差分别是"主题"（假标题 − 不给标题）和"论文特有"（真标题 − 假标题）。下面是模型最终输出上的结果，单位 log10(1/名次)。</p>
     <p class="en"><b>Decomposition.</b> The same name tokens are scored with no title (only how guessable the name is: the name prior), with matched false titles, and with the true title. The differences are "topic" (false − no title) and "paper-specific" (true − false). Values below are at the model output, in log10(1/rank).</p>
@@ -862,8 +887,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     <p class="en"><b>How much of the target − control gap is prior?</b> Over all tokens, the true-title gap of +0.247 splits into prior +0.087 (target names are a bit easier to guess even without a title), topic −0.047 (false titles take part of it back), and paper-specific +0.207. Against a no-title baseline the prior is about a third of the gap; against false titles (this report's title-specific signal) the gap is mainly paper-specific. On the first surname token the prior gap is about 0 (+0.022, CI includes 0) and the paper-specific part is +0.42.</p>
   </div>
   <div class="pair">
-    <p class="zh"><b>先验会不会就是"认得出名单"的原因？</b>在写不出作者的论文里（R0/R1），按引用档中心化后，先验与多选题答对次数的 Spearman 相关只有 +0.085 [+0.063, +0.106]，而论文特有部分是 +0.329 [+0.312, +0.346]。所以"认出名单"主要不是名字好猜造成的。名字常见程度（姓在全部作者中的出现次数）与先验呈负相关（ρ = -0.215），目标组的姓反而略不常见：语料里常见的姓并不更容易被猜中，先验更可能来自名字的字面规律（前缀、拼写）而不是常见度。</p>
-    <p class="en"><b>Does the prior explain recognition?</b> Among papers whose authors the model cannot write (R0/R1), centred within citation bins, the Spearman correlation of the prior with multiple-choice orders right is only +0.085 [+0.063, +0.106], against +0.329 [+0.312, +0.346] for the paper-specific part, so recognition is mostly not driven by easy names. Name commonness (how often the surname appears among all cohort authors) correlates negatively with the prior (ρ = -0.215), and target surnames are slightly less common: common surnames are not easier to guess here, so the prior seems to come from the form of the name (prefix, spelling) more than from frequency.</p>
+    <p class="zh"><b>先验会不会就是"认得出名单"的原因？</b>在写不全作者的论文里（R0/R1），按引用档中心化后，先验与多选题答对次数的 Spearman 相关只有 +0.085 [+0.063, +0.106]，而论文特有部分是 +0.329 [+0.312, +0.346]。所以"认出名单"主要不是名字好猜造成的。名字常见程度（姓在全部作者中的出现次数）与先验呈负相关（ρ = -0.215），目标组的姓反而略不常见：语料里常见的姓并不更容易被猜中，先验更可能来自名字的字面规律（前缀、拼写）而不是常见度。</p>
+    <p class="en"><b>Does the prior explain recognition?</b> Among papers whose author list the model cannot write (R0/R1), centred within citation bins, the Spearman correlation of the prior with multiple-choice orders right is only +0.085 [+0.063, +0.106], against +0.329 [+0.312, +0.346] for the paper-specific part, so recognition is mostly not driven by easy names. Name commonness (how often the surname appears among all cohort authors) correlates negatively with the prior (ρ = -0.215), and target surnames are slightly less common: common surnames are not easier to guess here, so the prior seems to come from the form of the name (prefix, spelling) more than from frequency.</p>
   </div>
   <div class="pair">
     <p class="zh"><b>标题位置 probe 的对照检验。</b>§6.11 中线性 probe 能在标题最后一个 token 上读出少量信号，当时担心它学到的只是"这类题目常配这类名字"。现在做了三个对照：把评分用的正确作者换成随机另一篇论文的作者、换成同领域另一篇论文的作者，信号都降为 0；只用假标题数据训练 probe，信号反而更强。因此这部分信号是这篇论文特有的：标题最后一个 token 上从 L24 起就有可被线性读出的、属于这篇论文的作者信息（目标组更多），只是现有 lens 读不出来。</p>
@@ -883,6 +908,27 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <tr><td>L56 · 答案换成同领域另一篇论文的作者 / gold = random paper of the same field</td><td>+0.000<span class="ci">[-0.006, +0.006]</span></td><td>-0.009<span class="ci">[-0.025, +0.008]</span></td></tr>
 <tr><td>L56 · 只用假标题数据训练 probe / probe trained on FALSE-title pairs</td><td class="pos">+0.094<span class="ci">[+0.088, +0.100]</span></td><td class="pos">+0.052<span class="ci">[+0.035, +0.069]</span></td></tr>
   </tbody></table></div>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/12_stage12/stage12_cpu.py</span><br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/371_stage12/summary_cpu/A_*.csv, B_prior_vs_recognition.csv, C_surname_commonness.csv, X1_probe_controls.csv</span> · <span class="mono">reports/stage12_cpu_report.md</span></div>
+
+  <h3>6.13 只用 R0 论文的敏感性分析 <span class="en">Sensitivity analysis with R0 papers only</span><span class="stag">Stage 10 + Stage 11 · CPU</span></h3>
+  <div class="pair">
+    <p class="zh">target/control 把 R0（一个作者都没写对）和 R1（写对少数、HR2 &gt; 0.5）合在一起。R1 在目标组有 511 篇（11%），在对照组只有 34 篇（1.5%），所以目标组的优势可能部分来自"本来就能写出部分作者"的论文。这里两组都只保留 R0（目标 4,110、对照 2,186；引用档内可比较的为 3,423 / 2,151），用同一套引用档内加权和 bootstrap 重算。<b>结论不变</b>：输出处标题特异的目标−对照差从 +0.207 变为 <strong class="k">+0.199 [0.188, 0.212]</strong>（约小 4%），L62 各读出 +0.22；L24–L48 仍约为 0 或略负；去掉 0-4 低档后为 +0.204。只看真标题（不减假标题）也只从 +0.247 变为 +0.239。</p>
+    <p class="en">Target/control pool R0 (no true author written) and R1 (a few right, HR2 &gt; 0.5). R1 makes up 511 targets (11%) but only 34 controls (1.5%), so part of the target advantage could come from papers whose authors the model can partly write. Here both groups keep R0 papers only (target 4,110, control 2,186; 3,423 / 2,151 in comparable bins), with the same within-bin weights and bootstrap. <b>The conclusions do not change</b>: the title-specific target − control difference at the output goes from +0.207 to <strong class="k">+0.199 [0.188, 0.212]</strong> (about 4% smaller), +0.22 at L62 for every readout; L24–L48 stay about zero or slightly negative; +0.204 without bins 0-4. On the true title alone (no false-title subtraction) it goes from +0.247 to +0.239.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>标题特异 目标−对照 Title-specific target − control</th><th>L24</th><th>L48</th><th>L56</th><th>L60</th><th>L62</th><th>输出 L63</th></tr></thead>
+    <tbody>
+      <tr><td>logit · R0+R1</td><td>+0.007</td><td>+0.004</td><td>+0.065</td><td>+0.178</td><td>+0.229</td><td></td></tr>
+      <tr><td>logit · 只用 R0 / R0 only</td><td>+0.007</td><td>+0.003</td><td class="pos">+0.063<span class="ci">[0.048, 0.078]</span></td><td class="pos">+0.170<span class="ci">[0.149, 0.191]</span></td><td class="pos">+0.220<span class="ci">[0.205, 0.237]</span></td><td></td></tr>
+      <tr><td>jlens_public · 只用 R0 / R0 only</td><td>−0.001</td><td class="neg">−0.039<span class="ci">[−0.053, −0.025]</span></td><td>+0.009</td><td class="pos">+0.138<span class="ci">[0.117, 0.160]</span></td><td class="pos">+0.221<span class="ci">[0.207, 0.236]</span></td><td></td></tr>
+      <tr><td>final · R0+R1</td><td></td><td></td><td></td><td></td><td></td><td>+0.207</td></tr>
+      <tr><td>final · 只用 R0 / R0 only</td><td></td><td></td><td></td><td></td><td></td><td class="pos">+0.199<span class="ci">[0.188, 0.212]</span></td></tr>
+    </tbody></table></div>
+  <div class="pair">
+    <p class="zh">R1 论文确实更强：在目标组内部、引用档内比较，R1 比 R0 的输出标题特异信号高 <b>+0.110 [0.086, 0.135]</b>；但它们只占目标组 11%，对组间差的影响约 0.01。Stage 11 样本里 R1 只有 41 篇（目标 36、对照 5），只用 R0 后替换和阻断曲线几乎不变：替换恢复 L40 0.28 / 0.34（目标 / 对照）、L48 0.81 / 0.87、<b>L52 起 0.99–1.00</b>；从 L0 阻断损失 0.84 / 0.81，从 L52 起约 0。时间点仍然两组相同。</p>
+    <p class="en">R1 papers are indeed stronger: within target and within bins, their output title-specific signal is <b>+0.110 [0.086, 0.135]</b> above R0, but they are only 11% of the target group, so they move the group difference by about 0.01. The Stage 11 sample has only 41 R1 papers (36 target, 5 control); with R0 only the patching and knockout curves are almost unchanged: recovery 0.28 / 0.34 (target / control) at L40, 0.81 / 0.87 at L48, <b>0.99–1.00 from L52</b>; knockout from L0 loses 0.84 / 0.81, about 0 from L52. The timing is still the same in both groups.</p>
+  </div>
+  <div class="files"><b>代码 Code</b>：<span class="mono">~/jlens_work/10_stage10/stage10_extra_r0.py</span>（复用冻结的 <span class="mono">351_stage10.py stratified_diff</span> 和 <span class="mono">stage11_analyze.py</span>）<br><b>结果 Results</b>：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_r0/*.csv</span> · <span class="mono">/scratch/zhang.zhiqi2/jlens/361_stage11/summary_r0/*.csv</span> · <span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/reports/r0_sensitivity.md</span></div>
 </section>
 
 <section>
@@ -890,8 +936,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
   <div class="findings">
     <div class="finding"><div><span>Qwen3-32B 对具体论文作者的知识在网络中形成得很晚，而且是逐层积累的：目标−对照的标题特异差从 L50 前后开始出现，在 L57–L61 上升最快，在 L62 和输出处最强。</span><span class="en">Qwen3-32B's knowledge of a specific paper's authors forms late and gradually: the target − control title-specific difference appears around L50, rises fastest over L57–L61, and is strongest at L62 and the output.</span></div></div>
     <div class="finding"><div><span>干预实验（Stage 11）显示，论文信息在 L24–L50 就被从标题读取并搬到标题之后的几个 token 上，L52 之后不再需要标题；只是这种形式要到 L56–62 才能在名字位置被 lens 读出。</span><span class="en">Interventions (Stage 11) show that the paper information is read from the title and moved into the tokens after it in L24–L50, and the title is no longer needed after L52; in that form it only becomes lens-readable at the name positions in L56–62.</span></div></div>
-    <div class="finding"><div><span><b>读得早，说得晚。</b>在名字位置用 lens 读，"写不出但认得出"的目标组在中间层没有领先，相对对照组的优势只出现在最后两层。但在标题最后一个 token 上，线性 probe 从 L16–L24 起就能读出少量这篇论文特有的作者信息，目标组比对照组略高（+0.02 到 +0.04，置信区间在 0 以上）。两者并不矛盾：标题在 L24–50 就被读进去，只是还不是 lens 能在名字位置读出的形式。</span><span class="en"><b>Read early, spoken late.</b> Read with a lens at the name positions, target papers (cannot write but recognise) have no lead in the middle layers; their advantage over control appears only in the last two layers. At the last title token, however, a linear probe reads a small amount of paper-specific author information from L16–L24 on, slightly more for target papers (+0.02 to +0.04, CIs above zero). The two fit together: the title is taken in during L24–50, but not yet in a form a lens can read at the name positions.</span></div></div>
-    <div class="finding"><div><span>这一优势几乎全部是标题特异的，在去掉低引用档后依然成立，不能用名字好猜或引用数差异来解释。</span><span class="en">That advantage is almost entirely title-specific and survives dropping the low-citation bins, so it is not explained by guessable names or citation differences.</span></div></div>
+    <div class="finding"><div><span><b>读得早，说得晚。</b>在名字位置用 lens 读，"写不全但认得出"的目标组在中间层没有领先，相对对照组的优势只出现在最后两层。但在标题最后一个 token 上，线性 probe 从 L16–L24 起就能读出少量这篇论文特有的作者信息，目标组比对照组略高（+0.02 到 +0.04，置信区间在 0 以上）。两者并不矛盾：标题在 L24–50 就被读进去，只是还不是 lens 能在名字位置读出的形式。</span><span class="en"><b>Read early, spoken late.</b> Read with a lens at the name positions, target papers (cannot write the list but recognise it) have no lead in the middle layers; their advantage over control appears only in the last two layers. At the last title token, however, a linear probe reads a small amount of paper-specific author information from L16–L24 on, slightly more for target papers (+0.02 to +0.04, CIs above zero). The two fit together: the title is taken in during L24–50, but not yet in a form a lens can read at the name positions.</span></div></div>
+    <div class="finding"><div><span>这一优势几乎全部是标题特异的，在去掉低引用档后依然成立，不能用名字好猜或引用数差异来解释；两组都只保留 R0（一个作者都没写对）后，输出处的差从 +0.207 变为 +0.199，结论不变（§6.13）。</span><span class="en">That advantage is almost entirely title-specific and survives dropping the low-citation bins, so it is not explained by guessable names or citation differences; with R0 papers only (no author written) in both groups it goes from +0.207 to +0.199 at the output, the same conclusion (§6.13).</span></div></div>
     <div class="finding"><div><span>Jacobian lens 能让中间层读出更多与名字相关的信息，但这部分信息不区分论文；三种 Jacobian lens 的结论一致。</span><span class="en">Jacobian lenses read more name-related information from middle layers than the logit lens, but that information is not paper-specific; all three Jacobian lenses agree.</span></div></div>
     <div class="finding"><div><span>标题特异信号在名字里的分布取决于格式：首字母几乎不带信号，信号集中在后面的姓上；完整的名本身就带有和姓相当的信号。知道第 1 个 token 后，后续 token 总体只容易一点（+0.04）；但完整的名进前 10 时，姓明显更容易（+0.22），首字母则没有这种帮助。</span><span class="en">Where the title-specific signal sits within a name depends on the format: an initial carries almost none and the signal concentrates on the surname after it, while a full given name carries about as much as the surname. Knowing the first token makes later tokens only slightly easier overall (+0.04), but a full given name in the top 10 makes the surname clearly easier (+0.22), while an initial does not.</span></div></div>
     <div class="finding"><div><span>引用越低，模型越不认识论文：标题特异信号随引用数单调上升（目标组从 +0.35 到 +0.64），在两组内部都成立。</span><span class="en">The fewer the citations, the less the model knows the paper: the title-specific signal rises monotonically with citations (target group from +0.35 to +0.64), within both groups.</span></div></div>
@@ -906,7 +952,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     <li>分组来自同一模型的标注实验，只对 Qwen3-32B 有效；低引用档里的"认出"接近随机偏好，所以加做了去掉低档的敏感性分析。<span class="en">Groups come from a labelling run of the same model and hold for Qwen3-32B only; in low-citation bins recognition is close to a fixed preference, hence the sensitivity analysis without those bins.</span></li>
     <li>高引用档几乎没有对照组论文（4097+ 档为 0），组间比较主要来自中低引用档。<span class="en">High-citation bins have almost no control papers (none in 4097+), so group contrasts come mostly from low and middle bins.</span></li>
     <li>主分析中每位作者单独打分（接在 "Authors:" 后）。Stage 11 E3 已把全部作者连写（"Authors: A1, A2, …"），检验了作者顺序和前面作者的帮助；但"谁和谁是合作者"（例如把某位作者换成第一作者的真实合作者）还没有在模型内部检验。<span class="en">In the main analysis each author is scored alone after "Authors:". Stage 11 E3 writes all authors in one chain ("Authors: A1, A2, …"), which tests author order and the help from earlier authors; whether the model knows who co-authors with whom (e.g. swapping in a real co-author of the first author) is not yet tested inside the model.</span></li>
-    <li>标注包里没有开放回答的生成长度上限和 thinking 模式设置（在标注运行的 run.json 里），复现分组需要向组长取这份文件。<span class="en">The label package lacks the open answer's maximum generation length and thinking-mode setting (they are in the labelling run's run.json); reproducing the groups needs that file from the group lead.</span></li>
+    <li>目标组 11% 是 R1（写对少数作者）、对照组只有 1.5%，所以两组都写作"写不全（R0/R1）"而不是"写不出"；只用 R0 的敏感性分析见 §6.13，结论不变。<span class="en">11% of target papers are R1 (a few authors right) against 1.5% of controls, hence "cannot write the list (R0/R1)" rather than "cannot write"; the R0-only sensitivity analysis (§6.13) gives the same conclusions.</span></li>
+    <li>多选题分组有一定不稳定性：抽 500 篇换一批干扰项重测，通过与否的一致率为 83.6%（kappa 0.63），也就是约六分之一论文的分组会变。这会让目标组和对照组的差别被稀释，不改变结论方向。<span class="en">The multiple-choice grouping is not fully stable: on 500 papers re-asked with a second draw of distractors, the pass label agrees 83.6% of the time (kappa 0.63), so about one paper in six would change group. This dilutes the target − control difference rather than changing its direction.</span></li>
+    <li>标注包里没有开放回答的生成长度上限和 thinking 模式设置（在标注运行的 run.json 里），复现分组需要向组长取这份文件。如果当时没有关闭 thinking，模型会先"思考"一段再作答，可能影响 R0/R1/R2 的判定。<span class="en">The label package lacks the open answer's maximum generation length and thinking-mode setting (they are in the labelling run's run.json); reproducing the groups needs that file from the group lead. If thinking was not switched off, the model may have reasoned before answering, which could affect the R0/R1/R2 labels.</span></li>
     <li>名次基于 bf16 输出的 logits，并列时按有利方向计（只数严格更大的 logit）。<span class="en">Ranks use bf16 logits; ties are counted favourably (only strictly greater logits count).</span></li>
     <li>细层（L50–55、L57–61）只算了 public Jacobian lens 和 logit lens（self100 和 fitA 只拟合了 6–7 个层，要加细层需要重新拟合）；§6.7–6.9 的补充分析只用了主轮的 6 个层。<span class="en">The fine layers (L50–55, L57–61) were computed for the public Jacobian lens and the logit lens only (self100 and fitA were fitted at 6–7 layers, so fine layers would need new fits); the follow-up analyses in §6.7–6.9 use the 6 main-round layers.</span></li>
     <li>Stage 11 的替换和阻断确定了标题信息被读取的时间（L24–L50）和路径（经过标题之后的 token），但还没有确定这些层内部具体由哪些注意力头或 MLP 完成<span class="en">Stage 11 patching and knockout fix when (L24–L50) and through which positions (the tokens after the title) the title is read, but not which attention heads or MLPs do it inside those layers</span></li>

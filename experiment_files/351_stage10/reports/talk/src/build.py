@@ -99,10 +99,10 @@ text(s, 0.95, 4.05, 10.5, 0.6, 'A layer-by-layer readout of author names for 9,1
 note(s, 8.9, 5.0, 3.6, 1.45, [[B('Stages 10-11 · jlens')], [T('Qwen3-32B · 2026-10-27')]], rot=2, size=20)
 
 # 2 question -----------------------------------------------------------------
-s = new_slide('Earlier labels: for about half of the papers the model cannot write the authors when asked openly, but picks the true author list in a 4-option multiple choice. We call these target papers. Control papers: cannot write, cannot pick. If recognition is already computed in middle layers, a lens should read the right names better for target than control there.')
+s = new_slide('Earlier labels: for about half of the papers the model cannot write the author list when asked openly (R0: no true author, or R1: a few right but HR2 above 0.5), but picks the true author list in a 4-option multiple choice. We call these target papers. Control papers: cannot write, cannot pick. If recognition is already computed in middle layers, a lens should read the right names better for target than control there.')
 title(s, 'The question')
-box(s, 0.9, 1.9, 5.3, 2.2, [[B('target  (4,621 papers)', TGT)], [T("can't write the authors")], [T('but picks the true list 4/4 times')]], color=TGT, rot=-1)
-box(s, 0.9, 4.45, 5.3, 2.0, [[B('control  (2,220 papers)', CTL)], [T("can't write the authors")], [T("and can't pick the true list")]], color=CTL, rot=1)
+box(s, 0.9, 1.9, 5.3, 2.2, [[B('target  (4,621 papers)', TGT)], [T("can't write the list (R0/R1)")], [T('but picks the true list 4/4 times')]], color=TGT, rot=-1)
+box(s, 0.9, 4.45, 5.3, 2.0, [[B('control  (2,220 papers)', CTL)], [T("can't write the list (R0/R1)")], [T("and can't pick the true list")]], color=CTL, rot=1)
 text(s, 6.9, 2.0, 5.8, 3.5, [[T('If the model already '), B('knows'), T(' target authors in its middle layers and only fails to say them, a lens on those layers should read the right name '), B('better for target than control', TGT), T('.')],
                              [T('If the knowledge is only assembled at the end, the gap should appear only near the output.')]], size=23, space=18)
 note(s, 7.4, 5.25, 4.6, 1.2, [[B('So: at which layer does target pull ahead of control?')]], rot=-2, size=20)
@@ -167,10 +167,10 @@ chart(s, 'c2_spec_by_layer', 0.6, 1.6, 8.0)
 note(s, 9.0, 1.9, 3.7, 3.4, [[B('L24-L48: ~0'), T(' for both groups')], [T('rises at '), B('L56')], [T('L62: '), B('target +0.56', TGT), T(' vs '), B('control +0.24', CTL)]], rot=-1.5)
 
 # 8 target - control -----------------------------------------------------------------
-s = new_slide('Key slide. Target minus control within citation bins. Left: true title only - middle layers are even slightly negative for the Jacobian lens. Right: title-specific part - about zero until L56, then +0.21 to +0.23 at L62 and the output. The target advantage is late and almost entirely title-specific.')
+s = new_slide('Key slide. Target minus control within citation bins. Left: true title only - middle layers are even slightly negative for the Jacobian lens. Right: title-specific part - about zero until L56, then +0.21 to +0.23 at L62 and the output. Robustness: 11 percent of target papers are R1 (a few authors right) against 1.5 percent of controls; keeping R0 papers only in both groups, the output difference is +0.199 instead of +0.207 and every layer looks the same, and the Stage 11 curves do not change either. The target advantage is late and almost entirely title-specific.')
 title(s, 'Target pulls ahead only in the last layers', 'target - control, within citation bin, 95% CI')
 chart(s, 'c3_tc_by_layer', 0.5, 1.6, 9.2)
-note(s, 9.95, 1.9, 2.9, 3.4, [[T('Middle layers: '), B('no head start')], [T('L62 / output:')], [B('+0.21 to +0.23', TGT)], [T('almost all title-specific')]], rot=1.5, size=19)
+note(s, 9.95, 1.9, 2.9, 4.3, [[T('Middle layers: '), B('no head start')], [T('L62 / output:')], [B('+0.21 to +0.23', TGT)], [T('almost all title-specific')], [B('R0 only'), T(' (no author written): output +0.199 vs +0.207')]], rot=1.5, size=18)
 
 # 8b fine layers -----------------------------------------------------------------
 s = new_slide('Fine layers L50 to L61 were added afterwards for the logit lens and the public lens. The target advantage does not switch on at L62: for the logit lens the title-specific target minus control difference is +0.007 at L50, +0.03 at L54, +0.07 at L56, +0.11 at L58, +0.18 at L60 and +0.23 at L62. The public lens is negative up to L54 and turns positive at L57. The steepest rise is L57 to L61. Both groups peak at L61.')
@@ -276,6 +276,20 @@ title(s, 'Caveats and next steps')
 text(s, 0.9, 1.6, 6.0, 4.8, [[B('Caveats')], [T('- Readout is correlational; patching/knockout fix the timing, not the mechanism inside L24-L50')], [T('- Parity tolerance raised 0.25 -> 0.5 after the fact')],
                             [T('- Groups are model-specific; low-citation "recognition" is near chance')], [T('- Few control papers above 1,000 citations')], [T('- Label run settings (max length, thinking mode) not in the package')]], size=21, space=10)
 note(s, 7.4, 1.7, 5.1, 3.9, [[B('Stage 12 (running)')], [T('1. Patch single positions (quote, year, "Authors:") - done, analysing')], [T('2. Attention vs MLP patching in L8-L56')], [T('3. A lens fitted on author prompts, read at L24-L62')], [T('4. Name-prior baselines: distractor lists without a title; a prompt with no paper')]], rot=1.5, size=19)
+
+# stage labels (top right), by build index; none on the title, conclusions and appendix divider
+TAGS = ['', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10',
+        'Stage 11', 'Stage 11', 'Stage 11', 'Stage 11', 'Stage 12', 'Stage 12', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10',
+        '', 'Stage 12 plan']
+TAG_COL = {'Stage 10': CTL, 'Stage 11': TGT, 'Stage 12': GRN, 'Stage 12 plan': GRN}
+for sl, tg in zip(prs.slides, TAGS):
+    if not tg: continue
+    sh = sl.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(11.2), Inches(0.2), Inches(1.85), Inches(0.42)); sh.adjustments[0] = 0.3
+    sh.fill.solid(); sh.fill.fore_color.rgb = RGBColor(0xFF, 0xFF, 0xFF); sh.line.color.rgb = TAG_COL[tg]; sh.line.width = Pt(1.75); sh.shadow.inherit = False
+    tf = sh.text_frame; tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0; tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    para = tf.paragraphs[0]; para.alignment = PP_ALIGN.CENTER; r = para.add_run(); r.text = tg
+    r.font.name = BODY_F; r.font.size = Pt(15); r.font.bold = True; r.font.color.rgb = TAG_COL[tg]
+assert len(TAGS) == len(prs.slides._sldIdLst), (len(TAGS), len(prs.slides._sldIdLst))
 
 # appendix divider -----------------------------------------------------------------
 s = new_slide('Appendix: backup slides for questions - checks, readout levels, the author chain, probe controls, lens comparisons, citations and name formats.')

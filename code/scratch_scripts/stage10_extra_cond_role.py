@@ -1,4 +1,4 @@
-"""Follow-up to stage10_extra.py X1_cond (2026-10-26): the first-word conditional split by the first token's role
+"""Stage 10 — follow-up to stage10_extra.py X1_cond (2026-10-26): the first-word conditional split by the first token's role
 (initial_first vs given_first), true title, readouts final@63, logit@62, jlens_public@62; clustered bootstrap by paper."""
 import importlib.util
 from pathlib import Path

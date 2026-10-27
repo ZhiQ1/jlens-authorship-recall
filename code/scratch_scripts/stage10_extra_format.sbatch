@@ -1,4 +1,5 @@
 #!/bin/bash
+# Stage 10 CPU job: name-format follow-up (stage10_extra_format.py / stage10_extra_cond_role.py).
 #SBATCH --partition=short
 #SBATCH --account=cs7980.202710
 #SBATCH --job-name=s10_extra_fmt

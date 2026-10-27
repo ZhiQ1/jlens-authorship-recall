@@ -1,4 +1,5 @@
 #!/bin/bash
+# Stage 12 CPU job: name-prior analyses A/B/C and probe controls (see stage12_cpu.py).
 #SBATCH --job-name=s12_cpu
 #SBATCH --partition=short
 #SBATCH --account=cs7980.202710

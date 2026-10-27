@@ -1,4 +1,4 @@
-"""Follow-up to stage10_extra.py X1 (2026-10-26): first token vs later tokens split by name format, i.e. the role of the
+"""Stage 10 — follow-up to stage10_extra.py X1 (2026-10-26): first token vs later tokens split by name format, i.e. the role of the
 author string's first token (initial_first = starts with an initial, given_first = starts with a full given name).
 Title-specific signal (true - mean false_0..4) per paper over the tokens of that format/position, all papers, and
 target - control within citation bin; 95% bootstrap CIs (B = 2000). Writes summary_extra/X1_by_format.csv."""
