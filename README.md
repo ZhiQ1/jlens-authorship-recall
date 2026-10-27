@@ -39,19 +39,19 @@ flowchart LR
 | Stage | Question | Data size | Method | Readout, layers | Dates |
 |---|---|---|---|---|---|
 | Labels | Which papers does the model recall / recognise? | 9,108 papers (A/B/C/D = 6,841) | Open answer + 4-option multiple choice in 4 orders | Model output | label package 2026-10-15 |
-| 4 | Is the mean pulled up by a few papers? | Benchmark20: 20 papers | First-listed author's first token at ":"; per-paper contribution | Public J-Lens, L16–62 | files ≤ 2026-10-18* |
-| 5 | Does the score depend on title–author correspondence? | Pilot50 (A20/B20/C7/D3), 20 A/B pairs | 2 titles × 2 authors crossed; gold vs false first token from the same logits | Public J-Lens, L16–62 | files ≤ 2026-10-18* |
-| 6 | Full-name readout trajectories by group | Pilot50, 227 paper-author instances | Every name token of every author, teacher forcing; JMRR | Public J-Lens + Vanilla, L16–62 (+ Final) | files ≤ 2026-10-18* |
-| 7.1 | First token vs continuation | Stage 6 rows (14,580), 20 pairs | CPU re-analysis of Stage 6 | as Stage 6 | files ≤ 2026-10-18* |
-| 7.2 | Gold vs many false names | Pilot50 × 100 real false names (50 matched + 50 random) | First-token Gold Win Rate | Public J-Lens + Vanilla, L16–62 | files ≤ 2026-10-18* |
-| 7.3 | Gold advantage after a wrong-title background | Pilot50 × 20 metadata-matched wrong titles | Title Advantage = true − mean wrong-title win rate | Public J-Lens + Vanilla, L16–62 | files ≤ 2026-10-18* (score 10-21) |
-| 7.4 | Consistency across stages; J-Lens increment | same 50 papers | CPU correlations, J−V | — | files ≤ 2026-10-18* |
-| 8 | Does it hold on new papers? | 200 new papers, 100 A/B pairs (Low/Mid/High 25/50/25) | Frozen candidates and titles; L56 pre-specified; 8B controls, 8C scores, 8D analysis | Public J-Lens + Vanilla, L16–62 | 8A ≤ 10-18*, 8B–D 2026-10-20 |
+| 4 | Is the mean pulled up by a few papers? | Benchmark20: 20 papers | First-listed author's first token at ":"; per-paper contribution | Public J-Lens, L16–62 | 2026-10-15 |
+| 5 | Does the score depend on title–author correspondence? | Pilot50 (A20/B20/C7/D3), 20 A/B pairs | 2 titles × 2 authors crossed; gold vs false first token from the same logits | Public J-Lens, L16–62 | 2026-10-15 |
+| 6 | Full-name readout trajectories by group | Pilot50, 227 paper-author instances | Every name token of every author, teacher forcing; JMRR | Public J-Lens + Vanilla, L16–62 (+ Final) | 2026-10-15 |
+| 7.1 | First token vs continuation | Stage 6 rows (14,580), 20 pairs | CPU re-analysis of Stage 6 | as Stage 6 | 2026-10-15 |
+| 7.2 | Gold vs many false names | Pilot50 × 100 real false names (50 matched + 50 random) | First-token Gold Win Rate | Public J-Lens + Vanilla, L16–62 | 2026-10-15 |
+| 7.3 | Gold advantage after a wrong-title background | Pilot50 × 20 metadata-matched wrong titles | Title Advantage = true − mean wrong-title win rate | Public J-Lens + Vanilla, L16–62 | 2026-10-15 (score 2026-10-21) |
+| 7.4 | Consistency across stages; J-Lens increment | same 50 papers | CPU correlations, J−V | — | 2026-10-15 |
+| 8 | Does it hold on new papers? | 200 new papers, 100 A/B pairs (Low/Mid/High 25/50/25) | Frozen candidates and titles; L56 pre-specified; 8B controls, 8C scores, 8D analysis | Public J-Lens + Vanilla, L16–62 | 8A 2026-10-15, 8B–D 2026-10-20 |
 | 9 | New lens fits (Fit A/B 100/100, Holdout100) | 200 fitting texts + 100 holdout | Jacobian lens fitting | — | 10-18 → 10-22, archived separately |
 | **10** | **At which layer does the model hold a paper's authors? (full cohort)** | **9,108 papers, 33,811 authors, 149,999 name tokens** | **Every name token, each author alone; 7 title conditions (true, 5 matched false, none); target vs control (`group_tight`) within citation bins** | **Vanilla, public / Self100 / Fit A J-Lens, Final; L24–62 (+ L50–61 for public and Vanilla)** | **frozen 2026-10-23, GPU 10-24 → 10-26, analyses 10-26** |
 | **11** | **Is the information formed late, or present at the title earlier and moved late?** | **1,186 papers (593 target / 593 control) for patching and knockout; 9,108 for title position and author chain** | **Activation patching (tail / last title token), attention knockout (all later / name positions), lens + ridge probe at the last title token, author chain** | **Final output; Vanilla + public J-Lens L16–62 at the title position** | **frozen 2026-10-26; running** |
 
-\* Stages 4–8A: file dates on the HPC scratch copy (2026-10-18); the original run dates were not recorded, so these are upper bounds.
+Stage 4–8A dates are as given by the experiment lead (2026-10-15).
 
 ![What each stage measures](docs/assets/measurement_positions.png)
 

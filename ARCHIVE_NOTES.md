@@ -7,19 +7,19 @@ The one table to check first. Data sizes are the frozen inputs; methods are what
 | Stage | Data size (frozen) | Method (what is scored) | Readouts / layers | Code | Outputs | Dates |
 |---|---|---|---|---|---|---|
 | Labels | 9,108 papers; A/B/C/D 6,841 | open answer + 4-option multiple choice × 4 orders | model output | (label package) | `labels_20261015/` | 2026-10-15 |
-| 4 | 20 papers (Benchmark20) | first-listed author's first token at ":"; per-paper contribution | public J-Lens, L16–62 | `351_stage4_readout.py`, `351_stage4_audit.py` | `351_all/351_stage4_artifacts/` | files ≤ 10-18* |
-| 5 | 50 papers (A20/B20/C7/D3), 20 A/B pairs | true vs crossed-source title × gold vs false author, first token | public J-Lens, L16–62 | `351_stage5.py` | `351_stage5_crossed_v2/` | files ≤ 10-18* |
-| 6 | 50 papers, 227 paper-author instances | every name token, teacher forcing, JMRR | public J-Lens + Vanilla, L16–62, Final | `351_stage6.py` | `351_stage6/` | files ≤ 10-18* |
-| 7.1 | 14,580 Stage 6 rows, 20 pairs | CPU split into first token vs continuation | as Stage 6 | `351_stage7.py` | `351_stage7_1/` | files ≤ 10-18* |
-| 7.2 | 50 papers × 100 real false names | first-token Gold Win Rate | public J-Lens + Vanilla, L16–62 | `351_stage7_2.py`, `_score.py` | `351_stage7_2/` | files ≤ 10-18* |
-| 7.3 | 50 papers × 20 metadata-matched wrong titles | Title Advantage | public J-Lens + Vanilla, L16–62 | `351_stage7_3.py`, `_score.py` | `351_stage7_3/` | files ≤ 10-18*, score 10-21 |
-| 7.4 | same 50 papers | CPU cross-stage correlation, J−V | — | `351_stage7_4.py` | `351_stage7_4/` | files ≤ 10-18* |
-| 8 | 200 new papers, 100 A/B pairs (25/50/25 by citation) | frozen candidates + titles, L56 pre-specified | public J-Lens + Vanilla, L16–62 | `351_stage8*.py` | `351_stage8/` | 8A ≤ 10-18*, 8B–D 10-20 |
+| 4 | 20 papers (Benchmark20) | first-listed author's first token at ":"; per-paper contribution | public J-Lens, L16–62 | `351_stage4_readout.py`, `351_stage4_audit.py` | `351_all/351_stage4_artifacts/` | 2026-10-15 |
+| 5 | 50 papers (A20/B20/C7/D3), 20 A/B pairs | true vs crossed-source title × gold vs false author, first token | public J-Lens, L16–62 | `351_stage5.py` | `351_stage5_crossed_v2/` | 2026-10-15 |
+| 6 | 50 papers, 227 paper-author instances | every name token, teacher forcing, JMRR | public J-Lens + Vanilla, L16–62, Final | `351_stage6.py` | `351_stage6/` | 2026-10-15 |
+| 7.1 | 14,580 Stage 6 rows, 20 pairs | CPU split into first token vs continuation | as Stage 6 | `351_stage7.py` | `351_stage7_1/` | 2026-10-15 |
+| 7.2 | 50 papers × 100 real false names | first-token Gold Win Rate | public J-Lens + Vanilla, L16–62 | `351_stage7_2.py`, `_score.py` | `351_stage7_2/` | 2026-10-15 |
+| 7.3 | 50 papers × 20 metadata-matched wrong titles | Title Advantage | public J-Lens + Vanilla, L16–62 | `351_stage7_3.py`, `_score.py` | `351_stage7_3/` | 2026-10-15, score 2026-10-21 |
+| 7.4 | same 50 papers | CPU cross-stage correlation, J−V | — | `351_stage7_4.py` | `351_stage7_4/` | 2026-10-15 |
+| 8 | 200 new papers, 100 A/B pairs (25/50/25 by citation) | frozen candidates + titles, L56 pre-specified | public J-Lens + Vanilla, L16–62 | `351_stage8*.py` | `351_stage8/` | 8A 2026-10-15, 8B–D 2026-10-20 |
 | 9 | Fit A/B 100/100 texts + Holdout100 | new lens fits | — | (archived separately) | — | 10-18 → 10-22 |
 | 10 | 9,108 papers, 33,811 authors, 149,999 name tokens × 7 title conditions | every name token, each author alone; title-specific signal; target vs control within citation bins | Vanilla, public / Self100 / Fit A J-Lens, Final; L24/32/40/48/56/62 (+ L50–55, 57–61 for public and Vanilla) | `351_stage10.py` via `351_stage10_fix1.py`; `stage10_extra*.py` | `351_stage10/` | frozen 10-23, GPU 10-24 → 10-26 |
 | 11 | 1,186 papers (593 target / 593 control, balanced within bins) for E1/E1t/E2/E2n; 9,108 papers for E3 and E4 | E1 tail patching, E1t last-title-token patching, E2/E2n attention knockout, E3 author chain, E4 lens + ridge probe at the last title token | Final; Vanilla + public J-Lens L16–62 at the title position | `361_stage11.py`, `stage11_analyze.py` | `361_stage11/` | frozen 10-26 (amendment 1: 10-27), running |
 
-\* File dates on the HPC scratch copy; the runs themselves were not dated in their outputs, so these are upper bounds. All dates 2026.
+Stage 4–8A dates are as given by the experiment lead (2026-10-15). All dates 2026.
 
 ## 1. Archive Root: Where to Find Files
 
