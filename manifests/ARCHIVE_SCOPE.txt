@@ -4,3 +4,5 @@ Excluded: Stage 9 — running; archive separately after completion.
 Stage 8E — not executed.
 final_missing_files.csv: all 50 listed entries belong to excluded Stage 7.1B.
 Final coverage scan compared paths and sizes; individual completed transfers were checked with rsync checksums.
+Update 2026-10-26: added Stage 10 (code, config, cohort, summaries as CSV, figures, reports, talk deck); excluded 351_stage10/raw/ (1.2 GB) and the two paper-level parquet tables (regenerable).
+Update 2026-10-26: added Stage 11 code and frozen config; results pending (running).

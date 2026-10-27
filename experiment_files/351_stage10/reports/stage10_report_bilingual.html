@@ -1,0 +1,635 @@
+<title>Stage 10 作者名读出实验报告</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; each section is a sequence of 中文 paragraph + English paragraph pairs, tables and one figure set in full column width. */
+:root {
+  --paper: #f6f7f9;
+  --ink: #1b2330;
+  --muted: #5a6476;
+  --rule: #d5dae3;
+  --panel: #ffffff;
+  --accent: #2f5d8a;      /* headings, links, control series */
+  --warm: #b0612b;        /* target series, key numbers */
+  --neg: #8a3b4a;
+  --font-zh-display: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --font-zh: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-en: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #13171d; --ink: #e3e7ee; --muted: #9aa4b5; --rule: #2c3440; --panel: #1a2029;
+  --accent: #7fa8d4; --warm: #e19a63; --neg: #d78a98; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #13171d; --ink: #e3e7ee; --muted: #9aa4b5; --rule: #2c3440; --panel: #1a2029;
+  --accent: #7fa8d4; --warm: #e19a63; --neg: #d78a98; color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font-family: var(--font-zh); font-size: 16px; line-height: 1.75;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 72px; }
+main { max-width: 800px; margin: 0 auto; display: grid; gap: 44px; }
+header { display: grid; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--font-zh-display); font-size: clamp(26px, 5vw, 36px); line-height: 1.3; margin: 0; text-wrap: balance; }
+h1 .en { display: block; font-family: var(--font-en); font-weight: 400; font-style: italic; font-size: .6em; color: var(--muted); margin-top: 6px; }
+.meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+section { display: grid; gap: 18px; min-width: 0; }
+h2 { font-family: var(--font-zh-display); font-size: 22px; margin: 0; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; text-wrap: balance; }
+h2 .num { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+h2 .en { font-family: var(--font-en); font-weight: 400; font-size: 16px; color: var(--muted); font-style: italic; }
+h3 { font-family: var(--font-zh); font-size: 17px; margin: 8px 0 0; color: var(--ink); }
+h3 .en { font-family: var(--font-en); font-weight: 400; font-style: italic; color: var(--muted); font-size: 15px; margin-left: 8px; }
+.pair { display: grid; gap: 6px; }
+.pair p { margin: 0; }
+.pair .zh { font-size: 16px; }
+.pair .en { font-family: var(--font-en); font-size: 15.5px; line-height: 1.6; color: var(--muted); border-left: 2px solid var(--rule); padding-left: 12px; }
+ul.pair-list { margin: 0; padding-left: 1.2em; display: grid; gap: 10px; }
+ul.pair-list li .en { display: block; font-family: var(--font-en); color: var(--muted); font-size: 15px; line-height: 1.55; }
+strong.k { color: var(--warm); font-weight: 700; }
+code, .mono { font-family: var(--font-mono); font-size: .88em; }
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-family: var(--font-mono); font-weight: 500; font-size: 12px; color: var(--muted); background: var(--paper); }
+tbody tr:last-child td { border-bottom: 0; }
+td.mono { font-family: var(--font-mono); font-size: 12.5px; }
+td .ci { color: var(--muted); font-size: 11.5px; display: block; }
+td.pos { color: var(--warm); font-weight: 600; }
+td.neg { color: var(--neg); }
+td.best { font-weight: 700; color: var(--ink); }
+.cap { font-size: 13px; color: var(--muted); margin: 0; }
+.cap .en { font-family: var(--font-en); font-style: italic; }
+figure { margin: 0; display: grid; gap: 8px; }
+.fig { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 10px; overflow-x: auto; }
+.fig svg { display: block; width: 100%; min-width: 520px; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+.sw { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 6px; border-radius: 2px; }
+.findings { display: grid; gap: 14px; counter-reset: f; }
+.finding { display: grid; grid-template-columns: 34px 1fr; gap: 4px 10px; }
+.finding::before { counter-increment: f; content: counter(f); font-family: var(--font-mono); color: var(--accent); font-size: 14px; padding-top: 2px; }
+.finding > div { min-width: 0; display: grid; gap: 4px; }
+.finding .en { font-family: var(--font-en); color: var(--muted); font-size: 15px; line-height: 1.55; }
+footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; color: var(--muted); }
+@media (max-width: 480px) { body { font-size: 15px; } .finding { grid-template-columns: 24px 1fr; } }
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">jlens · Stage 10 · Qwen3-32B · 2026-10-26</div>
+  <h1>大模型在哪一层"记住"论文作者：逐层读出实验报告
+    <span class="en">At which layer does Qwen3-32B hold a paper's authors? A layer-wise readout study</span></h1>
+  <div class="meta"><span>9,108 papers</span><span>33,811 author contexts</span><span>149,999 name tokens</span><span>7 title conditions</span><span>5 readouts × 6 layers + output</span></div>
+</header>
+
+<section>
+  <h2><span class="num">§1</span>摘要 <span class="en">Summary</span></h2>
+  <div class="pair">
+    <p class="zh">本实验用 9,108 篇论文，逐层读出 Qwen3-32B 内部对作者名字的预测，看模型在哪一层开始"拿着"某篇论文的作者。我们比较了两组论文：一组是模型写不出作者、但在多选题里能认出正确作者名单的"目标组"（target），另一组是既写不出也认不出的"对照组"（control）。为了区分"认识这篇论文"和"名字本身好猜"，每篇论文还换成 5 个匹配好的假标题和删掉标题再测一遍。</p>
+    <p class="en">Using 9,108 papers, we read out Qwen3-32B's internal predictions of author-name tokens layer by layer to find where the model starts to hold a specific paper's authors. We compare a target group (the model cannot write the authors but recognises the true author list in a multiple-choice test) with a control group (neither writes nor recognises them). To separate knowing the paper from names that are simply easy to guess, every paper is also scored with 5 matched false titles and with the title deleted.</p>
+  </div>
+  <div class="pair">
+    <p class="zh">主要结论：针对具体论文的作者信息只在最后几层才读得出来。L24 到 L48 层，真标题相对假标题的优势（下称"标题特异信号"）几乎为 0；从 L50 前后开始逐层积累，L57–L61 上升最快，L61–L62 和最终输出最强。目标组比对照组多出的部分也集中在 L62/L63（在引用数分档内比较，<strong class="k">+0.21 到 +0.23</strong>，95% 置信区间都在 0 以上），而且几乎全部是标题特异的，不能用名字好猜来解释。中间层没有看到"提前拿着作者"的迹象。</p>
+    <p class="en">Main result: paper-specific author information becomes readable only in the last layers. From L24 to L48 the advantage of the true title over false titles (the title-specific signal) is close to zero; it builds up layer by layer from about L50, rises fastest over L57–L61, and is strongest at L61–L62 and the model output. The extra signal of the target group over the control group is likewise concentrated at L62/L63 (within citation bins, <strong class="k">+0.21 to +0.23</strong>, all 95% CIs above zero) and is almost entirely title-specific, so it is not explained by easy-to-guess names. No sign of the authors being held earlier in the middle layers.</p>
+  </div>
+  <div class="pair">
+    <p class="zh">补充分析（不需要新的 GPU 计算）进一步表明：标题特异信号在名字里的位置取决于名字格式，首字母开头时几乎都在后续 token（含姓）上（目标−对照 +0.253，首字母本身 +0.048），完整名开头时名和后续 token 各带一份相当的信号（+0.174 与 +0.202）；引用数越高，标题特异信号越强（Spearman ρ = 0.45）；三种 Jacobian lens 在中间层只比 logit lens 多读出很少的论文信息（+0.01 到 +0.03），而且这部分信息不偏向目标组。</p>
+    <p class="en">Follow-up analyses (no new GPU runs) show further that where the title-specific signal sits within a name depends on its format: for initial-first names it is almost all on the later tokens, which include the surname (target − control +0.253 versus +0.048 on the initial), while for given-name-first names the given name and the later tokens carry comparable shares (+0.174 and +0.202); that it grows with citation count (Spearman ρ = 0.45); and that the three Jacobian lenses read only slightly more paper information than the logit lens in middle layers (+0.01 to +0.03), information that does not favour the target group.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">§2</span>研究问题 <span class="en">Question</span></h2>
+  <div class="pair">
+    <p class="zh">此前的标注实验发现，Qwen3-32B 对大约一半的论文"写不出作者、但认得出作者名单"。本阶段要回答的是：这种"认得"在网络内部是什么时候形成的？如果模型在中间层就已经把作者信息算出来、只是没能输出，那么用 lens 读中间层时，目标组应该比对照组更容易读出正确的名字；如果信息只在最后几层才组装出来，差异就只会出现在输出附近。</p>
+    <p class="en">An earlier labelling run found that for roughly half of the papers Qwen3-32B cannot write the authors yet recognises the true author list. This stage asks when that recognition forms inside the network. If the model already computes the author information in middle layers and only fails to emit it, a lens applied to those layers should read the correct name more easily for target papers than for control papers. If the information is assembled only in the last layers, the difference should appear only near the output.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">§3</span>数据 <span class="en">Data</span></h2>
+  <div class="pair">
+    <p class="zh">论文集合来自 2026-10-15 的 Qwen3-32B 标注包（<span class="mono">paper_labels_with_papers.csv</span>），共 9,108 篇，覆盖 8 个领域（医学 1,230、生物 1,179、计算机 1,174、心理学 1,154、化学 1,134、数学 1,088、物理 1,082、材料 1,067）。发表年份 1817–2020（中位数 2006），引用数 0–63,901（中位数 50.5），按引用数分成 13 档（0-2, 3-4, 5-8 … 2049-4096, 4097+）。每篇论文平均 3.7 位作者（1–20 位）。</p>
+    <p class="en">The paper set is the 2026-10-15 Qwen3-32B label package (<span class="mono">paper_labels_with_papers.csv</span>): 9,108 papers across 8 fields (medicine 1,230, biology 1,179, computer science 1,174, psychology 1,154, chemistry 1,134, mathematics 1,088, physics 1,082, materials science 1,067). Publication years span 1817–2020 (median 2006), citations 0–63,901 (median 50.5), grouped into 13 citation bins (0-2, 3-4, 5-8 … 2049-4096, 4097+). Papers have 3.7 authors on average (1–20).</p>
+  </div>
+  <div class="pair">
+    <p class="zh">分组沿用标注包的 <span class="mono">group_tight</span>：先让模型开放回答"这篇论文的作者是谁"，再给 4 个候选作者名单（真名单 + 同领域、相近年份和引用档的 3 个真实团队）按 4 种顺序做多选。能写出作者的是 guard（R2）；写不出、但 4 次全对且真选项平均概率 ≥ 0.5 的是 target；写不出且最多对 1 次的是 control；其余为 excluded。</p>
+    <p class="en">Groups follow the package's <span class="mono">group_tight</span> label. The model first answers openly "who wrote this paper", then picks among 4 candidate author lists (the true list plus 3 real teams from papers of the same field, similar year and citation bin) in 4 orders. Papers whose authors it can write are guard (R2); papers it cannot write but gets right in all 4 orders with mean true-option probability ≥ 0.5 are target; papers it cannot write and gets right at most once are control; the rest are excluded.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>组 Group</th><th>论文数 Papers</th><th>定义 Definition</th></tr></thead>
+    <tbody>
+      <tr><td>target 目标组</td><td>4,621</td><td style="text-align:left">写不出 · 4/4 认出 &nbsp;/&nbsp; cannot write · recognises 4/4</td></tr>
+      <tr><td>control 对照组</td><td>2,220</td><td style="text-align:left">写不出 · 认不出 (≤1/4) &nbsp;/&nbsp; cannot write · does not recognise</td></tr>
+      <tr><td>guard 能写出</td><td>214</td><td style="text-align:left">开放回答基本正确 (R2) &nbsp;/&nbsp; writes the authors</td></tr>
+      <tr><td>excluded 排除</td><td>2,053</td><td style="text-align:left">介于两者之间 &nbsp;/&nbsp; in between</td></tr>
+    </tbody></table></div>
+  <div class="pair">
+    <p class="zh">每位作者单独作为一个打分单元，共 33,811 个作者上下文、149,999 个名字 token。每个 token 标了角色：姓的第一个 token 33,810 个、姓的后续 token 39,995 个、首字母 28,382 个、标点 28,701 个、名的第一个 token 9,431 个、名的后续 token 9,357 个、姓氏前缀 323 个。</p>
+    <p class="en">Each author is scored as a separate unit: 33,811 author contexts and 149,999 name tokens. Every token carries a role: surname-first 33,810, surname-continuation 39,995, initial 28,382, punctuation 28,701, given-name-first 9,431, given-name-continuation 9,357, particle 323.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">§4</span>方法 <span class="en">Method</span></h2>
+  <h3>4.1 输入与打分 <span class="en">Input and scoring</span></h3>
+  <div class="pair">
+    <p class="zh">模型为 Qwen/Qwen3-32B（revision <span class="mono">9216db57</span>），bf16，单张 A100-80GB。提示词为 <span class="mono">Who are the authors of the paper titled "{title}" ({year})?\nAuthors:</span>，后面接一位作者的名字。用教师强制（teacher forcing）：在每个名字 token 之前的位置，看模型给正确 token 排第几名。</p>
+    <p class="en">The model is Qwen/Qwen3-32B (revision <span class="mono">9216db57</span>) in bf16 on one A100-80GB. The prompt is <span class="mono">Who are the authors of the paper titled "{title}" ({year})?\nAuthors:</span> followed by one author's name. With teacher forcing, at the position before each name token we record the rank of the correct token.</p>
+  </div>
+  <div class="pair">
+    <p class="zh">主指标是 log10(1/名次)：排第 1 为 0，排第 10 为 −1，词表最差约 −5.18。每篇论文对所有名字 token 取平均，再在组内对论文平均；组间比较只用平均值，不用总和（各组作者数不同）。</p>
+    <p class="en">The main metric is log10(1/rank): rank 1 gives 0, rank 10 gives −1, the worst possible is about −5.18. It is averaged over a paper's name tokens and then over papers within a group; groups are compared by means only, never sums, because author counts differ between groups.</p>
+  </div>
+  <h3>4.2 读出方式与层 <span class="en">Readouts and layers</span></h3>
+  <div class="pair">
+    <p class="zh">在第 24、32、40、48、56、62 层的残差流上用 4 种方式读出，另加模型真实输出（L63）：</p>
+    <p class="en">The residual stream at layers 24, 32, 40, 48, 56 and 62 is read out in four ways, plus the model's actual output (L63):</p>
+  </div>
+  <ul class="pair-list">
+    <li><b>logit lens</b>：直接接最终归一化和输出层。<span class="en">final norm + unembedding applied directly.</span></li>
+    <li><b>jlens_public</b>：公开的 Jacobian lens（Neuronpedia，557 条 wikitext 提示词拟合，覆盖全部层）。<span class="en">public Jacobian lens from Neuronpedia, fitted on 557 wikitext prompts, all layers.</span></li>
+    <li><b>jlens_self100</b>：自己拟合的 Jacobian lens（100 条提示词）。<span class="en">our own Jacobian lens fitted on 100 prompts.</span></li>
+    <li><b>jlens_fitA</b>：Stage 9 修复后的 Fit A lens（100 条提示词）。<span class="en">the repaired Stage 9 Fit A lens, 100 prompts.</span></li>
+    <li><b>final</b>：模型真实下一个 token 的输出（L63）。<span class="en">the model's real next-token output (L63).</span></li>
+  </ul>
+  <div class="pair">
+    <p class="zh">Jacobian lens 先把第 l 层的残差用该层的 Jacobian 矩阵变换到最后一层的空间，再接输出层，比 logit lens 更能读出中间层的信息。</p>
+    <p class="en">A Jacobian lens first transports the layer-l residual into the last layer's space with that layer's Jacobian matrix and then applies the unembedding, which reads middle-layer information better than the logit lens.</p>
+  </div>
+  <h3>4.3 标题条件 <span class="en">Title conditions</span></h3>
+  <div class="pair">
+    <p class="zh">每篇论文测 7 种提示：真标题（true）；5 个假标题（false_0–false_4，借用同领域其他论文的标题，年份保持不变）；删掉标题（delete：<span class="mono">Who are the authors of the paper ({year})?</span>）。假标题按年份、作者数、标题长度和引用档的差距做最小代价匹配，排除共享姓氏或标题过于相似的论文。匹配分 4 级：strict 35,898 个、medium 1,638 个、loose 2,565 个、nearest 5,439 个。</p>
+    <p class="en">Each paper is scored under 7 prompts: the true title; 5 false titles (false_0–false_4, titles of other papers in the same field, year kept); and the title deleted (<span class="mono">Who are the authors of the paper ({year})?</span>). False titles are matched by minimum-cost assignment on year, author count, title length and citation-bin distance, excluding donors with a shared surname or a too-similar title. Matches fall into 4 tiers: strict 35,898, medium 1,638, loose 2,565, nearest 5,439.</p>
+  </div>
+  <div class="pair">
+    <p class="zh">由此得到三种对比（同一组 token，配对比较）：<b>标题特异</b> = 真标题 − 5 个假标题的平均，衡量"认识这篇论文"；<b>总效应</b> = 真标题 − 删掉标题；<b>主题效应</b> = 假标题平均 − 删掉标题，衡量任何相近标题都能带来的帮助。</p>
+    <p class="en">This gives three paired contrasts on the same tokens: <b>title-specific</b> = true − mean of the 5 false titles, measuring knowledge of this particular paper; <b>total</b> = true − deleted; <b>topic</b> = mean false − deleted, the help any similar title gives.</p>
+  </div>
+  <h3>4.4 统计 <span class="en">Statistics</span></h3>
+  <div class="pair">
+    <p class="zh">目标组与对照组只在同一引用档内比较（两组都至少 30 篇的档），按 n<sub>t</sub>·n<sub>c</sub>/(n<sub>t</sub>+n<sub>c</sub>) 加权合并，因为引用数和分组高度相关（0-2 档目标组占 25%，4097+ 档占 99%）。置信区间用档内、组内重抽论文的 bootstrap（2,000 次）。敏感性分析去掉 0-4 两个低引用档（这两档的"认出"接近随机偏好的 25%）。</p>
+    <p class="en">Target and control are compared only within citation bins (bins with at least 30 papers in both groups), pooled with weights n<sub>t</sub>·n<sub>c</sub>/(n<sub>t</sub>+n<sub>c</sub>), because citations and group are strongly confounded (target share 25% in bin 0-2, 99% in 4097+). Confidence intervals come from a bootstrap of papers within bin and group (2,000 draws). A sensitivity analysis drops the two lowest bins 0-4, where recognition is close to the 25% rate of a fixed preference.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">§5</span>计算与质量控制 <span class="en">Computation and checks</span></h2>
+  <div class="pair">
+    <p class="zh">论文分成 72 个 shard（每个 128 篇）。主轮共 7 个条件 × 72 个 shard × 25 组"读出 × 层"，输出 12,600 个文件，全部完成。计算在 Explorer 集群的 A100-80GB 上进行，主轮实际约 7 GPU 小时，最多 4 张卡并行；每个 shard 约 46 秒。所有输入（论文集合、token 表、提示词、lens 文件）在运行前冻结并做 sha256 校验。</p>
+    <p class="en">Papers are split into 72 shards of 128. The main round is 7 conditions × 72 shards × 25 readout-layer pairs, 12,600 output files, all complete. It ran on A100-80GB GPUs of the Explorer cluster, about 7 GPU-hours with up to 4 GPUs in parallel, about 46 s per shard. All inputs (paper set, token table, prompts, lens files) were frozen and sha256-checked before the run.</p>
+  </div>
+  <div class="pair">
+    <p class="zh"><b>一致性检查（parity）。</b>快速路径（整段一次前向）和参考路径（每个前缀单独前向）在 12 个样本、52 个位置上比较。两者数学上等价，差异只来自 bf16 累加顺序：最大 |Δlogit| 为 0.16–0.37，最大差出现在不经过 lens 的最终输出（0.367），排名前 41 位在所有位置完全一致。原定容差 0.25，看到结果后放宽到 0.5，这是事后调整，已记录在分析计划中。</p>
+    <p class="en"><b>Parity check.</b> The fast path (one forward pass over the sequence) was compared with a reference (a separate forward pass per prefix) on 12 sampled contexts and 52 positions. The two are mathematically identical; differences come only from bf16 accumulation order. Max |Δlogit| was 0.16–0.37, the largest on the final output, which involves no lens code (0.367), and ranks 1–41 matched exactly at every position. The pre-set tolerance of 0.25 was raised to 0.5 after seeing these results; this post-hoc change is recorded in the analysis plan.</p>
+  </div>
+  <div class="pair">
+    <p class="zh"><b>与 Stage 6 交叉核对。</b>972 个重叠 token 的 token id 100% 一致，对数概率差的中位数为 3×10<sup>−6</sup> 到 7×10<sup>−5</sup>，排名完全相同的比例为 77–95%，其余差异同样来自 bf16 舍入。</p>
+    <p class="en"><b>Cross-check with Stage 6.</b> On 972 overlapping tokens the token ids match 100%, the median log-probability difference is 3×10<sup>−6</sup> to 7×10<sup>−5</sup>, and 77–95% of ranks are identical; the remaining differences are again bf16 rounding.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">§6</span>结果 <span class="en">Results</span></h2>
+
+  <h3>6.1 逐层读出水平（真标题）<span class="en">Readout level by layer, true title</span></h3>
+  <div class="pair">
+    <p class="zh">所有读出方式都随层数加深而变好。logit lens 在 L48 之前几乎读不出名字（约 −4.4 到 −4.6，相当于排在几万名），L56 到 −3.5，L62 跳到约 −1.0。Jacobian lens 从 L40 起明显好于 logit lens（约 −3.0），说明中间层已经有与名字相关的信息，但这并不区分具体论文（见 6.3）。</p>
+    <p class="en">Every readout improves with depth. The logit lens barely reads the name before L48 (about −4.4 to −4.6, i.e. ranks in the tens of thousands), reaches −3.5 at L56 and jumps to about −1.0 at L62. The Jacobian lenses beat the logit lens from L40 on (about −3.0), so middle layers already carry name-related information, but that information is not specific to the paper (see 6.3).</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>读出 Readout · 组 Group</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L56</th><th>L62</th><th>L63</th></tr></thead>
+    <tbody>
+      <tr><td>jlens_public · target</td><td>−4.41</td><td>−4.24</td><td>−3.29</td><td>−3.04</td><td>−3.30</td><td>−1.00</td><td></td></tr>
+      <tr><td>jlens_public · control</td><td>−4.40</td><td>−4.21</td><td>−3.28</td><td>−2.82</td><td>−3.06</td><td>−1.26</td><td></td></tr>
+      <tr><td>logit · target</td><td>−4.59</td><td>−4.51</td><td>−4.38</td><td>−4.43</td><td>−3.52</td><td>−0.93</td><td></td></tr>
+      <tr><td>logit · control</td><td>−4.58</td><td>−4.50</td><td>−4.37</td><td>−4.41</td><td>−3.51</td><td>−1.21</td><td></td></tr>
+      <tr><td>final · target</td><td></td><td></td><td></td><td></td><td></td><td></td><td>−0.71</td></tr>
+      <tr><td>final · control</td><td></td><td></td><td></td><td></td><td></td><td></td><td>−1.00</td></tr>
+      <tr><td>final · guard</td><td></td><td></td><td></td><td></td><td></td><td></td><td>−0.33</td></tr>
+    </tbody></table></div>
+  <p class="cap">平均 log10(1/名次)，未按引用档调整；95% 置信区间宽度约 ±0.01–0.03。 <span class="en">Mean log10(1/rank), not adjusted for citation bin; 95% CIs are about ±0.01–0.03.</span></p>
+
+  <h3>6.2 目标组 − 对照组（真标题，引用档内）<span class="en">Target − control within citation bin, true title</span></h3>
+  <div class="pair">
+    <p class="zh">在同一引用档内比较，目标组的优势只出现在最后：最终输出 <strong class="k">+0.247</strong> [0.230, 0.265]，各种读出在 L62 为 +0.225 到 +0.247。中间层反而是负的：Jacobian lens 在 L48 为 −0.10 到 −0.15、L56 为 −0.09 到 −0.11，置信区间都在 0 以下；logit lens 在 L48 之前约为 0。</p>
+    <p class="en">Within citation bins the target advantage appears only at the end: final output <strong class="k">+0.247</strong> [0.230, 0.265], and +0.225 to +0.247 for every readout at L62. Middle layers are negative: the Jacobian lenses give −0.10 to −0.15 at L48 and −0.09 to −0.11 at L56, with CIs below zero; the logit lens is about zero up to L48.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Readout</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L56</th><th>L62</th><th>L63</th></tr></thead>
+    <tbody>
+      <tr><td>jlens_public</td><td class="neg">−0.028</td><td class="neg">−0.037</td><td class="neg">−0.049</td><td class="neg">−0.133</td><td class="neg">−0.107</td><td class="pos">+0.225</td><td></td></tr>
+      <tr><td>jlens_self100</td><td class="neg">−0.036</td><td class="neg">−0.051</td><td class="neg">−0.048</td><td class="neg">−0.153</td><td class="neg">−0.110</td><td class="pos">+0.226</td><td></td></tr>
+      <tr><td>jlens_fitA</td><td class="neg">−0.019</td><td class="neg">−0.032</td><td class="neg">−0.039</td><td class="neg">−0.096</td><td class="neg">−0.094</td><td class="pos">+0.226</td><td></td></tr>
+      <tr><td>logit</td><td>+0.002</td><td>−0.002</td><td>+0.002</td><td>−0.011</td><td class="pos">+0.035</td><td class="pos">+0.247</td><td></td></tr>
+      <tr><td>final</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="pos">+0.247</td></tr>
+    </tbody></table></div>
+  <p class="cap">着色项的 95% 置信区间不含 0。 <span class="en">Coloured cells have 95% CIs that exclude zero.</span></p>
+
+  <h3>6.3 标题特异信号 <span class="en">Title-specific signal</span></h3>
+  <div class="pair">
+    <p class="zh">把真标题和 5 个假标题对比后，名字本身好不好猜的影响就被抵消了。结果很清楚：L24–L48 层，两组的标题特异信号都不超过 0.05；L56 开始上升（+0.10 到 +0.18）；L62 达到最大，目标组 +0.48 到 +0.58，对照组 +0.20 到 +0.25。对照组也有一定的标题特异信号，说明"认不出名单"的论文模型也并非完全不认识。</p>
+    <p class="en">Contrasting the true title with 5 false titles cancels out how guessable a name is. The picture is clear: at L24–L48 the title-specific signal is at most 0.05 in both groups; it rises at L56 (+0.10 to +0.18) and peaks at L62, +0.48 to +0.58 for target and +0.20 to +0.25 for control. The control group also shows some title-specific signal, so papers whose author list the model fails to pick are not entirely unknown to it.</p>
+  </div>
+  <figure>
+    <div class="fig">
+      <svg viewBox="0 0 660 300" role="img" aria-label="Title-specific signal by layer for target and control papers, public Jacobian lens and final output">
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--muted)">
+          <line x1="60" x2="620" y1="250" y2="250" stroke="var(--rule)"/>
+          <line x1="60" x2="620" y1="217.1" y2="217.1" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <line x1="60" x2="620" y1="151.4" y2="151.4" stroke="var(--rule)"/>
+          <line x1="60" x2="620" y1="85.7" y2="85.7" stroke="var(--rule)"/>
+          <line x1="60" x2="620" y1="20" y2="20" stroke="var(--rule)"/>
+          <text x="52" y="254" text-anchor="end">−0.1</text>
+          <text x="52" y="221" text-anchor="end">0</text>
+          <text x="52" y="155" text-anchor="end">0.2</text>
+          <text x="52" y="90" text-anchor="end">0.4</text>
+          <text x="52" y="24" text-anchor="end">0.6</text>
+          <text x="60" y="270" text-anchor="middle">L24</text>
+          <text x="172.8" y="270" text-anchor="middle">L32</text>
+          <text x="285.6" y="270" text-anchor="middle">L40</text>
+          <text x="398.5" y="270" text-anchor="middle">L48</text>
+          <text x="511.3" y="270" text-anchor="middle">L56</text>
+          <text x="595.9" y="270" text-anchor="end">L62</text>
+          <text x="612" y="285" text-anchor="middle">L63</text>
+          <text x="340" y="292" text-anchor="middle">layer 层</text>
+        </g>
+        <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" points="60,211.5 172.8,209.9 285.6,206.9 398.5,204.6 511.3,176.7 595.9,139.9"/>
+        <polyline fill="none" stroke="var(--warm)" stroke-width="2.5" points="60,212.5 172.8,210.2 285.6,208.9 398.5,219.4 511.3,169.5 595.9,33.1"/>
+        <g fill="var(--accent)"><circle cx="60" cy="211.5" r="3.5"/><circle cx="172.8" cy="209.9" r="3.5"/><circle cx="285.6" cy="206.9" r="3.5"/><circle cx="398.5" cy="204.6" r="3.5"/><circle cx="511.3" cy="176.7" r="3.5"/><circle cx="595.9" cy="139.9" r="4.5"/></g>
+        <g fill="var(--warm)"><circle cx="60" cy="212.5" r="3.5"/><circle cx="172.8" cy="210.2" r="3.5"/><circle cx="285.6" cy="208.9" r="3.5"/><circle cx="398.5" cy="219.4" r="3.5"/><circle cx="511.3" cy="169.5" r="3.5"/><circle cx="595.9" cy="33.1" r="4.5"/></g>
+        <rect x="606" y="55" width="8" height="8" fill="var(--warm)" transform="rotate(45 610 59)"/>
+        <rect x="606" y="147.4" width="8" height="8" fill="var(--accent)" transform="rotate(45 610 151.4)"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="11.5" font-weight="500">
+          <text x="586" y="30" text-anchor="end" fill="var(--warm)">+0.56</text>
+          <text x="586" y="134" text-anchor="end" fill="var(--accent)">+0.24</text>
+        </g>
+      </svg>
+    </div>
+    <div class="legend"><span><i class="sw" style="background:var(--warm)"></i>target 目标组</span><span><i class="sw" style="background:var(--accent)"></i>control 对照组</span><span>线：jlens_public L24–L62 · 菱形：最终输出 L63 / line: jlens_public, diamond: final output</span></div>
+    <p class="cap">标题特异信号 = 真标题 − 5 个假标题平均，单位 log10(1/名次)。 <span class="en">Title-specific signal = true − mean of 5 false titles, in log10(1/rank).</span></p>
+  </figure>
+
+  <h3>6.4 目标组 − 对照组的标题特异差异 <span class="en">Target − control difference in the title-specific signal</span></h3>
+  <div class="pair">
+    <p class="zh">这是本实验最关键的比较。L24–L40 约为 0；L48 Jacobian lens 略负（−0.04 到 −0.05）；L56 约为 0（logit lens +0.065）；L62/L63 为 <strong class="k">+0.21 到 +0.23</strong>。6.2 中目标组在输出处的优势（+0.22 到 +0.25）几乎全部由标题特异部分构成。去掉 0-4 低引用档后结果不变（L62/L63 为 +0.21 到 +0.24）。</p>
+    <p class="en">This is the key comparison. It is about zero at L24–L40, slightly negative for the Jacobian lenses at L48 (−0.04 to −0.05), about zero at L56 (logit lens +0.065), and <strong class="k">+0.21 to +0.23</strong> at L62/L63. The target advantage at the output in 6.2 (+0.22 to +0.25) is therefore almost entirely title-specific. Dropping citation bins 0-4 does not change this (+0.21 to +0.24 at L62/L63).</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Readout</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L56</th><th>L62</th><th>L63</th></tr></thead>
+    <tbody>
+      <tr><td>jlens_public</td><td>−0.002</td><td>+0.001</td><td>+0.002</td><td class="neg">−0.044<span class="ci">[−0.057, −0.030]</span></td><td>+0.007</td><td class="pos">+0.230<span class="ci">[0.215, 0.245]</span></td><td></td></tr>
+      <tr><td>jlens_self100</td><td>−0.004</td><td>+0.001</td><td>−0.002</td><td class="neg">−0.054<span class="ci">[−0.069, −0.040]</span></td><td>+0.003</td><td class="pos">+0.231<span class="ci">[0.215, 0.246]</span></td><td></td></tr>
+      <tr><td>jlens_fitA</td><td>−0.003</td><td>+0.005</td><td>+0.009</td><td class="neg">−0.037<span class="ci">[−0.049, −0.025]</span></td><td>+0.009</td><td class="pos">+0.228<span class="ci">[0.213, 0.243]</span></td><td></td></tr>
+      <tr><td>logit</td><td class="pos">+0.007</td><td>+0.005</td><td>+0.003</td><td>+0.004</td><td class="pos">+0.065<span class="ci">[0.050, 0.080]</span></td><td class="pos">+0.229<span class="ci">[0.213, 0.245]</span></td><td></td></tr>
+      <tr><td>final</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="pos">+0.207<span class="ci">[0.196, 0.220]</span></td></tr>
+    </tbody></table></div>
+  <p class="cap">着色项的 95% 置信区间不含 0。 <span class="en">Coloured cells have 95% CIs that exclude zero.</span></p>
+
+  <h3>6.5 阴性对照与 token 角色 <span class="en">Negative control and token roles</span></h3>
+  <div class="pair">
+    <p class="zh">标点 token（名字里的点和空格）不应该依赖论文标题。它们的标题特异信号在所有层都接近 0（最大 0.014），说明对比方法本身不会凭空产生信号。信号主要落在姓的第一个 token 上（L62 为 +0.80 到 +0.88），名的第一个 token 次之，首字母最少。</p>
+    <p class="en">Punctuation tokens (the dots and spaces in names) should not depend on the title. Their title-specific signal is near zero at every layer (at most 0.014), so the contrast does not create signal by itself. The signal sits mostly on the first surname token (+0.80 to +0.88 at L62), less on the first given-name token, and least on initials.</p>
+  </div>
+
+  <h3>6.6 与多选题成绩的等级关系 <span class="en">Graded relation with the multiple-choice score</span></h3>
+  <div class="pair">
+    <p class="zh">不分组、直接按多选题答对次数（0–4）看最终输出（在引用档内中心化）：答对 0 次 −0.137、1 次 −0.122、2 次 −0.047、3 次 −0.018、4 次 +0.076，单调上升，档内 Spearman ρ = 0.27（p &lt; 0.001）。多选题"认得"越稳，输出时越容易说出作者。</p>
+    <p class="en">Without grouping, by the number of correct multiple-choice orders (0–4), the final output (centred within citation bin) rises monotonically: −0.137, −0.122, −0.047, −0.018, +0.076, with a within-bin Spearman ρ of 0.27 (p &lt; 0.001). The more consistently the model recognises the author list, the more easily it produces the authors at the output.</p>
+  </div>
+
+  <h3>6.7 第一个 token 与后续 token <span class="en">First token vs later tokens</span></h3>
+  <div class="pair">
+    <p class="zh">每位作者的名字被切成若干 token（平均 4.4 个）。这里把第 1 个 token 和后续 token 分开统计。要注意，在教师强制下，后续 token 前面已经给出了正确的前缀（例如名字的前半部分），所以它们本来就更容易猜，这是预期内的，不能直接解读成"模型更认识姓"。</p>
+    <p class="en">Each author name is split into several tokens (4.4 on average). Here the first token is analysed separately from the later tokens. Under teacher forcing the later tokens already have the correct prefix in front of them (for example the first part of the name), so they are easier to guess by construction; this is expected and does not by itself mean the model knows surnames better.</p>
+  </div>
+  <div class="pair">
+    <p class="zh">结果要按名字格式分开看（下表）。73% 的作者以首字母开头（如 "S. Bree"），26% 以完整的名开头（如 "Yan Zhao"），其余不到 1%。<b>首字母开头</b>时，第 1 个 token（首字母）的标题特异信号很小（输出处 +0.112 [0.104, 0.120]），目标−对照只有 +0.048 [0.028, 0.069]；信号几乎都在后续 token 上（+0.447 [0.440, 0.454]，目标−对照 <strong class="k">+0.253</strong> [0.237, 0.269]）。<b>完整名开头</b>时，第 1 个 token（名）本身就带有很强的标题特异信号（+0.358 [0.342, 0.374]，目标−对照 <strong class="k">+0.174</strong> [0.136, 0.213]），和后续 token 相当（+0.396 [0.385, 0.409]，目标−对照 +0.202 [0.173, 0.232]）。所以"信号是否主要由第 1 个 token 决定"取决于格式：首字母几乎不带信号，完整的名则和姓一样带信号。L56 层完整名的第 1 个 token 已经有 +0.25 左右的标题特异信号，目标−对照为 +0.065 到 +0.120，而首字母在 L56 的目标−对照为负。</p>
+    <p class="en">The result has to be read by name format (table below). 73% of authors start with an initial (e.g. "S. Bree"), 26% with a full given name (e.g. "Yan Zhao"), and under 1% with something else. <b>For initial-first names</b>, the first token (the initial) carries little title-specific signal (+0.112 [0.104, 0.120] at the output) and a target − control difference of only +0.048 [0.028, 0.069]; nearly all the signal is on the later tokens (+0.447 [0.440, 0.454], target − control <strong class="k">+0.253</strong> [0.237, 0.269]). <b>For given-name-first names</b>, the first token (the given name) itself carries a strong title-specific signal (+0.358 [0.342, 0.374], target − control <strong class="k">+0.174</strong> [0.136, 0.213]), comparable to the later tokens (+0.396 [0.385, 0.409], target − control +0.202 [0.173, 0.232]). Whether the signal is mainly decided by the first token therefore depends on the format: an initial carries almost none, while a full given name carries as much as the surname. At L56 the first token of a full given name already shows about +0.25 title-specific signal with a target − control difference of +0.065 to +0.120, whereas for initials the L56 target − control difference is negative.</p>
+  </div>
+  <div class="pair">
+    <p class="zh"><b>与 6.5 的关系。</b>6.5 说信号主要在"姓的第一个 token"上，这里说第 1 个 token 的信号取决于格式，两者并不矛盾。在首字母和完整名两种格式里，姓都不是名字的第 1 个 token（我们核对过：姓的第一个 token 出现在第 1 个位置的比例为 0%），它总是"后续 token"的一部分。6.5 按 token 的角色分类（首字母、名、姓……），这里按 token 在名字里的位置分类，两种分法互相印证：首字母信号最少（6.5 中输出处 +0.13），所以首字母开头的名字第 1 个 token 信号小；名的信号中等（+0.36），所以完整名开头的名字第 1 个 token 信号明显；姓的第一个 token 信号最多（+0.69），它落在后续 token 里，所以两种格式的后续 token 信号都大。</p>
+    <p class="en"><b>Relation to 6.5.</b> Section 6.5 says the signal sits mostly on the first surname token; here the first token's signal depends on the format. These do not conflict. In both formats the surname is never the first token of the name (checked: 0% of first-surname tokens are at position 1); it is always among the later tokens. Section 6.5 classifies tokens by role (initial, given name, surname …), this section by position in the name, and the two agree: initials carry the least signal (+0.13 at the output in 6.5), so the first token of an initial-first name carries little; given names carry a medium amount (+0.36), so the first token of a given-name-first name carries a clear signal; the first surname token carries the most (+0.69) and is among the later tokens, so later tokens carry a large signal in both formats.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>位置 · 读出 Position · readout</th><th>log10(1/名次)</th><th>标题特异 Title-specific</th><th>目标−对照（标题特异）Target−control</th></tr></thead>
+    <tbody>
+<tr><td colspan="4" style="text-align:left;font-weight:600;background:var(--paper)">首字母开头 initial (24,739 位作者)</td></tr>
+<tr><td>第 1 个 token · jlens_public L56</td><td>-3.443<span class="ci">[-3.456, -3.430]</span></td><td class="pos">+0.024<span class="ci">[+0.016, +0.033]</span></td><td class="neg">-0.074<span class="ci">[-0.097, -0.051]</span></td></tr>
+<tr><td>第 1 个 token · logit L56</td><td>-3.954<span class="ci">[-3.967, -3.941]</span></td><td class="pos">+0.047<span class="ci">[+0.037, +0.057]</span></td><td class="neg">-0.056<span class="ci">[-0.086, -0.025]</span></td></tr>
+<tr><td>第 1 个 token · jlens_public L62</td><td>-1.706<span class="ci">[-1.718, -1.693]</span></td><td class="pos">+0.112<span class="ci">[+0.102, +0.123]</span></td><td>+0.019<span class="ci">[-0.008, +0.047]</span></td></tr>
+<tr><td>第 1 个 token · logit L62</td><td>-1.077<span class="ci">[-1.087, -1.066]</span></td><td class="pos">+0.126<span class="ci">[+0.117, +0.137]</span></td><td class="pos">+0.029<span class="ci">[+0.003, +0.054]</span></td></tr>
+<tr><td>第 1 个 token · final L63</td><td>-0.946<span class="ci">[-0.955, -0.937]</span></td><td class="pos">+0.112<span class="ci">[+0.104, +0.120]</span></td><td class="pos">+0.048<span class="ci">[+0.028, +0.069]</span></td></tr>
+<tr><td>后续 token · jlens_public L56</td><td>-3.196<span class="ci">[-3.209, -3.182]</span></td><td class="pos">+0.182<span class="ci">[+0.173, +0.192]</span></td><td>+0.023<span class="ci">[-0.002, +0.050]</span></td></tr>
+<tr><td>后续 token · logit L56</td><td>-3.523<span class="ci">[-3.534, -3.512]</span></td><td class="pos">+0.188<span class="ci">[+0.181, +0.195]</span></td><td class="pos">+0.095<span class="ci">[+0.077, +0.113]</span></td></tr>
+<tr><td>后续 token · jlens_public L62</td><td>-0.845<span class="ci">[-0.853, -0.837]</span></td><td class="pos">+0.534<span class="ci">[+0.525, +0.542]</span></td><td class="pos">+0.292<span class="ci">[+0.272, +0.311]</span></td></tr>
+<tr><td>后续 token · logit L62</td><td>-0.928<span class="ci">[-0.937, -0.919]</span></td><td class="pos">+0.555<span class="ci">[+0.545, +0.564]</span></td><td class="pos">+0.279<span class="ci">[+0.258, +0.300]</span></td></tr>
+<tr><td>后续 token · final L63</td><td>-0.689<span class="ci">[-0.696, -0.681]</span></td><td class="pos">+0.447<span class="ci">[+0.440, +0.454]</span></td><td class="pos">+0.253<span class="ci">[+0.237, +0.269]</span></td></tr>
+<tr><td colspan="4" style="text-align:left;font-weight:600;background:var(--paper)">完整名开头 given name (8,876 位作者)</td></tr>
+<tr><td>第 1 个 token · jlens_public L56</td><td>-2.708<span class="ci">[-2.733, -2.684]</span></td><td class="pos">+0.259<span class="ci">[+0.242, +0.275]</span></td><td class="pos">+0.065<span class="ci">[+0.022, +0.107]</span></td></tr>
+<tr><td>第 1 个 token · logit L56</td><td>-4.005<span class="ci">[-4.026, -3.981]</span></td><td class="pos">+0.253<span class="ci">[+0.235, +0.270]</span></td><td class="pos">+0.120<span class="ci">[+0.072, +0.168]</span></td></tr>
+<tr><td>第 1 个 token · jlens_public L62</td><td>-2.063<span class="ci">[-2.084, -2.042]</span></td><td class="pos">+0.404<span class="ci">[+0.385, +0.422]</span></td><td class="pos">+0.189<span class="ci">[+0.146, +0.238]</span></td></tr>
+<tr><td>第 1 个 token · logit L62</td><td>-2.188<span class="ci">[-2.212, -2.161]</span></td><td class="pos">+0.421<span class="ci">[+0.401, +0.442]</span></td><td class="pos">+0.187<span class="ci">[+0.142, +0.234]</span></td></tr>
+<tr><td>第 1 个 token · final L63</td><td>-2.022<span class="ci">[-2.046, -1.999]</span></td><td class="pos">+0.358<span class="ci">[+0.342, +0.374]</span></td><td class="pos">+0.174<span class="ci">[+0.136, +0.213]</span></td></tr>
+<tr><td>后续 token · jlens_public L56</td><td>-3.064<span class="ci">[-3.089, -3.040]</span></td><td class="pos">+0.132<span class="ci">[+0.121, +0.142]</span></td><td>+0.005<span class="ci">[-0.023, +0.034]</span></td></tr>
+<tr><td>后续 token · logit L56</td><td>-2.970<span class="ci">[-2.994, -2.946]</span></td><td class="pos">+0.137<span class="ci">[+0.128, +0.145]</span></td><td class="pos">+0.049<span class="ci">[+0.025, +0.073]</span></td></tr>
+<tr><td>后续 token · jlens_public L62</td><td>-1.056<span class="ci">[-1.075, -1.036]</span></td><td class="pos">+0.441<span class="ci">[+0.427, +0.456]</span></td><td class="pos">+0.211<span class="ci">[+0.179, +0.246]</span></td></tr>
+<tr><td>后续 token · logit L62</td><td>-1.027<span class="ci">[-1.047, -1.006]</span></td><td class="pos">+0.472<span class="ci">[+0.457, +0.488]</span></td><td class="pos">+0.230<span class="ci">[+0.192, +0.267]</span></td></tr>
+<tr><td>后续 token · final L63</td><td>-0.803<span class="ci">[-0.820, -0.785]</span></td><td class="pos">+0.396<span class="ci">[+0.385, +0.409]</span></td><td class="pos">+0.202<span class="ci">[+0.173, +0.232]</span></td></tr>
+    </tbody></table></div>
+  <p class="cap">按作者名字第 1 个 token 的角色分格式；每篇论文对该格式、该位置的 token 取平均（有该格式作者的论文：首字母 8,275 篇，完整名 4,157 篇）；目标−对照为引用档内比较。着色项 95% 置信区间不含 0。 <span class="en">Format is the role of the first token of the author string; each paper is averaged over its tokens of that format and position (papers with such authors: initial 8,275, given name 4,157); target − control within citation bin. Coloured cells have 95% CIs excluding zero.</span></p>
+  <div class="pair">
+    <p class="zh"><b>知道第一个 token 之后，后面是否容易很多？</b>按第 1 个 token 是否排进前 10 把作者分开，比较后续 token 的表现（真标题）。差别很小：在输出处，第 1 个 token 进前 10 时后续 token 为 −0.740，没进时为 −0.780，差 +0.041 [0.029, 0.052]，后续 token 进前 10 的比例为 69.5% 对 67.5%。L62 的 logit lens 和 Jacobian lens 也只差 +0.05 到 +0.07。中间层第 1 个 token 几乎从不进前 10（L56 只有 0.2%–1.2%），无法做这个比较。</p>
+    <p class="en"><b>Once the first token is known, are the later tokens much easier?</b> Authors were split by whether the first token ranks in the top 10, and the later tokens compared (true title). The difference is small: at the output, later tokens score −0.740 when the first token is in the top 10 and −0.780 when it is not, a difference of +0.041 [0.029, 0.052]; later tokens reach the top 10 in 69.5% versus 67.5% of cases. At L62 the logit and Jacobian lenses differ by only +0.05 to +0.07. In middle layers the first token almost never reaches the top 10 (0.2%–1.2% at L56), so the comparison cannot be made there.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>读出 Readout</th><th>第 1 个 token 进前 10 的比例</th><th>后续 token · 进前 10</th><th>后续 token · 未进</th><th>差值 Difference</th><th>后续 token 进前 10 比例</th></tr></thead>
+    <tbody>
+<tr><td>jlens_public L62</td><td>14.3%</td><td>-0.895</td><td>-0.946</td><td class="pos">+0.051<span class="ci">[+0.033, +0.069]</span></td><td>63.9% / 62.5%</td></tr>
+<tr><td>logit L62</td><td>38.0%</td><td>-0.957</td><td>-1.029</td><td class="pos">+0.072<span class="ci">[+0.057, +0.086]</span></td><td>64.8% / 61.1%</td></tr>
+<tr><td>final L63</td><td>43.6%</td><td>-0.740</td><td>-0.780</td><td class="pos">+0.041<span class="ci">[+0.029, +0.052]</span></td><td>69.5% / 67.5%</td></tr>
+    </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>知道名（first name）之后，整个名字是否更容易？</b>按"名字第一个词"整体是否进前 10 来分时，取决于名字格式。名是完整写出的（如 "Yan Zhao"），名进前 10 时，姓明显更容易：输出处 +0.222 [0.165, 0.275]，L62 logit lens +0.322 [0.253, 0.388]。名只是首字母的（如 "S. Bree"），首字母进前 10 对姓几乎没有帮助（输出处 −0.009 [−0.031, +0.013]）。两种格式混在一起时整体差值反而是负的（输出处 −0.113），原因是首字母很容易进前 10（54%），而它后面的姓本来就更难；这是格式比例造成的，分开看后不存在。</p>
+    <p class="en"><b>Once the given name is known, is the whole name easier?</b> When the split is by whether the whole first word is in the top 10, the answer depends on the name format. For names with a full given name (e.g. "Yan Zhao"), a top-10 given name makes the surname clearly easier: +0.222 [0.165, 0.275] at the output and +0.322 [0.253, 0.388] for the logit lens at L62. For names that start with an initial (e.g. "S. Bree"), a top-10 initial barely helps the surname (−0.009 [−0.031, +0.013] at the output). Pooling both formats gives a negative difference (−0.113 at the output) because initials reach the top 10 easily (54%) and the surnames after them are harder; this comes from the format mix and disappears when the formats are separated.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>名字格式 · 读出 Format · readout</th><th>作者数 Authors</th><th>第一个词进前 10</th><th>后续词 · 进前 10</th><th>后续词 · 未进</th><th>差值 Difference</th></tr></thead>
+    <tbody>
+<tr><td>首字母 initial · final L63</td><td>24,739</td><td>54.4%</td><td>-1.148</td><td>-1.139</td><td>-0.009<span class="ci">[-0.031, +0.013]</span></td></tr>
+<tr><td>完整名 given name · final L63</td><td>8,876</td><td>7.6%</td><td>-0.609</td><td>-0.831</td><td class="pos">+0.222<span class="ci">[+0.165, +0.275]</span></td></tr>
+<tr><td>首字母 initial · logit L62</td><td>24,739</td><td>45.0%</td><td>-1.385</td><td>-1.351</td><td class="neg">-0.034<span class="ci">[-0.058, -0.008]</span></td></tr>
+<tr><td>完整名 given name · logit L62</td><td>8,876</td><td>6.9%</td><td>-0.736</td><td>-1.058</td><td class="pos">+0.322<span class="ci">[+0.253, +0.388]</span></td></tr>
+<tr><td>首字母 initial · jlens_public L62</td><td>24,739</td><td>15.5%</td><td>-1.335</td><td>-1.368</td><td class="pos">+0.033<span class="ci">[+0.000, +0.066]</span></td></tr>
+<tr><td>完整名 given name · jlens_public L62</td><td>8,876</td><td>7.5%</td><td>-0.881</td><td>-1.042</td><td class="pos">+0.161<span class="ci">[+0.100, +0.222]</span></td></tr>
+    </tbody></table></div>
+  <p class="cap">真标题；置信区间为按论文聚类的 bootstrap。 <span class="en">True title; CIs from a bootstrap clustered by paper.</span></p>
+
+  <h3>6.8 引用数的影响 <span class="en">Effect of citation count</span></h3>
+  <div class="pair">
+    <p class="zh">按 13 个引用档分别计算最终输出的读出水平和标题特异信号。目标组的标题特异信号从 0-2 档的 +0.347 [0.317, 0.377] 单调升到 4097+ 档的 <strong class="k">+0.644</strong> [0.591, 0.701]；对照组从 +0.158 [0.136, 0.179] 升到 257-512 档的 +0.274 [0.240, 0.309] 左右，高引用档对照组论文很少，区间变宽。在每一个引用档内，目标组都高于对照组。</p>
+    <p class="en">The output readout level and title-specific signal were computed in each of the 13 citation bins. The target group's title-specific signal rises monotonically from +0.347 [0.317, 0.377] in bin 0-2 to <strong class="k">+0.644</strong> [0.591, 0.701] in bin 4097+; the control group's rises from +0.158 [0.136, 0.179] to about +0.274 [0.240, 0.309] in bin 257-512, with wide intervals in high bins where control papers are few. In every bin the target group is above the control group.</p>
+  </div>
+  <figure>
+    <div class="fig">
+<svg viewBox="0 0 660 320" role="img" aria-label="Title-specific signal at the model output by citation bin, target and control papers">
+<g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--muted)">
+<line x1="60" x2="640" y1="250.0" y2="250.0" stroke="var(--rule)"/><text x="52" y="254.0" text-anchor="end">0.0</text>
+<line x1="60" x2="640" y1="192.5" y2="192.5" stroke="var(--rule)"/><text x="52" y="196.5" text-anchor="end">0.2</text>
+<line x1="60" x2="640" y1="135.0" y2="135.0" stroke="var(--rule)"/><text x="52" y="139.0" text-anchor="end">0.4</text>
+<line x1="60" x2="640" y1="77.5" y2="77.5" stroke="var(--rule)"/><text x="52" y="81.5" text-anchor="end">0.6</text>
+<line x1="60" x2="640" y1="20.0" y2="20.0" stroke="var(--rule)"/><text x="52" y="24.0" text-anchor="end">0.8</text>
+<text x="70.0" y="268" text-anchor="end" transform="rotate(-40 70.0 268)">0-2</text>
+<text x="116.7" y="268" text-anchor="end" transform="rotate(-40 116.7 268)">3-4</text>
+<text x="163.3" y="268" text-anchor="end" transform="rotate(-40 163.3 268)">5-8</text>
+<text x="210.0" y="268" text-anchor="end" transform="rotate(-40 210.0 268)">9-16</text>
+<text x="256.7" y="268" text-anchor="end" transform="rotate(-40 256.7 268)">17-32</text>
+<text x="303.3" y="268" text-anchor="end" transform="rotate(-40 303.3 268)">33-64</text>
+<text x="350.0" y="268" text-anchor="end" transform="rotate(-40 350.0 268)">65-128</text>
+<text x="396.7" y="268" text-anchor="end" transform="rotate(-40 396.7 268)">129-256</text>
+<text x="443.3" y="268" text-anchor="end" transform="rotate(-40 443.3 268)">257-512</text>
+<text x="490.0" y="268" text-anchor="end" transform="rotate(-40 490.0 268)">513-1024</text>
+<text x="536.7" y="268" text-anchor="end" transform="rotate(-40 536.7 268)">1025-2048</text>
+<text x="583.3" y="268" text-anchor="end" transform="rotate(-40 583.3 268)">2049-4096</text>
+<text x="630.0" y="268" text-anchor="end" transform="rotate(-40 630.0 268)">4097+</text>
+<text x="350" y="316" text-anchor="middle">citation bin 引用档</text></g>
+<polyline fill="none" stroke="var(--accent)" stroke-width="2.2" points="70.0,204.7 116.7,201.4 163.3,198.5 210.0,192.1 256.7,185.3 303.3,192.8 350.0,178.3 396.7,178.6 443.3,171.3 490.0,178.2 536.7,185.3"/>
+<line x1="70.0" x2="70.0" y1="210.9" y2="198.5" stroke="var(--accent)" stroke-width="1.3"/><circle cx="70.0" cy="204.7" r="3.2" fill="var(--accent)"/>
+<line x1="116.7" x2="116.7" y1="207.8" y2="195.1" stroke="var(--accent)" stroke-width="1.3"/><circle cx="116.7" cy="201.4" r="3.2" fill="var(--accent)"/>
+<line x1="163.3" x2="163.3" y1="204.3" y2="192.2" stroke="var(--accent)" stroke-width="1.3"/><circle cx="163.3" cy="198.5" r="3.2" fill="var(--accent)"/>
+<line x1="210.0" x2="210.0" y1="198.4" y2="185.6" stroke="var(--accent)" stroke-width="1.3"/><circle cx="210.0" cy="192.1" r="3.2" fill="var(--accent)"/>
+<line x1="256.7" x2="256.7" y1="192.3" y2="178.7" stroke="var(--accent)" stroke-width="1.3"/><circle cx="256.7" cy="185.3" r="3.2" fill="var(--accent)"/>
+<line x1="303.3" x2="303.3" y1="201.2" y2="184.9" stroke="var(--accent)" stroke-width="1.3"/><circle cx="303.3" cy="192.8" r="3.2" fill="var(--accent)"/>
+<line x1="350.0" x2="350.0" y1="187.2" y2="168.8" stroke="var(--accent)" stroke-width="1.3"/><circle cx="350.0" cy="178.3" r="3.2" fill="var(--accent)"/>
+<line x1="396.7" x2="396.7" y1="188.4" y2="168.5" stroke="var(--accent)" stroke-width="1.3"/><circle cx="396.7" cy="178.6" r="3.2" fill="var(--accent)"/>
+<line x1="443.3" x2="443.3" y1="181.1" y2="161.0" stroke="var(--accent)" stroke-width="1.3"/><circle cx="443.3" cy="171.3" r="3.2" fill="var(--accent)"/>
+<line x1="490.0" x2="490.0" y1="193.8" y2="162.2" stroke="var(--accent)" stroke-width="1.3"/><circle cx="490.0" cy="178.2" r="3.2" fill="var(--accent)"/>
+<line x1="536.7" x2="536.7" y1="205.9" y2="164.7" stroke="var(--accent)" stroke-width="1.3"/><circle cx="536.7" cy="185.3" r="3.2" fill="var(--accent)"/>
+<polyline fill="none" stroke="var(--warm)" stroke-width="2.2" points="70.0,150.3 116.7,146.4 163.3,144.7 210.0,141.6 256.7,132.1 303.3,122.9 350.0,118.9 396.7,109.3 443.3,103.3 490.0,92.4 536.7,86.1 583.3,72.4 630.0,64.8"/>
+<line x1="70.0" x2="70.0" y1="158.8" y2="141.5" stroke="var(--warm)" stroke-width="1.3"/><circle cx="70.0" cy="150.3" r="3.2" fill="var(--warm)"/>
+<line x1="116.7" x2="116.7" y1="155.2" y2="137.5" stroke="var(--warm)" stroke-width="1.3"/><circle cx="116.7" cy="146.4" r="3.2" fill="var(--warm)"/>
+<line x1="163.3" x2="163.3" y1="152.5" y2="136.8" stroke="var(--warm)" stroke-width="1.3"/><circle cx="163.3" cy="144.7" r="3.2" fill="var(--warm)"/>
+<line x1="210.0" x2="210.0" y1="148.5" y2="134.7" stroke="var(--warm)" stroke-width="1.3"/><circle cx="210.0" cy="141.6" r="3.2" fill="var(--warm)"/>
+<line x1="256.7" x2="256.7" y1="139.5" y2="124.9" stroke="var(--warm)" stroke-width="1.3"/><circle cx="256.7" cy="132.1" r="3.2" fill="var(--warm)"/>
+<line x1="303.3" x2="303.3" y1="129.0" y2="116.7" stroke="var(--warm)" stroke-width="1.3"/><circle cx="303.3" cy="122.9" r="3.2" fill="var(--warm)"/>
+<line x1="350.0" x2="350.0" y1="125.0" y2="112.8" stroke="var(--warm)" stroke-width="1.3"/><circle cx="350.0" cy="118.9" r="3.2" fill="var(--warm)"/>
+<line x1="396.7" x2="396.7" y1="115.5" y2="103.3" stroke="var(--warm)" stroke-width="1.3"/><circle cx="396.7" cy="109.3" r="3.2" fill="var(--warm)"/>
+<line x1="443.3" x2="443.3" y1="109.7" y2="97.0" stroke="var(--warm)" stroke-width="1.3"/><circle cx="443.3" cy="103.3" r="3.2" fill="var(--warm)"/>
+<line x1="490.0" x2="490.0" y1="98.0" y2="87.0" stroke="var(--warm)" stroke-width="1.3"/><circle cx="490.0" cy="92.4" r="3.2" fill="var(--warm)"/>
+<line x1="536.7" x2="536.7" y1="92.1" y2="79.8" stroke="var(--warm)" stroke-width="1.3"/><circle cx="536.7" cy="86.1" r="3.2" fill="var(--warm)"/>
+<line x1="583.3" x2="583.3" y1="80.5" y2="64.0" stroke="var(--warm)" stroke-width="1.3"/><circle cx="583.3" cy="72.4" r="3.2" fill="var(--warm)"/>
+<line x1="630.0" x2="630.0" y1="80.2" y2="48.5" stroke="var(--warm)" stroke-width="1.3"/><circle cx="630.0" cy="64.8" r="3.2" fill="var(--warm)"/>
+</svg>
+    </div>
+    <div class="legend"><span><i class="sw" style="background:var(--warm)"></i>target 目标组</span><span><i class="sw" style="background:var(--accent)"></i>control 对照组</span><span>竖线为 95% 置信区间；少于 10 篇的档不画 / bars are 95% CIs; bins with fewer than 10 papers omitted</span></div>
+    <p class="cap">最终输出（L63）的标题特异信号，按引用档。 <span class="en">Title-specific signal at the model output (L63) by citation bin.</span></p>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>引用档 Bin</th><th>n 目标 / 对照</th><th>水平 · 目标</th><th>水平 · 对照</th><th>标题特异 · 目标</th><th>标题特异 · 对照</th></tr></thead>
+    <tbody>
+<tr><td>0-2</td><td>200 / 352</td><td>-0.825<span class="ci">[-0.869, -0.781]</span></td><td>-1.060<span class="ci">[-1.098, -1.021]</span></td><td>+0.347<span class="ci">[+0.317, +0.377]</span></td><td>+0.158<span class="ci">[+0.136, +0.179]</span></td></tr>
+<tr><td>3-4</td><td>207 / 355</td><td>-0.811<span class="ci">[-0.851, -0.772]</span></td><td>-1.024<span class="ci">[-1.064, -0.986]</span></td><td>+0.360<span class="ci">[+0.330, +0.391]</span></td><td>+0.169<span class="ci">[+0.147, +0.191]</span></td></tr>
+<tr><td>5-8</td><td>237 / 332</td><td>-0.752<span class="ci">[-0.788, -0.719]</span></td><td>-0.984<span class="ci">[-1.017, -0.950]</span></td><td>+0.366<span class="ci">[+0.339, +0.394]</span></td><td>+0.179<span class="ci">[+0.159, +0.201]</span></td></tr>
+<tr><td>9-16</td><td>288 / 275</td><td>-0.750<span class="ci">[-0.781, -0.718]</span></td><td>-0.993<span class="ci">[-1.028, -0.958]</span></td><td>+0.377<span class="ci">[+0.353, +0.401]</span></td><td>+0.202<span class="ci">[+0.179, +0.224]</span></td></tr>
+<tr><td>17-32</td><td>327 / 234</td><td>-0.792<span class="ci">[-0.828, -0.755]</span></td><td>-0.975<span class="ci">[-1.016, -0.937]</span></td><td>+0.410<span class="ci">[+0.384, +0.435]</span></td><td>+0.225<span class="ci">[+0.201, +0.248]</span></td></tr>
+<tr><td>33-64</td><td>401 / 185</td><td>-0.732<span class="ci">[-0.759, -0.705]</span></td><td>-1.032<span class="ci">[-1.078, -0.984]</span></td><td>+0.442<span class="ci">[+0.421, +0.463]</span></td><td>+0.199<span class="ci">[+0.170, +0.227]</span></td></tr>
+<tr><td>65-128</td><td>441 / 165</td><td>-0.718<span class="ci">[-0.742, -0.694]</span></td><td>-1.010<span class="ci">[-1.069, -0.955]</span></td><td>+0.456<span class="ci">[+0.435, +0.477]</span></td><td>+0.249<span class="ci">[+0.218, +0.282]</span></td></tr>
+<tr><td>129-256</td><td>497 / 126</td><td>-0.695<span class="ci">[-0.720, -0.669]</span></td><td>-0.977<span class="ci">[-1.031, -0.921]</span></td><td>+0.489<span class="ci">[+0.468, +0.510]</span></td><td>+0.248<span class="ci">[+0.214, +0.283]</span></td></tr>
+<tr><td>257-512</td><td>533 / 105</td><td>-0.688<span class="ci">[-0.713, -0.665]</span></td><td>-0.953<span class="ci">[-1.009, -0.900]</span></td><td>+0.510<span class="ci">[+0.488, +0.532]</span></td><td>+0.274<span class="ci">[+0.240, +0.309]</span></td></tr>
+<tr><td>513-1024</td><td>603 / 53</td><td>-0.664<span class="ci">[-0.686, -0.642]</span></td><td>-0.917<span class="ci">[-1.000, -0.839]</span></td><td>+0.548<span class="ci">[+0.529, +0.567]</span></td><td>+0.250<span class="ci">[+0.196, +0.305]</span></td></tr>
+<tr><td>1025-2048</td><td>539 / 29</td><td>-0.648<span class="ci">[-0.670, -0.625]</span></td><td>-0.912<span class="ci">[-1.075, -0.776]</span></td><td>+0.570<span class="ci">[+0.549, +0.592]</span></td><td>+0.225<span class="ci">[+0.154, +0.297]</span></td></tr>
+<tr><td>2049-4096</td><td>264 / 9</td><td>-0.614<span class="ci">[-0.648, -0.582]</span></td><td>—</td><td>+0.618<span class="ci">[+0.589, +0.647]</span></td><td>—</td></tr>
+<tr><td>4097+</td><td>84 / 0</td><td>-0.630<span class="ci">[-0.688, -0.568]</span></td><td>—</td><td>+0.644<span class="ci">[+0.591, +0.701]</span></td><td>—</td></tr>
+    </tbody></table></div>
+  <div class="pair">
+    <p class="zh">Spearman 相关（论文指标对 log10(引用数+1)）：全部论文中，最终输出的标题特异信号 ρ = 0.451 [0.433, 0.467]，读出水平 ρ = 0.317 [0.297, 0.336]。在组内，标题特异信号仍然明显（目标组 0.328、对照组 0.187），读出水平的相关则弱很多（目标组 0.181、对照组 0.084）。L62 的 logit lens 和 Jacobian lens 结果相同。回答：是的，引用越低，模型越不认识论文，表现越差；这主要体现在标题特异信号上，名字本身的可猜程度随引用数变化不大。</p>
+    <p class="en">Spearman correlations (paper metric against log10(citations + 1)): across all papers, ρ = 0.451 [0.433, 0.467] for the output's title-specific signal and ρ = 0.317 [0.297, 0.336] for the readout level. Within groups the title-specific correlation remains clear (target 0.328, control 0.187), while the level correlation is much weaker (target 0.181, control 0.084). The logit and Jacobian lenses at L62 give the same picture. Answer: yes, the lower the citation count, the less the model knows the paper and the worse it does; this shows mainly in the title-specific signal, while how guessable the names are changes little with citations.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>读出 · 组 Readout · group</th><th>n</th><th>ρ 水平 level</th><th>ρ 标题特异 title-specific</th></tr></thead>
+    <tbody>
+<tr><td>final L63 · all</td><td>9,108</td><td class="pos">+0.317<span class="ci">[+0.297, +0.336]</span></td><td class="pos">+0.451<span class="ci">[+0.433, +0.467]</span></td></tr>
+<tr><td>final L63 · target</td><td>4,621</td><td class="pos">+0.181<span class="ci">[+0.153, +0.209]</span></td><td class="pos">+0.328<span class="ci">[+0.301, +0.354]</span></td></tr>
+<tr><td>final L63 · control</td><td>2,220</td><td class="pos">+0.084<span class="ci">[+0.040, +0.126]</span></td><td class="pos">+0.187<span class="ci">[+0.145, +0.229]</span></td></tr>
+<tr><td>logit L62 · all</td><td>9,108</td><td class="pos">+0.209<span class="ci">[+0.188, +0.229]</span></td><td class="pos">+0.440<span class="ci">[+0.422, +0.456]</span></td></tr>
+<tr><td>logit L62 · target</td><td>4,621</td><td class="pos">+0.062<span class="ci">[+0.032, +0.092]</span></td><td class="pos">+0.327<span class="ci">[+0.301, +0.353]</span></td></tr>
+<tr><td>logit L62 · control</td><td>2,220</td><td class="pos">+0.053<span class="ci">[+0.006, +0.092]</span></td><td class="pos">+0.205<span class="ci">[+0.165, +0.246]</span></td></tr>
+<tr><td>jlens_public L62 · all</td><td>9,108</td><td class="pos">+0.216<span class="ci">[+0.195, +0.235]</span></td><td class="pos">+0.441<span class="ci">[+0.424, +0.457]</span></td></tr>
+<tr><td>jlens_public L62 · target</td><td>4,621</td><td class="pos">+0.085<span class="ci">[+0.056, +0.113]</span></td><td class="pos">+0.324<span class="ci">[+0.299, +0.350]</span></td></tr>
+<tr><td>jlens_public L62 · control</td><td>2,220</td><td class="pos">+0.051<span class="ci">[+0.009, +0.095]</span></td><td class="pos">+0.196<span class="ci">[+0.155, +0.237]</span></td></tr>
+    </tbody></table></div>
+
+  <h3>6.9 三种 Jacobian lens 与 logit lens 的比较 <span class="en">Three Jacobian lenses vs the logit lens</span></h3>
+  <div class="pair">
+    <p class="zh">对同一批论文、同一批 token 逐层配对比较。读出水平上，fitA 在 L24、L32、L48、L56 最好（L48 为 −2.69，logit lens 为 −4.42），L40 是 self100 略好，public 居中；到 L62 反而是 logit lens 最好（−1.02 对 −1.05 到 −1.09）。前 10 命中率上，L48 的 Jacobian lens 为 15%–18%，logit lens 只有 1.1%；L62 则 logit lens 最高（59.3% 对 53.6%–54.6%）。</p>
+    <p class="en">All comparisons are paired on the same papers and tokens. On readout level, fitA is best at L24, L32, L48 and L56 (−2.69 at L48 versus −4.42 for the logit lens), self100 is slightly better at L40, and public lies in between; at L62 the logit lens is best (−1.02 versus −1.05 to −1.09). On top-10 hit rate, the Jacobian lenses reach 15%–18% at L48 versus 1.1% for the logit lens; at L62 the logit lens is highest (59.3% versus 53.6%–54.6%).</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>指标 · 读出 Metric · readout</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L56</th><th>L62</th></tr></thead>
+    <tbody>
+<tr><td>log10(1/名次) · jlens_public</td><td>-4.405</td><td>-4.224</td><td>-3.283</td><td>-2.950</td><td>-3.178</td><td>-1.085</td></tr>
+<tr><td>log10(1/名次) · jlens_self100</td><td>-4.318</td><td>-4.137</td><td class="best">-3.016</td><td>-3.037</td><td>-3.095</td><td>-1.086</td></tr>
+<tr><td>log10(1/名次) · jlens_fitA</td><td class="best">-3.776</td><td class="best">-3.723</td><td>-3.065</td><td class="best">-2.689</td><td class="best">-3.032</td><td>-1.052</td></tr>
+<tr><td>log10(1/名次) · logit</td><td>-4.581</td><td>-4.504</td><td>-4.376</td><td>-4.418</td><td>-3.496</td><td class="best">-1.021</td></tr>
+<tr><td>前 10 命中率 · jlens_public</td><td>0.4%</td><td>0.4%</td><td>3.5%</td><td>16.2%</td><td>7.1%</td><td>53.6%</td></tr>
+<tr><td>前 10 命中率 · jlens_self100</td><td>0.4%</td><td>0.6%</td><td class="best">6.9%</td><td>14.7%</td><td class="best">8.2%</td><td>53.6%</td></tr>
+<tr><td>前 10 命中率 · jlens_fitA</td><td class="best">1.0%</td><td class="best">1.0%</td><td>2.3%</td><td class="best">18.3%</td><td>7.9%</td><td>54.6%</td></tr>
+<tr><td>前 10 命中率 · logit</td><td>0.6%</td><td>0.8%</td><td>1.2%</td><td>1.1%</td><td>8.1%</td><td class="best">59.3%</td></tr>
+<tr><td>标题特异信号 · jlens_public</td><td>+0.016</td><td class="best">+0.024</td><td>+0.032</td><td class="best">+0.014</td><td>+0.149</td><td>+0.442</td></tr>
+<tr><td>标题特异信号 · jlens_self100</td><td>+0.014</td><td>+0.023</td><td>+0.029</td><td>+0.010</td><td>+0.147</td><td>+0.444</td></tr>
+<tr><td>标题特异信号 · jlens_fitA</td><td class="best">+0.017</td><td>+0.024</td><td class="best">+0.034</td><td>+0.012</td><td>+0.152</td><td>+0.436</td></tr>
+<tr><td>标题特异信号 · logit</td><td>+0.003</td><td>+0.007</td><td>+0.004</td><td>+0.003</td><td class="best">+0.158</td><td class="best">+0.463</td></tr>
+    </tbody></table></div>
+  <p class="cap">全部论文的平均值，加粗为该层最好的读出；均值的置信区间宽度均小于 ±0.01（见下表的配对差值）。 <span class="en">Means over all papers; bold marks the best readout at each layer. CIs of the means are narrower than ±0.01; see the paired differences below.</span></p>
+  <div class="tbl"><table>
+    <thead><tr><th>Jacobian lens − logit lens</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L56</th><th>L62</th></tr></thead>
+    <tbody>
+<tr><td>log10(1/名次) · jlens_public − logit</td><td class="pos">+0.176<span class="ci">[+0.170, +0.182]</span></td><td class="pos">+0.280<span class="ci">[+0.274, +0.287]</span></td><td class="pos">+1.093<span class="ci">[+1.082, +1.104]</span></td><td class="pos">+1.467<span class="ci">[+1.456, +1.479]</span></td><td class="pos">+0.318<span class="ci">[+0.311, +0.327]</span></td><td class="neg">-0.064<span class="ci">[-0.067, -0.061]</span></td></tr>
+<tr><td>log10(1/名次) · jlens_self100 − logit</td><td class="pos">+0.263<span class="ci">[+0.257, +0.269]</span></td><td class="pos">+0.367<span class="ci">[+0.359, +0.374]</span></td><td class="pos">+1.361<span class="ci">[+1.349, +1.372]</span></td><td class="pos">+1.380<span class="ci">[+1.369, +1.391]</span></td><td class="pos">+0.402<span class="ci">[+0.393, +0.410]</span></td><td class="neg">-0.066<span class="ci">[-0.069, -0.063]</span></td></tr>
+<tr><td>log10(1/名次) · jlens_fitA − logit</td><td class="pos">+0.805<span class="ci">[+0.797, +0.813]</span></td><td class="pos">+0.781<span class="ci">[+0.773, +0.789]</span></td><td class="pos">+1.312<span class="ci">[+1.301, +1.322]</span></td><td class="pos">+1.728<span class="ci">[+1.717, +1.740]</span></td><td class="pos">+0.464<span class="ci">[+0.456, +0.473]</span></td><td class="neg">-0.032<span class="ci">[-0.035, -0.029]</span></td></tr>
+<tr><td>前 10 命中率 · jlens_public − logit</td><td class="neg">-0.002<span class="ci">[-0.002, -0.001]</span></td><td class="neg">-0.004<span class="ci">[-0.005, -0.004]</span></td><td class="pos">+0.023<span class="ci">[+0.021, +0.024]</span></td><td class="pos">+0.150<span class="ci">[+0.148, +0.153]</span></td><td class="neg">-0.010<span class="ci">[-0.011, -0.008]</span></td><td class="neg">-0.057<span class="ci">[-0.059, -0.055]</span></td></tr>
+<tr><td>前 10 命中率 · jlens_self100 − logit</td><td class="neg">-0.002<span class="ci">[-0.002, -0.001]</span></td><td class="neg">-0.002<span class="ci">[-0.003, -0.002]</span></td><td class="pos">+0.057<span class="ci">[+0.055, +0.059]</span></td><td class="pos">+0.136<span class="ci">[+0.134, +0.138]</span></td><td>+0.001<span class="ci">[-0.001, +0.003]</span></td><td class="neg">-0.057<span class="ci">[-0.059, -0.055]</span></td></tr>
+<tr><td>前 10 命中率 · jlens_fitA − logit</td><td class="pos">+0.004<span class="ci">[+0.003, +0.005]</span></td><td class="pos">+0.002<span class="ci">[+0.001, +0.003]</span></td><td class="pos">+0.011<span class="ci">[+0.010, +0.012]</span></td><td class="pos">+0.172<span class="ci">[+0.170, +0.174]</span></td><td>-0.001<span class="ci">[-0.003, +0.000]</span></td><td class="neg">-0.046<span class="ci">[-0.049, -0.044]</span></td></tr>
+<tr><td>标题特异信号 · jlens_public − logit</td><td class="pos">+0.014<span class="ci">[+0.012, +0.016]</span></td><td class="pos">+0.017<span class="ci">[+0.014, +0.021]</span></td><td class="pos">+0.028<span class="ci">[+0.022, +0.034]</span></td><td class="pos">+0.011<span class="ci">[+0.006, +0.016]</span></td><td class="neg">-0.009<span class="ci">[-0.015, -0.003]</span></td><td class="neg">-0.020<span class="ci">[-0.023, -0.018]</span></td></tr>
+<tr><td>标题特异信号 · jlens_self100 − logit</td><td class="pos">+0.012<span class="ci">[+0.009, +0.014]</span></td><td class="pos">+0.016<span class="ci">[+0.012, +0.020]</span></td><td class="pos">+0.025<span class="ci">[+0.020, +0.030]</span></td><td class="pos">+0.007<span class="ci">[+0.001, +0.012]</span></td><td class="neg">-0.011<span class="ci">[-0.017, -0.005]</span></td><td class="neg">-0.019<span class="ci">[-0.021, -0.017]</span></td></tr>
+<tr><td>标题特异信号 · jlens_fitA − logit</td><td class="pos">+0.015<span class="ci">[+0.012, +0.018]</span></td><td class="pos">+0.017<span class="ci">[+0.013, +0.021]</span></td><td class="pos">+0.030<span class="ci">[+0.026, +0.035]</span></td><td class="pos">+0.009<span class="ci">[+0.005, +0.014]</span></td><td>-0.006<span class="ci">[-0.012, +0.000]</span></td><td class="neg">-0.026<span class="ci">[-0.029, -0.024]</span></td></tr>
+    </tbody></table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Jacobian lens 之间 Between lenses</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L56</th><th>L62</th></tr></thead>
+    <tbody>
+<tr><td>log10(1/名次) · jlens_fitA − jlens_public</td><td class="pos">+0.629<span class="ci">[+0.624, +0.633]</span></td><td class="pos">+0.501<span class="ci">[+0.497, +0.505]</span></td><td class="pos">+0.218<span class="ci">[+0.215, +0.221]</span></td><td class="pos">+0.261<span class="ci">[+0.259, +0.263]</span></td><td class="pos">+0.146<span class="ci">[+0.144, +0.147]</span></td><td class="pos">+0.032<span class="ci">[+0.032, +0.033]</span></td></tr>
+<tr><td>log10(1/名次) · jlens_fitA − jlens_self100</td><td class="pos">+0.542<span class="ci">[+0.538, +0.546]</span></td><td class="pos">+0.414<span class="ci">[+0.411, +0.418]</span></td><td class="neg">-0.049<span class="ci">[-0.053, -0.045]</span></td><td class="pos">+0.348<span class="ci">[+0.345, +0.351]</span></td><td class="pos">+0.063<span class="ci">[+0.061, +0.064]</span></td><td class="pos">+0.034<span class="ci">[+0.034, +0.035]</span></td></tr>
+<tr><td>log10(1/名次) · jlens_public − jlens_self100</td><td class="neg">-0.087<span class="ci">[-0.089, -0.084]</span></td><td class="neg">-0.086<span class="ci">[-0.088, -0.084]</span></td><td class="neg">-0.267<span class="ci">[-0.270, -0.265]</span></td><td class="pos">+0.087<span class="ci">[+0.086, +0.088]</span></td><td class="neg">-0.083<span class="ci">[-0.084, -0.082]</span></td><td class="pos">+0.002<span class="ci">[+0.002, +0.002]</span></td></tr>
+<tr><td>标题特异信号 · jlens_fitA − jlens_public</td><td>+0.001<span class="ci">[-0.001, +0.002]</span></td><td>-0.000<span class="ci">[-0.002, +0.002]</span></td><td class="pos">+0.002<span class="ci">[+0.000, +0.005]</span></td><td>-0.001<span class="ci">[-0.003, +0.000]</span></td><td class="pos">+0.003<span class="ci">[+0.002, +0.004]</span></td><td class="neg">-0.006<span class="ci">[-0.006, -0.006]</span></td></tr>
+<tr><td>标题特异信号 · jlens_fitA − jlens_self100</td><td class="pos">+0.003<span class="ci">[+0.001, +0.005]</span></td><td>+0.001<span class="ci">[-0.001, +0.003]</span></td><td class="pos">+0.005<span class="ci">[+0.003, +0.008]</span></td><td class="pos">+0.003<span class="ci">[+0.001, +0.005]</span></td><td class="pos">+0.005<span class="ci">[+0.004, +0.006]</span></td><td class="neg">-0.008<span class="ci">[-0.008, -0.007]</span></td></tr>
+<tr><td>标题特异信号 · jlens_public − jlens_self100</td><td class="pos">+0.002<span class="ci">[+0.001, +0.003]</span></td><td>+0.001<span class="ci">[-0.000, +0.003]</span></td><td class="pos">+0.003<span class="ci">[+0.001, +0.004]</span></td><td class="pos">+0.004<span class="ci">[+0.003, +0.005]</span></td><td class="pos">+0.002<span class="ci">[+0.002, +0.003]</span></td><td class="neg">-0.002<span class="ci">[-0.002, -0.001]</span></td></tr>
+    </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>有没有哪种 lens 能在中间层读出 logit lens 读不出的、针对具体论文的信息？</b>有一点，但很少，而且不区分目标组和对照组。L24–L48 层，三种 Jacobian lens 的标题特异信号都比 logit lens 高 +0.007 到 +0.030（置信区间都在 0 以上），而 L62 的标题特异信号约为 0.44，差了一个数量级以上。再看这部分额外信息是否偏向目标组：把"lens − logit"的标题特异信号做目标−对照比较，L24–L40 约为 0，L48 和 L56 为负（−0.04 到 −0.06），L62 约为 0。也就是说，Jacobian lens 在中间层多读出的那点论文信息，对照组反而略多，不支持"目标组的作者在中间层已经形成"。</p>
+    <p class="en"><b>Does any lens read paper-specific information in middle layers that the logit lens misses?</b> A little, but very little, and it does not separate target from control. At L24–L48 all three Jacobian lenses show +0.007 to +0.030 more title-specific signal than the logit lens (CIs above zero), against about 0.44 at L62, more than an order of magnitude larger. Comparing the extra lens signal (lens − logit) between target and control gives about zero at L24–L40, negative values at L48 and L56 (−0.04 to −0.06), and about zero at L62. The small extra paper information the Jacobian lenses read in middle layers is, if anything, slightly larger for control papers, which does not support target authors already being formed in middle layers.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>目标−对照：标题特异(lens) − 标题特异(logit)</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L56</th><th>L62</th></tr></thead>
+    <tbody>
+<tr><td>jlens_public − logit</td><td class="neg">-0.009<span class="ci">[-0.015, -0.002]</span></td><td>-0.004<span class="ci">[-0.013, +0.005]</span></td><td>-0.001<span class="ci">[-0.018, +0.015]</span></td><td class="neg">-0.047<span class="ci">[-0.062, -0.033]</span></td><td class="neg">-0.058<span class="ci">[-0.075, -0.041]</span></td><td>+0.001<span class="ci">[-0.005, +0.008]</span></td></tr>
+<tr><td>jlens_self100 − logit</td><td class="neg">-0.010<span class="ci">[-0.017, -0.004]</span></td><td>-0.004<span class="ci">[-0.015, +0.007]</span></td><td>-0.005<span class="ci">[-0.019, +0.010]</span></td><td class="neg">-0.058<span class="ci">[-0.073, -0.043]</span></td><td class="neg">-0.062<span class="ci">[-0.080, -0.046]</span></td><td>+0.002<span class="ci">[-0.004, +0.008]</span></td></tr>
+<tr><td>jlens_fitA − logit</td><td class="neg">-0.010<span class="ci">[-0.017, -0.002]</span></td><td>-0.000<span class="ci">[-0.012, +0.012]</span></td><td>+0.006<span class="ci">[-0.007, +0.018]</span></td><td class="neg">-0.041<span class="ci">[-0.053, -0.028]</span></td><td class="neg">-0.055<span class="ci">[-0.072, -0.039]</span></td><td>-0.001<span class="ci">[-0.007, +0.004]</span></td></tr>
+    </tbody></table></div>
+  <p class="cap">引用档内的目标−对照差；着色项 95% 置信区间不含 0。 <span class="en">Target − control within citation bin; coloured cells have 95% CIs excluding zero.</span></p>
+
+  <h3>6.10 细层：L48–L62 <span class="en">Fine layers: L48–L62</span></h3>
+  <div class="pair">
+    <p class="zh">扩展计算补齐了 L50–L55 和 L57–L61（public Jacobian lens 和 logit lens，7 个标题条件全部），用来确定目标组的优势具体从哪一层开始。结果显示它不是在 L62 突然出现的，而是从 L50 前后开始逐层积累。logit lens 的目标−对照标题特异差在 L48 约为 0，L50 为 +0.007 [0.001, 0.014]，之后逐层上升：L52 +0.018、L54 +0.030、L56 +0.065、L58 +0.114、L60 +0.178、L62 +0.229，上升最快的是 L57–L61。public Jacobian lens 在 L48–L54 为负（−0.02 到 −0.05），L55–L56 约为 0，L57 起转正（+0.029 [0.009, 0.048]），到 L61 为 +0.207。</p>
+    <p class="en">The extension filled in L50–L55 and L57–L61 (public Jacobian lens and logit lens, all 7 title conditions) to locate where the target advantage starts. It does not appear suddenly at L62; it accumulates layer by layer from about L50. For the logit lens, the target − control title-specific difference is about 0 at L48 and +0.007 [0.001, 0.014] at L50, then rises steadily: L52 +0.018, L54 +0.030, L56 +0.065, L58 +0.114, L60 +0.178, L62 +0.229, rising fastest over L57–L61. For the public Jacobian lens it is negative at L48–L54 (−0.02 to −0.05), about 0 at L55–L56, positive from L57 (+0.029 [0.009, 0.048]), and +0.207 at L61.</p>
+  </div>
+  <figure>
+    <div class="fig">
+<svg viewBox="0 0 660 290" role="img" aria-label="Target minus control title-specific signal across fine layers for the logit lens and the public Jacobian lens">
+<g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--muted)">
+<rect x="490.0" y="20" width="127.3" height="220" fill="var(--rule)" opacity=".45"/>
+<line x1="62" x2="640" y1="220.0" y2="220.0" stroke="var(--rule)"/><text x="56" y="224.0" text-anchor="end">-0.05</text>
+<line x1="62" x2="640" y1="186.7" y2="186.7" stroke-dasharray="3 3" stroke="var(--muted)"/><text x="56" y="190.7" text-anchor="end">+0.00</text>
+<line x1="62" x2="640" y1="153.3" y2="153.3" stroke="var(--rule)"/><text x="56" y="157.3" text-anchor="end">+0.05</text>
+<line x1="62" x2="640" y1="120.0" y2="120.0" stroke="var(--rule)"/><text x="56" y="124.0" text-anchor="end">+0.10</text>
+<line x1="62" x2="640" y1="86.7" y2="86.7" stroke="var(--rule)"/><text x="56" y="90.7" text-anchor="end">+0.15</text>
+<line x1="62" x2="640" y1="53.3" y2="53.3" stroke="var(--rule)"/><text x="56" y="57.3" text-anchor="end">+0.20</text>
+<line x1="62" x2="640" y1="20.0" y2="20.0" stroke="var(--rule)"/><text x="56" y="24.0" text-anchor="end">+0.25</text>
+<text x="70.0" y="260" text-anchor="middle">L40</text>
+<text x="273.6" y="260" text-anchor="middle">L48</text>
+<text x="324.5" y="260" text-anchor="middle">L50</text>
+<text x="375.5" y="260" text-anchor="middle">L52</text>
+<text x="426.4" y="260" text-anchor="middle">L54</text>
+<text x="477.3" y="260" text-anchor="middle">L56</text>
+<text x="528.2" y="260" text-anchor="middle">L58</text>
+<text x="579.1" y="260" text-anchor="middle">L60</text>
+<text x="630.0" y="260" text-anchor="middle">L62</text>
+<text x="553.6" y="34" text-anchor="middle">steepest rise</text></g>
+<polygon points="70.0,175.7 273.6,206.4 324.5,208.7 350.0,200.2 375.5,204.0 400.9,201.1 426.4,190.6 451.8,180.9 477.3,169.1 502.7,154.4 528.2,136.0 553.6,111.7 579.1,75.9 604.5,37.5 630.0,23.3 630.0,43.6 604.5,59.8 579.1,103.1 553.6,138.9 528.2,165.0 502.7,180.6 477.3,195.0 451.8,204.7 426.4,213.8 400.9,223.6 375.5,226.4 350.0,222.4 324.5,231.5 273.6,225.6 70.0,195.3" fill="var(--warm)" opacity=".18"/>
+<polyline fill="none" stroke="var(--warm)" stroke-width="2.4" points="70.0,185.6 273.6,215.8 324.5,220.2 350.0,211.4 375.5,215.3 400.9,212.1 426.4,201.9 451.8,192.8 477.3,181.9 502.7,167.6 528.2,150.5 553.6,124.7 579.1,89.7 604.5,48.5 630.0,33.1"/>
+<circle cx="70.0" cy="185.6" r="3" fill="var(--warm)"/>
+<circle cx="273.6" cy="215.8" r="3" fill="var(--warm)"/>
+<circle cx="324.5" cy="220.2" r="3" fill="var(--warm)"/>
+<circle cx="350.0" cy="211.4" r="3" fill="var(--warm)"/>
+<circle cx="375.5" cy="215.3" r="3" fill="var(--warm)"/>
+<circle cx="400.9" cy="212.1" r="3" fill="var(--warm)"/>
+<circle cx="426.4" cy="201.9" r="3" fill="var(--warm)"/>
+<circle cx="451.8" cy="192.8" r="3" fill="var(--warm)"/>
+<circle cx="477.3" cy="181.9" r="3" fill="var(--warm)"/>
+<circle cx="502.7" cy="167.6" r="3" fill="var(--warm)"/>
+<circle cx="528.2" cy="150.5" r="3" fill="var(--warm)"/>
+<circle cx="553.6" cy="124.7" r="3" fill="var(--warm)"/>
+<circle cx="579.1" cy="89.7" r="3" fill="var(--warm)"/>
+<circle cx="604.5" cy="48.5" r="3" fill="var(--warm)"/>
+<circle cx="630.0" cy="33.1" r="3" fill="var(--warm)"/>
+<polygon points="70.0,181.3 273.6,181.1 324.5,177.6 350.0,175.0 375.5,169.7 400.9,167.7 426.4,158.9 451.8,152.8 477.3,133.5 502.7,114.1 528.2,99.2 553.6,83.0 579.1,53.3 604.5,29.5 630.0,23.7 630.0,44.8 604.5,60.1 579.1,81.3 553.6,108.8 528.2,122.5 502.7,135.3 477.3,153.6 451.8,171.4 426.4,173.8 400.9,180.1 375.5,179.6 350.0,183.0 324.5,185.7 273.6,187.5 70.0,188.0" fill="var(--accent)" opacity=".18"/>
+<polyline fill="none" stroke="var(--accent)" stroke-width="2.4" points="70.0,184.7 273.6,184.3 324.5,181.7 350.0,179.1 375.5,174.6 400.9,173.9 426.4,166.4 451.8,162.1 477.3,143.4 502.7,124.7 528.2,110.7 553.6,96.2 579.1,67.8 604.5,45.3 630.0,34.1"/>
+<circle cx="70.0" cy="184.7" r="3" fill="var(--accent)"/>
+<circle cx="273.6" cy="184.3" r="3" fill="var(--accent)"/>
+<circle cx="324.5" cy="181.7" r="3" fill="var(--accent)"/>
+<circle cx="350.0" cy="179.1" r="3" fill="var(--accent)"/>
+<circle cx="375.5" cy="174.6" r="3" fill="var(--accent)"/>
+<circle cx="400.9" cy="173.9" r="3" fill="var(--accent)"/>
+<circle cx="426.4" cy="166.4" r="3" fill="var(--accent)"/>
+<circle cx="451.8" cy="162.1" r="3" fill="var(--accent)"/>
+<circle cx="477.3" cy="143.4" r="3" fill="var(--accent)"/>
+<circle cx="502.7" cy="124.7" r="3" fill="var(--accent)"/>
+<circle cx="528.2" cy="110.7" r="3" fill="var(--accent)"/>
+<circle cx="553.6" cy="96.2" r="3" fill="var(--accent)"/>
+<circle cx="579.1" cy="67.8" r="3" fill="var(--accent)"/>
+<circle cx="604.5" cy="45.3" r="3" fill="var(--accent)"/>
+<circle cx="630.0" cy="34.1" r="3" fill="var(--accent)"/>
+</svg>
+    </div>
+    <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>logit lens</span><span><i class="sw" style="background:var(--warm)"></i>jlens_public</span><span>阴影为 95% 置信区间；灰底为 L57–L61 / shading: 95% CI; grey band: L57–L61</span></div>
+    <p class="cap">目标−对照的标题特异信号，引用档内比较，L40–L62。 <span class="en">Target − control title-specific signal within citation bin, L40–L62.</span></p>
+  </figure>
+  <div class="pair">
+    <p class="zh">两组自己的标题特异信号也是逐层增长的（logit lens）：目标组从 L50 的 +0.022 涨到 L61 的 +0.596，对照组从 +0.020 涨到 +0.282，两组在 L52 之后明显分开。两组的标题特异信号都在 L61 达到最高，L62 略有回落（目标组 +0.583，对照组 +0.252）。只看真标题时，logit lens 的目标−对照在 L55 之前约为 0、L56 起转正；public lens 到 L58 仍为负、L60 起转正，比标题特异差晚 2–3 层，因为中间层的 Jacobian lens 读出的名字信息对照组略多（见 6.9）。</p>
+    <p class="en">Each group's own title-specific signal also grows layer by layer (logit lens): target from +0.022 at L50 to +0.596 at L61, control from +0.020 to +0.282, with the groups clearly separating after L52. Both peak at L61 and dip slightly at L62 (target +0.583, control +0.252). With the true title alone, the logit lens's target − control difference is about 0 before L55 and positive from L56; for the public lens it is still negative at L58 and positive from L60, 2–3 layers later than the title-specific difference, because the middle-layer Jacobian readout favours control papers slightly (see 6.9).</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>指标 · 读出 Metric · readout</th><th>L48</th><th>L50</th><th>L51</th><th>L52</th><th>L53</th><th>L54</th><th>L55</th><th>L56</th><th>L57</th><th>L58</th><th>L59</th><th>L60</th><th>L61</th><th>L62</th></tr></thead>
+    <tbody>
+<tr><td>标题特异 · target · logit</td><td>+0.005</td><td>+0.022</td><td>+0.027</td><td>+0.041</td><td>+0.052</td><td>+0.086</td><td>+0.126</td><td>+0.183</td><td>+0.243</td><td>+0.313</td><td>+0.390</td><td>+0.492</td><td>+0.596</td><td>+0.583</td></tr>
+<tr><td>标题特异 · control · logit</td><td>+0.002</td><td>+0.020</td><td>+0.021</td><td>+0.027</td><td>+0.038</td><td>+0.054</td><td>+0.078</td><td>+0.104</td><td>+0.123</td><td>+0.159</td><td>+0.195</td><td>+0.233</td><td>+0.282</td><td>+0.252</td></tr>
+<tr><td><b>目标−对照（标题特异）· logit</b></td><td>+0.004<span class="ci">[-0.001, +0.008]</span></td><td class="pos">+0.007<span class="ci">[+0.001, +0.014]</span></td><td class="pos">+0.011<span class="ci">[+0.005, +0.018]</span></td><td class="pos">+0.018<span class="ci">[+0.011, +0.026]</span></td><td class="pos">+0.019<span class="ci">[+0.010, +0.028]</span></td><td class="pos">+0.030<span class="ci">[+0.019, +0.042]</span></td><td class="pos">+0.037<span class="ci">[+0.023, +0.051]</span></td><td class="pos">+0.065<span class="ci">[+0.050, +0.080]</span></td><td class="pos">+0.093<span class="ci">[+0.077, +0.109]</span></td><td class="pos">+0.114<span class="ci">[+0.096, +0.131]</span></td><td class="pos">+0.136<span class="ci">[+0.117, +0.156]</span></td><td class="pos">+0.178<span class="ci">[+0.158, +0.200]</span></td><td class="pos">+0.212<span class="ci">[+0.190, +0.236]</span></td><td class="pos">+0.229<span class="ci">[+0.213, +0.244]</span></td></tr>
+<tr><td>目标−对照（真标题）· logit</td><td>-0.011<span class="ci">[-0.027, +0.005]</span></td><td class="neg">-0.021<span class="ci">[-0.040, -0.002]</span></td><td>-0.012<span class="ci">[-0.031, +0.008]</span></td><td>-0.015<span class="ci">[-0.039, +0.009]</span></td><td>-0.020<span class="ci">[-0.045, +0.004]</span></td><td>-0.006<span class="ci">[-0.031, +0.020]</span></td><td>+0.008<span class="ci">[-0.022, +0.037]</span></td><td class="pos">+0.035<span class="ci">[+0.006, +0.064]</span></td><td class="pos">+0.077<span class="ci">[+0.047, +0.109]</span></td><td class="pos">+0.089<span class="ci">[+0.056, +0.120]</span></td><td class="pos">+0.116<span class="ci">[+0.081, +0.151]</span></td><td class="pos">+0.167<span class="ci">[+0.131, +0.201]</span></td><td class="pos">+0.204<span class="ci">[+0.171, +0.238]</span></td><td class="pos">+0.247<span class="ci">[+0.225, +0.269]</span></td></tr>
+<tr><td>标题特异 · target · jlens_public</td><td>-0.007</td><td>+0.018</td><td>+0.020</td><td>+0.023</td><td>+0.029</td><td>+0.057</td><td>+0.094</td><td>+0.145</td><td>+0.202</td><td>+0.277</td><td>+0.363</td><td>+0.472</td><td>+0.552</td><td>+0.560</td></tr>
+<tr><td>标题特异 · control · jlens_public</td><td>+0.038</td><td>+0.072</td><td>+0.065</td><td>+0.070</td><td>+0.072</td><td>+0.080</td><td>+0.095</td><td>+0.123</td><td>+0.143</td><td>+0.174</td><td>+0.203</td><td>+0.234</td><td>+0.243</td><td>+0.235</td></tr>
+<tr><td><b>目标−对照（标题特异）· jlens_public</b></td><td class="neg">-0.044<span class="ci">[-0.058, -0.030]</span></td><td class="neg">-0.050<span class="ci">[-0.067, -0.033]</span></td><td class="neg">-0.037<span class="ci">[-0.054, -0.020]</span></td><td class="neg">-0.043<span class="ci">[-0.060, -0.026]</span></td><td class="neg">-0.038<span class="ci">[-0.055, -0.022]</span></td><td class="neg">-0.023<span class="ci">[-0.041, -0.006]</span></td><td>-0.009<span class="ci">[-0.027, +0.009]</span></td><td>+0.007<span class="ci">[-0.012, +0.026]</span></td><td class="pos">+0.029<span class="ci">[+0.009, +0.048]</span></td><td class="pos">+0.054<span class="ci">[+0.032, +0.076]</span></td><td class="pos">+0.093<span class="ci">[+0.072, +0.112]</span></td><td class="pos">+0.145<span class="ci">[+0.125, +0.166]</span></td><td class="pos">+0.207<span class="ci">[+0.190, +0.224]</span></td><td class="pos">+0.230<span class="ci">[+0.215, +0.245]</span></td></tr>
+<tr><td>目标−对照（真标题）· jlens_public</td><td class="neg">-0.133<span class="ci">[-0.160, -0.107]</span></td><td class="neg">-0.187<span class="ci">[-0.215, -0.159]</span></td><td class="neg">-0.178<span class="ci">[-0.204, -0.151]</span></td><td class="neg">-0.176<span class="ci">[-0.203, -0.149]</span></td><td class="neg">-0.164<span class="ci">[-0.191, -0.136]</span></td><td class="neg">-0.150<span class="ci">[-0.178, -0.122]</span></td><td class="neg">-0.126<span class="ci">[-0.155, -0.096]</span></td><td class="neg">-0.107<span class="ci">[-0.139, -0.075]</span></td><td class="neg">-0.074<span class="ci">[-0.105, -0.042]</span></td><td class="neg">-0.043<span class="ci">[-0.074, -0.011]</span></td><td>+0.000<span class="ci">[-0.029, +0.029]</span></td><td class="pos">+0.065<span class="ci">[+0.038, +0.094]</span></td><td class="pos">+0.172<span class="ci">[+0.149, +0.196]</span></td><td class="pos">+0.225<span class="ci">[+0.206, +0.244]</span></td></tr>
+    </tbody></table></div>
+  <p class="cap">着色项 95% 置信区间不含 0。L56 和 L62 的数值来自主轮，其余层来自扩展计算。 <span class="en">Coloured cells have 95% CIs excluding zero. L56 and L62 come from the main round, the other layers from the extension.</span></p>
+</section>
+
+<section>
+  <h2><span class="num">§7</span>结论 <span class="en">Conclusions</span></h2>
+  <div class="findings">
+    <div class="finding"><div><span>Qwen3-32B 对具体论文作者的知识在网络中形成得很晚，而且是逐层积累的：目标−对照的标题特异差从 L50 前后开始出现，在 L57–L61 上升最快，在 L62 和输出处最强。</span><span class="en">Qwen3-32B's knowledge of a specific paper's authors forms late and gradually: the target − control title-specific difference appears around L50, rises fastest over L57–L61, and is strongest at L62 and the output.</span></div></div>
+    <div class="finding"><div><span>"写不出但认得出"的目标组，并没有在中间层提前拿着作者信息；它们相对对照组的优势只出现在最后两层。</span><span class="en">Target papers (cannot write but recognise) do not hold the authors earlier in the middle layers; their advantage over control appears only in the last two layers.</span></div></div>
+    <div class="finding"><div><span>这一优势几乎全部是标题特异的，在去掉低引用档后依然成立，不能用名字好猜或引用数差异来解释。</span><span class="en">That advantage is almost entirely title-specific and survives dropping the low-citation bins, so it is not explained by guessable names or citation differences.</span></div></div>
+    <div class="finding"><div><span>Jacobian lens 能让中间层读出更多与名字相关的信息，但这部分信息不区分论文；三种 Jacobian lens 的结论一致。</span><span class="en">Jacobian lenses read more name-related information from middle layers than the logit lens, but that information is not paper-specific; all three Jacobian lenses agree.</span></div></div>
+    <div class="finding"><div><span>标题特异信号在名字里的分布取决于格式：首字母几乎不带信号，信号集中在后面的姓上；完整的名本身就带有和姓相当的信号。知道第 1 个 token 后，后续 token 总体只容易一点（+0.04）；但完整的名进前 10 时，姓明显更容易（+0.22），首字母则没有这种帮助。</span><span class="en">Where the title-specific signal sits within a name depends on the format: an initial carries almost none and the signal concentrates on the surname after it, while a full given name carries about as much as the surname. Knowing the first token makes later tokens only slightly easier overall (+0.04), but a full given name in the top 10 makes the surname clearly easier (+0.22), while an initial does not.</span></div></div>
+    <div class="finding"><div><span>引用越低，模型越不认识论文：标题特异信号随引用数单调上升（目标组从 +0.35 到 +0.64），在两组内部都成立。</span><span class="en">The fewer the citations, the less the model knows the paper: the title-specific signal rises monotonically with citations (target group from +0.35 to +0.64), within both groups.</span></div></div>
+    <div class="finding"><div><span>没有哪种 lens 能在中间层读出偏向目标组的论文信息；Jacobian lens 在中间层多出的那点标题特异信号很小，对照组反而略多。</span><span class="en">No lens reads target-favouring paper information in middle layers; the small extra title-specific signal of the Jacobian lenses there is, if anything, larger for control papers.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">§8</span>局限 <span class="en">Limitations</span></h2>
+  <ul class="pair-list">
+    <li>一致性检查的容差在看到结果后从 0.25 放宽到 0.5。差异的形态符合 bf16 舍入，但这是事后调整，且该检查无法发现两条计算路径共有的错误。<span class="en">The parity tolerance was raised from 0.25 to 0.5 after seeing the results. The differences look like bf16 rounding, but the change is post hoc, and the check cannot catch an error shared by both computation paths.</span></li>
+    <li>分组来自同一模型的标注实验，只对 Qwen3-32B 有效；低引用档里的"认出"接近随机偏好，所以加做了去掉低档的敏感性分析。<span class="en">Groups come from a labelling run of the same model and hold for Qwen3-32B only; in low-citation bins recognition is close to a fixed preference, hence the sensitivity analysis without those bins.</span></li>
+    <li>高引用档几乎没有对照组论文（4097+ 档为 0），组间比较主要来自中低引用档。<span class="en">High-citation bins have almost no control papers (none in 4097+), so group contrasts come mostly from low and middle bins.</span></li>
+    <li>每位作者单独打分（接在 "Authors:" 后），不涉及作者顺序和合作者关系。<span class="en">Each author is scored alone after "Authors:"; author order and co-authorship are not tested.</span></li>
+    <li>名次基于 bf16 输出的 logits，并列时按有利方向计（只数严格更大的 logit）。<span class="en">Ranks use bf16 logits; ties are counted favourably (only strictly greater logits count).</span></li>
+    <li>细层（L50–55、L57–61）只算了 public Jacobian lens 和 logit lens（self100 和 fitA 只拟合了 6–7 个层，要加细层需要重新拟合）；§6.7–6.9 的补充分析只用了主轮的 6 个层。<span class="en">The fine layers (L50–55, L57–61) were computed for the public Jacobian lens and the logit lens only (self100 and fitA were fitted at 6–7 layers, so fine layers would need new fits); the follow-up analyses in §6.7–6.9 use the 6 main-round layers.</span></li>
+    <li>"第一作者 → 后续作者"（把作者接在前一位作者后面打分）和因果实验（把真标题在 L56 的内部状态替换到假标题上，看能否救回正确作者）需要新的 GPU 计算，本报告未做，计划在汇报后进行。目前的结论是相关性的，不能证明信息在哪一层因果地形成。<span class="en">"First author → co-authors" (scoring each author after the previous one) and the causal test (patching the true-title state at L56 into a false-title run to see whether the correct authors are recovered) need new GPU runs and are not in this report; they are planned after the presentation. The current conclusions are correlational and do not prove at which layer the information is causally formed.</span></li>
+    <li>6.7 中"第 1 个 token 是否进前 10"的分组是观察性的，两组作者在名字格式、长度等方面不同；按名字格式分开后结论才稳定。<span class="en">The top-10 split in 6.7 is observational; the two sets of authors differ in name format and length, and the conclusion is stable only after separating name formats.</span></li>
+  </ul>
+</section>
+
+<footer>
+  结果文件 Result files：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage10_report.md</span> · <span class="mono">reports/stage10_title_summary.md</span> · <span class="mono">summary/</span> · <span class="mono">summary_title/</span> · <span class="mono">reports/parity.json</span> · <span class="mono">reports/crosscheck_stage6.csv</span> · <span class="mono">summary_extra/</span>（§6.7–6.9，<span class="mono">stage10_extra.py</span>）
+</footer>
+</main>

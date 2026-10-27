@@ -1,0 +1,12 @@
+diff --git a/jlens/__init__.py b/jlens/__init__.py
+index 564252c..d4cfbd9 100644
+--- a/jlens/__init__.py
++++ b/jlens/__init__.py
+@@ -9,6 +9,7 @@ from jlens.hf import HFLensModel, Layout, from_hf
+ from jlens.hooks import ActivationRecorder
+ from jlens.lens import JacobianLens
+ from jlens.protocol import LensModel
++from jlens import _stage10_compat  # noqa: F401  (Stage 10 only; see the module)
+ 
+ __all__ = [
+     "ActivationRecorder",

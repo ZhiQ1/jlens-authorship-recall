@@ -1,0 +1,20 @@
+{
+  "created": "2026-10-23",
+  "status": "analysis-level amendment; frozen config/protocol.json and raw outputs unchanged (raw stores rank per token)",
+  "amends": "protocol.primary_metric (sum of 1/rank)",
+  "primary_metric": "log10(1/rank) = -log10(rank) of the gold name token (0 = rank 1, -1 = rank 10, min -5.18)",
+  "within_paper": "sum over all scored tokens of log10(1/rank) (sum_nlr) to compare layers/readouts for the same paper (identical token set); sum_rr (sum 1/rank) kept as supplementary",
+  "between_papers_and_groups": "mean log10(1/rank) per token (mean_nlr) and mean over authors of per-author mean (author_mean_nlr); never sums",
+  "secondary": ["mean_nlr_surname_first", "mean_rr", "top1_share", "role-specific means", "logprob (stored, not comparable across readouts)"],
+  "reason": "1/rank only sees the top few ranks; log rank captures multiplicative climbs (50000 -> 500) across layers; sums depend on the number of authors/tokens (target 4.0, control 3.2, guard 2.2 authors on average)",
+  "grouping": {
+    "labels": "group_tight (target / control / guard / excluded) from zhiqi_qwen3-32b_labels_2026-10-15",
+    "A_descriptive": "group_tight x 13 citation bins x readout x layer, with n",
+    "B_primary_contrast": "target - control within citation bin, pooled with weights n_t*n_c/(n_t+n_c) over bins with >= 30 papers in both groups; bootstrap papers within bin x group (2000)",
+    "C_graded": "mc_team_a 0..4 among R0/R1, metric centred within citation bin; per-level means and Spearman",
+    "D_ladder": "papers with >= 129 citations: guard vs target vs control; guard - target within bin (>= 10 per cell)",
+    "E_citation": "Spearman of metric vs log10(citations+1) within target, control, guard",
+    "sensitivity": ["drop bins 0-2 and 3-4 (target near 25% fixed-preference rate)", "plain group instead of group_tight", "strata citation_bin x field (>= 10 per cell)", "group_both on the 500-paper second draw"]
+  },
+  "not_available": "knows_full_list (coauthor items) is empty in this label package"
+}

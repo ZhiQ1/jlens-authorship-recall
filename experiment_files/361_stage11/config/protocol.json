@@ -1,0 +1,134 @@
+{
+ "chain_plan": [
+  [
+   "final",
+   63
+  ],
+  [
+   "logit",
+   40
+  ],
+  [
+   "logit",
+   48
+  ],
+  [
+   "logit",
+   52
+  ],
+  [
+   "logit",
+   56
+  ],
+  [
+   "logit",
+   58
+  ],
+  [
+   "logit",
+   60
+  ],
+  [
+   "logit",
+   62
+  ],
+  [
+   "jlens_public",
+   40
+  ],
+  [
+   "jlens_public",
+   48
+  ],
+  [
+   "jlens_public",
+   52
+  ],
+  [
+   "jlens_public",
+   56
+  ],
+  [
+   "jlens_public",
+   58
+  ],
+  [
+   "jlens_public",
+   60
+  ],
+  [
+   "jlens_public",
+   62
+  ]
+ ],
+ "created": "2026-10-26T13:17:44",
+ "doc": "Stage 11 - causal and context follow-ups to Stage 10 (2026-10-26; user: \"ok do all of it\").\n\nReads the frozen Stage 10 cohort, prompts and conditions read-only (/scratch/$USER/jlens/351_stage10); never writes there.\nOutputs: /scratch/$USER/jlens/361_stage11/.\n\nE1 patch     Activation patching. Each author context is run with the true title and with the best-matched false title\n             (false_0). In the false run, the residual (output of decoder block l) at the aligned tail - the prompt tokens\n             after the title, shared by both prompts (closing quote, year, \"Authors:\"), plus all name positions - is\n             replaced by the true run's, one layer l at a time. Score: rank of the gold name token at the model output.\n             recovery(l) = mean(patched - false) / mean(true - false), log10(1/rank) per token, paper means.\n             l = 63 replaces the output itself and must recover exactly (sanity check).\nE2 knockout  Attention knockout, true title. From decoder layer l on (l, l+1, ..., 63), every position after the title is\n             blocked from attending to the title tokens. l = 64 blocks nothing but uses the same explicit mask (baseline).\n             loss(l) = mean(baseline - knocked) / mean(true - false_0).\nE3 chain     Author chain. All authors of a paper in one sequence, \"Authors: A1, A2, ...\" (each name tokenised exactly\n             as in Stage 10, joined by the \",\" token), for all 7 Stage 10 conditions; every name token scored at the\n             model output and with the logit lens / public Jacobian lens at L40-L62. Rows keep Stage 10 row ids, so\n             chain and isolated scores are paired token by token.\n\nE1/E2 sample: citation bins with >= 30 target and >= 30 control papers (as Stage 10 B); per bin min(60, n_t, n_c) papers\nof each group, seed 11; 50 papers per shard. E3: all 9,108 papers, Stage 10 shards (128 papers) x 7 conditions.\n\nCommands: freeze | preflight (CPU) | smoke (GPU, gate for work) | work (GPU, claims units) | remaining | analyze (CPU)\n",
+ "false_for_patch": "false_0",
+ "ko_layers": [
+  0,
+  24,
+  32,
+  40,
+  48,
+  50,
+  52,
+  54,
+  56,
+  58,
+  60,
+  62,
+  64
+ ],
+ "model": "Qwen/Qwen3-32B",
+ "patch_layers": [
+  24,
+  32,
+  40,
+  48,
+  50,
+  52,
+  54,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63
+ ],
+ "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+ "sample": {
+  "bins": [
+   "0-2",
+   "129-256",
+   "17-32",
+   "257-512",
+   "3-4",
+   "33-64",
+   "5-8",
+   "513-1024",
+   "65-128",
+   "9-16"
+  ],
+  "min_bin": 30,
+  "n": 1186,
+  "n_control": 593,
+  "n_target": 593,
+  "papers_per_shard": 50,
+  "per_bin": 60,
+  "seed": 11,
+  "sha256": "9c490cee068f76a7e295d14b724946c7eb28029a3a6a7ae0a29cfec4da20c374"
+ },
+ "script_sha256": "26e3f8179092c8ac6edd908281b460e2e03f69403f26dc85e89f87e6d1383ae9",
+ "stage10": {
+  "inputs": {
+   "cohort/conditions/prompts.parquet": "8c846307135afc7133402dcb03e719e4fdc54fcffc7bec4a48da4b14a6abc588",
+   "cohort/name_tokens.parquet": "91d47f819e0bff2e8c459dffdd6faeb290c2a030b03a92bd5f1da2dc17ae9498",
+   "cohort/papers.parquet": "358d0e00163813f5de1df9d63b64c700bc5194a47869309752637892234fafb1"
+  },
+  "lens_public_sha256": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+  "protocol_sha256": "9fafd1d4d33acbad2f6c33d664a707625f97793341356ad6f703dcfccd3edffc"
+ },
+ "version": "stage11_v1"
+}

@@ -1,0 +1,2705 @@
+{
+  "passed_pairs": [
+    "final@L63",
+    "jlens_fitA@L24",
+    "jlens_fitA@L32",
+    "jlens_fitA@L40",
+    "jlens_fitA@L48",
+    "jlens_fitA@L56",
+    "jlens_fitA@L62",
+    "jlens_public@L24",
+    "jlens_public@L32",
+    "jlens_public@L40",
+    "jlens_public@L48",
+    "jlens_public@L50",
+    "jlens_public@L51",
+    "jlens_public@L52",
+    "jlens_public@L53",
+    "jlens_public@L54",
+    "jlens_public@L55",
+    "jlens_public@L56",
+    "jlens_public@L57",
+    "jlens_public@L58",
+    "jlens_public@L59",
+    "jlens_public@L60",
+    "jlens_public@L61",
+    "jlens_public@L62",
+    "jlens_self100@L24",
+    "jlens_self100@L32",
+    "jlens_self100@L40",
+    "jlens_self100@L48",
+    "jlens_self100@L56",
+    "jlens_self100@L62",
+    "logit@L24",
+    "logit@L32",
+    "logit@L40",
+    "logit@L48",
+    "logit@L50",
+    "logit@L51",
+    "logit@L52",
+    "logit@L53",
+    "logit@L54",
+    "logit@L55",
+    "logit@L56",
+    "logit@L57",
+    "logit@L58",
+    "logit@L59",
+    "logit@L60",
+    "logit@L61",
+    "logit@L62"
+  ],
+  "runs": [
+    {
+      "created": "2026-10-24T15:18:12",
+      "gpu": [
+        "NVIDIA A100-SXM4-80GB"
+      ],
+      "lenses": {
+        "public": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8"
+      },
+      "max_abs_logit_diff": {
+        "jlens_public@L50": 0.1875,
+        "jlens_public@L51": 0.1875,
+        "jlens_public@L52": 0.25,
+        "jlens_public@L53": 0.15625,
+        "jlens_public@L54": 0.1875,
+        "jlens_public@L55": 0.1875,
+        "jlens_public@L57": 0.1875,
+        "jlens_public@L58": 0.25,
+        "jlens_public@L59": 0.23681640625,
+        "jlens_public@L60": 0.234375,
+        "jlens_public@L61": 0.25,
+        "logit@L50": 0.1875,
+        "logit@L51": 0.1533203125,
+        "logit@L52": 0.140625,
+        "logit@L53": 0.140625,
+        "logit@L54": 0.1328125,
+        "logit@L55": 0.15625,
+        "logit@L57": 0.1875,
+        "logit@L58": 0.1875,
+        "logit@L59": 0.21923828125,
+        "logit@L60": 0.203125,
+        "logit@L61": 0.25
+      },
+      "n_contexts": 12,
+      "n_rank_mismatches": {
+        "jlens_public@L50": 4,
+        "jlens_public@L51": 5,
+        "jlens_public@L52": 4,
+        "jlens_public@L53": 4,
+        "jlens_public@L54": 7,
+        "jlens_public@L55": 5,
+        "jlens_public@L57": 6,
+        "jlens_public@L58": 6,
+        "jlens_public@L59": 5,
+        "jlens_public@L60": 5,
+        "jlens_public@L61": 2,
+        "logit@L50": 5,
+        "logit@L51": 5,
+        "logit@L52": 5,
+        "logit@L53": 5,
+        "logit@L54": 5,
+        "logit@L55": 5,
+        "logit@L57": 5,
+        "logit@L58": 5,
+        "logit@L59": 5,
+        "logit@L60": 4,
+        "logit@L61": 4
+      },
+      "n_token_positions": 52,
+      "rank_mismatches": {
+        "jlens_public@L50": [
+          {
+            "context_id": 7020,
+            "fast": 1340,
+            "j": 0,
+            "ref": 1308
+          },
+          {
+            "context_id": 7020,
+            "fast": 112390,
+            "j": 1,
+            "ref": 111799
+          },
+          {
+            "context_id": 7020,
+            "fast": 31669,
+            "j": 3,
+            "ref": 31977
+          },
+          {
+            "context_id": 7020,
+            "fast": 29766,
+            "j": 4,
+            "ref": 29866
+          }
+        ],
+        "jlens_public@L51": [
+          {
+            "context_id": 7020,
+            "fast": 893,
+            "j": 0,
+            "ref": 891
+          },
+          {
+            "context_id": 7020,
+            "fast": 118359,
+            "j": 1,
+            "ref": 118522
+          },
+          {
+            "context_id": 7020,
+            "fast": 448,
+            "j": 2,
+            "ref": 542
+          },
+          {
+            "context_id": 7020,
+            "fast": 68894,
+            "j": 3,
+            "ref": 68781
+          },
+          {
+            "context_id": 7020,
+            "fast": 39764,
+            "j": 4,
+            "ref": 40808
+          }
+        ],
+        "jlens_public@L52": [
+          {
+            "context_id": 7020,
+            "fast": 121811,
+            "j": 1,
+            "ref": 121821
+          },
+          {
+            "context_id": 7020,
+            "fast": 93,
+            "j": 2,
+            "ref": 95
+          },
+          {
+            "context_id": 7020,
+            "fast": 80643,
+            "j": 3,
+            "ref": 81527
+          },
+          {
+            "context_id": 7020,
+            "fast": 52111,
+            "j": 4,
+            "ref": 53304
+          }
+        ],
+        "jlens_public@L53": [
+          {
+            "context_id": 7020,
+            "fast": 184,
+            "j": 0,
+            "ref": 191
+          },
+          {
+            "context_id": 7020,
+            "fast": 116233,
+            "j": 1,
+            "ref": 116356
+          },
+          {
+            "context_id": 7020,
+            "fast": 58979,
+            "j": 3,
+            "ref": 59624
+          },
+          {
+            "context_id": 7020,
+            "fast": 41990,
+            "j": 4,
+            "ref": 42134
+          }
+        ],
+        "jlens_public@L54": [
+          {
+            "context_id": 5184,
+            "fast": 7443,
+            "j": 1,
+            "ref": 7444
+          },
+          {
+            "context_id": 7020,
+            "fast": 112434,
+            "j": 1,
+            "ref": 111863
+          },
+          {
+            "context_id": 7020,
+            "fast": 9248,
+            "j": 2,
+            "ref": 9150
+          },
+          {
+            "context_id": 7020,
+            "fast": 43670,
+            "j": 3,
+            "ref": 43387
+          },
+          {
+            "context_id": 7020,
+            "fast": 21178,
+            "j": 4,
+            "ref": 21688
+          },
+          {
+            "context_id": 17337,
+            "fast": 70448,
+            "j": 8,
+            "ref": 70449
+          },
+          {
+            "context_id": 26246,
+            "fast": 314,
+            "j": 2,
+            "ref": 313
+          }
+        ],
+        "jlens_public@L55": [
+          {
+            "context_id": 7020,
+            "fast": 122,
+            "j": 0,
+            "ref": 118
+          },
+          {
+            "context_id": 7020,
+            "fast": 133770,
+            "j": 1,
+            "ref": 133423
+          },
+          {
+            "context_id": 7020,
+            "fast": 13400,
+            "j": 2,
+            "ref": 13408
+          },
+          {
+            "context_id": 7020,
+            "fast": 32672,
+            "j": 3,
+            "ref": 32410
+          },
+          {
+            "context_id": 7020,
+            "fast": 4084,
+            "j": 4,
+            "ref": 4323
+          }
+        ],
+        "jlens_public@L57": [
+          {
+            "context_id": 7020,
+            "fast": 158,
+            "j": 0,
+            "ref": 156
+          },
+          {
+            "context_id": 7020,
+            "fast": 104682,
+            "j": 1,
+            "ref": 104373
+          },
+          {
+            "context_id": 7020,
+            "fast": 27895,
+            "j": 2,
+            "ref": 28601
+          },
+          {
+            "context_id": 7020,
+            "fast": 9835,
+            "j": 3,
+            "ref": 9704
+          },
+          {
+            "context_id": 7020,
+            "fast": 2276,
+            "j": 4,
+            "ref": 2300
+          },
+          {
+            "context_id": 17337,
+            "fast": 43632,
+            "j": 7,
+            "ref": 43630
+          }
+        ],
+        "jlens_public@L58": [
+          {
+            "context_id": 5184,
+            "fast": 32220,
+            "j": 1,
+            "ref": 32221
+          },
+          {
+            "context_id": 7020,
+            "fast": 138,
+            "j": 0,
+            "ref": 139
+          },
+          {
+            "context_id": 7020,
+            "fast": 59357,
+            "j": 1,
+            "ref": 58683
+          },
+          {
+            "context_id": 7020,
+            "fast": 1116,
+            "j": 2,
+            "ref": 1113
+          },
+          {
+            "context_id": 7020,
+            "fast": 13388,
+            "j": 3,
+            "ref": 13010
+          },
+          {
+            "context_id": 7020,
+            "fast": 318,
+            "j": 4,
+            "ref": 342
+          }
+        ],
+        "jlens_public@L59": [
+          {
+            "context_id": 7020,
+            "fast": 77,
+            "j": 0,
+            "ref": 72
+          },
+          {
+            "context_id": 7020,
+            "fast": 19910,
+            "j": 1,
+            "ref": 20178
+          },
+          {
+            "context_id": 7020,
+            "fast": 118,
+            "j": 2,
+            "ref": 122
+          },
+          {
+            "context_id": 7020,
+            "fast": 5988,
+            "j": 3,
+            "ref": 5799
+          },
+          {
+            "context_id": 7020,
+            "fast": 288,
+            "j": 4,
+            "ref": 299
+          }
+        ],
+        "jlens_public@L60": [
+          {
+            "context_id": 7020,
+            "fast": 127,
+            "j": 0,
+            "ref": 130
+          },
+          {
+            "context_id": 7020,
+            "fast": 1888,
+            "j": 1,
+            "ref": 1958
+          },
+          {
+            "context_id": 7020,
+            "fast": 37,
+            "j": 2,
+            "ref": 40
+          },
+          {
+            "context_id": 7020,
+            "fast": 304,
+            "j": 3,
+            "ref": 274
+          },
+          {
+            "context_id": 17337,
+            "fast": 5837,
+            "j": 5,
+            "ref": 5838
+          }
+        ],
+        "jlens_public@L61": [
+          {
+            "context_id": 7020,
+            "fast": 420,
+            "j": 0,
+            "ref": 414
+          },
+          {
+            "context_id": 7020,
+            "fast": 934,
+            "j": 3,
+            "ref": 877
+          }
+        ],
+        "logit@L50": [
+          {
+            "context_id": 7020,
+            "fast": 67868,
+            "j": 0,
+            "ref": 67809
+          },
+          {
+            "context_id": 7020,
+            "fast": 43697,
+            "j": 1,
+            "ref": 43184
+          },
+          {
+            "context_id": 7020,
+            "fast": 53260,
+            "j": 2,
+            "ref": 53139
+          },
+          {
+            "context_id": 7020,
+            "fast": 25671,
+            "j": 3,
+            "ref": 25300
+          },
+          {
+            "context_id": 7020,
+            "fast": 40745,
+            "j": 4,
+            "ref": 40104
+          }
+        ],
+        "logit@L51": [
+          {
+            "context_id": 7020,
+            "fast": 44629,
+            "j": 0,
+            "ref": 44579
+          },
+          {
+            "context_id": 7020,
+            "fast": 82963,
+            "j": 1,
+            "ref": 82911
+          },
+          {
+            "context_id": 7020,
+            "fast": 88307,
+            "j": 2,
+            "ref": 88470
+          },
+          {
+            "context_id": 7020,
+            "fast": 42472,
+            "j": 3,
+            "ref": 42217
+          },
+          {
+            "context_id": 7020,
+            "fast": 30168,
+            "j": 4,
+            "ref": 29704
+          }
+        ],
+        "logit@L52": [
+          {
+            "context_id": 7020,
+            "fast": 50027,
+            "j": 0,
+            "ref": 50120
+          },
+          {
+            "context_id": 7020,
+            "fast": 114249,
+            "j": 1,
+            "ref": 113781
+          },
+          {
+            "context_id": 7020,
+            "fast": 43757,
+            "j": 2,
+            "ref": 44133
+          },
+          {
+            "context_id": 7020,
+            "fast": 21840,
+            "j": 3,
+            "ref": 21828
+          },
+          {
+            "context_id": 7020,
+            "fast": 25053,
+            "j": 4,
+            "ref": 24757
+          }
+        ],
+        "logit@L53": [
+          {
+            "context_id": 7020,
+            "fast": 54606,
+            "j": 0,
+            "ref": 54988
+          },
+          {
+            "context_id": 7020,
+            "fast": 83637,
+            "j": 1,
+            "ref": 82807
+          },
+          {
+            "context_id": 7020,
+            "fast": 51101,
+            "j": 2,
+            "ref": 51541
+          },
+          {
+            "context_id": 7020,
+            "fast": 8665,
+            "j": 3,
+            "ref": 8463
+          },
+          {
+            "context_id": 7020,
+            "fast": 11095,
+            "j": 4,
+            "ref": 11081
+          }
+        ],
+        "logit@L54": [
+          {
+            "context_id": 7020,
+            "fast": 37521,
+            "j": 0,
+            "ref": 38130
+          },
+          {
+            "context_id": 7020,
+            "fast": 92178,
+            "j": 1,
+            "ref": 91958
+          },
+          {
+            "context_id": 7020,
+            "fast": 80363,
+            "j": 2,
+            "ref": 79759
+          },
+          {
+            "context_id": 7020,
+            "fast": 18165,
+            "j": 3,
+            "ref": 18206
+          },
+          {
+            "context_id": 7020,
+            "fast": 4413,
+            "j": 4,
+            "ref": 4411
+          }
+        ],
+        "logit@L55": [
+          {
+            "context_id": 7020,
+            "fast": 28811,
+            "j": 0,
+            "ref": 29155
+          },
+          {
+            "context_id": 7020,
+            "fast": 117722,
+            "j": 1,
+            "ref": 117458
+          },
+          {
+            "context_id": 7020,
+            "fast": 81691,
+            "j": 2,
+            "ref": 81259
+          },
+          {
+            "context_id": 7020,
+            "fast": 8925,
+            "j": 3,
+            "ref": 8766
+          },
+          {
+            "context_id": 7020,
+            "fast": 2119,
+            "j": 4,
+            "ref": 2104
+          }
+        ],
+        "logit@L57": [
+          {
+            "context_id": 7020,
+            "fast": 33448,
+            "j": 0,
+            "ref": 33113
+          },
+          {
+            "context_id": 7020,
+            "fast": 97392,
+            "j": 1,
+            "ref": 97471
+          },
+          {
+            "context_id": 7020,
+            "fast": 41164,
+            "j": 2,
+            "ref": 40762
+          },
+          {
+            "context_id": 7020,
+            "fast": 6190,
+            "j": 3,
+            "ref": 6260
+          },
+          {
+            "context_id": 7020,
+            "fast": 451,
+            "j": 4,
+            "ref": 435
+          }
+        ],
+        "logit@L58": [
+          {
+            "context_id": 7020,
+            "fast": 23295,
+            "j": 0,
+            "ref": 23460
+          },
+          {
+            "context_id": 7020,
+            "fast": 95687,
+            "j": 1,
+            "ref": 95495
+          },
+          {
+            "context_id": 7020,
+            "fast": 26411,
+            "j": 2,
+            "ref": 25848
+          },
+          {
+            "context_id": 7020,
+            "fast": 8295,
+            "j": 3,
+            "ref": 8082
+          },
+          {
+            "context_id": 7020,
+            "fast": 199,
+            "j": 4,
+            "ref": 202
+          }
+        ],
+        "logit@L59": [
+          {
+            "context_id": 7020,
+            "fast": 11330,
+            "j": 0,
+            "ref": 11448
+          },
+          {
+            "context_id": 7020,
+            "fast": 25964,
+            "j": 1,
+            "ref": 26027
+          },
+          {
+            "context_id": 7020,
+            "fast": 12256,
+            "j": 2,
+            "ref": 12264
+          },
+          {
+            "context_id": 7020,
+            "fast": 3773,
+            "j": 3,
+            "ref": 3583
+          },
+          {
+            "context_id": 7020,
+            "fast": 89,
+            "j": 4,
+            "ref": 87
+          }
+        ],
+        "logit@L60": [
+          {
+            "context_id": 7020,
+            "fast": 12617,
+            "j": 0,
+            "ref": 12684
+          },
+          {
+            "context_id": 7020,
+            "fast": 10675,
+            "j": 1,
+            "ref": 10395
+          },
+          {
+            "context_id": 7020,
+            "fast": 11178,
+            "j": 2,
+            "ref": 11172
+          },
+          {
+            "context_id": 7020,
+            "fast": 1412,
+            "j": 3,
+            "ref": 1293
+          }
+        ],
+        "logit@L61": [
+          {
+            "context_id": 7020,
+            "fast": 7538,
+            "j": 0,
+            "ref": 7628
+          },
+          {
+            "context_id": 7020,
+            "fast": 10997,
+            "j": 1,
+            "ref": 10596
+          },
+          {
+            "context_id": 7020,
+            "fast": 649,
+            "j": 2,
+            "ref": 682
+          },
+          {
+            "context_id": 7020,
+            "fast": 5967,
+            "j": 3,
+            "ref": 5860
+          }
+        ]
+      },
+      "status": "PASS",
+      "tolerance_max_abs_logit": 0.25,
+      "torch": "2.11.0+cu128"
+    },
+    {
+      "created": "2026-10-24T23:48:37",
+      "gpu": [
+        "NVIDIA A100-SXM4-80GB"
+      ],
+      "lenses": {
+        "fitA": "4881b830b1e10b920ff7882b53e2fbf5c66235668b93e6c54a4c01aa32cf4444",
+        "public": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+        "self100": "268aba15f3377fff4dfa553cc67b782c23148f0aa7a7b7de3c34b6534d8d40e3"
+      },
+      "max_abs_logit_diff": {
+        "final@L63": 0.3671875,
+        "jlens_fitA@L24": 0.25,
+        "jlens_fitA@L32": 0.28125,
+        "jlens_fitA@L40": 0.3359375,
+        "jlens_fitA@L48": 0.1875,
+        "jlens_fitA@L56": 0.1796875,
+        "jlens_fitA@L62": 0.3125,
+        "jlens_public@L24": 0.1875,
+        "jlens_public@L32": 0.34375,
+        "jlens_public@L40": 0.265625,
+        "jlens_public@L48": 0.21875,
+        "jlens_public@L56": 0.21484375,
+        "jlens_public@L62": 0.265625,
+        "jlens_self100@L24": 0.265625,
+        "jlens_self100@L32": 0.3359375,
+        "jlens_self100@L40": 0.1875,
+        "jlens_self100@L48": 0.25,
+        "jlens_self100@L56": 0.1640625,
+        "jlens_self100@L62": 0.2890625,
+        "logit@L24": 0.15625,
+        "logit@L32": 0.171875,
+        "logit@L40": 0.1875,
+        "logit@L48": 0.1875,
+        "logit@L56": 0.1875,
+        "logit@L62": 0.228515625
+      },
+      "n_contexts": 12,
+      "n_rank_mismatches": {
+        "final@L63": 2,
+        "jlens_fitA@L24": 6,
+        "jlens_fitA@L32": 6,
+        "jlens_fitA@L40": 7,
+        "jlens_fitA@L48": 6,
+        "jlens_fitA@L56": 7,
+        "jlens_fitA@L62": 3,
+        "jlens_public@L24": 10,
+        "jlens_public@L32": 7,
+        "jlens_public@L40": 5,
+        "jlens_public@L48": 8,
+        "jlens_public@L56": 7,
+        "jlens_public@L62": 2,
+        "jlens_self100@L24": 8,
+        "jlens_self100@L32": 7,
+        "jlens_self100@L40": 6,
+        "jlens_self100@L48": 4,
+        "jlens_self100@L56": 5,
+        "jlens_self100@L62": 2,
+        "logit@L24": 5,
+        "logit@L32": 5,
+        "logit@L40": 5,
+        "logit@L48": 5,
+        "logit@L56": 5,
+        "logit@L62": 3
+      },
+      "n_token_positions": 52,
+      "rank_mismatches": {
+        "final@L63": [
+          {
+            "context_id": 7020,
+            "fast": 2130,
+            "j": 0,
+            "ref": 2099
+          },
+          {
+            "context_id": 7020,
+            "fast": 72,
+            "j": 3,
+            "ref": 66
+          }
+        ],
+        "jlens_fitA@L24": [
+          {
+            "context_id": 7020,
+            "fast": 24028,
+            "j": 0,
+            "ref": 24332
+          },
+          {
+            "context_id": 7020,
+            "fast": 143835,
+            "j": 1,
+            "ref": 144262
+          },
+          {
+            "context_id": 7020,
+            "fast": 146487,
+            "j": 2,
+            "ref": 146162
+          },
+          {
+            "context_id": 7020,
+            "fast": 1171,
+            "j": 3,
+            "ref": 1151
+          },
+          {
+            "context_id": 7020,
+            "fast": 78592,
+            "j": 4,
+            "ref": 79847
+          },
+          {
+            "context_id": 17337,
+            "fast": 102663,
+            "j": 6,
+            "ref": 102664
+          }
+        ],
+        "jlens_fitA@L32": [
+          {
+            "context_id": 7020,
+            "fast": 9528,
+            "j": 0,
+            "ref": 9640
+          },
+          {
+            "context_id": 7020,
+            "fast": 137781,
+            "j": 1,
+            "ref": 138023
+          },
+          {
+            "context_id": 7020,
+            "fast": 28990,
+            "j": 2,
+            "ref": 26866
+          },
+          {
+            "context_id": 7020,
+            "fast": 1089,
+            "j": 3,
+            "ref": 1063
+          },
+          {
+            "context_id": 7020,
+            "fast": 53933,
+            "j": 4,
+            "ref": 53512
+          },
+          {
+            "context_id": 28005,
+            "fast": 35107,
+            "j": 1,
+            "ref": 35108
+          }
+        ],
+        "jlens_fitA@L40": [
+          {
+            "context_id": 7020,
+            "fast": 7136,
+            "j": 0,
+            "ref": 7282
+          },
+          {
+            "context_id": 7020,
+            "fast": 60768,
+            "j": 1,
+            "ref": 60740
+          },
+          {
+            "context_id": 7020,
+            "fast": 490,
+            "j": 2,
+            "ref": 417
+          },
+          {
+            "context_id": 7020,
+            "fast": 2235,
+            "j": 3,
+            "ref": 2221
+          },
+          {
+            "context_id": 7020,
+            "fast": 16878,
+            "j": 4,
+            "ref": 16850
+          },
+          {
+            "context_id": 26246,
+            "fast": 1832,
+            "j": 0,
+            "ref": 1833
+          },
+          {
+            "context_id": 26246,
+            "fast": 92587,
+            "j": 1,
+            "ref": 92586
+          }
+        ],
+        "jlens_fitA@L48": [
+          {
+            "context_id": 7020,
+            "fast": 2673,
+            "j": 0,
+            "ref": 2617
+          },
+          {
+            "context_id": 7020,
+            "fast": 65439,
+            "j": 1,
+            "ref": 65071
+          },
+          {
+            "context_id": 7020,
+            "fast": 14651,
+            "j": 3,
+            "ref": 14460
+          },
+          {
+            "context_id": 7020,
+            "fast": 3756,
+            "j": 4,
+            "ref": 3812
+          },
+          {
+            "context_id": 28005,
+            "fast": 24213,
+            "j": 3,
+            "ref": 24212
+          },
+          {
+            "context_id": 32313,
+            "fast": 22394,
+            "j": 3,
+            "ref": 22393
+          }
+        ],
+        "jlens_fitA@L56": [
+          {
+            "context_id": 7020,
+            "fast": 143,
+            "j": 0,
+            "ref": 150
+          },
+          {
+            "context_id": 7020,
+            "fast": 121210,
+            "j": 1,
+            "ref": 120761
+          },
+          {
+            "context_id": 7020,
+            "fast": 7814,
+            "j": 2,
+            "ref": 7874
+          },
+          {
+            "context_id": 7020,
+            "fast": 7765,
+            "j": 3,
+            "ref": 7711
+          },
+          {
+            "context_id": 7020,
+            "fast": 1149,
+            "j": 4,
+            "ref": 1109
+          },
+          {
+            "context_id": 17337,
+            "fast": 38057,
+            "j": 7,
+            "ref": 38055
+          },
+          {
+            "context_id": 28005,
+            "fast": 136068,
+            "j": 2,
+            "ref": 136067
+          }
+        ],
+        "jlens_fitA@L62": [
+          {
+            "context_id": 7020,
+            "fast": 583,
+            "j": 0,
+            "ref": 593
+          },
+          {
+            "context_id": 7020,
+            "fast": 65,
+            "j": 1,
+            "ref": 69
+          },
+          {
+            "context_id": 7020,
+            "fast": 511,
+            "j": 3,
+            "ref": 523
+          }
+        ],
+        "jlens_public@L24": [
+          {
+            "context_id": 7020,
+            "fast": 33148,
+            "j": 0,
+            "ref": 33887
+          },
+          {
+            "context_id": 7020,
+            "fast": 146627,
+            "j": 1,
+            "ref": 146612
+          },
+          {
+            "context_id": 7020,
+            "fast": 149742,
+            "j": 2,
+            "ref": 149579
+          },
+          {
+            "context_id": 7020,
+            "fast": 15441,
+            "j": 3,
+            "ref": 15275
+          },
+          {
+            "context_id": 7020,
+            "fast": 96314,
+            "j": 4,
+            "ref": 96731
+          },
+          {
+            "context_id": 17337,
+            "fast": 16145,
+            "j": 8,
+            "ref": 16146
+          },
+          {
+            "context_id": 26792,
+            "fast": 9559,
+            "j": 2,
+            "ref": 9558
+          },
+          {
+            "context_id": 28005,
+            "fast": 33360,
+            "j": 3,
+            "ref": 33362
+          },
+          {
+            "context_id": 32313,
+            "fast": 46807,
+            "j": 2,
+            "ref": 46806
+          },
+          {
+            "context_id": 32313,
+            "fast": 12486,
+            "j": 3,
+            "ref": 12485
+          }
+        ],
+        "jlens_public@L32": [
+          {
+            "context_id": 7020,
+            "fast": 15006,
+            "j": 0,
+            "ref": 15561
+          },
+          {
+            "context_id": 7020,
+            "fast": 144482,
+            "j": 1,
+            "ref": 144531
+          },
+          {
+            "context_id": 7020,
+            "fast": 142523,
+            "j": 2,
+            "ref": 141844
+          },
+          {
+            "context_id": 7020,
+            "fast": 5945,
+            "j": 3,
+            "ref": 5768
+          },
+          {
+            "context_id": 7020,
+            "fast": 66575,
+            "j": 4,
+            "ref": 66506
+          },
+          {
+            "context_id": 8924,
+            "fast": 83366,
+            "j": 0,
+            "ref": 83367
+          },
+          {
+            "context_id": 17337,
+            "fast": 11145,
+            "j": 3,
+            "ref": 11146
+          }
+        ],
+        "jlens_public@L40": [
+          {
+            "context_id": 7020,
+            "fast": 9623,
+            "j": 0,
+            "ref": 9758
+          },
+          {
+            "context_id": 7020,
+            "fast": 115379,
+            "j": 1,
+            "ref": 115155
+          },
+          {
+            "context_id": 7020,
+            "fast": 10201,
+            "j": 2,
+            "ref": 8961
+          },
+          {
+            "context_id": 7020,
+            "fast": 4003,
+            "j": 3,
+            "ref": 4117
+          },
+          {
+            "context_id": 7020,
+            "fast": 36690,
+            "j": 4,
+            "ref": 36914
+          }
+        ],
+        "jlens_public@L48": [
+          {
+            "context_id": 7020,
+            "fast": 3242,
+            "j": 0,
+            "ref": 3200
+          },
+          {
+            "context_id": 7020,
+            "fast": 108440,
+            "j": 1,
+            "ref": 108581
+          },
+          {
+            "context_id": 7020,
+            "fast": 25868,
+            "j": 3,
+            "ref": 25385
+          },
+          {
+            "context_id": 7020,
+            "fast": 15895,
+            "j": 4,
+            "ref": 16082
+          },
+          {
+            "context_id": 17337,
+            "fast": 1172,
+            "j": 0,
+            "ref": 1173
+          },
+          {
+            "context_id": 17337,
+            "fast": 104165,
+            "j": 7,
+            "ref": 104168
+          },
+          {
+            "context_id": 26246,
+            "fast": 27815,
+            "j": 1,
+            "ref": 27816
+          },
+          {
+            "context_id": 28005,
+            "fast": 33148,
+            "j": 3,
+            "ref": 33150
+          }
+        ],
+        "jlens_public@L56": [
+          {
+            "context_id": 7020,
+            "fast": 213,
+            "j": 0,
+            "ref": 210
+          },
+          {
+            "context_id": 7020,
+            "fast": 124654,
+            "j": 1,
+            "ref": 124889
+          },
+          {
+            "context_id": 7020,
+            "fast": 18356,
+            "j": 2,
+            "ref": 18689
+          },
+          {
+            "context_id": 7020,
+            "fast": 9055,
+            "j": 3,
+            "ref": 8945
+          },
+          {
+            "context_id": 7020,
+            "fast": 2677,
+            "j": 4,
+            "ref": 2739
+          },
+          {
+            "context_id": 17337,
+            "fast": 32634,
+            "j": 8,
+            "ref": 32642
+          },
+          {
+            "context_id": 28005,
+            "fast": 141279,
+            "j": 2,
+            "ref": 141278
+          }
+        ],
+        "jlens_public@L62": [
+          {
+            "context_id": 7020,
+            "fast": 477,
+            "j": 0,
+            "ref": 475
+          },
+          {
+            "context_id": 7020,
+            "fast": 598,
+            "j": 3,
+            "ref": 603
+          }
+        ],
+        "jlens_self100@L24": [
+          {
+            "context_id": 7020,
+            "fast": 76420,
+            "j": 0,
+            "ref": 77133
+          },
+          {
+            "context_id": 7020,
+            "fast": 147530,
+            "j": 1,
+            "ref": 147573
+          },
+          {
+            "context_id": 7020,
+            "fast": 151569,
+            "j": 2,
+            "ref": 151555
+          },
+          {
+            "context_id": 7020,
+            "fast": 12443,
+            "j": 3,
+            "ref": 12114
+          },
+          {
+            "context_id": 7020,
+            "fast": 93795,
+            "j": 4,
+            "ref": 94411
+          },
+          {
+            "context_id": 17337,
+            "fast": 5988,
+            "j": 4,
+            "ref": 5986
+          },
+          {
+            "context_id": 28005,
+            "fast": 15475,
+            "j": 0,
+            "ref": 15474
+          },
+          {
+            "context_id": 28005,
+            "fast": 36718,
+            "j": 3,
+            "ref": 36717
+          }
+        ],
+        "jlens_self100@L32": [
+          {
+            "context_id": 7020,
+            "fast": 20089,
+            "j": 0,
+            "ref": 20955
+          },
+          {
+            "context_id": 7020,
+            "fast": 145800,
+            "j": 1,
+            "ref": 145897
+          },
+          {
+            "context_id": 7020,
+            "fast": 89866,
+            "j": 2,
+            "ref": 87158
+          },
+          {
+            "context_id": 7020,
+            "fast": 4414,
+            "j": 3,
+            "ref": 4278
+          },
+          {
+            "context_id": 7020,
+            "fast": 54228,
+            "j": 4,
+            "ref": 54211
+          },
+          {
+            "context_id": 17337,
+            "fast": 56835,
+            "j": 5,
+            "ref": 56834
+          },
+          {
+            "context_id": 26246,
+            "fast": 7310,
+            "j": 0,
+            "ref": 7311
+          }
+        ],
+        "jlens_self100@L40": [
+          {
+            "context_id": 5046,
+            "fast": 23522,
+            "j": 3,
+            "ref": 23523
+          },
+          {
+            "context_id": 7020,
+            "fast": 10612,
+            "j": 0,
+            "ref": 10852
+          },
+          {
+            "context_id": 7020,
+            "fast": 108244,
+            "j": 1,
+            "ref": 106976
+          },
+          {
+            "context_id": 7020,
+            "fast": 5761,
+            "j": 2,
+            "ref": 5128
+          },
+          {
+            "context_id": 7020,
+            "fast": 6417,
+            "j": 3,
+            "ref": 6438
+          },
+          {
+            "context_id": 7020,
+            "fast": 19579,
+            "j": 4,
+            "ref": 19513
+          }
+        ],
+        "jlens_self100@L48": [
+          {
+            "context_id": 7020,
+            "fast": 3261,
+            "j": 0,
+            "ref": 3204
+          },
+          {
+            "context_id": 7020,
+            "fast": 118649,
+            "j": 1,
+            "ref": 119062
+          },
+          {
+            "context_id": 7020,
+            "fast": 33518,
+            "j": 3,
+            "ref": 33598
+          },
+          {
+            "context_id": 7020,
+            "fast": 13453,
+            "j": 4,
+            "ref": 13757
+          }
+        ],
+        "jlens_self100@L56": [
+          {
+            "context_id": 7020,
+            "fast": 249,
+            "j": 0,
+            "ref": 256
+          },
+          {
+            "context_id": 7020,
+            "fast": 130612,
+            "j": 1,
+            "ref": 130731
+          },
+          {
+            "context_id": 7020,
+            "fast": 8702,
+            "j": 2,
+            "ref": 8722
+          },
+          {
+            "context_id": 7020,
+            "fast": 9428,
+            "j": 3,
+            "ref": 9326
+          },
+          {
+            "context_id": 7020,
+            "fast": 2107,
+            "j": 4,
+            "ref": 2187
+          }
+        ],
+        "jlens_self100@L62": [
+          {
+            "context_id": 7020,
+            "fast": 436,
+            "j": 0,
+            "ref": 449
+          },
+          {
+            "context_id": 7020,
+            "fast": 142,
+            "j": 1,
+            "ref": 148
+          }
+        ],
+        "logit@L24": [
+          {
+            "context_id": 7020,
+            "fast": 36001,
+            "j": 0,
+            "ref": 36702
+          },
+          {
+            "context_id": 7020,
+            "fast": 40477,
+            "j": 1,
+            "ref": 40818
+          },
+          {
+            "context_id": 7020,
+            "fast": 83778,
+            "j": 2,
+            "ref": 82227
+          },
+          {
+            "context_id": 7020,
+            "fast": 25720,
+            "j": 3,
+            "ref": 25357
+          },
+          {
+            "context_id": 7020,
+            "fast": 115545,
+            "j": 4,
+            "ref": 116251
+          }
+        ],
+        "logit@L32": [
+          {
+            "context_id": 7020,
+            "fast": 68491,
+            "j": 0,
+            "ref": 68046
+          },
+          {
+            "context_id": 7020,
+            "fast": 71621,
+            "j": 1,
+            "ref": 71913
+          },
+          {
+            "context_id": 7020,
+            "fast": 76264,
+            "j": 2,
+            "ref": 76065
+          },
+          {
+            "context_id": 7020,
+            "fast": 57598,
+            "j": 3,
+            "ref": 57402
+          },
+          {
+            "context_id": 7020,
+            "fast": 89407,
+            "j": 4,
+            "ref": 89106
+          }
+        ],
+        "logit@L40": [
+          {
+            "context_id": 7020,
+            "fast": 132689,
+            "j": 0,
+            "ref": 132304
+          },
+          {
+            "context_id": 7020,
+            "fast": 21359,
+            "j": 1,
+            "ref": 21008
+          },
+          {
+            "context_id": 7020,
+            "fast": 8794,
+            "j": 2,
+            "ref": 8697
+          },
+          {
+            "context_id": 7020,
+            "fast": 13920,
+            "j": 3,
+            "ref": 13708
+          },
+          {
+            "context_id": 7020,
+            "fast": 55480,
+            "j": 4,
+            "ref": 54815
+          }
+        ],
+        "logit@L48": [
+          {
+            "context_id": 7020,
+            "fast": 99321,
+            "j": 0,
+            "ref": 99179
+          },
+          {
+            "context_id": 7020,
+            "fast": 54464,
+            "j": 1,
+            "ref": 54111
+          },
+          {
+            "context_id": 7020,
+            "fast": 89164,
+            "j": 2,
+            "ref": 89157
+          },
+          {
+            "context_id": 7020,
+            "fast": 35605,
+            "j": 3,
+            "ref": 34582
+          },
+          {
+            "context_id": 7020,
+            "fast": 64930,
+            "j": 4,
+            "ref": 64438
+          }
+        ],
+        "logit@L56": [
+          {
+            "context_id": 7020,
+            "fast": 35667,
+            "j": 0,
+            "ref": 36219
+          },
+          {
+            "context_id": 7020,
+            "fast": 101790,
+            "j": 1,
+            "ref": 101633
+          },
+          {
+            "context_id": 7020,
+            "fast": 84961,
+            "j": 2,
+            "ref": 84309
+          },
+          {
+            "context_id": 7020,
+            "fast": 5859,
+            "j": 3,
+            "ref": 5740
+          },
+          {
+            "context_id": 7020,
+            "fast": 1012,
+            "j": 4,
+            "ref": 1011
+          }
+        ],
+        "logit@L62": [
+          {
+            "context_id": 7020,
+            "fast": 1727,
+            "j": 0,
+            "ref": 1759
+          },
+          {
+            "context_id": 7020,
+            "fast": 43,
+            "j": 1,
+            "ref": 42
+          },
+          {
+            "context_id": 7020,
+            "fast": 329,
+            "j": 3,
+            "ref": 326
+          }
+        ]
+      },
+      "status": "FAIL",
+      "tolerance_max_abs_logit": 0.25,
+      "torch": "2.11.0+cu128"
+    },
+    {
+      "created": "2026-10-25T00:37:52",
+      "gpu": [
+        "NVIDIA A100-SXM4-80GB"
+      ],
+      "lenses": {
+        "fitA": "4881b830b1e10b920ff7882b53e2fbf5c66235668b93e6c54a4c01aa32cf4444",
+        "public": "0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8",
+        "self100": "268aba15f3377fff4dfa553cc67b782c23148f0aa7a7b7de3c34b6534d8d40e3"
+      },
+      "max_abs_logit_diff": {
+        "final@L63": 0.3671875,
+        "jlens_fitA@L24": 0.25,
+        "jlens_fitA@L32": 0.28125,
+        "jlens_fitA@L40": 0.3359375,
+        "jlens_fitA@L48": 0.1875,
+        "jlens_fitA@L56": 0.1796875,
+        "jlens_fitA@L62": 0.3125,
+        "jlens_public@L24": 0.1875,
+        "jlens_public@L32": 0.34375,
+        "jlens_public@L40": 0.265625,
+        "jlens_public@L48": 0.21875,
+        "jlens_public@L56": 0.21484375,
+        "jlens_public@L62": 0.265625,
+        "jlens_self100@L24": 0.265625,
+        "jlens_self100@L32": 0.3359375,
+        "jlens_self100@L40": 0.1875,
+        "jlens_self100@L48": 0.25,
+        "jlens_self100@L56": 0.1640625,
+        "jlens_self100@L62": 0.2890625,
+        "logit@L24": 0.15625,
+        "logit@L32": 0.171875,
+        "logit@L40": 0.1875,
+        "logit@L48": 0.1875,
+        "logit@L56": 0.1875,
+        "logit@L62": 0.228515625
+      },
+      "n_contexts": 12,
+      "n_rank_mismatches": {
+        "final@L63": 2,
+        "jlens_fitA@L24": 6,
+        "jlens_fitA@L32": 6,
+        "jlens_fitA@L40": 7,
+        "jlens_fitA@L48": 6,
+        "jlens_fitA@L56": 7,
+        "jlens_fitA@L62": 3,
+        "jlens_public@L24": 10,
+        "jlens_public@L32": 7,
+        "jlens_public@L40": 5,
+        "jlens_public@L48": 8,
+        "jlens_public@L56": 7,
+        "jlens_public@L62": 2,
+        "jlens_self100@L24": 8,
+        "jlens_self100@L32": 7,
+        "jlens_self100@L40": 6,
+        "jlens_self100@L48": 4,
+        "jlens_self100@L56": 5,
+        "jlens_self100@L62": 2,
+        "logit@L24": 5,
+        "logit@L32": 5,
+        "logit@L40": 5,
+        "logit@L48": 5,
+        "logit@L56": 5,
+        "logit@L62": 3
+      },
+      "n_token_positions": 52,
+      "rank_mismatches": {
+        "final@L63": [
+          {
+            "context_id": 7020,
+            "fast": 2130,
+            "j": 0,
+            "ref": 2099
+          },
+          {
+            "context_id": 7020,
+            "fast": 72,
+            "j": 3,
+            "ref": 66
+          }
+        ],
+        "jlens_fitA@L24": [
+          {
+            "context_id": 7020,
+            "fast": 24028,
+            "j": 0,
+            "ref": 24332
+          },
+          {
+            "context_id": 7020,
+            "fast": 143835,
+            "j": 1,
+            "ref": 144262
+          },
+          {
+            "context_id": 7020,
+            "fast": 146487,
+            "j": 2,
+            "ref": 146162
+          },
+          {
+            "context_id": 7020,
+            "fast": 1171,
+            "j": 3,
+            "ref": 1151
+          },
+          {
+            "context_id": 7020,
+            "fast": 78592,
+            "j": 4,
+            "ref": 79847
+          },
+          {
+            "context_id": 17337,
+            "fast": 102663,
+            "j": 6,
+            "ref": 102664
+          }
+        ],
+        "jlens_fitA@L32": [
+          {
+            "context_id": 7020,
+            "fast": 9528,
+            "j": 0,
+            "ref": 9640
+          },
+          {
+            "context_id": 7020,
+            "fast": 137781,
+            "j": 1,
+            "ref": 138023
+          },
+          {
+            "context_id": 7020,
+            "fast": 28990,
+            "j": 2,
+            "ref": 26866
+          },
+          {
+            "context_id": 7020,
+            "fast": 1089,
+            "j": 3,
+            "ref": 1063
+          },
+          {
+            "context_id": 7020,
+            "fast": 53933,
+            "j": 4,
+            "ref": 53512
+          },
+          {
+            "context_id": 28005,
+            "fast": 35107,
+            "j": 1,
+            "ref": 35108
+          }
+        ],
+        "jlens_fitA@L40": [
+          {
+            "context_id": 7020,
+            "fast": 7136,
+            "j": 0,
+            "ref": 7282
+          },
+          {
+            "context_id": 7020,
+            "fast": 60768,
+            "j": 1,
+            "ref": 60740
+          },
+          {
+            "context_id": 7020,
+            "fast": 490,
+            "j": 2,
+            "ref": 417
+          },
+          {
+            "context_id": 7020,
+            "fast": 2235,
+            "j": 3,
+            "ref": 2221
+          },
+          {
+            "context_id": 7020,
+            "fast": 16878,
+            "j": 4,
+            "ref": 16850
+          },
+          {
+            "context_id": 26246,
+            "fast": 1832,
+            "j": 0,
+            "ref": 1833
+          },
+          {
+            "context_id": 26246,
+            "fast": 92587,
+            "j": 1,
+            "ref": 92586
+          }
+        ],
+        "jlens_fitA@L48": [
+          {
+            "context_id": 7020,
+            "fast": 2673,
+            "j": 0,
+            "ref": 2617
+          },
+          {
+            "context_id": 7020,
+            "fast": 65439,
+            "j": 1,
+            "ref": 65071
+          },
+          {
+            "context_id": 7020,
+            "fast": 14651,
+            "j": 3,
+            "ref": 14460
+          },
+          {
+            "context_id": 7020,
+            "fast": 3756,
+            "j": 4,
+            "ref": 3812
+          },
+          {
+            "context_id": 28005,
+            "fast": 24213,
+            "j": 3,
+            "ref": 24212
+          },
+          {
+            "context_id": 32313,
+            "fast": 22394,
+            "j": 3,
+            "ref": 22393
+          }
+        ],
+        "jlens_fitA@L56": [
+          {
+            "context_id": 7020,
+            "fast": 143,
+            "j": 0,
+            "ref": 150
+          },
+          {
+            "context_id": 7020,
+            "fast": 121210,
+            "j": 1,
+            "ref": 120761
+          },
+          {
+            "context_id": 7020,
+            "fast": 7814,
+            "j": 2,
+            "ref": 7874
+          },
+          {
+            "context_id": 7020,
+            "fast": 7765,
+            "j": 3,
+            "ref": 7711
+          },
+          {
+            "context_id": 7020,
+            "fast": 1149,
+            "j": 4,
+            "ref": 1109
+          },
+          {
+            "context_id": 17337,
+            "fast": 38057,
+            "j": 7,
+            "ref": 38055
+          },
+          {
+            "context_id": 28005,
+            "fast": 136068,
+            "j": 2,
+            "ref": 136067
+          }
+        ],
+        "jlens_fitA@L62": [
+          {
+            "context_id": 7020,
+            "fast": 583,
+            "j": 0,
+            "ref": 593
+          },
+          {
+            "context_id": 7020,
+            "fast": 65,
+            "j": 1,
+            "ref": 69
+          },
+          {
+            "context_id": 7020,
+            "fast": 511,
+            "j": 3,
+            "ref": 523
+          }
+        ],
+        "jlens_public@L24": [
+          {
+            "context_id": 7020,
+            "fast": 33148,
+            "j": 0,
+            "ref": 33887
+          },
+          {
+            "context_id": 7020,
+            "fast": 146627,
+            "j": 1,
+            "ref": 146612
+          },
+          {
+            "context_id": 7020,
+            "fast": 149742,
+            "j": 2,
+            "ref": 149579
+          },
+          {
+            "context_id": 7020,
+            "fast": 15441,
+            "j": 3,
+            "ref": 15275
+          },
+          {
+            "context_id": 7020,
+            "fast": 96314,
+            "j": 4,
+            "ref": 96731
+          },
+          {
+            "context_id": 17337,
+            "fast": 16145,
+            "j": 8,
+            "ref": 16146
+          },
+          {
+            "context_id": 26792,
+            "fast": 9559,
+            "j": 2,
+            "ref": 9558
+          },
+          {
+            "context_id": 28005,
+            "fast": 33360,
+            "j": 3,
+            "ref": 33362
+          },
+          {
+            "context_id": 32313,
+            "fast": 46807,
+            "j": 2,
+            "ref": 46806
+          },
+          {
+            "context_id": 32313,
+            "fast": 12486,
+            "j": 3,
+            "ref": 12485
+          }
+        ],
+        "jlens_public@L32": [
+          {
+            "context_id": 7020,
+            "fast": 15006,
+            "j": 0,
+            "ref": 15561
+          },
+          {
+            "context_id": 7020,
+            "fast": 144482,
+            "j": 1,
+            "ref": 144531
+          },
+          {
+            "context_id": 7020,
+            "fast": 142523,
+            "j": 2,
+            "ref": 141844
+          },
+          {
+            "context_id": 7020,
+            "fast": 5945,
+            "j": 3,
+            "ref": 5768
+          },
+          {
+            "context_id": 7020,
+            "fast": 66575,
+            "j": 4,
+            "ref": 66506
+          },
+          {
+            "context_id": 8924,
+            "fast": 83366,
+            "j": 0,
+            "ref": 83367
+          },
+          {
+            "context_id": 17337,
+            "fast": 11145,
+            "j": 3,
+            "ref": 11146
+          }
+        ],
+        "jlens_public@L40": [
+          {
+            "context_id": 7020,
+            "fast": 9623,
+            "j": 0,
+            "ref": 9758
+          },
+          {
+            "context_id": 7020,
+            "fast": 115379,
+            "j": 1,
+            "ref": 115155
+          },
+          {
+            "context_id": 7020,
+            "fast": 10201,
+            "j": 2,
+            "ref": 8961
+          },
+          {
+            "context_id": 7020,
+            "fast": 4003,
+            "j": 3,
+            "ref": 4117
+          },
+          {
+            "context_id": 7020,
+            "fast": 36690,
+            "j": 4,
+            "ref": 36914
+          }
+        ],
+        "jlens_public@L48": [
+          {
+            "context_id": 7020,
+            "fast": 3242,
+            "j": 0,
+            "ref": 3200
+          },
+          {
+            "context_id": 7020,
+            "fast": 108440,
+            "j": 1,
+            "ref": 108581
+          },
+          {
+            "context_id": 7020,
+            "fast": 25868,
+            "j": 3,
+            "ref": 25385
+          },
+          {
+            "context_id": 7020,
+            "fast": 15895,
+            "j": 4,
+            "ref": 16082
+          },
+          {
+            "context_id": 17337,
+            "fast": 1172,
+            "j": 0,
+            "ref": 1173
+          },
+          {
+            "context_id": 17337,
+            "fast": 104165,
+            "j": 7,
+            "ref": 104168
+          },
+          {
+            "context_id": 26246,
+            "fast": 27815,
+            "j": 1,
+            "ref": 27816
+          },
+          {
+            "context_id": 28005,
+            "fast": 33148,
+            "j": 3,
+            "ref": 33150
+          }
+        ],
+        "jlens_public@L56": [
+          {
+            "context_id": 7020,
+            "fast": 213,
+            "j": 0,
+            "ref": 210
+          },
+          {
+            "context_id": 7020,
+            "fast": 124654,
+            "j": 1,
+            "ref": 124889
+          },
+          {
+            "context_id": 7020,
+            "fast": 18356,
+            "j": 2,
+            "ref": 18689
+          },
+          {
+            "context_id": 7020,
+            "fast": 9055,
+            "j": 3,
+            "ref": 8945
+          },
+          {
+            "context_id": 7020,
+            "fast": 2677,
+            "j": 4,
+            "ref": 2739
+          },
+          {
+            "context_id": 17337,
+            "fast": 32634,
+            "j": 8,
+            "ref": 32642
+          },
+          {
+            "context_id": 28005,
+            "fast": 141279,
+            "j": 2,
+            "ref": 141278
+          }
+        ],
+        "jlens_public@L62": [
+          {
+            "context_id": 7020,
+            "fast": 477,
+            "j": 0,
+            "ref": 475
+          },
+          {
+            "context_id": 7020,
+            "fast": 598,
+            "j": 3,
+            "ref": 603
+          }
+        ],
+        "jlens_self100@L24": [
+          {
+            "context_id": 7020,
+            "fast": 76420,
+            "j": 0,
+            "ref": 77133
+          },
+          {
+            "context_id": 7020,
+            "fast": 147530,
+            "j": 1,
+            "ref": 147573
+          },
+          {
+            "context_id": 7020,
+            "fast": 151569,
+            "j": 2,
+            "ref": 151555
+          },
+          {
+            "context_id": 7020,
+            "fast": 12443,
+            "j": 3,
+            "ref": 12114
+          },
+          {
+            "context_id": 7020,
+            "fast": 93795,
+            "j": 4,
+            "ref": 94411
+          },
+          {
+            "context_id": 17337,
+            "fast": 5988,
+            "j": 4,
+            "ref": 5986
+          },
+          {
+            "context_id": 28005,
+            "fast": 15475,
+            "j": 0,
+            "ref": 15474
+          },
+          {
+            "context_id": 28005,
+            "fast": 36718,
+            "j": 3,
+            "ref": 36717
+          }
+        ],
+        "jlens_self100@L32": [
+          {
+            "context_id": 7020,
+            "fast": 20089,
+            "j": 0,
+            "ref": 20955
+          },
+          {
+            "context_id": 7020,
+            "fast": 145800,
+            "j": 1,
+            "ref": 145897
+          },
+          {
+            "context_id": 7020,
+            "fast": 89866,
+            "j": 2,
+            "ref": 87158
+          },
+          {
+            "context_id": 7020,
+            "fast": 4414,
+            "j": 3,
+            "ref": 4278
+          },
+          {
+            "context_id": 7020,
+            "fast": 54228,
+            "j": 4,
+            "ref": 54211
+          },
+          {
+            "context_id": 17337,
+            "fast": 56835,
+            "j": 5,
+            "ref": 56834
+          },
+          {
+            "context_id": 26246,
+            "fast": 7310,
+            "j": 0,
+            "ref": 7311
+          }
+        ],
+        "jlens_self100@L40": [
+          {
+            "context_id": 5046,
+            "fast": 23522,
+            "j": 3,
+            "ref": 23523
+          },
+          {
+            "context_id": 7020,
+            "fast": 10612,
+            "j": 0,
+            "ref": 10852
+          },
+          {
+            "context_id": 7020,
+            "fast": 108244,
+            "j": 1,
+            "ref": 106976
+          },
+          {
+            "context_id": 7020,
+            "fast": 5761,
+            "j": 2,
+            "ref": 5128
+          },
+          {
+            "context_id": 7020,
+            "fast": 6417,
+            "j": 3,
+            "ref": 6438
+          },
+          {
+            "context_id": 7020,
+            "fast": 19579,
+            "j": 4,
+            "ref": 19513
+          }
+        ],
+        "jlens_self100@L48": [
+          {
+            "context_id": 7020,
+            "fast": 3261,
+            "j": 0,
+            "ref": 3204
+          },
+          {
+            "context_id": 7020,
+            "fast": 118649,
+            "j": 1,
+            "ref": 119062
+          },
+          {
+            "context_id": 7020,
+            "fast": 33518,
+            "j": 3,
+            "ref": 33598
+          },
+          {
+            "context_id": 7020,
+            "fast": 13453,
+            "j": 4,
+            "ref": 13757
+          }
+        ],
+        "jlens_self100@L56": [
+          {
+            "context_id": 7020,
+            "fast": 249,
+            "j": 0,
+            "ref": 256
+          },
+          {
+            "context_id": 7020,
+            "fast": 130612,
+            "j": 1,
+            "ref": 130731
+          },
+          {
+            "context_id": 7020,
+            "fast": 8702,
+            "j": 2,
+            "ref": 8722
+          },
+          {
+            "context_id": 7020,
+            "fast": 9428,
+            "j": 3,
+            "ref": 9326
+          },
+          {
+            "context_id": 7020,
+            "fast": 2107,
+            "j": 4,
+            "ref": 2187
+          }
+        ],
+        "jlens_self100@L62": [
+          {
+            "context_id": 7020,
+            "fast": 436,
+            "j": 0,
+            "ref": 449
+          },
+          {
+            "context_id": 7020,
+            "fast": 142,
+            "j": 1,
+            "ref": 148
+          }
+        ],
+        "logit@L24": [
+          {
+            "context_id": 7020,
+            "fast": 36001,
+            "j": 0,
+            "ref": 36702
+          },
+          {
+            "context_id": 7020,
+            "fast": 40477,
+            "j": 1,
+            "ref": 40818
+          },
+          {
+            "context_id": 7020,
+            "fast": 83778,
+            "j": 2,
+            "ref": 82227
+          },
+          {
+            "context_id": 7020,
+            "fast": 25720,
+            "j": 3,
+            "ref": 25357
+          },
+          {
+            "context_id": 7020,
+            "fast": 115545,
+            "j": 4,
+            "ref": 116251
+          }
+        ],
+        "logit@L32": [
+          {
+            "context_id": 7020,
+            "fast": 68491,
+            "j": 0,
+            "ref": 68046
+          },
+          {
+            "context_id": 7020,
+            "fast": 71621,
+            "j": 1,
+            "ref": 71913
+          },
+          {
+            "context_id": 7020,
+            "fast": 76264,
+            "j": 2,
+            "ref": 76065
+          },
+          {
+            "context_id": 7020,
+            "fast": 57598,
+            "j": 3,
+            "ref": 57402
+          },
+          {
+            "context_id": 7020,
+            "fast": 89407,
+            "j": 4,
+            "ref": 89106
+          }
+        ],
+        "logit@L40": [
+          {
+            "context_id": 7020,
+            "fast": 132689,
+            "j": 0,
+            "ref": 132304
+          },
+          {
+            "context_id": 7020,
+            "fast": 21359,
+            "j": 1,
+            "ref": 21008
+          },
+          {
+            "context_id": 7020,
+            "fast": 8794,
+            "j": 2,
+            "ref": 8697
+          },
+          {
+            "context_id": 7020,
+            "fast": 13920,
+            "j": 3,
+            "ref": 13708
+          },
+          {
+            "context_id": 7020,
+            "fast": 55480,
+            "j": 4,
+            "ref": 54815
+          }
+        ],
+        "logit@L48": [
+          {
+            "context_id": 7020,
+            "fast": 99321,
+            "j": 0,
+            "ref": 99179
+          },
+          {
+            "context_id": 7020,
+            "fast": 54464,
+            "j": 1,
+            "ref": 54111
+          },
+          {
+            "context_id": 7020,
+            "fast": 89164,
+            "j": 2,
+            "ref": 89157
+          },
+          {
+            "context_id": 7020,
+            "fast": 35605,
+            "j": 3,
+            "ref": 34582
+          },
+          {
+            "context_id": 7020,
+            "fast": 64930,
+            "j": 4,
+            "ref": 64438
+          }
+        ],
+        "logit@L56": [
+          {
+            "context_id": 7020,
+            "fast": 35667,
+            "j": 0,
+            "ref": 36219
+          },
+          {
+            "context_id": 7020,
+            "fast": 101790,
+            "j": 1,
+            "ref": 101633
+          },
+          {
+            "context_id": 7020,
+            "fast": 84961,
+            "j": 2,
+            "ref": 84309
+          },
+          {
+            "context_id": 7020,
+            "fast": 5859,
+            "j": 3,
+            "ref": 5740
+          },
+          {
+            "context_id": 7020,
+            "fast": 1012,
+            "j": 4,
+            "ref": 1011
+          }
+        ],
+        "logit@L62": [
+          {
+            "context_id": 7020,
+            "fast": 1727,
+            "j": 0,
+            "ref": 1759
+          },
+          {
+            "context_id": 7020,
+            "fast": 43,
+            "j": 1,
+            "ref": 42
+          },
+          {
+            "context_id": 7020,
+            "fast": 329,
+            "j": 3,
+            "ref": 326
+          }
+        ]
+      },
+      "status": "FAIL",
+      "tolerance_max_abs_logit": 0.25,
+      "torch": "2.11.0+cu128"
+    }
+  ],
+  "status": "PASS",
+  "tolerance_amendment": {
+    "approved_by": "user (zhang.zhiqi2), 2026-10-25, in the Stage 10 Claude session",
+    "created": "2026-10-25T11:00:31",
+    "new_tolerance_max_abs_logit": 0.5,
+    "note": "Runs keep their original status; overall status/passed_pairs below follow this amendment.",
+    "old_tolerance_max_abs_logit": 0.25,
+    "reason": "Main parity (jobs 11347585 and 11350174, numerically identical) exceeded 0.25 on 10/25 pairs, max 0.367 at final@L63, i.e. the model output itself with no lens: the gap is bf16 forward-pass rounding (one forward over the whole context vs separate per-prefix forwards), deterministic, about 1-2 bf16 ulps at logit magnitude 20-40. All ranks < 42 agree exactly; rank mismatches (all at rank >= 42) change log10(1/rank) by at most 0.070. 0.5 still catches real bugs (wrong position/layer/token give differences of several logits).",
+    "reassessed_runs": [
+      {
+        "max": 0.25,
+        "original_status": "PASS",
+        "original_tolerance": 0.25,
+        "run_created": "2026-10-24T15:18:12",
+        "status_at_new_tolerance": "PASS"
+      },
+      {
+        "max": 0.3671875,
+        "original_status": "FAIL",
+        "original_tolerance": 0.25,
+        "run_created": "2026-10-24T23:48:37",
+        "status_at_new_tolerance": "PASS"
+      },
+      {
+        "max": 0.3671875,
+        "original_status": "FAIL",
+        "original_tolerance": 0.25,
+        "run_created": "2026-10-25T00:37:52",
+        "status_at_new_tolerance": "PASS"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "authors": "labels column authors split on \";\" and stripped, spelling kept exactly as given",
+  "cohort": "all papers of paper_labels_with_papers.csv (sorted by paper_id); groups from group_tight (also group)",
+  "context": "encode(PROMPT) [tokenizer default, no BOS for Qwen3] + encode(\" \" + author, add_special_tokens=False); each author alone",
+  "exclusions": "name tokens > 32 or context > 512 tokens (see cohort/excluded_authors.csv)",
+  "extension": "new layers / lenses only add raw/<readout>/L<layer>/shard_<k>.npz files; frozen cohort never changes",
+  "input_ids": "prompt_ids + name_ids[:-1] (causal: position len(prompt)-1+j predicts name token j)",
+  "logprob": "log_softmax over the readout logits",
+  "model": "Qwen/Qwen3-32B",
+  "primary_metric": "per paper, readout, layer: sum over all scored authors and all their name tokens of 1/rank",
+  "prompt": "Who are the authors of the paper titled \"{title}\" ({year})?\nAuthors:",
+  "rank": "1 + number of vocab logits strictly greater than the gold logit (logits as returned by jlens unembed, bf16 lm_head -> float)",
+  "readouts": {
+    "final": "model.unembed(residual_63) = actual model next-token logits",
+    "jlens_<lens>": "lens.transport(residual_l) then model.unembed (final norm + lm_head), = JacobianLens.apply(use_jacobian=True)",
+    "logit": "model.unembed(residual_l), = JacobianLens.apply(use_jacobian=False)"
+  },
+  "residual": "output of decoder block l (jlens ActivationRecorder convention)",
+  "revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "secondary_metrics": "mean 1/rank per token; mean over authors of per-author mean 1/rank; role-specific sums/means; mean log10 rank; top-1 share",
+  "shards": "128 consecutive papers per shard, 72 shards",
+  "ties": "number of other vocab logits exactly equal to the gold logit (stored; rank is tie-favourable)",
+  "token_roles": "initial_first | punct | given_first/_cont | particle_first/_cont | surname_first/_cont (surname = last word)",
+  "version": "stage10_v1"
+}

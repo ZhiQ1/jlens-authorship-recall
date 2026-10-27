@@ -1,0 +1,20 @@
+{
+  "created": "2026-10-23T15:44:01",
+  "inputs": {
+    "labels": "/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv",
+    "labels_sha256": "b4ff5e1d045c6f9ec2f42226e537dbb32be32d7df9684545917bad04b09faf0e"
+  },
+  "n_contexts": 33811,
+  "n_excluded_authors": 0,
+  "n_papers": 9108,
+  "n_shards": 72,
+  "n_tokens": 149999,
+  "outputs": {
+    "cohort/contexts.parquet": "3a962580d3e1e43c1156dba987593af94e60c5541a38c62160419ff595cb547e",
+    "cohort/excluded_authors.csv": "27cf3d109155eaa77291f77343fbe40840706d492aed54b66bc3b15988613577",
+    "cohort/name_tokens.parquet": "91d47f819e0bff2e8c459dffdd6faeb290c2a030b03a92bd5f1da2dc17ae9498",
+    "cohort/papers.parquet": "358d0e00163813f5de1df9d63b64c700bc5194a47869309752637892234fafb1"
+  },
+  "protocol_sha256": "9fafd1d4d33acbad2f6c33d664a707625f97793341356ad6f703dcfccd3edffc",
+  "script_sha256": "847e7dde7f2005dd722c4e7871d87ae7e78a9ffac09ed13a165bae98918f2b05"
+}

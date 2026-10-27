@@ -10,6 +10,8 @@
 
 **Strongest result: On the 200 new Stage 8 papers, the mean Title Advantage at L56 is +5.18 percentage points; the mean A−B difference is +4.98 percentage points, but it is sensitive to a small number of strongly positive pairs.**
 
+**Stage 10 (all 9,108 papers, every author name token):** the paper-specific (true-title minus matched-false-title) signal is about zero from L24 to L48, builds up from about L50, rises fastest over L57–L61, and peaks at L61–L63. Target papers (recognised but not recalled) pull ahead of control papers only there: +0.21 to +0.23 log10(1/rank) within citation bins at L62/L63, with no middle-layer head start under any lens.
+
 This does not support claims of full author-identity recovery, causal Recall, or J-Lens outperforming Vanilla. For completeness and exclusions, see [ARCHIVE_NOTES.md](ARCHIVE_NOTES.md). This file references images in `docs/assets/`; the two must be kept together in the archive root.
 
 ## Start Here
@@ -42,6 +44,8 @@ This does not support claims of full author-identity recovery, causal Recall, or
 
 **Three different A/B labelings — do not mix them: behavior A/B is the Recognition grouping; historical Lens A/B is the 50/50 fitting texts; Stage 9 Fit A/B is the new 100/100 fitting texts.**
 
+**Stage 10–11 use the label package's `group_tight` instead of A/B/C/D:** target = cannot write the authors (R0/R1) but picks the true list in 4 of 4 orders with mean true-option probability ≥ 0.5 (4,621 papers); control = R0/R1 and at most 1 of 4 (2,220); guard = R2 (214); excluded = the rest (2,053). Target/control therefore pool R0 and R1 and use the tightened pass rule; they are not the same papers as behavior A/B.
+
 | Metric | How it is computed / what it measures |
 |---|---|
 | RR | 1 / the Gold Token's rank in the full vocabulary |
@@ -50,12 +54,16 @@ This does not support claims of full author-identity recovery, causal Recall, or
 | Title Advantage | True-title Win Rate − mean of the 20 Wrong-title Win Rates |
 | A−B | Effect difference within a matched paper pair |
 | J−V | J-Lens effect minus Vanilla effect on the same paper under the same conditions |
+| log10(1/rank) (Stage 10–11) | Per name token: 0 = rank 1, −1 = rank 10, minimum −5.18; averaged over a paper's tokens, then over papers |
+| Title-specific signal (Stage 10–11) | Per paper: true-title score − mean over 5 metadata-matched false titles (same tokens, so name guessability cancels) |
+| Target − control (Stage 10–11) | Difference pooled within citation bins (bins with ≥ 30 papers in both groups), weights n_t·n_c/(n_t+n_c) |
 
 ## Research Thread
 
 **Where does the score come from?** Stage 4 → Stage 6 → Stage 7.1.  
 **Does it depend on the correct title?** Stage 5 → Stage 7.2 → Stage 7.3.  
 **Is it consistent, and does it generalize?** Stage 7.4 → Stage 8.  
+**At which layer is the paper's author information formed, on the full cohort?** Stage 10 → Stage 11.  
 Fidelity, provenance audit, and the historical Split-half run through all three lines.
 
 ### Stage 4 · Is the mean pulled up by a few papers?
@@ -88,6 +96,15 @@ Fidelity, provenance audit, and the historical Split-half run through all three 
 - Key numbers: RQ1 +5.18 pp; RQ2 +4.98 pp.
 - Judgment: The new targets retain the mean title effect; read the group difference together with the influence analysis.
 
+### Stage 10 · Layer-wise readout of every author name, all 9,108 papers
+- Approach: each author scored alone after "Authors:", every name token (33,811 authors, 149,999 tokens) under teacher forcing; readouts Vanilla (logit lens), three J-Lenses (public, Self100, Fit A) and Final at L24/32/40/48/56/62 (+ L50–55, L57–61 for public and Vanilla); 7 title conditions (true, 5 matched false titles, title deleted); groups from `group_tight`.
+- Key numbers: title-specific signal ≤ 0.05 at L24–L48 in both groups; target − control (title-specific, within bin) Vanilla +0.007 [0.001, 0.014] at L50, +0.065 at L56, +0.229 at L62, Final +0.207 [0.196, 0.220]; the signal sits on the surname for initial-first names and equally on given name and surname for given-name-first names; it rises monotonically with citations (Spearman ρ = 0.45). J-Lenses read more name information than Vanilla in middle layers (+0.007 to +0.030 title-specific) but it is not larger for target papers.
+- Judgment: paper-specific author knowledge is assembled late and gradually; recognised-but-not-recalled papers have no middle-layer head start. Correlational only. The parity tolerance was raised from 0.25 to 0.5 max |Δlogit| after seeing bf16-level differences (recorded in `config/analysis_plan.json`).
+
+### Stage 11 · Causal and context follow-ups (running at the time of this update)
+- Approach: on 593 target + 593 control papers balanced within citation bins: E1 activation patching (true → false-title residual at the tokens after the title, one layer at a time), E2 attention knockout of the title tokens from layer l on; on all papers: E3 author-chain scoring ("Authors: A1, A2, …", paired with the Stage 10 isolated scores).
+- Key numbers: pending; outputs will appear under `361_stage11/`.
+
 ## Directory Map: Where to Find the Evidence
 
 ![Directory map](docs/assets/directory_map.png)
@@ -104,6 +121,8 @@ For completeness and exclusions, see [ARCHIVE_NOTES.md](ARCHIVE_NOTES.md). In th
 | Stage 7.2/7.3 | 351_stage7_2.py / 351_stage7_3.py and the respective _score.py | 351_stage7_2/; 351_stage7_3/ |
 | Stage 7.4 | 351_stage7_4.py | 351_stage7_4/ |
 | Stage 8A–D | 351_stage8.py, 351_stage8B/C/D.py | 351_stage8/; 8D is under its stage8D/ |
+| Stage 10 | 351_stage10.py (frozen) run through 351_stage10_fix1.py; stage10_extra*.py for §6.7–6.9 | 351_stage10/ (raw/ not included) |
+| Stage 11 | 361_stage11.py; stage11_analyze.py | 361_stage11/ (config only so far) |
 
 Read each experiment in the order **config → cohort/matching/controls → raw → summary → figures/reports**; not every stage contains all of these subdirectories.
 
@@ -114,4 +133,6 @@ Read each experiment in the order **config → cohort/matching/controls → raw 
 | Executed, outputs exist, archived | Stage 4–8D; cohort, historical fitting/validation, and Split-half materials |
 | Execution identity must be verified run by run | Whether the currently collected source matches the historical executed version character for character; some historical environments/parameters |
 | Not executed | Stage 8E; draft numbers are not treated as verified evidence |
+| Executed, archived without raw per-token files | Stage 10 (config, cohort, summaries, figures, reports, talk deck; raw/ is 1.2 GB and regenerable) |
+| Running at the time of the 2026-10-26 update | Stage 11 (frozen config included; results to be added) |
 | Excluded from this package, archived separately | Stage 7.1B, Stage 9 (still running at archive time) |
