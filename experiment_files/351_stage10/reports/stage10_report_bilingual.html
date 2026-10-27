@@ -96,6 +96,10 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     <p class="zh">补充分析（不需要新的 GPU 计算）进一步表明：标题特异信号在名字里的位置取决于名字格式，首字母开头时几乎都在后续 token（含姓）上（目标−对照 +0.253，首字母本身 +0.048），完整名开头时名和后续 token 各带一份相当的信号（+0.174 与 +0.202）；引用数越高，标题特异信号越强（Spearman ρ = 0.45）；三种 Jacobian lens 在中间层只比 logit lens 多读出很少的论文信息（+0.01 到 +0.03），而且这部分信息不偏向目标组。</p>
     <p class="en">Follow-up analyses (no new GPU runs) show further that where the title-specific signal sits within a name depends on its format: for initial-first names it is almost all on the later tokens, which include the surname (target − control +0.253 versus +0.048 on the initial), while for given-name-first names the given name and the later tokens carry comparable shares (+0.174 and +0.202); that it grows with citation count (Spearman ρ = 0.45); and that the three Jacobian lenses read only slightly more paper information than the logit lens in middle layers (+0.01 to +0.03), information that does not favour the target group.</p>
   </div>
+  <div class="pair">
+    <p class="zh">干预实验（Stage 11，§6.11）进一步确定了时间：把真标题运行中"标题之后的 token"的表示替换进假标题运行，L48 已恢复 83%，L52 起恢复 100%；从 L52 起屏蔽对标题的注意力已没有影响。也就是说，论文信息在 L24–L50 就被读取并搬到标题之后的位置，只是要到 L56–62 才变成 lens 能读出的形式。</p>
+    <p class="en">Interventions (Stage 11, §6.11) fix the timing: copying the hidden states of the tokens after the title from the true-title run into the false-title run recovers 83% at L48 and 100% from L52, and blocking attention to the title from L52 on has no effect. The paper information is read and moved into the post-title positions in L24–L50; it only becomes lens-readable in L56–62.</p>
+  </div>
 </section>
 
 <section>
@@ -600,12 +604,200 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
 <tr><td>目标−对照（真标题）· jlens_public</td><td class="neg">-0.133<span class="ci">[-0.160, -0.107]</span></td><td class="neg">-0.187<span class="ci">[-0.215, -0.159]</span></td><td class="neg">-0.178<span class="ci">[-0.204, -0.151]</span></td><td class="neg">-0.176<span class="ci">[-0.203, -0.149]</span></td><td class="neg">-0.164<span class="ci">[-0.191, -0.136]</span></td><td class="neg">-0.150<span class="ci">[-0.178, -0.122]</span></td><td class="neg">-0.126<span class="ci">[-0.155, -0.096]</span></td><td class="neg">-0.107<span class="ci">[-0.139, -0.075]</span></td><td class="neg">-0.074<span class="ci">[-0.105, -0.042]</span></td><td class="neg">-0.043<span class="ci">[-0.074, -0.011]</span></td><td>+0.000<span class="ci">[-0.029, +0.029]</span></td><td class="pos">+0.065<span class="ci">[+0.038, +0.094]</span></td><td class="pos">+0.172<span class="ci">[+0.149, +0.196]</span></td><td class="pos">+0.225<span class="ci">[+0.206, +0.244]</span></td></tr>
     </tbody></table></div>
   <p class="cap">着色项 95% 置信区间不含 0。L56 和 L62 的数值来自主轮，其余层来自扩展计算。 <span class="en">Coloured cells have 95% CIs excluding zero. L56 and L62 come from the main round, the other layers from the extension.</span></p>
+
+  <h3>6.11 Stage 11：干预实验——标题信息在哪几层被读取、搬到哪里 <span class="en">Stage 11: interventions — when the title is read and where it goes</span></h3>
+  <div class="pair">
+    <p class="zh">前面的结果都是"读出来"的相关性。Stage 11 直接动手干预模型内部，来确定信息形成的时间和路径。样本是 593 篇目标组和 593 篇对照组论文，在引用档内配平；标题位置读出和作者连写两项用全部 9,108 篇论文。干预后都看模型最终输出里正确名字 token 的名次，用"真标题与假标题差距中恢复（或损失）了多少比例"来衡量。</p>
+    <p class="en">The results above are correlational readouts. Stage 11 intervenes inside the model to fix when and where the information forms. The sample is 593 target and 593 control papers, balanced within citation bins; the title-position readout and the author chain use all 9,108 papers. Every intervention is scored at the model output, as the share of the true-title vs false-title gap that is recovered (or lost).</p>
+  </div>
+  <div class="pair">
+    <p class="zh"><b>替换（activation patching）。</b>同一篇论文分别用真标题和匹配的假标题（false_0）跑一遍，在第 l 层把真标题运行里"标题之后的那几个 token"（右引号、年份、"Authors:"、名字）的表示复制进假标题运行。恢复比例在 L24 只有 0.07–0.09，L40 为 0.27–0.34，L48 为 0.80–0.87，<strong class="k">L52 起达到 1.00</strong>。也就是说，到 L52 时，输出所需要的论文信息已经全部在标题之后的这几个位置上了。只替换标题的最后一个 token 时，恢复比例只有约 0.12（L8–L40），到 L56 降为 0：标题最后一个 token 本身携带的信息很少。</p>
+    <p class="en"><b>Activation patching.</b> Each paper is run with its true title and with its matched false title (false_0). At layer l, the hidden states of the tokens after the title (closing quote, year, "Authors:", the name) are copied from the true run into the false run. Recovery is 0.07–0.09 at L24, 0.27–0.34 at L40, 0.80–0.87 at L48, and <strong class="k">1.00 from L52</strong>: by L52 everything the output needs about the paper already sits in those positions. Patching only the last title token recovers about 0.12 (L8–L40) and nothing from L56, so that token carries little on its own.</p>
+  </div>
+  <figure>
+    <div class="fig">
+<svg viewBox="0 0 660 285" role="img" aria-label="Patching recovery by layer">
+<g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--muted)">
+<line x1="62" x2="640" y1="230.0" y2="230.0" stroke-dasharray="3 3" stroke="var(--muted)"/><text x="56" y="234.0" text-anchor="end">0.00</text>
+<line x1="62" x2="640" y1="180.0" y2="180.0" stroke="var(--rule)"/><text x="56" y="184.0" text-anchor="end">0.25</text>
+<line x1="62" x2="640" y1="130.0" y2="130.0" stroke="var(--rule)"/><text x="56" y="134.0" text-anchor="end">0.50</text>
+<line x1="62" x2="640" y1="80.0" y2="80.0" stroke="var(--rule)"/><text x="56" y="84.0" text-anchor="end">0.75</text>
+<line x1="62" x2="640" y1="30.0" y2="30.0" stroke-dasharray="3 3" stroke="var(--muted)"/><text x="56" y="34.0" text-anchor="end">1.00</text>
+<text x="70.0" y="260" text-anchor="middle">L8</text>
+<text x="151.5" y="260" text-anchor="middle">L16</text>
+<text x="232.9" y="260" text-anchor="middle">L24</text>
+<text x="314.4" y="260" text-anchor="middle">L32</text>
+<text x="395.8" y="260" text-anchor="middle">L40</text>
+<text x="477.3" y="260" text-anchor="middle">L48</text>
+<text x="558.7" y="260" text-anchor="middle">L56</text>
+<text x="630.0" y="260" text-anchor="middle">L63</text>
+<text x="350" y="280" text-anchor="middle">patched layer 替换的层</text></g>
+<polyline fill="none" stroke="var(--warm)" stroke-width="2.4" points="232.9,216.0 314.4,204.5 395.8,176.7 477.3,69.3 497.6,47.8 518.0,32.8 538.4,29.9 558.7,30.1 568.9,30.1 579.1,29.7 589.3,29.7 599.5,30.0 609.6,30.0 619.8,30.1 630.0,30.0"/>
+<circle cx="232.9" cy="216.0" r="2.8" fill="var(--warm)"/>
+<circle cx="314.4" cy="204.5" r="2.8" fill="var(--warm)"/>
+<circle cx="395.8" cy="176.7" r="2.8" fill="var(--warm)"/>
+<circle cx="477.3" cy="69.3" r="2.8" fill="var(--warm)"/>
+<circle cx="497.6" cy="47.8" r="2.8" fill="var(--warm)"/>
+<circle cx="518.0" cy="32.8" r="2.8" fill="var(--warm)"/>
+<circle cx="538.4" cy="29.9" r="2.8" fill="var(--warm)"/>
+<circle cx="558.7" cy="30.1" r="2.8" fill="var(--warm)"/>
+<circle cx="568.9" cy="30.1" r="2.8" fill="var(--warm)"/>
+<circle cx="579.1" cy="29.7" r="2.8" fill="var(--warm)"/>
+<circle cx="589.3" cy="29.7" r="2.8" fill="var(--warm)"/>
+<circle cx="599.5" cy="30.0" r="2.8" fill="var(--warm)"/>
+<circle cx="609.6" cy="30.0" r="2.8" fill="var(--warm)"/>
+<circle cx="619.8" cy="30.1" r="2.8" fill="var(--warm)"/>
+<circle cx="630.0" cy="30.0" r="2.8" fill="var(--warm)"/>
+<polyline fill="none" stroke="var(--accent)" stroke-width="2.4" points="232.9,211.5 314.4,194.9 395.8,162.5 477.3,56.7 497.6,35.3 518.0,26.8 538.4,29.4 558.7,30.8 568.9,30.4 579.1,30.7 589.3,30.5 599.5,30.6 609.6,29.9 619.8,29.5 630.0,30.0"/>
+<circle cx="232.9" cy="211.5" r="2.8" fill="var(--accent)"/>
+<circle cx="314.4" cy="194.9" r="2.8" fill="var(--accent)"/>
+<circle cx="395.8" cy="162.5" r="2.8" fill="var(--accent)"/>
+<circle cx="477.3" cy="56.7" r="2.8" fill="var(--accent)"/>
+<circle cx="497.6" cy="35.3" r="2.8" fill="var(--accent)"/>
+<circle cx="518.0" cy="26.8" r="2.8" fill="var(--accent)"/>
+<circle cx="538.4" cy="29.4" r="2.8" fill="var(--accent)"/>
+<circle cx="558.7" cy="30.8" r="2.8" fill="var(--accent)"/>
+<circle cx="568.9" cy="30.4" r="2.8" fill="var(--accent)"/>
+<circle cx="579.1" cy="30.7" r="2.8" fill="var(--accent)"/>
+<circle cx="589.3" cy="30.5" r="2.8" fill="var(--accent)"/>
+<circle cx="599.5" cy="30.6" r="2.8" fill="var(--accent)"/>
+<circle cx="609.6" cy="29.9" r="2.8" fill="var(--accent)"/>
+<circle cx="619.8" cy="29.5" r="2.8" fill="var(--accent)"/>
+<circle cx="630.0" cy="30.0" r="2.8" fill="var(--accent)"/>
+<polyline fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-dasharray="6 4" points="70.0,206.2 151.5,200.9 232.9,201.6 314.4,202.8 395.8,202.1 436.5,208.6 477.3,216.2 518.0,224.7 558.7,229.2 599.5,229.0 619.8,229.7 630.0,230.0"/>
+<circle cx="70.0" cy="206.2" r="2.8" fill="var(--ink)"/>
+<circle cx="151.5" cy="200.9" r="2.8" fill="var(--ink)"/>
+<circle cx="232.9" cy="201.6" r="2.8" fill="var(--ink)"/>
+<circle cx="314.4" cy="202.8" r="2.8" fill="var(--ink)"/>
+<circle cx="395.8" cy="202.1" r="2.8" fill="var(--ink)"/>
+<circle cx="436.5" cy="208.6" r="2.8" fill="var(--ink)"/>
+<circle cx="477.3" cy="216.2" r="2.8" fill="var(--ink)"/>
+<circle cx="518.0" cy="224.7" r="2.8" fill="var(--ink)"/>
+<circle cx="558.7" cy="229.2" r="2.8" fill="var(--ink)"/>
+<circle cx="599.5" cy="229.0" r="2.8" fill="var(--ink)"/>
+<circle cx="619.8" cy="229.7" r="2.8" fill="var(--ink)"/>
+<circle cx="630.0" cy="230.0" r="2.8" fill="var(--ink)"/>
+</svg>
+    </div>
+    <div class="legend"><span><i class="sw" style="background:var(--warm)"></i>标题之后的 token · target</span><span><i class="sw" style="background:var(--accent)"></i>标题之后的 token · control</span><span>虚线：只替换标题最后一个 token / dashed: last title token only</span></div>
+    <p class="cap">替换后恢复的比例（真标题−假标题差距的份额）。 <span class="en">Share of the true − false gap recovered by patching at each layer.</span></p>
+  </figure>
+  <div class="tbl"><table><thead><tr><th>替换 Patching</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L50</th><th>L52</th><th>L56</th><th>L63</th></tr></thead><tbody>
+<tr><td>E1 tail patch · target</td><td class="pos">+0.070<span class="ci">[+0.060, +0.080]</span></td><td class="pos">+0.128<span class="ci">[+0.115, +0.141]</span></td><td class="pos">+0.267<span class="ci">[+0.247, +0.287]</span></td><td class="pos">+0.803<span class="ci">[+0.784, +0.824]</span></td><td class="pos">+0.911<span class="ci">[+0.895, +0.928]</span></td><td class="pos">+0.986<span class="ci">[+0.979, +0.994]</span></td><td class="pos">+1.000<span class="ci">[+0.997, +1.003]</span></td><td class="pos">+1.000<span class="ci">[+1.000, +1.000]</span></td></tr>
+<tr><td>E1 tail patch · control</td><td class="pos">+0.092<span class="ci">[+0.074, +0.111]</span></td><td class="pos">+0.176<span class="ci">[+0.151, +0.200]</span></td><td class="pos">+0.337<span class="ci">[+0.307, +0.374]</span></td><td class="pos">+0.866<span class="ci">[+0.835, +0.903]</span></td><td class="pos">+0.974<span class="ci">[+0.950, +1.000]</span></td><td class="pos">+1.016<span class="ci">[+1.002, +1.031]</span></td><td class="pos">+0.996<span class="ci">[+0.991, +1.000]</span></td><td class="pos">+1.000<span class="ci">[+1.000, +1.000]</span></td></tr>
+<tr><td>E1t last title token · all</td><td class="pos">+0.142<span class="ci">[+0.126, +0.159]</span></td><td class="pos">+0.136<span class="ci">[+0.121, +0.152]</span></td><td class="pos">+0.139<span class="ci">[+0.125, +0.155]</span></td><td class="pos">+0.069<span class="ci">[+0.061, +0.077]</span></td><td>—</td><td class="pos">+0.027<span class="ci">[+0.023, +0.030]</span></td><td class="pos">+0.004<span class="ci">[+0.002, +0.006]</span></td><td>+0.000<span class="ci">[+0.000, +0.000]</span></td></tr>
+  </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>注意力阻断（knockout）。</b>从第 l 层开始到最后一层，禁止标题之后的所有位置注意标题 token（真标题）。从 L0 开始阻断，损失真假差距的 0.82–0.84；从 L32 开始损失 0.36–0.40；从 L40 开始 0.14–0.15；从 L48 开始约 0.06；<strong class="k">从 L52 开始约为 0</strong>。所以模型主要在 L24–L48 从标题读取论文信息，L50 之后就不再需要标题。如果只阻断 ":" 和名字两个位置，最多只损失 0.15，到 L52 也降为 0：信息主要不是由标题直接传给名字，而是先经过标题之后的那几个 token。</p>
+    <p class="en"><b>Attention knockout.</b> From layer l to the last layer, every position after the title is blocked from attending to the title tokens (true title). Starting at L0 removes 0.82–0.84 of the gap, at L32 0.36–0.40, at L40 0.14–0.15, at L48 about 0.06, and <strong class="k">from L52 about 0</strong>. The model reads the paper from the title mainly in L24–L48 and no longer needs it after L50. Blocking only ":" and the name positions removes at most 0.15, also 0 by L52: the information does not go straight from the title to the names, it goes through the tokens right after the title.</p>
+  </div>
+  <figure>
+    <div class="fig">
+<svg viewBox="0 0 660 285" role="img" aria-label="Knockout loss by start layer">
+<g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--muted)">
+<line x1="62" x2="640" y1="230.0" y2="230.0" stroke-dasharray="3 3" stroke="var(--muted)"/><text x="56" y="234.0" text-anchor="end">0.00</text>
+<line x1="62" x2="640" y1="180.0" y2="180.0" stroke="var(--rule)"/><text x="56" y="184.0" text-anchor="end">0.25</text>
+<line x1="62" x2="640" y1="130.0" y2="130.0" stroke="var(--rule)"/><text x="56" y="134.0" text-anchor="end">0.50</text>
+<line x1="62" x2="640" y1="80.0" y2="80.0" stroke="var(--rule)"/><text x="56" y="84.0" text-anchor="end">0.75</text>
+<line x1="62" x2="640" y1="30.0" y2="30.0" stroke-dasharray="3 3" stroke="var(--muted)"/><text x="56" y="34.0" text-anchor="end">1.00</text>
+<text x="70.0" y="260" text-anchor="middle">L0</text>
+<text x="214.5" y="260" text-anchor="middle">L16</text>
+<text x="286.8" y="260" text-anchor="middle">L24</text>
+<text x="359.0" y="260" text-anchor="middle">L32</text>
+<text x="431.3" y="260" text-anchor="middle">L40</text>
+<text x="503.5" y="260" text-anchor="middle">L48</text>
+<text x="575.8" y="260" text-anchor="middle">L56</text>
+<text x="630.0" y="260" text-anchor="middle">L62</text>
+<text x="350" y="280" text-anchor="middle">knockout from layer 从该层起屏蔽</text></g>
+<polyline fill="none" stroke="var(--warm)" stroke-width="2.4" points="70.0,62.3 286.8,88.5 359.0,158.6 431.3,202.2 503.5,216.8 521.6,226.0 539.7,228.9 557.7,229.5 575.8,229.4 593.9,229.2 611.9,229.4 630.0,229.6"/>
+<circle cx="70.0" cy="62.3" r="2.8" fill="var(--warm)"/>
+<circle cx="286.8" cy="88.5" r="2.8" fill="var(--warm)"/>
+<circle cx="359.0" cy="158.6" r="2.8" fill="var(--warm)"/>
+<circle cx="431.3" cy="202.2" r="2.8" fill="var(--warm)"/>
+<circle cx="503.5" cy="216.8" r="2.8" fill="var(--warm)"/>
+<circle cx="521.6" cy="226.0" r="2.8" fill="var(--warm)"/>
+<circle cx="539.7" cy="228.9" r="2.8" fill="var(--warm)"/>
+<circle cx="557.7" cy="229.5" r="2.8" fill="var(--warm)"/>
+<circle cx="575.8" cy="229.4" r="2.8" fill="var(--warm)"/>
+<circle cx="593.9" cy="229.2" r="2.8" fill="var(--warm)"/>
+<circle cx="611.9" cy="229.4" r="2.8" fill="var(--warm)"/>
+<circle cx="630.0" cy="229.6" r="2.8" fill="var(--warm)"/>
+<polyline fill="none" stroke="var(--accent)" stroke-width="2.4" points="70.0,66.8 286.8,86.2 359.0,149.5 431.3,200.4 503.5,218.0 521.6,227.3 539.7,227.9 557.7,228.1 575.8,227.7 593.9,227.7 611.9,227.4 630.0,228.0"/>
+<circle cx="70.0" cy="66.8" r="2.8" fill="var(--accent)"/>
+<circle cx="286.8" cy="86.2" r="2.8" fill="var(--accent)"/>
+<circle cx="359.0" cy="149.5" r="2.8" fill="var(--accent)"/>
+<circle cx="431.3" cy="200.4" r="2.8" fill="var(--accent)"/>
+<circle cx="503.5" cy="218.0" r="2.8" fill="var(--accent)"/>
+<circle cx="521.6" cy="227.3" r="2.8" fill="var(--accent)"/>
+<circle cx="539.7" cy="227.9" r="2.8" fill="var(--accent)"/>
+<circle cx="557.7" cy="228.1" r="2.8" fill="var(--accent)"/>
+<circle cx="575.8" cy="227.7" r="2.8" fill="var(--accent)"/>
+<circle cx="593.9" cy="227.7" r="2.8" fill="var(--accent)"/>
+<circle cx="611.9" cy="227.4" r="2.8" fill="var(--accent)"/>
+<circle cx="630.0" cy="228.0" r="2.8" fill="var(--accent)"/>
+<polyline fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-dasharray="6 4" points="70.0,199.4 286.8,205.9 359.0,210.7 431.3,215.4 503.5,219.8 521.6,227.1 539.7,228.9 557.7,229.1 575.8,228.7 593.9,228.7 611.9,228.9 630.0,229.1"/>
+<circle cx="70.0" cy="199.4" r="2.8" fill="var(--ink)"/>
+<circle cx="286.8" cy="205.9" r="2.8" fill="var(--ink)"/>
+<circle cx="359.0" cy="210.7" r="2.8" fill="var(--ink)"/>
+<circle cx="431.3" cy="215.4" r="2.8" fill="var(--ink)"/>
+<circle cx="503.5" cy="219.8" r="2.8" fill="var(--ink)"/>
+<circle cx="521.6" cy="227.1" r="2.8" fill="var(--ink)"/>
+<circle cx="539.7" cy="228.9" r="2.8" fill="var(--ink)"/>
+<circle cx="557.7" cy="229.1" r="2.8" fill="var(--ink)"/>
+<circle cx="575.8" cy="228.7" r="2.8" fill="var(--ink)"/>
+<circle cx="593.9" cy="228.7" r="2.8" fill="var(--ink)"/>
+<circle cx="611.9" cy="228.9" r="2.8" fill="var(--ink)"/>
+<circle cx="630.0" cy="229.1" r="2.8" fill="var(--ink)"/>
+</svg>
+    </div>
+    <div class="legend"><span><i class="sw" style="background:var(--warm)"></i>阻断所有后续位置 · target</span><span><i class="sw" style="background:var(--accent)"></i>阻断所有后续位置 · control</span><span>虚线：只阻断 ":" 和名字 / dashed: ":" + names only</span></div>
+    <p class="cap">从该层起阻断后损失的比例。 <span class="en">Share of the true − false gap lost when attention to the title is blocked from each layer on.</span></p>
+  </figure>
+  <div class="tbl"><table><thead><tr><th>阻断 Knockout（起始层）</th><th>L0</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L50</th><th>L52</th><th>L56</th></tr></thead><tbody>
+<tr><td>E2 all later tokens · target</td><td class="pos">+0.839<span class="ci">[+0.808, +0.872]</span></td><td class="pos">+0.708<span class="ci">[+0.679, +0.736]</span></td><td class="pos">+0.357<span class="ci">[+0.332, +0.384]</span></td><td class="pos">+0.139<span class="ci">[+0.121, +0.158]</span></td><td class="pos">+0.066<span class="ci">[+0.051, +0.080]</span></td><td class="pos">+0.020<span class="ci">[+0.011, +0.029]</span></td><td>+0.006<span class="ci">[-0.001, +0.012]</span></td><td>+0.003<span class="ci">[-0.000, +0.006]</span></td></tr>
+<tr><td>E2 all later tokens · control</td><td class="pos">+0.816<span class="ci">[+0.751, +0.885]</span></td><td class="pos">+0.719<span class="ci">[+0.664, +0.775]</span></td><td class="pos">+0.402<span class="ci">[+0.359, +0.448]</span></td><td class="pos">+0.148<span class="ci">[+0.117, +0.181]</span></td><td class="pos">+0.060<span class="ci">[+0.033, +0.090]</span></td><td>+0.013<span class="ci">[-0.004, +0.031]</span></td><td>+0.010<span class="ci">[-0.002, +0.023]</span></td><td class="pos">+0.011<span class="ci">[+0.006, +0.017]</span></td></tr>
+<tr><td>E2n ":" + names only · all</td><td class="pos">+0.153<span class="ci">[+0.136, +0.172]</span></td><td class="pos">+0.120<span class="ci">[+0.104, +0.136]</span></td><td class="pos">+0.097<span class="ci">[+0.082, +0.112]</span></td><td class="pos">+0.073<span class="ci">[+0.059, +0.086]</span></td><td class="pos">+0.051<span class="ci">[+0.040, +0.062]</span></td><td class="pos">+0.014<span class="ci">[+0.006, +0.022]</span></td><td>+0.006<span class="ci">[-0.000, +0.012]</span></td><td class="pos">+0.007<span class="ci">[+0.004, +0.010]</span></td></tr>
+  </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>标题位置能不能读出作者。</b>在标题最后一个 token 上用 lens 读，标题特异信号只有约 0.01–0.03，而且中间层目标组和对照组没有差别：lens 在标题位置几乎读不出作者。换成线性 probe（5 折 ridge 回归，把标题位置的表示映射到模型在 ":" 处 L63 的表示）能读出一些：L16 约 +0.04，L52–56 约 +0.08，目标组比对照组高 +0.02 到 +0.04（置信区间在 0 以上）。需要注意，probe 是在不同论文之间训练的，读出的可能部分是"某类题目常配某类名字"的关联，不一定全是模型对这一篇论文的记忆。</p>
+    <p class="en"><b>Can the author be read at the title position?</b> Lenses at the last title token give only about 0.01–0.03 title-specific signal, with no target − control difference in middle layers, so the lenses can hardly read the author there. A linear probe (5-fold ridge from the title-position state to the model's own L63 ":" state) reads a little more: about +0.04 at L16 and +0.08 at L52–56, with target above control by +0.02 to +0.04 (CIs above zero). Because the probe is trained across papers, part of it may be topic → name association rather than memory of this paper.</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>标题最后一个 token 上的标题特异信号</th><th>L16</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L52</th><th>L56</th><th>L60</th></tr></thead><tbody>
+<tr><td>logit lens · target</td><td>-0.005<span class="ci">[-0.014, +0.004]</span></td><td>+0.002<span class="ci">[-0.006, +0.010]</span></td><td>-0.001<span class="ci">[-0.008, +0.006]</span></td><td class="pos">+0.007<span class="ci">[+0.001, +0.013]</span></td><td class="pos">+0.009<span class="ci">[+0.004, +0.014]</span></td><td class="pos">+0.010<span class="ci">[+0.006, +0.014]</span></td><td class="pos">+0.011<span class="ci">[+0.007, +0.016]</span></td><td class="pos">+0.012<span class="ci">[+0.007, +0.018]</span></td></tr>
+<tr><td>public J-lens · target</td><td>+0.012<span class="ci">[-0.010, +0.035]</span></td><td>+0.002<span class="ci">[-0.014, +0.019]</span></td><td>+0.008<span class="ci">[-0.009, +0.026]</span></td><td class="pos">+0.026<span class="ci">[+0.006, +0.046]</span></td><td>+0.011<span class="ci">[-0.006, +0.029]</span></td><td class="pos">+0.017<span class="ci">[+0.004, +0.029]</span></td><td class="pos">+0.021<span class="ci">[+0.012, +0.029]</span></td><td class="pos">+0.030<span class="ci">[+0.019, +0.041]</span></td></tr>
+<tr><td>probe · target</td><td class="pos">+0.043<span class="ci">[+0.036, +0.050]</span></td><td class="pos">+0.047<span class="ci">[+0.041, +0.054]</span></td><td class="pos">+0.057<span class="ci">[+0.050, +0.064]</span></td><td class="pos">+0.066<span class="ci">[+0.059, +0.074]</span></td><td class="pos">+0.068<span class="ci">[+0.061, +0.076]</span></td><td class="pos">+0.080<span class="ci">[+0.072, +0.088]</span></td><td class="pos">+0.082<span class="ci">[+0.074, +0.090]</span></td><td class="pos">+0.077<span class="ci">[+0.070, +0.085]</span></td></tr>
+<tr><td>probe · control</td><td class="pos">+0.035<span class="ci">[+0.024, +0.046]</span></td><td class="pos">+0.037<span class="ci">[+0.026, +0.047]</span></td><td class="pos">+0.037<span class="ci">[+0.025, +0.048]</span></td><td class="pos">+0.048<span class="ci">[+0.036, +0.060]</span></td><td class="pos">+0.054<span class="ci">[+0.041, +0.066]</span></td><td class="pos">+0.065<span class="ci">[+0.053, +0.078]</span></td><td class="pos">+0.069<span class="ci">[+0.056, +0.081]</span></td><td class="pos">+0.065<span class="ci">[+0.053, +0.078]</span></td></tr>
+<tr><td>probe · target − control</td><td class="pos">+0.019<span class="ci">[+0.005, +0.033]</span></td><td class="pos">+0.024<span class="ci">[+0.009, +0.039]</span></td><td class="pos">+0.035<span class="ci">[+0.021, +0.050]</span></td><td class="pos">+0.032<span class="ci">[+0.016, +0.047]</span></td><td class="pos">+0.032<span class="ci">[+0.017, +0.047]</span></td><td class="pos">+0.037<span class="ci">[+0.021, +0.053]</span></td><td class="pos">+0.039<span class="ci">[+0.022, +0.056]</span></td><td class="pos">+0.037<span class="ci">[+0.021, +0.053]</span></td></tr>
+  </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>作者连写。</b>把全部作者写成 "Authors: A1, A2, …" 连在一起打分，并和逐个单独打分逐 token 配对比较。前面的作者在上下文里时，后面的作者明显更好猜：目标组 +0.17 到 +0.23，对照组 +0.12 到 +0.18。但标题特异信号随之变小，例如目标组第 4 位起的作者从 0.42 降到 0.26，因为合作者本身已经指明了是哪篇论文。在引用档内，目标组仍高于对照组 +0.11 到 +0.15。</p>
+    <p class="en"><b>Author chain.</b> All authors are scored in one sequence, "Authors: A1, A2, …", and paired token by token with the isolated scores. With the earlier authors in context, later authors become clearly easier: +0.17 to +0.23 for target, +0.12 to +0.18 for control. The title-specific signal shrinks accordingly (target authors 4+: 0.42 → 0.26), because the co-authors already identify the paper. Within citation bins, target still exceeds control by +0.11 to +0.15.</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>作者位置 · 组</th><th>连写带来的提升（真标题）gain</th><th>标题特异 · 单独</th><th>标题特异 · 连写</th></tr></thead><tbody>
+<tr><td>1 · target</td><td>+0.000<span class="ci">[-0.000, +0.000]</span></td><td class="pos">+0.531<span class="ci">[+0.520, +0.541]</span></td><td class="pos">+0.531<span class="ci">[+0.521, +0.541]</span></td></tr>
+<tr><td>1 · control</td><td>+0.000<span class="ci">[-0.000, +0.001]</span></td><td class="pos">+0.202<span class="ci">[+0.191, +0.212]</span></td><td class="pos">+0.202<span class="ci">[+0.191, +0.212]</span></td></tr>
+<tr><td>1 · 目标−对照 target − control</td><td></td><td class="pos">+0.222<span class="ci">[+0.206, +0.238]</span></td><td class="pos">+0.222<span class="ci">[+0.207, +0.238]</span></td></tr>
+<tr><td>2 · target</td><td class="pos">+0.173<span class="ci">[+0.163, +0.183]</span></td><td class="pos">+0.454<span class="ci">[+0.443, +0.463]</span></td><td class="pos">+0.405<span class="ci">[+0.395, +0.415]</span></td></tr>
+<tr><td>2 · control</td><td class="pos">+0.118<span class="ci">[+0.106, +0.131]</span></td><td class="pos">+0.203<span class="ci">[+0.191, +0.214]</span></td><td class="pos">+0.156<span class="ci">[+0.144, +0.167]</span></td></tr>
+<tr><td>2 · 目标−对照 target − control</td><td></td><td class="pos">+0.194<span class="ci">[+0.176, +0.210]</span></td><td class="pos">+0.151<span class="ci">[+0.134, +0.167]</span></td></tr>
+<tr><td>3 · target</td><td class="pos">+0.229<span class="ci">[+0.218, +0.241]</span></td><td class="pos">+0.421<span class="ci">[+0.409, +0.432]</span></td><td class="pos">+0.331<span class="ci">[+0.319, +0.342]</span></td></tr>
+<tr><td>3 · control</td><td class="pos">+0.164<span class="ci">[+0.148, +0.179]</span></td><td class="pos">+0.195<span class="ci">[+0.182, +0.209]</span></td><td class="pos">+0.125<span class="ci">[+0.114, +0.136]</span></td></tr>
+<tr><td>3 · 目标−对照 target − control</td><td></td><td class="pos">+0.179<span class="ci">[+0.159, +0.199]</span></td><td class="pos">+0.124<span class="ci">[+0.106, +0.141]</span></td></tr>
+<tr><td>4+ · target</td><td class="pos">+0.234<span class="ci">[+0.223, +0.245]</span></td><td class="pos">+0.421<span class="ci">[+0.409, +0.431]</span></td><td class="pos">+0.260<span class="ci">[+0.250, +0.270]</span></td></tr>
+<tr><td>4+ · control</td><td class="pos">+0.183<span class="ci">[+0.166, +0.201]</span></td><td class="pos">+0.202<span class="ci">[+0.188, +0.217]</span></td><td class="pos">+0.106<span class="ci">[+0.094, +0.118]</span></td></tr>
+<tr><td>4+ · 目标−对照 target − control</td><td></td><td class="pos">+0.169<span class="ci">[+0.147, +0.189]</span></td><td class="pos">+0.114<span class="ci">[+0.097, +0.130]</span></td></tr>
+  </tbody></table></div>
+  <div class="pair">
+    <p class="zh"><b>小结。</b>论文特有的信息在 L24–L50 被从标题读出、搬到标题之后的几个 token 上，比它在名字位置变得可读（L56–62）早了约 10 层；但它不以 lens 能读的形式停在标题 token 上。目标组和对照组的时间点完全相同，目标组只是信号更强（真假差距 0.42 对 0.21）。GPU 自检里有两项一致性核对略低于阈值（GPU 批量计算的 bf16 舍入），不影响以上结果：L63 的替换恰好恢复 1（标题之后的位置）和 0（标题最后一个 token）。</p>
+    <p class="en"><b>Summary.</b> The paper-specific information is read from the title and moved into the tokens after it in L24–L50, about ten layers before it becomes readable at the name positions (L56–62), but it does not sit on the title token in a lens-readable form. Target and control share the same timing; target simply carries a stronger signal (true − false gap 0.42 vs 0.21). Two agreement checks in the GPU smoke test fell slightly below threshold because of bf16 rounding in batched GPU runs; they do not affect these results, as patching at L63 recovers exactly 1 (tokens after the title) and 0 (last title token).</p>
+  </div>
 </section>
 
 <section>
   <h2><span class="num">§7</span>结论 <span class="en">Conclusions</span></h2>
   <div class="findings">
     <div class="finding"><div><span>Qwen3-32B 对具体论文作者的知识在网络中形成得很晚，而且是逐层积累的：目标−对照的标题特异差从 L50 前后开始出现，在 L57–L61 上升最快，在 L62 和输出处最强。</span><span class="en">Qwen3-32B's knowledge of a specific paper's authors forms late and gradually: the target − control title-specific difference appears around L50, rises fastest over L57–L61, and is strongest at L62 and the output.</span></div></div>
+    <div class="finding"><div><span>干预实验（Stage 11）显示，论文信息在 L24–L50 就被从标题读取并搬到标题之后的几个 token 上，L52 之后不再需要标题；只是这种形式要到 L56–62 才能在名字位置被 lens 读出。</span><span class="en">Interventions (Stage 11) show that the paper information is read from the title and moved into the tokens after it in L24–L50, and the title is no longer needed after L52; in that form it only becomes lens-readable at the name positions in L56–62.</span></div></div>
     <div class="finding"><div><span>"写不出但认得出"的目标组，并没有在中间层提前拿着作者信息；它们相对对照组的优势只出现在最后两层。</span><span class="en">Target papers (cannot write but recognise) do not hold the authors earlier in the middle layers; their advantage over control appears only in the last two layers.</span></div></div>
     <div class="finding"><div><span>这一优势几乎全部是标题特异的，在去掉低引用档后依然成立，不能用名字好猜或引用数差异来解释。</span><span class="en">That advantage is almost entirely title-specific and survives dropping the low-citation bins, so it is not explained by guessable names or citation differences.</span></div></div>
     <div class="finding"><div><span>Jacobian lens 能让中间层读出更多与名字相关的信息，但这部分信息不区分论文；三种 Jacobian lens 的结论一致。</span><span class="en">Jacobian lenses read more name-related information from middle layers than the logit lens, but that information is not paper-specific; all three Jacobian lenses agree.</span></div></div>
@@ -624,7 +816,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 13px; 
     <li>每位作者单独打分（接在 "Authors:" 后），不涉及作者顺序和合作者关系。<span class="en">Each author is scored alone after "Authors:"; author order and co-authorship are not tested.</span></li>
     <li>名次基于 bf16 输出的 logits，并列时按有利方向计（只数严格更大的 logit）。<span class="en">Ranks use bf16 logits; ties are counted favourably (only strictly greater logits count).</span></li>
     <li>细层（L50–55、L57–61）只算了 public Jacobian lens 和 logit lens（self100 和 fitA 只拟合了 6–7 个层，要加细层需要重新拟合）；§6.7–6.9 的补充分析只用了主轮的 6 个层。<span class="en">The fine layers (L50–55, L57–61) were computed for the public Jacobian lens and the logit lens only (self100 and fitA were fitted at 6–7 layers, so fine layers would need new fits); the follow-up analyses in §6.7–6.9 use the 6 main-round layers.</span></li>
-    <li>"第一作者 → 后续作者"（把作者接在前一位作者后面打分）和因果实验（把真标题在 L56 的内部状态替换到假标题上，看能否救回正确作者）需要新的 GPU 计算，本报告未做，计划在汇报后进行。目前的结论是相关性的，不能证明信息在哪一层因果地形成。<span class="en">"First author → co-authors" (scoring each author after the previous one) and the causal test (patching the true-title state at L56 into a false-title run to see whether the correct authors are recovered) need new GPU runs and are not in this report; they are planned after the presentation. The current conclusions are correlational and do not prove at which layer the information is causally formed.</span></li>
+    <li>Stage 11 的替换和阻断确定了标题信息被读取的时间（L24–L50）和路径（经过标题之后的 token），但还没有确定这些层内部具体由哪些注意力头或 MLP 完成；E4b 的 probe 可能包含跨论文的题目与名字关联。<span class="en">Stage 11 patching and knockout fix when (L24–L50) and through which positions (the tokens after the title) the title is read, but not which attention heads or MLPs do it inside those layers; the E4b probe may include cross-paper topic → name associations.</span></li>
     <li>6.7 中"第 1 个 token 是否进前 10"的分组是观察性的，两组作者在名字格式、长度等方面不同；按名字格式分开后结论才稳定。<span class="en">The top-10 split in 6.7 is observational; the two sets of authors differ in name format and length, and the conclusion is stable only after separating name formats.</span></li>
   </ul>
 </section>

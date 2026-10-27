@@ -49,7 +49,7 @@ flowchart LR
 | 8 | Does it hold on new papers? | 200 new papers, 100 A/B pairs (Low/Mid/High 25/50/25) | Frozen candidates and titles; L56 pre-specified; 8B controls, 8C scores, 8D analysis | Public J-Lens + Vanilla, L16–62 | 8A 2026-10-15, 8B–D 2026-10-20 |
 | 9 | New lens fits (Fit A/B 100/100, Holdout100) | 200 fitting texts + 100 holdout | Jacobian lens fitting | — | 10-18 → 10-22, archived separately |
 | **10** | **At which layer does the model hold a paper's authors? (full cohort)** | **9,108 papers, 33,811 authors, 149,999 name tokens** | **Every name token, each author alone; 7 title conditions (true, 5 matched false, none); target vs control (`group_tight`) within citation bins** | **Vanilla, public / Self100 / Fit A J-Lens, Final; L24–62 (+ L50–61 for public and Vanilla)** | **frozen 2026-10-23, GPU 10-24 → 10-26, analyses 10-26** |
-| **11** | **Is the information formed late, or present at the title earlier and moved late?** | **1,186 papers (593 target / 593 control) for patching and knockout; 9,108 for title position and author chain** | **Activation patching (tail / last title token), attention knockout (all later / name positions), lens + ridge probe at the last title token, author chain** | **Final output; Vanilla + public J-Lens L16–62 at the title position** | **frozen 2026-10-26; running** |
+| **11** | **Is the information formed late, or present at the title earlier and moved late?** | **1,186 papers (593 target / 593 control) for patching and knockout; 9,108 for title position and author chain** | **Activation patching (tail / last title token), attention knockout (all later / name positions), lens + ridge probe at the last title token, author chain** | **Final output; Vanilla + public J-Lens L16–62 at the title position** | **frozen 2026-10-26, GPU 2026-10-27, done 2026-10-27** |
 
 Stage 4–8A dates are as given by the experiment lead (2026-10-15).
 
@@ -142,9 +142,16 @@ Fidelity, provenance audit, and the historical Split-half run through all three 
 - Key numbers: title-specific signal ≤ 0.05 at L24–L48 in both groups; target − control (title-specific, within bin) Vanilla +0.007 [0.001, 0.014] at L50, +0.065 at L56, +0.229 at L62, Final +0.207 [0.196, 0.220]; the signal sits on the surname for initial-first names and equally on given name and surname for given-name-first names; it rises monotonically with citations (Spearman ρ = 0.45). J-Lenses read more name information than Vanilla in middle layers (+0.007 to +0.030 title-specific) but it is not larger for target papers.
 - Judgment: paper-specific author knowledge is assembled late and gradually; recognised-but-not-recalled papers have no middle-layer head start. Correlational only. The parity tolerance was raised from 0.25 to 0.5 max |Δlogit| after seeing bf16-level differences (recorded in `config/analysis_plan.json`).
 
-### Stage 11 · Causal and context follow-ups (running at the time of this update)
+### Stage 11 · Causal and context follow-ups (completed 2026-10-27)
 - Approach: on 593 target + 593 control papers balanced within citation bins: E1 activation patching (true → false-title residual at the tokens after the title, one layer at a time), E2 attention knockout of the title tokens from layer l on; on all papers: E3 author-chain scoring ("Authors: A1, A2, …", paired with the Stage 10 isolated scores). Amendment 1 (2026-10-27) asks whether the author is already present at the TITLE position before ~L56 and only moved to the name positions later (subject enrichment → attribute extraction): E1t patches only the last title token, E2n blocks only the name positions from the title, E4 reads the logit / public J-Lens and a ridge probe at the last title token (all 9,108 papers, true vs 5 false titles).
-- Key numbers: pending; outputs will appear under `361_stage11/`.
+- Key numbers (share of the true − false-title gap at the output):
+  - Patching the tokens after the title: 0.08 at L24, 0.29 at L40, 0.83 at L48, 1.00 from L52.
+  - Patching only the last title token: about 0.12, and 0 from L56.
+  - Blocking attention to the title from layer l: loss 0.83 (L0), 0.37 (L32), 0.14 (L40), 0.06 (L48), 0 from L52.
+  - Blocking only ":" and the names: ≤ 0.15.
+  - At the last title token: lenses about 0.01–0.03; ridge probe +0.04 to +0.08, target − control +0.02 to +0.04.
+  - Author chain: later authors +0.17 to +0.23 easier, while their title-specific signal shrinks.
+- Judgment: the paper information is read from the title and moved into the post-title tokens in L24–L50, about ten layers before it is lens-readable at the names. It does not sit on the title token in a lens-readable form. Target and control share the timing; target carries about 2× the signal. The GPU smoke WARN (batched bf16 rounding) does not affect this.
 
 ## Directory Map: Where to Find the Evidence
 
@@ -163,7 +170,7 @@ For completeness and exclusions, see [ARCHIVE_NOTES.md](ARCHIVE_NOTES.md). In th
 | Stage 7.4 | 351_stage7_4.py | 351_stage7_4/ |
 | Stage 8A–D | 351_stage8.py, 351_stage8B/C/D.py | 351_stage8/; 8D is under its stage8D/ |
 | Stage 10 | 351_stage10.py (frozen) run through 351_stage10_fix1.py; stage10_extra*.py for §6.7–6.9 | 351_stage10/ (raw/ not included) |
-| Stage 11 | 361_stage11.py; stage11_analyze.py | 361_stage11/ (config only so far) |
+| Stage 11 | 361_stage11.py; stage11_analyze.py; stage11_keeper.py | 361_stage11/ (raw/ not included) |
 
 Read each experiment in the order **config → cohort/matching/controls → raw → summary → figures/reports**; not every stage contains all of these subdirectories.
 
@@ -175,5 +182,5 @@ Read each experiment in the order **config → cohort/matching/controls → raw 
 | Execution identity must be verified run by run | Whether the currently collected source matches the historical executed version character for character; some historical environments/parameters |
 | Not executed | Stage 8E; draft numbers are not treated as verified evidence |
 | Executed, archived without raw per-token files | Stage 10 (config, cohort, summaries, figures, reports, talk deck; raw/ is 1.2 GB and regenerable) |
-| Running at the time of the 2026-10-26 update | Stage 11 (frozen config included; results to be added) |
+| Executed, archived without raw files | Stage 11 (config, summary CSVs, report; raw/ excluded) |
 | Excluded from this package, archived separately | Stage 7.1B, Stage 9 (still running at archive time) |

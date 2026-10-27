@@ -166,3 +166,61 @@ axs[0].set_title('title-specific signal (logit lens)'); axs[1].set_title('target
 axs[0].set_ylabel('log10(1 / rank)'); axs[0].legend(loc='upper left'); axs[1].legend(loc='upper left', fontsize=15)
 axs[1].annotate('steepest\nL57-L61', xy=(59, 0.12), xytext=(50.5, 0.15), fontsize=15, arrowprops=dict(arrowstyle='->', color=INK))
 save(fig, 'c11_fine_layers')
+
+# ================= Stage 11 =================
+R11 = Path('/scratch/zhang.zhiqi2/jlens/361_stage11/summary')
+e1 = pd.read_csv(R11 / 'E1_recovery.csv'); e1t = pd.read_csv(R11 / 'E1t_recovery.csv')
+e2 = pd.read_csv(R11 / 'E2_knockout.csv'); e2n = pd.read_csv(R11 / 'E2n_knockout.csv')
+
+# C12 patching recovery and knockout loss by layer
+fig, axs = plt.subplots(1, 2, figsize=(10.6, 5.0), sharey=True)
+ax = axs[0]
+for g, col in (('target', TGT), ('control', CTL)):
+    d = e1[e1.group == g].sort_values('layer')
+    ax.plot(d.layer, d.recovery, '-o', color=col, lw=2.5, ms=5, label=f'after-title tokens · {g}')
+d = e1t[e1t.group == 'all'].sort_values('layer')
+ax.plot(d.layer, d.recovery, '--s', color=INK, lw=2, ms=5, label='last title token only')
+ax.set_title('patch true -> false title at layer l'); ax.set_xlabel('layer'); ax.set_ylabel('share of the true-false gap'); ax.set_ylim(-0.12, 1.1); ax.set_xticks([8, 16, 24, 32, 40, 48, 56, 63])
+ax.legend(loc='center right', fontsize=13)
+ax = axs[1]
+for g, col in (('target', TGT), ('control', CTL)):
+    d = e2[e2.group == g].sort_values('start_layer')
+    ax.plot(d.start_layer, d.loss_fraction, '-o', color=col, lw=2.5, ms=5, label=f'all later tokens · {g}')
+d = e2n[e2n.group == 'all'].sort_values('start_layer')
+ax.plot(d.start_layer, d.loss_fraction, '--s', color=INK, lw=2, ms=5, label='":" + names only')
+ax.set_title('block attention to the title from layer l on'); ax.set_xlabel('layer'); ax.set_xticks([0, 16, 24, 32, 40, 48, 56, 62])
+ax.legend(loc='upper right', fontsize=13)
+for a in axs: a.axhline(0, color=MUTE, lw=1.2, ls='--', zorder=0); a.axhline(1, color=MUTE, lw=1, ls=':', zorder=0); a.annotate('', xy=(50, -0.07), xytext=(24, -0.07), arrowprops=dict(arrowstyle='<->', color=INK, lw=1.5)); a.text(37, -0.045, 'L24-L50', ha='center', fontsize=14)
+save(fig, 'c12_patch_knockout')
+
+# C13 title position: lens vs probe (title-specific signal at the last title token)
+e4 = pd.read_csv(R11 / 'E4_titlepos_lens.csv'); pr = pd.read_csv(R11 / 'E4_probe.csv')
+fig, axs = plt.subplots(1, 2, figsize=(10.6, 5.0), sharey=True)
+ax = axs[0]
+for r, col in (('logit', CTL), ('jlens_public', TGT)):
+    d = e4[(e4.kind == 'first') & (e4.readout == r) & (e4.position == 'title')].sort_values('layer')
+    lab = 'logit lens' if r == 'logit' else 'public J-lens'
+    ax.plot(d.layer, d.spec_target, '-o', color=col, lw=2.4, ms=5, label=f'{lab} · target')
+    ax.plot(d.layer, d.spec_control, ':o', color=col, lw=2, ms=4, label=f'{lab} · control')
+ax.set_title('lens readout at the last title token'); ax.set_xlabel('layer'); ax.set_ylabel('title-specific signal'); ax.legend(loc='upper left', fontsize=12)
+ax = axs[1]
+for g, col in (('target', TGT), ('control', CTL)):
+    ax.fill_between(pr.layer, pr[f'spec_{g}_lo'], pr[f'spec_{g}_hi'], color=col, alpha=.18, lw=0); ax.plot(pr.layer, pr[f'spec_{g}'], '-o', color=col, lw=2.5, ms=5, label=g)
+ax.set_title('linear probe at the last title token'); ax.set_xlabel('layer'); ax.legend(loc='upper left')
+for a in axs: a.axhline(0, color=MUTE, lw=1.2, ls='--', zorder=0); a.set_xticks([16, 24, 32, 40, 48, 56, 62])
+save(fig, 'c13_title_position')
+
+# C14 author chain: gain by author position, and title-specific signal chain vs isolated
+e3 = pd.read_csv(R11 / 'E3_chain.csv'); f3 = e3[e3.readout == 'final']
+fig, axs = plt.subplots(1, 2, figsize=(10.6, 5.0))
+xs = np.arange(1, 5); w = .36
+for j, (g, col) in enumerate((('target', TGT), ('control', CTL))):
+    d = f3[f3.group == g].sort_values('author_pos')
+    axs[0].bar(xs + (j - .5) * w, d.gain_true, w, color=col, alpha=.85, edgecolor=INK, lw=1.2, label=g)
+    axs[0].errorbar(xs + (j - .5) * w, d.gain_true, yerr=[d.gain_true - d.gain_true_lo, d.gain_true_hi - d.gain_true], fmt='none', ecolor=INK, capsize=4, lw=1.4)
+    axs[1].plot(d.author_pos, d.iso_spec, ':o', color=col, lw=2, ms=6, label=f'{g} · each author alone')
+    axs[1].plot(d.author_pos, d.chain_spec, '-o', color=col, lw=2.6, ms=6, label=f'{g} · after co-authors')
+axs[0].set_title('previous authors help (true title)'); axs[0].set_ylabel('chain - alone'); axs[1].set_title('title-specific signal')
+for a in axs: a.set_xticks(xs); a.set_xticklabels(['1st', '2nd', '3rd', '4th+']); a.set_xlabel('author position')
+axs[0].axhline(0, color=MUTE, lw=1.2, ls='--'); axs[0].legend(loc='upper left'); axs[1].set_ylim(0, 0.8); axs[1].legend(loc='upper right', fontsize=12)
+save(fig, 'c14_author_chain')

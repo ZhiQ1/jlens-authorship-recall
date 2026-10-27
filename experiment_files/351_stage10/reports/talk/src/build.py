@@ -167,6 +167,35 @@ title(s, 'It builds up over the last dozen layers', 'fine layers L40-L62 · titl
 chart(s, 'c11_fine_layers', 0.5, 1.6, 9.2)
 note(s, 9.95, 1.9, 2.9, 3.4, [[T('Logit lens: target - control')], [B('+0.007 at L50', CTL)], [B('+0.23 at L62', TGT)], [T('steepest rise '), B('L57-L61')]], rot=-1.5, size=19)
 
+# S11a method -----------------------------------------------------------------
+s = new_slide('Stage 11 turns the readout question into interventions. 593 target and 593 control papers, matched within citation bins. Patching: run the paper with its true title and with a matched false title, and copy the true run hidden state into the false run at one layer. Knockout: forbid attention to the title tokens from layer l to the end. Probe: train a linear map from the last title token to the output state. Chain: score every author after the previous ones.')
+title(s, 'Stage 11: intervene, do not just read', '593 target + 593 control papers (balanced within citation bins) · all 9,108 for probe and chain')
+items = [('patch', 'copy the true-title hidden state into the false-title run at one layer', TGT, -1),
+         ('knock out', 'block attention to the title tokens from layer l on', CTL, 1),
+         ('probe', 'linear map from the last title token to the output state', GRN, -0.5),
+         ('chain', '"Authors: A1, A2, ..." instead of each author alone', INK, 0.8)]
+for i, (h, d, col, rot) in enumerate(items):
+    box(s, 0.9 + (i % 2) * 6.1, 1.9 + (i // 2) * 2.35, 5.6, 2.0, [[B(h, col)], [T(d)]], color=col, size=20, rot=rot)
+cap(s, 'Score: rank of the correct name token at the model output; "share of the true-false gap" = (intervened - false) / (true - false).')
+
+# S11b patch + knockout -----------------------------------------------------------------
+s = new_slide('Two causal curves. Left: copying the hidden states of the tokens after the title (closing quote, year, Authors:, the name) from the true run into the false run recovers 29 percent at L40, 83 percent at L48 and everything from L52. Copying only the last title token recovers about 12 percent. Right: blocking attention to the title from L0 removes 83 percent of the effect, from L32 37 percent, from L48 6 percent, from L52 nothing. Blocking only the colon and name positions removes at most 15 percent, so the information is routed through the tokens right after the title. Target and control follow the same curves.')
+title(s, 'The title is read in L24-L50, early', 'model output · share of the true-false gap · CIs about +/-0.02')
+chart(s, 'c12_patch_knockout', 0.5, 1.6, 9.2)
+note(s, 9.95, 1.9, 2.9, 3.6, [[B('L52+', TGT), T(': title no longer needed')], [T('info moved to the tokens '), B('right after'), T(' the title')], [T('same timing for target and control')]], rot=1.5, size=18)
+
+# S11c title position -----------------------------------------------------------------
+s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more, 0.04 at L16 rising to 0.08 at L56, and a little more for target papers. Caution: a probe trained across papers can also pick up topic-to-name associations, not only this paper.')
+title(s, 'Not readable at the title token itself', 'title-specific signal at the last title token · all 9,108 papers')
+chart(s, 'c13_title_position', 0.5, 1.6, 9.2)
+note(s, 9.95, 1.9, 2.9, 3.6, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.04 -> 0.08', GRN)], [T('target a bit higher; may include topic -> name associations')]], rot=-1.5, size=18)
+
+# S11d chain -----------------------------------------------------------------
+s = new_slide('Author chain. When the earlier authors are in the context, later authors become easier: plus 0.17 to 0.23 for target, 0.12 to 0.18 for control. But the title matters less: the title-specific signal drops from 0.45 to 0.26 for later target authors, because the co-authors already identify the paper. Target still beats control within bins, plus 0.11 to 0.15.')
+title(s, 'Co-authors help, and partly replace the title', 'model output · all 9,108 papers · 95% CI')
+chart(s, 'c14_author_chain', 0.5, 1.6, 9.2)
+note(s, 9.95, 1.9, 2.9, 3.6, [[T('later authors '), B('+0.17 to +0.23', TGT)], [T('title-specific part '), B('shrinks')], [T('target > control still')]], rot=1.5, size=18)
+
 # 9 lens quality -----------------------------------------------------------------
 s = new_slide('Comparing lenses. On readout quality fitA is best in most middle layers, self100 at L40; at L48 the Jacobian lenses put the right token in the top 10 for 15-18% of tokens versus 1% for the logit lens. At L62 the plain logit lens is best.')
 title(s, 'Which lens reads best?', 'all papers · true title')
@@ -208,20 +237,21 @@ cap(s, 'Right: R0/R1 papers, centred within citation bin; Spearman rho = 0.27, p
 s = new_slide('Wrap up the five findings.')
 title(s, 'What we learned')
 pts = [('Late', 'Paper-specific author knowledge builds up from about L50, fastest over L57-L61, peaking at L61-L62.'),
+       ('Read early', 'Causally, the title is read in L24-L50 and moved into the tokens after it; after L52 it is no longer needed.'),
        ('No head start', 'Target papers are not ahead of control in middle layers; the +0.21 gap is at the end.'),
        ('Real knowledge', 'The gap is title-specific and grows with citations, so it is not name guessing.'),
        ('Lenses agree', 'Jacobian lenses read more in middle layers, but nothing target-specific.'),
        ('Name format', 'Initials carry little; full given names carry as much as surnames and help predict them.')]
 for i, (h, b) in enumerate(pts):
-    y = 1.55 + i * 1.05
-    text(s, 0.9, y, 3.1, 0.9, h, size=30, font=TITLE_F, bold=True, color=[TGT, CTL, GRN, INK, TGT][i])
-    text(s, 4.0, y + 0.12, 8.6, 0.9, b, size=22)
+    y = 1.45 + i * 0.92
+    text(s, 0.9, y, 3.1, 0.85, h, size=28, font=TITLE_F, bold=True, color=[TGT, GRN, CTL, GRN, INK, TGT][i])
+    text(s, 4.0, y + 0.1, 8.6, 0.85, b, size=20)
 
 # 16 caveats & next -----------------------------------------------------------------
-s = new_slide('Limits and next steps. Everything here is correlational. Next: causal patching at L56, author-chain scoring, and blocking attention to the title tokens in the late layers.')
+s = new_slide('Limits and next steps. Patching and knockout now fix when the title is read (L24-L50) but not what happens inside those layers. Next: patch single positions after the title, localise the computation inside L24-L50, and repeat on a second model.')
 title(s, 'Caveats and next steps')
-text(s, 0.9, 1.6, 6.0, 4.8, [[B('Caveats')], [T('- Correlational: shows where info is readable, not where it is made')], [T('- Parity tolerance raised 0.25 -> 0.5 after the fact')],
+text(s, 0.9, 1.6, 6.0, 4.8, [[B('Caveats')], [T('- Readout is correlational; patching/knockout fix the timing, not the mechanism inside L24-L50')], [T('- Parity tolerance raised 0.25 -> 0.5 after the fact')],
                             [T('- Groups are model-specific; low-citation "recognition" is near chance')], [T('- Few control papers above 1,000 citations')]], size=21, space=10)
-note(s, 7.4, 1.7, 5.1, 3.6, [[B('Next')], [T('1. Patch the true-title state at L56 into a false-title run: are the right authors rescued?')], [T('2. Score each author after the previous one: does the first author help with co-authors?')], [T('3. Block attention to the title tokens at L50-L61: where is the paper read from?')]], rot=1.5, size=19)
+note(s, 7.4, 1.7, 5.1, 3.6, [[B('Next')], [T('1. Patch single positions (quote, year, "Authors:") to find which token carries the paper')], [T('2. Patch / probe per layer inside L24-L50 to see when it is computed')], [T('3. Repeat on a second model')]], rot=1.5, size=19)
 
 out = HERE / 'Stage10_author_readout_talk.pptx'; prs.save(out); print('saved', out)

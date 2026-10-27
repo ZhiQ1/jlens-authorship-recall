@@ -53,6 +53,11 @@ def patch_section(name, title, d, layers, toks, smp, S):
     t = toks.set_index('row_id').loc[d['row_id']].reset_index()
     df = pd.DataFrame({'paper_id': t.paper_id, 'true': nlr(d['rank_true']), 'false': nlr(d['rank_false'])})
     for i, l in enumerate(layers): df[f'p{l}'] = nlr(d['rank_patch'][:, i])
+    if name == 'E1t' and 63 in list(layers):
+        # 2026-10-27 GPU smoke: the batched patched forward rounds differently from the batch-1 false run (L63 element
+        # matched the false run on 70% of ranks, mean |dlog10 rank| ~0.01). The L63 element of the SAME batch is an
+        # unpatched false run (nothing downstream of block 63 at the title position), so it is the baseline here.
+        df['false_batch1'] = df['false']; df['false'] = df['p63']
     pp = df.groupby('paper_id').mean().reset_index().merge(smp, on='paper_id')
     rows, td = [], []
     for g in ['target', 'control', 'all']:

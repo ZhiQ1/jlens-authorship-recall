@@ -1,0 +1,28 @@
+{
+ "checks": {
+  "chain_first_author_matches_stage10": 0.8333333333333334,
+  "chain_first_author_mean_abs_dlog10rank": 0.0029308624668521834,
+  "chain_n_rows": 35,
+  "ko_L0_lowers_score": 0.12353139274314939,
+  "ko_baseline_matches_stage10": 0.7037037037037037,
+  "ko_baseline_mean_abs_dlog10rank": 0.008063286212935521,
+  "ko_name_baseline_equals_ko_baseline": 1.0,
+  "patch_L63_equals_true": 1.0,
+  "patch_false_matches_stage10": 1.0,
+  "patch_recovery_L63": 1.0,
+  "patch_title_L63_equals_false": 0.7037037037037037,
+  "patch_title_true_equals_patch_true": 1.0,
+  "patch_true_matches_stage10": 1.0,
+  "probe_vocab_size": 4314,
+  "titlepos_colon_matches_stage10_first_token": 1.0,
+  "titlepos_colon_mean_abs_dlog10rank": 0.0,
+  "titlepos_has_residuals": true
+ },
+ "created": "2026-10-27T05:17:52",
+ "gpu": [
+  "NVIDIA A100-SXM4-80GB"
+ ],
+ "note": "some agreement checks missed their thresholds; work continues; review smoke.json before interpreting",
+ "script_sha256": "f8adb8d9f1fa96a4cfa9f959212c0a248a34993a759be858fcf67c52e9820a47",
+ "status": "WARN"
+}
