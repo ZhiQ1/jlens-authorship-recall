@@ -14,6 +14,47 @@
 
 This does not support claims of full author-identity recovery, causal Recall, or J-Lens outperforming Vanilla. For completeness and exclusions, see [ARCHIVE_NOTES.md](ARCHIVE_NOTES.md). This file references images in `docs/assets/`; the two must be kept together in the archive root.
 
+## Stage Overview: Data, Method, Dates
+
+```mermaid
+flowchart LR
+  LB["Labels (2026-10-15)<br/>9,108 papers · recall + recognition<br/>A/B/C/D = 6,841 papers"]
+  subgraph T1["Where does the score come from?"]
+    S4["Stage 4<br/>20 papers<br/>1st token at ':'"] --> S6["Stage 6<br/>50 papers · 227 authors<br/>all name tokens"] --> S71["Stage 7.1<br/>CPU split of Stage 6<br/>first vs continuation"]
+  end
+  subgraph T2["Does it depend on the title?"]
+    S5["Stage 5<br/>50 papers · 20 A/B pairs<br/>2 titles x 2 authors"] --> S72["Stage 7.2<br/>50 papers x 100 false names"] --> S73["Stage 7.3<br/>50 papers x 20 wrong titles"]
+  end
+  subgraph T3["Consistent? Generalises?"]
+    S74["Stage 7.4<br/>CPU, same 50 papers<br/>cross-stage, J-V"] --> S8["Stage 8<br/>200 NEW papers · 100 pairs<br/>pre-registered L56"]
+  end
+  subgraph T4["Full cohort: at which layer, and how?"]
+    S10["Stage 10<br/>9,108 papers · 149,999 tokens<br/>7 title conditions · 5 readouts"] --> S11["Stage 11<br/>1,186 papers: patching / knockout<br/>9,108: title position, author chain"]
+  end
+  LB --> S4 & S5
+  S73 --> S74
+  S8 --> S10
+```
+
+| Stage | Question | Data size | Method | Readout, layers | Dates |
+|---|---|---|---|---|---|
+| Labels | Which papers does the model recall / recognise? | 9,108 papers (A/B/C/D = 6,841) | Open answer + 4-option multiple choice in 4 orders | Model output | label package 2026-10-15 |
+| 4 | Is the mean pulled up by a few papers? | Benchmark20: 20 papers | First-listed author's first token at ":"; per-paper contribution | Public J-Lens, L16–62 | files ≤ 2026-10-18* |
+| 5 | Does the score depend on title–author correspondence? | Pilot50 (A20/B20/C7/D3), 20 A/B pairs | 2 titles × 2 authors crossed; gold vs false first token from the same logits | Public J-Lens, L16–62 | files ≤ 2026-10-18* |
+| 6 | Full-name readout trajectories by group | Pilot50, 227 paper-author instances | Every name token of every author, teacher forcing; JMRR | Public J-Lens + Vanilla, L16–62 (+ Final) | files ≤ 2026-10-18* |
+| 7.1 | First token vs continuation | Stage 6 rows (14,580), 20 pairs | CPU re-analysis of Stage 6 | as Stage 6 | files ≤ 2026-10-18* |
+| 7.2 | Gold vs many false names | Pilot50 × 100 real false names (50 matched + 50 random) | First-token Gold Win Rate | Public J-Lens + Vanilla, L16–62 | files ≤ 2026-10-18* |
+| 7.3 | Gold advantage after a wrong-title background | Pilot50 × 20 metadata-matched wrong titles | Title Advantage = true − mean wrong-title win rate | Public J-Lens + Vanilla, L16–62 | files ≤ 2026-10-18* (score 10-21) |
+| 7.4 | Consistency across stages; J-Lens increment | same 50 papers | CPU correlations, J−V | — | files ≤ 2026-10-18* |
+| 8 | Does it hold on new papers? | 200 new papers, 100 A/B pairs (Low/Mid/High 25/50/25) | Frozen candidates and titles; L56 pre-specified; 8B controls, 8C scores, 8D analysis | Public J-Lens + Vanilla, L16–62 | 8A ≤ 10-18*, 8B–D 2026-10-20 |
+| 9 | New lens fits (Fit A/B 100/100, Holdout100) | 200 fitting texts + 100 holdout | Jacobian lens fitting | — | 10-18 → 10-22, archived separately |
+| **10** | **At which layer does the model hold a paper's authors? (full cohort)** | **9,108 papers, 33,811 authors, 149,999 name tokens** | **Every name token, each author alone; 7 title conditions (true, 5 matched false, none); target vs control (`group_tight`) within citation bins** | **Vanilla, public / Self100 / Fit A J-Lens, Final; L24–62 (+ L50–61 for public and Vanilla)** | **frozen 2026-10-23, GPU 10-24 → 10-26, analyses 10-26** |
+| **11** | **Is the information formed late, or present at the title earlier and moved late?** | **1,186 papers (593 target / 593 control) for patching and knockout; 9,108 for title position and author chain** | **Activation patching (tail / last title token), attention knockout (all later / name positions), lens + ridge probe at the last title token, author chain** | **Final output; Vanilla + public J-Lens L16–62 at the title position** | **frozen 2026-10-26; running** |
+
+\* Stages 4–8A: file dates on the HPC scratch copy (2026-10-18); the original run dates were not recorded, so these are upper bounds.
+
+![What each stage measures](docs/assets/measurement_positions.png)
+
 ## Start Here
 
 | Your task | Reading path |
@@ -102,7 +143,7 @@ Fidelity, provenance audit, and the historical Split-half run through all three 
 - Judgment: paper-specific author knowledge is assembled late and gradually; recognised-but-not-recalled papers have no middle-layer head start. Correlational only. The parity tolerance was raised from 0.25 to 0.5 max |Δlogit| after seeing bf16-level differences (recorded in `config/analysis_plan.json`).
 
 ### Stage 11 · Causal and context follow-ups (running at the time of this update)
-- Approach: on 593 target + 593 control papers balanced within citation bins: E1 activation patching (true → false-title residual at the tokens after the title, one layer at a time), E2 attention knockout of the title tokens from layer l on; on all papers: E3 author-chain scoring ("Authors: A1, A2, …", paired with the Stage 10 isolated scores).
+- Approach: on 593 target + 593 control papers balanced within citation bins: E1 activation patching (true → false-title residual at the tokens after the title, one layer at a time), E2 attention knockout of the title tokens from layer l on; on all papers: E3 author-chain scoring ("Authors: A1, A2, …", paired with the Stage 10 isolated scores). Amendment 1 (2026-10-27) asks whether the author is already present at the TITLE position before ~L56 and only moved to the name positions later (subject enrichment → attribute extraction): E1t patches only the last title token, E2n blocks only the name positions from the title, E4 reads the logit / public J-Lens and a ridge probe at the last title token (all 9,108 papers, true vs 5 false titles).
 - Key numbers: pending; outputs will appear under `361_stage11/`.
 
 ## Directory Map: Where to Find the Evidence

@@ -53,4 +53,20 @@ for key, rl in (('final@63', ('final', 63)), ('jlens_public@56', ('jlens_public'
 z = np.load(s11.s10.out_file(s11.R10, 'final', 63, sh, 'true')); ref = dict(zip(z['row_id'], z['rank']))
 print('   info: agreement with Stage 10 GPU ranks (final, true title):', f"{np.mean([ref[r] == x for r, x in zip(p['row_id'], p['rank_true'])]):.2f}",
       'mean |dlog10 rank|', f"{np.mean([abs(nl(ref[r]) - nl(x)) for r, x in zip(p['row_id'], p['rank_true'])]):.3f}", flush=True)
+# plan amendment 1 (title position): E1t, E2n, E4, probe_vocab
+C.papers = C._full if hasattr(C, '_full') else C.papers
+t1 = time.time(); pt = s11.compute(C, ('patch_title', None, 0)); print('patch_title', round(time.time() - t1), 's', flush=True)
+check('E1t patch at L63 == false (exact)', (pt['rank_patch'][:, s11.PT_LAYERS.index(63)] == pt['rank_false']).all())
+check('E1t true == E1 true', (pt['rank_true'] == p['rank_true']).all())
+print('   E1t patched by layer', dict(zip(s11.PT_LAYERS, nl(pt['rank_patch']).mean(0).round(3))), flush=True)
+t1 = time.time(); kn = s11.compute(C, ('knockout_name', None, 0)); print('knockout_name', round(time.time() - t1), 's', flush=True)
+check('E2n baseline == E2 baseline (exact)', (kn['rank_ko'][:, i64] == k['rank_ko'][:, i64]).all())
+print('   E2n by start layer', dict(zip(s11.KO_LAYERS, nl(kn['rank_ko']).mean(0).round(3))), flush=True)
+t1 = time.time(); tpd = s11.compute(C, ('titlepos', 'true', sh)); print('titlepos', round(time.time() - t1), 's', flush=True)
+fr = tpd['kind'] == 'first'; i0 = np.where(fr)[0][0]; ai0 = tpd['author_index'][i0]; nm0 = [x for x in C.ctx[pid] if x[0] == ai0][0][2]
+iso0 = s11.s10.fast_readout(model, C.L, pr + nm0[:-1] if ai0 == ai else C.prompts['true'][pid][1] + nm0[:-1], [len(pr) - 1], [('final', 63)], torch)[('final', 63)]
+check('E4 ":" final rank == isolated first-token rank', int(s11.ranks(iso0, torch.tensor(nm0[:1]), torch)[0]) == int(tpd['final@63@colon'][i0]))
+check('E4 residual shapes', tpd['resid_title'].shape[1:] == (len(s11.PROBE_LAYERS), 5120) and tpd['resid_colon'].shape[1:] == (len(s11.PROBE_LAYERS) + 1, 5120))
+print('   E4 title-position log10(1/rank) of first tokens:', {k: round(float(nl(tpd[k][fr]).mean()), 3) for k in tpd if k.endswith('@title')}, flush=True)
+pv = s11.compute(C, ('probe_vocab', None, 0)); check('probe_vocab rows', pv['lm_head_rows'].shape[1] == 5120 and len(pv['token_id']) > 1000, str(pv['lm_head_rows'].shape))
 print(f'REALCHECK {"PASS" if all(res) else "FAIL"} {sum(res)}/{len(res)}  total {round(time.time() - t0)} s')

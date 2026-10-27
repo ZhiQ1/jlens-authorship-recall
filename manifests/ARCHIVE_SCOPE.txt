@@ -6,3 +6,4 @@ final_missing_files.csv: all 50 listed entries belong to excluded Stage 7.1B.
 Final coverage scan compared paths and sizes; individual completed transfers were checked with rsync checksums.
 Update 2026-10-26: added Stage 10 (code, config, summaries as CSV, figures, reports, talk deck); cohort/condition parquet tables and the Stage 11 sample.parquet force-added (sha256 match the frozen config); excluded  351_stage10/raw/ (1.2 GB) and the two paper-level parquet tables (regenerable).
 Update 2026-10-26: added Stage 11 code and frozen config; results pending (running).
+\nUpdate 2026-10-27: README stage overview (diagram, data/method/date table, docs/assets/measurement_positions.png + its script); ARCHIVE_NOTES section 0 stage inventory; Stage 11 plan amendment 1 (title position) config.\n

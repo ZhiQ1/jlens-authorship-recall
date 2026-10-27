@@ -17,6 +17,21 @@ E3 chain     Author chain. All authors of a paper in one sequence, "Authors: A1,
              model output and with the logit lens / public Jacobian lens at L40-L62. Rows keep Stage 10 row ids, so
              chain and isolated scores are paired token by token.
 
+Added 2026-10-27 (user plan: is author information already at the TITLE position before L56, and only moved to the
+name positions late? cf. Geva et al. 2023 subject enrichment -> attribute extraction):
+E1t patch_title  Like E1, but only the residual of the LAST TITLE TOKEN is patched (true -> false_0), one layer at a time
+             (PT_LAYERS). Recovery from layer l means the paper information is present at the title position by layer l.
+             l = 63 must give exactly the false result (nothing downstream of block 63 at the title position).
+E2n knockout_name  Like E2, but only the name positions (the last prompt token ':' and every name input) are blocked from
+             attending to the title tokens; intermediate positions (closing quote, year, 'Authors') still can.
+E4 titlepos  All 9,108 papers, true + false_0..4 titles, prompt only (names are causally irrelevant here). At the last
+             title token and at the last prompt token (':'), the logit lens / public J-lens at TP_LAYERS and the final
+             output give the rank of each author's first name token and first surname token. Title-specific signal at
+             the title position = true - mean(false) for the same gold tokens. For true and false_0 the residuals at
+             both positions (PROBE_LAYERS, and L63 at ':') are stored (fp16) for a linear probe (stage11_analyze).
+probe_vocab  Final norm weight and the lm_head rows of every author first token / first surname token in the cohort
+             (the probe ranks the gold token within this name vocabulary).
+
 E1/E2 sample: citation bins with >= 30 target and >= 30 control papers (as Stage 10 B); per bin min(60, n_t, n_c) papers
 of each group, seed 11; 50 papers per shard. E3: all 9,108 papers, Stage 10 shards (128 papers) x 7 conditions.
 
@@ -40,6 +55,11 @@ CHAIN_LAYERS = [40, 48, 52, 56, 58, 60, 62]
 CHAIN_PLAN = [('final', 63)] + [(r, l) for r in ('logit', 'jlens_public') for l in CHAIN_LAYERS]
 PER_BIN, MIN_BIN, PAPERS_PER_SHARD, SEED = 60, 30, 50, 11
 FALSE_FOR_PATCH = 'false_0'
+PT_LAYERS = [8, 16, 24, 32, 40, 44, 48, 52, 56, 60, 62, 63]                  # 63 = sanity: must equal the false run
+TP_LAYERS = [16, 24, 32, 40, 44, 48, 52, 56, 58, 60, 62]
+TP_PLAN = [(r, l) for r in ('logit', 'jlens_public') for l in TP_LAYERS] + [('final', 63)]
+PROBE_LAYERS = [16, 24, 32, 40, 44, 48, 52, 56, 60]
+TP_CONDS = [c for c in s10.condition_names() if c != 'delete']
 
 
 def now(): return time.strftime('%Y-%m-%dT%H:%M:%S')
@@ -132,6 +152,8 @@ def units():
     smp = pd.read_parquet(ROOT / 'config/sample.parquet'); m, _ = s10.verify(R10)
     n12 = int(smp.shard.max()) + 1
     return [('patch', None, k) for k in range(n12)] + [('knockout', None, k) for k in range(n12)] + \
+           [('patch_title', None, k) for k in range(n12)] + [('knockout_name', None, k) for k in range(n12)] + \
+           [('probe_vocab', None, 0)] + [('titlepos', c, k) for c in TP_CONDS for k in range(m['n_shards'])] + \
            [('chain', c, k) for c in CONDS for k in range(m['n_shards'])]
 
 
@@ -159,7 +181,9 @@ class Ctx:
         self.prompts = {c: s10.condition_prompts(R10, self.papers, c)[0] for c in CONDS}
         self.smp = pd.read_parquet(ROOT / 'config/sample.parquet')
         self.model, self.tok = s10.load_model()
-        self.L = s10.open_lenses(self.lenses, CHAIN_PLAN, self.model)
+        self.L = s10.open_lenses(self.lenses, CHAIN_PLAN + TP_PLAN, self.model)
+        rt = pd.read_parquet(R10 / 'cohort/name_tokens.parquet', columns=['paper_id', 'author_index', 'token_id', 'role'])
+        self.sfirst = {(p, int(a)): int(t) for p, a, t in rt[rt.role == 'surname_first'][['paper_id', 'author_index', 'token_id']].itertuples(index=False)}
         self.comma = self.tok.encode(',', add_special_tokens=False)
         assert self.comma == [11]
         self.env = dict(torch=torch.__version__, gpu=[torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())], script_sha256=sha_file(__file__))
@@ -178,7 +202,9 @@ def run_final(C, ids, positions, patch=None, mask_fn=None, batch=1):
         for l, items in (patch or {}).items():
             def hook(mod, inp, out, items=items):
                 h = out if torch.is_tensor(out) else out[0]
-                for e, n, t in items: h[e, -n:] = t.to(h.device, h.dtype)
+                for e, n, t in items:
+                    if isinstance(n, tuple): h[e, n[1]] = t.to(h.device, h.dtype)       # ('at', position)
+                    else: h[e, -n:] = t.to(h.device, h.dtype)                            # aligned tail of length n
                 return out
             handles.append(model.layers[l].register_forward_hook(hook))
         if mask_fn is not None:
@@ -225,12 +251,12 @@ def do_patch(C, shard):
                 rank_patch=np.concatenate(out_p), layers=np.array(PATCH_LAYERS))
 
 
-def ko_mask(C, T_len, title_pos, ko_layers, dtype):
+def ko_mask(C, T_len, title_pos, ko_layers, dtype, query_from=None):
     """returns mask_fn(layer) -> additive mask [B,1,T,T] (0 allowed, min blocked)."""
     torch = C.torch; B = len(ko_layers)
     causal = torch.ones(T_len, T_len, dtype=torch.bool).tril()
     blk = torch.zeros(T_len, T_len, dtype=torch.bool)
-    tp = torch.tensor(title_pos); after = torch.arange(max(title_pos) + 1, T_len)
+    tp = torch.tensor(title_pos); after = torch.arange(max(title_pos) + 1 if query_from is None else query_from, T_len)
     blk[after[:, None], tp[None, :]] = True
     neg = torch.finfo(dtype).min; cache = {}
     def fn(layer):
@@ -279,9 +305,90 @@ def do_chain(C, cond, shard):
     return dict(row_id=np.array(rows), chain_index=np.array(chain_pos), **{k: np.concatenate(v) for k, v in out.items()})
 
 
+def do_patch_title(C, shard):
+    torch = C.torch; rows, out_t, out_f, out_p = [], [], [], []
+    pf = C.prompts[FALSE_FOR_PATCH]; pt_ = C.prompts['true']
+    for r in C.smp[C.smp.shard == shard].itertuples():
+        (ptx, pt), (pfx, pfi) = pt_[r.paper_id], pf[r.paper_id]
+        it = title_positions(C.tok, ptx, pt)[-1]; jf = title_positions(C.tok, pfx, pfi)[-1]
+        for ai, rids, name in C.ctx[r.paper_id]:
+            T = pt + name[:-1]; F = pfi + name[:-1]
+            posT = [len(pt) - 1 + j for j in range(len(name))]; posF = [len(pfi) - 1 + j for j in range(len(name))]
+            gold = torch.tensor(name, device=C.model.input_device)
+            acts = record(C, T, PT_LAYERS)
+            lt = run_final(C, T, posT)[0]; lf = run_final(C, F, posF)[0]
+            patch = {}
+            for i, l in enumerate(PT_LAYERS): patch.setdefault(l, []).append((i, ('at', jf), acts[l][it]))
+            lp = run_final(C, F, posF, patch=patch, batch=len(PT_LAYERS))
+            rows += rids; out_t.append(ranks(lt, gold, torch)); out_f.append(ranks(lf, gold, torch))
+            out_p.append(np.stack([ranks(lp[i], gold, torch) for i in range(len(PT_LAYERS))], 1))
+    return dict(row_id=np.array(rows), rank_true=np.concatenate(out_t), rank_false=np.concatenate(out_f),
+                rank_patch=np.concatenate(out_p), layers=np.array(PT_LAYERS))
+
+
+def do_knockout_name(C, shard):
+    torch = C.torch; rows, out_k = [], []
+    dtype = next(C.model.layers[0].parameters()).dtype
+    for r in C.smp[C.smp.shard == shard].itertuples():
+        pt = json.loads(C.P.loc[r.paper_id].prompt_ids); tpos = json.loads(r.title_pos)
+        for ai, rids, name in C.ctx[r.paper_id]:
+            T = pt + name[:-1]; pos = [len(pt) - 1 + j for j in range(len(name))]
+            gold = torch.tensor(name, device=C.model.input_device)
+            fn = ko_mask(C, len(T), tpos, KO_LAYERS, dtype, query_from=len(pt) - 1)
+            lk = run_final(C, T, pos, mask_fn=fn, batch=len(KO_LAYERS))
+            rows += rids; out_k.append(np.stack([ranks(lk[i], gold, torch) for i in range(len(KO_LAYERS))], 1))
+    return dict(row_id=np.array(rows), rank_ko=np.concatenate(out_k), layers=np.array(KO_LAYERS))
+
+
+def probe_vocab_ids(C):
+    ids = sorted({v[2][0] for vs in C.ctx.values() for v in vs} | set(C.sfirst.values()))
+    return ids
+
+
+def do_probe_vocab(C):
+    torch = C.torch; ids = probe_vocab_ids(C)
+    W = C.model._lm_head.weight[torch.tensor(ids, device=C.model._lm_head.weight.device)].float().cpu().numpy()
+    nw = C.model._final_norm.weight.float().cpu().numpy(); eps = getattr(C.model._final_norm, 'variance_epsilon', 1e-6)
+    return dict(row_id=np.array(ids), token_id=np.array(ids), lm_head_rows=W.astype(np.float16), norm_weight=nw, eps=np.array(eps))
+
+
+def do_titlepos(C, cond, shard):
+    """prompt-only forward; readouts at the last title token and at ':' for every author's first token and first surname token."""
+    torch = C.torch; prompts = C.prompts[cond]; layers = sorted({l for _, l in TP_PLAN} | set(PROBE_LAYERS) | {63})
+    keep_resid = cond in ('true', FALSE_FOR_PATCH)
+    out = {f'{r}@{l}@{pos}': [] for r, l in TP_PLAN for pos in ('title', 'colon')}
+    meta_pid, meta_ai, meta_kind, gold_all = [], [], [], []; res_t, res_c, res_pid = [], [], []
+    for pid in C.papers[C.papers.shard == shard].paper_id:
+        if pid not in C.ctx: continue
+        ptx, ids = prompts[pid]; it = title_positions(C.tok, ptx, ids)[-1]; ic = len(ids) - 1
+        gold = []
+        for ai, rids, name in C.ctx[pid]:
+            gold.append((ai, 'first', name[0]))
+            if (pid, ai) in C.sfirst: gold.append((ai, 'surname', C.sfirst[(pid, ai)]))
+        acts = record(C, ids, layers)
+        g = torch.tensor([x[2] for x in gold], device=C.model.input_device)
+        for r, l in TP_PLAN:
+            for pos, i in (('title', it), ('colon', ic)):
+                h = acts[l][i:i + 1].float()
+                if r.startswith('jlens_'): h = C.L[r[6:]].transport(h, l)
+                lg = C.model.unembed(h).float().expand(len(gold), -1)
+                out[f'{r}@{l}@{pos}'].append(ranks(lg, g, torch))
+        meta_pid += [pid] * len(gold); meta_ai += [x[0] for x in gold]; meta_kind += [x[1] for x in gold]; gold_all += [x[2] for x in gold]
+        if keep_resid:
+            res_t.append(np.stack([acts[l][it].float().cpu().numpy() for l in PROBE_LAYERS]).astype(np.float16))
+            res_c.append(np.stack([acts[l][ic].float().cpu().numpy() for l in PROBE_LAYERS + [63]]).astype(np.float16)); res_pid.append(pid)
+    d = dict(row_id=np.arange(len(meta_pid)), paper_id=np.array(meta_pid), author_index=np.array(meta_ai), kind=np.array(meta_kind),
+             gold=np.array(gold_all), **{k: np.concatenate(v) for k, v in out.items()})
+    if keep_resid: d |= dict(resid_title=np.stack(res_t), resid_colon=np.stack(res_c), resid_paper_id=np.array(res_pid),
+                             probe_layers=np.array(PROBE_LAYERS))
+    return d
+
+
 def compute(C, u):
     e, c, k = u
-    return do_patch(C, k) if e == 'patch' else do_knockout(C, k) if e == 'knockout' else do_chain(C, c, k)
+    return {'patch': lambda: do_patch(C, k), 'knockout': lambda: do_knockout(C, k), 'chain': lambda: do_chain(C, c, k),
+            'patch_title': lambda: do_patch_title(C, k), 'knockout_name': lambda: do_knockout_name(C, k),
+            'probe_vocab': lambda: do_probe_vocab(C), 'titlepos': lambda: do_titlepos(C, c, k)}[e]()
 
 
 def save(u, d, env, root=None):
@@ -304,7 +411,7 @@ def smoke_run(C):
 
 
 def _smoke(C):
-    torch = C.torch; tmp = ROOT / 'smoke'; checks = {}
+    torch = C.torch; tmp = ROOT / 'smoke'; checks = {}; C._all_papers = C.papers
     smp = C.smp.groupby('group').head(2)
     C.smp = smp.assign(shard=0)
     p = compute(C, ('patch', None, 0)); save(('patch', None, 0), p, C.env, tmp)
@@ -333,11 +440,35 @@ def _smoke(C):
     refc = np.array([ref[r] for r in ch['row_id'][first]])
     checks['chain_first_author_mean_abs_dlog10rank'] = float(np.abs(nl(ch['final@63'][first]) - nl(refc)).mean())
     checks['chain_n_rows'] = int(len(ch['row_id']))
+    # E1t / E2n / E4 / probe_vocab
+    C.papers = C._all_papers
+    pt1 = compute(C, ('patch_title', None, 0)); save(('patch_title', None, 0), pt1, C.env, tmp)
+    j63 = PT_LAYERS.index(63)
+    checks['patch_title_true_equals_patch_true'] = float((pt1['rank_true'] == p['rank_true']).mean())
+    checks['patch_title_L63_equals_false'] = float((pt1['rank_patch'][:, j63] == pt1['rank_false']).mean())
+    kn = compute(C, ('knockout_name', None, 0)); save(('knockout_name', None, 0), kn, C.env, tmp)
+    checks['ko_name_baseline_equals_ko_baseline'] = float((kn['rank_ko'][:, i64] == k['rank_ko'][:, i64]).mean())
+    C.papers = C.papers[C.papers.paper_id.isin(pid2)]
+    sh = int(C.papers.shard.iloc[0]); tpd = compute(C, ('titlepos', 'true', sh)); save(('titlepos', 'true', 0), tpd, C.env, tmp)
+    fr = tpd['kind'] == 'first'
+    ref0 = {}
+    for pid_, ai_, g_ in zip(tpd['paper_id'][fr], tpd['author_index'][fr], tpd['gold'][fr]):
+        rid = [rr for a_, rr, nm in C.ctx[pid_] if a_ == ai_][0][0]; ref0[(pid_, ai_)] = ref[rid]
+    reft = np.array([ref0[(a, b)] for a, b in zip(tpd['paper_id'][fr], tpd['author_index'][fr])])
+    got = tpd['final@63@colon'][fr]
+    checks['titlepos_colon_matches_stage10_first_token'] = float((got == reft).mean())
+    checks['titlepos_colon_mean_abs_dlog10rank'] = float(np.abs(nl(got) - nl(reft)).mean())
+    checks['titlepos_has_residuals'] = bool('resid_title' in tpd and tpd['resid_title'].shape[1] == len(PROBE_LAYERS))
+    pv = compute(C, ('probe_vocab', None, 0)); checks['probe_vocab_size'] = int(len(pv['token_id']))
     ok = (checks['patch_true_matches_stage10'] >= .9 and checks['patch_false_matches_stage10'] >= .9 and checks['patch_L63_equals_true'] >= .99
           and abs(checks['patch_recovery_L63'] - 1) < .02 and checks['ko_L0_lowers_score'] > 0
           # same computation through a different kernel or sequence length: bf16 noise only (Stage 10 parity: max 0.37 logit)
           and checks['ko_baseline_matches_stage10'] >= .75 and checks['ko_baseline_mean_abs_dlog10rank'] <= .05
-          and checks['chain_first_author_matches_stage10'] >= .75 and checks['chain_first_author_mean_abs_dlog10rank'] <= .05)
+          and checks['chain_first_author_matches_stage10'] >= .75 and checks['chain_first_author_mean_abs_dlog10rank'] <= .05
+          and checks['patch_title_true_equals_patch_true'] >= .99 and checks['patch_title_L63_equals_false'] >= .99
+          and checks['ko_name_baseline_equals_ko_baseline'] >= .99
+          and checks['titlepos_colon_matches_stage10_first_token'] >= .75 and checks['titlepos_colon_mean_abs_dlog10rank'] <= .05
+          and checks['titlepos_has_residuals'] and checks['probe_vocab_size'] > 1000)
     rep = dict(status='PASS' if ok else 'FAIL', created=now(), checks=checks, gpu=C.env['gpu'], script_sha256=C.env['script_sha256'])
     dump(ROOT / 'reports/smoke.json', rep); print(json.dumps(rep, indent=1), flush=True)
     if not ok: stop_queue('Stage 11 smoke test FAIL')

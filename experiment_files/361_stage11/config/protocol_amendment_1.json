@@ -1,0 +1,174 @@
+{
+ "added": {
+  "E1t patch_title": {
+   "layers": [
+    8,
+    16,
+    24,
+    32,
+    40,
+    44,
+    48,
+    52,
+    56,
+    60,
+    62,
+    63
+   ],
+   "note": "last title token only; L63 sanity = false"
+  },
+  "E2n knockout_name": {
+   "layers": [
+    0,
+    24,
+    32,
+    40,
+    48,
+    50,
+    52,
+    54,
+    56,
+    58,
+    60,
+    62,
+    64
+   ],
+   "note": "queries = ':' and name positions only"
+  },
+  "E4 titlepos": {
+   "conds": [
+    "true",
+    "false_0",
+    "false_1",
+    "false_2",
+    "false_3",
+    "false_4"
+   ],
+   "gold": [
+    "author first token",
+    "author first surname token"
+   ],
+   "plan": [
+    [
+     "logit",
+     16
+    ],
+    [
+     "logit",
+     24
+    ],
+    [
+     "logit",
+     32
+    ],
+    [
+     "logit",
+     40
+    ],
+    [
+     "logit",
+     44
+    ],
+    [
+     "logit",
+     48
+    ],
+    [
+     "logit",
+     52
+    ],
+    [
+     "logit",
+     56
+    ],
+    [
+     "logit",
+     58
+    ],
+    [
+     "logit",
+     60
+    ],
+    [
+     "logit",
+     62
+    ],
+    [
+     "jlens_public",
+     16
+    ],
+    [
+     "jlens_public",
+     24
+    ],
+    [
+     "jlens_public",
+     32
+    ],
+    [
+     "jlens_public",
+     40
+    ],
+    [
+     "jlens_public",
+     44
+    ],
+    [
+     "jlens_public",
+     48
+    ],
+    [
+     "jlens_public",
+     52
+    ],
+    [
+     "jlens_public",
+     56
+    ],
+    [
+     "jlens_public",
+     58
+    ],
+    [
+     "jlens_public",
+     60
+    ],
+    [
+     "jlens_public",
+     62
+    ],
+    [
+     "final",
+     63
+    ]
+   ],
+   "positions": [
+    "last title token",
+    "':'"
+   ]
+  },
+  "E4b probe": {
+   "layers": [
+    16,
+    24,
+    32,
+    40,
+    44,
+    48,
+    52,
+    56,
+    60
+   ],
+   "method": "5-fold ridge (alpha in 0.1/1/10 x trace/d, chosen on fold 0) from the last-title-token residual to the true run's L63 ':' residual; final norm + lm_head rows of all author first tokens in the cohort; gold first token ranked in that vocabulary; applied to true and false_0 residuals"
+  },
+  "probe_vocab": "lm_head rows + final norm"
+ },
+ "created": "2026-10-26T22:02:31",
+ "predictions": {
+  "A": "E4/E4b ~0 at middle layers at every position; E1t recovers only from late layers",
+  "B": "E4/E4b title-position title-specific signal > 0 at middle layers; E1t recovery > 0 from middle layers; E2n loss large when blocking starts before ~L56 and small after"
+ },
+ "reason": "user plan 2026-10-27: is author information already present at the title position before ~L56 and only moved to the name positions late (subject enrichment -> attribute extraction, Geva et al. 2023)? Explanation A: assembled late, nowhere earlier. Explanation B: present at the title position earlier, retrieved late.",
+ "script_sha256": "df8f83f2422dacca52d761d39a04be6897d266e1f63d93a7be3e9b887e66983a",
+ "unit_order": "patch, knockout, patch_title, knockout_name, probe_vocab, titlepos (6 conds x 72), chain"
+}
