@@ -76,6 +76,19 @@ G2 = '<p class="en">Relation to Stages 4–8: those stages used groups A/B/C/D'
 i = body10.find(G2); j = body10.find('</div>', i) + 6
 assert i > 0
 body10 = body10[:j] + '<div class="pair"><p class="zh"><b>R0/R1 分层（第三部分）。</b>两组都只保留 R0（即 A vs B）时，输出处标题特异的目标−对照差为 +0.199 [0.187, 0.212]（合并口径 +0.207），各层形状不变；R1 目标论文（C）比 R0（A）多 +0.11，同样只在最后几层；R1 论文内部，模型写对的作者比没写对的高 +0.20，也只在 L54 之后出现。<a href="#p3-r0r1">详见第三部分</a></p><p class="en">R0/R1 split (Part III): with R0 papers only (A vs B) the output title-specific target − control gap is +0.199 [0.187, 0.212] (pooled +0.207) with the same layer profile; R1 targets (C) exceed R0 targets (A) by +0.11, also only in the last layers; inside R1 papers the authors the model wrote correctly exceed the missed ones by +0.20, again only after L54.</p></div>' + body10[j:]
+# 2026-10-28 review (prereg addendum 2): probe statements are under review until E4b is re-run with team folds and the
+# title-reuse exclusion. Marker only; the text itself is unchanged.
+RV = '<span style="display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin-right:6px;border-radius:4px;background:#B42318;color:#fff">待复核 under review</span>'
+RVN = '<a href="#p4-plan" style="font-size:12.5px">（probe 结果正在复核：同一标题跨训练和测试、标题一题两用、未按团队切分，见第四部分）</a>'
+for old, new in (('标题最后一个 token 上，线性 probe', RV + '标题最后一个 token 上，线性 probe'),
+                 ('<b>标题位置能不能读出作者。</b>', RV + '<b>标题位置能不能读出作者。</b>'),
+                 ('<b>标题位置 probe 的对照检验。</b>', RV + '<b>标题位置 probe 的对照检验。</b>'),
+                 ('<span><b>读得早，说得晚。</b>', '<span>' + RV + '<b>读得早，说得晚。</b>')):
+    assert old in body10, old
+    body10 = body10.replace(old, new)
+for h in ('6.11 Stage 11：干预实验', '6.12 名字先验'):
+    i = body10.index(h); j = body10.index('</h3>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]
+i = body10.index('<h2><span class="num">§7</span>'); j = body10.index('</h2>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]
 sec_ids = iter(range(1, 100))
 body10 = re.sub(r'<section>', lambda m: f'<section id="p2-{next(sec_ids)}">', body10)
 BRIDGE_OLD = re.search(r'<div class="bx warn"><b>可比性提醒</b>.*?</div>', bridge, re.S).group(0)

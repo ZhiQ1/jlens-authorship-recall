@@ -1,0 +1,17 @@
+{
+ "title": "Stage 13 pre-registration, addendum 2 (review of report v5; does not change prereg.json or addendum 1, adds to them; where they conflict, this addendum wins)",
+ "written": "2026-10-28T12:30-04:00",
+ "status_at_writing": "M3/X1/X3/X4: still no data (0/144 GPU units). E4b re-run, team-cluster CIs, grouped M2/M2b, M2c: submitted, no output yet.",
+ "M3": {"replaces": "the M3 identity-index rule of prereg.json",
+  "rule": "The identity index I(l) is judged only relative to the text-only level: I(l) - I(L4) must exceed 0 (interval excludes 0); I(l) > 0 alone is expected from identical title tokens and is not evidence. The PRIMARY criterion is the cross-task transfer ratio T(l) (train on task a, test on task b, divided by within-task), judged at L16-L40 and also relative to T(L4)."},
+ "X1": {"replaces": "the X1 layer-choice and decision rules of prereg.json",
+  "rule": "Report the full curves R(authors,l) - R(year,l) and R(authors,l) - R(field,l), with intervals, at every layer. Layers <= L16 are a positive control for text replacement only (replacing every title position early is close to replacing the title text) and carry no conclusion. Conclusions use L24 and later only: task-independent identity at layer l >= 24 if both differences are within 0.1 of 0 (interval inside [-0.1, 0.1]) while R(authors,l) - R(random_c,l) > 0; task-specific if R(authors,l) - R(year,l) > 0.1 (interval excludes 0.1). No single layer is picked."},
+ "M2c": {"replaces": "the 'beyond_style_if' rule of prereg.json",
+  "rule": "One-directional: BERT reaching Qwen (>= Qwen - 0.05) supports 'style'. Qwen exceeding BERT is reported as reference only and is NOT evidence that Qwen recognises the paper (BERT saw Wikipedia, which documents famous papers, and Qwen is a stronger reader). The recognition evidence must come from within Qwen: within citation bin, recognised (target) papers decoded more accurately than control papers, beyond what the title-word baseline already shows."},
+ "X3": {"adds": "word-overlap control",
+  "rule": "For every pair report the word Jaccard of (original, paraphrase) and (original, partner). The gap G(l) is tested in a regression of cos-similarity on version (paraphrase vs partner) with word Jaccard (and the share of rare words shared, rare = document frequency < 10 in the cohort titles) as covariates, or within strata of matched Jaccard; only the version effect after this control counts."},
+ "E4b": {"adds": "title-reuse exclusion and team folds",
+  "rule": "E4b and its 6.12 controls are reported under per-paper vs team folds and with vs without dropping test papers whose prompt title the probe saw in training (a probe trained on true runs: the false title's donor paper is in training; a probe trained on false runs: the same donor title, or the paper's own title lent to a training paper). The confirmatory version is team folds + title-reuse dropped. Until it is available, report sections 6.11, 6.12 and 7 mark the probe statements as 'under review'."},
+ "intervals": {"adds": "team-cluster bootstrap",
+  "rule": "All intervals (Stage 10, 11, 12, 13) are also computed by resampling author teams (same groups as the probe folds); both are shown, the team version is primary, and every place where 'interval excludes 0' changes is listed."}
+}
