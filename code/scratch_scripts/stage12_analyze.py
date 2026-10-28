@@ -133,6 +133,10 @@ def main(ROOT, R10, s10, s11):
             per[c] = df.drop(columns='row_id').groupby('paper_id').mean()
         common = per['true'].index
         for c in per: common = common.intersection(per[c].index)
+        # 2026-10-28 review: the 40 fit papers and the evaluation sample share no paper, but 3 sample papers share a full
+        # author name with a fit paper; they are dropped here so fit and evaluation are disjoint by author team.
+        ex = ROOT / 'config/alens_eval_exclude.json'
+        if ex.exists(): drop = set(json.loads(ex.read_text())['paper_ids']); common = common[~common.isin(drop)]
         spec = per['true'].loc[common] - sum(per[c].loc[common] for c in per if c != 'true') / (len(per) - 1)
         sp = spec.join(smp.set_index('paper_id'))
         rows = []

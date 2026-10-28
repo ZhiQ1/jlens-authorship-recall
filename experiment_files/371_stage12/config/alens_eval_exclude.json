@@ -1,0 +1,20 @@
+{
+ "written": "2026-10-28",
+ "rule": "Stage 11 sample papers sharing any full author name with the 40 author-lens fit papers",
+ "paper_ids": [
+  "8baa82495a256ed30cf024244bdb57e4b019efd8",
+  "d3104dd7d65c1a235d779df87f30a94fcbdf2746",
+  "debd096c268a46844ae421abbcd707ea30d9f37f"
+ ],
+ "shared_names": {
+  "8baa82495a256ed30cf024244bdb57e4b019efd8": [
+   "qiang xu"
+  ],
+  "d3104dd7d65c1a235d779df87f30a94fcbdf2746": [
+   "j schwartz"
+  ],
+  "debd096c268a46844ae421abbcd707ea30d9f37f": [
+   "j braun"
+  ]
+ }
+}
