@@ -303,6 +303,16 @@ for sl, tg in zip(prs.slides, TAGS):
     para = tf.paragraphs[0]; para.alignment = PP_ALIGN.CENTER; r = para.add_run(); r.text = tg
     r.font.name = BODY_F; r.font.size = Pt(15); r.font.bold = True; r.font.color.rgb = TAG_COL[tg]
 assert len(TAGS) == len(prs.slides._sldIdLst), (len(TAGS), len(prs.slides._sldIdLst))
+# 2026-10-28 review: probe results under review (team folds, title-reuse exclusion); marker only, slide text unchanged
+REVIEW = {12: 'UNDER REVIEW: probe split leaks being re-checked (Stage 13)', 15: 'UNDER REVIEW: probe split leaks being re-checked (Stage 13)'}
+RED = RGBColor(0xB4, 0x23, 0x18)
+for i, sl in enumerate(prs.slides):
+    if i not in REVIEW: continue
+    sh = sl.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(6.55), Inches(6.5), Inches(0.42)); sh.adjustments[0] = 0.3
+    sh.fill.solid(); sh.fill.fore_color.rgb = RED; sh.line.color.rgb = RED; sh.shadow.inherit = False; sh.rotation = -1.5
+    tf = sh.text_frame; tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0; tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    para = tf.paragraphs[0]; para.alignment = PP_ALIGN.CENTER; r = para.add_run(); r.text = REVIEW[i]
+    r.font.name = BODY_F; r.font.size = Pt(15); r.font.bold = True; r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
 # appendix divider -----------------------------------------------------------------
 s = new_slide('Appendix: backup slides for questions - checks, readout levels, the author chain, probe controls, lens comparisons, citations and name formats.')
