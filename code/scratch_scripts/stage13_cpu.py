@@ -130,9 +130,23 @@ def m2(s10):
         grp = T.group_tight.to_numpy(); keep_r = np.isin(grp, ['target', 'control'])
         y_rec = (grp == 'target').astype(float)[:, None]; bins = T.citation_bin.to_numpy()
         folds = np.random.default_rng(13).integers(0, 5, len(pid))
+        # Provenance (2026-10-28 audit): these residuals come from the Stage 10 prompt
+        #   Who are the authors of the paper titled "{title}" ({year})?\nAuthors:
+        # The last title token has NOT seen the year (causal attention), so year / citations / recognition probes there are
+        # clean. The ':' position HAS seen the year, so a year probe at ':' is a leak (positive control only), and
+        # citations / recognition at ':' are also reported after removing what the year alone predicts (year-residualised
+        # targets, and a year-only baseline). In false_0 runs the prompt shows the donor's title but the TARGET paper's year.
+        yr_t = pd.to_numeric(T.year, errors='coerce').to_numpy(float)                   # year shown in the prompt
+        Yd = np.eye(40)[np.clip(((np.nan_to_num(yr_t, nan=2000) - 1820) // 5).astype(int), 0, 39)]   # 5-year bins
+        def resid_on_year(Y):
+            f = np.random.default_rng(13).integers(0, 5, len(Y)); p, _ = ridge_cv(Yd, Y, f); return Y - p
         targets = [('field', 'acc', y_field, None, slice(None)), ('year', 'r2', y_year, None, ~np.isnan(y_year[:, 0])),
-                   ('log citations', 'r2', y_cit, None, slice(None))]
+                   ('log citations', 'r2', y_cit, None, slice(None)), ('log citations | year removed', 'r2', resid_on_year(y_cit), None, slice(None))]
         if cond == 'true': targets.append(('recognised (target vs control)', 'auc_bin', y_rec, bins, keep_r))
+        for name, kind, Y, extra, sel in targets[2:]:
+            Ys = Y[sel]; ex = None if extra is None else extra[sel]; p, _ = ridge_cv(Yd[sel], Ys, folds[sel])
+            rows.append(dict(condition=cond, position='year-only baseline', layer=-1, target=name, metric=kind, value=metric(kind, Ys[:, 0], p[:, 0], ex),
+                             lo=np.nan, hi=np.nan, shuffled=np.nan, alpha=np.nan, n=len(Ys), year_in_context=True, note='predictor = 5-year bin of the year in the prompt'))
         for pos, X, layers in (('title', Xt, list(pl)), ('colon', Xc, list(pl) + [63])):
             for li, l in enumerate(layers):
                 Xl = X[:, li].astype(np.float32)
@@ -143,7 +157,9 @@ def m2(s10):
                     v = metric(kind, yv, pv, ex); lo, hi = boot(kind, yv, pv, ex)
                     sh = np.random.default_rng(li).permutation(len(Ys)); ps, _ = ridge_cv(Xs, Ys[sh], fs)
                     vs = metric(kind, yv[sh], ps if kind == 'acc' else ps[:, 0], ex)
-                    rows.append(dict(condition=cond, position=pos, layer=int(l), target=name, metric=kind, value=v, lo=lo, hi=hi, shuffled=vs, alpha=a, n=len(Ys)))
+                    leak = pos == 'colon' and name == 'year'
+                    rows.append(dict(condition=cond, position=pos, layer=int(l), target=name, metric=kind, value=v, lo=lo, hi=hi, shuffled=vs, alpha=a, n=len(Ys),
+                                     year_in_context=(pos == 'colon'), note='LEAK: year is in the prompt before this position (positive control)' if leak else ''))
                 log('M2', cond, pos, l, ' '.join(f"{r['target'][:6]}={r['value']:.3f}" for r in rows[-len(targets):]))
                 pd.DataFrame(rows).to_csv(S / 'M2_probes.csv', index=False)
     return pd.DataFrame(rows)
@@ -157,7 +173,7 @@ def report(M1, ch, M2):
     L += ['## M1b. Share of name tokens whose top-1 changes when the true title is replaced by false_0', '', ch.pivot(index='layer', columns='readout', values='share_top1_changes_true_vs_false').round(3).to_string(), '']
     L += ['## M2. Linear probes (5-fold CV by paper; 95% bootstrap CI; shuffled-label control)', '']
     for (cond, pos), g in M2.groupby(['condition', 'position']):
-        L += [f'### {cond} title run, {pos} position', '', '| target | ' + ' | '.join(f'L{l}' for l in sorted(g.layer.unique())) + ' |', '|---' * (g.layer.nunique() + 1) + '|']
+        L += [f'### {cond} title run, {pos} position' + (' (year IS in context here)' if pos == 'colon' else (' (year NOT yet seen)' if pos == 'title' else '')), '', '| target | ' + ' | '.join(f'L{l}' for l in sorted(g.layer.unique())) + ' |', '|---' * (g.layer.nunique() + 1) + '|']
         for tname, h in g.groupby('target', sort=False):
             h = h.set_index('layer'); L.append(f'| {tname} ({h.metric.iloc[0]}) | ' + ' | '.join(f'{h.loc[l, "value"]:.3f} (sh {h.loc[l, "shuffled"]:.2f})' for l in sorted(g.layer.unique())) + ' |')
         L.append('')

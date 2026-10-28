@@ -13,7 +13,18 @@ transfer (field, year, citations, author first token), and task decodability. If
 across tasks and splits late, the middle layers encode "this paper"; if it splits early, they encode the task.
 
 Units = 72 Stage 10 shards (128 papers each). Claims, budget and crash policy as in Stage 11/12 (a crash disables
-the unit type and the job continues). Runs as a hand-over from the Stage 12 work loop when Stage 12 has nothing left,
+the unit type and the job continues). X1/X3/X4 (added 2026-10-28, user-approved), on the Stage 11 sample (1,186 papers, 24 shards):
+  X1 xpatch : cross-task patching. Corrupted run = authors prompt with partner B's title (same field, same title token
+              count, no shared surname). At layer l, replace the residuals of ALL title positions with paper A's residuals
+              from (a) the authors prompt, (b) the year prompt, (c) the field prompt. Score A's first author.
+              Same recovery in (a) and (b)/(c) = the title-span state is task-independent paper identity at layer l.
+  X3 para   : para_gen = Qwen3-32B rewrites each title (raw-text greedy, no chat template); automatic checks (no year, no
+              author surname, word overlap, length); para_run opens only after logs/para_ok exists (manual review).
+              para_run: authors prompt with original / paraphrase / partner title; residuals + first-author score.
+  X4 pscope : patchscope. Source = A's authors-prompt residual (no year anywhere) at the last title token or ':' at
+              layer l; injected at the same layer into the placeholder of 'Paper: X\n...' target prompts that ask for
+              the year, the first author, the field. Control source = partner B. Score the true answer tokens.
+Runs as a hand-over from the Stage 12 work loop when Stage 12 has nothing left,
 or in its own job. Any GPU with enough memory for the model works (forward only); outputs record the GPU names.
   python 381_stage13.py dry        # CPU, tiny random Qwen3 with the real tokenizer: positions, shapes, scoring
   python 381_stage13.py work [--max-minutes 80]
@@ -29,9 +40,12 @@ _sp = importlib.util.spec_from_file_location('s11', S11 / '361_stage11.py'); s11
 s10 = s11.s10; R10 = s11.R10
 ROOT = Path('/scratch') / os.environ.get('USER', '') / 'jlens/381_stage13'
 LAYERS = [4, 8, 16, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 62, 63]
+# 2026-10-28 provenance audit: no template contains the year, and all three have the same 9 tokens before the title, so
+# the title occupies the same absolute positions in every task (needed for cross-task patching, X1).
 TASKS = {'authors': ('Who are the authors of the paper titled "{t}"?\nAuthors:', 'authors'),
-         'year': ('In which year was the paper titled "{t}" published?\nYear:', 'year'),
-         'field': ('Which research field does the paper titled "{t}" belong to?\nField:', 'field')}
+         'year': ('In what year was the research paper titled "{t}" published?\nYear:', 'year'),
+         'field': ('In what research field is the paper titled "{t}"?\nField:', 'field')}
+PREFIX_TOKENS = 9
 TASK_NAMES = list(TASKS)
 
 
@@ -39,9 +53,13 @@ def now(): return time.strftime('%Y-%m-%dT%H:%M:%S')
 def log(*x): print(now(), *x, flush=True)
 
 
-def units(n_shards=72):
+def units(n_shards=72, n11=24):
     broken = {f.stem[len('broken_'):] for f in (ROOT / 'logs').glob('broken_*.json')}
-    return [] if 'task' in broken else [('task', None, k) for k in range(n_shards)]
+    U = [('task', None, k) for k in range(n_shards)]
+    if (ROOT / 'config/pairs.parquet').exists():
+        U += [('xpatch', None, k) for k in range(n11)] + [('pscope', None, k) for k in range(n11)] + [('para_gen', None, k) for k in range(n11)]
+        if (ROOT / 'logs/para_ok').exists(): U += [('para_run', None, k) for k in range(n11)]
+    return [u for u in U if u[0] not in broken]
 
 
 def out_path(u, root=None): return (root or ROOT) / 'raw' / u[0] / f'shard_{u[2]:03d}.npz'
@@ -92,6 +110,180 @@ def do_task(C, shard, layers=LAYERS):
                 layers=np.array(layers), tasks=np.array(TASK_NAMES), positions=np.array(['title_last', 'colon']))
 
 
+# ------------------------------------------------------------------ X1 / X3 / X4 (2026-10-28)
+XP_LAYERS = [4, 8, 16, 24, 32, 40, 48]
+PS_LAYERS = [8, 16, 24, 32, 40, 48, 56]
+PS_TARGETS = {'year': 'Paper: X\nThe paper was published in the year', 'author': 'Paper: X\nThe first author of the paper is',
+              'field': 'Paper: X\nResearch field:'}
+PARA_PROMPT = ('Rewrite the title of a research paper using different words while keeping exactly the same meaning. '
+               'Do not add any information.\nOriginal title: {t}\nRewritten title:')
+_CACHE = {}
+
+
+def sample():
+    import pandas as pd
+    if 'smp' not in _CACHE:
+        _CACHE['smp'] = pd.read_parquet(s11.ROOT / 'config/sample.parquet')[['paper_id', 'group', 'citation_bin', 'shard']]
+        _CACHE['pairs'] = pd.read_parquet(ROOT / 'config/pairs.parquet').set_index('paper_id')
+    return _CACHE['smp'], _CACHE['pairs']
+
+
+def title_span(tok, title):
+    full, it, ic = build(tok, title, 'authors', [])
+    return list(range(PREFIX_TOKENS, it + 1)), full
+
+
+def freeze(a=None):
+    """partner B for every Stage 11 sample paper: same field, same number of title tokens, no shared surname, not itself;
+    deterministic (seed 1313). Also checks the provenance conditions of the templates."""
+    import pandas as pd
+    tok = s10.tokenizer(); papers, toks = s11.cohort(); ctx = s11.contexts_of(toks)
+    smp = pd.read_parquet(s11.ROOT / 'config/sample.parquet')
+    for t, (tpl, _) in TASKS.items():
+        pre = tpl.split('{t}')[0]; n = len(tok(pre).input_ids)
+        assert n == PREFIX_TOKENS, (t, n)
+    P = papers.set_index('paper_id'); L = {pid: len(title_span(tok, P.loc[pid].title)[0]) for pid in papers.paper_id}
+    sur = {pid: {a.split()[-1].lower() for a in str(P.loc[pid].authors).split('; ') if a.strip()} for pid in papers.paper_id}
+    rng = np.random.default_rng(1313); rows = []
+    for pid in smp.paper_id:
+        f = P.loc[pid].field
+        cand = [q for q in papers[papers.field == f].paper_id if q != pid and L[q] == L[pid] and not (sur[q] & sur[pid]) and q in ctx]
+        if not cand: continue
+        q = cand[rng.integers(len(cand))]
+        rows.append(dict(paper_id=pid, partner=q, n_title_tokens=L[pid], field=f))
+    d = pd.DataFrame(rows); (ROOT / 'config').mkdir(parents=True, exist_ok=True); d.to_parquet(ROOT / 'config/pairs.parquet', index=False)
+    print(f'pairs: {len(d)} of {len(smp)} sample papers have a same-field, same-length partner without shared surnames')
+
+
+def run_final(C, ids, positions, patch=None, batch=1):
+    """as Stage 11 run_final (block-output replacement at ('at', position) per batch element), for any model depth."""
+    torch = C.torch; model = C.model; handles = []; last = len(model.layers) - 1
+    x = torch.tensor([ids] * batch, device=model.input_device)
+    try:
+        for l, items in (patch or {}).items():
+            def hook(mod, inp, out, items=items):
+                h = out if torch.is_tensor(out) else out[0]
+                for e, n, t in items: h[e, n[1]] = t.to(h.device, h.dtype)
+                return out
+            handles.append(model.layers[l].register_forward_hook(hook))
+        from jlens.hooks import ActivationRecorder
+        with torch.inference_mode(), ActivationRecorder(model.layers, at=[last]) as rec:
+            model.forward(x); h = rec.activations[last][:, positions]
+            return torch.stack([model.unembed(h[i].float()).float() for i in range(batch)])
+    finally:
+        for hd in handles: hd.remove()
+
+
+def score_tf(C, ids_prompt, answer, patch=None, batch=1):
+    """teacher-forced mean log10(1/rank) of the answer tokens after ids_prompt (per batch element)."""
+    torch = C.torch; ids = list(ids_prompt) + list(answer[:-1]); pos = [len(ids_prompt) - 1 + j for j in range(len(answer))]
+    lg = run_final(C, ids, pos, patch=patch, batch=batch); g = torch.tensor(answer, device=lg.device)
+    out = []
+    for b in range(batch):
+        rk = (lg[b] > lg[b].gather(1, g[:, None])).sum(1) + 1; out.append(float((-torch.log10(rk.double())).mean()))
+    return np.array(out)
+
+
+def do_xpatch(C, shard):
+    smp, pairs = sample(); P = C.papers.set_index('paper_id'); rows = []
+    for r in smp[smp.shard == shard].itertuples():
+        if r.paper_id not in pairs.index or r.paper_id not in C.ctx: continue
+        q = pairs.loc[r.paper_id].partner; A, Bt = P.loc[r.paper_id].title, P.loc[q].title
+        name = C.ctx[r.paper_id][0][2]
+        spanA, fullA = title_span(C.tok, A); spanB, fullB = title_span(C.tok, Bt)
+        if spanA != spanB: continue                                            # equal length by construction
+        clean = score_tf(C, fullA, name)[0]; corrupt = score_tf(C, fullB, name)[0]
+        rec = {}
+        for task in TASK_NAMES:
+            ids, _, _ = build(C.tok, A, task, []); acts = C.record(ids, XP_LAYERS)
+            rec[task] = {l: acts[l][spanA[0]:spanA[-1] + 1] for l in XP_LAYERS}
+        row = dict(paper_id=r.paper_id, partner=q, clean=clean, corrupt=corrupt)
+        for task in TASK_NAMES:
+            patch = {}
+            for i, l in enumerate(XP_LAYERS):
+                patch.setdefault(l, []).extend([(i, ('at', p), rec[task][l][j]) for j, p in enumerate(spanA)])
+            v = score_tf(C, fullB, name, patch=patch, batch=len(XP_LAYERS))
+            for i, l in enumerate(XP_LAYERS): row[f'{task}@{l}'] = v[i]
+        rows.append(row)
+    return {k: np.array([x[k] for x in rows]) for k in rows[0]} if rows else dict(paper_id=np.array([]))
+
+
+def ps_answers(C, r, P):
+    yr = C.tok.encode(' ' + str(int(P.loc[r].year)), add_special_tokens=False)
+    au = C.ctx[r][0][2]; fl = C.tok.encode(' ' + str(P.loc[r].field), add_special_tokens=False)
+    return dict(year=yr, author=au, field=fl)
+
+
+def do_pscope(C, shard):
+    smp, pairs = sample(); P = C.papers.set_index('paper_id'); rows = []
+    tgt = {}
+    for k, t in PS_TARGETS.items():
+        e = C.tok(t, return_offsets_mapping=True); ids = list(e.input_ids); x = t.index('X')
+        tgt[k] = (ids, [i for i, (a, b) in enumerate(e.offset_mapping) if a <= x < b][0])
+    for r in smp[smp.shard == shard].itertuples():
+        if r.paper_id not in pairs.index or r.paper_id not in C.ctx: continue
+        q = pairs.loc[r.paper_id].partner; ans = ps_answers(C, r.paper_id, P)
+        src = {}
+        for who, pid in (('self', r.paper_id), ('partner', q)):
+            ids, it, ic = build(C.tok, P.loc[pid].title, 'authors', []); acts = C.record(ids, PS_LAYERS)
+            src[who] = {('title', l): acts[l][it] for l in PS_LAYERS} | {('colon', l): acts[l][ic] for l in PS_LAYERS}
+        row = dict(paper_id=r.paper_id, partner=q)
+        for k, (ids, xi) in tgt.items():
+            row[f'{k}@none'] = score_tf(C, ids, ans[k])[0]
+            for who in ('self', 'partner'):
+                for pos in ('title', 'colon'):
+                    patch = {l: [(i, ('at', xi), src[who][(pos, l)])] for i, l in enumerate(PS_LAYERS)}
+                    v = score_tf(C, ids, ans[k], patch=patch, batch=len(PS_LAYERS))
+                    for i, l in enumerate(PS_LAYERS): row[f'{k}@{who}@{pos}@{l}'] = v[i]
+        rows.append(row)
+    return {k: np.array([x[k] for x in rows]) for k in rows[0]} if rows else dict(paper_id=np.array([]))
+
+
+def para_checks(title, para, year, authors):
+    w = lambda s: {x for x in ''.join(c.lower() if c.isalnum() else ' ' for c in s).split() if len(x) > 3}
+    a, b = w(title), w(para); jac = len(a & b) / max(1, len(a | b))
+    sur = {x.split()[-1].lower() for x in str(authors).split('; ') if x.strip()}
+    ok = bool(para.strip()) and str(int(year)) not in para and not any(s and s in para.lower() for s in sur) and 0.5 <= len(para) / max(1, len(title)) <= 2.0
+    return ok, jac
+
+
+def do_para_gen(C, shard):
+    torch = C.torch; smp, _ = sample(); P = C.papers.set_index('paper_id'); hf = C.model._hf_model; out = []
+    for r in smp[smp.shard == shard].itertuples():
+        t = P.loc[r.paper_id].title; ids = C.tok(PARA_PROMPT.format(t=t), return_tensors='pt').input_ids.to(C.model.input_device)
+        with torch.inference_mode():
+            g = hf.generate(ids, max_new_tokens=60, do_sample=False, pad_token_id=C.tok.eos_token_id)
+        txt = C.tok.decode(g[0, ids.shape[1]:], skip_special_tokens=True).split('\n')[0].strip().strip('"')
+        ok, jac = para_checks(t, txt, P.loc[r.paper_id].year, P.loc[r.paper_id].authors)
+        out.append((r.paper_id, t, txt, ok, jac))
+    return dict(paper_id=np.array([x[0] for x in out]), title=np.array([x[1] for x in out]), paraphrase=np.array([x[2] for x in out]),
+                auto_ok=np.array([x[3] for x in out]), word_jaccard=np.array([x[4] for x in out]))
+
+
+def do_para_run(C, shard):
+    smp, pairs = sample(); P = C.papers.set_index('paper_id'); rows, res = [], []
+    para = {}
+    for f in sorted((ROOT / 'raw/para_gen').glob('shard_*.npz')):
+        z = np.load(f); para |= {p: (t, ok, j) for p, t, ok, j in zip(z['paper_id'], z['paraphrase'], z['auto_ok'], z['word_jaccard'])}
+    for r in smp[smp.shard == shard].itertuples():
+        if r.paper_id not in pairs.index or r.paper_id not in para or not para[r.paper_id][1] or r.paper_id not in C.ctx: continue
+        name = C.ctx[r.paper_id][0][2]; q = pairs.loc[r.paper_id].partner
+        per, sc = [], []
+        for title in (P.loc[r.paper_id].title, para[r.paper_id][0], P.loc[q].title):
+            ids, it, ic = build(C.tok, title, 'authors', []); acts = C.record(ids, LAYERS)
+            per.append(np.stack([np.stack([acts[l][it].float().cpu().numpy(), acts[l][ic].float().cpu().numpy()]) for l in LAYERS]))
+            sc.append(score_tf(C, ids, name)[0])
+        rows.append((r.paper_id, q, *sc, para[r.paper_id][2])); res.append(np.stack(per).astype(np.float16))
+    return dict(paper_id=np.array([x[0] for x in rows]), partner=np.array([x[1] for x in rows]), score_original=np.array([x[2] for x in rows]),
+                score_paraphrase=np.array([x[3] for x in rows]), score_partner=np.array([x[4] for x in rows]), word_jaccard=np.array([x[5] for x in rows]),
+                resid=np.stack(res) if res else np.zeros((0,)), layers=np.array(LAYERS), versions=np.array(['original', 'paraphrase', 'partner']))
+
+
+def compute(C, u):
+    return {'task': lambda: do_task(C, u[2]), 'xpatch': lambda: do_xpatch(C, u[2]), 'pscope': lambda: do_pscope(C, u[2]),
+            'para_gen': lambda: do_para_gen(C, u[2]), 'para_run': lambda: do_para_run(C, u[2])}[u[0]]()
+
+
 class Ctx:
     def __init__(self):
         import torch, pandas as pd
@@ -125,13 +317,12 @@ def work(a):
             d = CL / f'{u[0]}_{u[2]}'; os.rename(d, d.with_name(d.name + f'.released_{me}')); log('time budget reached; released', u); return
         if C is None: C = Ctx()
         t1 = time.monotonic()
-        try: d = do_task(C, u[2])
+        try: d = compute(C, u)
         except Exception as e:
             import traceback; s11.dump(ROOT / f'logs/broken_{u[0]}.json', dict(unit=list(u), error=repr(e), job=me, at=now(), tb=traceback.format_exc()))
             dd = CL / f'{u[0]}_{u[2]}'; os.rename(dd, dd.with_name(dd.name + f'.crashed_{me}')); log('UNIT CRASH (type disabled, job continues):', u, repr(e)); return
         save(u, d, C.env); last = time.monotonic() - t1
-        log(f'stage13 task shard {u[2]:03d} papers={len(d["paper_id"])} {last:.0f}s total={(time.monotonic() - t0) / 60:.1f}min '
-            f'year_nlr={np.nanmean(d["year_nlr"]):.2f} author_first_nlr={np.nanmean(d["author_first_nlr"]):.2f}')
+        log(f'stage13 {u[0]} shard {u[2]:03d} papers={len(d["paper_id"])} {last:.0f}s total={(time.monotonic() - t0) / 60:.1f}min')
 
 
 def dry(a):
@@ -165,13 +356,38 @@ def dry(a):
     full, it, ic = build(tok, C.papers.iloc[0].title, 'year', tok.encode(' 1999', add_special_tokens=False))
     a1 = C.record(full[:ic + 1], [1])[1][ic]; a2 = C.record(full[:-1], [1])[1][ic]
     check('colon residual unaffected by the answer tokens', float((a1 - a2).abs().max()) < 1e-4)
+    # X1 / X3 / X4 on the tiny model (needs config/pairs.parquet from `freeze`)
+    global XP_LAYERS, PS_LAYERS, LAYERS
+    XP_LAYERS, PS_LAYERS, LAYERS = [0, 1], [0, 1], [0, 1]
+    smp, pairs = sample(); sh = int(smp.shard.iloc[0]); C.papers = s11.cohort()[0]
+    _CACHE['smp'] = smp[smp.shard == sh].head(3)
+    x = do_xpatch(C, sh); check('xpatch rows', len(x['paper_id']) >= 1, f"{len(x['paper_id'])} rows")
+    r0 = _CACHE['smp'].iloc[0]; P = C.papers.set_index('paper_id'); q = pairs.loc[r0.paper_id].partner; name = C.ctx[r0.paper_id][0][2]
+    spanB, fullB = title_span(C.tok, P.loc[q].title); actsB = C.record(fullB, [0, 1])
+    ident = score_tf(C, fullB, name, patch={l: [(i, ('at', p_), actsB[l][p_]) for p_ in spanB] for i, l in enumerate([0, 1])}, batch=2)
+    check('xpatch identity patch (B with its own states) == corrupt', np.allclose(ident, x['corrupt'][0], atol=1e-5), f'{ident} vs {x["corrupt"][0]}')
+    full_patch = score_tf(C, fullB, name, patch={1: [(0, ('at', p_), C.record(title_span(C.tok, P.loc[r0.paper_id].title)[1] + list(name[:-1]), [1])[1][p_]) for p_ in range(len(fullB) + len(name) - 1)]})
+    check('patching every position at the last layer with the clean run == clean', np.allclose(full_patch, x['clean'][0], atol=1e-5), f'{full_patch} vs {x["clean"][0]}')
+    check('xpatch all task columns', all(f'{t}@{l}' in x for t in TASK_NAMES for l in XP_LAYERS))
+    ps = do_pscope(C, sh); check('pscope rows', len(ps['paper_id']) >= 1 and 'year@self@colon@1' in ps)
+    check('pscope patched differs from none', any(abs(ps['author@self@title@0'][i] - ps['author@none'][i]) > 0 for i in range(len(ps['paper_id']))))
+    for k, t in PS_TARGETS.items():
+        e = C.tok(t, return_offsets_mapping=True); xi = [i for i, (a_, b_) in enumerate(e.offset_mapping) if a_ <= t.index('X') < b_]
+        check(f'pscope placeholder found in {k} prompt', len(xi) == 1 and C.tok.decode([e.input_ids[xi[0]]]).strip() == 'X')
+    import tempfile; global ROOT
+    old_root = ROOT; ROOT = Path(tempfile.mkdtemp())
+    g = do_para_gen(C, sh); check('para_gen rows', len(g['paper_id']) == len(_CACHE['smp']))
+    check('para checks reject year / surname', not para_checks('A study of x', 'A 1999 study', 1999, 'J. Smith')[0] and not para_checks('A study of x', 'Smith study', 2000, 'J. Smith')[0] and para_checks('A study of mice', 'Research on mice', 2000, 'J. Smith')[0])
+    (ROOT / 'raw/para_gen').mkdir(parents=True); g['auto_ok'][:] = True; np.savez(ROOT / f'raw/para_gen/shard_{sh:03d}.npz', **g)
+    pr = do_para_run(C, sh); check('para_run rows', len(pr['paper_id']) >= 1 and pr['resid'].shape[1:3] == (3, 2), str(pr['resid'].shape))
+    ROOT = old_root
     print(f'DRY {"PASS" if all(ok) else "FAIL"}: {sum(ok)}/{len(ok)}'); sys.exit(0 if all(ok) else 1)
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('command', choices=['dry', 'work', 'remaining']); p.add_argument('--max-minutes', type=float, default=80)
-    a = p.parse_args(); {'dry': dry, 'work': work, 'remaining': remaining}[a.command](a)
+    p.add_argument('command', choices=['dry', 'freeze', 'work', 'remaining']); p.add_argument('--max-minutes', type=float, default=80)
+    a = p.parse_args(); {'dry': dry, 'freeze': freeze, 'work': work, 'remaining': remaining}[a.command](a)
 
 
 if __name__ == '__main__':
