@@ -262,3 +262,45 @@ for k, (c, lab, col) in enumerate(ctrls):
 ax.axhline(0, color=MUTE, lw=1.2, ls='--'); ax.set_xticks(xs); ax.set_xticklabels([f'L{l}' for l in lays]); ax.set_ylabel('title-specific signal at the last title token')
 ax.set_ylim(-0.015, 0.135); ax.legend(loc='upper left', fontsize=12, ncol=2)
 save(fig, 'c16_probe_controls')
+
+# C17 R0 / R1 stratified: three views of target - control (left), Stage 11 patching by recall level (right)
+S = R / 'summary_r0r1'
+views = (('tc_R0', 'R0 view: A - B', TGT, '-o'), ('tc_R1target_vs_R0control', 'R1 view: C - B', PUR, '-^'), ('tc_pooled', 'pooled (as before)', MUTE, '--s'))
+fig, axs = plt.subplots(1, 2, figsize=(10.6, 5.0))
+ax = axs[0]
+for f, lab, col, sty in views:
+    t = pd.read_csv(S / f'{f}.csv'); d = t[(t.readout == 'logit') & (t.layer >= 40)].sort_values('layer'); o = t[t.readout == 'final'].iloc[0]
+    ax.fill_between(d.layer, d.spec_mean_nlr_lo, d.spec_mean_nlr_hi, color=col, alpha=.10, lw=0)
+    ax.plot(d.layer, d.spec_mean_nlr_diff, sty, color=col, lw=2.3, ms=4.5, label=lab)
+    ax.errorbar([63.4], [o.spec_mean_nlr_diff], yerr=[[o.spec_mean_nlr_diff - o.spec_mean_nlr_lo], [o.spec_mean_nlr_hi - o.spec_mean_nlr_diff]], fmt='D', color=col, ms=7, capsize=3)
+zero(ax); ax.set_xticks([40, 48, 52, 56, 60, 63]); ax.set_xticklabels(['40', '48', '52', '56', '60', 'out']); ax.set_xlabel('layer (logit lens; diamonds = output)')
+ax.set_title('target - control, title-specific, within bin'); ax.set_ylabel('log10(1 / rank)'); ax.legend(loc='upper left', fontsize=14)
+ax = axs[1]
+c = pd.read_csv(Path('/scratch/zhang.zhiqi2/jlens/361_stage11/summary_r0r1/stage11_curves_by_recall.csv')); c = c[c.exp == 'E1']
+for v, col, sty in (('A target R0', TGT, '-o'), ('C target R1', PUR, '-^'), ('B control R0', CTL, '-s')):
+    d = c[c.view == v].sort_values('layer')
+    ax.fill_between(d.layer, d.lo, d.hi, color=col, alpha=.10, lw=0)
+    ax.plot(d.layer, d.value, sty, color=col, lw=2.3, ms=4.5, label=f'{v} (n={int(d.n.iloc[0])})')
+ax.set_ylim(-0.05, 1.08); ax.set_xticks([24, 32, 40, 48, 52, 56, 62]); ax.set_xlabel('layer'); ax.axhline(1, color=MUTE, lw=1, ls=':', zorder=0)
+ax.set_title('Stage 11 patching: share of the gap recovered'); ax.legend(loc='lower right', fontsize=13)
+save(fig, 'c17_r0_r1')
+
+# C18 inside R1 papers: authors the open answer got right vs missed, paired within paper
+pa = pd.read_csv(S / 'R1_author_written_minus_missed.csv'); pa = pa[~pa.excl_first_author]
+fig, axs = plt.subplots(1, 2, figsize=(10.6, 5.0))
+ax = axs[0]
+for r in ('logit', 'jlens_public'):
+    lab, col = LENS[r]; d = pa[(pa.readout == r) & (pa.layer >= 40)].sort_values('layer')
+    ax.fill_between(d.layer, d.spec_lo, d.spec_hi, color=col, alpha=.12, lw=0)
+    ax.plot(d.layer, d.spec_diff, '-o', color=col, lw=2.3, ms=4.5, label=lab)
+o = pa[pa.readout == 'final'].iloc[0]
+ax.errorbar([63.4], [o.spec_diff], yerr=[[o.spec_diff - o.spec_lo], [o.spec_hi - o.spec_diff]], fmt='D', color=INK, ms=7, capsize=3, label='output')
+zero(ax); ax.set_xticks([40, 48, 52, 56, 60, 63]); ax.set_xticklabels(['40', '48', '52', '56', '60', 'out']); ax.set_xlabel('layer')
+ax.set_title('title-specific: written - missed author'); ax.set_ylabel('log10(1 / rank)'); ax.legend(loc='upper left', fontsize=14)
+ax = axs[1]
+d = pa[pa.readout == 'logit'].sort_values('layer'); d = d[d.layer >= 40]
+ax.plot(d.layer, d.spec_hit, '-o', color=TGT, lw=2.3, ms=4.5, label='written correctly')
+ax.plot(d.layer, d.spec_miss, '-s', color=CTL, lw=2.3, ms=4.5, label='missed')
+ax.plot(d.layer, d.delete_diff, '--', color=MUTE, lw=2, label='no title: written - missed (prior)')
+zero(ax); ax.set_xticks([40, 48, 52, 56, 60, 62]); ax.set_xlabel('layer (logit lens)'); ax.set_title('title-specific signal, logit lens'); ax.legend(loc='upper left', fontsize=13)
+save(fig, 'c18_r1_authors')

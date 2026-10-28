@@ -1,0 +1,31 @@
+<h2>总览：一个问题，四条论证线</h2>
+<p>研究问题：Qwen3-32B 写不全一篇论文的作者、却能在多选题里认出真名单时，论文的作者信息在网络的哪一层形成、经过哪些位置、能被哪种读出工具看到。Stage 1–9 在 20–200 篇论文上建立信号并逐一排除替代解释；Stage 10–11 在全部 9,108 篇论文上逐层定位，并用替换和阻断做干预。</p>
+<div class="tw"><table><thead><tr><th>线</th><th>问题</th><th>Stage 1–9</th><th>Stage 10–11</th></tr></thead><tbody>
+<tr><td>A 这篇论文？</td><td>信号是否针对这篇论文，而不是名字好猜</td><td>5、7.2、7.3、8</td><td>10 标题特异信号；11 名字先验、probe 对照；R0/R1 分层</td></tr>
+<tr><td>B 读出工具</td><td>每种读出能看到什么</td><td>3、7.4、8、9</td><td>10 三种 Jacobian lens 与 logit lens；11 线性 probe</td></tr>
+<tr><td>C 哪一层</td><td>信号何时出现、何时被使用</td><td>4、7.2、7.3、8（L56）</td><td>10 细层 L50–61；11 替换与阻断</td></tr>
+<tr><td>D 哪个 token</td><td>名字或提示词的哪一部分带有信号</td><td>6、7.1</td><td>10 名字格式与 token 角色；11 标题后 token 与作者链</td></tr>
+</tbody></table></div>
+
+<h3>主要结论</h3>
+<ol>
+<li><b>真标题有帮助，而且是针对这篇论文的。</b>小样本：L56 真标题比错误标题高 +9.3 pp（Pilot50），200 篇新论文上 +5.2 pp。全量：真标题减 5 个匹配假标题的“标题特异信号”在 L62 约 0.44；名字先验只占目标−对照差的约 1/3，在姓的第一个 token 上约为 0。</li>
+<li><b>“认得出”组的优势是真的，但只出现在最后几层。</b>小样本的 A−B 不确定（依赖少数几对）。全量在引用档内比较：中间层约为 0，输出处 +0.21；两组都只用 R0 时 +0.20，结论不变（第三部分）。</li>
+<li><b>读得早，说得晚。</b>替换实验：把真标题运行中标题之后的 token 换进假标题运行，L48 已恢复 83%，L52 起 100%；从 L52 起阻断对标题的注意力已没有影响。标题信息在 L24–50 被读取，到 L57–61 才在名字位置被 lens 读出。</li>
+<li><b>Jacobian lens 没有显示额外的论文信息。</b>小样本中 J-Lens 相对 Vanilla 没有增量；全量中它在中间层多读出的是“名字形状”，不区分论文，也不偏向目标组。</li>
+<li><b>第一个 token 与名字其余部分的差别由名字格式解释</b>：首字母开头时，姓落在后续 token 上；完整名开头时名本身就带信号。</li>
+<li><b>写对了部分作者的 R1 论文最强，但时间点相同</b>：同样只在最后几层领先，中间层没有提前（第三部分）。</li>
+</ol>
+
+<h3>小样本与全量对照</h3>
+<div class="tw"><table><thead><tr><th>发现</th><th>Stage 1–9（20–200 篇）</th><th>Stage 10–11（9,108 篇）</th><th>判断</th></tr></thead><tbody>
+<tr><td>真标题有帮助</td><td>Pilot +9.3 pp，新 200 篇 +5.2 pp</td><td>L62 标题特异信号约 0.44</td><td class="ok">确认</td></tr>
+<tr><td>认得出 &gt; 认不出</td><td>不确定，依赖少数几对</td><td>输出 +0.21，中间层约 0</td><td class="ok">确认，但只在最后几层</td></tr>
+<tr><td>同一口径（只用 R0）</td><td>A vs B（都是 R0）</td><td>A vs B：输出 +0.199 [0.187, 0.212]，各层形状与合并口径相同</td><td class="ok">两阶段可比，结论不变</td></tr>
+<tr><td>关键层</td><td>L56</td><td>L56 开始，L57–61 上升最快；标题在 L24–50 被读取</td><td class="ref">细化</td></tr>
+<tr><td>J-Lens vs Vanilla</td><td>无增量</td><td>中间层多读出名字形状，不读出论文身份</td><td class="ok">一致</td></tr>
+<tr><td>第一个 token vs 后续</td><td>差异在后续 token</td><td>由首字母 / 完整名两种格式解释</td><td class="ref">解释</td></tr>
+<tr><td>引用数</td><td>低−高不确定</td><td>随引用单调上升，ρ = 0.45</td><td class="ref">解决</td></tr>
+<tr><td>lens 稳定性</td><td>一次 split-half；Stage 9 只完成 Fit A</td><td>三种 Jacobian lens 结论一致</td><td class="open">仍需核实</td></tr>
+</tbody></table></div>
+<div class="bx"><b>分组怎么对应</b>Stage 1–9 的 A/B/C/D 与 Stage 10–11 的 target/control 来自同一个标注包：target = A + C（4,621），control = B + D（2,220）。A = 认得出·R0（4,110），B = 认不出·R0（2,186），C = 认得出·R1（511），D = 认不出·R1（34）。R0 = 开放回答一个真作者都没写对；R1 = 写对了一部分但 HR2 &gt; 0.5。</div>

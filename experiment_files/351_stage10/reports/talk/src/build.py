@@ -9,6 +9,7 @@ from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 
 HERE = Path(__file__).parent; CH = HERE / 'charts'
 INK, TGT, CTL, MUTE, NOTE, GRN = RGBColor(0x2B, 0x2D, 0x42), RGBColor(0xE0, 0x7A, 0x2F), RGBColor(0x3A, 0x6E, 0xA5), RGBColor(0x6E, 0x70, 0x80), RGBColor(0xFF, 0xF1, 0xA8), RGBColor(0x3C, 0x8D, 0x5A)
+PUR = RGBColor(0x8A, 0x4F, 0xA3)
 TITLE_F, BODY_F = 'Caveat', 'Patrick Hand'
 
 # grid-paper background
@@ -277,11 +278,23 @@ text(s, 0.9, 1.6, 6.0, 4.8, [[B('Caveats')], [T('- Readout is correlational; pat
                             [T('- Groups are model-specific; low-citation "recognition" is near chance')], [T('- Few control papers above 1,000 citations')], [T('- Label run settings (max length, thinking mode) not in the package')]], size=21, space=10)
 note(s, 7.4, 1.7, 5.1, 3.9, [[B('Stage 12 (running)')], [T('1. Patch single positions (quote, year, "Authors:") - done, analysing')], [T('2. Attention vs MLP patching in L8-L56')], [T('3. A lens fitted on author prompts, read at L24-L62')], [T('4. Name-prior baselines: distractor lists without a title; a prompt with no paper')]], rot=1.5, size=19)
 
+# R0/R1 a: three views -----------------------------------------------------------------
+s = new_slide('Is the target advantage just the R1 papers? Target pools R0 papers, where the open answer named no true author, and R1 papers, where it named a few; 11 percent of target papers are R1 but only 1.5 percent of controls. Left: three views of target minus control within citation bins. R0 only (groups A versus B, the Stage 1 to 9 comparison) gives +0.199 at the output against +0.207 pooled, and the curve has the same shape. R1 target papers against R0 controls give +0.37: they know their papers better, but they also only pull ahead after L52. Control R1 has only 34 papers, so it is described, not tested. Right: Stage 11 patching by recall level; R1 targets (36 papers) recover a little later but are complete by L52. The title-position probe gives the same picture: R0 view +0.02 to +0.04. Conclusion unchanged.')
+title(s, 'Is it just the R1 papers? No.', 'R0 = no true author written · R1 = a few written · A/B/C/D = target/control x R0/R1')
+chart(s, 'c17_r0_r1', 0.5, 1.6, 9.2)
+note(s, 9.95, 1.9, 2.9, 4.4, [[B('R0 only (A - B):', TGT)], [T('output +0.199 vs +0.207, same shape')], [B('R1 (C - B):', PUR), T(' +0.37, also late')], [T('C - A within target: +0.11, from L56')], [B('patching:'), T(' R1 a bit later, done by L52')]], rot=1.5, size=17)
+
+# R0/R1 b: written vs missed authors (appendix) -----------------------------------------------------------------
+s = new_slide('Inside R1 papers the open answer got some authors right and missed others. The label package only counts matches, so we rebuilt which authors matched; the rebuilt count equals the package count for 99.3 percent of R1 papers. In 495 papers with both kinds, the authors the model wrote correctly carry more title-specific signal at the output, +0.20, and the same holds without first authors. But the difference is zero up to L52 and grows from L54: even for authors the model actually produces, the paper-specific signal appears only in the last layers. They are also somewhat easier to guess without a title, +0.10.')
+title(s, 'Authors it wrote vs authors it missed', 'inside 495 R1 papers · paired within paper · 95% CI')
+chart(s, 'c18_r1_authors', 0.5, 1.6, 9.2)
+note(s, 9.95, 1.9, 2.9, 4.0, [[T('written - missed, output: '), B('+0.20', TGT)], [T('~0 up to L52, grows from '), B('L54')], [T('no title (prior): +0.10')], [T('same without first authors')]], rot=-1.5, size=18)
+
 # stage labels (top right), by build index; none on the title, conclusions and appendix divider
 TAGS = ['', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10',
-        'Stage 11', 'Stage 11', 'Stage 11', 'Stage 11', 'Stage 12', 'Stage 12', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10',
-        '', 'Stage 12 plan']
-TAG_COL = {'Stage 10': CTL, 'Stage 11': TGT, 'Stage 12': GRN, 'Stage 12 plan': GRN}
+        'Stage 11', 'Stage 11', 'Stage 11', 'Stage 11', 'Stage 11', 'Stage 12', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10',
+        '', 'Stage 12 plan', 'Stage 10-11', 'Stage 10-11']
+TAG_COL = {'Stage 10-11': PUR, 'Stage 10': CTL, 'Stage 11': TGT, 'Stage 12': GRN, 'Stage 12 plan': GRN}
 for sl, tg in zip(prs.slides, TAGS):
     if not tg: continue
     sh = sl.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(11.2), Inches(0.2), Inches(1.85), Inches(0.42)); sh.adjustments[0] = 0.3
@@ -296,8 +309,8 @@ s = new_slide('Appendix: backup slides for questions - checks, readout levels, t
 text(s, 0.9, 2.6, 11.5, 1.2, 'Appendix', size=72, font=TITLE_F, bold=True)
 text(s, 0.95, 3.9, 11, 0.8, 'checks · readout levels · author chain · probe controls · lenses · citations · name formats', size=24, color=MUTE)
 
-# order: main line (14 slides), then the appendix. Indices are build order.
-ORDER = [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 14, 22, 23,   24,   5, 6, 13, 15, 16, 17, 18, 19, 20, 21]
+# order: main line (15 slides), then the appendix. Indices are build order.
+ORDER = [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 14, 24, 22, 23,   26,   5, 6, 13, 25, 15, 16, 17, 18, 19, 20, 21]
 lst = prs.slides._sldIdLst; ids = list(lst); assert sorted(ORDER) == list(range(len(ids))), (len(ids), ORDER)
 for e in ids: lst.remove(e)
 for i in ORDER: lst.append(ids[i])

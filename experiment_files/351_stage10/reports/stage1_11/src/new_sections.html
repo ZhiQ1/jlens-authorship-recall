@@ -1,0 +1,63 @@
+<section id="p3-r0r1"><h2><span class="st">Stage 10–11</span><span class="ln lA">A 这篇论文？</span> R0/R1 分层分析</h2>
+<p>为什么要做：Stage 1–9 只比较 A（认得出·R0）和 B（认不出·R0），两组都一个作者也没写对；Stage 10–11 的 target/control 把 R0 和 R1（写对了一部分，但 HR2 &gt; 0.5）合在一起。R1 在 target 中占 11%（C = 511 篇），在 control 中只占 1.5%（D = 34 篇），所以 target 的优势可能部分来自“本来就能写出部分作者”的论文。这里用 Stage 10 和 Stage 11 已有的结果重新分层，没有新跑 GPU。</p>
+<div class="tw"><table><thead><tr><th></th><th>认得出（target）</th><th>认不出（control）</th><th>合计</th></tr></thead><tbody>
+<tr><td>R0：一个真作者都没写对</td><td>A = 4,110</td><td>B = 2,186</td><td>6,296</td></tr>
+<tr><td>R1：写对一部分（HR2 &gt; 0.5）</td><td>C = 511</td><td>D = 34</td><td>545</td></tr>
+<tr><td>Stage 11 样本（替换、阻断）</td><td>A 557 · C 36</td><td>B 588 · D 5</td><td>1,186</td></tr>
+</tbody></table></div>
+<p><b>方法。</b>指标与 Stage 10 主分析相同：标题特异信号 = 真标题 − 5 个假标题平均，单位 log10(1/名次)，先对论文内的名字 token 平均。组间差只在同一引用档内比较，用冻结脚本的 <span class="mono">stratified_diff</span>（档内两组都 ≥ 30 篇，按 n<sub>a</sub>n<sub>b</sub>/(n<sub>a</sub>+n<sub>b</sub>) 加权；R1 相关比较因为样本少放宽到每格 ≥ 10 篇），bootstrap 2,000 次。Stage 11 的替换和阻断曲线、标题位置 probe 直接按分组重新汇总，probe 的预测与 Stage 11 完全相同（同样的 5 折和正则化选择）。</p>
+
+<h3>1. 主分析只用 R0：A − B</h3>
+<p>结论不变。输出处的目标−对照标题特异差从合并口径的 +0.207 变为 <b>+0.199 [0.187, 0.212]</b>；L24–L48 仍约为 0（Jacobian lens 在 L48–L52 略负），从 L52 前后开始上升，L57–L61 最快，L62 为 +0.22。曲线形状和合并口径几乎重合。</p>
+<div class="tw"><table><thead><tr><th>标题特异 目标−对照（引用档内）</th><th>L24</th><th>L48</th><th>L52</th><th>L56</th><th>L58</th><th>L60</th><th>L62</th><th>输出</th></tr></thead><tbody>
+<tr><td><b>R0 口径（A − B）</b>，logit</td><td>+0.007</td><td>+0.003</td><td>+0.018</td><td>+0.063</td><td>+0.110</td><td>+0.170</td><td>+0.220 [0.205, 0.236]</td><td><b>+0.199</b> [0.187, 0.212]</td></tr>
+<tr><td>R0 口径，public lens</td><td>−0.001</td><td>−0.039</td><td>−0.038</td><td>+0.009</td><td>+0.053</td><td>+0.138</td><td>+0.221 [0.206, 0.236]</td><td></td></tr>
+<tr><td><b>R1 口径（C − B）</b>，logit</td><td>+0.010</td><td>+0.011</td><td>+0.030</td><td>+0.112</td><td>+0.204</td><td>+0.356</td><td>+0.390 [0.349, 0.432]</td><td><b>+0.372</b> [0.342, 0.405]</td></tr>
+<tr><td>R1 口径，public lens</td><td>−0.009</td><td>−0.162</td><td>−0.166</td><td>−0.073</td><td>+0.035</td><td>+0.253</td><td>+0.399 [0.361, 0.439]</td><td></td></tr>
+<tr><td><b>合并口径（target − control）</b>，logit</td><td>+0.007</td><td>+0.004</td><td>+0.018</td><td>+0.065</td><td>+0.114</td><td>+0.178</td><td>+0.229 [0.212, 0.245]</td><td><b>+0.207</b> [0.195, 0.220]</td></tr>
+<tr><td>合并口径，public lens</td><td>−0.002</td><td>−0.044</td><td>−0.043</td><td>+0.007</td><td>+0.054</td><td>+0.145</td><td>+0.230 [0.216, 0.246]</td><td></td></tr>
+</tbody></table></div>
+<p class="note">可比较的论文数：R0 口径 A 3,423 / B 2,151；R1 口径 C 391 / B 885；合并口径 3,734 / 2,182。R1 口径用 R0 对照组作参照，因为 D 只有 34 篇，无法在引用档内比较。</p>
+<p>Stage 11 只用 R0 后，替换和阻断曲线也几乎不变：替换“标题之后的 token”恢复比例，A / B 在 L40 为 0.28 / 0.34，L48 为 0.81 / 0.87，L52 起 0.99–1.02；从 L0 阻断对标题的注意力损失 0.84 / 0.81，从 L52 起约为 0。标题位置的线性 probe：R0 口径的目标−对照为 +0.02 到 +0.04（L16 +0.018，L32 +0.034，L56 +0.038，置信区间都在 0 以上），与合并口径相同。</p>
+
+<h3>2. 认得出的论文里：R1 vs R0（C vs A）</h3>
+<p>R1 论文确实更强，但强在最后几层，时间点与 R0 相同。在目标组内部、引用档内比较（C 485 / A 3,204）：</p>
+<div class="tw"><table><thead><tr><th>C − A（引用档内）</th><th>L48</th><th>L52</th><th>L56</th><th>L58</th><th>L60</th><th>L62</th><th>输出</th></tr></thead><tbody>
+<tr><td>标题特异，logit</td><td>−0.003</td><td>+0.012</td><td>+0.042 [0.017, 0.067]</td><td>+0.070</td><td>+0.133</td><td>+0.096</td><td><b>+0.110</b> [0.086, 0.133]</td></tr>
+<tr><td>标题特异，public lens</td><td>−0.085</td><td>−0.064</td><td>−0.046</td><td>−0.019</td><td>+0.066</td><td>+0.103</td><td></td></tr>
+<tr><td>只看姓的第一个 token，标题特异</td><td>−0.009</td><td></td><td>+0.147</td><td></td><td></td><td>+0.321</td><td>+0.304 [0.232, 0.372]</td></tr>
+<tr><td>不给标题（名字先验）</td><td>+0.015</td><td></td><td>+0.046</td><td></td><td></td><td>+0.040</td><td>+0.021 [−0.001, 0.044]</td></tr>
+</tbody></table></div>
+<p>要点：C 比 A 多出的部分几乎都是标题特异的（名字先验的差在输出处只有 +0.02，置信区间含 0），集中在姓上；中间层没有领先，Jacobian lens 在 L48–L56 甚至为负。Stage 11 中 C（36 篇）的替换恢复稍晚：L40 恢复 0.16 [0.12, 0.21]，A 为 0.28；L48 为 0.72 / 0.81；到 L52 两者都恢复 0.97 以上。从 L48 起阻断，C 仍损失 0.11，A 为 0.06。也就是说，R1 论文的标题信息被读取得略晚一点，但完成时间相同。C 只有 36 篇，这一点只作描述。</p>
+
+<h3>3. control R1（D，34 篇）：只做描述</h3>
+<div class="tw"><table><thead><tr><th>分组（不做引用档调整）</th><th>logit L56</th><th>logit L60</th><th>logit L62</th><th>输出</th></tr></thead><tbody>
+<tr><td>A 认得出·R0（4,110）</td><td>+0.177</td><td>+0.470</td><td>+0.563</td><td>+0.463 [0.455, 0.470]</td></tr>
+<tr><td>B 认不出·R0（2,186）</td><td>+0.101</td><td>+0.231</td><td>+0.251</td><td>+0.198 [0.190, 0.207]</td></tr>
+<tr><td>C 认得出·R1（511）</td><td>+0.233</td><td>+0.663</td><td>+0.737</td><td>+0.627 [0.606, 0.649]</td></tr>
+<tr><td>D 认不出·R1（34）</td><td>+0.249</td><td>+0.395</td><td>+0.324</td><td>+0.279 [0.224, 0.332]</td></tr>
+</tbody></table></div>
+<p>D 介于 B 和 A 之间：能写对部分作者但认不出整份名单的论文，标题特异信号比 B 略高，远低于 A 和 C。D 在 Stage 11 样本里只有 5 篇，不做分析。</p>
+
+<h3>4. R1 论文内部：写对的作者 vs 没写对的作者</h3>
+<p><b>标注包里没有这项信息。</b>开放回答的结果（<span class="mono">open_results.jsonl</span>）只记录每篇论文写对的人数 m，没有记录是哪几位作者。我们按“姓 + 名的首字母，先按名在前、再按姓在前（如 “Sakaguchi Shimon”“Tounsi A”），一一对应”重建了匹配。重建出的人数与标注包的 m 一致的比例：R0 99.9%、R1 99.3%、R2 98.1%。只使用一致的论文：R1 的 target/control 论文 541 篇，打分的作者 2,945 位（其中 701 位写对）；同时有写对和没写对作者的论文 495 篇。写对的作者有 29% 是第一作者（全部作者中第一作者占 18%），所以另做了去掉第一作者的版本。</p>
+<p>比较方式：在同一篇论文内，写对的作者平均减没写对的作者平均，再对论文平均，bootstrap 重抽论文。</p>
+<div class="tw"><table><thead><tr><th>写对 − 没写对（论文内配对，495 篇）</th><th>L48</th><th>L52</th><th>L54</th><th>L56</th><th>L58</th><th>L60</th><th>L61</th><th>输出</th></tr></thead><tbody>
+<tr><td>标题特异，logit</td><td>−0.007</td><td>+0.019</td><td>+0.046</td><td>+0.136</td><td>+0.217</td><td>+0.314</td><td>+0.349</td><td><b>+0.199</b> [0.168, 0.232]</td></tr>
+<tr><td>标题特异，public lens</td><td>−0.003</td><td>+0.018</td><td>+0.038</td><td>+0.120</td><td>+0.191</td><td>+0.276</td><td>+0.276</td><td></td></tr>
+<tr><td>去掉第一作者（333 篇），logit</td><td>−0.008</td><td>+0.022</td><td>+0.046</td><td>+0.140</td><td>+0.222</td><td>+0.297</td><td>+0.338</td><td>+0.204 [0.165, 0.241]</td></tr>
+<tr><td>不给标题（名字先验），logit</td><td>−0.011</td><td>+0.006</td><td>+0.038</td><td>+0.062</td><td>+0.094</td><td>+0.137</td><td>+0.144</td><td>+0.097 [0.060, 0.134]</td></tr>
+</tbody></table></div>
+<p>结果：模型在开放回答里真正写出来的作者，输出处的标题特异信号比同一篇论文里没写出的作者高 +0.20；但这个差在 L52 之前约为 0，从 L54 开始上升，L57–L61 最快，与全组的时间点完全相同。写对的作者名字本身也更好猜（不给标题时输出处 +0.10；public lens 在 L24–L48 也有 +0.05 到 +0.10），但这是名字先验，不随标题变化；减去假标题后的标题特异差在中间层约为 0。所以即使是模型确实能说出来的作者，论文特异的作者信息也只在最后几层出现。</p>
+
+<h3>5. 三种口径并列：结论变了吗？</h3>
+<div class="tw"><table><thead><tr><th>问题</th><th>R0 口径（A − B）</th><th>R1 口径（C − B）</th><th>合并口径（target − control）</th><th>结论</th></tr></thead><tbody>
+<tr><td>中间层（L24–L48）有没有目标优势</td><td>没有（logit ≈ 0，Jacobian 略负）</td><td>没有（Jacobian 在 L48–56 更负）</td><td>没有</td><td>不变</td></tr>
+<tr><td>优势从哪层开始</td><td>L52 前后，L57–61 最快</td><td>L52 前后，L56–60 最快</td><td>L52 前后，L57–61 最快</td><td>不变</td></tr>
+<tr><td>输出处大小</td><td>+0.199 [0.187, 0.212]</td><td>+0.372 [0.342, 0.405]</td><td>+0.207 [0.195, 0.220]</td><td>R1 更大，合并口径几乎等于 R0</td></tr>
+<tr><td>标题在哪几层被读取（替换）</td><td>L24–L50，L52 完成</td><td>同样 L52 完成，L40–48 略慢（n = 36）</td><td>L24–L50，L52 完成</td><td>不变</td></tr>
+<tr><td>标题位置 probe 的目标优势</td><td>+0.02 到 +0.04</td><td>+0.02 到 +0.05（区间较宽）</td><td>+0.02 到 +0.04</td><td>不变</td></tr>
+</tbody></table></div>
+<div class="bx ok"><b>结论</b>只用和 Stage 1–9 相同的 A/B 分组（都是 R0），所有结论都成立：目标组的优势真实存在、几乎全部是标题特异的、只在最后几层出现。R1 论文让优势更大，但不改变时间点；在 R1 论文内部，模型写对的作者也是在最后几层才领先。之前“合并 R0 与 R1 可能夸大目标组优势”的担心可以排除：合并口径与 R0 口径只差约 0.01。</div>
+<p class="note">代码：<span class="mono">~/jlens_work/10_stage10/stage10_extra_r0r1.py</span>（CPU 作业 11429580，复用冻结的 <span class="mono">351_stage10.py stratified_diff</span> 和 <span class="mono">stage11_analyze.py</span>）。结果：<span class="mono">/scratch/zhang.zhiqi2/jlens/351_stage10/summary_r0r1/*.csv</span>、<span class="mono">R1_author_hits.csv</span>、<span class="mono">R1_author_scores.parquet</span>；<span class="mono">/scratch/zhang.zhiqi2/jlens/361_stage11/summary_r0r1/stage11_curves_by_recall.csv</span>、<span class="mono">E4b_probe_by_recall.csv</span>；报告 <span class="mono">351_stage10/reports/r0_r1_analysis.md</span>。</p>
+</section>
