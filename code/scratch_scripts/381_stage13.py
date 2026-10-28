@@ -13,7 +13,9 @@ transfer (field, year, citations, author first token), and task decodability. If
 across tasks and splits late, the middle layers encode "this paper"; if it splits early, they encode the task.
 
 Units = 72 Stage 10 shards (128 papers each). Claims, budget and crash policy as in Stage 11/12 (a crash disables
-the unit type and the job continues). X1/X3/X4 (added 2026-10-28, user-approved), on the Stage 11 sample (1,186 papers, 24 shards):
+the unit type and the job continues). X6 / X7 (Stage 11 review, 2026-10-28; X6 runs first): X6 xf_patch = Stage 11 E1 with false_1..false_4 (plus false_0 shard 0
+as an exact reproduction check); X7 ko_false = the Stage 11 knockout applied to the false_0 run (off-distribution control).
+X1/X3/X4 (added 2026-10-28, user-approved), on the Stage 11 sample (1,186 papers, 24 shards):
   X1 xpatch : cross-task patching (+ random control: the authors-run state of an unrelated paper C of the same title
               length; tune/test split by paper - layers chosen on tune, reported on test). Corrupted run = authors prompt with partner B's title (same field, same title token
               count, no shared surname). At layer l, replace the residuals of ALL title positions with paper A's residuals
@@ -56,14 +58,18 @@ def log(*x): print(now(), *x, flush=True)
 
 def units(n_shards=72, n11=24):
     broken = {f.stem[len('broken_'):] for f in (ROOT / 'logs').glob('broken_*.json')}
-    U = [('task', None, k) for k in range(n_shards)]
+    # 2026-10-28 priority (user): X6 first (it strengthens the main Stage 11 result), X7 last.
+    U = [('xf_patch', 'false_0', 0)] + [('xf_patch', f'false_{j}', k) for j in (1, 2, 3, 4) for k in range(n11)]
+    U += [('task', None, k) for k in range(n_shards)]
     if (ROOT / 'config/pairs.parquet').exists():
         U += [('xpatch', None, k) for k in range(n11)] + [('pscope', None, k) for k in range(n11)] + [('para_gen', None, k) for k in range(n11)]
         if (ROOT / 'logs/para_ok').exists(): U += [('para_run', None, k) for k in range(n11)]
+    U += [('ko_false', 'false_0', k) for k in range(n11)]
     return [u for u in U if u[0] not in broken]
 
 
-def out_path(u, root=None): return (root or ROOT) / 'raw' / u[0] / f'shard_{u[2]:03d}.npz'
+def out_path(u, root=None): return (root or ROOT) / 'raw' / u[0] / (f'{u[1]}/' if u[1] else '') / f'shard_{u[2]:03d}.npz'
+def claim_name(u): return '_'.join(str(x) for x in u if x is not None)
 
 
 def remaining(a=None):
@@ -299,9 +305,54 @@ def do_para_run(C, shard):
                 resid=np.stack(res) if res else np.zeros((0,)), layers=np.array(LAYERS), versions=np.array(['original', 'paraphrase', 'partner']))
 
 
+# ------------------------------------------------------------------ X6 / X7 (2026-10-28, Stage 11 review)
+def ctx11(C):
+    """the Stage 11 context (sample with title positions and tails, condition prompts) around the already loaded model."""
+    if '_c11' not in _CACHE:
+        import pandas as pd
+        c = type('C11', (), {})(); c.torch = C.torch; c.model = C.model; c.tok = C.tok
+        c.papers, toks = s11.cohort(); c.ctx = s11.contexts_of(toks); c.P = c.papers.set_index('paper_id')
+        c.prompts = {k: s10.condition_prompts(R10, c.papers, k)[0] for k in s10.condition_names()}
+        c.smp = pd.read_parquet(s11.ROOT / 'config/sample.parquet'); _CACHE['_c11'] = c
+    return _CACHE['_c11']
+
+
+def do_xf_patch(C, cond, shard):
+    """X6: Stage 11 E1 (tail patching true -> false) with another false title; the Stage 11 code itself, only the false
+    condition changes. ('xf_patch', 'false_0', 0) reproduces Stage 11 patch shard 0 (checked in analysis)."""
+    c = ctx11(C); old, old_smp = s11.FALSE_FOR_PATCH, c.smp; s11.FALSE_FOR_PATCH = cond
+    # the aligned tail (tokens identical in both prompts, patched from the end) depends on the false title: recompute it
+    # for this condition exactly as Stage 11 froze it for false_0 (common suffix, never reaching into the true title)
+    smp = c.smp.copy(); tails = []
+    for r in smp.itertuples():
+        pt = json.loads(c.P.loc[r.paper_id].prompt_ids); pfx, pf = c.prompts[cond][r.paper_id]
+        tf = s11.title_positions(c.tok, pfx, pf)                                  # same formula as Stage 11 freeze
+        tails.append(min(s11.common_suffix(pt, pf), len(pt) - 1 - max(json.loads(r.title_pos)), len(pf) - 1 - max(tf)))
+    smp['tail_prompt'] = tails; c.smp = smp
+    try: d = s11.do_patch(c, shard)
+    finally: s11.FALSE_FOR_PATCH = old; c.smp = old_smp
+    return d | dict(false_condition=np.array(cond))
+
+
+def do_ko_false(C, cond, shard):
+    """X7: the Stage 11 knockout (block attention to the title from layer l on) applied to the FALSE-title run, scored on
+    the true paper's authors. Off-distribution damage shows up here too; the paper-specific loss is
+    [(k64 - k_l) on true] - [(k64 - k_l) on false], divided by (true - false)."""
+    c = ctx11(C); torch = c.torch; rows, out_k = [], []; dtype = next(c.model.layers[0].parameters()).dtype
+    for r in c.smp[c.smp.shard == shard].itertuples():
+        ptx, pf = c.prompts[cond][r.paper_id]; tpos = s11.title_positions(c.tok, ptx, pf)
+        for ai, rids, name in c.ctx[r.paper_id]:
+            T = list(pf) + name[:-1]; pos = [len(pf) - 1 + j for j in range(len(name))]
+            gold = torch.tensor(name, device=c.model.input_device)
+            lk = s11.run_final(c, T, pos, mask_fn=s11.ko_mask(c, len(T), tpos, s11.KO_LAYERS, dtype), batch=len(s11.KO_LAYERS))
+            rows += rids; out_k.append(np.stack([s11.ranks(lk[i], gold, torch) for i in range(len(s11.KO_LAYERS))], 1))
+    return dict(row_id=np.array(rows), rank_ko=np.concatenate(out_k), layers=np.array(s11.KO_LAYERS), false_condition=np.array(cond))
+
+
 def compute(C, u):
     return {'task': lambda: do_task(C, u[2]), 'xpatch': lambda: do_xpatch(C, u[2]), 'pscope': lambda: do_pscope(C, u[2]),
-            'para_gen': lambda: do_para_gen(C, u[2]), 'para_run': lambda: do_para_run(C, u[2])}[u[0]]()
+            'para_gen': lambda: do_para_gen(C, u[2]), 'para_run': lambda: do_para_run(C, u[2]),
+            'xf_patch': lambda: do_xf_patch(C, u[1], u[2]), 'ko_false': lambda: do_ko_false(C, u[1], u[2])}[u[0]]()
 
 
 class Ctx:
@@ -331,16 +382,16 @@ def work(a):
         u = None
         for v in units():
             if out_path(v).exists(): continue
-            if s11.claim(CL / f'{v[0]}_{v[2]}', me): u = v; break
+            if s11.claim(CL / claim_name(v), me): u = v; break
         if u is None: log('stage13: nothing left to claim'); return
         if (time.monotonic() - t0) / 60 + 1.5 * max(last, 60) / 60 > budget:
-            d = CL / f'{u[0]}_{u[2]}'; os.rename(d, d.with_name(d.name + f'.released_{me}')); log('time budget reached; released', u); return
+            d = CL / claim_name(u); os.rename(d, d.with_name(d.name + f'.released_{me}')); log('time budget reached; released', u); return
         if C is None: C = Ctx()
         t1 = time.monotonic()
         try: d = compute(C, u)
         except Exception as e:
             import traceback; s11.dump(ROOT / f'logs/broken_{u[0]}.json', dict(unit=list(u), error=repr(e), job=me, at=now(), tb=traceback.format_exc()))
-            dd = CL / f'{u[0]}_{u[2]}'; os.rename(dd, dd.with_name(dd.name + f'.crashed_{me}')); log('UNIT CRASH (type disabled, job continues):', u, repr(e)); return
+            dd = CL / claim_name(u); os.rename(dd, dd.with_name(dd.name + f'.crashed_{me}')); log('UNIT CRASH (type disabled, job continues):', u, repr(e)); return
         save(u, d, C.env); last = time.monotonic() - t1
         log(f'stage13 {u[0]} shard {u[2]:03d} papers={len(d["paper_id"])} {last:.0f}s total={(time.monotonic() - t0) / 60:.1f}min')
 
@@ -402,6 +453,17 @@ def dry(a):
     (ROOT / 'raw/para_gen').mkdir(parents=True); g['auto_ok'][:] = True; np.savez(ROOT / f'raw/para_gen/shard_{sh:03d}.npz', **g)
     pr = do_para_run(C, sh); check('para_run rows', len(pr['paper_id']) >= 1 and pr['resid'].shape[1:3] == (3, 2), str(pr['resid'].shape))
     ROOT = old_root
+    # X6 / X7 on the tiny model: Stage 11 code with its layer lists shortened and its fixed L63 readout generalised
+    import inspect, textwrap
+    src = textwrap.dedent(inspect.getsource(s11.run_final)).replace('at=[63]', 'at=[len(model.layers) - 1]').replace('activations[63]', 'activations[len(model.layers) - 1]')
+    ns = dict(vars(s11)); exec(src, ns); s11.run_final = ns['run_final']; s11.PATCH_LAYERS = [0, 1]; s11.KO_LAYERS = [0, 1, 2]
+    c11 = ctx11(C); sh11 = int(c11.smp.shard.iloc[0]); c11.smp = c11.smp[c11.smp.shard == sh11].head(2)
+    x6 = do_xf_patch(C, 'false_2', sh11); check('X6 rows and layers', len(x6['row_id']) > 0 and x6['rank_patch'].shape[1] == 2, str(x6['rank_patch'].shape))
+    check('X6 patched at the last layer differs from false run or equals true (tail only)', np.isfinite(x6['rank_patch']).all())
+    x7 = do_ko_false(C, 'false_0', sh11); check('X7 rows and knockout layers', x7['rank_ko'].shape[1] == 3, str(x7['rank_ko'].shape))
+    x6f0 = do_xf_patch(C, 'false_0', sh11)
+    check('X7 nothing-blocked element == plain false_0 run (same rows)', bool((x7['row_id'] == x6f0['row_id']).all()) and np.array_equal(x7['rank_ko'][:, -1], x6f0['rank_false']),
+          f"{x7['rank_ko'][:5, -1]} vs {x6f0['rank_false'][:5]}")
     print(f'DRY {"PASS" if all(ok) else "FAIL"}: {sum(ok)}/{len(ok)}'); sys.exit(0 if all(ok) else 1)
 
 

@@ -1,0 +1,15 @@
+{
+ "title": "Stage 13 pre-registration, addendum 3: X6 and X7 (Stage 11 robustness; adds to prereg.json and addenda 1-2)",
+ "written": "2026-10-28T14:00-04:00",
+ "status_at_writing": "X6 and X7 have no data. Stage 12 P1/P2 were previewed on CPU before this was written (they motivated the review, not these rules).",
+ "priority": "X6 runs before every other Stage 13 GPU unit; X7 runs last (user, 2026-10-28)",
+ "X6": {"what": "Stage 11 E1 tail patching (true -> false) repeated with false_1..false_4; aligned tail recomputed per false title with the Stage 11 freeze formula (verified identical for false_0). Unit ('xf_patch','false_0',0) must reproduce Stage 11 patch shard 0 exactly (rank arrays equal) - if not, WARN and report the difference.",
+  "metric": "recovery R(l) = mean over papers of (patched - false) / mean of (true - false), per false title and averaged over the 5 false titles; target and control separately; team-cluster bootstrap intervals (addendum 2).",
+  "stage11_claim_holds_if": "averaged over the 5 false titles, R(L48) is within [0.70, 0.95] and R(L52) >= 0.95, and every single false title gives R(L48) within 0.10 of false_0 and R(L52) >= 0.90",
+  "otherwise": "report the spread across false titles as the uncertainty of the timing; the 6.11 numbers are then quoted as false_0-specific"},
+ "X7": {"what": "the Stage 11 knockout (block attention to the title from layer l on) applied to the false_0 run, scored on the true paper's authors",
+  "metric": "paper-specific loss S(l) = [mean(k64 - k_l) on true] - [mean(k64 - k_l) on false], divided by mean(true - false); also the raw false-run loss as the off-distribution damage",
+  "stage11_claim_holds_if": "S(L52) <= 0.05 (no paper-specific loss once blocking starts at L52) and S(L0) >= 0.5",
+  "report_also": "the share of the L0 loss (0.83) that remains after subtracting the false-run loss"},
+ "P1_wording": "The 6.11 statement 'information is moved onto the post-title tokens' is under review; the revised wording will be decided from the FINAL Stage 12 P1/P2 analysis (not the CPU preview), together with the merged-deck page 'Keys and shelves' points 2 and 4."
+}

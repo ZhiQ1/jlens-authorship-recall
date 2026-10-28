@@ -86,6 +86,11 @@ for old, new in (('标题最后一个 token 上，线性 probe', RV + '标题最
                  ('<span><b>读得早，说得晚。</b>', '<span>' + RV + '<b>读得早，说得晚。</b>')):
     assert old in body10, old
     body10 = body10.replace(old, new)
+# 2026-10-28: the 'moved onto the post-title tokens' wording is under review (Stage 12 P1 preview: most of it sits at the name positions)
+RV2 = '<span style="display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin:0 4px;border-radius:4px;background:#B42318;color:#fff">待复核</span>'
+for frag in ('搬到标题之后的位置', '搬到标题之后的几个 token 上'):
+    assert frag in body10, frag
+    body10 = body10.replace(frag, frag + RV2)
 for h in ('6.11 Stage 11：干预实验', '6.12 名字先验'):
     i = body10.index(h); j = body10.index('</h3>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]
 i = body10.index('<h2><span class="num">§7</span>'); j = body10.index('</h2>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]
