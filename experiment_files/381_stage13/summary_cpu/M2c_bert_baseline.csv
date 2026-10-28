@@ -1,0 +1,53 @@
+model,layer,target,value,alpha
+bert-base-uncased,0,year,0.18858534775241964,1.0
+bert-base-uncased,0,log citations,0.12790553128399962,1.0
+bert-base-uncased,0,log citations | year removed,0.12430139303793275,1.0
+bert-base-uncased,0,recognised (target vs control),0.5865408920774504,1.0
+bert-base-uncased,1,year,0.19785486855385026,1.0
+bert-base-uncased,1,log citations,0.13553657488028859,1.0
+bert-base-uncased,1,log citations | year removed,0.13205806140866283,1.0
+bert-base-uncased,1,recognised (target vs control),0.6056229283253608,1.0
+bert-base-uncased,2,year,0.20011712455989816,1.0
+bert-base-uncased,2,log citations,0.14499557857960022,1.0
+bert-base-uncased,2,log citations | year removed,0.14109397387289146,1.0
+bert-base-uncased,2,recognised (target vs control),0.6185936449344136,1.0
+bert-base-uncased,3,year,0.20040853196082276,1.0
+bert-base-uncased,3,log citations,0.14913457228290294,1.0
+bert-base-uncased,3,log citations | year removed,0.1456048964469927,1.0
+bert-base-uncased,3,recognised (target vs control),0.6191759512626218,1.0
+bert-base-uncased,4,year,0.2111090790999257,1.0
+bert-base-uncased,4,log citations,0.16147284413477936,1.0
+bert-base-uncased,4,log citations | year removed,0.15665500829905932,1.0
+bert-base-uncased,4,recognised (target vs control),0.617781161202593,1.0
+bert-base-uncased,5,year,0.22343005980515918,1.0
+bert-base-uncased,5,log citations,0.167644559514874,1.0
+bert-base-uncased,5,log citations | year removed,0.1634460504428008,1.0
+bert-base-uncased,5,recognised (target vs control),0.618665074395031,1.0
+bert-base-uncased,6,year,0.2263452711759959,1.0
+bert-base-uncased,6,log citations,0.16997924095453254,1.0
+bert-base-uncased,6,log citations | year removed,0.16446390463335336,1.0
+bert-base-uncased,6,recognised (target vs control),0.6174752446140364,1.0
+bert-base-uncased,7,year,0.2265673243306916,1.0
+bert-base-uncased,7,log citations,0.1750834519390806,1.0
+bert-base-uncased,7,log citations | year removed,0.1695098626099517,1.0
+bert-base-uncased,7,recognised (target vs control),0.6168118282551599,1.0
+bert-base-uncased,8,year,0.22381512270514425,1.0
+bert-base-uncased,8,log citations,0.1764274315811739,1.0
+bert-base-uncased,8,log citations | year removed,0.170622531965388,1.0
+bert-base-uncased,8,recognised (target vs control),0.6214189322239352,1.0
+bert-base-uncased,9,year,0.22775398584046536,1.0
+bert-base-uncased,9,log citations,0.18033580057680687,1.0
+bert-base-uncased,9,log citations | year removed,0.1744693536872407,1.0
+bert-base-uncased,9,recognised (target vs control),0.6266170130505241,1.0
+bert-base-uncased,10,year,0.23624614783473052,1.0
+bert-base-uncased,10,log citations,0.18589728549027562,1.0
+bert-base-uncased,10,log citations | year removed,0.17983426127714686,1.0
+bert-base-uncased,10,recognised (target vs control),0.625352169335567,1.0
+bert-base-uncased,11,year,0.2400768472420809,1.0
+bert-base-uncased,11,log citations,0.18643828992271605,1.0
+bert-base-uncased,11,log citations | year removed,0.17984417143725973,1.0
+bert-base-uncased,11,recognised (target vs control),0.6304949851140675,1.0
+bert-base-uncased,12,year,0.2435227241441945,0.1
+bert-base-uncased,12,log citations,0.18057207009781384,1.0
+bert-base-uncased,12,log citations | year removed,0.17373881664047797,1.0
+bert-base-uncased,12,recognised (target vs control),0.630067205357479,1.0
