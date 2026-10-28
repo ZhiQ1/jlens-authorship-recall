@@ -158,10 +158,17 @@ def freeze(a=None):
     d = pd.DataFrame(rows)
     # tune / test split (by paper, stratified by group): layers and positions are chosen on tune, reported on test
     d = d.merge(smp[['paper_id', 'group']], on='paper_id')
-    d['split'] = ''
-    for g, idx in d.groupby('group').groups.items():
-        idx = list(idx); r2 = np.random.default_rng(1314).permutation(len(idx)); d.loc[[idx[i] for i in r2[:len(idx) // 2]], 'split'] = 'tune'
-    d.loc[d.split == '', 'split'] = 'test'; (ROOT / 'config').mkdir(parents=True, exist_ok=True); d.to_parquet(ROOT / 'config/pairs.parquet', index=False)
+    # 2026-10-28 review: split by author TEAM (papers sharing any full author name are one group, conservative), so no
+    # team is on both sides; whole groups are assigned, alternating within target / control, seed 1314.
+    sys.path.insert(0, str(DIR)); import stage13_cpu as c13
+    _, team = c13.group_folds(d.paper_id.to_numpy(), k=2, seed=1314)
+    d['team'] = team; d['split'] = ''
+    for g, sub in d.groupby('group'):
+        teams = list(dict.fromkeys(sub.team)); np.random.default_rng(1314).shuffle(teams); n_t = 0
+        for t in teams:
+            i = d.index[(d.team == t) & (d.group == g) & (d.split == '')]
+            if not len(i): continue
+            lab = 'tune' if n_t < len(sub) / 2 else 'test'; d.loc[d.team == t, 'split'] = d.loc[d.team == t, 'split'].where(d.loc[d.team == t, 'split'] != '', lab); n_t += len(i); (ROOT / 'config').mkdir(parents=True, exist_ok=True); d.to_parquet(ROOT / 'config/pairs.parquet', index=False)
     print(f'pairs: {len(d)} of {len(smp)} sample papers have a same-field, same-length partner without shared surnames')
 
 

@@ -1,0 +1,13 @@
+{
+ "title": "Stage 13 pre-registration, addendum 1 (does not change prereg.json; adds to it)",
+ "written": "2026-10-28T11:40-04:00",
+ "reason": "review: probes must be split by paper AND by author team; same title must not be on both sides",
+ "status_at_writing": "M3/X1/X3/X4: still no data (0/144 GPU units). M2c and the paper-split M2/M2b exist; their grouped reruns (job 11443403) have no output yet.",
+ "rules": [
+  "Every probe in Stage 13 (M2, M2b, M2c, the M3 transfer probes, X2 directions, X5 author-by-probe) uses group folds: papers sharing any full author name (normalised; homonyms included, conservative) form one group, and whole groups go to one fold (stage13_cpu.group_folds).",
+  "In false_0 runs the group is defined by the donor paper (whose title and labels are used), so a donor title is never in two folds.",
+  "X1/X3/X4 tune/test split is by the same author-team groups (config/pairs.parquet column team; 0 teams on both sides).",
+  "The confirmatory numbers are the group-split ones. The earlier paper-split M2/M2b numbers are kept and shown next to them as exploratory; the paper-split false_0 numbers are invalid (2,004 donor titles were in both train and test).",
+  "Stage 11 E4b (title-token probe, per-paper folds, seed 11) is re-run with group folds before it is cited again."
+ ]
+}

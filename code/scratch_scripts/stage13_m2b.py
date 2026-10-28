@@ -16,7 +16,7 @@ sp = importlib.util.spec_from_file_location('m', Path.home() / 'jlens_work/13_st
 papers = pd.read_parquet(R10 / 'cohort/papers.parquet').set_index('paper_id')
 zs = [np.load(f) for f in sorted((R11 / 'raw/titlepos/true').glob('shard_*.npz'))]
 Xt = np.concatenate([z['resid_title'] for z in zs]); pid = np.concatenate([z['resid_paper_id'] for z in zs]); pl = list(zs[0]['probe_layers'])
-P = papers.loc[pid]; folds = np.random.default_rng(13).integers(0, 5, len(pid))
+P = papers.loc[pid]; folds = np.random.default_rng(13).integers(0, 5, len(pid)) if m.SPLIT == 'paper' else m.group_folds(pid)[0]
 y = dict(year=pd.to_numeric(P.year, errors='coerce').to_numpy(float), cit=np.log10(pd.to_numeric(P.citations, errors='coerce').fillna(0).to_numpy(float) + 1))
 ok = ~np.isnan(y['year']); grp = P.group_tight.to_numpy(); bins = P.citation_bin.to_numpy()
 rows = []
@@ -49,5 +49,5 @@ for li, l in enumerate(pl):
         pr[t] = m.ridge_cv(X, Y, folds)[0][:, 0]
         prw[t] = pw[t] + m.ridge_cv(X, (Y[:, 0] - pw[t])[:, None], folds)[0][:, 0]
     evaluate('residual probe', pr, int(l)); evaluate('words + residual probe', prw, int(l)); print('layer', l, flush=True)
-d = pd.DataFrame(rows); d.to_csv(ROOT / 'summary_cpu/M2b_words_vs_probe.csv', index=False)
+d = pd.DataFrame(rows); d.to_csv(m.S / 'M2b_words_vs_probe.csv', index=False)
 print(d.round(3).to_string(index=False))

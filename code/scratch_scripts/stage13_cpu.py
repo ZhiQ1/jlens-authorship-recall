@@ -20,7 +20,9 @@ from pathlib import Path
 import numpy as np, pandas as pd
 
 BASE = Path('/scratch/zhang.zhiqi2/jlens'); R10 = BASE / '351_stage10'; R11 = BASE / '361_stage11'; ROOT = BASE / '381_stage13'
-H = Path.home() / 'jlens_work'; S = ROOT / 'summary_cpu'; S.mkdir(parents=True, exist_ok=True)
+H = Path.home() / 'jlens_work'; import os
+SPLIT = os.environ.get('SPLIT', 'paper')                       # 'paper' (original runs) or 'group' (author teams + donor titles)
+S = ROOT / ('summary_cpu' if SPLIT == 'paper' else 'summary_cpu_group'); S.mkdir(parents=True, exist_ok=True)
 rng = np.random.default_rng(3813); B = 1000
 
 
@@ -73,6 +75,38 @@ def m1(s10):
     ch = (j.t != j.f).groupby(level=['readout', 'layer']).mean().rename('share_top1_changes_true_vs_false').reset_index()
     ch.to_csv(S / 'M1_title_sensitivity.csv', index=False)
     return M1, ch
+
+
+def group_folds(pid, k=5, seed=13, donors=None):
+    """2026-10-28 (review): folds by GROUP, not by paper. Papers sharing any full author name (normalised; homonyms are
+    grouped too, which is conservative) are one group; with `donors` (false_0 runs), rows showing the same donor title,
+    and the donor's own group, are joined as well. Whole groups go to one fold (largest first, to the smallest fold).
+    Returns (folds, group ids)."""
+    import re, unicodedata
+    papers = pd.read_parquet(R10 / 'cohort/papers.parquet').set_index('paper_id')
+    def full(a):
+        w = re.sub(r'[^a-z ]', ' ', unicodedata.normalize('NFKD', a).encode('ascii', 'ignore').decode().lower()).split()
+        return ' '.join(w) if len(w) > 1 else None
+    ids = list(pid) + ([] if donors is None else [d for d in donors])
+    par = list(range(len(ids))); pos = {}
+    def f(x):
+        while par[x] != x: par[x] = par[par[x]]; x = par[x]
+        return x
+    def join(a, b): par[f(a)] = f(b)
+    key = {}
+    for i, p in enumerate(ids):
+        key.setdefault(('paper', p), i); join(i, key[('paper', p)])                  # same paper id -> same group
+        for a in str(papers.loc[p].authors).split('; '):
+            n = full(a)
+            if n: key.setdefault(('name', n), i); join(i, key[('name', n)])
+    n = len(pid)
+    if donors is not None:
+        for i in range(n): join(i, n + i)                                           # a row is tied to the donor it shows
+    g = np.array([f(i) for i in range(n)])
+    sizes = pd.Series(g).value_counts(); fold_of, load = {}, np.zeros(k)
+    order = list(sizes.index); np.random.default_rng(seed).shuffle(order); order.sort(key=lambda x: -sizes[x])
+    for grp in order: j = int(np.argmin(load)); fold_of[grp] = j; load[j] += sizes[grp]
+    return np.array([fold_of[x] for x in g]), g
 
 
 def ridge_cv(X, Y, folds, alphas=(0.01, 0.1, 1.0, 10.0, 100.0, 1000.0)):
@@ -129,7 +163,8 @@ def m2(s10):
         y_cit = np.log10(pd.to_numeric(L.citations, errors='coerce').fillna(0).to_numpy(float) + 1)[:, None]
         grp = T.group_tight.to_numpy(); keep_r = np.isin(grp, ['target', 'control'])
         y_rec = (grp == 'target').astype(float)[:, None]; bins = T.citation_bin.to_numpy()
-        folds = np.random.default_rng(13).integers(0, 5, len(pid))
+        folds = (np.random.default_rng(13).integers(0, 5, len(pid)) if SPLIT == 'paper' else
+                 group_folds(lab_ids)[0])            # group by the paper whose title is in the prompt (false_0: the donor) and its team
         # Provenance (2026-10-28 audit): these residuals come from the Stage 10 prompt
         #   Who are the authors of the paper titled "{title}" ({year})?\nAuthors:
         # The last title token has NOT seen the year (causal attention), so year / citations / recognition probes there are
@@ -177,7 +212,7 @@ def report(M1, ch, M2):
         for tname, h in g.groupby('target', sort=False):
             h = h.set_index('layer'); L.append(f'| {tname} ({h.metric.iloc[0]}) | ' + ' | '.join(f'{h.loc[l, "value"]:.3f} (sh {h.loc[l, "shuffled"]:.2f})' for l in sorted(g.layer.unique())) + ' |')
         L.append('')
-    (ROOT / 'reports/stage13_cpu_report.md').write_text('\n'.join(L) + '\n'); print('\n'.join(L))
+    (ROOT / f"reports/stage13_cpu_report{'' if SPLIT == 'paper' else '_group'}.md").write_text('\n'.join(L) + '\n'); print('\n'.join(L))
 
 
 if __name__ == '__main__':
