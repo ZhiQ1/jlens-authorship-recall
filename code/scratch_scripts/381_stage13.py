@@ -14,7 +14,8 @@ across tasks and splits late, the middle layers encode "this paper"; if it split
 
 Units = 72 Stage 10 shards (128 papers each). Claims, budget and crash policy as in Stage 11/12 (a crash disables
 the unit type and the job continues). X1/X3/X4 (added 2026-10-28, user-approved), on the Stage 11 sample (1,186 papers, 24 shards):
-  X1 xpatch : cross-task patching. Corrupted run = authors prompt with partner B's title (same field, same title token
+  X1 xpatch : cross-task patching (+ random control: the authors-run state of an unrelated paper C of the same title
+              length; tune/test split by paper - layers chosen on tune, reported on test). Corrupted run = authors prompt with partner B's title (same field, same title token
               count, no shared surname). At layer l, replace the residuals of ALL title positions with paper A's residuals
               from (a) the authors prompt, (b) the year prompt, (c) the field prompt. Score A's first author.
               Same recovery in (a) and (b)/(c) = the title-span state is task-independent paper identity at layer l.
@@ -150,8 +151,17 @@ def freeze(a=None):
         cand = [q for q in papers[papers.field == f].paper_id if q != pid and L[q] == L[pid] and not (sur[q] & sur[pid]) and q in ctx]
         if not cand: continue
         q = cand[rng.integers(len(cand))]
-        rows.append(dict(paper_id=pid, partner=q, n_title_tokens=L[pid], field=f))
-    d = pd.DataFrame(rows); (ROOT / 'config').mkdir(parents=True, exist_ok=True); d.to_parquet(ROOT / 'config/pairs.parquet', index=False)
+        # random control C (Hana's lesson): another paper, any field, same title length, no surname shared with A or B
+        cc = [x for x in papers.paper_id if x not in (pid, q) and L[x] == L[pid] and not (sur[x] & (sur[pid] | sur[q])) and x in ctx]
+        c = cc[rng.integers(len(cc))]
+        rows.append(dict(paper_id=pid, partner=q, random_c=c, n_title_tokens=L[pid], field=f))
+    d = pd.DataFrame(rows)
+    # tune / test split (by paper, stratified by group): layers and positions are chosen on tune, reported on test
+    d = d.merge(smp[['paper_id', 'group']], on='paper_id')
+    d['split'] = ''
+    for g, idx in d.groupby('group').groups.items():
+        idx = list(idx); r2 = np.random.default_rng(1314).permutation(len(idx)); d.loc[[idx[i] for i in r2[:len(idx) // 2]], 'split'] = 'tune'
+    d.loc[d.split == '', 'split'] = 'test'; (ROOT / 'config').mkdir(parents=True, exist_ok=True); d.to_parquet(ROOT / 'config/pairs.parquet', index=False)
     print(f'pairs: {len(d)} of {len(smp)} sample papers have a same-field, same-length partner without shared surnames')
 
 
@@ -193,12 +203,15 @@ def do_xpatch(C, shard):
         spanA, fullA = title_span(C.tok, A); spanB, fullB = title_span(C.tok, Bt)
         if spanA != spanB: continue                                            # equal length by construction
         clean = score_tf(C, fullA, name)[0]; corrupt = score_tf(C, fullB, name)[0]
+        c = pairs.loc[r.paper_id].random_c; spanC, fullC = title_span(C.tok, P.loc[c].title)
+        if spanC != spanB: continue
         rec = {}
+        actsC = C.record(fullC[:len(fullC)], XP_LAYERS); rec['random_c'] = {l: actsC[l][spanC[0]:spanC[-1] + 1] for l in XP_LAYERS}
         for task in TASK_NAMES:
             ids, _, _ = build(C.tok, A, task, []); acts = C.record(ids, XP_LAYERS)
             rec[task] = {l: acts[l][spanA[0]:spanA[-1] + 1] for l in XP_LAYERS}
-        row = dict(paper_id=r.paper_id, partner=q, clean=clean, corrupt=corrupt)
-        for task in TASK_NAMES:
+        row = dict(paper_id=r.paper_id, partner=q, random_c=c, split=pairs.loc[r.paper_id].split, clean=clean, corrupt=corrupt)
+        for task in TASK_NAMES + ['random_c']:
             patch = {}
             for i, l in enumerate(XP_LAYERS):
                 patch.setdefault(l, []).extend([(i, ('at', p), rec[task][l][j]) for j, p in enumerate(spanA)])
@@ -368,7 +381,8 @@ def dry(a):
     check('xpatch identity patch (B with its own states) == corrupt', np.allclose(ident, x['corrupt'][0], atol=1e-5), f'{ident} vs {x["corrupt"][0]}')
     full_patch = score_tf(C, fullB, name, patch={1: [(0, ('at', p_), C.record(title_span(C.tok, P.loc[r0.paper_id].title)[1] + list(name[:-1]), [1])[1][p_]) for p_ in range(len(fullB) + len(name) - 1)]})
     check('patching every position at the last layer with the clean run == clean', np.allclose(full_patch, x['clean'][0], atol=1e-5), f'{full_patch} vs {x["clean"][0]}')
-    check('xpatch all task columns', all(f'{t}@{l}' in x for t in TASK_NAMES for l in XP_LAYERS))
+    check('xpatch all task columns + random control', all(f'{t}@{l}' in x for t in TASK_NAMES + ['random_c'] for l in XP_LAYERS))
+    check('pairs have random C and a tune/test split', {'random_c', 'split'} <= set(pairs.columns) and set(pairs.split) == {'tune', 'test'})
     ps = do_pscope(C, sh); check('pscope rows', len(ps['paper_id']) >= 1 and 'year@self@colon@1' in ps)
     check('pscope patched differs from none', any(abs(ps['author@self@title@0'][i] - ps['author@none'][i]) > 0 for i in range(len(ps['paper_id']))))
     for k, t in PS_TARGETS.items():

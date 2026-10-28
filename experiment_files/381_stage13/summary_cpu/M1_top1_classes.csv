@@ -1,0 +1,1299 @@
+readout,layer,cls,share,condition,tokens
+final,63,name-like,0.896897459406702,true,first token of each name
+final,63,correct,0.07048002129484487,true,first token of each name
+final,63,other,0.024725680991393332,true,first token of each name
+final,63,punct/format,0.006299724941587057,true,first token of each name
+final,63,title word,0.001508384845168732,true,first token of each name
+final,63,task word,8.872852030404306e-05,true,first token of each name
+jlens_fitA,24,punct/format,0.9999704238265653,true,first token of each name
+jlens_fitA,24,other,2.957617343468102e-05,true,first token of each name
+jlens_fitA,32,punct/format,1.0,true,first token of each name
+jlens_fitA,40,punct/format,1.0,true,first token of each name
+jlens_fitA,48,punct/format,0.9975451776049215,true,first token of each name
+jlens_fitA,48,other,0.0020999083138623525,true,first token of each name
+jlens_fitA,48,title word,0.00035491408121617225,true,first token of each name
+jlens_fitA,56,name-like,0.537044157226938,true,first token of each name
+jlens_fitA,56,other,0.4308656945964331,true,first token of each name
+jlens_fitA,56,title word,0.02599745644908462,true,first token of each name
+jlens_fitA,56,task word,0.004732187749548963,true,first token of each name
+jlens_fitA,56,correct,0.001330927804560646,true,first token of each name
+jlens_fitA,56,punct/format,2.957617343468102e-05,true,first token of each name
+jlens_fitA,62,name-like,0.9202330602466653,true,first token of each name
+jlens_fitA,62,other,0.05477507320102925,true,first token of each name
+jlens_fitA,62,correct,0.02286238206500843,true,first token of each name
+jlens_fitA,62,title word,0.0016858418857768182,true,first token of each name
+jlens_fitA,62,task word,0.0004436426015202153,true,first token of each name
+jlens_public,24,punct/format,0.9999408476531306,true,first token of each name
+jlens_public,24,other,5.915234686936204e-05,true,first token of each name
+jlens_public,32,punct/format,1.0,true,first token of each name
+jlens_public,40,punct/format,0.9997633906125225,true,first token of each name
+jlens_public,40,other,0.0001478808671734051,true,first token of each name
+jlens_public,40,title word,8.872852030404306e-05,true,first token of each name
+jlens_public,48,punct/format,1.0,true,first token of each name
+jlens_public,50,punct/format,0.8506994765017302,true,first token of each name
+jlens_public,50,name-like,0.10076602289195824,true,first token of each name
+jlens_public,50,other,0.04128833811481471,true,first token of each name
+jlens_public,50,title word,0.0036082931590310846,true,first token of each name
+jlens_public,50,task word,0.0032829552512495933,true,first token of each name
+jlens_public,50,correct,0.00035491408121617225,true,first token of each name
+jlens_public,51,name-like,0.6645470409038479,true,first token of each name
+jlens_public,51,other,0.20895566531602142,true,first token of each name
+jlens_public,51,punct/format,0.07204755848688296,true,first token of each name
+jlens_public,51,task word,0.04427553163171749,true,first token of each name
+jlens_public,51,title word,0.00899115672414303,true,first token of each name
+jlens_public,51,correct,0.0011830469373872408,true,first token of each name
+jlens_public,52,name-like,0.694300671379137,true,first token of each name
+jlens_public,52,other,0.2912957321581734,true,first token of each name
+jlens_public,52,title word,0.008932004377273668,true,first token of each name
+jlens_public,52,task word,0.003075922037206826,true,first token of each name
+jlens_public,52,correct,0.0012126231108219219,true,first token of each name
+jlens_public,52,punct/format,0.0011830469373872408,true,first token of each name
+jlens_public,53,name-like,0.6309189317086156,true,first token of each name
+jlens_public,53,other,0.3433202212297773,true,first token of each name
+jlens_public,53,title word,0.012007926414480494,true,first token of each name
+jlens_public,53,task word,0.011830469373872408,true,first token of each name
+jlens_public,53,correct,0.001390080151430008,true,first token of each name
+jlens_public,53,punct/format,0.0005323711218242584,true,first token of each name
+jlens_public,54,name-like,0.5395581319688859,true,first token of each name
+jlens_public,54,other,0.3931856496406495,true,first token of each name
+jlens_public,54,task word,0.04838661973913815,true,first token of each name
+jlens_public,54,title word,0.017716127887373933,true,first token of each name
+jlens_public,54,correct,0.0010055898967791547,true,first token of each name
+jlens_public,54,punct/format,0.0001478808671734051,true,first token of each name
+jlens_public,55,name-like,0.6060453698500488,true,first token of each name
+jlens_public,55,other,0.35662949927538373,true,first token of each name
+jlens_public,55,title word,0.02167933512762119,true,first token of each name
+jlens_public,55,task word,0.014166987075212209,true,first token of each name
+jlens_public,55,correct,0.001330927804560646,true,first token of each name
+jlens_public,55,punct/format,0.0001478808671734051,true,first token of each name
+jlens_public,56,name-like,0.5440537103309574,true,first token of each name
+jlens_public,56,other,0.4244180887876727,true,first token of each name
+jlens_public,56,title word,0.026736860784951643,true,first token of each name
+jlens_public,56,task word,0.0034308361184229984,true,first token of each name
+jlens_public,56,correct,0.001330927804560646,true,first token of each name
+jlens_public,56,punct/format,2.957617343468102e-05,true,first token of each name
+jlens_public,57,name-like,0.6786844518056254,true,first token of each name
+jlens_public,57,other,0.2993404513324066,true,first token of each name
+jlens_public,57,title word,0.018159770488894146,true,first token of each name
+jlens_public,57,correct,0.0020407559669929905,true,first token of each name
+jlens_public,57,task word,0.0011534707639525598,true,first token of each name
+jlens_public,57,punct/format,0.0006210996421283014,true,first token of each name
+jlens_public,58,name-like,0.7452308420336576,true,first token of each name
+jlens_public,58,other,0.23586998314158114,true,first token of each name
+jlens_public,58,title word,0.013812072993996036,true,first token of each name
+jlens_public,58,correct,0.0034012599449883174,true,first token of each name
+jlens_public,58,task word,0.001330927804560646,true,first token of each name
+jlens_public,58,punct/format,0.00035491408121617225,true,first token of each name
+jlens_public,59,name-like,0.8121025701694715,true,first token of each name
+jlens_public,59,other,0.17198544852267014,true,first token of each name
+jlens_public,59,title word,0.00807429534766792,true,first token of each name
+jlens_public,59,correct,0.005885658513501523,true,first token of each name
+jlens_public,59,task word,0.0018041465795155423,true,first token of each name
+jlens_public,59,punct/format,0.0001478808671734051,true,first token of each name
+jlens_public,60,name-like,0.8669072195439355,true,first token of each name
+jlens_public,60,other,0.1154653810889947,true,first token of each name
+jlens_public,60,correct,0.012658602230043477,true,first token of each name
+jlens_public,60,title word,0.003904054893377895,true,first token of each name
+jlens_public,60,task word,0.0010647422436485168,true,first token of each name
+jlens_public,61,name-like,0.9165360385673301,true,first token of each name
+jlens_public,61,other,0.061488864570701844,true,first token of each name
+jlens_public,61,correct,0.019549850640324155,true,first token of each name
+jlens_public,61,title word,0.0023069415279051196,true,first token of each name
+jlens_public,61,task word,0.00011830469373872408,true,first token of each name
+jlens_public,62,name-like,0.923693472538523,true,first token of each name
+jlens_public,62,other,0.055277868149418825,true,first token of each name
+jlens_public,62,correct,0.018780870131022448,true,first token of each name
+jlens_public,62,title word,0.0018041465795155423,true,first token of each name
+jlens_public,62,task word,0.0004436426015202153,true,first token of each name
+jlens_self100,24,punct/format,0.995267812250451,true,first token of each name
+jlens_self100,24,other,0.004732187749548963,true,first token of each name
+jlens_self100,32,punct/format,0.9994084765313064,true,first token of each name
+jlens_self100,32,other,0.0005027949483895774,true,first token of each name
+jlens_self100,32,task word,8.872852030404306e-05,true,first token of each name
+jlens_self100,40,punct/format,1.0,true,first token of each name
+jlens_self100,48,punct/format,1.0,true,first token of each name
+jlens_self100,56,name-like,0.5495844547632427,true,first token of each name
+jlens_self100,56,other,0.4193901393037769,true,first token of each name
+jlens_self100,56,title word,0.025553813847564402,true,first token of each name
+jlens_self100,56,task word,0.003963207240247257,true,first token of each name
+jlens_self100,56,correct,0.001478808671734051,true,first token of each name
+jlens_self100,56,punct/format,2.957617343468102e-05,true,first token of each name
+jlens_self100,62,name-like,0.9248765194759102,true,first token of each name
+jlens_self100,62,other,0.053207536008991155,true,first token of each name
+jlens_self100,62,correct,0.019668155334062878,true,first token of each name
+jlens_self100,62,title word,0.0018041465795155423,true,first token of each name
+jlens_self100,62,task word,0.0004436426015202153,true,first token of each name
+logit,24,other,1.0,true,first token of each name
+logit,32,other,0.9964212830144036,true,first token of each name
+logit,32,punct/format,0.0035787169855964036,true,first token of each name
+logit,40,other,1.0,true,first token of each name
+logit,48,other,0.9976043299517908,true,first token of each name
+logit,48,punct/format,0.0023956700482091627,true,first token of each name
+logit,50,other,0.9994972050516104,true,first token of each name
+logit,50,punct/format,0.0004140664280855343,true,first token of each name
+logit,50,title word,8.872852030404306e-05,true,first token of each name
+logit,51,other,0.997397296737748,true,first token of each name
+logit,51,punct/format,0.0020111797935583094,true,first token of each name
+logit,51,title word,0.0005323711218242584,true,first token of each name
+logit,51,name-like,5.915234686936204e-05,true,first token of each name
+logit,52,other,0.991097571796161,true,first token of each name
+logit,52,punct/format,0.0076306527461477034,true,first token of each name
+logit,52,title word,0.0012126231108219219,true,first token of each name
+logit,52,name-like,5.915234686936204e-05,true,first token of each name
+logit,53,other,0.9665493478453757,true,first token of each name
+logit,53,punct/format,0.030907101239241667,true,first token of each name
+logit,53,title word,0.0019520274466889474,true,first token of each name
+logit,53,name-like,0.0003844902546508533,true,first token of each name
+logit,53,task word,0.00020703321404276715,true,first token of each name
+logit,54,other,0.956138534796368,true,first token of each name
+logit,54,punct/format,0.01910620803880394,true,first token of each name
+logit,54,title word,0.013161397178433055,true,first token of each name
+logit,54,task word,0.00955310401940197,true,first token of each name
+logit,54,name-like,0.0020407559669929905,true,first token of each name
+logit,55,other,0.9113010558693916,true,first token of each name
+logit,55,task word,0.02786075537546952,true,first token of each name
+logit,55,title word,0.025021442725740143,true,first token of each name
+logit,55,punct/format,0.020880778444884802,true,first token of each name
+logit,55,name-like,0.014876815237644553,true,first token of each name
+logit,55,correct,5.915234686936204e-05,true,first token of each name
+logit,56,other,0.8926680666055425,true,first token of each name
+logit,56,name-like,0.043092484694330246,true,first token of each name
+logit,56,punct/format,0.028807192925379314,true,first token of each name
+logit,56,title word,0.02839312649729378,true,first token of each name
+logit,56,task word,0.006979976930584721,true,first token of each name
+logit,56,correct,5.915234686936204e-05,true,first token of each name
+logit,57,other,0.8319186063707078,true,first token of each name
+logit,57,name-like,0.11253733991896128,true,first token of each name
+logit,57,title word,0.029428292567507616,true,first token of each name
+logit,57,punct/format,0.02256662033066162,true,first token of each name
+logit,57,task word,0.0031942267309455503,true,first token of each name
+logit,57,correct,0.00035491408121617225,true,first token of each name
+logit,58,other,0.7388128123983319,true,first token of each name
+logit,58,name-like,0.22421697080831682,true,first token of each name
+logit,58,title word,0.02440034308361184,true,first token of each name
+logit,58,punct/format,0.005442015911981308,true,first token of each name
+logit,58,task word,0.004199816627724705,true,first token of each name
+logit,58,correct,0.002928041170033421,true,first token of each name
+logit,59,other,0.6231699742687291,true,first token of each name
+logit,59,name-like,0.34045133240661324,true,first token of each name
+logit,59,title word,0.022448315636922896,true,first token of each name
+logit,59,punct/format,0.00550116825885067,true,first token of each name
+logit,59,correct,0.005294135044807902,true,first token of each name
+logit,59,task word,0.0031350743840761882,true,first token of each name
+logit,60,other,0.535742805595812,true,first token of each name
+logit,60,name-like,0.43456271627576826,true,first token of each name
+logit,60,title word,0.012126231108219218,true,first token of each name
+logit,60,correct,0.007955990653929195,true,first token of each name
+logit,60,task word,0.005826506166632161,true,first token of each name
+logit,60,punct/format,0.0037857501996391707,true,first token of each name
+logit,61,name-like,0.5969063322587324,true,first token of each name
+logit,61,other,0.3721274141551566,true,first token of each name
+logit,61,correct,0.014581053503297744,true,first token of each name
+logit,61,task word,0.0076898050930170655,true,first token of each name
+logit,61,title word,0.00579692999319748,true,first token of each name
+logit,61,punct/format,0.00289846499659874,true,first token of each name
+logit,62,name-like,0.8673804383188903,true,first token of each name
+logit,62,other,0.0684096891544172,true,first token of each name
+logit,62,correct,0.05885658513501523,true,first token of each name
+logit,62,title word,0.002809736476294697,true,first token of each name
+logit,62,task word,0.0023365177013398007,true,first token of each name
+logit,62,punct/format,0.00020703321404276715,true,first token of each name
+final,63,correct,0.42015613437422916,true,all name tokens
+final,63,name-like,0.394429296195308,true,all name tokens
+final,63,other,0.12010080067200447,true,all name tokens
+final,63,punct/format,0.060020400136000907,true,all name tokens
+final,63,task word,0.004446696311308742,true,all name tokens
+final,63,title word,0.000846672311148741,true,all name tokens
+jlens_fitA,24,punct/format,0.719264795098634,true,all name tokens
+jlens_fitA,24,other,0.25430836205574703,true,all name tokens
+jlens_fitA,24,name-like,0.022486816578777193,true,all name tokens
+jlens_fitA,24,correct,0.0021600144000960006,true,all name tokens
+jlens_fitA,24,title word,0.0015066767111780745,true,all name tokens
+jlens_fitA,24,task word,0.0002733351555677038,true,all name tokens
+jlens_fitA,32,punct/format,0.8010520070133801,true,all name tokens
+jlens_fitA,32,other,0.1913746091640611,true,all name tokens
+jlens_fitA,32,name-like,0.005100034000226668,true,all name tokens
+jlens_fitA,32,correct,0.0014400096000640003,true,all name tokens
+jlens_fitA,32,title word,0.0007933386222574817,true,all name tokens
+jlens_fitA,32,task word,0.00024000160001066674,true,all name tokens
+jlens_fitA,40,punct/format,0.7613917426116175,true,all name tokens
+jlens_fitA,40,other,0.22455483036553578,true,all name tokens
+jlens_fitA,40,name-like,0.008693391289275262,true,all name tokens
+jlens_fitA,40,correct,0.003340022266815112,true,all name tokens
+jlens_fitA,40,title word,0.0017933452889685932,true,all name tokens
+jlens_fitA,40,task word,0.00022666817778785192,true,all name tokens
+jlens_fitA,48,punct/format,0.6462576417176115,true,all name tokens
+jlens_fitA,48,other,0.2565350435669571,true,all name tokens
+jlens_fitA,48,correct,0.06596710644737631,true,all name tokens
+jlens_fitA,48,name-like,0.02840685604570697,true,all name tokens
+jlens_fitA,48,title word,0.0027400182667884454,true,all name tokens
+jlens_fitA,48,task word,9.333395555970373e-05,true,all name tokens
+jlens_fitA,56,other,0.7620050800338669,true,all name tokens
+jlens_fitA,56,name-like,0.18818125454169696,true,all name tokens
+jlens_fitA,56,correct,0.02766685111234075,true,all name tokens
+jlens_fitA,56,title word,0.011600077333848892,true,all name tokens
+jlens_fitA,56,punct/format,0.0092667284448563,true,all name tokens
+jlens_fitA,56,task word,0.0012800085333902226,true,all name tokens
+jlens_fitA,62,correct,0.35060900406002704,true,all name tokens
+jlens_fitA,62,name-like,0.34586230574870497,true,all name tokens
+jlens_fitA,62,other,0.2019213461423076,true,all name tokens
+jlens_fitA,62,punct/format,0.100227334848899,true,all name tokens
+jlens_fitA,62,task word,0.0007933386222574817,true,all name tokens
+jlens_fitA,62,title word,0.000586670577803852,true,all name tokens
+jlens_public,24,punct/format,0.5320368802458683,true,all name tokens
+jlens_public,24,other,0.46213641424276164,true,all name tokens
+jlens_public,24,name-like,0.004106694044626965,true,all name tokens
+jlens_public,24,correct,0.0008600057333715558,true,all name tokens
+jlens_public,24,title word,0.0007866719111460744,true,all name tokens
+jlens_public,24,task word,7.33338222254815e-05,true,all name tokens
+jlens_public,32,punct/format,0.7483649890999273,true,all name tokens
+jlens_public,32,other,0.24868832458883058,true,all name tokens
+jlens_public,32,name-like,0.001760011733411556,true,all name tokens
+jlens_public,32,correct,0.0007200048000320002,true,all name tokens
+jlens_public,32,title word,0.00040000266668444457,true,all name tokens
+jlens_public,32,task word,6.66671111140741e-05,true,all name tokens
+jlens_public,40,punct/format,0.6307775385169234,true,all name tokens
+jlens_public,40,other,0.35443569623797494,true,all name tokens
+jlens_public,40,name-like,0.009846732311548744,true,all name tokens
+jlens_public,40,correct,0.003206688044586964,true,all name tokens
+jlens_public,40,title word,0.0016400109334062227,true,all name tokens
+jlens_public,40,task word,9.333395555970373e-05,true,all name tokens
+jlens_public,48,punct/format,0.6044173627824185,true,all name tokens
+jlens_public,48,other,0.30732871552477015,true,all name tokens
+jlens_public,48,correct,0.057673717824785496,true,all name tokens
+jlens_public,48,name-like,0.02956686377909186,true,all name tokens
+jlens_public,48,title word,0.0009866732444882966,true,all name tokens
+jlens_public,48,task word,2.6666844445629638e-05,true,all name tokens
+jlens_public,50,other,0.5772238481589878,true,all name tokens
+jlens_public,50,punct/format,0.258235054900366,true,all name tokens
+jlens_public,50,name-like,0.1291275275168501,true,all name tokens
+jlens_public,50,correct,0.02948686324575497,true,all name tokens
+jlens_public,50,title word,0.005166701111340742,true,all name tokens
+jlens_public,50,task word,0.0007600050667004447,true,all name tokens
+jlens_public,51,other,0.6594777298515323,true,all name tokens
+jlens_public,51,name-like,0.2796351975679838,true,all name tokens
+jlens_public,51,punct/format,0.0372535816905446,true,all name tokens
+jlens_public,51,task word,0.01011340075600504,true,all name tokens
+jlens_public,51,correct,0.007173381155874373,true,all name tokens
+jlens_public,51,title word,0.006346708978059854,true,all name tokens
+jlens_public,52,other,0.7066113774091827,true,all name tokens
+jlens_public,52,name-like,0.2544750298335322,true,all name tokens
+jlens_public,52,punct/format,0.019473463156421043,true,all name tokens
+jlens_public,52,correct,0.011086740578270521,true,all name tokens
+jlens_public,52,title word,0.007553383689224595,true,all name tokens
+jlens_public,52,task word,0.0008000053333688891,true,all name tokens
+jlens_public,53,other,0.7529983533223554,true,all name tokens
+jlens_public,53,name-like,0.2181214541430276,true,all name tokens
+jlens_public,53,correct,0.010766738444922966,true,all name tokens
+jlens_public,53,punct/format,0.00880005866705778,true,all name tokens
+jlens_public,53,title word,0.006560043733624891,true,all name tokens
+jlens_public,53,task word,0.00275335168901126,true,all name tokens
+jlens_public,54,other,0.7338982259881732,true,all name tokens
+jlens_public,54,name-like,0.21854812365415768,true,all name tokens
+jlens_public,54,correct,0.015460103067353782,true,all name tokens
+jlens_public,54,punct/format,0.012413416089440596,true,all name tokens
+jlens_public,54,task word,0.01104007360049067,true,all name tokens
+jlens_public,54,title word,0.008640057600384003,true,all name tokens
+jlens_public,55,other,0.7239848265655104,true,all name tokens
+jlens_public,55,name-like,0.2310482069880466,true,all name tokens
+jlens_public,55,correct,0.02056680377869186,true,all name tokens
+jlens_public,55,punct/format,0.010793405289368596,true,all name tokens
+jlens_public,55,title word,0.010286735244901632,true,all name tokens
+jlens_public,55,task word,0.0033200221334808897,true,all name tokens
+jlens_public,56,other,0.7544050293668625,true,all name tokens
+jlens_public,56,name-like,0.19691464609764064,true,all name tokens
+jlens_public,56,correct,0.02506683377889186,true,all name tokens
+jlens_public,56,title word,0.011713411422742818,true,all name tokens
+jlens_public,56,punct/format,0.010926739511596744,true,all name tokens
+jlens_public,56,task word,0.0009733398222654818,true,all name tokens
+jlens_public,57,other,0.6968246454976367,true,all name tokens
+jlens_public,57,name-like,0.23621490809938733,true,all name tokens
+jlens_public,57,correct,0.03225354835698905,true,all name tokens
+jlens_public,57,punct/format,0.02472683151221008,true,all name tokens
+jlens_public,57,title word,0.009553397022646818,true,all name tokens
+jlens_public,57,task word,0.0004266695111300742,true,all name tokens
+jlens_public,58,other,0.6455176367842452,true,all name tokens
+jlens_public,58,name-like,0.2806018706791379,true,all name tokens
+jlens_public,58,correct,0.05399369329128861,true,all name tokens
+jlens_public,58,punct/format,0.011293408622724151,true,all name tokens
+jlens_public,58,title word,0.007993386622577484,true,all name tokens
+jlens_public,58,task word,0.0006000040000266668,true,all name tokens
+jlens_public,59,other,0.5933239554930366,true,all name tokens
+jlens_public,59,name-like,0.2968419789465263,true,all name tokens
+jlens_public,59,correct,0.0868272455149701,true,all name tokens
+jlens_public,59,punct/format,0.016746778311855413,true,all name tokens
+jlens_public,59,title word,0.005353369022460149,true,all name tokens
+jlens_public,59,task word,0.0009066727111514077,true,all name tokens
+jlens_public,60,other,0.5330568870459136,true,all name tokens
+jlens_public,60,name-like,0.33529556863712423,true,all name tokens
+jlens_public,60,correct,0.11204074693831292,true,all name tokens
+jlens_public,60,punct/format,0.015746771645144302,true,all name tokens
+jlens_public,60,title word,0.0031466876445842974,true,all name tokens
+jlens_public,60,task word,0.0007133380889205928,true,all name tokens
+jlens_public,61,name-like,0.3489889932599551,true,all name tokens
+jlens_public,61,other,0.32056213708091386,true,all name tokens
+jlens_public,61,correct,0.2766885112567417,true,all name tokens
+jlens_public,61,punct/format,0.05202034680231202,true,all name tokens
+jlens_public,61,title word,0.0012800085333902226,true,all name tokens
+jlens_public,61,task word,0.00046000306668711124,true,all name tokens
+jlens_public,62,correct,0.3458889725931506,true,all name tokens
+jlens_public,62,name-like,0.34240228268188455,true,all name tokens
+jlens_public,62,other,0.20621470809805398,true,all name tokens
+jlens_public,62,punct/format,0.10414736098240655,true,all name tokens
+jlens_public,62,task word,0.0007333382222548151,true,all name tokens
+jlens_public,62,title word,0.0006133374222494816,true,all name tokens
+jlens_self100,24,other,0.5358235721571477,true,all name tokens
+jlens_self100,24,punct/format,0.4542830285535237,true,all name tokens
+jlens_self100,24,name-like,0.008280055200368003,true,all name tokens
+jlens_self100,24,correct,0.0007800052000346668,true,all name tokens
+jlens_self100,24,title word,0.0007666717778118521,true,all name tokens
+jlens_self100,24,task word,6.66671111140741e-05,true,all name tokens
+jlens_self100,32,punct/format,0.7769918466123108,true,all name tokens
+jlens_self100,32,other,0.2153147687651251,true,all name tokens
+jlens_self100,32,name-like,0.00625337502250015,true,all name tokens
+jlens_self100,32,correct,0.0008733391555943706,true,all name tokens
+jlens_self100,32,title word,0.00046000306668711124,true,all name tokens
+jlens_self100,32,task word,0.00010666737778251855,true,all name tokens
+jlens_self100,40,punct/format,0.6874845832305548,true,all name tokens
+jlens_self100,40,other,0.286855245701638,true,all name tokens
+jlens_self100,40,name-like,0.013260088400589337,true,all name tokens
+jlens_self100,40,correct,0.010513403422689485,true,all name tokens
+jlens_self100,40,title word,0.0017133447556317042,true,all name tokens
+jlens_self100,40,task word,0.00017333448889659265,true,all name tokens
+jlens_self100,48,punct/format,0.6138907592717284,true,all name tokens
+jlens_self100,48,other,0.30218868125787507,true,all name tokens
+jlens_self100,48,correct,0.04990699937999587,true,all name tokens
+jlens_self100,48,name-like,0.032826885512570084,true,all name tokens
+jlens_self100,48,title word,0.0011000073333822225,true,all name tokens
+jlens_self100,48,task word,8.666724444829632e-05,true,all name tokens
+jlens_self100,56,other,0.748998326655511,true,all name tokens
+jlens_self100,56,name-like,0.19890799271995147,true,all name tokens
+jlens_self100,56,correct,0.028226854845698972,true,all name tokens
+jlens_self100,56,punct/format,0.011526743511623411,true,all name tokens
+jlens_self100,56,title word,0.011226741511610077,true,all name tokens
+jlens_self100,56,task word,0.0011133407556050373,true,all name tokens
+jlens_self100,62,correct,0.3465956439709598,true,all name tokens
+jlens_self100,62,name-like,0.342802285348569,true,all name tokens
+jlens_self100,62,other,0.20652137680917873,true,all name tokens
+jlens_self100,62,punct/format,0.10272735151567677,true,all name tokens
+jlens_self100,62,task word,0.0007266715111434076,true,all name tokens
+jlens_self100,62,title word,0.0006266708444722965,true,all name tokens
+logit,24,other,0.9683797891985947,true,all name tokens
+logit,24,punct/format,0.027600184001226675,true,all name tokens
+logit,24,correct,0.001953346355642371,true,all name tokens
+logit,24,name-like,0.0016266775111834079,true,all name tokens
+logit,24,task word,0.0002200014666764445,true,all name tokens
+logit,24,title word,0.0002200014666764445,true,all name tokens
+logit,32,other,0.9801932012880086,true,all name tokens
+logit,32,punct/format,0.015746771645144302,true,all name tokens
+logit,32,correct,0.0025266835112234083,true,all name tokens
+logit,32,name-like,0.001126674177827852,true,all name tokens
+logit,32,title word,0.0002200014666764445,true,all name tokens
+logit,32,task word,0.00018666791111940747,true,all name tokens
+logit,40,other,0.9668664457763052,true,all name tokens
+logit,40,punct/format,0.02578017186781245,true,all name tokens
+logit,40,correct,0.004140027600184002,true,all name tokens
+logit,40,name-like,0.0016533443556290375,true,all name tokens
+logit,40,task word,0.0011866745778305189,true,all name tokens
+logit,40,title word,0.00037333582223881493,true,all name tokens
+logit,48,other,0.9740598270655138,true,all name tokens
+logit,48,punct/format,0.02019346795645304,true,all name tokens
+logit,48,correct,0.004186694577963853,true,all name tokens
+logit,48,name-like,0.0012600084000560004,true,all name tokens
+logit,48,task word,0.0002200014666764445,true,all name tokens
+logit,48,title word,8.000053333688891e-05,true,all name tokens
+logit,50,other,0.9800465336435576,true,all name tokens
+logit,50,punct/format,0.010426736178241188,true,all name tokens
+logit,50,correct,0.006233374889165927,true,all name tokens
+logit,50,name-like,0.0029666864445762973,true,all name tokens
+logit,50,title word,0.0002733351555677038,true,all name tokens
+logit,50,task word,5.3333688891259276e-05,true,all name tokens
+logit,51,other,0.9756131707544717,true,all name tokens
+logit,51,punct/format,0.012420082800552004,true,all name tokens
+logit,51,correct,0.008660057733718226,true,all name tokens
+logit,51,name-like,0.002720018133454223,true,all name tokens
+logit,51,title word,0.0004933366222441483,true,all name tokens
+logit,51,task word,9.333395555970373e-05,true,all name tokens
+logit,52,other,0.962233081553877,true,all name tokens
+logit,52,punct/format,0.01598677324515497,true,all name tokens
+logit,52,correct,0.012986753245021633,true,all name tokens
+logit,52,name-like,0.007220048133654225,true,all name tokens
+logit,52,title word,0.001320008800058667,true,all name tokens
+logit,52,task word,0.00025333502223348153,true,all name tokens
+logit,53,other,0.9542863619090793,true,all name tokens
+logit,53,correct,0.017700118000786674,true,all name tokens
+logit,53,punct/format,0.01758011720078134,true,all name tokens
+logit,53,name-like,0.008640057600384003,true,all name tokens
+logit,53,title word,0.0016666777778518522,true,all name tokens
+logit,53,task word,0.00012666751111674077,true,all name tokens
+logit,54,other,0.945459636397576,true,all name tokens
+logit,54,correct,0.021246808312055415,true,all name tokens
+logit,54,name-like,0.012600084000560004,true,all name tokens
+logit,54,punct/format,0.01050007000046667,true,all name tokens
+logit,54,title word,0.007873385822572151,true,all name tokens
+logit,54,task word,0.0023200154667697786,true,all name tokens
+logit,55,other,0.9287728584857232,true,all name tokens
+logit,55,correct,0.02625350835672238,true,all name tokens
+logit,55,title word,0.013813425422836152,true,all name tokens
+logit,55,name-like,0.013353422356149041,true,all name tokens
+logit,55,punct/format,0.011280075200501337,true,all name tokens
+logit,55,task word,0.006526710178067854,true,all name tokens
+logit,56,other,0.9144527630184202,true,all name tokens
+logit,56,correct,0.03295355302368683,true,all name tokens
+logit,56,name-like,0.02187347915652771,true,all name tokens
+logit,56,title word,0.015653437689584597,true,all name tokens
+logit,56,punct/format,0.013213421422809485,true,all name tokens
+logit,56,task word,0.0018533456889712598,true,all name tokens
+logit,57,other,0.8963926426176174,true,all name tokens
+logit,57,correct,0.04035360235734905,true,all name tokens
+logit,57,name-like,0.03552690351269008,true,all name tokens
+logit,57,title word,0.01487343248954993,true,all name tokens
+logit,57,punct/format,0.011866745778305189,true,all name tokens
+logit,57,task word,0.0009866732444882966,true,all name tokens
+logit,58,other,0.8573057153714359,true,all name tokens
+logit,58,name-like,0.06948712991419943,true,all name tokens
+logit,58,correct,0.051940346268975125,true,all name tokens
+logit,58,title word,0.0117867452449683,true,all name tokens
+logit,58,punct/format,0.00828672191147941,true,all name tokens
+logit,58,task word,0.0011933412889419263,true,all name tokens
+logit,59,other,0.8124520830138867,true,all name tokens
+logit,59,name-like,0.09849398995993307,true,all name tokens
+logit,59,correct,0.07007380049200328,true,all name tokens
+logit,59,title word,0.009553397022646818,true,all name tokens
+logit,59,punct/format,0.00831338875592504,true,all name tokens
+logit,59,task word,0.0011133407556050373,true,all name tokens
+logit,60,other,0.7657584383895892,true,all name tokens
+logit,60,name-like,0.12302748684991233,true,all name tokens
+logit,60,correct,0.09666731111540744,true,all name tokens
+logit,60,punct/format,0.0073867159114394095,true,all name tokens
+logit,60,title word,0.00530003533356889,true,all name tokens
+logit,60,task word,0.0018600124000826672,true,all name tokens
+logit,61,other,0.6776245174967833,true,all name tokens
+logit,61,name-like,0.17354115694104627,true,all name tokens
+logit,61,correct,0.13539423596157307,true,all name tokens
+logit,61,punct/format,0.008266721778145188,true,all name tokens
+logit,61,title word,0.0026266841778945192,true,all name tokens
+logit,61,task word,0.0025466836445576305,true,all name tokens
+logit,62,name-like,0.34014226761511746,true,all name tokens
+logit,62,other,0.33096887312582085,true,all name tokens
+logit,62,correct,0.3054487029913533,true,all name tokens
+logit,62,punct/format,0.019306795378635857,true,all name tokens
+logit,62,task word,0.0026466843112287414,true,all name tokens
+logit,62,title word,0.0014866765778438523,true,all name tokens
+final,63,name-like,0.919611960604537,false_0,first token of each name
+final,63,correct,0.05131466090917157,false_0,first token of each name
+final,63,other,0.021087811658927567,false_0,first token of each name
+final,63,punct/format,0.006713791369672591,false_0,first token of each name
+final,63,title word,0.0011830469373872408,false_0,first token of each name
+final,63,task word,8.872852030404306e-05,false_0,first token of each name
+jlens_fitA,24,punct/format,0.9996746620922186,false_0,first token of each name
+jlens_fitA,24,other,0.00032533790778149123,false_0,first token of each name
+jlens_fitA,32,punct/format,1.0,false_0,first token of each name
+jlens_fitA,40,punct/format,1.0,false_0,first token of each name
+jlens_fitA,48,punct/format,0.9995563573984798,false_0,first token of each name
+jlens_fitA,48,other,0.0004436426015202153,false_0,first token of each name
+jlens_fitA,56,name-like,0.5347076395255982,false_0,first token of each name
+jlens_fitA,56,other,0.4358640679068942,false_0,first token of each name
+jlens_fitA,56,title word,0.024784833338262695,false_0,first token of each name
+jlens_fitA,56,task word,0.003992783413681937,false_0,first token of each name
+jlens_fitA,56,correct,0.0006506758155629825,false_0,first token of each name
+jlens_fitA,62,name-like,0.9327142054361007,false_0,first token of each name
+jlens_fitA,62,other,0.05223152228564668,false_0,first token of each name
+jlens_fitA,62,correct,0.013486735086214546,false_0,first token of each name
+jlens_fitA,62,title word,0.001330927804560646,false_0,first token of each name
+jlens_fitA,62,task word,0.00023660938747744817,false_0,first token of each name
+jlens_public,24,punct/format,1.0,false_0,first token of each name
+jlens_public,32,punct/format,1.0,false_0,first token of each name
+jlens_public,40,punct/format,0.9999408476531306,false_0,first token of each name
+jlens_public,40,other,5.915234686936204e-05,false_0,first token of each name
+jlens_public,48,punct/format,1.0,false_0,first token of each name
+jlens_public,50,punct/format,0.8522670136937683,false_0,first token of each name
+jlens_public,50,name-like,0.10023365177013398,false_0,first token of each name
+jlens_public,50,other,0.04016444352429683,false_0,first token of each name
+jlens_public,50,task word,0.004199816627724705,false_0,first token of each name
+jlens_public,50,title word,0.003075922037206826,false_0,first token of each name
+jlens_public,50,correct,5.915234686936204e-05,false_0,first token of each name
+jlens_public,51,name-like,0.6817307976693975,false_0,first token of each name
+jlens_public,51,other,0.2040164443524297,false_0,first token of each name
+jlens_public,51,punct/format,0.06483097216882079,false_0,first token of each name
+jlens_public,51,task word,0.039010972760344265,false_0,first token of each name
+jlens_public,51,title word,0.009700984886575375,false_0,first token of each name
+jlens_public,51,correct,0.0007098281624323445,false_0,first token of each name
+jlens_public,52,name-like,0.70329182810328,false_0,first token of each name
+jlens_public,52,other,0.2826594895152465,false_0,first token of each name
+jlens_public,52,title word,0.00899115672414303,false_0,first token of each name
+jlens_public,52,task word,0.002750584129425335,false_0,first token of each name
+jlens_public,52,punct/format,0.001419656324864689,false_0,first token of each name
+jlens_public,52,correct,0.0008872852030404306,false_0,first token of each name
+jlens_public,53,name-like,0.6363609476205968,false_0,first token of each name
+jlens_public,53,other,0.34056963710035193,false_0,first token of each name
+jlens_public,53,title word,0.011238945905178788,false_0,first token of each name
+jlens_public,53,task word,0.011120641211440064,false_0,first token of each name
+jlens_public,53,correct,0.0005915234686936204,false_0,first token of each name
+jlens_public,53,punct/format,0.00011830469373872408,false_0,first token of each name
+jlens_public,54,name-like,0.5393215225814084,false_0,first token of each name
+jlens_public,54,other,0.3905829463783976,false_0,first token of each name
+jlens_public,54,task word,0.04921475259530922,false_0,first token of each name
+jlens_public,54,title word,0.020318831149625863,false_0,first token of each name
+jlens_public,54,correct,0.0004436426015202153,false_0,first token of each name
+jlens_public,54,punct/format,0.00011830469373872408,false_0,first token of each name
+jlens_public,55,name-like,0.6047440182189229,false_0,first token of each name
+jlens_public,55,other,0.35961669279228653,false_0,first token of each name
+jlens_public,55,title word,0.02061459288397267,false_0,first token of each name
+jlens_public,55,task word,0.014226139422081572,false_0,first token of each name
+jlens_public,55,correct,0.0006802519889976635,false_0,first token of each name
+jlens_public,55,punct/format,0.00011830469373872408,false_0,first token of each name
+jlens_public,56,name-like,0.543994557984088,false_0,first token of each name
+jlens_public,56,other,0.42628138771405755,false_0,first token of each name
+jlens_public,56,title word,0.02614533731625802,false_0,first token of each name
+jlens_public,56,task word,0.003016769690337464,false_0,first token of each name
+jlens_public,56,correct,0.0005619472952589394,false_0,first token of each name
+jlens_public,57,name-like,0.6793647037946231,false_0,first token of each name
+jlens_public,57,other,0.29670817189672,false_0,first token of each name
+jlens_public,57,title word,0.021294844872970335,false_0,first token of each name
+jlens_public,57,task word,0.00144923249829937,false_0,first token of each name
+jlens_public,57,correct,0.0009464375499097927,false_0,first token of each name
+jlens_public,57,punct/format,0.00023660938747744817,false_0,first token of each name
+jlens_public,58,name-like,0.7416225488746266,false_0,first token of each name
+jlens_public,58,other,0.23794031528200882,false_0,first token of each name
+jlens_public,58,title word,0.016680961817160094,false_0,first token of each name
+jlens_public,58,task word,0.0016266895389074562,false_0,first token of each name
+jlens_public,58,correct,0.0015971133654727751,false_0,first token of each name
+jlens_public,58,punct/format,0.0005323711218242584,false_0,first token of each name
+jlens_public,59,name-like,0.8153263730738517,false_0,first token of each name
+jlens_public,59,other,0.16914613587294075,false_0,first token of each name
+jlens_public,59,title word,0.010588270089615805,false_0,first token of each name
+jlens_public,59,correct,0.002987193516902783,false_0,first token of each name
+jlens_public,59,task word,0.0019520274466889474,false_0,first token of each name
+jlens_public,60,name-like,0.8743899914229097,false_0,first token of each name
+jlens_public,60,other,0.11401614859069534,false_0,first token of each name
+jlens_public,60,correct,0.006772943716541953,false_0,first token of each name
+jlens_public,60,title word,0.0038153263730738517,false_0,first token of each name
+jlens_public,60,task word,0.0010055898967791547,false_0,first token of each name
+jlens_public,61,name-like,0.9296974357457632,false_0,first token of each name
+jlens_public,61,other,0.05761438585075863,false_0,first token of each name
+jlens_public,61,correct,0.010558693916181125,false_0,first token of each name
+jlens_public,61,title word,0.0020111797935583094,false_0,first token of each name
+jlens_public,61,task word,0.00011830469373872408,false_0,first token of each name
+jlens_public,62,name-like,0.9350507231374405,false_0,first token of each name
+jlens_public,62,other,0.05232025080595073,false_0,first token of each name
+jlens_public,62,correct,0.01100233651770134,false_0,first token of each name
+jlens_public,62,title word,0.001360503977995327,false_0,first token of each name
+jlens_public,62,task word,0.0002661855609121292,false_0,first token of each name
+jlens_self100,24,punct/format,0.9967761970956198,false_0,first token of each name
+jlens_self100,24,other,0.0032238029043802313,false_0,first token of each name
+jlens_self100,32,punct/format,0.9991422909703942,false_0,first token of each name
+jlens_self100,32,other,0.0007689805093017065,false_0,first token of each name
+jlens_self100,32,task word,8.872852030404306e-05,false_0,first token of each name
+jlens_self100,40,punct/format,1.0,false_0,first token of each name
+jlens_self100,48,punct/format,1.0,false_0,first token of each name
+jlens_self100,56,name-like,0.5463310756854278,false_0,first token of each name
+jlens_self100,56,other,0.42353080358463224,false_0,first token of each name
+jlens_self100,56,title word,0.02581999940847653,false_0,first token of each name
+jlens_self100,56,task word,0.0037265978527698087,false_0,first token of each name
+jlens_self100,56,correct,0.0005915234686936204,false_0,first token of each name
+jlens_self100,62,name-like,0.9364408032888705,false_0,first token of each name
+jlens_self100,62,other,0.05010203779834965,false_0,first token of each name
+jlens_self100,62,correct,0.011682588506699003,false_0,first token of each name
+jlens_self100,62,title word,0.001360503977995327,false_0,first token of each name
+jlens_self100,62,task word,0.0004140664280855343,false_0,first token of each name
+logit,24,other,1.0,false_0,first token of each name
+logit,32,other,0.9963325544940995,false_0,first token of each name
+logit,32,punct/format,0.0036674455059004466,false_0,first token of each name
+logit,40,other,1.0,false_0,first token of each name
+logit,48,other,0.9981662772470498,false_0,first token of each name
+logit,48,punct/format,0.0018337227529502233,false_0,first token of each name
+logit,50,other,0.9995859335719145,false_0,first token of each name
+logit,50,punct/format,0.00032533790778149123,false_0,first token of each name
+logit,50,title word,8.872852030404306e-05,false_0,first token of each name
+logit,51,other,0.9974860252580521,false_0,first token of each name
+logit,51,punct/format,0.001390080151430008,false_0,first token of each name
+logit,51,title word,0.0010647422436485168,false_0,first token of each name
+logit,51,name-like,5.915234686936204e-05,false_0,first token of each name
+logit,52,other,0.9904764721540327,false_0,first token of each name
+logit,52,punct/format,0.00807429534766792,false_0,first token of each name
+logit,52,title word,0.0012126231108219219,false_0,first token of each name
+logit,52,name-like,0.00023660938747744817,false_0,first token of each name
+logit,53,other,0.9667268048859838,false_0,first token of each name
+logit,53,punct/format,0.029871935169027832,false_0,first token of each name
+logit,53,title word,0.002780160302860016,false_0,first token of each name
+logit,53,name-like,0.0005027949483895774,false_0,first token of each name
+logit,53,task word,0.00011830469373872408,false_0,first token of each name
+logit,54,other,0.9549850640324155,false_0,first token of each name
+logit,54,punct/format,0.019047055691934576,false_0,first token of each name
+logit,54,title word,0.012954363964390286,false_0,first token of each name
+logit,54,task word,0.011179793558309425,false_0,first token of each name
+logit,54,name-like,0.0018337227529502233,false_0,first token of each name
+logit,55,other,0.9119813078583893,false_0,first token of each name
+logit,55,task word,0.02667770843808228,false_0,first token of each name
+logit,55,punct/format,0.025346780633521634,false_0,first token of each name
+logit,55,title word,0.022714501197835024,false_0,first token of each name
+logit,55,name-like,0.013190973351867735,false_0,first token of each name
+logit,55,correct,8.872852030404306e-05,false_0,first token of each name
+logit,56,other,0.907101239241667,false_0,first token of each name
+logit,56,name-like,0.03398302327644849,false_0,first token of each name
+logit,56,punct/format,0.028481855017597823,false_0,first token of each name
+logit,56,title word,0.02437076691017716,false_0,first token of each name
+logit,56,task word,0.006063115554109609,false_0,first token of each name
+logit,57,other,0.8417378959510219,false_0,first token of each name
+logit,57,name-like,0.10245186477773506,false_0,first token of each name
+logit,57,title word,0.028245245630120375,false_0,first token of each name
+logit,57,punct/format,0.024873561858566737,false_0,first token of each name
+logit,57,task word,0.002632279435686611,false_0,first token of each name
+logit,57,correct,5.915234686936204e-05,false_0,first token of each name
+logit,58,other,0.7504362485581616,false_0,first token of each name
+logit,58,name-like,0.21291887255626868,false_0,first token of each name
+logit,58,title word,0.02546508532726036,false_0,first token of each name
+logit,58,punct/format,0.005560320605720032,false_0,first token of each name
+logit,58,task word,0.004022359587116619,false_0,first token of each name
+logit,58,correct,0.0015971133654727751,false_0,first token of each name
+logit,59,other,0.6288190233947532,false_0,first token of each name
+logit,59,name-like,0.3369613439413209,false_0,first token of each name
+logit,59,title word,0.021856792168229274,false_0,first token of each name
+logit,59,punct/format,0.006033539380674928,false_0,first token of each name
+logit,59,correct,0.0037857501996391707,false_0,first token of each name
+logit,59,task word,0.002543550915382568,false_0,first token of each name
+logit,60,other,0.5364230575848097,false_0,first token of each name
+logit,60,name-like,0.4366626245896306,false_0,first token of each name
+logit,60,title word,0.01188962172074177,false_0,first token of each name
+logit,60,task word,0.0068320960634113154,false_0,first token of each name
+logit,60,correct,0.00493922096359173,false_0,first token of each name
+logit,60,punct/format,0.0032533790778149123,false_0,first token of each name
+logit,61,name-like,0.595368371240129,false_0,first token of each name
+logit,61,other,0.3786933246576558,false_0,first token of each name
+logit,61,correct,0.008932004377273668,false_0,first token of each name
+logit,61,task word,0.0077489574398864275,false_0,first token of each name
+logit,61,title word,0.006418029635325781,false_0,first token of each name
+logit,61,punct/format,0.002839312649729378,false_0,first token of each name
+logit,62,name-like,0.8918103575759369,false_0,first token of each name
+logit,62,other,0.0635887728845642,false_0,first token of each name
+logit,62,correct,0.039247582147821716,false_0,first token of each name
+logit,62,title word,0.00289846499659874,false_0,first token of each name
+logit,62,task word,0.0023956700482091627,false_0,first token of each name
+logit,62,punct/format,5.915234686936204e-05,false_0,first token of each name
+final,63,name-like,0.4189294595297302,false_0,all name tokens
+final,63,correct,0.3069420462803085,false_0,all name tokens
+final,63,other,0.1869012460083067,false_0,all name tokens
+final,63,punct/format,0.07894052627017513,false_0,all name tokens
+final,63,task word,0.0074200494669964465,false_0,all name tokens
+final,63,title word,0.0008666724444829632,false_0,all name tokens
+jlens_fitA,24,punct/format,0.712458083053887,false_0,all name tokens
+jlens_fitA,24,other,0.2622084147227648,false_0,all name tokens
+jlens_fitA,24,name-like,0.021913479423196155,false_0,all name tokens
+jlens_fitA,24,correct,0.002100014000093334,false_0,all name tokens
+jlens_fitA,24,title word,0.0010666737778251855,false_0,all name tokens
+jlens_fitA,24,task word,0.00025333502223348153,false_0,all name tokens
+jlens_fitA,32,punct/format,0.7940919606130707,false_0,all name tokens
+jlens_fitA,32,other,0.19882799218661457,false_0,all name tokens
+jlens_fitA,32,name-like,0.004766698444656298,false_0,all name tokens
+jlens_fitA,32,correct,0.0014666764445096301,false_0,all name tokens
+jlens_fitA,32,title word,0.000586670577803852,false_0,all name tokens
+jlens_fitA,32,task word,0.000260001733344889,false_0,all name tokens
+jlens_fitA,40,punct/format,0.750078333855559,false_0,all name tokens
+jlens_fitA,40,other,0.23580157201048008,false_0,all name tokens
+jlens_fitA,40,name-like,0.009080060533736892,false_0,all name tokens
+jlens_fitA,40,correct,0.003400022666817779,false_0,all name tokens
+jlens_fitA,40,title word,0.0014666764445096301,false_0,all name tokens
+jlens_fitA,40,task word,0.00017333448889659265,false_0,all name tokens
+jlens_fitA,48,punct/format,0.6486043240288268,false_0,all name tokens
+jlens_fitA,48,other,0.2545083633890893,false_0,all name tokens
+jlens_fitA,48,correct,0.06632044213628091,false_0,all name tokens
+jlens_fitA,48,name-like,0.028266855112367414,false_0,all name tokens
+jlens_fitA,48,title word,0.00221334808898726,false_0,all name tokens
+jlens_fitA,48,task word,8.666724444829632e-05,false_0,all name tokens
+jlens_fitA,56,other,0.76059840398936,false_0,all name tokens
+jlens_fitA,56,name-like,0.19346795645304302,false_0,all name tokens
+jlens_fitA,56,correct,0.02306015373435823,false_0,all name tokens
+jlens_fitA,56,title word,0.011253408356055707,false_0,all name tokens
+jlens_fitA,56,punct/format,0.010520070133800892,false_0,all name tokens
+jlens_fitA,56,task word,0.0011000073333822225,false_0,all name tokens
+jlens_fitA,62,name-like,0.3617957453049687,false_0,all name tokens
+jlens_fitA,62,correct,0.2735284901899346,false_0,all name tokens
+jlens_fitA,62,other,0.24280828538856924,false_0,all name tokens
+jlens_fitA,62,punct/format,0.12024080160534403,false_0,all name tokens
+jlens_fitA,62,task word,0.0009066727111514077,false_0,all name tokens
+jlens_fitA,62,title word,0.0007200048000320002,false_0,all name tokens
+jlens_public,24,punct/format,0.5235768238454923,false_0,all name tokens
+jlens_public,24,other,0.47134980899872664,false_0,all name tokens
+jlens_public,24,name-like,0.0035466903112687416,false_0,all name tokens
+jlens_public,24,correct,0.0009066727111514077,false_0,all name tokens
+jlens_public,24,title word,0.0005666704444696299,false_0,all name tokens
+jlens_public,24,task word,5.3333688891259276e-05,false_0,all name tokens
+jlens_public,32,punct/format,0.7376182507883385,false_0,all name tokens
+jlens_public,32,other,0.25974173161154407,false_0,all name tokens
+jlens_public,32,name-like,0.0017133447556317042,false_0,all name tokens
+jlens_public,32,correct,0.0006066707111380742,false_0,all name tokens
+jlens_public,32,title word,0.0002666684444562964,false_0,all name tokens
+jlens_public,32,task word,5.3333688891259276e-05,false_0,all name tokens
+jlens_public,40,punct/format,0.6240574937166248,false_0,all name tokens
+jlens_public,40,other,0.3618957459716398,false_0,all name tokens
+jlens_public,40,name-like,0.009553397022646818,false_0,all name tokens
+jlens_public,40,correct,0.0032866885779238527,false_0,all name tokens
+jlens_public,40,title word,0.001140007600050667,false_0,all name tokens
+jlens_public,40,task word,6.66671111140741e-05,false_0,all name tokens
+jlens_public,48,punct/format,0.6105507370049134,false_0,all name tokens
+jlens_public,48,other,0.30198201321342144,false_0,all name tokens
+jlens_public,48,correct,0.057833718891459274,false_0,all name tokens
+jlens_public,48,name-like,0.0288801925346169,false_0,all name tokens
+jlens_public,48,title word,0.0007266715111434076,false_0,all name tokens
+jlens_public,48,task word,2.6666844445629638e-05,false_0,all name tokens
+jlens_public,50,other,0.5640570937139581,false_0,all name tokens
+jlens_public,50,punct/format,0.26386842578950526,false_0,all name tokens
+jlens_public,50,name-like,0.13771425142834284,false_0,all name tokens
+jlens_public,50,correct,0.028446856312375417,false_0,all name tokens
+jlens_public,50,title word,0.004866699111327409,false_0,all name tokens
+jlens_public,50,task word,0.0010466736444909633,false_0,all name tokens
+jlens_public,51,other,0.6455843038953593,false_0,all name tokens
+jlens_public,51,name-like,0.29378195854639033,false_0,all name tokens
+jlens_public,51,punct/format,0.03834692231281542,false_0,all name tokens
+jlens_public,51,task word,0.008946726311508743,false_0,all name tokens
+jlens_public,51,correct,0.007106714044760298,false_0,all name tokens
+jlens_public,51,title word,0.006233374889165927,false_0,all name tokens
+jlens_public,52,other,0.6969179794531963,false_0,all name tokens
+jlens_public,52,name-like,0.2631617544116961,false_0,all name tokens
+jlens_public,52,punct/format,0.021213474756498377,false_0,all name tokens
+jlens_public,52,correct,0.010413402756018373,false_0,all name tokens
+jlens_public,52,title word,0.007606717378115854,false_0,all name tokens
+jlens_public,52,task word,0.0006866712444749632,false_0,all name tokens
+jlens_public,53,other,0.749718331455543,false_0,all name tokens
+jlens_public,53,name-like,0.22164814432096214,false_0,all name tokens
+jlens_public,53,correct,0.01006006706711378,false_0,all name tokens
+jlens_public,53,punct/format,0.009626730844872299,false_0,all name tokens
+jlens_public,53,title word,0.0063733758225054836,false_0,all name tokens
+jlens_public,53,task word,0.00257335048900326,false_0,all name tokens
+jlens_public,54,other,0.7263381755878372,false_0,all name tokens
+jlens_public,54,name-like,0.224934832898886,false_0,all name tokens
+jlens_public,54,punct/format,0.01415342768951793,false_0,all name tokens
+jlens_public,54,correct,0.014073427156181042,false_0,all name tokens
+jlens_public,54,task word,0.01122007480049867,false_0,all name tokens
+jlens_public,54,title word,0.009280061867079114,false_0,all name tokens
+jlens_public,55,other,0.7189514596763978,false_0,all name tokens
+jlens_public,55,name-like,0.23686824578830526,false_0,all name tokens
+jlens_public,55,correct,0.018566790445269637,false_0,all name tokens
+jlens_public,55,punct/format,0.01266008440056267,false_0,all name tokens
+jlens_public,55,title word,0.009653397689317928,false_0,all name tokens
+jlens_public,55,task word,0.0033000220001466675,false_0,all name tokens
+jlens_public,56,other,0.7521383475889839,false_0,all name tokens
+jlens_public,56,name-like,0.20318802125347502,false_0,all name tokens
+jlens_public,56,correct,0.020480136534243562,false_0,all name tokens
+jlens_public,56,punct/format,0.01188674591163941,false_0,all name tokens
+jlens_public,56,title word,0.011440076267175114,false_0,all name tokens
+jlens_public,56,task word,0.0008666724444829632,false_0,all name tokens
+jlens_public,57,other,0.6929112860752406,false_0,all name tokens
+jlens_public,57,name-like,0.2436349575663838,false_0,all name tokens
+jlens_public,57,punct/format,0.026573510490069934,false_0,all name tokens
+jlens_public,57,correct,0.026180174534496895,false_0,all name tokens
+jlens_public,57,title word,0.010233401556010373,false_0,all name tokens
+jlens_public,57,task word,0.00046666977779851864,false_0,all name tokens
+jlens_public,58,other,0.64942432949553,false_0,all name tokens
+jlens_public,58,name-like,0.2869219128127521,false_0,all name tokens
+jlens_public,58,correct,0.04240028266855112,false_0,all name tokens
+jlens_public,58,punct/format,0.012280081867212448,false_0,all name tokens
+jlens_public,58,title word,0.008406722711484743,false_0,all name tokens
+jlens_public,58,task word,0.0005666704444696299,false_0,all name tokens
+jlens_public,59,other,0.5989773265155101,false_0,all name tokens
+jlens_public,59,name-like,0.3070953806358709,false_0,all name tokens
+jlens_public,59,correct,0.06888712591417276,false_0,all name tokens
+jlens_public,59,punct/format,0.01840012266748445,false_0,all name tokens
+jlens_public,59,title word,0.005746704978033187,false_0,all name tokens
+jlens_public,59,task word,0.0008933392889285929,false_0,all name tokens
+jlens_public,60,other,0.5509170061133741,false_0,all name tokens
+jlens_public,60,name-like,0.34680231201541345,false_0,all name tokens
+jlens_public,60,correct,0.08013386755911706,false_0,all name tokens
+jlens_public,60,punct/format,0.018073453823025488,false_0,all name tokens
+jlens_public,60,title word,0.0032200214668097788,false_0,all name tokens
+jlens_public,60,task word,0.0008533390222601484,false_0,all name tokens
+jlens_public,61,name-like,0.36264908432722887,false_0,all name tokens
+jlens_public,61,other,0.346042306948713,false_0,all name tokens
+jlens_public,61,correct,0.2269081793878626,false_0,all name tokens
+jlens_public,61,punct/format,0.06270708471389809,false_0,all name tokens
+jlens_public,61,title word,0.0011600077333848893,false_0,all name tokens
+jlens_public,61,task word,0.0005333368889125928,false_0,all name tokens
+jlens_public,62,name-like,0.3571557143714291,false_0,all name tokens
+jlens_public,62,correct,0.2709418062787085,false_0,all name tokens
+jlens_public,62,other,0.2458016386775912,false_0,all name tokens
+jlens_public,62,punct/format,0.12464083093887293,false_0,all name tokens
+jlens_public,62,task word,0.0007866719111460744,false_0,all name tokens
+jlens_public,62,title word,0.0006733378222521483,false_0,all name tokens
+jlens_self100,24,other,0.5429169527796852,false_0,all name tokens
+jlens_self100,24,punct/format,0.44832298881992544,false_0,all name tokens
+jlens_self100,24,name-like,0.007500050000333335,false_0,all name tokens
+jlens_self100,24,correct,0.0006600044000293335,false_0,all name tokens
+jlens_self100,24,title word,0.0005466703111354076,false_0,all name tokens
+jlens_self100,24,task word,5.3333688891259276e-05,false_0,all name tokens
+jlens_self100,32,punct/format,0.7690117934119561,false_0,all name tokens
+jlens_self100,32,other,0.2242281615210768,false_0,all name tokens
+jlens_self100,32,name-like,0.005546703644690965,false_0,all name tokens
+jlens_self100,32,correct,0.0007866719111460744,false_0,all name tokens
+jlens_self100,32,title word,0.00032666884445896305,false_0,all name tokens
+jlens_self100,32,task word,0.00010000066667111114,false_0,all name tokens
+jlens_self100,40,punct/format,0.6833845558970393,false_0,all name tokens
+jlens_self100,40,other,0.29210861405742705,false_0,all name tokens
+jlens_self100,40,name-like,0.012946752978353189,false_0,all name tokens
+jlens_self100,40,correct,0.010273401822678817,false_0,all name tokens
+jlens_self100,40,title word,0.001126674177827852,false_0,all name tokens
+jlens_self100,40,task word,0.00016000106667377783,false_0,all name tokens
+jlens_self100,48,punct/format,0.6203641357609051,false_0,all name tokens
+jlens_self100,48,other,0.2964553097020647,false_0,all name tokens
+jlens_self100,48,correct,0.05004033360222401,false_0,all name tokens
+jlens_self100,48,name-like,0.03225354835698905,false_0,all name tokens
+jlens_self100,48,title word,0.0008066720444802965,false_0,all name tokens
+jlens_self100,48,task word,8.000053333688891e-05,false_0,all name tokens
+jlens_self100,56,other,0.7479983199888,false_0,all name tokens
+jlens_self100,56,name-like,0.20364135760905072,false_0,all name tokens
+jlens_self100,56,correct,0.023446822978819858,false_0,all name tokens
+jlens_self100,56,punct/format,0.012680084533896893,false_0,all name tokens
+jlens_self100,56,title word,0.011173407822718818,false_0,all name tokens
+jlens_self100,56,task word,0.0010600070667137781,false_0,all name tokens
+jlens_self100,62,name-like,0.35761571743811627,false_0,all name tokens
+jlens_self100,62,correct,0.2715484769898466,false_0,all name tokens
+jlens_self100,62,other,0.246534976899846,false_0,all name tokens
+jlens_self100,62,punct/format,0.12281415209434729,false_0,all name tokens
+jlens_self100,62,task word,0.0008266721778145187,false_0,all name tokens
+jlens_self100,62,title word,0.0006600044000293335,false_0,all name tokens
+logit,24,other,0.9679864532430216,false_0,all name tokens
+logit,24,punct/format,0.028166854445696304,false_0,all name tokens
+logit,24,correct,0.001920012800085334,false_0,all name tokens
+logit,24,name-like,0.0015000100000666671,false_0,all name tokens
+logit,24,task word,0.00022666817778785192,false_0,all name tokens
+logit,24,title word,0.00020000133334222229,false_0,all name tokens
+logit,32,other,0.9807198714658097,false_0,all name tokens
+logit,32,punct/format,0.01516010106734045,false_0,all name tokens
+logit,32,correct,0.002506683377889186,false_0,all name tokens
+logit,32,name-like,0.0011800078667191115,false_0,all name tokens
+logit,32,title word,0.00022666817778785192,false_0,all name tokens
+logit,32,task word,0.00020666804445362968,false_0,all name tokens
+logit,40,other,0.9676531176874512,false_0,all name tokens
+logit,40,punct/format,0.025106834045560304,false_0,all name tokens
+logit,40,correct,0.003946692977953186,false_0,all name tokens
+logit,40,name-like,0.0016800112000746673,false_0,all name tokens
+logit,40,task word,0.0012400082667217783,false_0,all name tokens
+logit,40,title word,0.00037333582223881493,false_0,all name tokens
+logit,48,other,0.9734931566210442,false_0,all name tokens
+logit,48,punct/format,0.0205134700898006,false_0,all name tokens
+logit,48,correct,0.004140027600184002,false_0,all name tokens
+logit,48,name-like,0.0014533430222868151,false_0,all name tokens
+logit,48,task word,0.00024000160001066674,false_0,all name tokens
+logit,48,title word,0.00016000106667377783,false_0,all name tokens
+logit,50,other,0.9799331995546637,false_0,all name tokens
+logit,50,punct/format,0.010846738978259855,false_0,all name tokens
+logit,50,correct,0.0060667071113807425,false_0,all name tokens
+logit,50,name-like,0.0027466849778998528,false_0,all name tokens
+logit,50,title word,0.0003066687111247408,false_0,all name tokens
+logit,50,task word,0.00010000066667111114,false_0,all name tokens
+logit,51,other,0.9753998359989067,false_0,all name tokens
+logit,51,punct/format,0.012900086000573336,false_0,all name tokens
+logit,51,correct,0.008446722978153187,false_0,all name tokens
+logit,51,name-like,0.002586683911226075,false_0,all name tokens
+logit,51,title word,0.0006066707111380742,false_0,all name tokens
+logit,51,task word,6.0000400002666686e-05,false_0,all name tokens
+logit,52,other,0.9619130794205295,false_0,all name tokens
+logit,52,punct/format,0.017180114534096895,false_0,all name tokens
+logit,52,correct,0.012393415956106374,false_0,all name tokens
+logit,52,name-like,0.007046713644757631,false_0,all name tokens
+logit,52,title word,0.0013000086667244448,false_0,all name tokens
+logit,52,task word,0.00016666777778518522,false_0,all name tokens
+logit,53,other,0.9537463583090554,false_0,all name tokens
+logit,53,punct/format,0.01917346115640771,false_0,all name tokens
+logit,53,correct,0.016680111200741338,false_0,all name tokens
+logit,53,name-like,0.00823338822258815,false_0,all name tokens
+logit,53,title word,0.0020266801778678523,false_0,all name tokens
+logit,53,task word,0.0001400009333395556,false_0,all name tokens
+logit,54,other,0.945852972353149,false_0,all name tokens
+logit,54,correct,0.019420129467529784,false_0,all name tokens
+logit,54,name-like,0.013040086933912893,false_0,all name tokens
+logit,54,punct/format,0.011186741244941633,false_0,all name tokens
+logit,54,title word,0.007853385689237928,false_0,all name tokens
+logit,54,task word,0.0026466843112287414,false_0,all name tokens
+logit,55,other,0.9314928766191775,false_0,all name tokens
+logit,55,correct,0.023400156001040007,false_0,all name tokens
+logit,55,name-like,0.013693424622830819,false_0,all name tokens
+logit,55,punct/format,0.012753418356122374,false_0,all name tokens
+logit,55,title word,0.012433416222774819,false_0,all name tokens
+logit,55,task word,0.00622670817805452,false_0,all name tokens
+logit,56,other,0.9225461503076687,false_0,all name tokens
+logit,56,correct,0.027826852179014528,false_0,all name tokens
+logit,56,name-like,0.020746804978699858,false_0,all name tokens
+logit,56,title word,0.014200094667297781,false_0,all name tokens
+logit,56,punct/format,0.013066753778358522,false_0,all name tokens
+logit,56,task word,0.001613344088960593,false_0,all name tokens
+logit,57,other,0.905746038306922,false_0,all name tokens
+logit,57,name-like,0.03396689311262075,false_0,all name tokens
+logit,57,correct,0.03227354849032327,false_0,all name tokens
+logit,57,title word,0.014166761111740745,false_0,all name tokens
+logit,57,punct/format,0.013060087067247116,false_0,all name tokens
+logit,57,task word,0.0007866719111460744,false_0,all name tokens
+logit,58,other,0.8718991459943066,false_0,all name tokens
+logit,58,name-like,0.06779378529190194,false_0,all name tokens
+logit,58,correct,0.0394069293795292,false_0,all name tokens
+logit,58,title word,0.01140007600050667,false_0,all name tokens
+logit,58,punct/format,0.008320055467036448,false_0,all name tokens
+logit,58,task word,0.0011800078667191115,false_0,all name tokens
+logit,59,other,0.8327055513703425,false_0,all name tokens
+logit,59,name-like,0.09941399609330728,false_0,all name tokens
+logit,59,correct,0.049726998179987866,false_0,all name tokens
+logit,59,title word,0.008833392222614818,false_0,all name tokens
+logit,59,punct/format,0.008420056133707558,false_0,all name tokens
+logit,59,task word,0.0009000060000400003,false_0,all name tokens
+logit,60,other,0.7946652977686518,false_0,all name tokens
+logit,60,name-like,0.12603417356115706,false_0,all name tokens
+logit,60,correct,0.0642470949806332,false_0,all name tokens
+logit,60,punct/format,0.008120054133694224,false_0,all name tokens
+logit,60,title word,0.0047466983113220755,false_0,all name tokens
+logit,60,task word,0.00218668124454163,false_0,all name tokens
+logit,61,other,0.7267315115434103,false_0,all name tokens
+logit,61,name-like,0.17682784551897013,false_0,all name tokens
+logit,61,correct,0.08225388169254462,false_0,all name tokens
+logit,61,punct/format,0.008780058533723559,false_0,all name tokens
+logit,61,task word,0.0027400182667884454,false_0,all name tokens
+logit,61,title word,0.0026666844445629636,false_0,all name tokens
+logit,62,other,0.39674264495096634,false_0,all name tokens
+logit,62,name-like,0.36086907246048305,false_0,all name tokens
+logit,62,correct,0.2110880739204928,false_0,all name tokens
+logit,62,punct/format,0.02571350475669838,false_0,all name tokens
+logit,62,task word,0.004020026800178668,false_0,all name tokens
+logit,62,title word,0.0015666771111807413,false_0,all name tokens
+final,63,name-like,0.913578421223862,delete,first token of each name
+final,63,correct,0.08627369790896454,delete,first token of each name
+final,63,other,0.0001478808671734051,delete,first token of each name
+jlens_fitA,24,punct/format,1.0,delete,first token of each name
+jlens_fitA,32,punct/format,1.0,delete,first token of each name
+jlens_fitA,40,punct/format,1.0,delete,first token of each name
+jlens_fitA,48,punct/format,1.0,delete,first token of each name
+jlens_fitA,56,name-like,0.9974564490846174,delete,first token of each name
+jlens_fitA,56,other,0.001330927804560646,delete,first token of each name
+jlens_fitA,56,correct,0.0012126231108219219,delete,first token of each name
+jlens_fitA,62,name-like,0.9982550057673538,delete,first token of each name
+jlens_fitA,62,correct,0.0016562657123421372,delete,first token of each name
+jlens_fitA,62,other,8.872852030404306e-05,delete,first token of each name
+jlens_public,24,punct/format,1.0,delete,first token of each name
+jlens_public,32,punct/format,1.0,delete,first token of each name
+jlens_public,40,punct/format,1.0,delete,first token of each name
+jlens_public,48,punct/format,1.0,delete,first token of each name
+jlens_public,50,name-like,0.9971606873502706,delete,first token of each name
+jlens_public,50,correct,0.0019520274466889474,delete,first token of each name
+jlens_public,50,punct/format,0.0007985566827363876,delete,first token of each name
+jlens_public,50,other,8.872852030404306e-05,delete,first token of each name
+jlens_public,51,name-like,0.9975747537783561,delete,first token of each name
+jlens_public,51,correct,0.0019224512732542664,delete,first token of each name
+jlens_public,51,other,0.0005027949483895774,delete,first token of each name
+jlens_public,52,name-like,0.9973085682174441,delete,first token of each name
+jlens_public,52,correct,0.001360503977995327,delete,first token of each name
+jlens_public,52,other,0.001330927804560646,delete,first token of each name
+jlens_public,53,name-like,0.997131111176836,delete,first token of each name
+jlens_public,53,correct,0.0021590606607317145,delete,first token of each name
+jlens_public,53,other,0.0007098281624323445,delete,first token of each name
+jlens_public,54,name-like,0.9974564490846174,delete,first token of each name
+jlens_public,54,correct,0.001508384845168732,delete,first token of each name
+jlens_public,54,other,0.0010351660702138357,delete,first token of each name
+jlens_public,55,name-like,0.9966578924018811,delete,first token of each name
+jlens_public,55,other,0.0018041465795155423,delete,first token of each name
+jlens_public,55,correct,0.001537961018603413,delete,first token of each name
+jlens_public,56,name-like,0.997131111176836,delete,first token of each name
+jlens_public,56,correct,0.0016266895389074562,delete,first token of each name
+jlens_public,56,other,0.0012421992842566029,delete,first token of each name
+jlens_public,57,name-like,0.9969240779627931,delete,first token of each name
+jlens_public,57,correct,0.0018632989263849043,delete,first token of each name
+jlens_public,57,other,0.0012126231108219219,delete,first token of each name
+jlens_public,58,name-like,0.9969240779627931,delete,first token of each name
+jlens_public,58,correct,0.0015971133654727751,delete,first token of each name
+jlens_public,58,other,0.001478808671734051,delete,first token of each name
+jlens_public,59,name-like,0.9966283162284464,delete,first token of each name
+jlens_public,59,other,0.0018632989263849043,delete,first token of each name
+jlens_public,59,correct,0.001508384845168732,delete,first token of each name
+jlens_public,60,name-like,0.9948537458223655,delete,first token of each name
+jlens_public,60,correct,0.003016769690337464,delete,first token of each name
+jlens_public,60,other,0.0021294844872970335,delete,first token of each name
+jlens_public,61,name-like,0.995001626689539,delete,first token of each name
+jlens_public,61,correct,0.0033125314246842744,delete,first token of each name
+jlens_public,61,other,0.0016858418857768182,delete,first token of each name
+jlens_public,62,name-like,0.9979592440330071,delete,first token of each name
+jlens_public,62,correct,0.0019520274466889474,delete,first token of each name
+jlens_public,62,other,8.872852030404306e-05,delete,first token of each name
+jlens_self100,24,punct/format,1.0,delete,first token of each name
+jlens_self100,32,punct/format,1.0,delete,first token of each name
+jlens_self100,40,punct/format,1.0,delete,first token of each name
+jlens_self100,48,punct/format,1.0,delete,first token of each name
+jlens_self100,56,name-like,0.9973381443908788,delete,first token of each name
+jlens_self100,56,correct,0.0015675371920380941,delete,first token of each name
+jlens_self100,56,other,0.0010943184170831978,delete,first token of each name
+jlens_self100,62,name-like,0.997781786992399,delete,first token of each name
+jlens_self100,62,correct,0.0021294844872970335,delete,first token of each name
+jlens_self100,62,other,8.872852030404306e-05,delete,first token of each name
+logit,24,other,1.0,delete,first token of each name
+logit,32,other,1.0,delete,first token of each name
+logit,40,other,1.0,delete,first token of each name
+logit,48,other,0.9996155097453492,delete,first token of each name
+logit,48,punct/format,0.0003844902546508533,delete,first token of each name
+logit,50,other,0.9998816953062613,delete,first token of each name
+logit,50,punct/format,0.00011830469373872408,delete,first token of each name
+logit,51,other,0.9991718671438289,delete,first token of each name
+logit,51,punct/format,0.0008281328561710686,delete,first token of each name
+logit,52,other,0.8863979178373902,delete,first token of each name
+logit,52,punct/format,0.11360208216260981,delete,first token of each name
+logit,53,other,0.5064623938954778,delete,first token of each name
+logit,53,punct/format,0.4935376061045222,delete,first token of each name
+logit,54,other,0.6181124486113987,delete,first token of each name
+logit,54,punct/format,0.38188755138860137,delete,first token of each name
+logit,55,other,0.831060897341102,delete,first token of each name
+logit,55,punct/format,0.1686433409245512,delete,first token of each name
+logit,55,name-like,0.0002957617343468102,delete,first token of each name
+logit,56,other,0.6537813137736239,delete,first token of each name
+logit,56,punct/format,0.34553843423737834,delete,first token of each name
+logit,56,name-like,0.0006802519889976635,delete,first token of each name
+logit,57,other,0.6798674987430127,delete,first token of each name
+logit,57,punct/format,0.31504539942622223,delete,first token of each name
+logit,57,name-like,0.005087101830765136,delete,first token of each name
+logit,58,other,0.7851586761704771,delete,first token of each name
+logit,58,punct/format,0.21339209133122355,delete,first token of each name
+logit,58,name-like,0.00144923249829937,delete,first token of each name
+logit,59,other,0.4947502292153441,delete,first token of each name
+logit,59,punct/format,0.33666558220697407,delete,first token of each name
+logit,59,name-like,0.16852503623081247,delete,first token of each name
+logit,59,correct,5.915234686936204e-05,delete,first token of each name
+logit,60,name-like,0.5489337789476797,delete,first token of each name
+logit,60,punct/format,0.30209103546183197,delete,first token of each name
+logit,60,other,0.14770341013279703,delete,first token of each name
+logit,60,correct,0.001271775457691284,delete,first token of each name
+logit,61,name-like,0.938156221348082,delete,first token of each name
+logit,61,other,0.03158735322823933,delete,first token of each name
+logit,61,correct,0.02978320664872379,delete,first token of each name
+logit,61,task word,0.00047321877495489634,delete,first token of each name
+logit,62,name-like,0.9317086155393215,delete,first token of each name
+logit,62,correct,0.06630978084055485,delete,first token of each name
+logit,62,other,0.0019816036201236284,delete,first token of each name
+final,63,name-like,0.42374949166327774,delete,all name tokens
+final,63,correct,0.3217221448142988,delete,all name tokens
+final,63,other,0.16370109134060895,delete,all name tokens
+final,63,punct/format,0.08321388809258728,delete,all name tokens
+final,63,task word,0.007613384089227262,delete,all name tokens
+jlens_fitA,24,punct/format,0.6637977586517243,delete,all name tokens
+jlens_fitA,24,other,0.25056833712224746,delete,all name tokens
+jlens_fitA,24,name-like,0.08246054973699825,delete,all name tokens
+jlens_fitA,24,correct,0.0030200201334675564,delete,all name tokens
+jlens_fitA,24,task word,0.0001533343555623704,delete,all name tokens
+jlens_fitA,32,punct/format,0.8261988413256088,delete,all name tokens
+jlens_fitA,32,other,0.16364775765171768,delete,all name tokens
+jlens_fitA,32,name-like,0.008613390755938373,delete,all name tokens
+jlens_fitA,32,correct,0.0013466756445042966,delete,all name tokens
+jlens_fitA,32,task word,0.00019333462223081486,delete,all name tokens
+jlens_fitA,40,punct/format,0.8039386929246195,delete,all name tokens
+jlens_fitA,40,other,0.1682544550297002,delete,all name tokens
+jlens_fitA,40,name-like,0.022633484223228154,delete,all name tokens
+jlens_fitA,40,correct,0.00502003346688978,delete,all name tokens
+jlens_fitA,40,task word,0.0001533343555623704,delete,all name tokens
+jlens_fitA,48,punct/format,0.655657704384696,delete,all name tokens
+jlens_fitA,48,other,0.17907452716351444,delete,all name tokens
+jlens_fitA,48,name-like,0.13798091987279915,delete,all name tokens
+jlens_fitA,48,correct,0.02720018133454223,delete,all name tokens
+jlens_fitA,48,task word,8.666724444829632e-05,delete,all name tokens
+jlens_fitA,56,other,0.6082640550937006,delete,all name tokens
+jlens_fitA,56,name-like,0.3537023580157201,delete,all name tokens
+jlens_fitA,56,correct,0.02578017186781245,delete,all name tokens
+jlens_fitA,56,punct/format,0.01188674591163941,delete,all name tokens
+jlens_fitA,56,task word,0.00036666911112740754,delete,all name tokens
+jlens_fitA,62,name-like,0.4055027033513557,delete,all name tokens
+jlens_fitA,62,correct,0.27544850299001994,delete,all name tokens
+jlens_fitA,62,other,0.18126787511916745,delete,all name tokens
+jlens_fitA,62,punct/format,0.13660757738384924,delete,all name tokens
+jlens_fitA,62,task word,0.001173341155607704,delete,all name tokens
+jlens_public,24,punct/format,0.5704104694031293,delete,all name tokens
+jlens_public,24,other,0.4023560157067714,delete,all name tokens
+jlens_public,24,name-like,0.026000173334488896,delete,all name tokens
+jlens_public,24,correct,0.0011800078667191115,delete,all name tokens
+jlens_public,24,task word,5.3333688891259276e-05,delete,all name tokens
+jlens_public,32,punct/format,0.8216454776365176,delete,all name tokens
+jlens_public,32,other,0.17592783951893012,delete,all name tokens
+jlens_public,32,name-like,0.001806678711191408,delete,all name tokens
+jlens_public,32,correct,0.0005466703111354076,delete,all name tokens
+jlens_public,32,task word,7.33338222254815e-05,delete,all name tokens
+jlens_public,40,punct/format,0.7453183021220141,delete,all name tokens
+jlens_public,40,other,0.2334882232548217,delete,all name tokens
+jlens_public,40,name-like,0.013760091733944893,delete,all name tokens
+jlens_public,40,correct,0.007413382755885039,delete,all name tokens
+jlens_public,40,task word,2.000013333422223e-05,delete,all name tokens
+jlens_public,48,punct/format,0.7349648997659984,delete,all name tokens
+jlens_public,48,other,0.1939812932086214,delete,all name tokens
+jlens_public,48,name-like,0.03980026533510223,delete,all name tokens
+jlens_public,48,correct,0.03124020826805512,delete,all name tokens
+jlens_public,48,task word,1.3333422222814819e-05,delete,all name tokens
+jlens_public,50,other,0.4560563737091581,delete,all name tokens
+jlens_public,50,name-like,0.4057827052180348,delete,all name tokens
+jlens_public,50,punct/format,0.09127394182627885,delete,all name tokens
+jlens_public,50,correct,0.03486023240154934,delete,all name tokens
+jlens_public,50,task word,0.012026746844978967,delete,all name tokens
+jlens_public,51,name-like,0.5011766745111634,delete,all name tokens
+jlens_public,51,other,0.46296308642057615,delete,all name tokens
+jlens_public,51,punct/format,0.03010686737911586,delete,all name tokens
+jlens_public,51,correct,0.005473369822465483,delete,all name tokens
+jlens_public,51,task word,0.0002800018666791112,delete,all name tokens
+jlens_public,52,other,0.5119634130894206,delete,all name tokens
+jlens_public,52,name-like,0.45240968273121823,delete,all name tokens
+jlens_public,52,punct/format,0.027546850312335416,delete,all name tokens
+jlens_public,52,correct,0.007893385955906372,delete,all name tokens
+jlens_public,52,task word,0.00018666791111940747,delete,all name tokens
+jlens_public,53,other,0.5378035853572357,delete,all name tokens
+jlens_public,53,name-like,0.4364095760638404,delete,all name tokens
+jlens_public,53,correct,0.012986753245021633,delete,all name tokens
+jlens_public,53,punct/format,0.012653417689451264,delete,all name tokens
+jlens_public,53,task word,0.000146667644450963,delete,all name tokens
+jlens_public,54,other,0.5402036013573424,delete,all name tokens
+jlens_public,54,name-like,0.42126280841872277,delete,all name tokens
+jlens_public,54,correct,0.020360135734238227,delete,all name tokens
+jlens_public,54,punct/format,0.01794011960079734,delete,all name tokens
+jlens_public,54,task word,0.00023333488889925932,delete,all name tokens
+jlens_public,55,other,0.5402702684684565,delete,all name tokens
+jlens_public,55,name-like,0.4273161821078807,delete,all name tokens
+jlens_public,55,correct,0.017540116934112893,delete,all name tokens
+jlens_public,55,punct/format,0.01469343128954193,delete,all name tokens
+jlens_public,55,task word,0.00018000120000800004,delete,all name tokens
+jlens_public,56,other,0.5746571643810958,delete,all name tokens
+jlens_public,56,name-like,0.38694257961719747,delete,all name tokens
+jlens_public,56,correct,0.023433489556597045,delete,all name tokens
+jlens_public,56,punct/format,0.013833425556170375,delete,all name tokens
+jlens_public,56,task word,0.0011333408889392597,delete,all name tokens
+jlens_public,57,other,0.5459903066020441,delete,all name tokens
+jlens_public,57,name-like,0.3986693244621631,delete,all name tokens
+jlens_public,57,correct,0.028053520356802378,delete,all name tokens
+jlens_public,57,punct/format,0.02632684217894786,delete,all name tokens
+jlens_public,57,task word,0.000960006400042667,delete,all name tokens
+jlens_public,58,other,0.5086100574003827,delete,all name tokens
+jlens_public,58,name-like,0.42735618237454914,delete,all name tokens
+jlens_public,58,correct,0.05094033960226402,delete,all name tokens
+jlens_public,58,punct/format,0.01261341742278282,delete,all name tokens
+jlens_public,58,task word,0.0004800032000213335,delete,all name tokens
+jlens_public,59,other,0.46583643890959275,delete,all name tokens
+jlens_public,59,name-like,0.41031606877379184,delete,all name tokens
+jlens_public,59,correct,0.09817398782658551,delete,all name tokens
+jlens_public,59,punct/format,0.020060133734224894,delete,all name tokens
+jlens_public,59,task word,0.005613370755805039,delete,all name tokens
+jlens_public,60,other,0.4232561550410336,delete,all name tokens
+jlens_public,60,name-like,0.40695604637364247,delete,all name tokens
+jlens_public,60,correct,0.14219428129520864,delete,all name tokens
+jlens_public,60,punct/format,0.024173494489963268,delete,all name tokens
+jlens_public,60,task word,0.003420022800152001,delete,all name tokens
+jlens_public,61,name-like,0.3957426382842552,delete,all name tokens
+jlens_public,61,correct,0.2640750938339589,delete,all name tokens
+jlens_public,61,other,0.24704831365542437,delete,all name tokens
+jlens_public,61,punct/format,0.09269395129300861,delete,all name tokens
+jlens_public,61,task word,0.000440002933352889,delete,all name tokens
+jlens_public,62,name-like,0.39466263108420724,delete,all name tokens
+jlens_public,62,correct,0.272455149700998,delete,all name tokens
+jlens_public,62,other,0.18997459983066553,delete,all name tokens
+jlens_public,62,punct/format,0.1419076127174181,delete,all name tokens
+jlens_public,62,task word,0.0010000066667111113,delete,all name tokens
+jlens_self100,24,punct/format,0.606470709804732,delete,all name tokens
+jlens_self100,24,other,0.36919579463863095,delete,all name tokens
+jlens_self100,24,name-like,0.023333488889925934,delete,all name tokens
+jlens_self100,24,correct,0.0009533396889312596,delete,all name tokens
+jlens_self100,24,task word,4.666697777985187e-05,delete,all name tokens
+jlens_self100,32,punct/format,0.8388789258595057,delete,all name tokens
+jlens_self100,32,other,0.1565610437402916,delete,all name tokens
+jlens_self100,32,name-like,0.0038800258668391123,delete,all name tokens
+jlens_self100,32,correct,0.0006133374222494816,delete,all name tokens
+jlens_self100,32,task word,6.66671111140741e-05,delete,all name tokens
+jlens_self100,40,punct/format,0.7724184827898852,delete,all name tokens
+jlens_self100,40,other,0.18424789498596658,delete,all name tokens
+jlens_self100,40,correct,0.02772018480123201,delete,all name tokens
+jlens_self100,40,name-like,0.015526770178467857,delete,all name tokens
+jlens_self100,40,task word,8.666724444829632e-05,delete,all name tokens
+jlens_self100,48,punct/format,0.7373449156327709,delete,all name tokens
+jlens_self100,48,other,0.19616130774205162,delete,all name tokens
+jlens_self100,48,name-like,0.03658024386829246,delete,all name tokens
+jlens_self100,48,correct,0.029840198934659563,delete,all name tokens
+jlens_self100,48,task word,7.33338222254815e-05,delete,all name tokens
+jlens_self100,56,other,0.5726038173587824,delete,all name tokens
+jlens_self100,56,name-like,0.3864025760171734,delete,all name tokens
+jlens_self100,56,correct,0.02504016693444623,delete,all name tokens
+jlens_self100,56,punct/format,0.014806765378435857,delete,all name tokens
+jlens_self100,56,task word,0.0011466743111620745,delete,all name tokens
+jlens_self100,62,name-like,0.3937492916619444,delete,all name tokens
+jlens_self100,62,correct,0.2728018186787912,delete,all name tokens
+jlens_self100,62,other,0.19230794871965812,delete,all name tokens
+jlens_self100,62,punct/format,0.1401142674284495,delete,all name tokens
+jlens_self100,62,task word,0.0010266735111567411,delete,all name tokens
+logit,24,other,0.9778065187101247,delete,all name tokens
+logit,24,punct/format,0.01667344448962993,delete,all name tokens
+logit,24,name-like,0.003453356355709038,delete,all name tokens
+logit,24,correct,0.0018600124000826672,delete,all name tokens
+logit,24,task word,0.00020666804445362968,delete,all name tokens
+logit,32,other,0.9880732538216922,delete,all name tokens
+logit,32,punct/format,0.008093387289248594,delete,all name tokens
+logit,32,correct,0.002180014533430223,delete,all name tokens
+logit,32,name-like,0.001433342888952593,delete,all name tokens
+logit,32,task word,0.0002200014666764445,delete,all name tokens
+logit,40,other,0.9808798725324835,delete,all name tokens
+logit,40,punct/format,0.011466743111620744,delete,all name tokens
+logit,40,correct,0.0034400229334862233,delete,all name tokens
+logit,40,name-like,0.003160021066807112,delete,all name tokens
+logit,40,task word,0.0010533403556023707,delete,all name tokens
+logit,48,other,0.9777265181767878,delete,all name tokens
+logit,48,punct/format,0.016893445956306374,delete,all name tokens
+logit,48,correct,0.003746691644610964,delete,all name tokens
+logit,48,name-like,0.0015266768445122967,delete,all name tokens
+logit,48,task word,0.00010666737778251855,delete,all name tokens
+logit,50,other,0.9728864859099061,delete,all name tokens
+logit,50,punct/format,0.01914012760085067,delete,all name tokens
+logit,50,correct,0.005853372355815706,delete,all name tokens
+logit,50,name-like,0.0020466803112020745,delete,all name tokens
+logit,50,task word,7.33338222254815e-05,delete,all name tokens
+logit,51,other,0.9519596797311982,delete,all name tokens
+logit,51,punct/format,0.03720691471276475,delete,all name tokens
+logit,51,correct,0.008293388622590818,delete,all name tokens
+logit,51,name-like,0.002426682844552297,delete,all name tokens
+logit,51,task word,0.00011333408889392596,delete,all name tokens
+logit,52,other,0.9414462763085087,delete,all name tokens
+logit,52,punct/format,0.03929359529063527,delete,all name tokens
+logit,52,correct,0.012000080000533337,delete,all name tokens
+logit,52,name-like,0.007046713644757631,delete,all name tokens
+logit,52,task word,0.0002133347555650371,delete,all name tokens
+logit,53,other,0.8357055713704759,delete,all name tokens
+logit,53,punct/format,0.14074760498403321,delete,all name tokens
+logit,53,correct,0.016360109067393783,delete,all name tokens
+logit,53,name-like,0.007060047066980446,delete,all name tokens
+logit,53,task word,0.00012666751111674077,delete,all name tokens
+logit,54,other,0.8788125254168361,delete,all name tokens
+logit,54,punct/format,0.09172061147074313,delete,all name tokens
+logit,54,correct,0.019153461023073488,delete,all name tokens
+logit,54,name-like,0.009993399955999707,delete,all name tokens
+logit,54,task word,0.00032000213334755566,delete,all name tokens
+logit,55,other,0.9170061133740892,delete,all name tokens
+logit,55,punct/format,0.05000033333555557,delete,all name tokens
+logit,55,correct,0.023813492089947267,delete,all name tokens
+logit,55,name-like,0.008786725244834965,delete,all name tokens
+logit,55,task word,0.0003933359555730372,delete,all name tokens
+logit,56,other,0.8705658037720252,delete,all name tokens
+logit,56,punct/format,0.08810725404836033,delete,all name tokens
+logit,56,correct,0.029506863379089195,delete,all name tokens
+logit,56,name-like,0.011520076800512003,delete,all name tokens
+logit,56,task word,0.0003000020000133334,delete,all name tokens
+logit,57,other,0.8801725344835633,delete,all name tokens
+logit,57,punct/format,0.07485383235888239,delete,all name tokens
+logit,57,correct,0.03417356115707438,delete,all name tokens
+logit,57,name-like,0.010366735778238522,delete,all name tokens
+logit,57,task word,0.0004333362222414816,delete,all name tokens
+logit,58,other,0.8906459376395842,delete,all name tokens
+logit,58,punct/format,0.05309368729124861,delete,all name tokens
+logit,58,correct,0.040706938046253645,delete,all name tokens
+logit,58,name-like,0.015040100267335115,delete,all name tokens
+logit,58,task word,0.0005133367555783706,delete,all name tokens
+logit,59,other,0.8122654151027674,delete,all name tokens
+logit,59,punct/format,0.08256721711478077,delete,all name tokens
+logit,59,name-like,0.05323368822458816,delete,all name tokens
+logit,59,correct,0.05138034253561691,delete,all name tokens
+logit,59,task word,0.000553337022246815,delete,all name tokens
+logit,60,other,0.7195181301208675,delete,all name tokens
+logit,60,name-like,0.14012760085067233,delete,all name tokens
+logit,60,punct/format,0.07245381635877572,delete,all name tokens
+logit,60,correct,0.06662044413629424,delete,all name tokens
+logit,60,task word,0.0012800085333902226,delete,all name tokens
+logit,61,other,0.6442842952286348,delete,all name tokens
+logit,61,name-like,0.25916172774485163,delete,all name tokens
+logit,61,correct,0.09136060907072714,delete,all name tokens
+logit,61,punct/format,0.003793358622390816,delete,all name tokens
+logit,61,task word,0.001400009333395556,delete,all name tokens
+logit,62,name-like,0.4060360402402683,delete,all name tokens
+logit,62,correct,0.2900752671684478,delete,all name tokens
+logit,62,other,0.26125507503383355,delete,all name tokens
+logit,62,punct/format,0.038313588757258384,delete,all name tokens
+logit,62,task word,0.004320028800192001,delete,all name tokens
