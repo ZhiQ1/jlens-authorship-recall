@@ -7,6 +7,7 @@ HERE = Path(__file__).parent
 P19, P1011 = Path(sys.argv[1]), Path(sys.argv[2])
 NEW = (HERE / 'new_sections.html').read_text() if (HERE / 'new_sections.html').exists() else ''
 OVERVIEW = (HERE / 'overview.html').read_text()
+PLAN13 = (HERE / 'plan13.html').read_text() if (HERE / 'plan13.html').exists() else ''
 
 
 def scope_selector(sel, sc):
@@ -136,6 +137,7 @@ body{{margin:0;background:var(--pg);color:var(--pg-ink);font:16.5px/1.75 "PingFa
 <a href="#p2-1">第二部分 · Stage 10–11：全量阶段（定位与干预）</a>
 <span class="sub"><a href="#p2-1">§1 摘要</a> · <a href="#p2-3">§3 数据与分组</a> · <a href="#p2-4">§4 方法</a> · <a href="#p2-6">§6 结果</a> · <a href="#p2-7">§7 结论</a> · <a href="#p2-8">§8 局限</a></span>
 <a href="#p3">第三部分 · 跨阶段：R0/R1 分层分析与两阶段对照</a>
+<a href="#p4">第四部分 · Stage 13：中间层到底表示什么（计划与进展）</a>
 </nav>
 <div class="ov" id="ov">{OVERVIEW}</div>
 </div>
@@ -144,5 +146,7 @@ body{{margin:0;background:var(--pg);color:var(--pg-ink);font:16.5px/1.75 "PingFa
 <div class="partbar"><span class="tagp">第二部分</span><h2>Stage 10–11：全量阶段</h2><p>原 Stage 10–11 双语报告全文（2026-10-27）。6.12 节标签改为 Stage 11，与 PPT 一致。</p></div>
 <div class="p1011"><main>{body10}</main></div>
 <div class="partbar" id="p3"><span class="tagp">第三部分</span><h2>跨阶段：R0/R1 分层分析与两阶段对照</h2><p>Stage 1–9 只比 A vs B（都是 R0），Stage 10–11 比 target vs control（R0 + R1 合并）。这一部分把两者放到同一口径下。</p></div>
-<div class="p19"><main>{NEW}{bridge.replace('id="bridge"', 'id="p3-bridge"').replace('<h2>与 Stage 10–11 的对照</h2>', '<h2>两阶段对照（Stage 1–9 与 Stage 10–11）</h2>').replace(BRIDGE_OLD, BRIDGE_NEW)}</main></div>'''
+<div class="p19"><main>{NEW}{bridge.replace('id="bridge"', 'id="p3-bridge"').replace('<h2>与 Stage 10–11 的对照</h2>', '<h2>两阶段对照（Stage 1–9 与 Stage 10–11）</h2>').replace(BRIDGE_OLD, BRIDGE_NEW)}</main></div>
+<div class="partbar" id="p4"><span class="tagp">第四部分</span><h2>Stage 13：中间层到底表示什么</h2><p>lens 读不出不等于信息不存在：中间层可能在表示任务或论文身份，而不是名字。计划、预测和进展都在这里更新。</p></div>
+<div class="p19"><main>{PLAN13}</main></div>'''
 out = HERE / 'stage1_11_report.html'; out.write_text(html); print('wrote', out, len(html) // 1024, 'KB')

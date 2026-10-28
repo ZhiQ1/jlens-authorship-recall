@@ -284,6 +284,22 @@ def work(a):
     if left is not None and (budget is None or left - 8 < budget): budget = left - 8
     CL = ROOT / 'logs/claims'; CL.mkdir(parents=True, exist_ok=True)
     C, last, last_try = None, 0.0, 0.0
+    # 2026-10-28 (user-approved): a job that lands on anything but one A100-80GB (e.g. 2 x A100-40GB via scontrol) never takes
+    # the author-lens fit, and first recomputes one A100-80GB-done unit as a parity check (WARN only). Non-A100 GPUs: prior units only.
+    import torch as _t
+    gpus = [_t.cuda.get_device_name(i) for i in range(_t.cuda.device_count())]
+    big = bool(gpus) and all(_t.cuda.get_device_properties(i).total_memory >= 70 * 2 ** 30 for i in range(len(gpus)))
+    same_arch = bool(gpus) and all('A100' in g for g in gpus)
+    a100 = big and same_arch                                          # single A100-80GB as before: everything, incl. the fit
+    if not a100:
+        log('GPUs', gpus, '-> no author-lens fit;', 'all forward units' if same_arch else 'prior_mc / prior_pure only')
+        C = s11.Ctx(); ref = out_path(('prior_mc', 'delete', 0))
+        if ref.exists():
+            z = np.load(ref); d = compute(C, ('prior_mc', 'delete', 0)); a, b = np.asarray(z['mean_nlr'], float), np.asarray(d['mean_nlr'], float)
+            ok = len(a) == len(b) and bool((z['paper_id'] == d['paper_id']).all())
+            rep = dict(job=me, gpu=gpus, rows_match=ok, max_abs_diff=float(np.abs(a - b).max()) if ok else None, mean_abs_diff=float(np.abs(a - b).mean()) if ok else None)
+            rep['status'] = 'PASS' if ok and rep['max_abs_diff'] < 0.05 else 'WARN'
+            log('NON-A100 PARITY', json.dumps(rep)); open(ROOT / 'logs/v100_smoke.jsonl', 'a').write(json.dumps(rep) + '\n')
 
     def try_fit(C):
         """2026-10-27: ANY job (s12w, s12fit, or a s10p/s11w hand-over) continues the author-lens fit when no other job
@@ -291,7 +307,7 @@ def work(a):
         GPU leaves while fitting is still open. Returns (C, stop)."""
         nonlocal last_try; last_try = time.monotonic()
         rest = budget - (time.monotonic() - t0) / 60
-        if fit_done() or any((ROOT / 'logs').glob('fit_error_*.json')) or rest < 20 or not s11.claim(CL / 'alens_fit', me): return C, False
+        if not a100 or fit_done() or any((ROOT / 'logs').glob('fit_error_*.json')) or rest < 20 or not s11.claim(CL / 'alens_fit', me): return C, False
         if C is None: C = s11.Ctx()
         try: fit_step(C, rest)
         except Exception as e:
@@ -307,16 +323,17 @@ def work(a):
         if not fit_done() and time.monotonic() - last_try > 600:      # the fit job may have ended: take the fit over
             C, stop = try_fit(C)
             if stop: return
-        U = units(); u = None
+        U = [v for v in units() if same_arch or v[0] in ('prior_mc', 'prior_pure')]; u = None
         for v in U:
             if out_path(v).exists(): continue
             if s11.claim(CL / '_'.join(str(x) for x in v if x is not None), me): u = v; break
         if u is None:
-            if not fit_done():
+            if not fit_done() and a100:
                 C, stop = try_fit(C)
                 if stop: return
                 if fit_done(): continue                      # the alens_read units are now open
-            log('stage12: nothing left to claim', '' if fit_done() else '(author-lens fit held by another job)'); return
+            log('stage12: nothing left to claim', '' if fit_done() else '(author-lens fit held by another job)')
+            handover13(C, budget - (time.monotonic() - t0) / 60); return
         if C is not None and (time.monotonic() - t0) / 60 + 1.5 * last / 60 > budget:
             d = CL / '_'.join(str(x) for x in u if x is not None); os.rename(d, d.with_name(d.name + f'.released_{me}')); log('time budget reached; released', u); return
         if C is None: C = s11.Ctx()
@@ -330,6 +347,22 @@ def work(a):
             log('UNIT CRASH (type disabled, job continues):', u, repr(e)); continue
         save(u, d, C.env); last = time.monotonic() - t1
         log(f'stage12 {u[0]} {u[1] or ""} shard {u[2]:03d} rows={len(d["row_id"])} {last:.0f}s total={(time.monotonic() - t0) / 60:.1f}min')
+
+
+def handover13(C, rest):
+    """2026-10-28: when Stage 12 has nothing left for this job, continue with Stage 13 (task-contrast forwards), reusing the
+    loaded model. Enabled by /scratch/$USER/jlens/381_stage13/logs/accept_handover."""
+    R13 = ROOT.parent / '381_stage13'
+    if rest < 12 or not (R13 / 'logs/accept_handover').exists(): return
+    sp = importlib.util.spec_from_file_location('s13', Path.home() / 'jlens_work/13_stage13/381_stage13.py'); s13 = importlib.util.module_from_spec(sp); sp.loader.exec_module(s13)
+    if not [u for u in s13.units() if not s13.out_path(u).exists()]: return
+    if C is not None:
+        class C13: torch = C.torch; model = C.model; tok = C.tok; env = C.env; papers, _t = s13.s11.cohort(); ctx = s13.s11.contexts_of(_t)
+        C13.record = lambda self, ids, layers: s13.s11.record(self, ids, layers); C13.unembed = lambda self, h: self.model.unembed(h); ctx13 = C13()
+    else: ctx13 = None
+    log('stage12 -> stage13 hand-over, budget', round(rest))
+    class A: max_minutes = rest; ctx = ctx13
+    s13.work(A())
 
 
 def analyze(a):
