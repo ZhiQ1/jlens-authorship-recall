@@ -198,7 +198,7 @@ note(s, 9.95, 1.9, 2.9, 3.6, [[B('L52+', TGT), T(': title no longer needed')], [
 
 # S11c title position -----------------------------------------------------------------
 s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more: re-checked with author-team folds and with papers whose prompt title the probe saw in training removed, about 0.05 at L24 rising to 0.08 at L56, and 0.04 to 0.08 more for target papers. The controls (appendix) show this probe signal is specific to the paper, not a topic-to-name association. This is not in conflict with the lens result: the title is read early, at the title token, but names only become readable at the name positions in L57 to L61. Read early, spoken late.')
-title(s, 'Read early: a probe finds it at the title', 'title-specific signal at the last title token · lenses: all 9,108 papers · probe: re-checked, 1,395 papers')
+title(s, 'Read early: a probe finds it at the title', 'title-specific signal at the last title token · lenses: all 9,108 papers · probe: re-checked, title reuse removed: 1,863 papers (896 target, 499 control)')
 chart(s, 'c13_title_position', 0.5, 1.6, 9.2)
 note(s, 9.95, 1.9, 2.9, 4.2, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.05 -> 0.08', GRN)], [T('target > control by '), B('+0.04-0.08', TGT)], [T('re-checked: team folds, title reuse removed')], [B('read early', GRN), T(' (title, L16-24), '), B('spoken late', TGT), T(' (names, L57-61)')]], rot=-1.5, size=18)
 
