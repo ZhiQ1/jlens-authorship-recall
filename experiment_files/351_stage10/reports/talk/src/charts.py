@@ -204,9 +204,16 @@ for r, col in (('logit', CTL), ('jlens_public', TGT)):
     ax.plot(d.layer, d.spec_control, ':o', color=col, lw=2, ms=4, label=f'{lab} · control')
 ax.set_title('lens readout at the last title token'); ax.set_xlabel('layer'); ax.set_ylabel('title-specific signal'); ax.legend(loc='upper left', fontsize=12)
 ax = axs[1]
+# 2026-10-28: re-checked probe (Stage 13): author-team folds, papers whose prompt title the probe saw in training dropped
+pp_ = pd.read_parquet('/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/perpaper_probe_spec.parquet')
+pp_ = pp_[(pp_.split == 'group') & (pp_.excl == 'title-reuse') & (pp_.control == 'probe (as in Stage 11)')].drop_duplicates(['paper_id', 'layer'], keep='first')
+pp_ = pp_[~pp_.dropped].merge(pd.read_parquet('/scratch/zhang.zhiqi2/jlens/351_stage10/cohort/papers.parquet', columns=['paper_id', 'group_tight']), on='paper_id')
+rb = np.random.default_rng(13)
 for g, col in (('target', TGT), ('control', CTL)):
-    ax.fill_between(pr.layer, pr[f'spec_{g}_lo'], pr[f'spec_{g}_hi'], color=col, alpha=.18, lw=0); ax.plot(pr.layer, pr[f'spec_{g}'], '-o', color=col, lw=2.5, ms=5, label=g)
-ax.set_title('linear probe at the last title token'); ax.set_xlabel('layer'); ax.legend(loc='upper left')
+    d = pp_[pp_.group_tight == g]; m = d.groupby('layer').spec.mean()
+    ci = d.groupby('layer').spec.apply(lambda v: np.percentile(rb.choice(v.dropna().to_numpy(), (1000, v.notna().sum())).mean(1), [2.5, 97.5]))
+    ax.fill_between(m.index, [c[0] for c in ci], [c[1] for c in ci], color=col, alpha=.18, lw=0); ax.plot(m.index, m.values, '-o', color=col, lw=2.5, ms=5, label=f'{g} (n={d.paper_id.nunique()})')
+ax.set_title('linear probe at the last title token (re-checked)'); ax.set_xlabel('layer'); ax.legend(loc='upper left')
 for a in axs: a.axhline(0, color=MUTE, lw=1.2, ls='--', zorder=0); a.set_xticks([16, 24, 32, 40, 48, 56, 62])
 save(fig, 'c13_title_position')
 
@@ -251,7 +258,8 @@ ax.axhline(0, color=MUTE, lw=1.2, ls='--'); ax.set_xticks(xs); ax.set_xticklabel
 ax.legend(loc='upper left', fontsize=13)
 save(fig, 'c15_name_prior')
 
-X1 = pd.read_csv(R12 / 'X1_probe_controls.csv')
+X1 = pd.read_csv('/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/X1controls_4configs.csv')   # re-checked 2026-10-28
+X1 = X1[(X1.split == 'group') & (X1.excl == 'title-reuse')]
 fig, ax = plt.subplots(figsize=(8.6, 4.9))
 ctrls = [('probe (as in Stage 11)', 'probe', TGT), ('gold = random other paper', 'gold of another paper', MUTE), ('gold = random paper of the same field', 'gold of a same-field paper', CTL), ('probe trained on FALSE-title pairs', 'trained on false titles', GRN)]
 lays = sorted(X1.layer.unique()); xs = np.arange(len(lays)); w = 0.2

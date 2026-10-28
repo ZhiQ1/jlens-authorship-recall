@@ -80,12 +80,24 @@ body10 = body10[:j] + '<div class="pair"><p class="zh"><b>R0/R1 分层（第三�
 # title-reuse exclusion. Marker only; the text itself is unchanged.
 RV = '<span style="display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin-right:6px;border-radius:4px;background:#B42318;color:#fff">待复核 under review</span>'
 RVN = '<a href="#p4-plan" style="font-size:12.5px">（probe 结果正在复核：同一标题跨训练和测试、标题一题两用、未按团队切分，见第四部分）</a>'
-for old, new in (('标题最后一个 token 上，线性 probe', RV + '标题最后一个 token 上，线性 probe'),
-                 ('<b>标题位置能不能读出作者。</b>', RV + '<b>标题位置能不能读出作者。</b>'),
-                 ('<b>标题位置 probe 的对照检验。</b>', RV + '<b>标题位置 probe 的对照检验。</b>'),
-                 ('<span><b>读得早，说得晚。</b>', '<span>' + RV + '<b>读得早，说得晚。</b>')):
-    assert old in body10, old
+# 2026-10-28 17:30 (user-approved rewrites 1 and 2): the probe statements were re-checked with author-team folds and the
+# title-reuse exclusion (Stage 13 E4b recheck); numbers updated, 'under review' markers removed for these statements.
+OK = '<span style="display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin:0 4px;border-radius:4px;background:#2F7D3B;color:#fff">已复核</span>'
+REWRITES = (
+ ('标题最后一个 token 上，线性 probe 从 L16–L24 起就能读出少量这篇论文特有的作者信息，目标组略高（+0.02 到 +0.04）。',
+  '标题最后一个 token 上，线性 probe 从 L24 起就能读出少量这篇论文特有的作者信息（+0.05 到 +0.08），目标组更高（+0.04 到 +0.08）' + OK + '（已按作者团队分折、并剔除 probe 训练时见过同一标题的论文后复核，见第四部分）。'),
+ ('换成线性 probe（5 折 ridge 回归，把标题位置的表示映射到模型在 ":" 处 L63 的表示）能读出一些：L16 约 +0.04，L52–56 约 +0.08，目标组比对照组高 +0.02 到 +0.04（置信区间在 0 以上）。',
+  '换成线性 probe（5 折 ridge 回归，把标题位置的表示映射到模型在 ":" 处 L63 的表示）能读出一些。按作者团队分折、并剔除 probe 训练时见过同一标题的论文后复核' + OK + '：L24 约 +0.05，L40 约 +0.07，L56 约 +0.08；目标组比对照组高 +0.04 到 +0.08（L24–L60，置信区间在 0 以上）。原来按论文分折、未剔除时为 L16 约 +0.04、L52–56 约 +0.08，目标组高 +0.02 到 +0.04（下表），复核后结论不变。'),
+ ('只用假标题数据训练 probe，信号反而更强。因此这部分信号是这篇论文特有的：标题最后一个 token 上从 L24 起就有可被线性读出的、属于这篇论文的作者信息（目标组更多），只是现有 lens 读不出来。',
+  '只用假标题数据训练 probe，得到相近的信号' + OK + '（原表中“更强”来自泄漏：同一个借出标题同时出现在训练和测试里；按作者团队分折并剔除标题复用后，只用假标题训练为 L24 +0.050、L40 +0.057、L56 +0.074，与普通 probe 的 +0.050、+0.066、+0.080 相当或略低，见第四部分）。因此这部分信号是这篇论文特有的：两种置换对照在复核后仍约为 0，标题最后一个 token 上从 L24 起就有可被线性读出的、属于这篇论文的作者信息（目标组更多），只是现有 lens 读不出来。'),
+ ('但在标题最后一个 token 上，线性 probe 从 L16–L24 起就能读出少量这篇论文特有的作者信息，目标组比对照组略高（+0.02 到 +0.04，置信区间在 0 以上）。',
+  '但在标题最后一个 token 上，线性 probe 从 L24 起就能读出少量这篇论文特有的作者信息（+0.05 到 +0.08），目标组比对照组高（+0.04 到 +0.08，置信区间在 0 以上）' + OK + '（按作者团队分折、剔除标题复用后复核）。'),
+)
+for old, new in REWRITES:
+    assert body10.count(old) == 1, old[:40]
     body10 = body10.replace(old, new)
+# the false-title-training rows of the 6.12 table: mark as superseded
+body10 = body10.replace('只用假标题数据训练 probe / probe trained on FALSE-title pairs</td>', '只用假标题数据训练 probe / probe trained on FALSE-title pairs <span style="color:#B42318">（未剔除泄漏，已被复核结果取代）</span></td>')
 # 2026-10-28: the 'moved onto the post-title tokens' wording is under review (Stage 12 P1 preview: most of it sits at the name positions)
 RV2 = '<span style="display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin:0 4px;border-radius:4px;background:#B42318;color:#fff">待复核</span>'
 for frag in ('搬到标题之后的位置', '搬到标题之后的几个 token 上'):
@@ -96,9 +108,8 @@ NEW8 = ('<li><b>测的是打分，不是生成。</b>Stage 10–12 的所有实�
         '<li><b>只用了一个模型。</b>全部结论来自 Qwen3-32B，层号是它特有的。换一个模型，层的位置肯定不同，机制是否相同也不知道。<span class="en">One model: every result comes from Qwen3-32B and the layer numbers are specific to it; in another model the layers will differ, and whether the mechanism is the same is unknown.</span></li>')
 i8 = body10.index('<h2><span class="num">§8</span>'); j8 = body10.index('<ul class="pair-list">', i8) + len('<ul class="pair-list">')
 body10 = body10[:j8] + NEW8 + body10[j8:]
-for h in ('6.11 Stage 11：干预实验', '6.12 名字先验'):
-    i = body10.index(h); j = body10.index('</h3>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]
-i = body10.index('<h2><span class="num">§7</span>'); j = body10.index('</h2>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]
+RVN2 = '<a href="#p4-plan" style="font-size:12.5px">（“搬到标题之后的 token”这一说法待复核：Stage 12 P1 预览显示信息主要在名字位置本身；等 P1 正式分析和 X6，见第四部分）</a>'
+i = body10.index('6.11 Stage 11：干预实验'); j = body10.index('</h3>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN2 + '</p>' + body10[j:]
 sec_ids = iter(range(1, 100))
 body10 = re.sub(r'<section>', lambda m: f'<section id="p2-{next(sec_ids)}">', body10)
 BRIDGE_OLD = re.search(r'<div class="bx warn"><b>可比性提醒</b>.*?</div>', bridge, re.S).group(0)

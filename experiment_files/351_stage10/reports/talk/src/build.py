@@ -197,10 +197,10 @@ chart(s, 'c12_patch_knockout', 0.5, 1.6, 9.2)
 note(s, 9.95, 1.9, 2.9, 3.6, [[B('L52+', TGT), T(': title no longer needed')], [T('info moved to the tokens '), B('right after'), T(' the title')], [T('same timing for target and control')]], rot=1.5, size=18)
 
 # S11c title position -----------------------------------------------------------------
-s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more, 0.04 at L16 rising to 0.08 at L56, and a little more for target papers. The controls (appendix) show this probe signal is specific to the paper, not a topic-to-name association. This is not in conflict with the lens result: the title is read early, at the title token, but names only become readable at the name positions in L57 to L61. Read early, spoken late.')
-title(s, 'Read early: a probe finds it at the title', 'title-specific signal at the last title token · all 9,108 papers')
+s = new_slide('Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more: re-checked with author-team folds and with papers whose prompt title the probe saw in training removed, about 0.05 at L24 rising to 0.08 at L56, and 0.04 to 0.08 more for target papers. The controls (appendix) show this probe signal is specific to the paper, not a topic-to-name association. This is not in conflict with the lens result: the title is read early, at the title token, but names only become readable at the name positions in L57 to L61. Read early, spoken late.')
+title(s, 'Read early: a probe finds it at the title', 'title-specific signal at the last title token · lenses: all 9,108 papers · probe: re-checked, 1,395 papers')
 chart(s, 'c13_title_position', 0.5, 1.6, 9.2)
-note(s, 9.95, 1.9, 2.9, 4.2, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.04 -> 0.08', GRN)], [T('target > control by '), B('+0.02-0.04', TGT)], [B('read early', GRN), T(' (title, L16-24), '), B('spoken late', TGT), T(' (names, L57-61)')]], rot=-1.5, size=18)
+note(s, 9.95, 1.9, 2.9, 4.2, [[T('lenses: '), B('~0.01-0.03')], [T('probe: '), B('0.05 -> 0.08', GRN)], [T('target > control by '), B('+0.04-0.08', TGT)], [T('re-checked: team folds, title reuse removed')], [B('read early', GRN), T(' (title, L16-24), '), B('spoken late', TGT), T(' (names, L57-61)')]], rot=-1.5, size=18)
 
 # S11d chain -----------------------------------------------------------------
 s = new_slide('Author chain. When the earlier authors are in the context, later authors become easier: plus 0.17 to 0.23 for target, 0.12 to 0.18 for control. But the title matters less: the title-specific signal drops from 0.45 to 0.26 for later target authors, because the co-authors already identify the paper. Target still beats control within bins, plus 0.11 to 0.15.')
@@ -215,8 +215,8 @@ chart(s, 'c15_name_prior', 0.5, 1.6, 9.2)
 note(s, 9.95, 1.9, 2.9, 3.9, [[T('no title: rank '), B('~12')], [T('target - control: '), B('+0.09', MUTE), T(' prior, '), B('+0.21', TGT), T(' paper')], [T('surname 1st: prior ~0, paper '), B('+0.42', TGT)], [T('prior vs recognition rho '), B('0.09')]], rot=1.5, size=17)
 
 # S12b probe controls -----------------------------------------------------------------
-s = new_slide('Is the probe at the title token reading real paper knowledge, or just topic to name associations? If we score its output against the authors of another paper, or of another paper in the same field, the signal drops to zero. If we train it only on false-title pairs it gets even stronger. So the last title token carries linearly decodable, paper-specific author information already at L24, more for target papers, even though the lenses cannot read it.')
-title(s, 'The probe signal is paper-specific', 'last title token · 5-fold ridge probe · controls · all 9,108 papers')
+s = new_slide('Is the probe at the title token reading real paper knowledge, or just topic to name associations? If we score its output against the authors of another paper, or of another paper in the same field, the signal drops to zero. If we train it only on false-title pairs it gives a similar signal (the earlier even-stronger result came from a leak: the same donor title in training and test). So the last title token carries linearly decodable, paper-specific author information already at L24, more for target papers, even though the lenses cannot read it.')
+title(s, 'The probe signal is paper-specific', 'last title token · 5-fold ridge probe · re-checked: author-team folds, title reuse removed')
 chart(s, 'c16_probe_controls', 0.6, 1.6, 8.0)
 note(s, 9.0, 1.9, 3.7, 3.6, [[T('another paper\'s authors: '), B('0')], [T('same-field paper: '), B('0')], [T('so it is '), B('this paper', TGT), T(', already at L24')], [T('lenses cannot read it')]], rot=-1.5, size=18)
 
@@ -304,7 +304,7 @@ for sl, tg in zip(prs.slides, TAGS):
     r.font.name = BODY_F; r.font.size = Pt(15); r.font.bold = True; r.font.color.rgb = TAG_COL[tg]
 assert len(TAGS) == len(prs.slides._sldIdLst), (len(TAGS), len(prs.slides._sldIdLst))
 # 2026-10-28 review: probe results under review (team folds, title-reuse exclusion); marker only, slide text unchanged
-REVIEW = {12: 'UNDER REVIEW: probe split leaks being re-checked (Stage 13)', 15: 'UNDER REVIEW: probe split leaks being re-checked (Stage 13)'}
+REVIEW = {}   # 2026-10-28 17:40: both probe slides re-checked and updated; stamps removed
 RED = RGBColor(0xB4, 0x23, 0x18)
 for i, sl in enumerate(prs.slides):
     if i not in REVIEW: continue
