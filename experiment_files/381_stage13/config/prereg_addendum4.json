@@ -1,0 +1,11 @@
+{
+ "title": "Stage 13 pre-registration, addendum 4 (review: scoring vs generation, token roles, X3 lexical control, single model)",
+ "written": "2026-10-28T14:40-04:00",
+ "status_at_writing": "X3 (para_gen / para_run) has no data. The P1 role breakdown below was computed (CPU preview) before this was written and is reported as exploratory.",
+ "X3": {"replaces": "the X3 primary comparison of prereg.json (the partner B rule stays as a secondary comparison)",
+  "primary": "G'(l,pos) = cos(original, paraphrase) - cos(original, lexical neighbour D), where D is a different same-field paper (no shared surname) whose title word Jaccard with the original is >= the paraphrase's (closest above; else the highest available). 'Paper identity from layer l' requires G'(l) > 0 and G'(l) - G'(L4) > 0 (team-cluster intervals exclude 0), found on the tune split and confirmed on test.",
+  "behaviour": "first-author score: paraphrase - lexical neighbour > 0",
+  "also": "pairs where D's Jaccard is below the paraphrase's are reported separately (no matched neighbour available)"},
+ "token_roles": "Every patching / probe result on names (Stage 11 E1/E1t/E2, Stage 12 P1/P2/F2, X6/X7) is also reported by token role: first token of the name (initial or given name, predicted at ':'), first surname token, surname continuation; recovery ratios are not reported for roles whose true - false gap is below 0.05 (punctuation).",
+ "wording": "Results are stated as the model's internal preference for the correct author tokens under teacher forcing (scored continuations), not as the process by which it generates authors."
+}

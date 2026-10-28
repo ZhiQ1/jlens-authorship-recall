@@ -91,6 +91,11 @@ RV2 = '<span style="display:inline-block;font-size:12px;font-weight:700;padding:
 for frag in ('搬到标题之后的位置', '搬到标题之后的几个 token 上'):
     assert frag in body10, frag
     body10 = body10.replace(frag, frag + RV2)
+# 2026-10-28 review (addendum 4): two limitations added to §8
+NEW8 = ('<li><b>测的是打分，不是生成。</b>Stage 10–12 的所有实验都是把正确名字放进去（教师强制），看模型给它打多少分；可目标组里很多论文，模型实际上一个作者都写不对。所以结论说的是“模型内部对正确作者的倾向”，不是“模型生成作者的过程”。<span class="en">Scoring, not generation: every experiment in Stages 10–12 feeds the correct name (teacher forcing) and measures how the model scores it, while for many target papers the model writes no correct author at all. The results describe the model\'s internal preference for the correct authors, not the process by which it generates authors.</span></li>'
+        '<li><b>只用了一个模型。</b>全部结论来自 Qwen3-32B，层号是它特有的。换一个模型，层的位置肯定不同，机制是否相同也不知道。<span class="en">One model: every result comes from Qwen3-32B and the layer numbers are specific to it; in another model the layers will differ, and whether the mechanism is the same is unknown.</span></li>')
+i8 = body10.index('<h2><span class="num">§8</span>'); j8 = body10.index('<ul class="pair-list">', i8) + len('<ul class="pair-list">')
+body10 = body10[:j8] + NEW8 + body10[j8:]
 for h in ('6.11 Stage 11：干预实验', '6.12 名字先验'):
     i = body10.index(h); j = body10.index('</h3>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]
 i = body10.index('<h2><span class="num">§7</span>'); j = body10.index('</h2>', i) + 5; body10 = body10[:j] + '<p style="margin:4px 0 0">' + RV + RVN + '</p>' + body10[j:]

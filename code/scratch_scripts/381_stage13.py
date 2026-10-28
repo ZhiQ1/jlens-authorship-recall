@@ -286,6 +286,24 @@ def do_para_gen(C, shard):
                 auto_ok=np.array([x[3] for x in out]), word_jaccard=np.array([x[4] for x in out]))
 
 
+def title_words(t): return {x for x in ''.join(c.lower() if c.isalnum() else ' ' for c in str(t)).split() if len(x) > 3}
+
+
+def lexical_neighbour(papers, pid, target_jac):
+    """2026-10-28 review: a DIFFERENT paper of the same field whose title shares at least as many words with A's title as the
+    paraphrase does (word Jaccard >= the paraphrase's, closest above it; else the highest available), no shared surname.
+    If the paraphrase is closer to A than this neighbour, it cannot be word overlap."""
+    P = papers.set_index('paper_id'); a = title_words(P.loc[pid].title)
+    sur = lambda x: {y.split()[-1].lower() for y in str(P.loc[x].authors).split('; ') if y.strip()}
+    sa = sur(pid); best = None
+    for q in papers[(papers.field == P.loc[pid].field) & (papers.paper_id != pid)].paper_id:
+        b = title_words(P.loc[q].title); j = len(a & b) / max(1, len(a | b))
+        if sur(q) & sa: continue
+        key = (0, j - target_jac) if j >= target_jac else (1, -j)
+        if best is None or key < best[0]: best = (key, q, j)
+    return best[1], best[2]
+
+
 def do_para_run(C, shard):
     smp, pairs = sample(); P = C.papers.set_index('paper_id'); rows, res = [], []
     para = {}
@@ -294,15 +312,17 @@ def do_para_run(C, shard):
     for r in smp[smp.shard == shard].itertuples():
         if r.paper_id not in pairs.index or r.paper_id not in para or not para[r.paper_id][1] or r.paper_id not in C.ctx: continue
         name = C.ctx[r.paper_id][0][2]; q = pairs.loc[r.paper_id].partner
+        dpid, djac = lexical_neighbour(C.papers, r.paper_id, para[r.paper_id][2])
         per, sc = [], []
-        for title in (P.loc[r.paper_id].title, para[r.paper_id][0], P.loc[q].title):
+        for title in (P.loc[r.paper_id].title, para[r.paper_id][0], P.loc[q].title, P.loc[dpid].title):
             ids, it, ic = build(C.tok, title, 'authors', []); acts = C.record(ids, LAYERS)
             per.append(np.stack([np.stack([acts[l][it].float().cpu().numpy(), acts[l][ic].float().cpu().numpy()]) for l in LAYERS]))
             sc.append(score_tf(C, ids, name)[0])
-        rows.append((r.paper_id, q, *sc, para[r.paper_id][2])); res.append(np.stack(per).astype(np.float16))
+        rows.append((r.paper_id, q, *sc, para[r.paper_id][2], dpid, djac)); res.append(np.stack(per).astype(np.float16))
     return dict(paper_id=np.array([x[0] for x in rows]), partner=np.array([x[1] for x in rows]), score_original=np.array([x[2] for x in rows]),
-                score_paraphrase=np.array([x[3] for x in rows]), score_partner=np.array([x[4] for x in rows]), word_jaccard=np.array([x[5] for x in rows]),
-                resid=np.stack(res) if res else np.zeros((0,)), layers=np.array(LAYERS), versions=np.array(['original', 'paraphrase', 'partner']))
+                score_paraphrase=np.array([x[3] for x in rows]), score_partner=np.array([x[4] for x in rows]), score_lexical=np.array([x[5] for x in rows]),
+                word_jaccard=np.array([x[6] for x in rows]), lexical_neighbour=np.array([x[7] for x in rows]), lexical_jaccard=np.array([x[8] for x in rows]),
+                resid=np.stack(res) if res else np.zeros((0,)), layers=np.array(LAYERS), versions=np.array(['original', 'paraphrase', 'partner', 'lexical_neighbour']))
 
 
 # ------------------------------------------------------------------ X6 / X7 (2026-10-28, Stage 11 review)
@@ -451,7 +471,7 @@ def dry(a):
     g = do_para_gen(C, sh); check('para_gen rows', len(g['paper_id']) == len(_CACHE['smp']))
     check('para checks reject year / surname', not para_checks('A study of x', 'A 1999 study', 1999, 'J. Smith')[0] and not para_checks('A study of x', 'Smith study', 2000, 'J. Smith')[0] and para_checks('A study of mice', 'Research on mice', 2000, 'J. Smith')[0])
     (ROOT / 'raw/para_gen').mkdir(parents=True); g['auto_ok'][:] = True; np.savez(ROOT / f'raw/para_gen/shard_{sh:03d}.npz', **g)
-    pr = do_para_run(C, sh); check('para_run rows', len(pr['paper_id']) >= 1 and pr['resid'].shape[1:3] == (3, 2), str(pr['resid'].shape))
+    pr = do_para_run(C, sh); check('para_run rows (4 versions incl. lexical neighbour)', len(pr['paper_id']) >= 1 and pr['resid'].shape[1:3] == (4, 2) and (pr['lexical_jaccard'] >= 0).all(), str(pr['resid'].shape))
     ROOT = old_root
     # X6 / X7 on the tiny model: Stage 11 code with its layer lists shortened and its fixed L63 readout generalised
     import inspect, textwrap
