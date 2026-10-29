@@ -413,7 +413,7 @@ def work(a):
             import traceback; s11.dump(ROOT / f'logs/broken_{u[0]}.json', dict(unit=list(u), error=repr(e), job=me, at=now(), tb=traceback.format_exc()))
             dd = CL / claim_name(u); os.rename(dd, dd.with_name(dd.name + f'.crashed_{me}')); log('UNIT CRASH (type disabled, job continues):', u, repr(e)); return
         save(u, d, C.env); last = time.monotonic() - t1
-        log(f'stage13 {u[0]} shard {u[2]:03d} papers={len(d["paper_id"])} {last:.0f}s total={(time.monotonic() - t0) / 60:.1f}min')
+        log(f'stage13 {u[0]} shard {u[2]:03d} rows={len(next((v for k, v in d.items() if k in ("paper_id", "row_id")), []))} {last:.0f}s total={(time.monotonic() - t0) / 60:.1f}min')
 
 
 def dry(a):
