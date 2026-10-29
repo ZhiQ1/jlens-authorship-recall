@@ -165,7 +165,7 @@ body{margin:0;background:var(--pg);color:var(--pg-ink);font:16.5px/1.75 "PingFan
 <span class="sub"><a href="#p2-1">§1 摘要</a> · <a href="#p2-3">§3 数据与分组</a> · <a href="#p2-4">§4 方法</a> · <a href="#p2-6">§6 结果</a> · <a href="#p2-7">§7 结论</a> · <a href="#p2-8">§8 局限</a></span>
 <a href="#p3">第三部分 · 跨阶段：R0/R1 分层分析与两阶段对照</a>
 <a href="#p4">第四部分 · Stage 12 正式结果；Stage 13：中间层到底表示什么（计划与进展）</a>
-<span class="sub"><a href="#s12-results">Stage 12 结果（P1、P2、N1、N2、F2）</a> · <a href="#p4-plan">Stage 13 计划</a></span>
+<span class="sub"><a href="#s12-results">Stage 12 结果（P1、P2、N1、N2、F2）</a> · <a href="#x6-results">X6 结果</a> · <a href="#p4-plan">Stage 13 计划</a></span>
 </nav>
 <div class="ov" id="ov"><h2>总览：一个问题，四条论证线</h2>
 <p>研究问题：Qwen3-32B 写不全一篇论文的作者、却能在多选题里认出真名单时，论文的作者信息在网络的哪一层形成、经过哪些位置、能被哪种读出工具看到。Stage 1–9 在 20–200 篇论文上建立信号并逐一排除替代解释；Stage 10–11 在全部 9,108 篇论文上逐层定位，并用替换和阻断做干预。</p>
@@ -1414,6 +1414,15 @@ Authors:</pre>
 <h3>F2 用作者提示拟合的 lens</h3>
 <p>在名字位置上，L24–L56 的 target − control 都 ≤ 0（L44–L52 为 −0.04 到 −0.06，置信区间不含 0），只有 L62 是 +0.238。在标题位置上，除 L56（+0.030 [0.000, 0.060]）外，置信区间都包含 0 或为负。也就是说，换成在作者提示上拟合的 lens，中间层仍然读不出“这篇论文特有”的作者信号。这支持 B 线“读出工具读不到”的结论，但仍然不能说明信息不存在（见 Stage 13）。</p>
 <p class="note">仍保留的“待复核”：“论文信息被搬到标题之后的 token 上”这一说法（§1、§6.11、§7）。P1 显示，恢复主要来自名字位置，这一说法需要改写；按 2026-10-28 的约定，等 X6（false_1–false_4 的替换）结果出来后一起改。</p>
+</section>
+
+<section id="x6-results"><h2><span class="st">Stage 13 · X6</span><span class="ln lC">C 哪一层</span> Stage 11 的替换结果换成其他 4 个假标题后仍然成立</h2>
+<p class="note">2026-10-29 00:50 完成，97 个 GPU 单元，规则见预注册补充 3。自检：把 5 个假标题都换成 Stage 11 的同一份数据时，算出的结果与 Stage 11 E1 完全一致（最大差 2×10⁻¹⁶）。另外，X6 重算的 false_0 第 0 分片与 Stage 11 原始结果逐个排名相同。区间是按作者团队重抽的 bootstrap，5 个假标题共用同一组抽样。报告：<code>381_stage13/reports/x6_report.md</code></p>
+<table><tr><th>组</th><th>L48：false_0</th><th>L48：5 个假标题范围</th><th>L48：平均</th><th>L52：平均</th><th>预注册判定</th></tr>
+<tr><td>target</td><td>0.803</td><td>0.788–0.803</td><td>0.794 [0.777, 0.811]</td><td>0.987 [0.981, 0.993]</td><td class="ok">成立</td></tr>
+<tr><td>control</td><td>0.866</td><td>0.864–0.885</td><td>0.876 [0.847, 0.904]</td><td>1.012 [1.001, 1.024]</td><td class="ok">成立</td></tr>
+<tr><td>全部</td><td>0.825</td><td>0.813–0.825</td><td>0.821 [0.806, 0.835]</td><td>0.995 [0.990, 1.001]</td><td class="ok">成立</td></tr></table>
+<p>成立的条件是：平均恢复率 L48 在 0.70–0.95 之间，L52 ≥ 0.95；每个假标题的 L48 与 false_0 相差不超过 0.10，L52 ≥ 0.90。三组全部满足，各假标题之间的差都不超过 0.02。所以 §6.11 的“L48 恢复约 80–87%，L52 起 100%”不是 false_0 特有的结果。所有层的数字见 <code>summary_x6/x6_recovery.csv</code>。</p>
 </section>
 
 <section id="p4-plan"><h2><span class="st">Stage 13</span><span class="ln lB">B 读出工具</span><span class="ln lC">C 哪一层</span> 计划：中间层到底表示什么</h2>
