@@ -6,12 +6,12 @@ Shards 24; papers: tune 596, test 582. D = mean score(self source) - mean score(
 
 | answer | position | earliest (tune) | D on test at that layer | confirmed |
 |---|---|---|---|---|
-| year | title | L40.0 | +0.013 [+0.008, +0.018] | yes |
-| year | colon | Lnan | +nan [+nan, +nan] | no |
-| author | title | L8.0 | +0.046 [+0.035, +0.059] | yes |
-| author | colon | L24.0 | +0.001 [-0.000, +0.003] | no |
-| field | title | Lnan | +nan [+nan, +nan] | no |
-| field | colon | L40.0 | +0.003 [-0.002, +0.007] | no |
+| year | title | L40 | +0.013 [+0.008, +0.018] | yes |
+| year | colon | none on tune | - | - |
+| author | title | L8 | +0.046 [+0.035, +0.059] | yes |
+| author | colon | L24 | +0.001 [-0.000, +0.003] | no |
+| field | title | none on tune | - | - |
+| field | colon | L40 | +0.003 [-0.002, +0.007] | no |
 
 - Order at title: not all three decodable on tune -> order undetermined
 - Order at colon: not all three decodable on tune -> order undetermined

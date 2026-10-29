@@ -36,7 +36,7 @@ with sync_playwright() as p:
     pages = ''.join(f'<div class="pg"><img src="{img(k)}"></div>' for k in range(1, n + 1))
     doc = f'<!doctype html><html><head><meta charset="utf-8"><style>@page{{size:1280px 720px;margin:0}}html,body{{margin:0}}.pg{{width:1280px;height:720px;break-after:page;overflow:hidden}}.pg img{{width:1280px;height:720px;display:block}}</style></head><body>{pages}</body></html>'
     (HERE / 'slides_only.html').write_text(doc); q = b.new_page(); q.goto((HERE / 'slides_only.html').as_uri(), wait_until='networkidle')
-    q.pdf(path=str(OUT / 'Stage1-11_deck_v9_slides.pdf'), width='1280px', height='720px', print_background=True, margin=dict(top='0', bottom='0', left='0', right='0'))
+    q.pdf(path=str(OUT / 'Stage1-11_deck_v11_slides.pdf'), width='1280px', height='720px', print_background=True, margin=dict(top='0', bottom='0', left='0', right='0'))
     # ---- with notes
     H = 1150
     blocks = []
@@ -59,6 +59,6 @@ with sync_playwright() as p:
     q.evaluate('document.fonts.ready')
     over = q.evaluate("[...document.querySelectorAll('.nb')].map((e,i)=>[i+1, e.scrollHeight, e.clientHeight]).filter(x=>x[1]>x[2]+1)")
     print('notes fonts', q.evaluate("[...document.fonts].filter(f=>f.status=='loaded').map(f=>f.family).filter((v,i,a)=>a.indexOf(v)==i)"), '| overflowing notes:', over, flush=True)
-    q.pdf(path=str(OUT / 'Stage1-11_deck_v9_with_notes_zh.pdf'), width='1280px', height=f'{H}px', print_background=True, margin=dict(top='0', bottom='0', left='0', right='0'))
+    q.pdf(path=str(OUT / 'Stage1-11_deck_v11_with_notes_zh.pdf'), width='1280px', height=f'{H}px', print_background=True, margin=dict(top='0', bottom='0', left='0', right='0'))
     b.close()
 print('wrote', OUT)
