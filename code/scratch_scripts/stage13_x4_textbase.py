@@ -17,6 +17,7 @@ import numpy as np, pandas as pd
 
 H = Path.home() / 'jlens_work'; B = Path('/scratch/zhang.zhiqi2/jlens'); R10 = B / '351_stage10'; ROOT = B / '381_stage13'
 OUT = ROOT / 'summary_x1x4'; K, ALPHA, NB = 50, 1.0, 2000
+import os; EXCL = os.environ.get('EXCLUDE_TEAM', '1') == '1'; TAG = '' if EXCL else '_posctrl'   # positive control: same team allowed
 
 
 def load(path, name):
@@ -33,7 +34,7 @@ def knn_scores(E, papers, team, rows, part_idx):
     sur = papers.first_surname.to_numpy(); prior = pd.Series(sur).value_counts(normalize=True)
     out = np.zeros((len(rows), 2))
     for r, (ia, ip) in enumerate(zip(rows, part_idx)):
-        s_a = sur[ia]; bad = team == team[ia]                      # never look at A's own team
+        s_a = sur[ia]; bad = (team == team[ia]) if EXCL else np.zeros(len(team), bool)   # never look at A's own team (unless positive control)
         for c, it in enumerate((ia, ip)):
             sim = E @ E[it]; sim[bad] = -np.inf; sim[it] = -np.inf
             nn = np.argpartition(-sim, K)[:K]; w = np.clip(sim[nn], 0, None)
@@ -66,7 +67,7 @@ def main():
             h = bert(**e).last_hidden_state; m = e.attention_mask[..., None].float(); E.append(((h * m).sum(1) / m.sum(1)).numpy())
     E = np.concatenate(E); E -= E.mean(0); E /= np.linalg.norm(E, axis=1, keepdims=True) + 1e-9
     ps['Dt_bert'] = knn_scores(E, papers, team, ia, ip)
-    ps.to_csv(OUT / 'x4_textbase_perpaper.csv', index=False)
+    ps.to_csv(OUT / f'x4_textbase_perpaper{TAG}.csv', index=False)
     codes, uniq = pd.factorize(ps.team); W = np.random.default_rng(41).multinomial(len(uniq), np.full(len(uniq), 1 / len(uniq)), size=NB).astype(float)[:, codes]
     def win(x): return np.mean(np.where(x > 0, 1, np.where(x < 0, 0, 0.5)))
     def ci_mean(x): b = (W @ x) / W.sum(1); return np.percentile(b, [2.5, 97.5])
@@ -94,9 +95,9 @@ def main():
         for wi, (a, c) in zip(w, cells): bt += wi * ((W[:, a] @ x[a]) / W[:, a].sum(1) - (W[:, c] @ x[c]) / W[:, c].sum(1))
         tc.append(dict(measure=col, target_minus_control=est, lo=np.percentile(bt, 2.5), hi=np.percentile(bt, 97.5)))
     TC = pd.DataFrame(tc)
-    pd.concat([S.assign(table='summary'), Rl.assign(table='relation'), TC.assign(table='target_minus_control')]).to_csv(OUT / 'x4_textbase.csv', index=False)
+    pd.concat([S.assign(table='summary'), Rl.assign(table='relation'), TC.assign(table='target_minus_control')]).to_csv(OUT / f'x4_textbase{TAG}.csv', index=False)
     f = lambda v: f'{v:+.3f}'
-    L = ['# X4 text-only baseline (user request 2026-10-29, item 4)', '',
+    L = ['# X4 text-only baseline (user request 2026-10-29, item 4)' + ('' if EXCL else ' -- POSITIVE CONTROL: own author team NOT excluded'), '',
          f'{len(ps)} X4 papers. Text model: kNN (k={K}) over the 9,108 cohort titles, excluding A\'s own author team; score = log10 p(A\'s first-author surname | title); D_text = own title - partner title. Units differ from Qwen\'s D, so compare win rates, standardised effects and correlations.', '',
          '| measure | mean [team 95% CI] | sd | mean/sd | share self > partner |', '|---|---|---|---|---|']
     names = {'D8': 'Qwen patchscope, title, L8', 'D40': 'Qwen patchscope, title, L40', 'Dt_tfidf': 'text kNN, TF-IDF', 'Dt_bert': 'text kNN, BERT'}
@@ -105,7 +106,7 @@ def main():
     for r in Rl.itertuples(): L.append(f'| {names[r.qwen]} | {names[r.text]} | {r.corr:+.3f} | {r.share_explained:.2f} | {f(r.qwen_mean_where_text_no_help)} ({r.n_text_no_help}) | {f(r.qwen_mean_where_text_helps)} |')
     L += ['', '| measure | target - control within citation bin |', '|---|---|']
     for r in TC.itertuples(): L.append(f'| {names[r.measure]} | {f(r.target_minus_control)} [{f(r.lo)}, {f(r.hi)}] |')
-    (ROOT / 'reports/x4_textbase.md').write_text('\n'.join(L) + '\n'); print('\n'.join(L)); print('\nX4TEXT ANALYZED')
+    (ROOT / f'reports/x4_textbase{TAG}.md').write_text('\n'.join(L) + '\n'); print('\n'.join(L)); print('\nX4TEXT ANALYZED')
 
 
 if __name__ == '__main__':
