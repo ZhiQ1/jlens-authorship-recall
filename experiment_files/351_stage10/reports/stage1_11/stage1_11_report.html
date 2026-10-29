@@ -165,7 +165,7 @@ body{margin:0;background:var(--pg);color:var(--pg-ink);font:16.5px/1.75 "PingFan
 <span class="sub"><a href="#p2-1">§1 摘要</a> · <a href="#p2-3">§3 数据与分组</a> · <a href="#p2-4">§4 方法</a> · <a href="#p2-6">§6 结果</a> · <a href="#p2-7">§7 结论</a> · <a href="#p2-8">§8 局限</a></span>
 <a href="#p3">第三部分 · 跨阶段：R0/R1 分层分析与两阶段对照</a>
 <a href="#p4">第四部分 · Stage 12 正式结果；Stage 13：中间层到底表示什么（计划与进展）</a>
-<span class="sub"><a href="#s12-results">Stage 12 结果（P1、P2、N1、N2、F2）</a> · <a href="#x6-results">X6 结果</a> · <a href="#p4-plan">Stage 13 计划</a></span>
+<span class="sub"><a href="#s12-results">Stage 12 结果（P1、P2、N1、N2、F2）</a> · <a href="#x6-results">X6 结果</a> · <a href="#x7-results">X7 结果</a> · <a href="#p4-plan">Stage 13 计划</a></span>
 </nav>
 <div class="ov" id="ov"><h2>总览：一个问题，四条论证线</h2>
 <p>研究问题：Qwen3-32B 写不全一篇论文的作者、却能在多选题里认出真名单时，论文的作者信息在网络的哪一层形成、经过哪些位置、能被哪种读出工具看到。Stage 1–9 在 20–200 篇论文上建立信号并逐一排除替代解释；Stage 10–11 在全部 9,108 篇论文上逐层定位，并用替换和阻断做干预。</p>
@@ -1423,6 +1423,21 @@ Authors:</pre>
 <tr><td>control</td><td>0.866</td><td>0.864–0.885</td><td>0.876 [0.847, 0.904]</td><td>1.012 [1.001, 1.024]</td><td class="ok">成立</td></tr>
 <tr><td>全部</td><td>0.825</td><td>0.813–0.825</td><td>0.821 [0.806, 0.835]</td><td>0.995 [0.990, 1.001]</td><td class="ok">成立</td></tr></table>
 <p>成立的条件是：平均恢复率 L48 在 0.70–0.95 之间，L52 ≥ 0.95；每个假标题的 L48 与 false_0 相差不超过 0.10，L52 ≥ 0.90。三组全部满足，各假标题之间的差都不超过 0.02。所以 §6.11 的“L48 恢复约 80–87%，L52 起 100%”不是 false_0 特有的结果。所有层的数字见 <code>summary_x6/x6_recovery.csv</code>。</p>
+</section>
+
+<section id="x7-results"><h2><span class="st">Stage 13 · X7</span><span class="ln lC">C 哪一层</span> 阻断实验扣除“模型被带偏”的影响之后</h2>
+<p class="note">2026-10-29 07:30 完成，24 个 GPU 单元，1,186 篇论文，规则见预注册补充 3。做法是把 Stage 11 的阻断（从第 l 层起禁止看标题）也用在假标题运行上，仍然给真作者打分。T = 真标题运行的损失（与 Stage 11 E2 一致，最大差 1×10⁻¹⁶），F = 假标题运行的损失，S = T − F 是这篇论文特有的损失，都除以“真标题 − 假标题”的差。区间按作者团队重抽。WARN：假标题运行中“不阻断”的那一列只有 60% 的行与 Stage 11 假标题运行完全相同，平均差 0.010 个 log10 名次、没有方向性，和 Stage 11 记录过的批量计算舍入差异同一量级。报告：<code>381_stage13/reports/x7_report.md</code></p>
+<table><tr><th>从哪层起阻断</th><th>target：T</th><th>target：F</th><th>target：S</th><th>control：S</th><th>全部：S</th></tr>
+<tr><td>L0</td><td>0.839</td><td>−0.161</td><td>1.000 [0.994, 1.006]</td><td>1.012</td><td>1.004</td></tr>
+<tr><td>L24</td><td>0.708</td><td>−0.157</td><td>0.865</td><td>0.889</td><td>0.873</td></tr>
+<tr><td>L32</td><td>0.357</td><td>−0.167</td><td>0.524</td><td>0.626</td><td>0.558</td></tr>
+<tr><td>L40</td><td>0.139</td><td>−0.132</td><td>0.271</td><td>0.335</td><td>0.293</td></tr>
+<tr><td>L48</td><td>0.066</td><td>−0.065</td><td>0.130</td><td>0.168</td><td>0.143</td></tr>
+<tr><td>L50</td><td>0.020</td><td>−0.030</td><td>0.050</td><td>0.089</td><td>0.064</td></tr>
+<tr><td>L52</td><td>0.006</td><td>−0.013</td><td>0.018 [0.010, 0.027]</td><td>0.051 [0.033, 0.068]</td><td>0.029 [0.021, 0.038]</td></tr>
+<tr><td>L54 及以后</td><td colspan="5">S 都在 ±0.02 以内</td></tr></table>
+<p><b>F 是负的</b>：在假标题运行里阻断标题，真作者的得分反而上升，因为挡掉的是一个误导性的标题。所以 Stage 11 从 L0 阻断时的 83% 损失其实低估了：扣除假标题运行之后，这篇论文特有的损失 S(L0) ≈ 1.0，也就是标题带来的论文特有信号被全部去掉。</p>
+<p><b>预注册判定</b>（S(L52) ≤ 0.05 且 S(L0) ≥ 0.5）：target 成立（S(L52) = 0.018），全部论文成立（0.029），<b>control 差一点不成立</b>（0.051，阈值 0.05；区间 [0.033, 0.068]）。control 组在 L52 还剩约 5% 的论文特有损失，L54 降到 0.018，L56 起为 0。所以“L52 之后不再需要标题”对 target 和全部论文成立；对 control，更准确的说法是“到 L54–56 才完全不需要”。</p>
 </section>
 
 <section id="p4-plan"><h2><span class="st">Stage 13</span><span class="ln lB">B 读出工具</span><span class="ln lC">C 哪一层</span> 计划：中间层到底表示什么</h2>
