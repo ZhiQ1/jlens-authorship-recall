@@ -36,9 +36,8 @@ for f in (real_root / 'config').glob('prereg*'): (tmp / 'config' / f.name).symli
 # keep the shards small: the sampled papers of one shard, 2-3 rows each
 smp, pairs = s13.sample(); sh = int(smp.shard.iloc[0]); s13._CACHE['smp'] = smp[smp.shard == sh].head(3)
 c11 = s13.ctx11(Tiny()); sh11 = int(c11.smp.shard.iloc[0]); c11.smp = c11.smp[c11.smp.shard == sh11].head(2)
-task_sh = int(papers_all.shard.iloc[0]); keep = papers_all[papers_all.shard == task_sh].head(4).paper_id
-papers_task = papers_all[~(papers_all.shard == task_sh) | papers_all.paper_id.isin(keep)]
-Tiny.__init__ = (lambda f: (lambda self: (f(self), setattr(self, 'papers', papers_task))[0]))(Tiny.__init__)
+task_sh = int(papers_all.shard.iloc[0])
+s13.do_task.__defaults__ = ([0, 1],)        # the default layer list is bound at definition time
 
 plan = [('xf_patch', 'false_0', sh11), ('xf_patch', 'false_2', sh11), ('ko_false', 'false_0', sh11), ('task', None, task_sh),
         ('xpatch', None, sh), ('pscope', None, sh), ('para_gen', None, sh), ('para_run', None, sh)]
