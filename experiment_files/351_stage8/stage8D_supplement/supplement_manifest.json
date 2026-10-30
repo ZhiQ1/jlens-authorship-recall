@@ -1,0 +1,9 @@
+{
+  "inputs": {
+    "paper_layer_advantage.csv": "ea8211b532b9e6e73dd8d126cbc5be10149aefd1d5a390c9b12eccf2798a3945",
+    "stage8_ab_pairs.csv": "9505d324edbaf5f5c11ca58716f5b78d7aba61062e827fe4abf7b6a8c75f3539"
+  },
+  "nboot": 10000,
+  "note": "CPU-only; unadjusted CIs; per-layer rows are descriptive and not Holm-adjusted",
+  "seed": 3518501
+}

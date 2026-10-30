@@ -1,4 +1,3 @@
-cat > ~/351_stage8_PROTOCOL.md <<'MD'
 
 # Stage 8 — Independent Validation
 
