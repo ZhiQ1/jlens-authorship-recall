@@ -96,6 +96,7 @@ def x4tok(C, shard):
 
 def main():
     if MODE is None: print(__doc__); sys.exit(2)
+    if MODE == '--all' and (OUT / 'X4TOK_CHECK_FAILED').exists(): print('x4tok check failed in --sample; full run refused'); sys.exit(3)
     C = make_ctx(); env = getattr(C, 'env', {}); log('mode', MODE, 'model ready')
     allp = pd.read_csv(ROOT / 'summary_x3/para_nli.csv')
     items = pd.read_csv(ROOT / 'logs/para_review_sample20.csv') if MODE in ('--sample', '--tiny') else allp[['paper_id', 'title', 'paraphrase']]
@@ -121,9 +122,14 @@ def main():
             orig = pd.DataFrame({k: np.concatenate([z[k] for z in zs]) for k in ['paper_id', 'author@self@title@8', 'author@partner@title@8', 'author@self@title@40', 'author@partner@title@40']}).set_index('paper_id')
             m = T.groupby(['paper_id', 'source', 'layer']).nlr.mean()
             diffs = [abs(m[(p, s, l)] - orig.loc[p, f'author@{s}@title@{l}']) for (p, s, l) in m.index]
-            mx = float(np.max(diffs)); log(('CHECK PASS' if mx < 0.05 else 'WARN') + f': per-token mean vs saved X4 score, max |diff| {mx:.4f} over {len(diffs)} (batching may round)')
-    except Exception as ex:
-        log('WARN check failed:', repr(ex))
+            mx = float(np.max(diffs)); ok = mx < 0.05
+            log(('CHECK PASS' if ok else 'CHECK FAIL') + f': per-token mean vs saved X4 score, max |diff| {mx:.4f} over {len(diffs)} (tolerance 0.05 log10, a few bf16 rounding steps)')
+            if not ok:   # user 2026-10-30: a correctness check, not a side step -> stop and report, never go on to --all
+                (OUT / 'X4TOK_CHECK_FAILED').write_text(f'max |diff| {mx:.4f}\n'); log('STOP: x4tok does not reproduce the saved scores'); sys.exit(3)
+    except SystemExit:
+        raise
+    except Exception as ex:   # the reload itself failing is a crash of the check: also stop
+        log('CHECK FAIL (could not run):', repr(ex)); sys.exit(3)
     log('FOLLOWUP DONE', MODE)
 
 

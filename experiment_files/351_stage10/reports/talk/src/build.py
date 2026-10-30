@@ -260,9 +260,9 @@ cap(s, 'Right: R0/R1 papers, centred within citation bin; Spearman rho = 0.27, p
 # 15 conclusions -----------------------------------------------------------------
 s = new_slide('Wrap up. One line: read early, spoken late. The title is taken in during L24 to L50 (patching, knockout, probe at the title token), but the author names only become readable at the name positions in L57 to L61. The lens result (no middle-layer lead for target) and the probe result (a small target lead at the title token) are about different positions and do not conflict.')
 title(s, 'What we learned: read early, spoken late')
-pts = [('Read early', 'Causally the title is read in L24-L50 and moved into the tokens after it; after L52 it is no longer needed. A probe at the title token reads a little of it from L24 (re-checked).'),
+pts = [('Read early', 'Causally the title is read in L24-L50 and gathered at the name positions by L52, then no longer needed. A probe at the title token reads a little of it from L24 (re-checked).'),
        ('Spoken late', 'At the name positions, paper-specific author knowledge becomes lens-readable only from ~L50, fastest over L57-L61.'),
-       ('No lens lead', 'Read with a lens at the names, target is not ahead of control in middle layers; the +0.21 gap is at the end (probe at the title: +0.02-0.04).'),
+       ('No lens lead', 'Read with a lens at the names, target is not ahead of control in middle layers; the +0.21 gap is at the end (probe at the title: target − control +0.04–0.08, re-checked).'),
        ('Real knowledge', 'Name prior is ~1/3 of the gap overall but ~0 on surnames; the rest is paper-specific and grows with citations.'),
        ('Lenses agree', 'Jacobian lenses read more in middle layers, but nothing target-specific.'),
        ('Name format', 'Initials carry little; full given names carry as much as surnames and help predict them.')]
