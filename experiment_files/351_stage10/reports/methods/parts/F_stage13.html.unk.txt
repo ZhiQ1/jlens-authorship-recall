@@ -1,0 +1,20 @@
+
+s13-overview | xf_patch 2 个 shard 的脚本 sha 613eb813 无存档副本 | 用户
+s13-m2 | M2 的 CI 仍是按论文 bootstrap 200 次，是否需按补充 2 补团队整群区间 | 用户
+s13-m3 | task 单元存下的 year_nlr / author_first_nlr 未被任何分析使用，是否计划使用 | 用户
+s13-m5 | M5（①②③）完整定义与是否放弃/并入 X4 | 用户
+s13-x2 | X2 是否仍做；prereg 要求的 X2 补充未写 | 用户
+s13-x3 | 是否接受保留 37 条姓氏子串误拒 | 用户
+s13-x3 | 20 条人工标注的原始标签记录（只在 PROGRESS 摘要中） | 用户
+s13-x3 | 补充 5 的具体条款与 para_ok 放行条件 | 用户
+s13-x4 | textbase2 对无 given_first 的 821 篇仍计入 OOV 类概率差，是否有意 | 用户
+s13-x4 | b7 样本通过后旧的 followup/X4TOK_CHECK_FAILED 会让 --all 拒绝启动，如何处理 | 用户
+s13-x5 | X5 是否仍做 | 用户
+
+=====CHECK
+
+1. X1 test L48 authors − year = +0.019 [+0.012, +0.026]，R(random C) = +0.122 —— /scratch/zhang.zhiqi2/jlens/381_stage13/reports/x1_report.md test 表 L48 行；summary_x1x4/x1_recovery.csv (split=test, layer=48, a_minus_year, R_random_c)
+2. M3 标题位置 T(L4) year 0.983、T(L24) year 0.946、I(L48)−I(L4) = −0.052 —— reports/m3_report.md title_last 表与 Identity 表；summary_m3/m3_transfer.csv (train=avg, pos=title_last), m3_identity.csv (layer=48, pos=title_last, I_minus_L4)
+3. X3 NLI：1,115 条 auto_ok 非 identical 中 96 条（8.6%）nli_both=False；27 条 identical —— summary_x3/para_nli.csv 列 auto_ok, identical, nli_both（value_counts: True/False/False 96）
+4. X4 逐 token 自检：max|diff| 0.0683，平均 |diff| 0.0068（200 值，shard 0）—— followup/X4TOK_CHECK_FAILED；logs/fugpu_11485349.log 末行；followup/x4tok/shard_000.csv 对 raw/pscope/shard_000.npz 复算
+5. X7 control S(L52) = +0.051 [+0.033, +0.068]，kF64 相同行比例 0.5963 —— reports/x7_report.md control 表 L52 行与 Self-checks 行；summary_x7/x7_knockout.csv (group=control, start_layer=52, S)；summary_x7/x7_verdict.json warn

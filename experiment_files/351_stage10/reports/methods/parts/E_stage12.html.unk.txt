@@ -1,0 +1,16 @@
+
+s12-p1 | P1 按 token 角色拆分的数字（':' 对首 token 0.50/0.90 等）只见于 PROGRESS.md 2026-10-28 14:45，找不到脚本/summary 文件 | 用户
+s12-p1 | p5（年份第 3 位数字）在 L44 恢复 0.071 的解读 | 用户
+s12-p2 | P2 是否做过 hook 生效的 sanity（tiny 模型干跑检查项只列了 P1） | 用户
+s12-n1 | Stage 10 单作者读出的名字字符串格式是否与 mc_team.jsonl 的 initial_surname 一致 | Stage 10 原作者（laptop 会话）
+s12-f1 | 作者提示 lens 是否做过拟合质量 / 与公开 lens 的一致性检查 | 用户
+s12-f2 | 中间层 (L44–52) name 位置 target − control 显著为负的解读 | 用户
+
+=====CHECK
+
+1. P1 names L52 recovery +0.847 [+0.830, +0.864]；p1 ':' L52 +0.172 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/P1_patch_pos.csv 行 layer=52, item=names/p1, group=all
+2. P2 attn L48 +0.231 [+0.221, +0.244]；mlp L56 +0.224 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/P2_patch_comp.csv 行 comp=attn, layer=48, group=all；comp=mlp, layer=56, group=all
+3. N1 delete/all true_list_most_plausible 0.255 (n=8894)；true/all 0.625 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/N1_prior_mc.csv 行 prompt=delete,group=all 和 prompt=true,group=all 列 true_list_most_plausible
+4. N2 target−control pure +0.047 [+0.031,+0.062]、true +0.247 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/N2_prior_pure.csv 行 tc_pure（列 pure, lo, hi）、tc_true（列 true）
+5. F2 name L62 target−control +0.238 [+0.210, +0.267]；剔除 3 篇 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/F2_author_lens.csv 行 layer=62, position=name 列 tc/tc_lo/tc_hi；config/alens_eval_exclude.json paper_ids
+6. 单元 408 = 24+24+144+72+144 — 371_stage12.py:70-80；raw/ 下 npz 计数

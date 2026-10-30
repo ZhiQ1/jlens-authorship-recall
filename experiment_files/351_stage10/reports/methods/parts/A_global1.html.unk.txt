@@ -1,0 +1,22 @@
+
+g-model-load | Stage 1 标注运行的加载方式、batch、run.json | 组长
+g-model-load | Stage 9 FullFit 拟合作业实际用的 GPU 型号 | 用户（或见 Stage 9 章节）
+g-model-chat | 开放回答是否关闭 thinking（run.json） | 组长
+g-model-chat | 多选题 thinking 设置；答案位置是否在空 <think></think> 块之后 | 组长
+g-data-package | 两次标注运行的 run.json、elm 代码版本、open_results_noise.jsonl | 组长
+g-data-origin | data/prepared/papers_9108.csv 是否就是 eval_sample_9108 去 Unicode 空白后的版本；提示里用的是哪版标题 | 组长
+g-labels-open | max_new_tokens = 96 只是从数据反推（743 条 length 都恰为 96），需 run.json 确认 | 组长
+g-labels-open | metrics/panel.py 的名字切分、剥离规则 | 组长
+g-labels-match | elm 的姓名匹配是否就是 dua NameMatcher 且阈值 L4（姓 + 名首字母） | 组长
+g-labels-mc | 干扰团队抽取规则（年份/人数容差、bin_window/over_cap/et_al_mismatch 含义、是否排除共同作者） | 组长
+g-labels-mc | 选项截断规则（是否"超过 8 人显示前 8 人 + et al."） | 组长
+g-prompts-list | Stage 1–10 作者问法是怎么选定的、是否比较过其他问法（任务说"Stage 2 定的"，Stage 2 无独立目录） | 用户 / Stage 2 原作者（laptop 会话）
+
+=====CHECK
+
+1. 6,841 = A 4,110 + B 2,186 + C 511 + D 34：/scratch/zhang.zhiqi2/jlens/351_all/351_audit.json 字段 four_group_total, group_counts；规则 ~/jlens_work/00_cohort/351_prepare_all.py:15–21
+2. 标注 zip sha256 58c1b5bc2cc61e6e5f5d276960c9340c770a9cf3bfa614d94873251dee9ee619（本次 sha256sum ~/jlens_work/00_cohort/zhiqi_qwen3-32b_labels_2026-10-15.zip）；CSV sha256 b4ff5e1d…09faf0e 与 351_all/351_audit.json source_sha256 和 351_stage10/config/manifest.json inputs.labels_sha256 一致
+3. vocab 151,936（/scratch/zhang.zhiqi2/hf/hub/models--Qwen--Qwen3-32B/snapshots/9216db57…/config.json vocab_size）vs len(tokenizer) 151,669；−log10(151936) = −5.18
+4. 开放回答 max_new_tokens 推断 96：labels_20261015/…/open_results.jsonl 中 finish_reason == "length" 的 743 行 n_tokens 全为 96；batch size 16：570 个 batch_id，569 个各 16 行
+5. 例 1 spec_mean_nlr = 0.393516：351_stage10/summary_title/paper_title_contrasts.parquet，paper_id 28578a60d8116010f736203c6a48b0b7c52a0f0b，readout final，layer 63；原始名次 351_stage10/raw/final/L63/shard_011.npz row_id 25025–25040
+（附：最后一个标题 token 含闭引号 2,412 篇、标题从位置 8 开始 20 篇 —— 本次用 tokenizer 对 351_stage10/cohort/papers.parquet 全部 9,108 篇重算；Stage 11 sample.parquet tail_prompt 9:708 / 8:478）

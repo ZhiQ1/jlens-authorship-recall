@@ -1,0 +1,25 @@
+
+s19-common | Stage 1–9 各实验对应的 Slurm 作业号（均为交互式 bash 会话，无法对应） | 用户
+s19-s1-cohort | 开放回答 max_new_tokens、enable_thinking、姓名模糊匹配规则（run.json 与 elm metrics/panel.py 未随标注包提供） | 组长
+s19-s1-cohort | 多选题干扰团队的匹配阈值与随机种子 | 组长
+s19-stage3 | Exp 1–7 编号来源文档 Validation_Record_351_Completeness_Checked.docx 不在集群上 | 用户
+s19-s3-exp1 | Public-557 "63/63 通过" 与 L48 范数 105.8 的原始输出（105.86 实为 split-half A 半的 L48 范数） | Stage 3 原作者（laptop 会话）
+s19-s71b | 7.1B 在 1,166/15,519 停止是否有意放弃 | 用户
+s19-s72 | 7.2 七层积分 A−B 区间 [−0.012,+0.228] / [−0.005,+0.217]（20,000 次）出处 | Stage 7 原作者（laptop 会话）
+s19-s72 | 去掉 P004 后 A−B 区间 [−0.018,+0.069] 出处 | Stage 7 原作者
+s19-s73 | L56 标题优势区间 [+4.75,+13.95]（"新审计"）出处 | Stage 7 原作者
+s19-s73 | 三种候选加权下标题优势 +0.026–0.032 与 6 个 A−B 区间的出处 | Stage 7 原作者
+s19-s8-protocol | 10-18 14:29→21:14 主终点从 7 层积分改为 L56 的决定者与依据 | 用户
+s19-s8c | stage8C_runtime.json.before_mode_fix 改了什么、是否在打分前 | Stage 8 原作者（laptop 会话）
+s19-s8d | 配对敏感性区间 [+0.15,+9.87]、[−0.34,+9.41]、[−0.39,+9.80] 出处 | Stage 8 原作者
+s19-s8dsupp | review/stage8-fixes 分支 3a4f605 是否合入 main、supplement 输出是否复制到 351_stage8/ | 用户
+s19-s8e | 8E 外部审计脚本、种子、逐篇 CSV 位置（全部数字未核实） | 用户
+s19-s9-fitB | Fit B 在 66/100 停止的原因、是否补做 | 用户
+
+=====CHECK
+
+1. RQ1 L56 +5.18 pp [+2.93, +7.48]，N=200：/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/summary/primary_questions.csv 行 RQ1_L56_replication，列 mean=0.051785, ci_low=0.0292633, ci_high=0.0747645
+2. RQ2 去掉最大 10 对后 −0.39 pp：/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/summary/matched_pair_differences.csv，mode=jlens_L56，按 A_minus_B 降序去掉前 10 行后取均值（全体均值 0.049815 = primary_questions.csv 行 RQ2）
+3. Pilot50 L56 标题优势 +0.0934（35/50 正）：/scratch/zhang.zhiqi2/jlens/351_stage7_3/summary/paper_null_distribution.csv，pool=combined, mode=jlens_L56，列 title_advantage 的均值与正数个数
+4. 冻结主终点 7 层积分 TA +2.33 pp [+1.50, +3.19]：/scratch/zhang.zhiqi2/jlens_github_publish/experiment_files/351_stage8/stage8D_supplement/frozen_plan_endpoints.csv 行 jlens_integrated7_RQ1_paper_mean；主终点定义见 /scratch/zhang.zhiqi2/jlens/351_stage8/config/analysis_plan.json "primary_endpoint"（sha256 7ff662e0… 记录于 config/manifest.json）
+5. Stage 4 L56 单篇占比 71.03%、均值 0.00704、中位数 0.00092：/scratch/zhang.zhiqi2/jlens/351_all/351_stage4_artifacts/audit/audit_report.md 表 "First-listed first-token rank" 行 L56（0.00703961, 0.000920041, 0.710267, 0.00214696）

@@ -21,7 +21,7 @@ import numpy as np, pandas as pd
 
 H = Path.home() / 'jlens_work'; ROOT = Path('/scratch/zhang.zhiqi2/jlens/381_stage13'); R10 = Path('/scratch/zhang.zhiqi2/jlens/351_stage10')
 MODE = next((m for m in ('--tiny', '--sample', '--all') if m in sys.argv), None)
-OUT = ROOT / ('followup_tiny' if MODE == '--tiny' else 'followup'); (OUT / 'x4tok').mkdir(parents=True, exist_ok=True)
+OUT = ROOT / ('followup_tiny' if MODE == '--tiny' else 'followup'); (OUT / 'x4tok2').mkdir(parents=True, exist_ok=True)
 JUDGE = ('Do these two research paper titles have exactly the same meaning?\n'
          'Rules: any added, removed or changed specific information counts as a change. A technical term replaced by a near-synonym '
          'that does not keep its precise technical sense (for example "generation" of a group replaced by "creation") counts as a change. '
@@ -49,7 +49,7 @@ def make_ctx():
         def __init__(self):
             self.torch = torch; self.papers, toks = s11.cohort(); self.ctx = s11.contexts_of(toks)
             self.model = jlens.from_hf(hf, tok); self.tok = tok; self.env = dict(script_sha256='tiny')
-    global X4L; X4L = [0, 1]
+    global X4L; X4L = [0, 1]; s13.PS_LAYERS = [0, 1]
     return Tiny()
 
 
@@ -73,6 +73,11 @@ def judge(C, items):
 
 
 def x4tok(C, shard):
+    """(2026-10-30) two batch configurations: b7 = all PS_LAYERS patched in one forward (exactly as the original X4), b2 = only X4L"""
+    return pd.concat([_x4tok(C, shard, cfg, layers) for cfg, layers in (('b7', list(s13.PS_LAYERS)), ('b2', list(X4L)))])
+
+
+def _x4tok(C, shard, cfg, PL):
     """per-token author score of the X4 patchscope (title position, X4L layers, self / partner source)"""
     torch = C.torch; smp, pairs = s13.sample(); P = C.papers.set_index('paper_id'); rows = []
     t = s13.PS_TARGETS['author']; e = C.tok(t, return_offsets_mapping=True); ids = list(e.input_ids); x = t.index('X')
@@ -84,14 +89,15 @@ def x4tok(C, shard):
         q = pairs.loc[r.paper_id].partner; ans = C.ctx[r.paper_id][0][2]
         rl = roles.get(r.paper_id, []); rl = rl if len(rl) == len(ans) else ['?'] * len(ans)
         for who, pid in (('self', r.paper_id), ('partner', q)):
-            pids, it, _ = s13.build(C.tok, P.loc[pid].title, 'authors', []); acts = C.record(pids, X4L)
-            patch = {l: [(i, ('at', xi), acts[l][it])] for i, l in enumerate(X4L)}
+            pids, it, _ = s13.build(C.tok, P.loc[pid].title, 'authors', []); acts = C.record(pids, PL)
+            patch = {l: [(i, ('at', xi), acts[l][it])] for i, l in enumerate(PL)}
             full = ids + list(ans[:-1]); pos = [len(ids) - 1 + j for j in range(len(ans))]
-            lg = s13.run_final(C, full, pos, patch=patch, batch=len(X4L)); g = torch.tensor(ans, device=lg.device)
-            for b, l in enumerate(X4L):
+            lg = s13.run_final(C, full, pos, patch=patch, batch=len(PL)); g = torch.tensor(ans, device=lg.device)
+            for b, l in enumerate(PL):
+                if l not in X4L: continue
                 rk = (lg[b] > lg[b].gather(1, g[:, None])).sum(1) + 1; v = (-torch.log10(rk.double())).cpu().numpy()
-                for j, (vv, ro) in enumerate(zip(v, rl)): rows.append((r.paper_id, who, l, j, ro, float(vv)))
-    return pd.DataFrame(rows, columns=['paper_id', 'source', 'layer', 'token_j', 'role', 'nlr'])
+                for j, (vv, ro) in enumerate(zip(v, rl)): rows.append((cfg, r.paper_id, who, l, j, ro, float(vv)))
+    return pd.DataFrame(rows, columns=['batch', 'paper_id', 'source', 'layer', 'token_j', 'role', 'nlr'])
 
 
 def main():
@@ -102,28 +108,40 @@ def main():
     items = pd.read_csv(ROOT / 'logs/para_review_sample20.csv') if MODE in ('--sample', '--tiny') else allp[['paper_id', 'title', 'paraphrase']]
     if MODE == '--tiny': items = items.head(3)
     jf = OUT / f'judge_{MODE.strip("-")}.csv'
-    if not jf.exists():
+    if '--judge' not in sys.argv: log('judge skipped (no --judge)')
+    elif not jf.exists():
         t0 = time.time(); d = judge(C, items); d.to_csv(jf, index=False); log(f'judge: {len(d)} items, both-yes {d.judge_both.mean():.2f} ({time.time() - t0:.0f}s)')
     else: log('judge output exists, skipped')
     smp, _ = s13.sample(); shards = sorted(smp.shard.unique())
     shards = shards[:1] if MODE in ('--sample', '--tiny') else shards
     for sh in shards:
-        f = OUT / 'x4tok' / f'shard_{int(sh):03d}.csv'
+        f = OUT / 'x4tok2' / f'shard_{int(sh):03d}.csv'
         if f.exists(): continue
         t0 = time.time(); d = x4tok(C, int(sh))
-        if MODE == '--tiny': d = d.head(200)
+        if MODE == '--tiny': d = d.groupby('batch').head(100)   # keep both batch configurations
         d.to_csv(f, index=False); log(f'x4tok shard {int(sh):03d}: {d.paper_id.nunique()} papers, {len(d)} token rows ({time.time() - t0:.0f}s)')
     # reload + checks (WARN only)
     try:
-        J = pd.read_csv(jf); log('reload judge ok', J.shape)
-        T = pd.concat([pd.read_csv(f) for f in sorted((OUT / 'x4tok').glob('shard_*.csv'))]); log('reload x4tok ok', T.shape)
+        if jf.exists(): J = pd.read_csv(jf); log('reload judge ok', J.shape)
+        T = pd.concat([pd.read_csv(f) for f in sorted((OUT / 'x4tok2').glob('shard_*.csv'))]); log('reload x4tok ok', T.shape)
         if MODE != '--tiny':
             zs = [np.load(f) for f in sorted((ROOT / 'raw/pscope').glob('shard_*.npz'))]
             orig = pd.DataFrame({k: np.concatenate([z[k] for z in zs]) for k in ['paper_id', 'author@self@title@8', 'author@partner@title@8', 'author@self@title@40', 'author@partner@title@40']}).set_index('paper_id')
-            m = T.groupby(['paper_id', 'source', 'layer']).nlr.mean()
-            diffs = [abs(m[(p, s, l)] - orig.loc[p, f'author@{s}@title@{l}']) for (p, s, l) in m.index]
-            mx = float(np.max(diffs)); ok = mx < 0.05
-            log(('CHECK PASS' if ok else 'CHECK FAIL') + f': per-token mean vs saved X4 score, max |diff| {mx:.4f} over {len(diffs)} (tolerance 0.05 log10, a few bf16 rounding steps)')
+            m = T[T.batch == 'b7'].groupby(['paper_id', 'source', 'layer']).nlr.mean()
+            diffs = np.array([m[(p, s, l)] - orig.loc[p, f'author@{s}@title@{l}'] for (p, s, l) in m.index])
+            mx = float(np.max(np.abs(diffs))); ok = mx < 0.05
+            log(f'b7 vs saved: exact share {(np.abs(diffs) < 1e-9).mean():.3f}, mean|d| {np.abs(diffs).mean():.4f}, max|d| {mx:.4f}')
+            w = T.pivot_table(index=['paper_id', 'source', 'layer', 'token_j'], columns='batch', values='nlr'); dt = (w.b2 - w.b7).abs()
+            mp = T.groupby(['batch', 'paper_id', 'source', 'layer']).nlr.mean().unstack('batch'); dp = (mp.b2 - mp.b7).abs()
+            log(f'b2 vs b7 per token: max|d| {dt.max():.4f} mean|d| {dt.mean():.4f}; per paper x source x layer: max|d| {dp.max():.4f} mean|d| {dp.mean():.4f}')
+            D = mp.unstack('source'); 
+            for l in X4L:
+                Dl = D.xs(l, level='layer'); d7 = (Dl[('b7', 'self')] - Dl[('b7', 'partner')]); d2 = (Dl[('b2', 'self')] - Dl[('b2', 'partner')])
+                sv = (orig.loc[d7.index, f'author@self@title@{l}'] - orig.loc[d7.index, f'author@partner@title@{l}'])
+                log(f'mean D L{l} over {len(d7)} papers: b7 {d7.mean():+.4f}, b2 {d2.mean():+.4f}, saved {sv.mean():+.4f}; |b7 - b2| = {abs(d7.mean() - d2.mean()):.4f}')
+                if MODE == '--all' and l == 8 and abs(d7.mean() - d2.mean()) > 0.005:
+                    (OUT / 'X4TOK_BATCH_SENSITIVE').write_text(f'L8 mean D b7 {d7.mean():+.4f} b2 {d2.mean():+.4f}\n'); log('STOP: L8 mean D changes by more than 0.005 with the batch size (user rule 2026-10-30)'); sys.exit(4)
+            log(('CHECK PASS' if ok else 'CHECK FAIL') + f': b7 per-token mean vs saved X4 score, max |diff| {mx:.4f} over {len(diffs)} (tolerance 0.05 log10)')
             if not ok:   # user 2026-10-30: a correctness check, not a side step -> stop and report, never go on to --all
                 (OUT / 'X4TOK_CHECK_FAILED').write_text(f'max |diff| {mx:.4f}\n'); log('STOP: x4tok does not reproduce the saved scores'); sys.exit(3)
     except SystemExit:

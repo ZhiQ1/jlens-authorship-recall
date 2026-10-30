@@ -1,0 +1,13 @@
+
+s1011-stage10（导言） | 冻结时脚本 sha 847e7dde 与运行版本 9107c80b 之间改了什么（847e7dde 不在 git） | 向 Stage 10 原作者（laptop 会话）或用户确认
+s1011-s10-r0r1 | stage10_extra_r0.py 的作业号（日志 logs/r0_sensitivity.log 不含作业号） | 向用户确认
+s1011-stage11（导言） | protocol.json 记录的冻结时脚本 sha 26e3f817 到运行版本 f8adb8d9 之间改了哪些行（26e3f817 不在 git） | 向 Stage 11 原作者会话确认
+s1011-s11-qc | E1 的批量（batch 15）舍入噪声没有同批未替换基线可量化，只有 PROGRESS 中约 0.01 的估计 | 向用户确认是否需要补测
+
+=====CHECK
+
+1. E1 恢复率 L48 = 0.825（"83%"），L52 = 0.996（"100%"）：/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E1_recovery.csv，行 group=all, layer=48 / 52，列 recovery（rec_lo/rec_hi = 0.807/0.842，0.989/1.003）
+2. E2 从 L0 阻断损失 = 0.831（"0.83"）：/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E2_knockout.csv，行 group=all, start_layer=0，列 loss_fraction（lo 0.801, hi 0.862）；target 0.839，control 0.816
+3. Stage 10 输出处标题特异 target−control = +0.207 [0.195, 0.220]：/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv，行 readout=final, layer=63，列 spec_mean_nlr_diff/lo/hi（n_a 3734, n_b 2182）
+4. E4b 复核版剩 1,863 篇（target 896、control 499）：/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/perpaper_probe_spec.parquet，split=group, excl=none, control="gold = random other paper"（或 "probe (as in Stage 11)" 的 9,108 行版本）, layer=24, dropped=False 计数，按 papers.parquet group_tight 统计；E4b_4configs.csv group/title-reuse 行 T0_n+T1_n=788+108，C0_n+C1_n=491+8
+5. GPU smoke 两项 WARN：/scratch/zhang.zhiqi2/jlens/361_stage11/reports/smoke.json checks.ko_baseline_matches_stage10 = 0.7037（阈值 0.75，361_stage11.py:469）与 checks.patch_title_L63_equals_false = 0.7037（阈值 0.99，361_stage11.py:471）；全量 E1t L63 == batch-1 false 为 0.594（raw/patch_title/*.npz，本文起草时计算）

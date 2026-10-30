@@ -1,0 +1,19 @@
+
+h-false-cost | 代价函数权重 1/5、0.25n、0.2len、1.5 的设计理由无书面记录 | 用户
+h-lens-table | public lens 的 557 条拟合 prompt、skip_first、模型 revision 未提供（provenance 审计 UNDETERMINED） | 用户
+h-lens-table | self100 拟合脚本与 1,000 条 WikiText 语料生成脚本不在 ~/jlens_work 或 git 仓库 | Stage 3 原作者（laptop 会话）
+h-lens-table | Stage 9 Fit A 准备时实际的 --min-chars/--max-chars（plan.json 未记录，默认 100/1200） | Stage 9 原作者（laptop 会话）
+h-stats-bins | 13 个引用档边界的定义来源（标注包只给 citation_bin 列） | 组长
+h-stats-mult | Stage 8 协议中的 Holm 校正是否实际计算（HPC 代码无实现） | Stage 8 原作者（laptop 会话）
+h-prereg-files | prereg 文件内 written 字段与 PROGRESS 标题时间比 mtime/git 晚 20 min–2 h 45 min，原因 | 用户
+h-compute-hw | d1002、d3204、d3233、d4054 的 GPU 型号 | 用户
+h-compute-table | 2026-10-15 至 10-22 的 69 个交互式 bash GPU 作业分别对应哪个实验 | Stage 3–9 原作者（laptop 会话）
+h-compute-table | Stage 1 标注运行（开放回答、4 选 1）的 GPU、时长、run.json | 组长
+
+=====CHECK
+
+1. "79%" = 35,898 / 45,540 = 0.7883：/scratch/zhang.zhiqi2/jlens/351_stage10/config/conditions_manifest.json → tier_summary[tier=strict].n = 35898；总数 = 9,108 × 5；PROGRESS.md:1272。
+2. M2 false_0 跨折 donor 2,004 / 6,247（2,373 个多次使用）：本次由 361_stage11/raw/titlepos/false_0/shard_*.npz 的 resid_paper_id + 351_stage10/cohort/conditions/false_titles.parquet(k==0) + default_rng(13).integers(0,5,9108) 复算；PROGRESS.md 2026-10-28 11:45 条；prereg_addendum1.json rules[3]。
+3. M2 false_0 L48 donor year R² 0.623 → 0.535、log citations 0.588 → 0.488：/scratch/zhang.zhiqi2/jlens/381_stage13/reports/split_compare.md 第 127–128 行（value_paper, value_group）。
+4. 团队数 7,247、5 折大小 1,821–1,822：/scratch/zhang.zhiqi2/jlens/381_stage13/reports/cluster_ci.md 第 3 行；本次运行 13_stage13/stage13_cpu.py group_folds 复算。
+5. parity main max 0.367（final@L63）、容差 0.25 → 0.5 于 2026-10-25T11:00:31：/scratch/zhang.zhiqi2/jlens/351_stage10/reports/parity.json → runs[1].max_abs_logit_diff["final@L63"] = 0.3671875；tolerance_amendment.created/old/new。
