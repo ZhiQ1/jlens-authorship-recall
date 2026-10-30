@@ -6,7 +6,7 @@
 <p>代码：冻结脚本 <code>~/jlens_work/10_stage10/351_stage10.py</code>（sha256 <code>9107c80b…dbdd3479</code>）+ GPU 入口 <code>351_stage10_fix1.py</code> + CPU 补充分析 <code>stage10_extra*.py</code>；结果根目录 <code>/scratch/zhang.zhiqi2/jlens/351_stage10/</code>。
 <span class="src">sha256sum ~/jlens_work/10_stage10/351_stage10.py = 9107c80b13fd…；git 仓库只有一个版本 b4b76ed（code/scratch_scripts/351_stage10.py，sha 相同）；raw/final/L63、raw/logit/L55、raw/cond_false_0/jlens_public/L62 全部 72 个 npz 的 meta.script_sha256 = 9107c80b13fd（本文起草时读取）</span></p>
 
-<p>注意一个版本细节：<code>config/manifest.json</code> 记录的冻结时脚本 sha256 为 <code>847e7dde…</code>（2026-10-23T15:44:01），与现在文件（<code>9107c80b…</code>）不同；<code>config/conditions_manifest.json</code> 记录的是 <code>9107c80b…</code>。所有 raw 输出都由 <code>9107c80b…</code> 版本产生，protocol 的 sha256（<code>9fafd1d4…</code>）每次读取都校验未变（<code>verify()</code>，351_stage10.py:189–196）。<span class="unk">未知/需确认：向 Stage 10 原作者（laptop 会话）或用户确认 847e7dde → 9107c80b 之间改了什么（推测是加入 freeze-conditions 等命令，但 847e7dde 版本没有进 git，无法核对）</span>
+<p>注意一个版本细节：<code>config/manifest.json</code> 记录的冻结时脚本 sha256 为 <code>847e7dde…</code>（2026-10-23T15:44:01），与现在文件（<code>9107c80b…</code>）不同；<code>config/conditions_manifest.json</code> 记录的是 <code>9107c80b…</code>。所有 raw 输出都由 <code>9107c80b…</code> 版本产生，protocol 的 sha256（<code>9fafd1d4…</code>）每次读取都校验未变（<code>verify()</code>，351_stage10.py:189–196）。2026-10-30 复查的时间线：<code>config/manifest.json</code> 写于 10-23 15:44:01（记录 847e7dde）→ <code>351_stage10.py</code> mtime 10-23 17:00:31 → freeze-conditions 作业 11333739（日志 17:03）生成 conditions_manifest.json（created 17:03:05，记录 9107c80b），即脚本在 15:44–17:00 之间被改过，17:03 起所有运行都用 9107c80b。在 /scratch 与 ~ 下 1,709 个 .py/.bak、4 个仓库全部分支的 1,932 个 .py blob、~/.claude 的 file-history/backups 里都找不到 sha 为 847e7dde 的文件；本会话转录从 10-23 20:31 EDT 才开始，覆盖不到那次修改。<span class="src"><a href="#iu-research">附录 I</a> U34</span> <span class="unk">未知/需确认：向 Stage 10 原作者（10-23 下午的会话，可能在 laptop 上）或用户确认 847e7dde → 9107c80b 之间改了什么（U34；laptop 上若有副本，sha 应为 847e7dde7f2005dd…918f2b05）</span>
 <span class="src">/scratch/zhang.zhiqi2/jlens/351_stage10/config/manifest.json（script_sha256, protocol_sha256）· config/conditions_manifest.json（script_sha256）</span></p>
 
 <h3 id="s1011-s10-common">0. 共同设定（以下各实验共用；本节不是独立实验）</h3>
@@ -17,7 +17,7 @@
 <tr><td>论文队列</td><td>标注包 <code>paper_labels_with_papers.csv</code>（2026-10-15）全部 9,108 篇，按 paper_id 排序；每 128 篇一个 shard，共 72 个 shard</td><td><span class="src">351_stage10.py:31–35, freeze() 104–179；config/manifest.json: n_papers 9108, n_shards 72</span></td></tr>
 <tr><td>分组</td><td>group_tight：target 4,621、control 2,220、excluded 2,053、guard 214；recall_level 交叉：target R0 4,110 / R1 511；control R0 2,186 / R1 34</td><td><span class="src">cohort/papers.parquet（group_tight × recall_level 交叉表，本文起草时计算）</span></td></tr>
 <tr><td>提示词</td><td><pre class="code">Who are the authors of the paper titled "{title}" ({year})?
-Authors:</pre>tokenizer 默认编码（Qwen3 不加 BOS），后接 <code>encode(" " + author, add_special_tokens=False)</code>；<b>每位作者单独一个上下文</b>（作者串按 ";" 切分、strip，拼写原样保留）</td><td><span class="src">351_stage10.py:29（PROMPT）；config/protocol.json: context, authors</span></td></tr>
+Authors:</pre>tokenizer 默认编码（Qwen3 不加 BOS），后接 <code>encode(" " + author, add_special_tokens=False)</code>；<b>每位作者单独一个上下文</b>（作者串按 ";" 切分、strip，拼写原样保留）。这个问法沿用 Stage 1–9；<b>选择过程未记录，未系统比较其他问法</b>（U11，用户 2026-10-30 决定照此写）</td><td><span class="src">351_stage10.py:29（PROMPT）；config/protocol.json: context, authors；PROGRESS.md 2026-10-30 14:00 条 U11；<a href="#g-prompts-list">g-prompts-list</a></span></td></tr>
 <tr><td>打分单元</td><td>33,811 个作者上下文、149,999 个名字 token（平均 4.44 token/作者）；排除规则（名字 &gt; 32 token 或上下文 &gt; 512 token）实际排除 0 位作者</td><td><span class="src">config/manifest.json: n_contexts 33811, n_tokens 149999, n_excluded_authors 0；351_stage10.py:30–31</span></td></tr>
 <tr><td>输入与位置</td><td>input_ids = prompt_ids + name_ids[:-1]；位置 len(prompt)−1+j 预测名字第 j 个 token（教师强制）。第 0 个名字 token 由提示词最后一个 token ":" 预测</td><td><span class="src">config/protocol.json: input_ids；351_stage10.py run() 562–563</span></td></tr>
 <tr><td>token 角色</td><td>按 " "+author 的字符偏移分词到词：最后一个词 = 姓（surname）；小写在 PARTICLES 里 = particle；匹配 <code>^[^\W\d_]\.?$</code> = initial；其余 = given；纯标点 token = punct；词的第一个 token 加 _first，其余 _cont。计数：surname_cont 39,995、surname_first 33,810、punct 28,701、initial_first 28,382、given_first 9,431、given_cont 9,357、particle_first 323</td><td><span class="src">351_stage10.py:80–101 token_roles()；cohort/name_tokens.parquet role 计数（本文起草时计算）</span></td></tr>
@@ -134,7 +134,7 @@ Authors:</pre>tokenizer 默认编码（Qwen3 不加 BOS），后接 <code>encode
 <p>7 个条件：true；false_0…false_4（同领域其他论文的标题，年份保留为目标论文年份）；delete：</p>
 <pre class="code">Who are the authors of the paper ({year})?
 Authors:</pre>
-<p>假标题匹配（每篇 K=5 个供体）：同领域；硬排除 = 自身、任何共享姓氏（含共享作者）、标题词 Jaccard（≥4 字母小写词）&gt; 0.6；代价 = |Δ年份|/5 + |Δ作者数|/max(1, 0.25n) + |Δ标题 token 数|/max(1, 0.2·len) + 1.5·|Δ引用档|；按 4 级容差（strict / medium / loose / nearest）逐级做 <code>scipy.optimize.linear_sum_assignment</code> 最小代价指派（加哑列）；false_0 = 级别最好、代价最小的那个。实际指派：strict 35,898、medium 1,638、loose 2,565、nearest 5,439；单个供体最多被用 7 次；有 5 个 strict 供体的论文 6,056 篇。
+<p>假标题匹配（每篇 K=5 个供体）：同领域；硬排除 = 自身、任何共享姓氏（含共享作者）、标题词 Jaccard（≥4 字母小写词）&gt; 0.6；代价 = |Δ年份|/5 + |Δ作者数|/max(1, 0.25n) + |Δ标题 token 数|/max(1, 0.2·len) + 1.5·|Δ引用档|（<b>这些权重是经验设定，没有做过敏感性分析</b>，U13，用户 2026-10-30 确认 <span class="src">PROGRESS.md 2026-10-30 14:00 条；<a href="#h-false-cost">h-false-cost</a></span>）；按 4 级容差（strict / medium / loose / nearest）逐级做 <code>scipy.optimize.linear_sum_assignment</code> 最小代价指派（加哑列）；false_0 = 级别最好、代价最小的那个。实际指派：strict 35,898、medium 1,638、loose 2,565、nearest 5,439；单个供体最多被用 7 次；有 5 个 strict 供体的论文 6,056 篇。
 <span class="src">351_stage10.py:243–248（K_FALSE, DELETE_PROMPT, TIERS, NEAR_DUP_JACCARD）, 255–307 match_false_titles()（cost 在 281 行）, 310–349 freeze_conditions()；config/conditions_manifest.json（tier_summary, donor_use_max=7, papers_by_n_strict_donors）；作业 freeze_conditions 11333739</span></p>
 
 <h4>3 工具</h4>
@@ -342,7 +342,7 @@ tail_fraction(p) = (1 + #{k: m_{false_k} ≥ m_true}) / 6（参考尾比例，�
 <p>Stage 10 paper_title_contrasts.parquet、paper_scores.parquet；Stage 11 raw/patch、patch_title、knockout、knockout_name、titlepos；标注包 open_results.jsonl（开放回答生成的名字）。Stage 11 样本中 R1 只有 41 篇（target 36、control 5）。</p>
 
 <h4>3 工具</h4>
-<p><code>stage10_extra_r0.py</code>（R0-only 敏感性，复用冻结 <code>stratified_diff</code> 和 <code>stage11_analyze</code>；日志 logs/r0_sensitivity.log）和 <code>stage10_extra_r0r1.py</code>（作业 11429580）。<span class="unk">未知/需确认：向用户确认 stage10_extra_r0.py 的作业号（日志文件名不含作业号；PROGRESS 只写 2026-10-27 ~19:30 运行）</span></p>
+<p><code>stage10_extra_r0.py</code>（R0-only 敏感性，复用冻结 <code>stratified_diff</code> 和 <code>stage11_analyze</code>；日志 logs/r0_sensitivity.log）和 <code>stage10_extra_r0r1.py</code>（作业 11429580）。stage10_extra_r0.py <b>没有单独的作业号</b>：它是 Claude 在会话里用 Bash 直接运行的（输出写于 10-27 18:57:08–18:58:47 EDT），运行在 Claude 所在的交互作业 11371284（bash@c0591，short）里，CPU。<span class="src"><a href="#iu-research">附录 I</a> U35 · ls --full-time 351_stage10/summary_r0/ logs/r0_sensitivity.log</span> <span class="st st-rechecked">复核过</span>（U35 已解决）</p>
 
 <h4>4 步骤</h4>
 <ol>
@@ -422,7 +422,7 @@ tail_fraction(p) = (1 + #{k: m_{false_k} ≥ m_true}) / 6（参考尾比例，�
 
 <p>版本：全部 1,033 个 raw 单元的 meta.script_sha256 = <code>f8adb8d9…</code> = git c86112f 版本；当前文件 <code>613eb813…</code> = git 13ae7ec，与 c86112f 的差别只在 <code>stop_queue</code>（加 s12 作业名）和 <code>work()</code>（无单元时交给 Stage 12），计算函数完全相同。protocol.json 记录的冻结时脚本 sha256 为 <code>26e3f817…</code>，不在 git 历史中。
 <span class="src">raw/*/shard_*.npz meta（本文起草时统计：chain 504、knockout 24、knockout_name 24、patch 24、patch_title 24、probe_vocab 1、titlepos 432，全部 f8adb8d9，protocol sha 17c6c37a = sha256(config/protocol.json)）；git diff c86112f 13ae7ec -- code/scratch_scripts/361_stage11.py</span>
-<span class="unk">未知/需确认：向 Stage 11 原作者（laptop/本集群前一会话）确认 freeze 时（26e3f817）到运行版本（f8adb8d9）之间改了哪些行（26e3f817 不在 git 里；git 中最早的 b4b76ed 版本 sha 为 8624a895）</span></p>
+<b>冻结版到运行版的差异（U36 已解决）</b>：26e3f817 不在 git，但从本会话转录重放了 10-26T17:15Z 至 10-27T07:12Z 之间所有写 361_stage11.py 的操作（1 次 Write、13 次 python 就地替换、1 次 sed -i），逐步算 sha256：第 5 步之后 = 26e3f817（随即重跑 freeze），中间经过 8624a895（= git b4b76ed，作验证），第 42 步之后 = f8adb8d9（= git c86112f），两端与记录的 sha 精确吻合。diff 共 239 行，<b>只加了补充 1 的单元（E1t patch_title、E2n knockout_name、E4 titlepos、probe_vocab）和调度 / 自检逻辑</b>（smoke 改为 PASS/WARN 继续、ERROR 才 stop_queue，单元认领，只在 GPU 分区停池）；patch hook 加了 ('at', pos) 分支、ko_mask 加了默认 None 的参数，原 E1 patch / E2 knockout / chain 三个函数的计算代码没有改动。重放得到的两个版本和 diff 存档在 <code>351_stage10/reports/methods/research_scripts/s11replay/</code>（v_005_26e3f817.py、v_042_f8adb8d9.py、diff_26e3f817_to_f8adb8d9.diff）。<span class="src"><a href="#iu-research">附录 I</a> U36 · research_scripts/s11replay/</span> <span class="st st-rechecked">复核过</span></p>
 
 <h3 id="s1011-s11-common">0. 共同设定（E1/E1t/E2/E2n 样本与打分；本节不是独立实验）</h3>
 <table class="t">
@@ -704,7 +704,7 @@ target−control：档内合并（≥30/档，B=2000）。<span class="src">stag
 <ul>
 <li>按论文随机分折，同一作者团队的论文可能分在训练和测试两边。</li>
 <li><b>标题复用泄漏</b>：测试论文 A 的 false_0 标题是另一篇论文 D 的真标题；若 D 在训练折，probe 训练时已见过这个标题作为输入。这一问题在 Stage 13 复核（11-8）。</li>
-<li>μ、σ 用了全部论文（含测试折）的 X，是轻微的信息泄漏（只影响标准化，不涉及 Y）。</li>
+<li>μ、σ 用了全部论文（含测试折）的 X，是轻微的信息泄漏（只影响标准化，不涉及 Y）。Stage 13 复核脚本沿用同样写法（<code>10_stage10/stage10_extra_r0r1.py:244</code>）。2026-10-30 已改为"只在训练折内拟合标准化"重算，结论不变，见 11-8。</li>
 <li>gold 只用第 1 个 token，多为首字母；而 10-6 显示首字母几乎不带标题特异信号，所以此 probe 测量的是信号最弱的那部分 token。</li>
 <li>目标 Y 是 ":" 处的状态（预测第一作者的第 1 个 token），却用来给所有作者的第 1 个 token 打分。</li>
 <li>输入取自"含年份的提示词"的前向，但在标题最后一个 token 处年份尚未出现（因果），所以输入不含年份。</li>
@@ -757,6 +757,7 @@ target−control：档内合并（≥30/档，B=2000）。<span class="src">stag
 <tr><td>L56</td><td>+0.039</td><td>+0.075 [0.038, 0.115]</td><td>+0.080 [0.068, 0.094]</td><td>+0.074</td><td>−0.003 / −0.005</td></tr>
 </table>
 <p>复核版 target−control 在 L24–L60 为 +0.036 到 +0.078，CI 都在 0 以上；L16 为 +0.021 [−0.011, 0.054]（含 0）。<span class="src">381_stage13/reports/e4b_split_compare.md（两张表）；summary_cpu_group/E4b_4configs.csv、X1controls_4configs.csv</span></p>
+<p><b>只在训练折内拟合标准化的重算（2026-10-30，作业 11500917，CPU；tiny 测试 11500538）</b>：原版 E4b probe 的 μ、σ 用全部 9,108 篇（含测试折）计算（<code>10_stage10/stage10_extra_r0r1.py:244</code>，Stage 11 原版同样在 <code>stage11_analyze.py:176</code>）；改为每折只用训练折（含第 0 折的 α 搜索），折、剔除规则、α 网格、打分与 bootstrap 种子都不变。X1 对照本来就在训练折上标准化（<code>stage12_cpu.py:143</code>），重跑后逐位复现。结果：E4b target−control（合并）最大差 0.0020，全部论文的标题特异信号最大差 0.0075；36 个（配置, 层）格子中 α 没有变化；<b>确认版（团队折 + 剔除标题复用）没有任何"区间是否含 0"的翻转</b>：全部论文信号 L40 +0.066 → +0.061、L56 +0.080 → +0.075，区间都 &gt; 0；target−control 差 ≤ 0.0015，<b>L44 下界变为 +0.000（边界）</b>（+0.0345 [+0.000, +0.071]）。唯一的翻转在确认版之外（团队折、不剔除、L16）。建议正文采用新值并注明此重算。<span class="src">381_stage13/reports/e4b_trainstd_compare.md（"Max |new - orig|"行与 Confirmatory 两张表）· 381_stage13/summary_cpu_trainstd/compare_E4b.csv、compare_E4b_allpapers.csv · 13_stage13/stage13_e4b_trainstd.py · PROGRESS.md 2026-10-30 15:40 条</span> <span class="st st-rechecked">复核过</span></p>
 
 <h4>8 局限与质疑</h4>
 <ul>
@@ -764,10 +765,10 @@ target−control：档内合并（≥30/档，B=2000）。<span class="src">stag
 <li>只剔除 false_0 的供体关系；false_1…4 不进入 probe，因此无关。</li>
 <li>团队分折没有把供体并入同组（donors=None），供体泄漏完全靠剔除规则处理。</li>
 <li>原 6.12 表中"只用假标题训练更强"（L24 +0.068、L40 +0.081、L56 +0.094）来自泄漏，复核后为 +0.050 / +0.057 / +0.074，与普通 probe 相当或略低。<span class="st st-void">作废</span>（原"更强"的说法）<span class="src">报告 6.12 表注；PROGRESS.md 2026-10-28 13:30</span></li>
-<li>11-7 列出的 gold 只用第 1 个 token、μ/σ 全样本等设计问题在复核中未改。</li>
+<li>11-7 列出的 gold 只用第 1 个 token 的设计问题在复核中未改；μ/σ 全样本的问题已于 2026-10-30 按训练折标准化重算（见上），结论不变。</li>
 </ul>
 
-<h4>9 状态</h4><p><span class="st st-rechecked">复核过</span>（团队分折 + 剔除标题复用为确认性配置；作业 11443587）</p>
+<h4>9 状态</h4><p><span class="st st-rechecked">复核过</span>（团队分折 + 剔除标题复用为确认性配置；作业 11443587；训练折标准化重算 11500917）</p>
 
 <!-- ================================================================== -->
 <h3 id="s1011-s11-qc">11-9 GPU smoke、CPU 真权重检查与 preflight（质量控制）</h3>
@@ -810,17 +811,20 @@ target−control：档内合并（≥30/档，B=2000）。<span class="src">stag
 <h4>8 局限与质疑</h4>
 <ul>
 <li>smoke 只有 4 篇、54 个 token；比例阈值（0.75、0.99）是在看到数据前写死的，GPU 上 E1t 的那一项在全量数据中为 59.4%（不是偶然的小样本波动）。</li>
-<li>E1（batch 15 vs batch-1 假基线）没有类似的同批基线；它的批量舍入噪声只有 PROGRESS 中的估计（约 0.01）。<span class="unk">未知/需确认：向用户确认是否需要对 E1 也给出"同批无替换基线"的量化（现有 raw 中没有 E1 的同批未替换元素，无法事后计算）</span></li>
+<li>E1（batch 15 vs batch-1 假基线）没有类似的同批基线，现有 raw 中也没有 E1 的同批未替换元素，无法事后计算；它的批量舍入噪声只有估计值<b>约 0.01，远小于主效应</b>（E1 L48 恢复 0.825）。<b>用户 2026-10-30 决定答辩前不补测</b>；GPU 空闲时按 X4 的做法补（同一批里加一个不替换的元素）。<span class="src">PROGRESS.md 2026-10-30 14:00 条 U37</span> <span class="st st-plan">计划未做</span></li>
 </ul>
 
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>（smoke = WARN，已披露；realcheck PASS 13/13；1,033/1,033 单元完成，分析作业 11385983）</p>
 </section>
 
-<!-- UNKNOWN-LIST
-s1011-stage10（导言） | 冻结时脚本 sha 847e7dde 与运行版本 9107c80b 之间改了什么（847e7dde 不在 git） | 向 Stage 10 原作者（laptop 会话）或用户确认
-s1011-s10-r0r1 | stage10_extra_r0.py 的作业号（日志 logs/r0_sensitivity.log 不含作业号） | 向用户确认
-s1011-stage11（导言） | protocol.json 记录的冻结时脚本 sha 26e3f817 到运行版本 f8adb8d9 之间改了哪些行（26e3f817 不在 git） | 向 Stage 11 原作者会话确认
-s1011-s11-qc | E1 的批量（batch 15）舍入噪声没有同批未替换基线可量化，只有 PROGRESS 中约 0.01 的估计 | 向用户确认是否需要补测
+<!-- UNKNOWN-LIST（2026-10-30 下午按 CHANGES_2026-10-30.md 更新）
+仍需确认：
+s1011-stage10（导言） | U34 冻结时脚本 sha 847e7dde 与运行版本 9107c80b 之间改了什么（847e7dde 仍找不到） | Stage 10 原作者（10-23 下午会话）或用户
+已解决（2026-10-30）：
+s1011-s10-r0r1 | U35 无单独作业号，运行在交互作业 11371284 内（附录 I）
+s1011-stage11（导言） | U36 只加了补充 1 的单元和调度逻辑；diff 存档 research_scripts/s11replay/
+s1011-s11-qc | U37 用户决定答辩前不补测，写约 0.01、远小于主效应，GPU 空闲时按 X4 做法补
+s1011-s10-common / s1011-s10-titlespec | U11 问法"选择过程未记录"；U13 代价权重"经验设定，未做敏感性分析"（用户决定）
 -->
 
 <!-- CHECK-NUMBERS

@@ -120,13 +120,22 @@ recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是
 <tr><td>all</td><td>+0.143</td><td>+0.292</td><td>+0.429</td><td>+0.825</td><td>+0.933</td><td>+0.996</td><td>+0.999</td></tr>
 </table>
 <p>p2、p3、p4、p6、p7、p8 在所有层都 ≤ 0.008。target / control 分组在 CSV 的 group 列。<span class="src">371_stage12/reports/stage12_report.md §P1 · summary/P1_patch_pos.csv · 作业：P1 24/24 由 11413557、11413569（d1029）等在 2026-10-27 完成（PROGRESS "2026-10-27 17:28"）</span></p>
-<p>按 token 角色拆分（首 token vs 姓氏）：PROGRESS 记录了一次 CPU 预览——首 token（首字母/名）由 <code>:</code> 单独恢复 0.50/0.90（L48/L52，首字母）、0.37/0.95（名）；姓氏首 token 由 names 恢复 0.55/0.92，<code>:</code> ≈0。<span class="unk">未知/需确认：向 用户 确认（这组按角色的数字只在 PROGRESS.md 2026-10-28 14:45 条出现，没有找到对应脚本或 summary 文件，无法核对）</span></p>
+<p><b>按 token 角色拆分（2026-10-30 用原始数据重算，U38 已解决）</b>：用 <code>371_stage12/raw/patch_pos/shard_*.npz</code>（19,077 行）与 <code>351_stage10/cohort/name_tokens.parquet</code> 的 role 列，按 stage12_analyze.py:46–58 的同一估计量（先按论文平均，再算 Σnum/Σden，recovery = (nlr_patch − nlr_none)/(nlr_true − nlr_none)）重算，CPU 秒级。本手册编辑于 2026-10-30 下午重新运行脚本，数字一致。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py · <a href="#iu-research">附录 I</a> U38</span> <span class="st st-rechecked">复核过</span></p>
+<table class="t">
+<tr><th>token 角色</th><th>行数</th><th>":"（p1）单独替换 L48 / L52</th><th>names 替换 L48 / L52</th><th>true − false 差距 gap</th></tr>
+<tr><td>initial_first（首字母）</td><td>3,479</td><td><b>0.502 / 0.917</b></td><td>0.153 / 0.223</td><td>0.114</td></tr>
+<tr><td>given_first（名的首 token）</td><td>1,378</td><td><b>0.349 / 0.940</b></td><td>0.013 / 0.036</td><td>0.293</td></tr>
+<tr><td>surname_first（姓的首 token）</td><td>4,306</td><td>0.017 / 0.051</td><td><b>0.567 / 0.925</b></td><td>0.548</td></tr>
+<tr><td>surname_cont（姓的后续 token）</td><td>4,940</td><td>0.013 / 0.040</td><td>0.810 / 0.990</td><td>0.518</td></tr>
+<tr><td>全体</td><td>19,077</td><td>0.074 / 0.172</td><td>0.612 / 0.847</td><td>0.316</td></tr>
+</table>
+<p>即名字第一个 token（首字母或名）的恢复几乎全来自 ":" 位置，姓的 token 主要来自名字位置；"全体"一行与 summary/P1_patch_pos.csv 一致。punct（标点）的 gap 只有 0.009，比值不稳定，不解读。PROGRESS 2026-10-28 14:45 的预览值（首字母 0.50/0.90、名 0.37/0.95、姓名字位置 0.55/0.92）与重算值相差 ≤ 0.03，原预览脚本没有保存，以重算值为准。</p>
 
 <h4>8 局限与质疑</h4>
 <ul>
 <li><b>names 的因果可及范围</b>：名字的第一个 token 是在 <code>:</code>（p1）位置预测的，位于所有名字位置之前；因果注意力下替换 names 不可能影响第一个 token 的预测。因此"names 恢复 0.85"主要来自第 2 个及以后的名字 token，第一个 token 只能由 p 项恢复。3 个单 token 上下文的 names 项是空替换。<span class="src">371_stage12.py:112, 120（推导）</span></li>
 <li>单位置 recovery 不可相加：多个位置之间有冗余（names 0.85 + p1 0.17 &gt; 1 at L52）。</li>
-<li>p5（年份第 3 位）在 L44 达到 0.071，这个年份数字为什么携带标题信息，代码和报告没有解释。<span class="unk">未知/需确认：向 用户 确认（p5 峰值的解读是否已有结论，STATUS §3 只描述未解释）</span></li>
+<li>p5（年份第 3 位）在 L44 达到 0.071。<b>只描述，不解读</b>（用户 2026-10-30 决定，U39）。<span class="src">PROGRESS.md 2026-10-30 14:00 条 U39</span></li>
 <li>只用了 false_0 一个假标题；Stage 13 X6 用 false_1..4 重做了 E1（整段尾部），但没有重做单位置版本。</li>
 <li>评分是 teacher-forced 下的 rank，不是生成。</li>
 <li>每层只替换一层；跨层组合未测。</li>
@@ -171,7 +180,8 @@ recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是
 <h4>6 对照</h4>
 <ul>
 <li>in-batch 'none'（未替换 false 运行）作为 0 点。</li>
-<li>P2 没有"全替换 = 1"的内置上界检查（替换单层单组件不应恢复 1）。<span class="unk">未知/需确认：向 用户 确认（是否做过 P2 的 sanity，例如 tiny 模型干跑里检查 hook 是否真的改变了输出；PROGRESS 只提到 P1 的干跑检查项）</span></li>
+<li>P2 没有"全替换 = 1"的内置上界检查（替换单层单组件不应恢复 1），当时也<b>没有做显式的 sanity 检查</b>（例如 L63 或"替换为自身 = 不变"；logs 下只有 P1 的 smoke 项）。</li>
+<li><b>从数据看 hook 生效（2026-10-30 重算，U40 部分解决）</b>：各替换列与 none 列相比，L8–L44 平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 明显上升（+0.020 到 +0.070，如 attn48 +0.069、mlp56 +0.070），与 recovery 表一致；基线 none 列与 Stage 11 假标题运行 rank_false 逐行相同的只有 59.4%，但全部行的名次都在 2 倍以内、平均 Δnlr 0.0000、p99 |Δnlr| 0.146，P1 自己的 none 列在不同层之间也只有 59.7% 逐行相同，所以是批大小不同带来的 bf16 噪声，不是 hook 泄漏；rank_true 与 Stage 11 100% 相同。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py（371_stage12/raw/patch_comp，19,077 行 × 23 列）· 371_stage12.py:146–170 · <a href="#iu-research">附录 I</a> U40</span> 是否补做显式检查待用户决定。<span class="unk">未知/需确认：向 用户 确认（是否补做 P2 显式 sanity，例如 L63 或"替换为自身"，U40）</span></li>
 </ul>
 
 <h4>7 结果</h4>
@@ -257,7 +267,7 @@ Spearman( mc_team_a , margin − 该 bin 内 margin 均值 )   mc_team_a = 多�
 <li>打分格式是 "Authors: A1, A2, …" 的 teacher-forced 链式 rank，不是多选题本身的字母概率；两者是不同任务。</li>
 <li>名单长短不同（选项来自不同论文，作者数不同），mean_nlr 对长名单是更多 token 的平均；链后部的名字受前面名字影响（同一团队内部的共现先验）。</li>
 <li>Spearman 没有给 CI（代码只算点估计）。</li>
-<li>名字格式是标注包的 "首字母. 姓"，与 Stage 10 单作者读出用的名字格式可能不同。<span class="unk">未知/需确认：向 Stage 10 原作者（laptop 会话）确认（Stage 10 name_tokens 用的名字字符串格式是否与 mc_team.jsonl 的 initial_surname 一致）</span></li>
+<li>名字格式是标注包的 "首字母. 姓"，Stage 10 单作者读出用的是全名。2026-10-30 全量比对（33,811 对）：两者来自同一份作者列表，每篇人数与顺序相同（9,108/9,108）；"名的首字母 + '. ' + 最后一个词"与 mc_team 精确相同的 <b>33,644 对（99.51%）</b>，另 158 对差在姓氏前缀（mc_team 保留整个前缀姓，如 'F. V. van Dam' → 'F. van Dam'），9 对是后缀或标点。<span class="src">351_stage10/cohort/contexts.parquet × labels_20261015/…/mc_team.jsonl（options[correct_index]）· <a href="#iu-research">附录 I</a> U41</span> <span class="st st-rechecked">复核过</span>（U41 已解决）</li>
 </ul>
 
 <h4>9 状态</h4>
@@ -354,7 +364,20 @@ J_l = 40 条提示的平均
 <p><span class="src">jlens/fitting.py:1-21（模块 docstring）、45-72 valid_position_mask()、100-210 jacobian_for_prompt()、365/386（求和与平均）</span></p>
 
 <h4>6 对照</h4>
-<p>对照是 Stage 10 的公开 lens（557 条 wikitext 提示，L0–L62）。F1 本身没有拟合质量检查（如 held-out 上的 top-1 一致率）。<span class="unk">未知/需确认：向 用户 确认（作者 lens 在 L62 等末层是否与模型输出/公开 lens 做过一致性检查；代码和日志里没有找到）</span></p>
+<p>对照是 Stage 10 的公开 lens（557 条 wikitext 提示，L0–L62）。F1 当时<b>没有做拟合质量检查</b>（如 held-out 上的 top-1 一致率；日志只有 "author-lens fit: a -&gt; b of 40"，checkpoint 只存了 J 的总和，做不了 split-half）。</p>
+<p><b>事后一致性比较（2026-10-30，CPU，mmap 逐层读，U42 部分解决）</b>：F1 与 public / fitA / self100 在共同层上的矩阵余弦。本手册编辑于 2026-10-30 下午重新运行脚本，数字一致。<span class="src">351_stage10/reports/methods/research_scripts/u42_lens_compare.py · <a href="#iu-research">附录 I</a> U42</span> <span class="st st-rechecked">复核过</span></p>
+<table class="t">
+<tr><th>层</th><th>F1 vs public</th><th>F1 vs fitA</th><th>F1 vs self100</th><th>fitA vs public</th><th>self100 vs public</th></tr>
+<tr><td>L24</td><td>0.296</td><td>0.269</td><td>0.278</td><td>0.795</td><td>0.853</td></tr>
+<tr><td>L32</td><td>0.294</td><td>0.295</td><td>0.296</td><td>0.846</td><td>0.916</td></tr>
+<tr><td>L40</td><td>0.357</td><td>0.354</td><td>0.365</td><td>0.892</td><td>0.953</td></tr>
+<tr><td>L44</td><td>0.511</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>L48</td><td>0.688</td><td>0.679</td><td>0.700</td><td>0.969</td><td>0.987</td></tr>
+<tr><td>L52</td><td>0.848</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>L56</td><td>0.923</td><td>0.923</td><td>0.927</td><td>0.997</td><td>1.001</td></tr>
+<tr><td>L62</td><td>0.996</td><td>0.996</td><td>0.998</td><td>1.009</td><td>1.010</td></tr>
+</table>
+<p>即 F1 在 L24–L48 与三个 WikiText lens 一致性差（余弦约 0.27–0.70），而三个 WikiText lens 彼此很一致；到 L56/L62 才接近。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）口径核对：public 的 ‖J−I‖/‖I‖ 在 L62 为 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，现有数据无法区分。<span class="unk">未知/需确认：向 用户 确认（是否补做 F1 lens 的对半拟合以区分噪声与提示分布，需要 GPU，U42）</span></p>
 
 <h4>7 结果</h4>
 <p>产出 <code>371_stage12/alens/lens.pt</code>（8 个源层），2026-10-28 17:12 完成。读出结果见 F2。<span class="src">alens/progress.json done=40</span></p>
@@ -425,7 +448,7 @@ spec = x_true − mean(x_false_0 .. x_false_4)       （标题特异信号）
 <h4>8 局限与质疑</h4>
 <ul>
 <li>F1 只有 40 条提示，"读不出"也可能是 lens 质量问题（没有拟合质量检查，见 F1）。</li>
-<li>中间层 control 的 spec 反而比 target 大（L44–52 的 target − control 显著为负），代码和报告未给解释。<span class="unk">未知/需确认：向 用户 确认（L44–52 target − control 为负的解读）</span></li>
+<li>中间层 control 的 spec 反而比 target 大（L44–52 的 target − control 显著为负）。<b>只描述</b>（用户 2026-10-30 决定，U43）；一个可能的方向（未检验）：作者提示 lens 偏向常见名字。另外 F1 在这些层与 WikiText lens 一致性差（见 F1），读出本身的可靠性也有限。<span class="src">PROGRESS.md 2026-10-30 14:00 条 U43</span></li>
 <li>title 位置的读出是在标题最后一个 token 上，对所有名字 token（包括后续 token）打分，后续名字 token 在该位置上本不该被预测，值偏低且噪声大。</li>
 <li>剔除按"完整名字字符串相同"，不能发现拼写不同的同一人。</li>
 </ul>
@@ -508,13 +531,14 @@ X1: W = (AᵀA + λI)⁻¹ Aᵀ(Y − ȳ),  λ = α·tr(AᵀA)/d,  α = 1
 <p>A/B/C <span class="st st-done">已完成</span>（2026-10-27 14:56，作业 11413574）。X1 <span class="st st-rechecked">复核过</span>（Stage 13 E4b 团队分折），其中"假标题训练更强"<span class="st st-void">作废</span>。<span class="src">logs/cpu_11413574.log 末行 "STAGE12 CPU DONE"</span></p>
 </section>
 
-<!-- UNKNOWN-LIST
-s12-p1 | P1 按 token 角色拆分的数字（':' 对首 token 0.50/0.90 等）只见于 PROGRESS.md 2026-10-28 14:45，找不到脚本/summary 文件 | 用户
-s12-p1 | p5（年份第 3 位数字）在 L44 恢复 0.071 的解读 | 用户
-s12-p2 | P2 是否做过 hook 生效的 sanity（tiny 模型干跑检查项只列了 P1） | 用户
-s12-n1 | Stage 10 单作者读出的名字字符串格式是否与 mc_team.jsonl 的 initial_surname 一致 | Stage 10 原作者（laptop 会话）
-s12-f1 | 作者提示 lens 是否做过拟合质量 / 与公开 lens 的一致性检查 | 用户
-s12-f2 | 中间层 (L44–52) name 位置 target − control 显著为负的解读 | 用户
+<!-- UNKNOWN-LIST（2026-10-30 下午按 CHANGES_2026-10-30.md 更新）
+仍需确认：
+s12-p2 | U40 是否补做 P2 显式 sanity（数据已显示 hook 生效） | 用户
+s12-f1 | U42 是否补做 F1 lens 对半拟合（需 GPU；事后比较显示 L24–48 余弦 0.27–0.70） | 用户
+已解决（2026-10-30）：
+s12-p1 | U38 按角色用 raw 重算（research_scripts/u38_u40_recompute.py）；U39 只描述不解读（用户决定）
+s12-n1 | U41 99.51% 与 "首字母. 姓" 一致
+s12-f2 | U43 只描述 + 一句可能方向（用户决定）
 -->
 <!-- CHECK-NUMBERS
 1. P1 names L52 recovery +0.847 [+0.830, +0.864]；p1 ':' L52 +0.172 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/P1_patch_pos.csv 行 layer=52, item=names/p1, group=all

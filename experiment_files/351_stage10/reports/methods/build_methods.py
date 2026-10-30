@@ -5,7 +5,7 @@ from pathlib import Path
 D = Path(__file__).parent; P = D / 'parts'
 ORDER = [('A_global1.html', '一 全局（上）：模型、数据、标签、提示词、打分'), ('B_global2.html', '二 全局（下）：假标题、读出工具、统计、泄漏审计、预注册、算力'),
          ('C_stage1_9.html', '三 Stage 1–9'), ('D_stage10_11.html', '四 Stage 10–11'), ('E_stage12.html', '五 Stage 12'), ('F_stage13.html', '六 Stage 13'),
-         ('G_appendix.html', '七 附录'), ('H_selfcheck.html', '八 自查')]
+         ('G_appendix.html', '七 附录'), ('H_selfcheck.html', '八 自查'), ('I_unknown_research.html', '九 附表：未知项查证'), ('J_dua_package.html', '十 附表：Dreaming Up Authors 代码包核对')]
 CSS = r"""
 :root{--bg:#F7F7F4;--ink:#1F2937;--pen:#5B6474;--line:#E3E6EA;--card:#FFFFFF;--acc:#C2410C;--link:#1D6FB8;--code:#F2F3F5;--unk:#FFF1E6;--unk-ink:#9A3412;--fix:#EAF4EC;
  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--zh:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;--serif:"Noto Serif SC","Songti SC",serif}

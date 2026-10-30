@@ -15,7 +15,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <tr><td>实现保护</td><td>强制使用指定 token ID（替换 <code>model.encode</code>）并核对；J-Lens 与 Vanilla 两次前向的 final logits 最大差 &gt; 0.1 即报错停止（实现保护，不是效应阈值）</td><td><span class="src">05_stage5/351_stage5.py:205-206 · 04_stage4/351_stage4_readout.py:86-89</span></td></tr>
 <tr><td>显存布局</td><td>29 个 transformer block 放 GPU，35 个放 CPU；embedding、final norm、rotary、lm_head 固定在 GPU。原因：<code>device_map='auto'</code> 时 jlens 直接调用 final norm/lm_head 会遇到 meta tensor 报错（<code>NotImplementedError: Cannot copy out of meta tensor</code>），不 offload 则在 40GB 卡上 OOM</td><td><span class="src">01_public_lens_validation/351_validate_public_lens_offload_fixed.py:150-159 · 351_all/351_offload_validation.log 末行 · 351_all/351_public_task_validation.log 末行（CUDA OOM, 39.49 GiB）</span></td></tr>
 <tr><td>Public-557 lens</td><td>Neuronpedia <code>qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt</code>，sha256 <code>0af5ccf2e1c251bedc202607a7ca214f3b9f60980bab73d67a3d0b887db213d8</code>，n_prompts = 557，覆盖 L0–L62</td><td><span class="src">351_provenance_audit/summary/audit_summary.json → checkpoint.neuronpedia · 351_stage5_crossed_v2/config/runtime.json</span></td></tr>
-<tr><td>作业号</td><td>Stage 1–9 都是在 <code>gpu-interactive</code>/<code>short</code> 的交互式 <code>srun ... bash</code> 会话里手动运行的，<code>sacct -S 2026-10-15 -E 2026-10-23</code> 中作业名几乎全是 <code>bash</code>/<code>pty</code>，无法把某个作业号对应到某个实验。<span class="unk">未知/需确认：向用户确认（各实验对应哪个交互作业；如需作业号只能按时间戳推断）</span></td><td><span class="src">sacct -u zhang.zhiqi2 -S 2026-10-15 -E 2026-10-23 -X</span></td></tr>
+<tr><td>作业号</td><td>Stage 1–9 都是在 <code>gpu-interactive</code>/<code>short</code> 的交互式 <code>srun ... bash</code> 会话里手动运行的，<code>sacct -S 2026-10-15 -E 2026-10-23</code> 中作业名几乎全是 <code>bash</code>/<code>pty</code>，无法从作业名把作业号对应到实验。2026-10-30 按用户决定，用 sacct 起止时间与文件 mtime、日志时间戳逐段对应：大部分能对上（Stage 9 各段见 <a href="#h-compute-table">h-compute-table</a>），约 15 个作业期间没有写出文件，记为"无法追溯"。<span class="src"><a href="#iu-research">附录 I</a> U20 · PROGRESS.md 2026-10-30 14:00 条 U20</span> <span class="st st-rechecked">复核过</span></td><td><span class="src">sacct -u zhang.zhiqi2 -S 2026-10-15 -E 2026-10-23 -X</span></td></tr>
 <tr><td>Git</td><td>Stage 1–8 的代码和结果整体在 commit <code>e2c7156</code>（"Add Stage 1–8 experiment code, data, figures and archive records"）；Stage 7.1B 和 Stage 9 不在 git 里（仓库 README 写"Excluded … Stage 7.1B, Stage 9 (still running at archive time)"）</td><td><span class="src">git -C /scratch/zhang.zhiqi2/jlens-authorship-recall_update log --oneline -- code/scratch_scripts/351_stage5.py · README.md:194</span></td></tr>
 </table>
 <p>字母 A/B 有三种用法：行为分组 A/B（本手册默认）、Stage 3 split-half 的 A/B 两半、Stage 9 的 Fit A/Fit B，三者无关。</p>
@@ -65,8 +65,8 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <li>0-2 档 tight 通过率 25.5% ≈ 固定偏好某一选项的随机水平 25%，低引用档的"认得"可能大部分是猜 <span class="src">README_first.md:28-30</span>。</li>
 <li>高引用档 control 极少（4097+ 档 0 篇 B、0 篇 D；2049-4096 档 B 8、D 1）<span class="src">351_bin_counts.csv</span>，所以 A/B 配对在高档用尽。</li>
 <li>开放回答有 8.2% 被截断、0.5% 拒答；400 篇用 batch size 1 重答，45.5% 文本不同（batch 噪声）<span class="src">step1_README.md:11-13</span>。</li>
-<li>开放回答的生成长度上限和 thinking 模式记录在标注运行的 <code>run.json</code>，标注包没有附带。<span class="unk">未知/需确认：向组长确认（max_new_tokens、enable_thinking、姓名模糊匹配的具体规则 metrics/panel.py 都在 run.json/elm 代码里，未随标注包提供）</span></li>
-<li>多选题干扰团队的具体抽取规则（"相近"的阈值）只在 label_README 里有一句描述。<span class="unk">未知/需确认：向组长确认（干扰团队的匹配阈值与随机种子）</span></li>
+<li>标签由另一套代码 <code>elm</code> 生成，elm 源码与两次运行的 <code>run.json</code> 都不在集群上。生成设置与匹配规则已由 Dreaming Up Authors 代码包核对：开放题提示与 dua <code>stage1_generate.py</code> 逐字相同，thinking 关、贪心、<code>MAX_NEW_TOKENS = 96</code>（stage1_generate.py:171；743 条截断回答全为 96 token）；dua NameMatcher + L4 阈值复算 (m, h, u) 与标注包 9,095/9,108 一致 <span class="src"><a href="#j-dua-package">附录 J</a> 第 4、8 行 · <a href="#g-labels-open">g-labels-open</a>、<a href="#g-labels-match">g-labels-match</a></span> <span class="st st-rechecked">复核过</span>。panel.py 的剥离规则只能从数据推断 <span class="unk">未知/需确认：向组长确认（metrics/panel.py 的名字切分与剥离规则原文，U04）</span></li>
+<li>多选题干扰团队的具体抽取规则（"相近"的阈值）只在 label_README 里有一句描述，dua 代码包里也没有这种干扰；bin_window / over_cap / et_al_mismatch 的含义已从数据推断（见 <a href="#g-labels-mc">g-labels-mc</a>）。<span class="unk">未知/需确认：向组长确认（干扰团队的匹配阈值原文与随机种子，U06）</span></li>
 </ul>
 <h4>9 状态</h4>
 <p><span class="st st-done">已完成</span> 2026-10-15 标注包；<code>351_prepare_all.py</code> 2026-10-17 运行。Git <code>e2c7156</code>。</p>
@@ -81,7 +81,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>4 步骤</h4>
 <ol>
 <li>强制保留 Stage 4 的 20 篇（组数必须是 A8/B8/C3/D1，否则报错）<span class="src">351_stage5.py:52-53</span>。配额 A20/B20/C7/D3 <span class="src">:60</span>，即新增 A12/B12/C4/D2 共 30 篇。</li>
-<li><b>"种子 35150" 不是随机抽样</b>：每组其余论文按 <code>sha256("35150" + paper_id)</code> 的十六进制字符串排序（<code>stable_order</code>），这是确定性的哈希顺序 <span class="src">351_stage5.py:7, :34, :63</span>。</li>
+<li><b>"种子 35150" 不是随机抽样</b>：每组其余论文按 <code>sha256("35150" + paper_id)</code> 的十六进制字符串排序（<code>stable_order</code>），这是确定性的哈希顺序 <span class="src">351_stage5.py:7, :34, :63</span>。<span class="st st-rechecked">复核过</span>（2026-10-30：手册对 Pilot50、8A、8B 都写"哈希排序"，不写"随机抽样"；真正用种子随机数的是 Stage 4 的 20 篇、7.2 的随机错误作者池和 Stage 11 的样本）</li>
 <li>先为 Stage 4 的每篇 A（或 B）在同 (citation_bin, field) 里找一篇新的 B（或 A），按 |Δ年份| + 2×|Δ作者数| 最小、再按 paper_id 选 <span class="src">:70-77</span>。</li>
 <li>再按哈希顺序遍历新 A，为每篇在同 (bin, field) 桶里找代价最小的新 B，成对加入 <span class="src">:78-85</span>。</li>
 <li>仍不足配额时按哈希顺序补齐（C、D 也在这一步）<span class="src">:86-90</span>。</li>
@@ -182,9 +182,9 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <tr><td>L48</td><td>104.89</td><td>是</td></tr><tr><td>L56</td><td>92.88</td><td>是</td></tr><tr><td>L62</td><td>80.36</td><td>是</td></tr>
 </table>
 <p><span class="src">351_self100_validation/numerical/matrices.csv 列 fro_norm, finite</span>。Self-100 6/6 通过。</p>
-<p>已发布报告写"Public 63/63 通过，L48 范数 105.8 vs 104.9"。Public 的数值检查结果在集群上没有找到；105.86 恰好是 Stage 3 split-half <b>A 半</b>在 L48 的范数 <span class="src">351_self100_split_half/summary/matrix_stability.csv 行 48 frob_A</span>，报告可能把它当成了 Public 的值。<span class="unk">未知/需确认：向 Stage 3 原作者（laptop 会话）确认（Public-557 63/63 数值检查与 L48 范数 105.8 的原始输出在哪里）</span>——未在原始文件中核实。</p>
+<p>已发布报告写"Public 63/63 通过，L48 范数 105.8 vs 104.9"。2026-10-30 用 CPU 从 lens 文件重算各 lens 的逐层 Frobenius 范数（作业 11500587）：<b>105.8 是 Public lens 的 L48 范数按 float32 求和的值</b>（105.81；float64 精确值 106.07），104.9 是 Self-100 的 float32 值（104.89）。L48 精确值（float64）：Public 106.07、Self-100 105.16、split-half A 半 105.86、B 半 105.49、Stage 9 fitA 99.62；所有矩阵都有限。<span class="src">351_stage8/recompute_2026-10-30/stage3_lens_frobenius_norms.csv 列 frobenius_fp64 / frobenius_fp32（行 layer=48）· stage3_lens_frobenius_norms_11500587.log · ~/jlens_work/08_stage8/recompute_2026-10-30/stage3_lens_frobenius_norms.py</span> <span class="st st-rechecked">复核过</span>（U22 已解决；本手册旧稿"105.86 实为 split-half A 半"的说法有误，已删除）</p>
 <h4>8 局限与质疑</h4><p>范数相近不代表方向一致，更不代表读出正确。</p>
-<h4>9 状态</h4><p><span class="st st-done">已完成</span>（Self-100）；Public 部分 <span class="st st-review">待复核</span>。</p>
+<h4>9 状态</h4><p><span class="st st-done">已完成</span>（Self-100）；Public 部分 <span class="st st-rechecked">复核过</span>（2026-10-30 重算范数，作业 11500587）。</p>
 
 <h3 id="s19-s3-exp24">3.2 Exp 2、4 · 读出保真度（KL、Top-10、final-top1 名次）</h3>
 <h4>1 问题与作用</h4><p>中间层读出能否近似模型最终的下一个 token 分布。分两种文本：通用短文本（Exp 2）和论文提示（Exp 4）。</p>
@@ -297,7 +297,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h2>Stage 4 · 作者读出基准（Benchmark20）</h2>
 <h3 id="s19-s4-readout">4.1 Benchmark20 逐层读出与单篇主导审计</h3>
 <h4>1 问题与作用</h4><p>正确作者在模型内部有没有可读出的信号；平均值是否被少数论文拉高。</p>
-<h4>2 材料</h4><p>20 篇（A8/B8/C3/D1），93 位作者，0 位因切词跳过 <span class="src">351_all/351_stage4_readout.log "authors_scored 93 authors_skipped 0"</span>。抽样：seed 3514，每组每档用 <code>random.Random(f"3514:{组}:{档}")</code> 打乱，然后在 13 个引用档间轮流各取一篇直到配额，最后按 A,B,C,D 交错排列 <span class="src">04_stage4/351_stage4_readout.py:14-40 (select), :383, :397</span>。</p>
+<h4>2 材料</h4><p>20 篇（A8/B8/C3/D1），93 位作者，0 位因切词跳过 <span class="src">351_all/351_stage4_readout.log "authors_scored 93 authors_skipped 0"</span>。抽样（<b>真正的种子随机</b>，不是哈希排序）：seed 3514，每组每档用 <code>random.Random(f"3514:{组}:{档}")</code> 打乱，然后在 13 个引用档间轮流各取一篇直到配额，最后按 A,B,C,D 交错排列 <span class="src">04_stage4/351_stage4_readout.py:14-40 (select), :383, :397</span>。</p>
 <h4>3 工具</h4><p><code>04_stage4/351_stage4_readout.py</code>（GPU）、<code>351_stage4_audit.py</code>（CPU）。Public-557 lens。</p>
 <h4>4 步骤</h4>
 <ol><li>每篇对作者去重；每位作者名字切词（上限 16 token，超出则跳过）<span class="src">:386, :57</span>。</li>
@@ -406,7 +406,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>5 公式</h4><p>计划与 7.3 相同（真 − 20 个错误标题平均），未实现到分析阶段。</p>
 <h4>6 对照</h4><p>真标题 parity：1,380 行，log-prob 最大差 0.0，名次最大差 0 <span class="src">351_stage7_1B_terminal/smoke_check.json</span>。</p>
 <h4>7 结果</h4><p>只完成 1,166 / 15,519 个上下文（约 7.5%），中位 6.0 s/上下文；最后写入 2026-10-22 08:31；没有估计任何标题效应（check 状态 "Structural check complete … No full-experiment title effect estimated."）<span class="src">smoke_check.json · raw/（1,166 个文件）· run.log</span>。</p>
-<h4>8 局限与质疑</h4><p>没有结果可用；不得与 7.1 的完成结果合并（仓库 ARCHIVE_NOTES 明确要求）<span class="src">jlens-authorship-recall_update/ARCHIVE_NOTES.md:138</span>。<span class="unk">未知/需确认：向用户确认（7.1B 在 1,166/15,519 停下后是否有意放弃；该问题后来由 Stage 10 的全量 token 分析覆盖）</span></p>
+<h4>8 局限与质疑</h4><p>没有结果可用；不得与 7.1 的完成结果合并（仓库 ARCHIVE_NOTES 明确要求）<span class="src">jlens-authorship-recall_update/ARCHIVE_NOTES.md:138</span>。停止方式已查实：run.log 共 5 次启动，最后一次从 443 续跑到 "SAVED 723" 后中断，日志里没有报错或 Traceback；最后一个作业 11296093@d1029（06:54 开始，时限 120 min）在 2026-10-22 08:31:23 由用户本人账号（uid 103706）结束（"CANCELLED by 103706"），离时限还有约 23 分钟，不是超时；之后没有续跑，10-23 只做了结构检查。<span class="src">351_stage7_1B_terminal/run.log · sacct -j 11296093 · smoke_check.json · <a href="#iu-research">附录 I</a> U23</span> <span class="unk">未知/需确认：向用户确认（是否有意放弃 7.1B，U23；该问题后来由 Stage 10 的全量 token 分析覆盖）</span></p>
 <h4>9 状态</h4><p><span class="st st-plan">计划未做</span>（运行到 7.5% 后停止，未分析）。不在 git 里。</p>
 
 <h3 id="s19-s72">7.2 金标准 vs 100 个错误作者</h3>
@@ -425,8 +425,8 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <li>5,000 个错误候选中 156 个与金标准首 token 相同（A 79、B 62、C 9、D 6）；每篇 100 个错误名字平均只有 45.76 个不同首 token <span class="src">quality.json "first_token_collision_count_by_group" · 45.76 为本手册从 candidates csv 统计</span>。</li>
 <li>75,000 行配对记录 = 50 × 100 × 15 <span class="src">summary/candidate_pairwise_scores.csv</span>。</li>
 <li>J-Lens 合并池 A−B：L40 +0.150 [+0.013, +0.289]，L48 +0.193 [+0.071, +0.318]，L56 +0.187 [+0.015, +0.345]，L62 +0.038 [−0.144, +0.215] <span class="src">reports/stage7_2_gpu_report.md · summary/matched_ab_bootstrap.csv</span>。</li>
-<li>7 层积分 A−B：J-Lens +0.105、Vanilla +0.106（点估计本手册从 <code>matched_pair_layer.csv</code> 重算一致）。报告给的区间 [−0.012, +0.228] / [−0.005, +0.217]（20,000 次）在 7.2 输出里没有；本手册用 20,000 次（种子 0）重算得 [−0.013, +0.227] / [−0.007, +0.216]。原区间<span class="unk">未在原始文件中核实：向 Stage 7 原作者（laptop 会话）确认出处</span>。</li>
-<li>去掉 P004 后，7.3 匹配池 7 层积分 A−B = +0.0226（本手册从 <code>351_stage7_3/summary/integrated_pair_differences.csv</code> 重算，19 对）；报告区间 [−0.018, +0.069] <span class="unk">未在原始文件中核实：向 Stage 7 原作者确认</span>。</li>
+<li>7 层积分 A−B：J-Lens +0.105、Vanilla +0.106（点估计本手册从 <code>matched_pair_layer.csv</code> 重算一致）。报告给的区间 [−0.012, +0.228] / [−0.005, +0.217] 在 7.2 输出里没有，2026-10-30 改用重算值：pool = combined，20 对配对 bootstrap，B = 20,000，百分位 95%，J-Lens +0.105 [−0.012, +0.229]（种子 20261031）、Vanilla +0.106 [−0.006, +0.216]（种子 20261032）；另用种子 1–200 各算一次，区间端点的 Monte-Carlo 范围下端 [−0.015, −0.010] / [−0.011, −0.002]，原报告的数落在范围内。<span class="src">351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 "7.2 integrated7 A-B jlens/vanilla pool=combined" · ~/jlens_work/07_3_stage7_3/recompute_2026-10-30/stage7_recompute_intervals.py</span> <span class="st st-rechecked">复核过</span>（U24 已解决）</li>
+<li>去掉 P004 后，7.3 匹配池 7 层积分 A−B = +0.0226（本手册从 <code>351_stage7_3/summary/integrated_pair_differences.csv</code> 重算，19 对）；报告区间 [−0.018, +0.069] 改用重算值：J-Lens、pool = combined，19 对配对 bootstrap，B = 10,000，种子 20261039：+0.022 [−0.018, +0.068]（pool = matched 为 +0.023 [−0.017, +0.068]，种子 20261037）。<span class="src">351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 "7.3 integrated7 A-B drop P004" · ~/jlens_work/07_3_stage7_3/recompute_2026-10-30/stage7_recompute_intervals.py</span> <span class="st st-rechecked">复核过</span>（U25 已解决）</li>
 </ul>
 <h4>8 局限与质疑</h4><p>只看首 token，100 个名字只有约 46 种首 token，"赢 100 个名字"其实是赢约 46 个 token；匹配未控制首 token 的基础频率；A−B 积分区间跨 0；无多重校正。</p>
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>。只读复核 <code>351_stage7_2_score.py audit</code>：CANDIDATE HASH/COHORT VERIFIED <span class="st st-rechecked">复核过</span> <span class="src">~/jlens_work/README.md</span>。Git <code>e2c7156</code>。</p>
@@ -455,11 +455,11 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 </table>
 <p><span class="src">summary/paper_null_distribution.csv（pool=combined；本手册按 mode 求均值）</span>。Vanilla L56 +0.106（33/50），Final +0.072（30/50）。</p>
 <ul>
-<li>L56 标题优势 +9.34 pp。报告区间 [+4.75, +13.95] 在 7.3 输出中没有；本手册 20,000 次（种子 0）重算 [+4.80, +14.07]；留一法均值 +8.64 到 +9.99（本手册重算，与报告"8.6 到 10.0"一致）。原区间 <span class="unk">未在原始文件中核实：向 Stage 7 原作者确认</span>。</li>
+<li>L56 标题优势 +9.34 pp。报告区间 [+4.75, +13.95] 在 7.3 输出中没有，改用重算值：50 篇论文 bootstrap，百分位 95%，B = 20,000，种子 20261046：<b>+9.34 pp [+4.77, +14.00]</b>（B = 10,000、种子 20261045 为 [+4.91, +14.01]；Monte-Carlo 种子 1–200 的下端范围 +4.62 到 +4.88）；留一法均值 +8.64 到 +9.99（与报告"8.6 到 10.0"一致）。<span class="src">351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 "7.3 L56 J-Lens title advantage" · 351_stage7_3/recompute_2026-10-30/stage7_l56_loo.csv · ~/jlens_work/07_3_stage7_3/recompute_2026-10-30/stage7_recompute_intervals.py</span> <span class="st st-rechecked">复核过</span>（U26 已解决）</li>
 <li>匹配 A−B 7 层积分：J-Lens +0.0177 [−0.0211, +0.0626]，Vanilla +0.0315 [−0.0090, +0.0757]，均跨 0 <span class="src">summary/integrated_ab_bootstrap.csv 行 pool=combined</span>。报告的"L56 +0.113（跨 0）、L32 −0.032 [−0.058, −0.006]"在 <code>matched_ab_bootstrap.csv</code> 中，未逐行核对。</li>
 <li>去掉来源作者重叠：J-Lens 7 层积分标题优势 +0.0262 → +0.0283（本手册重算，列 advantage_no_source_false_overlap）。</li>
 <li>0-2 引用档 6 篇（A2/B2/C1/D1）L56 平均 +0.224，5/6 为正，0/6 的经验尾部 ≤ 0.05（K=20 时最小可能值 1/21 ≈ 0.048）<span class="src">351_stage7_4/summary/floor_L56_low_six.csv · overview.json "floor_low_six_L56"</span>。</li>
-<li>报告"三种候选加权下合并标题优势 +0.026 到 +0.032、6 个 A−B 区间全部跨 0"<span class="unk">未在原始文件中核实：向 Stage 7 原作者确认（7.3 输出里没有唯一 token / 去平局加权的标题优势表）</span>。</li>
+<li>报告"三种候选加权下合并标题优势 +0.026 到 +0.032、6 个 A−B 区间全部跨 0"改用重算值（真标题胜率取 7.2、20 个错误标题胜率取 7.3，同一加权，7 层平均）：J-Lens 标题优势 作者加权 +0.026 [+0.011, +0.043]、唯一 token +0.032 [+0.018, +0.046]、去平局 +0.027 [+0.011, +0.043]（50 篇 bootstrap，B = 10,000，种子 20261047/49/51）；对应 A−B（20 对）+0.018 [−0.021, +0.063]、+0.015 [−0.022, +0.057]、+0.018 [−0.021, +0.064]，Vanilla 三个 A−B 为 +0.032 [−0.010, +0.076]、+0.029 [−0.011, +0.071]、+0.033 [−0.009, +0.076]，6 个区间全部跨 0，与报告一致。<span class="src">351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 16–27（weight=author/unique/noncollision）· 351_stage7_3/recompute_2026-10-30/stage7_weighting_title_advantage.csv</span> <span class="st st-rechecked">复核过</span>（U27 已解决）</li>
 </ul>
 <h4>8 局限与质疑</h4><p>20 个错误标题是按元数据挑的，不可交换，尾部比例不是 p 值；同一来源标题可被不同目标复用，参照上下文之间不独立；L56 在此前已被看过（赢家诅咒）。</p>
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>（按 mtime：7.3A 冻结 2026-10-18 11:49，打分输出 <code>raw/shuffled_firsttoken_scores.jsonl</code> 2026-10-18 13:56；STAGES.md 写"7.3 的打分在 2026-10-21 完成"，与 mtime 不一致，可能指后来的复核）。只读复核 <code>351_stage7_3_score.py audit</code>：STAGE 7.3A + STAGE 7.2 VERIFIED <span class="st st-rechecked">复核过</span>。Git <code>e2c7156</code>。</p>
@@ -495,7 +495,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <tr><td><code>351_stage8/config/analysis_plan.json</code>（8A 冻结，"status": FROZEN_BEFORE_STAGE8_SCORING）</td><td>2026-10-18 14:29:47</td><td><code>7ff662e07798de70c09e30c387f675db0c47c6e6723270f590809e4874942b9c</code>，记录在 8A manifest 中</td><td>"primary_endpoint": 7 层平均的 [真标题胜率 − 20 个错误标题胜率均值]；"secondary_l56": L56 为 pilot 选出的次要终点；"multiplicity": 主终点 1 次比较，7 个逐层比较探索性并做 Holm</td></tr>
 <tr><td><code>351_stage8/config/manifest.json</code>（8A manifest）</td><td>2026-10-18 14:29:47</td><td><code>7e4b878e9ee037fe822cc42821218459ff48b203cd026de6995a79ca13486f55</code></td><td>—（含 analysis_plan、papers、pairs、matching_audit 的 sha）</td></tr>
 <tr><td><code>08_stage8/351_stage8_README.md</code></td><td>2026-10-18 14:29</td><td><code>ec1de9a1…f28396</code></td><td>第 5 条：主检验 = 7 层积分 A−B；"L56 is a pilot-selected secondary endpoint"；逐层 Holm</td></tr>
-<tr><td><code>08_stage8/351_stage8_PROTOCOL.md</code></td><td>2026-10-18 21:14</td><td><code>3a3a3d65dc500b2ff7255701f55cae8c74ff4aa7402c119619dda259721fac6f</code>（文件首行是 <code>cat &gt; ~/351_stage8_PROTOCOL.md &lt;&lt;'MD'</code>，即 heredoc 原样存入）</td><td>"L56 is the predeclared replication layer"；"Integrated seven-layer statistics are secondary"</td></tr>
+<tr><td><code>08_stage8/351_stage8_PROTOCOL.md</code></td><td>2026-10-18 21:14</td><td><code>3a3a3d65dc500b2ff7255701f55cae8c74ff4aa7402c119619dda259721fac6f</code>（文件首行原为 <code>cat &gt; ~/351_stage8_PROTOCOL.md &lt;&lt;'MD'</code>，即 heredoc 原样存入，说明是从聊天里粘到终端写出的）</td><td>"L56 is the predeclared replication layer"；"Integrated seven-layer statistics are secondary"</td></tr>
 <tr><td><code>351_stage8/config/stage8B_manifest.json</code></td><td>2026-10-18 21:25</td><td><code>b3c8c5a7…5309</code></td><td>—</td></tr>
 <tr><td><code>stage8C_runtime.json</code>（打分开始）</td><td>2026-10-18 21:47</td><td>—</td><td>—</td></tr>
 </table>
@@ -505,7 +505,8 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>5 公式</h4><p>见 8D。</p>
 <h4>6 对照</h4><p>—</p>
 <h4>7 结果</h4><p><b>两份文件对主终点的规定相反</b>：哈希锁定的 analysis_plan.json（14:29）把 7 层积分定为主终点、L56 为次要；同日 21:14 写的 PROTOCOL.md（不在任何 manifest 里）改为 L56 为主。两者都早于 8B 冻结（21:25）和 8C 打分（21:47 起），所以改动发生在看到 Stage 8 结果之前，但改动在 pilot 已看过 L56 之后。8D 按 PROTOCOL 报告 L56 为主（<code>351_stage8D.py:242-270</code>，报告写"L56 is the predeclared main layer"）；冻结计划的积分终点后来由 8D supplement 补算（见 8.5）。</p>
-<h4>8 局限与质疑</h4><p>导师可能问"主终点是不是事后换的"：时间戳表明换在打分之前，但换的依据（pilot 上 L56 最强）本身就是 pilot 结果。<span class="unk">未知/需确认：向用户确认（10-18 14:29 → 21:14 之间把主终点从 7 层积分改为 L56 的决定由谁、依据什么做出，是否有书面记录）</span></p>
+<p><b>git 记录</b>：git 里没有任何提交改动过主终点。analysis_plan.json 与 PROTOCOL.md 都是在 <code>e2c7156</code>（2026-10-22 批量上传）首次入库；<code>3a4f605</code>（2026-10-21 PDT，分支 review/stage8-fixes）只删掉 PROTOCOL.md 第一行 heredoc、在 README 里注明冻结计划中 L56 是次要终点、加入 supplement；该分支已于 2026-10-30 合入 main（<code>a4c1f0a</code>，2026-10-30 11:52 EDT）。集群上没有 10-23 之前的 Claude 记录，~/.bash_history 也没有线索。冻结主终点（7 层积分）、Holm 与逐对剔除的结果见 8D、8D supplement。<span class="src">git -C /scratch/zhang.zhiqi2/jlens-authorship-recall_update show --stat 3a4f605 · git log --oneline main（a4c1f0a "Merge review/stage8-fixes"）· PROGRESS.md 2026-10-30 12:30 条</span> <span class="st st-rechecked">复核过</span></p>
+<h4>8 局限与质疑</h4><p>导师可能问"主终点是不是事后换的"：时间戳表明换在打分之前，但换的依据（pilot 上 L56 最强）本身就是 pilot 结果。<span class="unk">未知/需确认：向用户确认（10-18 14:29 → 21:14 之间把主终点从 7 层积分改为 L56 的决定由谁、依据什么做出，是否有书面记录；U28，用户正在笔记本上查 ~/.claude/projects/*/*.jsonl 与网页聊天记录）</span></p>
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>（冻结）。<span class="st st-rechecked">复核过</span>（本手册核对时间戳与哈希）。Git <code>e2c7156</code>。</p>
 
 <h3 id="s19-s8a">8A 队列冻结（200 篇 / 100 对）</h3>
@@ -513,7 +514,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>2 材料</h4><p>Stage 5 的 <code>full_6841_manifest.csv</code>（sha256 <code>a63316ef…bcb</code>）和 Pilot50 ID（排除）<span class="src">351_stage8/config/manifest.json "inputs"</span>。只用 A 与 B（R0），不用 C/D。</p>
 <h4>3 工具</h4><p><code>08_stage8/351_stage8.py freeze → audit</code>，SEED = 3518001 <span class="src">351_stage8.py:8</span>。</p>
 <h4>4 步骤</h4>
-<ol><li>排除 50 篇 Pilot 目标；按 (field, citation_bin) 分格，格内 A、B 各按 (年份, sha 种子哈希) 排序 <span class="src">:34-43</span>。</li>
+<ol><li>排除 50 篇 Pilot 目标；按 (field, citation_bin) 分格，格内 A、B 各按 (年份, sha 种子哈希) 排序 <span class="src">:34-43</span>。<b>这是确定性的哈希排序，不是随机抽样</b>：<code>rank_seed</code> = sha256("3518001|…") 的前 16 位十六进制 <span class="src">351_stage8.py:30 rank_seed</span> <span class="st st-rechecked">复核过</span>。</li>
 <li>格内贪心最近邻、不放回：从较少的一侧逐篇，在另一侧作者名单不相交的论文中选代价最小者；代价 = 10×|Δ年份| + 3×|Δ作者数|，再按 sha(3518001, a, b) <span class="src">:31-33, :44-55</span>。贪心，不是最大基数匹配。</li>
 <li>引用段：0-2 → low，起点 ≥ 129 → high，其余 mid <span class="src">:26-29</span>。所有候选对生成后再按配额取：每段内按 (代价, sha 哈希) 排序取前 25/50/25 <span class="src">:56-61</span>。</li>
 <li>写 <code>cohort/stage8_papers.csv</code>、<code>matching/stage8_ab_pairs.csv</code>、analysis_plan、manifest。</li></ol>
@@ -528,7 +529,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>2 材料</h4><p>200 篇目标；6,841 篇作者与标题全集。</p>
 <h4>3 工具</h4><p><code>351_stage8B.py freeze/audit</code>，SEED = 3518201 <span class="src">351_stage8B.py:16 · stage8B_manifest.json "seed"</span>。</p>
 <h4>4 步骤</h4>
-<ol><li>错误作者排除目标论文全部真作者。匹配预分级：0 同领域且同 token 数，1 只同领域，2 只同 token 数，3 其余；按 (预分级, 种子哈希) 取前 600 入短名单，再按 (预分级, |Δ年份|, |Δtoken 数|, 种子哈希) 取 50 个匹配 <span class="src">:298-341</span>；其余按种子哈希取 50 个随机 <span class="src">:343-345</span>。（与 7.2 的分级规则不同：8B 不把年份放进 tier。）</li>
+<ol><li>错误作者排除目标论文全部真作者。匹配预分级：0 同领域且同 token 数，1 只同领域，2 只同 token 数，3 其余；按 (预分级, 种子哈希) 取前 600 入短名单，再按 (预分级, |Δ年份|, |Δtoken 数|, 种子哈希) 取 50 个匹配 <span class="src">:298-341</span>；其余按种子哈希取 50 个"随机"错误作者 <span class="src">:343-345</span>——这里的"随机"也是按 sha256(3518201, 论文, "random", 候选) 排序取前 50 的<b>确定性哈希顺序</b>，不是伪随机数抽样 <span class="src">351_stage8B.py:80, 366–370</span> <span class="st st-rechecked">复核过</span>（与 7.2 的随机池不同：7.2 用 <code>random.Random(stable_int(35172, pid, "random"))</code> 真正抽样）。（与 7.2 的分级规则也不同：8B 不把年份放进 tier。）</li>
 <li>错误标题：不同来源论文、不用目标标题、排除与目标共享作者的论文；tier 0 同领域同档、1 同领域、2 其他；按 (tier, |Δ年份|, |Δ标题 token|, 种子哈希) 取 20；提示里保留目标年份 <span class="src">:505-540</span>。</li></ol>
 <h4>5 公式</h4><p>—</p>
 <h4>6 对照</h4><p>—</p>
@@ -555,7 +556,8 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>5 公式</h4><p>—（分数在 8D 中转成胜率）</p>
 <h4>6 对照</h4><p>Vanilla、Final 同上下文同候选。</p>
 <h4>7 结果</h4><p>4,200 / 4,200 上下文全部完成，单上下文约 6.1 s <span class="src">351_stage8C_full.log 末行 · raw/stage8C_context_scores.jsonl（4,200 行，sha256 <code>ace40bc2…7b23</code>，见 stage8D/output_manifest.json）</span>。</p>
-<h4>8 局限与质疑</h4><p>只有首 token；mode_fix 的具体内容未记录。<span class="unk">未知/需确认：向 Stage 8 原作者（laptop 会话）确认（stage8C_runtime.json.before_mode_fix 与正式版的差别，是否在任何打分之前）</span></p>
+<p><b>mode_fix 的内容（U29 已解决）</b>：两份 runtime 逐字段只差 3 处——modes 第一项 "final" → "final_L63"，以及随之变化的 protocol_hash（b00dfa98… → 272715c9…）和 runtime_hash（62bc49cb… → 6dcf3961…）。时间顺序：before_mode_fix 10-18 21:40:20 → 正式版 21:47:31 → 8C 第一次写入打分在其后。用旧版跑第 1 条时，在保存前就报 "Unexpected readout modes"（351_stage8C.py:378）并拒绝；换成正式版后才保存第 1 条（"existing=0"）。打分文件 4,200 行的 runtime_hash 全部是 6dcf3961…。即<b>只改了模式名，发生在任何打分保存之前</b>。<span class="src">diff 351_stage8/config/stage8C_runtime.json{.before_mode_fix,}（第 15、31、34 行）· 351_stage8C_smoke.log · raw/stage8C_context_scores.jsonl runtime_hash 列 · <a href="#iu-research">附录 I</a> U29</span> <span class="st st-rechecked">复核过</span></p>
+<h4>8 局限与质疑</h4><p>只有首 token。</p>
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>（runtime 写于 2026-10-18 21:47，<code>raw/stage8C_context_scores.jsonl</code> 最后写入 2026-10-20 09:05，按 mtime）。Git <code>e2c7156</code>。</p>
 
 <h3 id="s19-s8d">8D 冻结统计分析（RQ1–RQ3、J−V）</h3>
@@ -582,14 +584,29 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <ul>
 <li>引用段（L56 TA）：低 50 篇 +6.83 pp [+2.55, +11.59]；中 100 篇 +4.75 pp [+1.94, +7.66]；高 50 篇 +4.38 pp [−1.07, +9.99] <span class="src">summary/layer_and_band_summary.csv 行 jlens_L56</span>。</li>
 <li>RQ2 分布：中位数 +4.41 pp；最大正向一对 S8P094（高引用段）+84.4 pp；去掉最大的 k 对后剩余均值：k=0 +4.98、1 +4.18、2 +3.53、3 +2.94、5 +1.90、10 −0.39 pp（本手册从 <code>summary/matched_pair_differences.csv</code> mode=jlens_L56 重算，与报告一致；这是事后诊断，不在冻结计划里）。</li>
-<li>敏感性（200 篇合并）：去平局 +5.32 pp，去来源重叠 +5.15 pp，短标题 +4.82 pp（199 篇）<span class="src">summary/sensitivity.csv</span>。配对重算的点估计：去平局 +5.03、去来源重叠 +4.53、标题差 ≤ 10 +4.79 pp（本手册重算一致）；报告的对应区间 [+0.15, +9.87]、[−0.34, +9.41]、[−0.39, +9.80] <span class="unk">未在原始文件中核实：向 Stage 8 原作者确认（8D 没有输出配对敏感性的 bootstrap）</span>。</li>
+<li>敏感性（200 篇合并）：去平局 +5.32 pp，去来源重叠 +5.15 pp，短标题 +4.82 pp（199 篇）<span class="src">summary/sensitivity.csv</span>。配对重算的点估计：去平局 +5.03、去来源重叠 +4.53、标题差 ≤ 10 +4.79 pp（本手册重算一致）；报告的对应区间 [+0.15, +9.87]、[−0.34, +9.41]、[−0.39, +9.80] 在 8D 输出中没有，改用重算值（配对 bootstrap，B = 10,000，百分位 95%，种子 20261034/35/36）：去平局 +5.03 [+0.23, +9.95]（100 对）、去来源重叠 +4.53 [−0.15, +9.53]（100 对）、标题差 ≤ 10 +4.79 [−0.24, +9.83]（99 对）；Monte-Carlo 种子 1–100 的下端范围分别为 +0.08…+0.41、−0.39…−0.08、−0.41…−0.09，原报告的数落在范围内。<span class="src">351_stage8/recompute_2026-10-30/s8_unsourced_intervals.csv 行 "8D paired sensitivity L56 A-B" · ~/jlens_work/08_stage8/recompute_2026-10-30/stage8_frozen_plan_recompute.py（作业 11500770）</span> <span class="st st-rechecked">复核过</span>（U30 已解决）</li>
 </ul>
 <h4>8 局限与质疑</h4>
 <ul><li>RQ2 对少数正向大对极敏感：去掉 10 对即变号。</li>
-<li>冻结计划要求的 Holm 校正和 leave-one-pair-out <span class="st st-plan">计划未做</span>（<code>analysis_plan.json "sensitivity"</code> 列了 leave-one-pair-out；8D 和 supplement 都没跑）<span class="src">jlens_github_publish 分支 review/stage8-fixes README 补丁说明</span>。</li>
-<li>RQ1–RQ3 未做多重比较校正。</li>
+<li>冻结计划要求的 Holm 校正和 leave-one-pair-out 在 8D 和 supplement 里都没跑（<code>analysis_plan.json "multiplicity"、"sensitivity"</code>），<b>2026-10-30 已事后补算</b>（见下）。</li>
 <li>首 token 判别不是完整作者身份；错误标题不可交换。</li></ul>
-<h4>9 状态</h4><p><span class="st st-done">已完成</span> 2026-10-20（stage8D 目录 mtime 10-20 09:35）。Git <code>e2c7156</code>。</p>
+<p><b>冻结主终点、Holm、逐对剔除（2026-10-30 事后补算，作业 11500770，CPU，不改冻结文件）</b><span class="src">~/jlens_work/08_stage8/recompute_2026-10-30/stage8_frozen_plan_recompute.py · 351_stage8/recompute_2026-10-30/s8_endpoints.csv、s8_holm.csv、s8_lopo_summary.csv、manifest.json</span> <span class="st st-rechecked">复核过</span>（U17 已解决）</p>
+<table class="t">
+<tr><th>终点（J-Lens）</th><th>计划中的地位</th><th>N</th><th>估计 [95% CI]（pp）</th><th>与原文件</th></tr>
+<tr><td>RQ1 7 层积分标题优势</td><td>主终点（analysis_plan primary_endpoint）</td><td>200 篇</td><td>+2.33 [+1.50, +3.19]</td><td>原种子 3518501 精确复现 supplement</td></tr>
+<tr><td>RQ2 7 层积分匹配 A−B</td><td>主组检验（primary_group_test）</td><td>100 对</td><td>+2.41 [+0.91, +4.00]</td><td>原种子 3518502 精确复现</td></tr>
+<tr><td>RQ1 L56</td><td>计划次要；PROTOCOL.md 为主</td><td>200 篇</td><td>+5.18 [+2.93, +7.48]</td><td>原种子 3518402 精确复现 8D</td></tr>
+<tr><td>RQ2 L56 A−B</td><td>计划次要；PROTOCOL.md 为主</td><td>100 对</td><td>+4.98 [+0.32, +9.91]</td><td>原种子 3518403 精确复现 8D</td></tr>
+<tr><td>RQ3 7 层积分 低 − 高（新增，同 8D RQ3 方法）</td><td>analysis_plan floor_primary</td><td>25 + 25 对</td><td>+0.78 [−1.53, +3.18]</td><td>以前没算过（种子 3518504）</td></tr>
+</table>
+<p><b>Holm</b>（族内 step-down，α = 0.05）：原始 p = 双侧 bootstrap p，p = min(1, 2·min(1 + #{b ≤ 0}, 1 + #{b ≥ 0}) / (B + 1))，b 为 B = 100,000 次 bootstrap 均值（与区间同一重抽单位），种子 20261031 + 检验序号；另给符号翻转随机化检验的 p 作为第二种原始 p。<b>冻结计划只规定了 bootstrap 区间，没有规定 p 值公式和检验族的划分，二者都是我们的选择</b>。结果：</p>
+<ul>
+<li>F0 两个主终点：RQ1 积分 p = 2×10<sup>−5</sup>，RQ2 积分 A−B p = 0.0019（Holm 两项后仍 &lt; 0.05）。</li>
+<li>F1 计划写明的"7 个逐层 A−B（J-Lens）"：只有 L62 通过（+8.83 pp，p 0.0041 → p<sub>Holm</sub> 0.029）；L48 +2.64 pp（p 0.028 → 0.17）、L56 +4.98 pp（p 0.038 → 0.19）都不通过；其余层原始 p ≥ 0.37。符号翻转 p 结论相同（L62 p<sub>Holm</sub> 0.041）。</li>
+<li>F2（另一种读法：7 个逐层标题优势 RQ1）：L56（+5.18）与 L62（+8.80）通过（p<sub>Holm</sub> 0.00014），L48 +1.37 不通过（0.22）。F3（PROTOCOL.md 的 L56 RQ1 + RQ2 两项）：两项都通过（RQ2 p<sub>Holm</sub> 0.037）。</li>
+</ul>
+<p><b>逐对剔除（leave-one-pair-out）</b>：计划只写了 "leave-one-pair-out"，未进一步定义；实现为每次去掉 100 对中的 1 对，RQ2 = 剩下 99 对的 A−B 均值，RQ1 = 剩下 198 篇的均值，每次再做 B = 10,000 的 bootstrap（种子 20261032 + k）。积分 A−B：+2.14 到 +2.61，100/100 次区间不含 0；积分 RQ1：+2.17 到 +2.43，100/100；L56 A−B：+4.18 到 +5.50，无变号，但 14/100 次区间跨 0（去掉 S8P018 时下端 −0.29）；L56 RQ1：+4.87 到 +5.41，100/100。<span class="src">s8_lopo_summary.csv（n_ci_excluding_0 列）· s8_lopo_by_pair.csv</span></p>
+<h4>9 状态</h4><p><span class="st st-done">已完成</span> 2026-10-20（stage8D 目录 mtime 10-20 09:35）。Git <code>e2c7156</code>。冻结主终点 / Holm / LOPO 2026-10-30 事后补算 <span class="st st-rechecked">复核过</span>。</p>
 
 <h3 id="s19-s8dsupp">8D supplement · 冻结计划中的 7 层积分终点</h3>
 <h4>1 问题与作用</h4><p>补算哈希锁定的 analysis_plan.json 规定、但 8D 没算的主终点（7 层积分）。</p>
@@ -607,20 +624,28 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <tr><td>Vanilla 7 层积分 A−B</td><td>+2.25 pp</td><td>[+0.50, +4.09]</td><td>58/100</td></tr>
 <tr><td>积分 J − V</td><td>−0.02 pp</td><td>[−0.69, +0.64]</td><td>98/200</td></tr>
 </table>
-<p><span class="src">/scratch/zhang.zhiqi2/jlens_github_publish/experiment_files/351_stage8/stage8D_supplement/frozen_plan_endpoints.csv · commit 3a4f605（分支 review/stage8-fixes，未合入 main）</span>。注意：supplement 的输出不在 <code>/scratch/zhang.zhiqi2/jlens/351_stage8/</code> 下，只在 <code>jlens_github_publish</code> 克隆里。</p>
+<p><span class="src">/scratch/zhang.zhiqi2/jlens_github_publish/experiment_files/351_stage8/stage8D_supplement/frozen_plan_endpoints.csv · commit 3a4f605（分支 review/stage8-fixes）</span>。该分支已于 2026-10-30 按用户决定合入 main（<code>a4c1f0a</code>），输出现在也在 <code>jlens-authorship-recall_update/experiment_files/351_stage8/stage8D_supplement/</code>（frozen_plan_endpoints.csv、supplement_manifest.json）；<code>/scratch/zhang.zhiqi2/jlens/351_stage8/</code> 下仍没有这份输出，但 2026-10-30 的重算（<code>351_stage8/recompute_2026-10-30/s8_endpoints.csv</code>）用原种子精确复现了它。<span class="src">git log --oneline main · PROGRESS.md 2026-10-30 14:00 条 U31</span> <span class="st st-rechecked">复核过</span></p>
 <h4>8 局限与质疑</h4><p>方向与 L56 一致，积分效应约为 L56 的一半；补算发生在看过 8D 结果之后（2026-10-21），但终点是事先冻结的，计算只读 8D 中间表。</p>
-<h4>9 状态</h4><p><span class="st st-done">已完成</span>（2026-10-21）；是否合入 main 待定。<span class="unk">未知/需确认：向用户确认（review/stage8-fixes 分支 3a4f605 是否要合入 main，supplement 输出是否要复制到 351_stage8/ 下）</span></p>
+<h4>9 状态</h4><p><span class="st st-done">已完成</span>（2026-10-21）；2026-10-30 合入 main（a4c1f0a），U31 已解决。</p>
 
-<h3 id="s19-s8e">8E 外部事后审计</h3>
-<h4>1 问题与作用</h4><p>用 token 去重等方式重算 RQ1/RQ2。</p>
-<h4>2 材料</h4><p>只存在于已发布报告中的一张表（作者加权 +5.18 [2.90, 7.51]、唯一 token +4.58 [2.53, 6.67] 等）和"错误标题 token 长度差斜率 +0.12 pp/token"。</p>
-<h4>3 工具</h4><p>无：8E 脚本、种子、逐篇 CSV 在集群和两个 git 克隆中都没有找到。</p>
-<h4>4 步骤</h4><p>无法从原始文件复原。</p>
-<h4>5 公式</h4><p>无法从原始文件复原。</p>
-<h4>6 对照</h4><p>无法从原始文件复原。</p>
-<h4>7 结果</h4><p>全部数字 <span class="unk">未在原始文件中核实：向用户确认（8E 外部审计的脚本与中间输出在哪里）</span>。STAGES.md 也写明"旧草稿里的数字不算已核实的证据"。</p>
-<h4>8 局限与质疑</h4><p>不能作为证据引用。</p>
-<h4>9 状态</h4><p><span class="st st-void">作废</span>（方案，未在 Explorer 上执行；数字不可核实）<span class="src">~/jlens_work/STAGES.md "Stage 8" 表 8E 行</span>。</p>
+<h3 id="s19-s8e">8E 外部事后审计（2026-10-30 从原始 logits 重算）</h3>
+<h4>1 问题与作用</h4><p>用不同的候选加权（作者加权、唯一 token、去掉与金标准同首 token 的错误作者）重算 RQ1/RQ2 的 L56 结果，并检查错误标题 token 长度差的影响。</p>
+<h4>2 材料</h4><p>原 8E 的脚本、种子、逐篇 CSV 在集群和两个 git 克隆中都没有找到，只有已发布报告里的一张表（作者加权 +5.18 [2.90, 7.51]、唯一 token +4.58 [2.53, 6.67] 等）和"斜率 +0.12 pp/token"。2026-10-30 改为从 8C 原始首 token logits 重算：<code>351_stage8/raw/stage8C_context_scores.jsonl</code>（4,200 行）+ 冻结候选 <code>controls/stage8_author_candidates.csv</code>；斜率用 <code>stage8D/summary/context_level_scores.csv</code>。<span class="src">351_stage8/recompute_2026-10-30/manifest.json inputs（含 sha256）</span></p>
+<h4>3 工具</h4><p><code>~/jlens_work/08_stage8/recompute_2026-10-30/stage8_frozen_plan_recompute.py</code>（作业 11500770，CPU）。</p>
+<h4>4 步骤</h4><p>每个上下文按 7.2 的胜率公式计算金标准首 token 对错误集合的胜率（平局 0.5），四种加权：author（每个错误作者一票）、unique（相同首 token 只算一次）、no_gold_tie（去掉与金标准首 token 相同的错误作者）、unique_no_gold_tie；TA = 真标题 − 20 个错误标题均值；RQ1 论文 bootstrap、RQ2 配对 bootstrap，B = 10,000，种子 20261037–20261044；Monte-Carlo 种子 1–100 给区间端点范围。斜率：论文固定效应下 (真标题胜率 − 错误标题胜率) 对 |标题 token 差| 的 OLS，4,000 个上下文，按论文整群 bootstrap（种子 20261132）。</p>
+<h4>5 公式</h4><p>W 同 8D；斜率 = 论文内去均值后的 OLS 系数（pp / token）。</p>
+<h4>6 对照</h4><p>作者加权版本应与 8D 的 L56 点估计相同（是：+5.18 / +4.98）。</p>
+<h4>7 结果</h4>
+<table class="t">
+<tr><th>加权</th><th>RQ1 L56（200 篇）</th><th>RQ2 L56 A−B（100 对）</th><th>已发布报告</th></tr>
+<tr><td>author</td><td>+5.18 [+2.91, +7.44]</td><td>+4.98 [+0.34, +9.81]</td><td>+5.18 [2.90, 7.51] / +4.98 [0.28, 9.77]</td></tr>
+<tr><td>unique</td><td>+4.58 [+2.52, +6.68]</td><td>+5.40 [+1.19, +9.70]</td><td>+4.58 [2.53, 6.67] / +5.40 [1.10, 9.73]</td></tr>
+<tr><td>no_gold_tie</td><td>+5.32 [+3.07, +7.72]</td><td>+5.03 [+0.27, +9.98]</td><td>+5.32 [2.98, 7.70] / +5.03 [0.22, 9.92]</td></tr>
+<tr><td>unique_no_gold_tie</td><td>+4.64 [+2.52, +6.72]</td><td>+5.46 [+1.19, +9.84]</td><td>+4.64 [2.56, 6.77] / +5.46 [1.10, 9.88]</td></tr>
+</table>
+<p>错误标题 token 长度差斜率（J-Lens L56）：+0.124 pp/token [+0.015, +0.240]（报告 +0.12 [+0.015, +0.236]）。点估计与报告全部相同；加权表中报告的 16 个区间端点都落在 bootstrap Monte-Carlo（种子 1–100）范围内（斜率没有做 Monte-Carlo 范围）。<span class="src">351_stage8/recompute_2026-10-30/s8_unsourced_intervals.csv 行 "8E …" · s8_8E_weighting_by_paper.csv（逐篇）· PROGRESS.md 2026-10-30 13:00 条</span></p>
+<h4>8 局限与质疑</h4><p>这是对原 8E 数字的独立重算，原 8E 脚本仍找不到，无法证明与原实现逐行相同；四种加权和斜率都是看过 8D 之后的事后分析，只作敏感性。</p>
+<h4>9 状态</h4><p><span class="st st-rechecked">复核过</span>：2026-10-30 从原始 logits 重算（作业 11500770），U32 已解决。原 8E 方案未在 Explorer 上执行、脚本不存在这一点不变 <span class="src">~/jlens_work/STAGES.md "Stage 8" 表 8E 行</span>。</p>
 </section>
 
 <!-- ===================== STAGE 9 ===================== -->
@@ -665,8 +690,9 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>5 公式</h4><p>同 Fit A。</p>
 <h4>6 对照</h4><p>—</p>
 <h4>7 结果</h4><p>检查点 <code>runner_runs/full_B_100_7layers/checkpoint.pt</code>：n_done = 66，next_idx = 66，最后写入 2026-10-21 19:12，此后没有续跑 <span class="src">本手册用 torch.load(mmap) 读取检查点元数据 · ls --time-style=full-iso</span>。</p>
-<h4>8 局限与质疑</h4><p>没有 Fit B，Stage 9 的核心问题"换一批数据拟合，结论稳不稳"没有回答。<span class="unk">未知/需确认：向用户确认（Fit B 在 66/100 停下的原因；是否还计划补做）</span></p>
-<h4>9 状态</h4><p><span class="st st-plan">计划未做</span>（66/100 中断）。</p>
+<p><b>停止原因（U33 已解决）</b>：最后一段从 51/100 续跑（作业 11289356@d1028，17:04:46 开始，时限 120 min，加载权重用了 18 分钟且有部分参数被 offload 到 CPU），作业在 19:05:30 到达 2 小时时限（TIMEOUT），各 step 在 19:16:35 被 signal 9 结束；在此之前日志最后写到 "prompt 66/100"（19:12:03），没有报错；checkpoint.pt 最后写入 19:12:14，完好，可以续跑。之后的 GPU 时间转去做 Fit A 修复和 7.1B。<span class="src">351_stage9_full_B.log 尾部 · sacct -j 11289356 · ls --full-time runner_runs/full_B_100_7layers/ · <a href="#iu-research">附录 I</a> U33</span> <span class="st st-rechecked">复核过</span></p>
+<h4>8 局限与质疑</h4><p>没有 Fit B，Stage 9 的核心问题"换一批数据拟合，结论稳不稳"没有回答。<b>用户 2026-10-30 决定答辩前不补做</b>；本手册的局限写明：Fit B 停在 66/100、未使用，lens 稳定性只有间接证据（Self-100 split-half、Stage 10 三把 lens 一致）。<span class="src">PROGRESS.md 2026-10-30 14:00 条 U33</span></p>
+<h4>9 状态</h4><p><span class="st st-plan">计划未做</span>（66/100 因作业时限中断；答辩前不补做，用户决定）。</p>
 
 <h3 id="s19-s9-bc">9B / 9C · 留出集比较与影响因素</h3>
 <h4>1 问题与作用</h4><p>9B：在冻结的 <code>prompts/holdout.jsonl</code>（100 条）上比较 Fit A 与 Fit B 的读出。9C：提示格式、token 类型、Final-logit anchor 等因素。</p>
@@ -680,23 +706,24 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>9 状态</h4><p><span class="st st-plan">计划未做</span> <span class="src">~/jlens_work/STAGES.md "Stage 9" 表（2026-10-27 核实）</span>。</p>
 </section>
 
-<!-- UNKNOWN-LIST
-s19-common | Stage 1–9 各实验对应的 Slurm 作业号（均为交互式 bash 会话，无法对应） | 用户
-s19-s1-cohort | 开放回答 max_new_tokens、enable_thinking、姓名模糊匹配规则（run.json 与 elm metrics/panel.py 未随标注包提供） | 组长
-s19-s1-cohort | 多选题干扰团队的匹配阈值与随机种子 | 组长
-s19-stage3 | Exp 1–7 编号来源文档 Validation_Record_351_Completeness_Checked.docx 不在集群上 | 用户
-s19-s3-exp1 | Public-557 "63/63 通过" 与 L48 范数 105.8 的原始输出（105.86 实为 split-half A 半的 L48 范数） | Stage 3 原作者（laptop 会话）
-s19-s71b | 7.1B 在 1,166/15,519 停止是否有意放弃 | 用户
-s19-s72 | 7.2 七层积分 A−B 区间 [−0.012,+0.228] / [−0.005,+0.217]（20,000 次）出处 | Stage 7 原作者（laptop 会话）
-s19-s72 | 去掉 P004 后 A−B 区间 [−0.018,+0.069] 出处 | Stage 7 原作者
-s19-s73 | L56 标题优势区间 [+4.75,+13.95]（"新审计"）出处 | Stage 7 原作者
-s19-s73 | 三种候选加权下标题优势 +0.026–0.032 与 6 个 A−B 区间的出处 | Stage 7 原作者
-s19-s8-protocol | 10-18 14:29→21:14 主终点从 7 层积分改为 L56 的决定者与依据 | 用户
-s19-s8c | stage8C_runtime.json.before_mode_fix 改了什么、是否在打分前 | Stage 8 原作者（laptop 会话）
-s19-s8d | 配对敏感性区间 [+0.15,+9.87]、[−0.34,+9.41]、[−0.39,+9.80] 出处 | Stage 8 原作者
-s19-s8dsupp | review/stage8-fixes 分支 3a4f605 是否合入 main、supplement 输出是否复制到 351_stage8/ | 用户
-s19-s8e | 8E 外部审计脚本、种子、逐篇 CSV 位置（全部数字未核实） | 用户
-s19-s9-fitB | Fit B 在 66/100 停止的原因、是否补做 | 用户
+<!-- UNKNOWN-LIST（2026-10-30 下午按 CHANGES_2026-10-30.md 更新）
+仍需确认：
+s19-s1-cohort | U04 panel.py 的名字切分与剥离规则原文 | 组长
+s19-s1-cohort | U06 多选题干扰团队的匹配阈值原文与随机种子 | 组长
+s19-stage3 | U21 Exp 1–7 编号来源文档 Validation_Record_351_Completeness_Checked.docx 不在集群上 | 用户
+s19-s71b | U23 7.1B 是否有意放弃（停止方式已查实：用户账号在时限前约 23 分钟结束，日志无错误） | 用户
+s19-s8-protocol | U28 10-18 14:29→21:14 主终点从 7 层积分改为 L56 的决定者与依据（用户正在笔记本上查） | 用户
+已解决（2026-10-30）：
+s19-common | U20 交互作业按时间对应，约 15 个无法追溯（附录 I）
+s19-s1-cohort | U02/U03 开放题/U05 → dua 代码包（附录 J）
+s19-s3-exp1 | U22 105.8 = Public L48 范数 float32（351_stage8/recompute_2026-10-30/stage3_lens_frobenius_norms.csv，作业 11500587）
+s19-s72 | U24、U25 区间重算（351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv）
+s19-s73 | U26、U27 区间与加权重算（同上）
+s19-s8c | U29 只改模式名 final→final_L63，在任何打分之前（附录 I）
+s19-s8d | U30 配对敏感性区间重算（s8_unsourced_intervals.csv）；U17 Holm/LOPO 补算（s8_holm.csv、s8_lopo_summary.csv）
+s19-s8dsupp | U31 已合入 main a4c1f0a
+s19-s8e | U32 从原始 logits 重算（s8_unsourced_intervals.csv、s8_8E_weighting_by_paper.csv）
+s19-s9-fitB | U33 作业 11289356 到 2 h 时限；用户决定答辩前不补做
 -->
 
 <!-- CHECK-NUMBERS

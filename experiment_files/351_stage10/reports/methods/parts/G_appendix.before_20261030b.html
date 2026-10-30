@@ -1,0 +1,948 @@
+<!-- 附录 G（id 前缀 ap-）。内容只取自正文 6 个部分 A–F（及为核实查阅的 sacct / git log / 文件存在性）。每条链接的锚点已用脚本对照 A–F 的全部 id 属性核实存在。 -->
+<section id="ap-glossary">
+<h2>附录 G1　术语表</h2>
+<p>每条一句话定义，右列链接到正文中给出完整定义或数字的位置。同一缩写在不同 Stage 指不同东西的（X1、X2、X3、A/B），分条写明。</p>
+
+<h3 id="ap-glossary-labels">G1.1 论文、标签与分组</h3>
+<table class="t">
+<tr><th>术语</th><th>定义</th><th>正文位置</th></tr>
+<tr><td>9,108 篇 / cohort</td><td>Dreaming Up Authors（EMNLP 2026）研究的分层评测样本（8 领域 × 13 引用档，每格最多 100 篇），由组长的标注包原样提供，不是本项目抽的。</td><td><a href="#g-data-origin">g-data-origin</a>、<a href="#g-data-package">g-data-package</a></td></tr>
+<tr><td>标注包 / elm</td><td>组长用 elm 流程在 Qwen3-32B 上做开放回答与 4 选 1 多选、并打出全部标签列的数据包（zhiqi_qwen3-32b_labels_2026-10-15）；run.json 与 elm 代码不在包里。</td><td><a href="#g-data-package">g-data-package</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td>M / H / U</td><td>开放回答经姓名匹配后：M = 写对的真作者数，H = 编造的名字数，U = 漏掉的真作者数。</td><td><a href="#g-labels-match">g-labels-match</a></td></tr>
+<tr><td>HR2</td><td>(H + U) / (M + H + U)，开放回答的"错漏比例"；R2 的阈值是 HR2 ≤ 0.5。</td><td><a href="#g-labels-match">g-labels-match</a>、<a href="#g-labels-recall">g-labels-recall</a></td></tr>
+<tr><td>R0 / R1 / R2</td><td>开放回答的回忆等级：R0 = 一个真作者都没写出（M = 0）；R1 = HR2 &gt; 0.5 且 M &gt; 0（写对少数）；R2 = HR2 ≤ 0.5（基本写对）。全样本 8,298 / 596 / 214。</td><td><a href="#g-labels-recall">g-labels-recall</a></td></tr>
+<tr><td>多选 4 种顺序（ABDC 等）</td><td>同一组 4 个选项按 [[0,1,3,2],[1,2,0,3],[2,3,1,0],[3,0,2,1]] 显示，真名单依次出现在 A、C、D、B，每个字母一次。</td><td><a href="#g-labels-mc">g-labels-mc</a></td></tr>
+<tr><td>mc_team_a</td><td>4 种顺序中"真字母概率最高且字母总概率 ≥ 0.5"的顺序数（0–4）。</td><td><a href="#g-labels-mc">g-labels-mc</a></td></tr>
+<tr><td>mc_team_p_true</td><td>4 种顺序下真字母原始概率（未归一化）的平均。</td><td><a href="#g-labels-mc">g-labels-mc</a></td></tr>
+<tr><td>initial_surname</td><td>多选选项的名字格式：名缩成首字母、去掉中间名首字母（"Karin G. Coifman" → "K. Coifman"）。</td><td><a href="#g-labels-mc">g-labels-mc</a>、<a href="#s12-n1">s12-n1</a></td></tr>
+<tr><td>target / control / excluded / guard（group_tight）</td><td>Stage 10 起用的收紧分组：target = R0/R1 且 a = 4 且 p_true ≥ 0.5（认出名单但写不出作者）；control = R0/R1 且 a ≤ 1；guard = R2；excluded = 其余。人数 4,621 / 2,220 / 2,053 / 214。</td><td><a href="#g-labels-groups">g-labels-groups</a>、<a href="#s1011-s10-common">s1011-s10-common</a></td></tr>
+<tr><td>group（普通规则）</td><td>较宽的分组（target = R0/R1 且 a ≥ 3），只在 Stage 10 敏感性分析里用。</td><td><a href="#g-labels-groups">g-labels-groups</a>、<a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>A / B / C / D 组（行为分组）</td><td>351_prepare_all.py 的四组：A = target·R0（4,110），B = control·R0（2,186），C = target·R1（511），D = control·R1（34），合计 6,841；Stage 4–8 使用。</td><td><a href="#g-data-cohort">g-data-cohort</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td>A/B 的另两种用法</td><td>Stage 3 split-half 的 A/B 两半、Stage 9 的 Fit A/Fit B，与行为分组无关。</td><td><a href="#s19-common">s19-common</a></td></tr>
+<tr><td>team_b</td><td>500 篇用第二套干扰团队重抽的多选题；与第一次通过一致率 83.6%、kappa 0.63。</td><td><a href="#g-labels-groups">g-labels-groups</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td>citation bin（引用档）</td><td>13 个按 2 的幂分的引用数档：0-2、3-4、5-8 … 2049-4096、4097+；来自标注包的 citation_bin 列。</td><td><a href="#h-stats-bins">h-stats-bins</a>、<a href="#g-data-fields">g-data-fields</a></td></tr>
+<tr><td>Pilot50</td><td>Stage 5–7.4 共用的 50 篇探索样本（A20/B20/C7/D3，含 Stage 4 的 20 篇）和 20 对同领域同引用档的 A/B 配对（P001–P020）。</td><td><a href="#s19-s1-pilot50">s19-s1-pilot50</a></td></tr>
+<tr><td>Benchmark20</td><td>Stage 4 的 20 篇读出样本（A8/B8/C3/D1）。</td><td><a href="#s19-s4-readout">s19-s4-readout</a></td></tr>
+<tr><td>Stage 11 样本（1,186 篇）</td><td>10 个可比引用档内每档每组最多 60 篇（default_rng(11)）：593 target + 593 control，24 个 shard；Stage 11/12 与 Stage 13 X 系列用。</td><td><a href="#s1011-s11-common">s1011-s11-common</a></td></tr>
+<tr><td>pairs.parquet / tune / test</td><td>Stage 13 X1/X3/X4 的配对表：1,178 篇各配同领域、同标题 token 数、无共同姓氏的搭档 B 和随机对照 C；按作者团队分成 tune 596 / test 582。</td><td><a href="#s13-overview">s13-overview</a></td></tr>
+</table>
+
+<h3 id="ap-glossary-scoring">G1.2 提示、位置与打分</h3>
+<table class="t">
+<tr><th>术语</th><th>定义</th><th>正文位置</th></tr>
+<tr><td>作者问法 PROMPT</td><td><code>Who are the authors of the paper titled "{title}" ({year})?\nAuthors:</code>，裸文本、不套 chat 模板、不加 BOS；Stage 3–12 的读出都用它。</td><td><a href="#g-prompts-list">g-prompts-list</a></td></tr>
+<tr><td>delete 条件</td><td>删去标题的提示 <code>Who are the authors of the paper ({year})?\nAuthors:</code>，测名字在"有年份、无标题"时的先验。</td><td><a href="#g-prompts-list">g-prompts-list</a>、<a href="#h-false-pool">h-false-pool</a></td></tr>
+<tr><td>teacher forcing</td><td>把正确名字 token 逐个接在提示后，在前一位置读出下一 token 的分布并求金标准 token 的名次；测的是偏好，不是生成。</td><td><a href="#g-prompts-align">g-prompts-align</a>、<a href="#s1011-s10-common">s1011-s10-common</a></td></tr>
+<tr><td>单独打分 / 连写打分（isolated / chain）</td><td>单独：每位作者单独接在 "Authors:" 后；连写：全部作者用 "," 接成一串（Stage 11 E3、Stage 12 N1）。</td><td><a href="#g-scoring-agg">g-scoring-agg</a>、<a href="#s1011-s11-e3">s1011-s11-e3</a></td></tr>
+<tr><td>rank（名次）</td><td>1 + 词表（lm_head 全部 151,936 行）中 logit 严格大于金标准的 token 数；并列按有利方向计、另存 ties。</td><td><a href="#g-scoring-rank">g-scoring-rank</a></td></tr>
+<tr><td>nlr = log10(1/rank)</td><td>主指标：第 1 名为 0、第 10 名为 −1，最小约 −5.18；2026-10-23 起取代原 protocol 的 Σ1/rank。</td><td><a href="#g-scoring-rank">g-scoring-rank</a></td></tr>
+<tr><td>mean_nlr / author_mean_nlr</td><td>一篇论文全部被打分名字 token 的 nlr 平均（主指标，token 加权）/ 先在作者内平均再对作者平均（次要指标）。</td><td><a href="#g-scoring-agg">g-scoring-agg</a></td></tr>
+<tr><td>RR、JMRR</td><td>RR = 1/rank；JMRR（Jacobian MRR）= 作者内 token 平均 RR，再对作者平均；Stage 4–8 的指标。</td><td><a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+<tr><td>7 层积分</td><td>Stage 4–8 中对 7 个源层 L16/24/32/40/48/56/62 的算术平均（L63 不计入）。</td><td><a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s8dsupp">s19-s8dsupp</a></td></tr>
+<tr><td>W（金标准胜率）</td><td>Stage 7.2/8：金标准首 token 的 logit 胜过 100 个错误作者首 token 的比例，平局记 0.5。</td><td><a href="#s19-s72">s19-s72</a>、<a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td>TA（标题优势）</td><td>Stage 7.3/8：W(真标题) − 20 个错误标题下 W 的平均。</td><td><a href="#s19-s73">s19-s73</a>、<a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td>RQ1 / RQ2 / RQ3</td><td>Stage 8 的三个预设问题：L56 真 − 错误标题；匹配 A − B；低引用 − 高引用。</td><td><a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td>Ll / readout final</td><td>Ll = 第 l 个 decoder block 的输出残差；final = unembed(残差 63) = 模型真实的下一 token logits。</td><td><a href="#g-model-id">g-model-id</a>、<a href="#h-lens-defs">h-lens-defs</a></td></tr>
+<tr><td>token 角色</td><td>按 " "+名字切词：最后一个词 = surname，姓氏前缀 = particle，单字母 = initial，其余 = given；词首 token 加 _first，后续加 _cont，纯标点 = punct。</td><td><a href="#g-scoring-names">g-scoring-names</a></td></tr>
+<tr><td>标题特异信号（spec）</td><td>同一组名字 token 下 m(真标题) − 5 个假标题的平均；名字本身好不好猜在差值里抵消。</td><td><a href="#g-scoring-spec">g-scoring-spec</a>、<a href="#s1011-s10-titlespec">s1011-s10-titlespec</a></td></tr>
+<tr><td>total / topic / prior</td><td>total = 真 − 删标题；topic = 假标题均值 − 删标题；prior = 删标题本身；true = prior + topic + spec。</td><td><a href="#g-scoring-spec">g-scoring-spec</a>、<a href="#s1011-s10-prior">s1011-s10-prior</a></td></tr>
+<tr><td>spec_strict</td><td>只用 strict 档假标题求平均的标题特异信号；没有 strict 供体的 736 篇为 NaN。</td><td><a href="#g-scoring-spec">g-scoring-spec</a>、<a href="#h-false-79">h-false-79</a></td></tr>
+<tr><td>tail_fraction</td><td>(1 + #{假标题分数 ≥ 真标题分数}) / 6，参考尾部比例，不是 p 值。</td><td><a href="#g-scoring-spec">g-scoring-spec</a></td></tr>
+<tr><td>title_last / it</td><td>标题最后一个 token（与标题字符区间重叠的最后一个 token）；E1t、E4、E4b、M3、X4 在这里读或替换。</td><td><a href="#g-prompts-align">g-prompts-align</a>、<a href="#g-prompts-example">g-prompts-example</a></td></tr>
+<tr><td>PREFIX_TOKENS = 9</td><td>Stage 13 三种问法在标题前都是 9 个 token，所以标题占相同绝对位置。</td><td><a href="#g-prompts-align">g-prompts-align</a>、<a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td>对齐尾段 tail_prompt</td><td>真、假标题提示的公共后缀，截到两边都在最后一个标题 token 之后；Stage 11 样本中 9 个 token 708 篇、8 个 token 478 篇。</td><td><a href="#g-prompts-align">g-prompts-align</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a></td></tr>
+<tr><td>p1 … p9</td><td>Stage 12 P1 的单位置编号，从提示末尾往前：p1 = ":"、p2 = "Authors"、p3 = ")?\n"、p4–p7 = 年份 4 个数字、p8 = " ("、p9 = 闭引号。</td><td><a href="#g-prompts-align">g-prompts-align</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td>Dreaming Up Authors / dua 匹配器 L1–L5</td><td>原研究的逐级姓名匹配器，原研究只接受到 L4（姓 + 名首字母）；组长流程是否同用未确认。</td><td><a href="#g-labels-match">g-labels-match</a></td></tr>
+</table>
+
+<h3 id="ap-glossary-false">G1.3 假标题</h3>
+<table class="t">
+<tr><th>术语</th><th>定义</th><th>正文位置</th></tr>
+<tr><td>donor（供体）</td><td>把真标题借给目标论文做假标题的那篇 cohort 论文；同领域、与目标无共享姓氏、标题词 Jaccard ≤ 0.6。</td><td><a href="#h-false-pool">h-false-pool</a></td></tr>
+<tr><td>false_0 … false_4</td><td>每篇的 5 个假标题，按（档序, cost, donor_paper_id）排序编号；false_0 = 最好档里代价最小的那个，不是随机的。</td><td><a href="#h-false-algo">h-false-algo</a></td></tr>
+<tr><td>cost（匹配代价）</td><td>|Δyear|/5 + |Δn_authors|/max(1, 0.25n) + |Δtitle_tokens|/max(1, 0.2·len) + 1.5·|Δbin|。</td><td><a href="#h-false-cost">h-false-cost</a></td></tr>
+<tr><td>strict 档（严格档）</td><td>同领域、年份差 ≤ 5、作者数差 ≤ 1、标题 token 差 ≤ max(1, 20%)、引用档差 ≤ 1；其后依次放宽为 medium、loose、nearest（无元数据约束）。</td><td><a href="#h-false-tiers">h-false-tiers</a></td></tr>
+<tr><td>"79%"</td><td>全部 45,540 个（论文, 假标题）配对中来自 strict 档的比例 35,898 / 45,540 = 0.7883；不是"79% 的论文 5 个都是 strict"（那是 66.5%）。</td><td><a href="#h-false-79">h-false-79</a></td></tr>
+</table>
+
+<h3 id="ap-glossary-lens">G1.4 读出工具（lens）</h3>
+<table class="t">
+<tr><th>术语</th><th>定义</th><th>正文位置</th></tr>
+<tr><td>logit lens（Vanilla）</td><td>把第 l 层残差直接过模型的 final RMSNorm + lm_head：lm_head(final_norm(h_l))。</td><td><a href="#h-lens-defs">h-lens-defs</a></td></tr>
+<tr><td>Jacobian lens / J-Lens（jlens）</td><td>先用平均 Jacobian J_l 把 L_l 残差搬到 L63 残差基，再 final norm + lm_head：lm_head(final_norm(J_l·h_l))。</td><td><a href="#h-lens-defs">h-lens-defs</a>、<a href="#h-lens-jac">h-lens-jac</a></td></tr>
+<tr><td>public lens（Public-557）</td><td>Neuronpedia 公开的 Qwen3-32B Jacobian lens，557 条 WikiText-103 提示拟合、L0–L62；具体条目与模型 revision 未提供。</td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s3-exp6">s19-s3-exp6</a></td></tr>
+<tr><td>self100（Self-100）</td><td>Stage 3 自拟合 lens：本地冻结 WikiText-103 语料的前 100 条，6 层 L24–L62。</td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td>fitA lens</td><td>Stage 9 Fit A 的产物（100 有效 / 101 候选，7 层 L16–L62），Stage 10 第三把 lens。</td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td>Fit A / Fit B / holdout</td><td>Stage 9 从 WikiText-103 切出的三份互不重叠的 100 条；Fit A 已完成，Fit B 停在 66/100，holdout 比较（9B）未做。</td><td><a href="#s19-s9-split">s19-s9-split</a>、<a href="#s19-s9-fitB">s19-s9-fitB</a>、<a href="#h-lens-stage9">h-lens-stage9</a></td></tr>
+<tr><td>F1 author lens（作者提示 lens）</td><td>Stage 12 在 40 条"作者问法 + 真作者名单"文本上拟合的 Jacobian lens（8 层），供 F2 读出；Stage 13 称 M4。</td><td><a href="#s12-f1">s12-f1</a>、<a href="#s13-m4">s13-m4</a></td></tr>
+<tr><td>split-half</td><td>Stage 3 把 Self-100 语料按奇偶索引分成两半各拟合一次，比较矩阵与读出。</td><td><a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td>Exp 1–7 / provenance audit</td><td>Stage 3 的 lens 验证实验编号（数值检查、保真度、金标准 vs 错误作者、泄漏审计、拟合协议对比、split-half）；编号沿用已发布报告。</td><td><a href="#s19-stage3">s19-stage3</a>、<a href="#s19-s3-exp5">s19-s3-exp5</a></td></tr>
+</table>
+
+<h3 id="ap-glossary-stats">G1.5 统计与切分</h3>
+<table class="t">
+<tr><th>术语</th><th>定义</th><th>正文位置</th></tr>
+<tr><td>档内 target − control（stratified_diff）</td><td>只在两组都 ≥ 30 篇的引用档内（实际 10 档）求组差，按 w_b ∝ n_t·n_c/(n_t+n_c) 加权；bootstrap 在"档 × 组"内重抽论文 2,000 次。</td><td><a href="#h-stats-strat">h-stats-strat</a>、<a href="#g-scoring-spec">g-scoring-spec</a></td></tr>
+<tr><td>作者团队（group_folds）</td><td>共享任一归一化全名（≥ 2 个词）的论文用并查集并成一组（同名也合并）；false_0 行再与其 donor 合并；全队列 7,247 个团队，按大小放入 5 折。</td><td><a href="#h-stats-team">h-stats-team</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td>team-cluster bootstrap（团队整群 bootstrap）</td><td>对作者团队做多项式抽样得到每篇论文的权重，统计量按加权和重算，2,000 次取 2.5/97.5 百分位；Stage 13 起为主区间。</td><td><a href="#h-stats-strat">h-stats-strat</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td>title reuse（标题一题两用）</td><td>probe 训练时已见过测试论文提示里的那个标题（false_0 供体在训练折，或测试论文自己的标题被借给训练论文）；E4b 复核时剔除这些测试论文。</td><td><a href="#h-leak">h-leak</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td>多重比较</td><td>Stage 10–13 未做任何校正；规则是"所有层都报告、区间不含 0 才算"。</td><td><a href="#h-stats-mult">h-stats-mult</a></td></tr>
+<tr><td>预注册 prereg / 补充 1–4（addendum）</td><td>Stage 13 的判定规则文件（只读，有 sha256）：补充 1 = 所有 probe 用团队折、tune/test 按团队；补充 2 = 改 M3/X1 判据、M2c 单向、E4b 四配置、团队区间为主；补充 3 = X6/X7 定义与判定；补充 4 = X3 主对照改为近邻 D、按 token 角色报告、措辞限定为 teacher forcing 下的偏好。</td><td><a href="#h-prereg-content">h-prereg-content</a>、<a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td>补充 5</td><td>尚未写定的预注册补充（拟含 X3 的 jaccard2、排除完全相同改写、意义检查规则）。</td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>H1 / H2 / H3</td><td>Stage 13 的三个假设：中间层主要表示任务/格式（H1）、论文身份（H2）、作者信息已在但不在词表方向（H3）。</td><td><a href="#s13-overview">s13-overview</a></td></tr>
+</table>
+
+<h3 id="ap-glossary-exp">G1.6 实验编号与实验内的量</h3>
+<table class="t">
+<tr><th>术语</th><th>定义</th><th>正文位置</th></tr>
+<tr><td>E1</td><td>Stage 11 activation patching：把真标题运行中"标题之后的整段尾部 + 全部名字输入位置"在第 l 层的 block 输出换进 false_0 运行。</td><td><a href="#s1011-s11-e1">s1011-s11-e1</a></td></tr>
+<tr><td>恢复率 R / recovery</td><td>mean_p(替换 − 假) / mean_p(真 − 假)，先论文内平均再跨论文、最后两均值相除（E1、P1、P2、X6）；X1 的 R 用 (src 替换 − corrupt)/(clean − corrupt)。</td><td><a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s13-x1">s13-x1</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>E1t</td><td>只替换标题最后一个 token 的 E1（amendment 1）；分析基线改用同批 L63 元素。</td><td><a href="#s1011-s11-e1t">s1011-s11-e1t</a></td></tr>
+<tr><td>E2 / 损失比例 loss(l)</td><td>从第 l 层到 L63 禁止标题之后的位置注意标题 token（显式加性 mask，被挡格子 = bf16 最小值）；loss = mean(K(64) − K(l)) / mean(真 − 假)。</td><td><a href="#s1011-s11-e2">s1011-s11-e2</a></td></tr>
+<tr><td>E2n</td><td>只挡 ":" 和名字位置对标题的注意（amendment 1）。</td><td><a href="#s1011-s11-e2n">s1011-s11-e2n</a></td></tr>
+<tr><td>E3</td><td>全部作者连写（chain）与单独打分的对比。</td><td><a href="#s1011-s11-e3">s1011-s11-e3</a></td></tr>
+<tr><td>E4</td><td>在标题最后一个 token 和 ":" 上用 lens 读作者首 token / 姓首 token。</td><td><a href="#s1011-s11-e4">s1011-s11-e4</a></td></tr>
+<tr><td>E4b</td><td>标题位置线性 ridge probe：X = 标题最后 token 残差，Y = ":" 处 L63 残差，经 final norm + 4,314 行名字词表求作者首 token 名次；spec = 真标题输入 − false_0 输入。</td><td><a href="#s1011-s11-e4b">s1011-s11-e4b</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td>Stage 10 X1 / X2 / X3</td><td>Stage 10 CPU 补充分析：X1 = 名字格式与 token 位置，X2 = 引用数，X3 = 三种 lens 与 logit lens 的比较；与 Stage 13 同名实验无关。</td><td><a href="#s1011-s10-format">s1011-s10-format</a>、<a href="#s1011-s10-cite">s1011-s10-cite</a>、<a href="#s1011-s10-lens">s1011-s10-lens</a></td></tr>
+<tr><td>Stage 12 X1</td><td>E4b 的对照：置换 gold（全局 / 同领域）与只用假标题训练。</td><td><a href="#s12-cpu">s12-cpu</a></td></tr>
+<tr><td>P1</td><td>Stage 12 单位置替换：每次只把对齐尾段中一个位置（p1–p9）或全部名字位置换成真标题运行的残差。</td><td><a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td>P2</td><td>Stage 12 组件替换：只换某层注意力输出（o_proj 后）或 MLP 输出（down_proj 后）。</td><td><a href="#s12-p2">s12-p2</a></td></tr>
+<tr><td>N1</td><td>Stage 12 多选选项先验：4 个选项各作作者链打分，比较删标题与真标题下真名单是否最"像"。</td><td><a href="#s12-n1">s12-n1</a></td></tr>
+<tr><td>N2</td><td>Stage 12 纯名字先验：提示 "The following is the name of a researcher.\nName:" 下的名字名次。</td><td><a href="#s12-n2">s12-n2</a></td></tr>
+<tr><td>F1 / F2</td><td>F1 = 拟合作者提示 lens；F2 = 用它在名字位置与标题最后 token 上做 Stage 10 式标题特异读出。</td><td><a href="#s12-f1">s12-f1</a>、<a href="#s12-f2">s12-f2</a></td></tr>
+<tr><td>M1</td><td>Stage 13：lens 在名字位置排第一的 token 归类（correct / name-like / punct / task / title / other）。</td><td><a href="#s13-m1">s13-m1</a></td></tr>
+<tr><td>M2 / M2b / M2c</td><td>标题位置与 ":" 位置的残差 ridge probe 读领域、年份、引用、是否认得出；M2b = TF-IDF 标题词基线；M2c = bert-base-uncased 基线。</td><td><a href="#s13-m2">s13-m2</a>、<a href="#s13-m2b">s13-m2b</a>、<a href="#s13-m2c">s13-m2c</a></td></tr>
+<tr><td>M3</td><td>同一标题放进作者 / 年份 / 领域三种问法，比较跨问法迁移与同篇余弦。</td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td>迁移比 T</td><td>问法 a 训练、问法 b 测试的 probe 成绩 ÷ 问法 b 内训练测试的成绩，对 6 个有序对平均。</td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td>身份指数 I</td><td>同篇跨问法居中余弦 − 异篇跨问法平均余弦；补充 2 后只看 I(l) − I(L4)。</td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td>M4</td><td>作者专用 lens，即 Stage 12 F1/F2，Stage 13 未另算。</td><td><a href="#s13-m4">s13-m4</a></td></tr>
+<tr><td>M5</td><td>提议中的逐位置 probe / patchscope / 名字位置真假判别，无代码、未执行。</td><td><a href="#s13-m5">s13-m5</a></td></tr>
+<tr><td>X1</td><td>Stage 13 跨问法标题 patching：把 A 的标题状态（来自作者 / 年份 / 领域问法或随机论文 C）换进"作者问法 + B 的标题"运行。</td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td>partner B / random C / NULL FLAG</td><td>B = 同领域同长度无共同姓氏的搭档（corrupt 来源）；C = 无关论文；任一层 |R(random C)| &gt; 0.1 记 NULL FLAG。</td><td><a href="#s13-x1">s13-x1</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td>task-independent / task-specific / undecided</td><td>X1 的补充 2 判定：L24 起 a − year、a − field 区间都在 [−0.1, 0.1] 内且 a − random C 下限 &gt; 0 为 task-independent；a − year 下限 &gt; 0.1 为 task-specific。</td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td>question share</td><td>X1 相似度检查：同篇换问法的相对距离 ÷ 同问法换论文的相对距离（0 = 问法不改变状态，1 = 与换论文一样远）。</td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td>X2</td><td>Stage 13 计划中的只替换子空间实验，未写补充、未运行。</td><td><a href="#s13-x2">s13-x2</a></td></tr>
+<tr><td>X3</td><td>同义改写标题 vs 词重合近邻 D 的比较；目前只完成改写生成与意义检查。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>auto_ok / identical</td><td>X3 改写的自动检查通过（非空、不含年份、不含作者姓子串、长度比 0.5–2.0）/ 去标点小写后与原标题完全相同（27 条）。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>jaccard2</td><td>修正版标题词 Jaccard：去英语停用词、保留任意长度词、简单去后缀；原版只保留长度 &gt; 3 的词。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>lexical neighbour D / G / G′</td><td>D = 词 Jaccard 不低于改写的同领域近邻标题；G = cos(原, 改写) − cos(原, B)；G′ = cos(原, 改写) − cos(原, D)（补充 4 的主指标）。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>para_ok</td><td>人工放行 X3 主实验 para_run 的标记文件 R13/logs/para_ok；2026-10-30 不存在。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>JUDGE / NLI</td><td>X3 意义检查的两种自动法：Qwen3-32B 判断器（chat 模板、thinking 关、两种顺序）与 cross-encoder NLI 双向蕴含。</td><td><a href="#s13-x3">s13-x3</a>、<a href="#g-model-chat">g-model-chat</a></td></tr>
+<tr><td>X4 / patchscope</td><td>把 A 某层的状态注入只有占位符 " X" 的目标提示，看能否解码 A 的年份、第一作者、领域。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>D（patchscope）</td><td>D = mean score(注入自己的状态) − mean score(注入搭档 B 的状态)，score = 答案 token 的平均 log10(1/rank)。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>D_text（文本基线）</td><td>只从标题文本预测第一作者名字 token 的同样差值（kNN 版与监督 LR 版）。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>x4tok / X4TOK_CHECK_FAILED</td><td>X4 逐 token 复算及其自检；第一次 max |diff| 0.0683 &gt; 0.05 写出失败标记，被用户定为致命的正确性检查。</td><td><a href="#s13-x4">s13-x4</a>、<a href="#h-compute-parity">h-compute-parity</a></td></tr>
+<tr><td>b7 / b2</td><td>x4tok 修法中的两种批大小：b7 = 一次注入全部 7 个 PS_LAYERS（与原 X4 相同），b2 = 只注入 L8、L40。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>X5</td><td>计划中的层序量化（身份 → probe 读作者 → lens 读名字），未执行。</td><td><a href="#s13-x5">s13-x5</a></td></tr>
+<tr><td>X6</td><td>用 false_1 … false_4 重做 Stage 11 E1。</td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>X7 / S = T − F</td><td>在 false_0 运行上做与 E2 相同的阻断：T = 真运行损失比，F = 假运行损失比，S = T − F 为论文特有损失。</td><td><a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td>kT64 / kF64</td><td>真 / 假运行中"不挡（l = 64）但走显式 mask"的那一份。</td><td><a href="#s13-x7">s13-x7</a></td></tr>
+</table>
+
+<h3 id="ap-glossary-qc">G1.7 质量控制与运行</h3>
+<table class="t">
+<tr><th>术语</th><th>定义</th><th>正文位置</th></tr>
+<tr><td>parity</td><td>Stage 10 GPU 放行门：快路径（一次前向读所有位置）与逐前缀 lens.apply 的最大 |Δlogit|。</td><td><a href="#s1011-s10-parity">s1011-s10-parity</a>、<a href="#h-compute-parity">h-compute-parity</a></td></tr>
+<tr><td>容差 0.25 → 0.5（tolerance_amendment）</td><td>parity 门槛在看到 FAIL 后由用户于 2026-10-25 放宽到 0.5，原状态保留。</td><td><a href="#h-compute-tol">h-compute-tol</a></td></tr>
+<tr><td>bf16 ulp（最小间隔）</td><td>|logit| 在 32–64 时 bf16 相邻可表示值相差 0.25；parity 差 0.367 约 1–1.5 个 ulp。</td><td><a href="#h-compute-tol">h-compute-tol</a></td></tr>
+<tr><td>WARN 规则</td><td>2026-10-27 起的长期规则：数值一致性未达标只记 WARN（保留数值和阈值）继续算，只有代码崩溃才停队列；x4tok 为用户明确指定的例外。</td><td><a href="#h-compute-tol">h-compute-tol</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td>smoke / realcheck / preflight</td><td>smoke = 第一块 GPU 上的小规模全流程自检；realcheck = CPU 上用真权重复算一篇论文；preflight = 花 GPU 前的 CPU 结构核对。</td><td><a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td>shard / 单元（unit）</td><td>shard = 固定论文块（Stage 10 每 128 篇、Stage 11 每 50 篇）；单元 = 一个"类型 × 条件 × shard"的 GPU 计算，各存一个 npz，已存在就跳过。</td><td><a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s12-ov-units">s12-ov-units</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td>池化调度（pool / steal / hand-over）</td><td>任何 GPU 作业可领取其他 Stage 的单元，所以作业名不等于实际算的实验。</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+</table>
+</section>
+
+<section id="ap-qa">
+<h2>附录 G2　导师可能追问的 20 个问题与标准答案</h2>
+<p>答案只用正文已有的事实和数字；每条末尾给出处锚点。"未知"处照实说，并写明向谁确认。</p>
+
+<h3 id="ap-qa-1">Q1　target / control 是怎么定义的？分组本身可靠吗？</h3>
+<p>两组都是开放回答写不出作者的论文（R0/R1，即 HR2 &gt; 0.5）：target 要求 4 个选项顺序全答对且真字母平均概率 ≥ 0.5，control 是 4 个顺序里最多答对 1 个，全队列 4,621 / 2,220 篇。标签是组长的标注包原样数据，我们按规则重算 group_tight 与标签 100% 一致。可靠性的弱点有两处：0-2 引用档的收紧通过率 25.5%，接近固定偏好某个字母的 25%；500 篇第二套干扰团队重测一致率 83.6%（kappa 0.63）。所以 Stage 10 加做了去掉低档的敏感性（final +0.212 [0.199, 0.226]）。干扰团队的具体抽取规则未知，需向组长确认。见 <a href="#g-labels-groups">g-labels-groups</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a>、<a href="#s1011-s10-tc">s1011-s10-tc</a>。</p>
+
+<h3 id="ap-qa-2">Q2　假标题怎么选？"79% 来自严格档"是什么意思？</h3>
+<p>每篇在同领域其他论文中找 5 个 donor，硬排除自身、任何共享姓氏、标题词 Jaccard &gt; 0.6；代价 = |Δyear|/5 + |Δn_authors|/max(1, 0.25n) + |Δtitle_tokens|/max(1, 0.2·len) + 1.5·|Δbin|，按 strict → medium → loose → nearest 逐档做最小代价指派。79% 指全部 45,540 个（论文, 假标题）配对中 35,898 个来自 strict 档（0.7883），不是"79% 的论文 5 个都是 strict"（那是 6,056 / 9,108 = 66.5%）。假标题提示保留目标论文自己的年份，只换标题。代价权重的设计理由没有书面记录，需向用户确认。见 <a href="#h-false-cost">h-false-cost</a>、<a href="#h-false-79">h-false-79</a>、<a href="#h-false-limits">h-false-limits</a>。</p>
+
+<h3 id="ap-qa-3">Q3　标题特异信号能排除"名字本身好猜"吗？</h3>
+<p>spec = 真标题 − 5 个假标题平均，七个条件用同一组名字 token、只换提示，所以名字自身的难度在差值中抵消；标点 token 的 spec 最大约 0.014，作为阴性对照。Stage 12 又直接测了先验：删标题时真名单在 4 个多选选项中最"像"的比例 0.255（≈ 机会 25%）；纯名字提示下 target − control 只有 +0.047 [+0.031, +0.062]，约为真标题差 +0.247 的 19%（两个点估计之比，未对比值本身做 bootstrap）。所有结论都是 teacher forcing 下的偏好，不是生成。见 <a href="#g-scoring-spec">g-scoring-spec</a>、<a href="#s1011-s10-titlespec">s1011-s10-titlespec</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s12-n2">s12-n2</a>。</p>
+
+<h3 id="ap-qa-4">Q4　Stage 8 的主终点是不是事后改的？</h3>
+<p>哈希锁定的 analysis_plan.json（2026-10-18 14:29）把 7 层积分定为主终点、L56 为次要；同日 21:14 写的 PROTOCOL.md（不在任何 manifest 里）改为 L56 为主。两者都早于 8B 冻结（21:25）和 8C 打分（21:47 起），所以改动在看到 Stage 8 数据之前，但在 pilot 已看过 L56 之后。8D 按 PROTOCOL 报告 L56：+5.18 pp [+2.93, +7.48]；冻结主终点后来由 8D supplement 补算：+2.33 pp [+1.50, +3.19]，方向一致、约为 L56 的一半。由谁、依据什么改的，未知，需向用户确认。见 <a href="#s19-s8-protocol">s19-s8-protocol</a>、<a href="#s19-s8d">s19-s8d</a>、<a href="#s19-s8dsupp">s19-s8dsupp</a>。</p>
+
+<h3 id="ap-qa-5">Q5　Stage 8 的 A − B 差（RQ2）稳健吗？</h3>
+<p>RQ2 L56 匹配 A − B = +4.98 pp [+0.32, +9.91]（100 对，55 正 / 45 负），但对少数大正向对极敏感：去掉最大的 10 对后均值为 −0.39 pp（事后诊断，不在冻结计划里）。冻结计划列了 leave-one-pair-out 和 Holm，都没有跑。配对敏感性的三个区间（[+0.15, +9.87] 等）只在已发布报告里，8D 没有输出，需向 Stage 8 原作者（laptop 会话）确认出处。冻结主终点版的积分 A − B 为 +2.41 pp [+0.91, +4.00]。见 <a href="#s19-s8d">s19-s8d</a>、<a href="#s19-s8dsupp">s19-s8dsupp</a>。</p>
+
+<h3 id="ap-qa-6">Q6　做了多重比较校正吗？</h3>
+<p>没有。Stage 10–13 的脚本里搜不到 Bonferroni / Holm / FDR；采用的是预注册通用规则"所有层和位置都报告、不只报挑出来的一层"以及"区间不含 0 才算差异"，逐层判断没有族错误率控制。Stage 8 协议写了 7 个逐层比较做 Holm，但代码中只有计划字符串里出现 Holm，8D supplement 明写未校正；Holm 是否在别处算过未知，需向 Stage 8 原作者确认。Stage 7.2/7.4 报告写明未校正。见 <a href="#h-stats-mult">h-stats-mult</a>。</p>
+
+<h3 id="ap-qa-7">Q7　parity 容差从 0.25 放宽到 0.5，是不是看到结果后改的？</h3>
+<p>是。冻结的门槛是 max |Δlogit| ≤ 0.25；main parity（11347585、11350174，数值逐位相同）有 10/25 对超过，最大 0.367 出现在 final@L63——这一项不经过任何 lens 代码，说明差异来自模型自身一次前向与逐前缀前向的 bf16 累加顺序。|logit| 在 32–64 时 bf16 最小间隔就是 0.25，0.367 约 1–1.5 个 ulp；名次 &lt; 42 的位置完全一致，log10(1/rank) 最多变 0.070。用户于 2026-10-25 11:00:31 批准 0.5，只用已存数字在 CPU 上重判，没有重跑 GPU，原 FAIL 记录保留并在分析计划与报告中披露。局限：parity 抓不到两条路径共有的错误，且只抽了 12 个上下文。见 <a href="#h-compute-tol">h-compute-tol</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a>。</p>
+
+<h3 id="ap-qa-8">Q8　E2 注意力阻断具体怎么做？为什么被挡的格子是 bf16 最小值？</h3>
+<p>每个 decoder layer 用 forward pre-hook 把 attention_mask 换成形状 [B, 1, T, T] 的显式加性 mask：允许处为 0，禁止处为 torch.finfo(bf16).min（不是 −inf），第二维为 1 所以对所有头生效；禁止的是"标题之后所有 query 位置 → 全部标题 token key"，从第 l 层一直挡到 L63。显式 mask 让 sdpa 走 is_causal=False、不走 GQA 快路径，换了内核，所以基线用同批"什么都不挡但走同样 mask 路径"的 l = 64 那一份；smoke 中该基线与 Stage 10 名次相同 0.7037（阈值 0.75，记 WARN），CPU 真权重检查显式 mask 基线与不加 mask 完全相同。正文没有记录选用 finfo.min 而非 −inf 的理由，未知，需向 Stage 11 原作者确认。见 <a href="#s1011-s11-e2">s1011-s11-e2</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a>。</p>
+
+<h3 id="ap-qa-9">Q9　E1 的"标题之后"包括名字位置吗？"L48 恢复 83%、L52 100%"怎么算的？</h3>
+<p>包括。替换区间 = 对齐尾段（闭引号、" ("、4 个年份数字、")?\n"、"Authors"、":"，共 8 或 9 个 token）+ 全部名字输入 token，所有打分位置都在被替换的区间内，所以"恢复"不能单独归于名字前的提示位置。恢复率 = mean_p(替换 − 假) / mean_p(真 − 假)：all 组 L48 0.825 [0.807, 0.842]，L52 0.996 [0.989, 1.003]。Stage 12 P1 逐位置拆开：L52 名字位置 0.847、":" 0.172，其余单个提示位置都很小；X6 用另外 4 个假标题重做，target L48 0.788–0.803、L52 0.984–0.990。E1 的替换运行是 batch 15、假基线是 batch 1，舍入噪声只有 PROGRESS 中约 0.01 的估计，是否补量化需向用户确认。见 <a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s12-p1">s12-p1</a>、<a href="#s13-x6">s13-x6</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a>。</p>
+
+<h3 id="ap-qa-10">Q10　E4b probe 到底测了什么？有哪些设计上的漏洞？</h3>
+<p>输入是标题最后一个 token 的第 l 层残差，目标是同一运行中 ":" 位置的 L63 残差，闭式 ridge（α 只在第 1 折上从 {0.1, 1, 10} 选，各层都选中 1.0），预测经 final norm 与 4,314 行名字词表求名次。只打每位作者的第一个名字 token（73% 是首字母），姓的首 token 不作 gold；spec = 真标题输入 − false_0 输入。标准化的 μ、σ 用全部 9,108 篇（含测试折）算，是只影响标准化的轻微泄漏；而 Stage 10 显示首字母 token 几乎不带标题特异信号，所以 probe 测的恰是信号最弱的那部分。这两点在 Stage 13 复核中都没有改。见 <a href="#s1011-s11-e4b">s1011-s11-e4b</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s1011-s10-format">s1011-s10-format</a>。</p>
+
+<h3 id="ap-qa-11">Q11　E4b 的泄漏是怎么发现和处理的？结论变了吗？</h3>
+<p>2026-10-28 审读发现两类泄漏：同作者团队跨折，以及"标题一题两用"（测试论文的假标题是训练折某篇的真标题，或反过来）。复核脚本 stage13_e4b_group.py（作业 11443587）只替换分折行并注入剔除规则，paper/不剔除配置复现已发表数字（最大差 0.0000）。确认版（团队折 + 剔除）只剩 1,863 篇（target 896、control 499），target − control 变大：L24 +0.024 → +0.052 [0.017, 0.088]，L56 +0.039 → +0.075 [0.038, 0.115]，置换 gold 对照仍 ≈ 0。原"只用假标题训练的 probe 更强"（L24/40/56 = +0.068/+0.081/+0.094）来自泄漏，复核后 +0.050/+0.057/+0.074，该说法已撤回。剩下的论文不是随机子集。见 <a href="#h-leak">h-leak</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s12-cpu">s12-cpu</a>。</p>
+
+<h3 id="ap-qa-12">Q12　M2 的 false_0 泄漏影响多大？</h3>
+<p>false_0 共 6,247 个 donor，其中 2,373 个被多篇借用；按论文随机分折后 2,004 个 donor 标题同时落在训练与测试折。按 donor 及其团队分组重跑（作业 11443403）后，L48 donor 年份 R² 0.623 → 0.535、log 引用 0.588 → 0.488；真标题运行两种切法只差 ≤ 0.005。补充 1 判定按论文切的 false_0 数字无效。M2 的区间仍是按论文 bootstrap 200 次，不是补充 2 要求的团队整群 2,000 次，是否补做需向用户确认。见 <a href="#h-leak-a">h-leak-a</a>、<a href="#s13-m2">s13-m2</a>。</p>
+
+<h3 id="ap-qa-13">Q13　M3 的迁移比接近 1、X1 三种来源恢复一样好，能说明"论文身份"吗？</h3>
+<p>不能单独说明。三种问法只在标题前 9 个 token 不同、标题完全相同，标题位置 T 高几乎由构造决定：T(L4) 已是 0.983 / 0.976 / 0.998，T − T(L4) 在 L16–L40 为 −0.03 到 −0.06，I(l) − I(L4) 在所有层都 &lt; 0，即中间层并不比 L4 更跨问法一致。X1 相似度检查显示 L24–L40 同篇两问法状态本来就相近（question share 0.15–0.17），所以"恢复一样好"部分来自构造；但 share 不为 0 而 a − year、a − field 差 ≤ 0.02，说明问法带来的差异不影响作者恢复。另外 random C 在 L4–L16 为负、L48 为 +0.122，记 NULL FLAG。见 <a href="#s13-m3">s13-m3</a>、<a href="#s13-x1">s13-x1</a>、<a href="#h-prereg-dev">h-prereg-dev</a>。</p>
+
+<h3 id="ap-qa-14">Q14　X4 说 Qwen 能从论文自己的状态解码第一作者，文本基线排除了"标题风格"吗？</h3>
+<p>只部分排除。文本基线 1（kNN）的阳性对照失败（允许同团队时 TF-IDF −0.025、BERT −0.159），所以它的"文本解释不了"不成立。文本基线 2（监督 LR）只在名字首 token 上通过阳性对照、姓首 token 上失败；起草时还发现它对 821 篇没有 given_first 的论文仍计入了与姓名无关的 OOV 类概率差。总编 2026-10-30 用 CPU 只按实际存在的角色重算：BERT D_text +0.048 [+0.014, +0.083]，与 Qwen D(L8) 逐篇相关 +0.014，结论（文本信号与 Qwen 逐篇信号不相关）不变；原写法是否有意仍需向用户确认。另外 X4 的逐 token 复算自检失败（max |diff| 0.0683 &gt; 0.05），修法未在 GPU 上跑。见 <a href="#s13-x4">s13-x4</a>。</p>
+
+<h3 id="ap-qa-15">Q15　既然规定"容差不达标只记 WARN"，为什么 x4tok 失败就停了？</h3>
+<p>一般规则（2026-10-27 起）是 parity / 一致性未达标记 WARN 继续算，只有代码崩溃才停，例如 Stage 11 smoke 两项 0.7037 和 X7 kF64 59.63% 都按 WARN 继续。x4tok 是 2026-10-30 用户明确定为"正确性检查，不是旁支"的例外：它要求逐 token 平均复现已存的 X4 分数，否则结果不能按 token 角色拆分。失败原因判断为批大小不同（batch 2 vs 原 batch 7）的 bf16 舍入：200 个值平均 |d| 0.0068、D 与已存值相关 0.993（L8）。修法同时算 b7 与 b2，b7 必须复现，两者 L8 平均 D 相差 &gt; 0.005 也停；旧失败标记会阻止 --all 启动，如何处理需向用户确认。见 <a href="#h-compute-tol">h-compute-tol</a>、<a href="#h-compute-parity">h-compute-parity</a>、<a href="#s13-x4">s13-x4</a>。</p>
+
+<h3 id="ap-qa-16">Q16　X7 中 control 组没有通过，怎么解释？</h3>
+<p>补充 3 的判据是 S(L52) ≤ 0.05 且 S(L0) ≥ 0.5；control 的 S(L52) = +0.051 [+0.033, +0.068]，超阈值 0.001，判 DOES NOT HOLD，区间跨过 0.05，属边界；target +0.018、all +0.029 判 HOLDS。报告如实保留，没有改阈值。F(L0) 为负（−0.161 到 −0.196），即在假标题运行里挡住假标题反而帮助真作者，所以 S(L0)/T(L0) &gt; 1，不能读成百分比。自检中 kF64 与 Stage 11 假运行名次相同只有 59.63%（批大小与显式 mask 的舍入，带符号差 −0.0003），记 WARN。见 <a href="#s13-x7">s13-x7</a>、<a href="#h-prereg-dev">h-prereg-dev</a>。</p>
+
+<h3 id="ap-qa-17">Q17　预注册真的写在数据之前吗？为什么文件里的时间和 git 不一致？</h3>
+<p>5 个文件的 sha256 均与 .sha256 记录一致、文件只读。文件内 written 字段比 mtime 和 git 提交时间晚 20 分钟到 2 小时 45 分钟（如 prereg.json 写 11:00，mtime 10:39:12，git 355e64d 10:40:15），而 mtime、git 时间与 sacct 互相吻合，所以应以 git 时间为准。按这个时间核对：写 prereg 时 381_stage13/raw 下还没有任何 GPU 文件（最早 xf_patch 10-28 19:46），M1/M2/M2b 已先跑并标为探索性。written 字段为什么偏晚未知，需向用户确认。补充 5 尚未写。见 <a href="#h-prereg-files">h-prereg-files</a>、<a href="#h-prereg-status">h-prereg-status</a>。</p>
+
+<h3 id="ap-qa-18">Q18　public lens 是怎么拟合的？可信吗？</h3>
+<p>来自 Neuronpedia：Salesforce/wikitext-103-raw-v1 train、max_chars 2000，557 条（运营者手动停止，原上限 1,000），源层 L0–L62，dim_batch 64，bf16、1×B200；stop_at_delta 0.002 未达到，相对标准误约 13%。具体是哪 557 条、模型 revision 都没有提供，所以与评估文本的重叠只能记 UNDETERMINED；checkpoint 的 provenance 写了 target_layer 63、skip_first 16，但这一点无法核对包装脚本。旁证是 Stage 10 中三把在 WikiText 上拟合的 lens 结论一致（L62 标题特异 target − control +0.228 到 +0.231）。拟合细节未知，需向用户确认（Neuronpedia 未提供）。见 <a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s3-exp6">s19-s3-exp6</a>、<a href="#s1011-s10-tc">s1011-s10-tc</a>。</p>
+
+<h3 id="ap-qa-19">Q19　标注时的生成参数和匹配规则是什么？</h3>
+<p>开放回答套 Qwen3 chat 模板（system + user）、贪心解码；max_new_tokens 只是从数据反推为 96（743 条 length 截断的回答都恰好 96 token），batch size 推断为 16。thinking 是否关闭未知：9,108 条回答中 0 条含 "think"，相容但不能排除。姓名匹配代码不在包里，原研究匹配器只接受到 L4（姓 + 名首字母），用户自己的重建与包内 m 在 99.3% 的 R1 论文上一致。干扰团队的抽取规则、多选 thinking 设置、选项截断规则都未知。以上需向组长确认（要两次运行的 run.json 与 elm 代码）。见 <a href="#g-labels-open">g-labels-open</a>、<a href="#g-labels-match">g-labels-match</a>、<a href="#g-labels-mc">g-labels-mc</a>、<a href="#g-model-chat">g-model-chat</a>。</p>
+
+<h3 id="ap-qa-20">Q20　Fit B 没做完，lens 拟合的稳定性怎么交代？</h3>
+<p>Fit B 检查点停在 n_done = 66/100，最后写入 2026-10-21 19:12，之后没有续跑；9B 留出集比较与 9C 都没有实现代码。所以"换一批数据拟合，结论稳不稳"没有正式回答，现有的只是间接证据：Self-100 的 50 + 50 split-half（后层矩阵余弦 L56 0.996、L62 0.99985，L24 只有 0.678）和 Stage 10 三把 lens 的并列结果一致。Fit B 停止的原因、是否补做未知，需向用户确认。见 <a href="#s19-s9-fitB">s19-s9-fitB</a>、<a href="#s19-s9-bc">s19-s9-bc</a>、<a href="#h-lens-stage9">h-lens-stage9</a>、<a href="#s19-s3-exp7">s19-s3-exp7</a>。</p>
+</section>
+
+<section id="ap-unknown">
+<h2>附录 G3　全部"未知 / 需确认"汇总</h2>
+<p>来源：6 个 *.unk.txt 与正文全部 <code>class="unk"</code> 的 span（共 60 处），按问题去重合并为 54 条；同一问题出现在多个章节的，章节列逐一链接。"向谁"按正文写法归为三类：组长（标注包作者）、用户、原作者（laptop 会话中的 Stage N 原作者；正文写"用户 / 原作者"两可的，按正文第一个写的人归类并在问题后注明）。影响程度是本附录的判断：高 = 动摇主要结论或导师几乎必问；中 = 影响某个实验的可信度或复现性；低 = 只影响记录完整性。</p>
+<p>汇总：组长 10 条、用户 31 条、原作者 13 条；影响 高 5、中 24、低 25。</p>
+<table class="t">
+<tr><th>编号</th><th>所在章节</th><th>问题</th><th>向谁确认</th><th>影响（理由）</th></tr>
+<tr><td>U01</td><td><a href="#g-data-package">g-data-package</a></td><td>两次标注运行的 run.json（设置、提示词 sha256、代码与库版本）、elm 代码版本、open_results_noise.jsonl 不在标注包里。</td><td>组长</td><td>中（复现性）</td></tr>
+<tr><td>U02</td><td><a href="#g-labels-open">g-labels-open</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td><td>开放回答的 max_new_tokens：只从数据反推为 96（743 条 length 截断都恰为 96），需 run.json 确认。</td><td>组长</td><td>低（数据已自洽）</td></tr>
+<tr><td>U03</td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#g-labels-open">g-labels-open</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td><td>开放回答与多选题是否关闭 thinking；多选的"答案位置"是否位于空 &lt;think&gt;&lt;/think&gt; 块之后。</td><td>组长</td><td>中（分组标签定义）</td></tr>
+<tr><td>U04</td><td><a href="#g-labels-open">g-labels-open</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td><td>metrics/panel.py 的名字切分与剥离规则。</td><td>组长</td><td>中（决定 M/H/U）</td></tr>
+<tr><td>U05</td><td><a href="#g-labels-match">g-labels-match</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td><td>elm 的姓名匹配是否就是 dua NameMatcher 且阈值 L4（姓 + 名首字母）。旁证：用户重建与包内 m 在 99.3% 的 R1 论文上一致。</td><td>组长</td><td>中（决定 R0/R1）</td></tr>
+<tr><td>U06</td><td><a href="#g-labels-mc">g-labels-mc</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td><td>多选干扰团队的抽取规则：年份 / 人数容差、bin_window / over_cap / et_al_mismatch 的含义、是否排除共同作者、随机种子。</td><td>组长</td><td>高（target/control 依赖题目难度）</td></tr>
+<tr><td>U07</td><td><a href="#g-labels-mc">g-labels-mc</a></td><td>选项显示截断规则（是否固定"超过 8 人显示前 8 人 + et al."）。</td><td>组长</td><td>低（少数长名单）</td></tr>
+<tr><td>U08</td><td><a href="#g-data-origin">g-data-origin</a></td><td>data/prepared/papers_9108.csv 是否就是 eval_sample_9108 去掉 Unicode 空白后的版本；提示里用的是哪一版标题（涉及 17 篇）。</td><td>组长</td><td>低（17 篇）</td></tr>
+<tr><td>U09</td><td><a href="#h-stats-bins">h-stats-bins</a></td><td>13 个引用档边界的定义来源（标注包只给 citation_bin 列）。</td><td>组长</td><td>低（实际值已核对在范围内）</td></tr>
+<tr><td>U10</td><td><a href="#g-model-load">g-model-load</a>、<a href="#h-compute-table">h-compute-table</a></td><td>Stage 1 标注运行的加载方式、batch、GPU、时长。</td><td>组长</td><td>低（记录完整性）</td></tr>
+<tr><td>U11</td><td><a href="#g-prompts-list">g-prompts-list</a></td><td>Stage 1–10 的作者问法是怎么选定的、是否比较过其他问法（Stage 2 无独立目录）。正文写"用户 / Stage 2 原作者"。</td><td>用户</td><td>高（全部读出依赖单一提示）</td></tr>
+<tr><td>U12</td><td><a href="#g-model-load">g-model-load</a></td><td>Stage 9 FullFit 拟合作业实际用的 GPU 型号。</td><td>用户</td><td>低（记录完整性）</td></tr>
+<tr><td>U13</td><td><a href="#h-false-cost">h-false-cost</a></td><td>假标题代价权重 1/5、0.25n、0.2len、1.5 的设计理由无书面记录。</td><td>用户</td><td>中（假标题匹配质量）</td></tr>
+<tr><td>U14</td><td><a href="#h-lens-table">h-lens-table</a></td><td>public lens 的 557 条拟合 prompt、skip_first、模型 revision（Neuronpedia 未提供，provenance 审计记 UNDETERMINED）。</td><td>用户</td><td>中（lens 泄漏无法排除）</td></tr>
+<tr><td>U15</td><td><a href="#h-lens-table">h-lens-table</a></td><td>self100 的拟合脚本与 1,000 条 WikiText 语料生成脚本不在 ~/jlens_work 或 git 仓库。</td><td>原作者（Stage 3）</td><td>中（复现性）</td></tr>
+<tr><td>U16</td><td><a href="#h-lens-table">h-lens-table</a></td><td>Stage 9 Fit A 准备时实际的 --min-chars / --max-chars（plan.json 未记录，脚本默认 100/1200）。</td><td>原作者（Stage 9）</td><td>低（拆分已冻结）</td></tr>
+<tr><td>U17</td><td><a href="#h-stats-mult">h-stats-mult</a></td><td>Stage 8 协议中的 Holm 校正是否在别处实际计算过（HPC 代码无实现）。</td><td>原作者（Stage 8）</td><td>中（多重比较必问）</td></tr>
+<tr><td>U18</td><td><a href="#h-prereg-files">h-prereg-files</a></td><td>prereg 文件内 written 字段与 PROGRESS 标题时间比 mtime / git 晚 20 min – 2 h 45 min 的原因。</td><td>用户</td><td>中（预注册可信度）</td></tr>
+<tr><td>U19</td><td><a href="#h-compute-hw">h-compute-hw</a></td><td>节点 d1002、d3204、d3233、d4054 的 GPU 型号（只涉及 10-15/18 少量交互作业）。</td><td>用户</td><td>低（记录完整性）</td></tr>
+<tr><td>U20</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s19-common">s19-common</a></td><td>2026-10-15 至 10-22 的 69 个交互式 bash GPU 作业各对应哪个实验（Stage 1–9 作业号无法对应）。B 部分写向 Stage 3–9 原作者确认。</td><td>用户</td><td>低（记录完整性）</td></tr>
+<tr><td>U21</td><td><a href="#s19-stage3">s19-stage3</a></td><td>Exp 1–7 编号的来源文档 Validation_Record_351_Completeness_Checked.docx 不在集群上。</td><td>用户</td><td>低（只涉及编号）</td></tr>
+<tr><td>U22</td><td><a href="#s19-s3-exp1">s19-s3-exp1</a></td><td>已发布报告"Public-557 63/63 通过、L48 范数 105.8"的原始输出在哪（105.86 实为 split-half A 半的 L48 范数）。</td><td>原作者（Stage 3）</td><td>中（已发布数字可能有误）</td></tr>
+<tr><td>U23</td><td><a href="#s19-s71b">s19-s71b</a></td><td>7.1B 在 1,166 / 15,519 停止是否有意放弃。</td><td>用户</td><td>低（后由 Stage 10 覆盖）</td></tr>
+<tr><td>U24</td><td><a href="#s19-s72">s19-s72</a></td><td>7.2 七层积分 A − B 区间 [−0.012, +0.228] / [−0.005, +0.217]（20,000 次）的出处（本手册重算 [−0.013, +0.227] / [−0.007, +0.216]）。</td><td>原作者（Stage 7）</td><td>低（重算接近）</td></tr>
+<tr><td>U25</td><td><a href="#s19-s72">s19-s72</a></td><td>去掉 P004 后 A − B 区间 [−0.018, +0.069] 的出处。</td><td>原作者（Stage 7）</td><td>低（探索性）</td></tr>
+<tr><td>U26</td><td><a href="#s19-s73">s19-s73</a></td><td>7.3 L56 标题优势区间 [+4.75, +13.95] 的出处（本手册重算 [+4.80, +14.07]）。</td><td>原作者（Stage 7）</td><td>低（重算接近）</td></tr>
+<tr><td>U27</td><td><a href="#s19-s73">s19-s73</a></td><td>三种候选加权下标题优势 +0.026 到 +0.032 与 6 个 A − B 区间的出处。</td><td>原作者（Stage 7）</td><td>低（探索性）</td></tr>
+<tr><td>U28</td><td><a href="#s19-s8-protocol">s19-s8-protocol</a></td><td>2026-10-18 14:29 → 21:14 之间把 Stage 8 主终点从 7 层积分改为 L56 的决定者与依据，是否有书面记录。</td><td>用户</td><td>高（唯一的确认性检验）</td></tr>
+<tr><td>U29</td><td><a href="#s19-s8c">s19-s8c</a></td><td>stage8C_runtime.json.before_mode_fix 与正式版差在哪、是否在任何打分之前。</td><td>原作者（Stage 8）</td><td>中（冻结完整性）</td></tr>
+<tr><td>U30</td><td><a href="#s19-s8d">s19-s8d</a></td><td>RQ2 配对敏感性区间 [+0.15, +9.87]、[−0.34, +9.41]、[−0.39, +9.80] 的出处（8D 没有输出）。</td><td>原作者（Stage 8）</td><td>中（RQ2 稳健性）</td></tr>
+<tr><td>U31</td><td><a href="#s19-s8dsupp">s19-s8dsupp</a></td><td>review/stage8-fixes 分支 3a4f605 是否合入 main；supplement 输出是否复制到 351_stage8/。</td><td>用户</td><td>低（存档位置）</td></tr>
+<tr><td>U32</td><td><a href="#s19-s8e">s19-s8e</a></td><td>8E 外部审计的脚本、种子、逐篇 CSV 在哪（全部数字未核实）。</td><td>用户</td><td>低（已标作废、不引用）</td></tr>
+<tr><td>U33</td><td><a href="#s19-s9-fitB">s19-s9-fitB</a></td><td>Fit B 在 66/100 停止的原因、是否补做。</td><td>用户</td><td>高（lens 稳定性未回答）</td></tr>
+<tr><td>U34</td><td><a href="#s1011-stage10">s1011-stage10</a></td><td>Stage 10 冻结时脚本 sha 847e7dde 与运行版本 9107c80b 之间改了什么（847e7dde 不在 git）。正文写"原作者或用户"。</td><td>原作者（Stage 10）</td><td>中（冻结完整性）</td></tr>
+<tr><td>U35</td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td><td>stage10_extra_r0.py 的作业号（日志不含作业号）。</td><td>用户</td><td>低（记录完整性）</td></tr>
+<tr><td>U36</td><td><a href="#s1011-stage11">s1011-stage11</a></td><td>Stage 11 protocol.json 记录的冻结时脚本 26e3f817 到运行版本 f8adb8d9 之间改了哪些行（26e3f817 不在 git）。</td><td>原作者（Stage 11）</td><td>中（冻结完整性）</td></tr>
+<tr><td>U37</td><td><a href="#s1011-s11-qc">s1011-s11-qc</a></td><td>E1（batch 15 vs batch-1 假基线）的舍入噪声没有同批无替换基线可量化，只有约 0.01 的估计；是否需要补测。</td><td>用户</td><td>中（E1 精度）</td></tr>
+<tr><td>U38</td><td><a href="#s12-p1">s12-p1</a></td><td>P1 按 token 角色拆分的数字（":" 对首 token 0.50/0.90 等）只见于 PROGRESS 2026-10-28 14:45，找不到脚本或 summary 文件。</td><td>用户</td><td>中（补充 4 要求按角色报告）</td></tr>
+<tr><td>U39</td><td><a href="#s12-p1">s12-p1</a></td><td>p5（年份第 3 位数字）在 L44 恢复 0.071 的解读。</td><td>用户</td><td>低（效应小）</td></tr>
+<tr><td>U40</td><td><a href="#s12-p2">s12-p2</a></td><td>P2 是否做过 hook 生效的 sanity（tiny 模型干跑只列了 P1 的检查项）。</td><td>用户</td><td>中（P2 正确性）</td></tr>
+<tr><td>U41</td><td><a href="#s12-n1">s12-n1</a></td><td>Stage 10 单作者读出用的名字字符串格式是否与 mc_team.jsonl 的 initial_surname 一致。旁证：G4.1 写 Stage 10 名字取自 authors 列、拼写不改（如 "Karin G. Coifman"），G3.4 写多选为 "K. Coifman"。</td><td>原作者（Stage 10）</td><td>低（N1 局限说明）</td></tr>
+<tr><td>U42</td><td><a href="#s12-f1">s12-f1</a></td><td>F1 作者提示 lens 是否做过拟合质量检查或与模型输出 / 公开 lens 的一致性检查。</td><td>用户</td><td>中（F2"读不出"的解释）</td></tr>
+<tr><td>U43</td><td><a href="#s12-f2">s12-f2</a></td><td>F2 中间层 L44–L52 名字位置 target − control 显著为负的解读。</td><td>用户</td><td>中（导师可能追问）</td></tr>
+<tr><td>U44</td><td><a href="#s13-overview">s13-overview</a></td><td>xf_patch 2 个 shard 的脚本 sha 613eb813 是否留存副本（记录称只差日志行，false_0 shard 0 与 Stage 11 逐值相同）。</td><td>用户</td><td>低（复现已核对）</td></tr>
+<tr><td>U45</td><td><a href="#s13-m2">s13-m2</a></td><td>M2 的区间仍是按论文 bootstrap 200 次，是否按补充 2 补团队整群区间。</td><td>用户</td><td>中（偏离补充 2）</td></tr>
+<tr><td>U46</td><td><a href="#s13-m3">s13-m3</a></td><td>M3 task 单元存下的 year_nlr / author_first_nlr 未被使用，是否计划使用。</td><td>用户</td><td>低（不影响现有结果）</td></tr>
+<tr><td>U47</td><td><a href="#s13-m5">s13-m5</a></td><td>M5（①②③）的完整定义，是否放弃或并入 X4。</td><td>用户</td><td>低（计划项）</td></tr>
+<tr><td>U48</td><td><a href="#s13-x2">s13-x2</a></td><td>X2 是否仍做；prereg 要求的 X2 补充未写。</td><td>用户</td><td>中（H3 未检验）</td></tr>
+<tr><td>U49</td><td><a href="#s13-x3">s13-x3</a></td><td>是否接受保留 37 条姓氏子串误拒。</td><td>用户</td><td>低（偏保守）</td></tr>
+<tr><td>U50</td><td><a href="#s13-x3">s13-x3</a></td><td>20 条人工标注的原始标签记录（只在 PROGRESS 摘要中）。</td><td>用户</td><td>中（判断器校准依据）</td></tr>
+<tr><td>U51</td><td><a href="#s13-x3">s13-x3</a>、<a href="#h-prereg-files">h-prereg-files</a></td><td>补充 5 的具体条款与 para_ok 的放行条件。</td><td>用户</td><td>高（最关键实验未能开跑）</td></tr>
+<tr><td>U52</td><td><a href="#s13-x4">s13-x4</a></td><td>X4 textbase2 对没有 given_first 的 821 篇仍计入 OOV 类概率差，是否有意。注：总编已于 2026-10-30 用 CPU 按实际角色重算（见该节"总编更正"），结论不变；"是否有意"仍待确认。</td><td>用户</td><td>中（文本基线的解释）</td></tr>
+<tr><td>U53</td><td><a href="#s13-x4">s13-x4</a></td><td>b7 样本通过后，旧的 followup/X4TOK_CHECK_FAILED 会让 --all 拒绝启动，如何处理。</td><td>用户</td><td>中（阻塞复跑）</td></tr>
+<tr><td>U54</td><td><a href="#s13-x5">s13-x5</a></td><td>X5 是否仍做。</td><td>用户</td><td>低（计划项）</td></tr>
+</table>
+</section>
+
+<section id="ap-void">
+<h2>附录 G4　计划未做 / 作废 / 被复核取代 / 待复核 汇总</h2>
+<p>来源：正文全部 <code>st-void</code>、<code>st-plan</code>、<code>st-review</code> 标签（31 处），以及正文描述中明确写为"取代""撤回""无效""放宽""改为"的条目。</p>
+<table class="t">
+<tr><th>#</th><th>项目</th><th>状态</th><th>原因 / 现状</th><th>出处</th></tr>
+<tr><td>V01</td><td>Stage 3 公共 lens 任务验证 351_validate_public_lens.py 与 …_offload.py 两次运行</td><td><span class="st st-void">作废</span></td><td>前者在 40GB 卡 OOM，后者 device_map='auto' 报 meta tensor 错；由 …_offload_fixed.py（显式 29 层上 GPU）取代。</td><td><a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td>V02</td><td>Public-557 数值检查"63/63 通过、L48 范数 105.8"</td><td><span class="st st-review">待复核</span></td><td>集群上找不到 Public 的数值检查输出；105.86 恰是 split-half A 半的 L48 范数。</td><td><a href="#s19-s3-exp1">s19-s3-exp1</a></td></tr>
+<tr><td>V03</td><td>Stage 3 Self-100 split-half 作为稳定性检验</td><td>被设计取代（但取代者未完成）</td><td>后由 Stage 9 FullFit 设计取代，而 Stage 9 的 Fit B 与 9B 未完成。</td><td><a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td>V04</td><td>Stage 7.1B 终端读出（全名前缀 × 21 种标题）</td><td><span class="st st-plan">计划未做</span></td><td>只完成 1,166 / 15,519 个上下文（约 7.5%），没有估计任何标题效应；不得与 7.1 合并。</td><td><a href="#s19-s71b">s19-s71b</a></td></tr>
+<tr><td>V05</td><td>已发布报告中 7.2、7.3 的若干区间与加权结果</td><td>未核实，由本手册重算替代</td><td>原始输出里没有这些区间；本手册用 20,000 次（种子 0）重算并列出，原数字待原作者给出处。</td><td><a href="#s19-s72">s19-s72</a>、<a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td>V06</td><td>Stage 8 冻结计划的主终点（7 层积分）</td><td>被 PROTOCOL 改为次要；后由 supplement 补算</td><td>analysis_plan.json（14:29）定 7 层积分为主；PROTOCOL.md（21:14）改 L56 为主，8D 按 L56 报告；8D supplement（2026-10-21）补算冻结终点 +2.33 pp [+1.50, +3.19]。</td><td><a href="#s19-s8-protocol">s19-s8-protocol</a>、<a href="#s19-s8dsupp">s19-s8dsupp</a></td></tr>
+<tr><td>V07</td><td>Stage 8 计划的 Holm 校正与 leave-one-pair-out</td><td><span class="st st-plan">计划未做</span></td><td>analysis_plan.json 列出，8D 与 supplement 都没有实现。</td><td><a href="#s19-s8d">s19-s8d</a>、<a href="#h-stats-mult">h-stats-mult</a></td></tr>
+<tr><td>V08</td><td>Stage 8D supplement 输出与分支 3a4f605</td><td>待定</td><td>输出只在 jlens_github_publish 克隆里，分支未合入 main。</td><td><a href="#s19-s8dsupp">s19-s8dsupp</a></td></tr>
+<tr><td>V09</td><td>Stage 8E 外部事后审计</td><td><span class="st st-void">作废</span></td><td>未在 Explorer 上执行，脚本、种子、逐篇 CSV 都找不到，数字不可核实，不能作为证据引用。</td><td><a href="#s19-s8e">s19-s8e</a></td></tr>
+<tr><td>V10</td><td>Stage 9 Fit B</td><td><span class="st st-plan">计划未做</span></td><td>检查点停在 66/100（2026-10-21 19:12），之后没有续跑；Stage 10 因此没用 Fit B。</td><td><a href="#s19-s9-fitB">s19-s9-fitB</a>、<a href="#h-lens-stage9">h-lens-stage9</a></td></tr>
+<tr><td>V11</td><td>Stage 9B 留出集比较（Fit A vs Fit B）</td><td><span class="st st-plan">计划未做</span></td><td>holdout.jsonl 已冻结，没有实现代码和任何结果。</td><td><a href="#s19-s9-bc">s19-s9-bc</a>、<a href="#h-lens-stage9">h-lens-stage9</a></td></tr>
+<tr><td>V12</td><td>Stage 9C 影响因素分析</td><td><span class="st st-plan">计划未做</span></td><td>README 中列了提示格式、token 类型、Final-logit anchor 等，均未执行。</td><td><a href="#s19-s9-bc">s19-s9-bc</a>、<a href="#h-lens-stage9">h-lens-stage9</a></td></tr>
+<tr><td>V13</td><td>Stage 10 原主指标"每篇 Σ 1/rank"</td><td>被修订取代</td><td>2026-10-23 分析层修订为 log10(1/rank)，理由是 1/rank 只看前几名；raw 存名次，不改原始输出。</td><td><a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#s1011-s10-common">s1011-s10-common</a></td></tr>
+<tr><td>V14</td><td>Stage 10 parity 容差 0.25</td><td>被事后修订取代（0.5）</td><td>main parity 10/25 对超 0.25（最大 0.367，final@L63）；用户 2026-10-25 批准 0.5，原 FAIL 记录保留。</td><td><a href="#h-compute-tol">h-compute-tol</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td>V15</td><td>Stage 10 parity 作业 11334054 与 19 个 pool 作业</td><td>失败运行（无输出）</td><td>11334054 因 transformers 5.x 无 hf_device_map 崩溃 → fix1；19 个 pool 作业在 parity FAIL 时被 run() 拒绝、数秒退出。</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td>V16</td><td>Stage 11 E1t 用 batch-1 假运行作基线</td><td>被取代</td><td>GPU 上同批 L63 元素与 batch-1 假运行只有 59.4% 名次相同（批量舍入），分析改用同批 L63 元素作假基线，原值另存 false_batch1。</td><td><a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td>V17</td><td>Stage 11 E4b 原版结论措辞</td><td>被复核版取代</td><td>按论文分折存在团队与标题复用泄漏；确认版为团队折 + 剔除标题复用（作业 11443587），数值上"目标组更高"保留。</td><td><a href="#s1011-s11-e4b">s1011-s11-e4b</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td>V18</td><td>"只用假标题训练的 probe 更强"（L24/40/56 +0.068/+0.081/+0.094）</td><td><span class="st st-void">作废</span></td><td>来自假标题供体泄漏；复核后 +0.050/+0.057/+0.074，与普通 probe 持平或略低，说法撤回。</td><td><a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s12-cpu">s12-cpu</a>、<a href="#h-leak">h-leak</a></td></tr>
+<tr><td>V19</td><td>Stage 12 P1 首次运行（作业 11371622）</td><td>失败运行，修复后重算</td><td>在 8/9-token 尾部上崩溃（np.concatenate 11 vs 12 项），commit 95dd94d 修复后才产出现有数据。</td><td><a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td>V20</td><td>Stage 12 V100 路径（stage12_v100.py 与非 A100 smoke parity）</td><td><span class="st st-plan">计划未做</span></td><td>写好但从未用于真实计算：QOS 每作业最多 2 GPU，2×32GB 放不下 bf16 权重；所有单元都在 A100-80GB 上算。</td><td><a href="#s12-ov-gpu">s12-ov-gpu</a></td></tr>
+<tr><td>V21</td><td>Stage 12 N2 的 logit lens / 公开 lens 层剖面分析</td><td><span class="st st-plan">计划未做</span></td><td>L48/56/62 读出已算并存在 raw 里，但 stage12_analyze.py 只分析了 final@63。</td><td><a href="#s12-n2">s12-n2</a></td></tr>
+<tr><td>V22</td><td>Stage 12 F1 重拟合（排除同名作者）</td><td>改为评估时排除</td><td>3 篇评估论文与拟合集同名作者；拟合已到 35/40，不重拟合（约 4 GPU-h），F2 评估时剔除这 3 篇。</td><td><a href="#s12-f1">s12-f1</a>、<a href="#h-leak">h-leak</a></td></tr>
+<tr><td>V23</td><td>M2 按论文切分的 false_0 数字</td><td><span class="st st-void">作废</span></td><td>2,004 个 donor 标题跨折；补充 1 判为无效，以团队切重跑（作业 11443403）为准。</td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td>V24</td><td>M2 ":" 位置的年份 probe</td><td>降为阳性对照</td><td>":" 处已看到提示里的年份（R² 0.974–0.982），属泄题，只作阳性对照；新实验改用不含年份的模板。</td><td><a href="#h-leak">h-leak</a>、<a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td>V25</td><td>M2 区间按补充 2 改为团队整群</td><td>未执行（偏离）</td><td>M2 仍是按论文 bootstrap 200 次。</td><td><a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td>V26</td><td>M2c 原双向判据</td><td>被补充 2 取代</td><td>改为单向：只有"BERT 追上 Qwen"才作数；Qwen 高出只作参考。</td><td><a href="#s13-m2c">s13-m2c</a>、<a href="#h-prereg-content">h-prereg-content</a></td></tr>
+<tr><td>V27</td><td>M3 原规则（I &gt; 0 判据、按论文 5 折）与原问法写法</td><td>被补充 1/2 与 commit 43c8f0c 取代</td><td>改为团队折、只看 I(l) − I(L4)、T 为主；问法改成三者标题前都是 9 个 token 的写法（docstring 里还留着旧写法）。</td><td><a href="#s13-m3">s13-m3</a>、<a href="#g-prompts-list">g-prompts-list</a></td></tr>
+<tr><td>V28</td><td>M3 判据实现（自动判定未纳入 T − T(L4)）</td><td><span class="st st-review">待复核</span></td><td>报告按 T 绝对阈值判 H2，而 STATUS 的解读是"T 不高于 T(L4)"。</td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V29</td><td>M5（逐位置 probe / patchscope / 名字位置真假判别）</td><td><span class="st st-plan">计划未做</span></td><td>无代码、未定义到可执行；patchscope 部分一定程度由 X4 覆盖。</td><td><a href="#s13-m5">s13-m5</a></td></tr>
+<tr><td>V30</td><td>X1 原"在 tune 上选层"规则</td><td>被补充 2 取代</td><td>改为全曲线、不选层、≤ L16 只作文本替换阳性对照、L24 起等价界判定。</td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td>V31</td><td>X1 random_c 零检验的处理</td><td><span class="st st-review">待复核</span></td><td>只打 NULL FLAG，year/field 恢复率没有相对 random_c 重算，L48 在 FLAG 下仍判 task-independent。</td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V32</td><td>X2（只替换子空间）</td><td><span class="st st-plan">计划未做</span></td><td>prereg 要求运行前另写补充，未写；无代码。</td><td><a href="#s13-x2">s13-x2</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V33</td><td>X3 主实验 para_run</td><td><span class="st st-plan">计划未做</span></td><td>只在 logs/para_ok 存在时排队，2026-10-30 不存在；等补充 5。</td><td><a href="#s13-x3">s13-x3</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V34</td><td>预注册补充 5</td><td><span class="st st-plan">计划未做</span></td><td>尚未写定（拟含 jaccard2、排除 27 条完全相同改写、意义检查规则）。</td><td><a href="#s13-overview">s13-overview</a>、<a href="#h-prereg-files">h-prereg-files</a></td></tr>
+<tr><td>V35</td><td>X3 原版 Jaccard 分词与 X3 原主指标 G</td><td>将被 jaccard2 / 已被补充 4 的 G′ 取代</td><td>原分词丢掉 ≤ 3 字母的词、不还原词形；jaccard2 随补充 5 写入代码；主指标已改为 G′（近邻 D）。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>V36</td><td>X3 排除 27 条完全相同改写</td><td>已同意、未写入代码</td><td>用户 2026-10-29 同意排除，do_para_run 目前只按 auto_ok 过滤。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>V37</td><td>X3 Qwen 判断器校准与全量判断</td><td><span class="st st-review">待复核</span> / <span class="st st-plan">计划未做</span></td><td>校准一致率 7/19，阈值过严；放宽提示与第二批 20 条未做；--all 在 X4TOK_CHECK_FAILED 存在时被拒绝运行。</td><td><a href="#s13-x3">s13-x3</a>、<a href="#g-model-chat">g-model-chat</a></td></tr>
+<tr><td>V38</td><td>X4 文本基线 1（kNN）</td><td>结论不成立</td><td>阳性对照失败（TF-IDF −0.025、BERT −0.159），"文本解释不了"不能由它支持。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>V39</td><td>X4 文本基线 2 原 D_text（含无关 OOV 项）</td><td>被总编更正取代</td><td>821 篇无 given_first 的论文计入了 OOV 类概率差；2026-10-30 CPU 按实际角色重算，结论不变。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>V40</td><td>X4 逐 token 复算（x4tok，第一版 batch 2）</td><td><span class="st st-review">待复核</span></td><td>自检 max |diff| 0.0683 &gt; 0.05，作业 11485349 按设计停止；b7/b2 修法写好、未在 GPU 上跑。</td><td><a href="#s13-x4">s13-x4</a>、<a href="#h-compute-parity">h-compute-parity</a></td></tr>
+<tr><td>V41</td><td>按 token 角色报告（补充 4）：X4、X6、X7</td><td><span class="st st-review">待复核</span>（未完成）</td><td>x6/x7 分析脚本与报告中没有角色拆分；X4 依赖 x4tok。</td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>V42</td><td>X4 recognition 规则与区间版本</td><td><span class="st st-review">待复核</span></td><td>recognition 用 min_n = 10、全部论文、无 tune/test；X1/X4/X6/X7/M3 只给团队版区间（补充 2 要求两种都给）。</td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V43</td><td>X5（层序量化）</td><td><span class="st st-plan">计划未做</span></td><td>有预注册条款，无代码，未执行。</td><td><a href="#s13-x5">s13-x5</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V44</td><td>X7 分析作业 11470471</td><td>失败运行，修复后重跑</td><td>自检里把 D.T 写成 pandas 转置而崩溃；改为 D['T'] 并把自检包成只 WARN，作业 11470524。</td><td><a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td>V45</td><td>文档中与代码不符的说法</td><td>以代码为准</td><td>STATUS.md §2 的代价公式省掉了归一化分母；已发布报告 §3.1"去掉作者 ≥ 20 位"与代码（1–20 含 20）不符；任务说明称 para_gen 用 chat 模板，与代码不符；STAGES.md 的 7.3 完成日期与 mtime 不符。</td><td><a href="#h-false-cost">h-false-cost</a>、<a href="#g-data-origin">g-data-origin</a>、<a href="#g-model-chat">g-model-chat</a>、<a href="#s19-s73">s19-s73</a></td></tr>
+</table>
+</section>
+<section id="ap-index">
+<h2>G5 索引：脚本、结果文件、作业号、git commit</h2>
+<p>做法：用脚本从 6 个正文部分的全部 <code>class="src"</code> 出处里抽取脚本名和结果文件名（正则匹配扩展名），再把相对写法解析成集群上的绝对路径（按所在章节的 Stage 结果根目录与 <code>~/jlens_work/</code> 查找，<code>os.path.exists</code> 核实存在）；作业号与 git commit 从正文全文（含出处）抽取，作业名、分区、开始时间、用时、状态取自本次 <code>sacct -X -j …</code> 查询，commit 时间与说明取自 <code>git log</code>。去重后列出，不截断。"提及章节"是该条目出现的正文锚点。分组依据：脚本按代码目录，结果按结果根目录，作业号按提及它的章节所属 Stage（只在全局章节出现的按 sacct 作业名）。<span class="src">抽取脚本：本附录起草时的临时脚本（scratchpad，build/index.py、render_index.py）· sacct 2026-10-30 · git -C /scratch/zhang.zhiqi2/jlens-authorship-recall_update log</span></p>
+<h3 id="ap-index-scripts">G5.1 脚本（按 Stage）</h3>
+<h4>全局</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/projects/jacobian-lens/jlens/_stage10_compat.py</code></td><td><a href="#g-model-jlens">g-model-jlens</a>、<a href="#h-lens-jac">h-lens-jac</a></td></tr>
+<tr><td><code>~/projects/jacobian-lens/jlens/fitting.py</code></td><td><a href="#h-lens-jac">h-lens-jac</a>、<a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td><code>~/projects/jacobian-lens/jlens/hf.py</code></td><td><a href="#g-model-id">g-model-id</a>、<a href="#g-model-jlens">g-model-jlens</a>、<a href="#h-lens-defs">h-lens-defs</a></td></tr>
+<tr><td><code>~/projects/jacobian-lens/jlens/lens.py</code></td><td><a href="#h-lens-defs">h-lens-defs</a>、<a href="#h-lens-jac">h-lens-jac</a></td></tr>
+</table>
+<h4>Stage 1</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/00_cohort/351_prepare_all.py</code></td><td><a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+</table>
+<h4>Stage 3</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/01_public_lens_validation/351_author_specificity.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>~/jlens_work/01_public_lens_validation/351_paper_prompt_fidelity_offload.py</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>~/jlens_work/01_public_lens_validation/351_public_jlens_smoke.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>~/jlens_work/01_public_lens_validation/351_public_lens_fidelity.py</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>~/jlens_work/01_public_lens_validation/351_validate_public_lens.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-list">g-prompts-list</a></td></tr>
+<tr><td><code>~/jlens_work/01_public_lens_validation/351_validate_public_lens_offload_fixed.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-common">s19-common</a>、<a href="#s19-s3-exp3">s19-s3-exp3</a></td></tr>
+<tr><td><code>~/jlens_work/02_self_lens_validation/351_self_gold_false.py</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>~/jlens_work/02_self_lens_validation/351_self_jlens_split_half.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#h-lens-stage9">h-lens-stage9</a></td></tr>
+<tr><td><code>~/jlens_work/02_self_lens_validation/351_self_jlens_validation.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s3-exp24">s19-s3-exp24</a></td></tr>
+</table>
+<h4>Stage 4</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/04_stage4/351_stage4_readout.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#s19-common">s19-common</a>、<a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s4-readout">s19-s4-readout</a></td></tr>
+</table>
+<h4>Stage 5</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/05_stage5/351_stage5.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#s19-common">s19-common</a>、<a href="#s19-s1-pilot50">s19-s1-pilot50</a>、<a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s5-crossed">s19-s5-crossed</a></td></tr>
+</table>
+<h4>Stage 6</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/06_stage6/351_stage6.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+</table>
+<h4>Stage 7</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/07_1_stage7_1/351_stage7.py</code></td><td><a href="#s19-s71">s19-s71</a></td></tr>
+<tr><td><code>~/jlens_work/07_1_stage7_1/351_stage7_1B_terminal.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s71b">s19-s71b</a></td></tr>
+<tr><td><code>~/jlens_work/07_2_stage7_2/351_stage7_2.py</code></td><td><a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>~/jlens_work/07_2_stage7_2/351_stage7_2_score.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#h-stats-mult">h-stats-mult</a>、<a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>~/jlens_work/07_3_stage7_3/351_stage7_3.py</code></td><td><a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>~/jlens_work/07_3_stage7_3/351_stage7_3_score.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>~/jlens_work/07_4_stage7_4/351_stage7_4.py</code></td><td><a href="#h-stats-mult">h-stats-mult</a>、<a href="#s19-s74">s19-s74</a></td></tr>
+</table>
+<h4>Stage 8</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/08_stage8/351_stage8.py</code></td><td><a href="#h-stats-mult">h-stats-mult</a>、<a href="#s19-s8a">s19-s8a</a></td></tr>
+<tr><td><code>~/jlens_work/08_stage8/351_stage8B.py</code></td><td><a href="#s19-s8b">s19-s8b</a></td></tr>
+<tr><td><code>~/jlens_work/08_stage8/351_stage8C.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s8c">s19-s8c</a></td></tr>
+<tr><td><code>~/jlens_work/08_stage8/351_stage8D.py</code></td><td><a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td><code>~/jlens_work/08_stage8/351_stage8D_supplement.py</code></td><td><a href="#h-stats-mult">h-stats-mult</a>、<a href="#s19-s8dsupp">s19-s8dsupp</a></td></tr>
+</table>
+<h4>Stage 9</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/09_stage9/351_stage9.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s9-split">s19-s9-split</a></td></tr>
+<tr><td><code>~/jlens_work/09_stage9/stage9_a_repair.py</code></td><td><a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+</table>
+<h4>Stage 10</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/10_stage10/351_stage10.py</code></td><td><a href="#g-data-cohort">g-data-cohort</a>、<a href="#g-model-chat">g-model-chat</a>、<a href="#g-model-id">g-model-id</a>、<a href="#g-model-jlens">g-model-jlens</a>、<a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-align">g-prompts-align</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-agg">g-scoring-agg</a>、<a href="#g-scoring-names">g-scoring-names</a>、<a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#g-scoring-spec">g-scoring-spec</a>、<a href="#h-compute-hw">h-compute-hw</a>、<a href="#h-compute-parity">h-compute-parity</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#h-false">h-false</a>、<a href="#h-false-79">h-false-79</a>、<a href="#h-false-algo">h-false-algo</a>、<a href="#h-false-cost">h-false-cost</a>、<a href="#h-false-pool">h-false-pool</a>、<a href="#h-false-tiers">h-false-tiers</a>、<a href="#h-false-use">h-false-use</a>、<a href="#h-lens-defs">h-lens-defs</a>、<a href="#h-lens-use">h-lens-use</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#h-stats-strat">h-stats-strat</a>、<a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s1011-s10-main">s1011-s10-main</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a>、<a href="#s1011-s10-tc">s1011-s10-tc</a>、<a href="#s1011-s10-titlespec">s1011-s10-titlespec</a>、<a href="#s1011-stage10">s1011-stage10</a>、<a href="#s12-cpu">s12-cpu</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s12-ov-common">s12-ov-common</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/351_stage10_fix1.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s1011-s10-common">s1011-s10-common</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_decision.sbatch</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_ext_analyze.sbatch</code></td><td><a href="#s1011-s10-fine">s1011-s10-fine</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_ext_worker.sbatch</code></td><td><a href="#s1011-s10-fine">s1011-s10-fine</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_extra.py</code></td><td><a href="#s1011-s10-cite">s1011-s10-cite</a>、<a href="#s1011-s10-format">s1011-s10-format</a>、<a href="#s1011-s10-lens">s1011-s10-lens</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_extra_cond_role.py</code></td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_extra_format.py</code></td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_extra_r0r1.py</code></td><td><a href="#g-labels-match">g-labels-match</a>、<a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_parity.sbatch</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_pool.py</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>~/jlens_work/10_stage10/stage10_steal.py</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+</table>
+<h4>Stage 11</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/11_stage11/361_stage11.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-align">g-prompts-align</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-agg">g-scoring-agg</a>、<a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#h-compute-parity">h-compute-parity</a>、<a href="#s1011-s11-common">s1011-s11-common</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-e2">s1011-s11-e2</a>、<a href="#s1011-s11-e2n">s1011-s11-e2n</a>、<a href="#s1011-s11-e3">s1011-s11-e3</a>、<a href="#s1011-s11-e4">s1011-s11-e4</a>、<a href="#s1011-s11-e4b">s1011-s11-e4b</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a>、<a href="#s1011-stage11">s1011-stage11</a>、<a href="#s12-cpu">s12-cpu</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s12-ov-common">s12-ov-common</a>、<a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s12-p1">s12-p1</a>、<a href="#s12-p2">s12-p2</a>、<a href="#s13-x6">s13-x6</a>、<a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td><code>~/jlens_work/11_stage11/stage11_analyze.py</code></td><td><a href="#h-stats-strat">h-stats-strat</a>、<a href="#s1011-s11-common">s1011-s11-common</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-e2">s1011-s11-e2</a>、<a href="#s1011-s11-e3">s1011-s11-e3</a>、<a href="#s1011-s11-e4">s1011-s11-e4</a>、<a href="#s1011-s11-e4b">s1011-s11-e4b</a></td></tr>
+<tr><td><code>~/jlens_work/11_stage11/stage11_cpu_realcheck.py</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+</table>
+<h4>Stage 12</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/12_stage12/371_stage12.py</code></td><td><a href="#g-labels-mc">g-labels-mc</a>、<a href="#g-model-chat">g-model-chat</a>、<a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-align">g-prompts-align</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-agg">g-scoring-agg</a>、<a href="#h-false-use">h-false-use</a>、<a href="#h-lens-table">h-lens-table</a>、<a href="#h-lens-use">h-lens-use</a>、<a href="#s12-f1">s12-f1</a>、<a href="#s12-f2">s12-f2</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s12-n2">s12-n2</a>、<a href="#s12-ov-common">s12-ov-common</a>、<a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s12-ov-scope">s12-ov-scope</a>、<a href="#s12-ov-units">s12-ov-units</a>、<a href="#s12-p1">s12-p1</a>、<a href="#s12-p2">s12-p2</a></td></tr>
+<tr><td><code>~/jlens_work/12_stage12/stage12_analyze.py</code></td><td><a href="#h-stats-strat">h-stats-strat</a>、<a href="#s12-f2">s12-f2</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s12-n2">s12-n2</a>、<a href="#s12-ov-common">s12-ov-common</a>、<a href="#s12-p1">s12-p1</a>、<a href="#s12-p2">s12-p2</a></td></tr>
+<tr><td><code>~/jlens_work/12_stage12/stage12_cpu.py</code></td><td><a href="#s1011-s10-prior">s1011-s10-prior</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s12-cpu">s12-cpu</a>、<a href="#s12-ov-common">s12-ov-common</a></td></tr>
+<tr><td><code>~/jlens_work/12_stage12/stage12_v100.py</code></td><td><a href="#s12-ov-gpu">s12-ov-gpu</a></td></tr>
+</table>
+<h4>Stage 13</h4>
+<table class="t">
+<tr><th>脚本（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/13_stage13/381_stage13.py</code></td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#g-model-id">g-model-id</a>、<a href="#g-model-load">g-model-load</a>、<a href="#g-prompts-align">g-prompts-align</a>、<a href="#g-prompts-example">g-prompts-example</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-agg">g-scoring-agg</a>、<a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s13-m3">s13-m3</a>、<a href="#s13-overview">s13-overview</a>、<a href="#s13-x1">s13-x1</a>、<a href="#s13-x3">s13-x3</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_cluster_ci.py</code></td><td><a href="#h-stats-boot">h-stats-boot</a>、<a href="#h-stats-strat">h-stats-strat</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_cpu.py</code></td><td><a href="#h-false-use">h-false-use</a>、<a href="#h-leak-a">h-leak-a</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#h-stats-team">h-stats-team</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s13-m1">s13-m1</a>、<a href="#s13-m2">s13-m2</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_e4b_group.py</code></td><td><a href="#h-false-use">h-false-use</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_e4b_group.sbatch</code></td><td><a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_gpu_followup.py</code></td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#s13-overview">s13-overview</a>、<a href="#s13-x3">s13-x3</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_group.sbatch</code></td><td><a href="#s13-m1">s13-m1</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_m2b.py</code></td><td><a href="#s13-m2b">s13-m2b</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_m2c.py</code></td><td><a href="#s13-m2c">s13-m2c</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_m3_analyze.py</code></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#s13-m3">s13-m3</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_para_nli.py</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x1_similarity.py</code></td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x1x4_analyze.py</code></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#h-stats-strat">h-stats-strat</a>、<a href="#s13-overview">s13-overview</a>、<a href="#s13-x1">s13-x1</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x4_textbase.py</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x4_textbase2.py</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x6_analyze.py</code></td><td><a href="#h-false-use">h-false-use</a>、<a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x6_analyze.sbatch</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x7_analyze.py</code></td><td><a href="#h-false-use">h-false-use</a>、<a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#s13-x7">s13-x7</a></td></tr>
+</table>
+<p>出处里出现、但不在 <code>~/jlens_work</code> 代码目录中的源码（外部库或原研究代码），按原文写法列出：</p>
+<table class="t">
+<tr><th>原文写法</th><th>说明</th><th>提及章节</th></tr>
+<tr><td><code>/transformers/integrations/sdpa_attention.py</code></td><td>transformers 库（conda 环境内）</td><td><a href="#s1011-s11-e2">s1011-s11-e2</a></td></tr>
+<tr><td><code>home_project/src/dua/data/filters.py</code></td><td>Dreaming Up Authors 原研究代码（git 镜像 home_project/）</td><td><a href="#g-data-origin">g-data-origin</a></td></tr>
+<tr><td><code>home_project/src/dua/sampling/stratified.py</code></td><td>同上，分层抽样</td><td><a href="#g-data-fields">g-data-fields</a>、<a href="#g-data-origin">g-data-origin</a></td></tr>
+<tr><td><code>jlens-authorship-recall_update/home_project/05_fit_jlens_prelim_100.py</code></td><td>git 镜像中的 self100 拟合相关脚本（GitHub 镜像 home_project/）</td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>jlens/__init__.py</code></td><td>jlens 包（~/projects/jacobian-lens/jlens/__init__.py）</td><td><a href="#h-lens-jac">h-lens-jac</a></td></tr>
+<tr><td><code>matcher.py</code></td><td>原研究姓名匹配器 home_project/src/dua/evaluate/matcher.py</td><td><a href="#g-labels-match">g-labels-match</a></td></tr>
+<tr><td><code>models/qwen3/modeling_qwen3.py</code></td><td>transformers 库 Qwen3 模型实现</td><td><a href="#s12-p2">s12-p2</a></td></tr>
+<tr><td><code>stratified.py</code></td><td>同上（简写）</td><td><a href="#g-data-fields">g-data-fields</a></td></tr>
+</table>
+<h3 id="ap-index-results">G5.2 结果文件与目录（按 Stage）</h3>
+<h4>全局</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/CLAUDE.md</code></td><td><a href="#h-compute-tol">h-compute-tol</a></td></tr>
+<tr><td><code>~/jlens_work/HANDOFF.md</code></td><td><a href="#h-compute-tol">h-compute-tol</a></td></tr>
+<tr><td><code>~/jlens_work/PROGRESS.md</code></td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#h-compute-parity">h-compute-parity</a>、<a href="#h-compute-table">h-compute-table</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#h-false-79">h-false-79</a>、<a href="#h-false-limits">h-false-limits</a>、<a href="#h-false-pool">h-false-pool</a>、<a href="#h-leak">h-leak</a>、<a href="#h-leak-a">h-leak-a</a>、<a href="#h-lens-stage9">h-lens-stage9</a>、<a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#h-prereg-files">h-prereg-files</a>、<a href="#s1011-s10-main">s1011-s10-main</a>、<a href="#s1011-s10-prior">s1011-s10-prior</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a>、<a href="#s12-cpu">s12-cpu</a>、<a href="#s12-f1">s12-f1</a>、<a href="#s12-f2">s12-f2</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s12-ov-units">s12-ov-units</a>、<a href="#s12-p1">s12-p1</a>、<a href="#s12-p2">s12-p2</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>~/jlens_work/README.md</code></td><td><a href="#s19-s6-jmrr">s19-s6-jmrr</a>、<a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>~/jlens_work/STAGES.md</code></td><td><a href="#h-lens-stage9">h-lens-stage9</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a>、<a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s8e">s19-s8e</a>、<a href="#s19-s9-bc">s19-s9-bc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update/ARCHIVE_NOTES.md</code></td><td><a href="#s19-s71b">s19-s71b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update/home_project/DATA_LICENSE.md</code></td><td><a href="#g-data-origin">g-data-origin</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update/home_project/README.md</code></td><td><a href="#g-data-origin">g-data-origin</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update/home_project/config/config.yaml</code></td><td><a href="#g-data-origin">g-data-origin</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/STATUS.md</code></td><td><a href="#g-labels-match">g-labels-match</a>、<a href="#g-model-load">g-model-load</a>、<a href="#h-compute-table">h-compute-table</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#h-false-cost">h-false-cost</a>、<a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s12-f2">s12-f2</a>、<a href="#s12-n2">s12-n2</a>、<a href="#s13-m4">s13-m4</a></td></tr>
+</table>
+<h4>Stage 1</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_audit.json</code></td><td><a href="#g-data-cohort">g-data-cohort</a>、<a href="#g-data-package">g-data-package</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_author_specificity.jsonl</code></td><td><a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_author_specificity.log</code></td><td><a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_bin_counts.csv</code></td><td><a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_offload_fixed_validation.log</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_offload_validation.log</code></td><td><a href="#s19-common">s19-common</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_paper_fidelity.log</code></td><td><a href="#s19-s3-exp24">s19-s3-exp24</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/README_first.md</code></td><td><a href="#g-labels-mc">g-labels-mc</a>、<a href="#g-labels-open">g-labels-open</a>、<a href="#g-model-chat">g-model-chat</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/bin_table.csv</code></td><td><a href="#g-labels-groups">g-labels-groups</a>、<a href="#g-labels-recall">g-labels-recall</a>、<a href="#h-stats-bins">h-stats-bins</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md</code></td><td><a href="#g-data-fields">g-data-fields</a>、<a href="#g-data-origin">g-data-origin</a>、<a href="#g-data-package">g-data-package</a>、<a href="#g-labels-groups">g-labels-groups</a>、<a href="#g-labels-mc">g-labels-mc</a>、<a href="#g-labels-recall">g-labels-recall</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/mc_team.jsonl</code></td><td><a href="#g-labels-mc">g-labels-mc</a>、<a href="#s12-n1">s12-n1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv</code></td><td><a href="#h-stats-bins">h-stats-bins</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/rules.yaml</code></td><td><a href="#g-labels-groups">g-labels-groups</a>、<a href="#g-labels-recall">g-labels-recall</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/step1_README.md</code></td><td><a href="#g-data-package">g-data-package</a>、<a href="#g-labels-match">g-labels-match</a>、<a href="#g-labels-mc">g-labels-mc</a>、<a href="#g-labels-open">g-labels-open</a>、<a href="#g-model-chat">g-model-chat</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td></tr>
+</table>
+<h4>Stage 3</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/03_provenance_audit/351_jlens_fitting_diff.txt</code></td><td><a href="#s19-s3-exp6">s19-s3-exp6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_public_task_validation.log</code></td><td><a href="#s19-common">s19-common</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_provenance_audit/reports/audit_report.md</code></td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#h-lens-limits">h-lens-limits</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a>、<a href="#s19-s3-exp5">s19-s3-exp5</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_provenance_audit/summary/audit_summary.json</code></td><td><a href="#s19-common">s19-common</a>、<a href="#s19-s3-exp6">s19-s3-exp6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_provenance_audit/summary/protocol_comparison.csv</code></td><td><a href="#h-lens-jac">h-lens-jac</a>、<a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s3-exp6">s19-s3-exp6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_gold_false/archive/config/comparison_config.json</code></td><td><a href="#s19-s3-exp3">s19-s3-exp3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_gold_false/archive/summary/layer_summary.csv</code></td><td><a href="#s19-s3-exp3">s19-s3-exp3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_split_half/fits/complete_A.json</code></td><td><a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_split_half/fits/complete_B.json</code></td><td><a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_split_half/fits/config_A.json</code></td><td><a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_split_half/readout_comparison/reports/readout_stability_report.md</code></td><td><a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_split_half/reports/split_half_report.md</code></td><td><a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_split_half/summary/matrix_stability.csv</code></td><td><a href="#s19-s3-exp1">s19-s3-exp1</a>、<a href="#s19-s3-exp7">s19-s3-exp7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_validation/numerical/matrices.csv</code></td><td><a href="#s19-s3-exp1">s19-s3-exp1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_validation/summary/metrics.csv</code></td><td><a href="#s19-s3-exp24">s19-s3-exp24</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_self100_validation/summary/paired_bootstrap_ci.csv</code></td><td><a href="#s19-s3-exp24">s19-s3-exp24</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_split_A.log</code></td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_split_B.log</code></td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/fitting_corpus/manifest.json</code></td><td><a href="#g-scoring-names">g-scoring-names</a>、<a href="#h-lens-table">h-lens-table</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/qwen32b_jlens_prelim_100.log</code></td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/qwen32b_jlens_prelim_100_config.json</code></td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
+</table>
+<h4>Stage 4</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_stage4_artifacts/audit/audit_report.md</code></td><td><a href="#s19-s4-readout">s19-s4-readout</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_stage4_artifacts/config/run_config.json</code></td><td><a href="#g-prompts-list">g-prompts-list</a>、<a href="#s19-common">s19-common</a>、<a href="#s19-s4-readout">s19-s4-readout</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_all/351_stage4_readout.log</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s4-readout">s19-s4-readout</a></td></tr>
+</table>
+<h4>Stage 5</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/cohort/pilot50_v1.csv</code></td><td><a href="#s19-s1-pilot50">s19-s1-pilot50</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/cohort/pilot50_v1.json</code></td><td><a href="#s19-s1-pilot50">s19-s1-pilot50</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/config/runtime.json</code></td><td><a href="#s19-common">s19-common</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/matching/pilot50_ab_pairs.csv</code></td><td><a href="#s19-s1-pilot50">s19-s1-pilot50</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/reports/pilot50_audit_manifest.json</code></td><td><a href="#s19-s5-crossed">s19-s5-crossed</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/stage5_run.log</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s5-crossed">s19-s5-crossed</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/summary/layer_summary.csv</code></td><td><a href="#s19-s5-crossed">s19-s5-crossed</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage5_crossed_v2/summary/matched_ab_summary.csv</code></td><td><a href="#s19-s5-crossed">s19-s5-crossed</a></td></tr>
+</table>
+<h4>Stage 6</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage6/config/protocol.json</code></td><td><a href="#s19-common">s19-common</a>、<a href="#s19-s2-protocol">s19-s2-protocol</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage6/raw/token_layer_scores.csv</code></td><td><a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage6/reports/experiment_report.md</code></td><td><a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage6/summary/matched_ab_bootstrap.csv</code></td><td><a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage6/summary/stage5_stage6_paper_join.csv</code></td><td><a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage6/summary/summary.json</code></td><td><a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage6_run.log</code></td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens_archive_stage1_8/experiment_files/351_stage6_run.log</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+</table>
+<h4>Stage 7</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_1/reports/experiment_report.md</code></td><td><a href="#s19-s71">s19-s71</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_1/summary/layer_and_integrated_effects.csv</code></td><td><a href="#s19-s71">s19-s71</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_1B_terminal/run.log</code></td><td><a href="#s19-s71b">s19-s71b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_1B_terminal/runtime.json</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_1B_terminal/smoke_check.json</code></td><td><a href="#s19-s71b">s19-s71b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_2/candidates/pilot50_author_candidates.csv</code></td><td><a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_2/config/gpu_scoring_runtime.json</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_2/reports/stage7_2_gpu_report.md</code></td><td><a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_2/summary/candidate_pairwise_scores.csv</code></td><td><a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_2/summary/matched_ab_bootstrap.csv</code></td><td><a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_2/summary/quality.json</code></td><td><a href="#s19-s72">s19-s72</a>、<a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_2_gpu.log</code></td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_3/config/stage73b_runtime.json</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_3/reports/freeze_audit.md</code></td><td><a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_3/reports/stage7_3_null_report.md</code></td><td><a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_3/summary/integrated_ab_bootstrap.csv</code></td><td><a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_3/summary/paper_null_distribution.csv</code></td><td><a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_3_gpu.log</code></td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_4/summary/cross_stage_correlations.csv</code></td><td><a href="#s19-s74">s19-s74</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_4/summary/floor_L56_low_six.csv</code></td><td><a href="#s19-s73">s19-s73</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_4/summary/jlens_increment_bootstrap.csv</code></td><td><a href="#s19-s74">s19-s74</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage7_4/summary/overview.json</code></td><td><a href="#s19-s73">s19-s73</a>、<a href="#s19-s74">s19-s74</a></td></tr>
+</table>
+<h4>Stage 8</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/08_stage8/351_stage8_PROTOCOL.md</code></td><td><a href="#s19-s8-protocol">s19-s8-protocol</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/config/analysis_plan.json</code></td><td><a href="#g-data-cohort">g-data-cohort</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#s19-s8-protocol">s19-s8-protocol</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/config/manifest.json</code></td><td><a href="#s19-s8a">s19-s8a</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/config/stage8B_manifest.json</code></td><td><a href="#s19-s8b">s19-s8b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/config/stage8C_runtime.json</code></td><td><a href="#g-model-load">g-model-load</a>、<a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s8c">s19-s8c</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/controls/stage8_control_quality.csv</code></td><td><a href="#s19-s8b">s19-s8b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/controls/stage8_shuffled_titles.csv</code></td><td><a href="#s19-s8b">s19-s8b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/raw/stage8C_context_scores.jsonl</code></td><td><a href="#s19-s8c">s19-s8c</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/output_manifest.json</code></td><td><a href="#s19-s8c">s19-s8c</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/reports/stage8_results.md</code></td><td><a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/summary/jlens_minus_vanilla.csv</code></td><td><a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/summary/layer_and_band_summary.csv</code></td><td><a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/summary/primary_questions.csv</code></td><td><a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/stage8D/summary/sensitivity.csv</code></td><td><a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8/summary/matching_audit.json</code></td><td><a href="#s19-s8a">s19-s8a</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage8C_full.log</code></td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s19-s8c">s19-s8c</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens_github_publish/experiment_files/351_stage8/stage8D_supplement/frozen_plan_endpoints.csv</code></td><td><a href="#s19-s8dsupp">s19-s8dsupp</a></td></tr>
+</table>
+<h4>Stage 9</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/09_stage9/351_stage9_README.md</code></td><td><a href="#s19-s9-bc">s19-s9-bc</a>、<a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9/config/manifest.json</code></td><td><a href="#s19-s9-bc">s19-s9-bc</a>、<a href="#s19-s9-split">s19-s9-split</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9/config/plan.json</code></td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s9-split">s19-s9-split</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9/reports/stage9_resume_comparison.json</code></td><td><a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9/runner_runs/full_A_repair_101_100valid/final_status.json</code></td><td><a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9/runner_runs/full_A_repair_101_100valid/repair_manifest.json</code></td><td><a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9_A_repair.log</code></td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#h-lens-stage9">h-lens-stage9</a>、<a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9_benchmark_A1_7layers.log</code></td><td><a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9_full_A.log</code></td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage9_full_B.log</code></td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#h-lens-stage9">h-lens-stage9</a></td></tr>
+</table>
+<h4>Stage 10</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/10_stage10/README.md</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/cohort/conditions/false_titles.parquet</code></td><td><a href="#h-false-79">h-false-79</a>、<a href="#h-false-examples">h-false-examples</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/cohort/conditions/prompts.parquet</code></td><td><a href="#s12-ov-common">s12-ov-common</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/cohort/name_tokens.parquet</code></td><td><a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s12-p1">s12-p1</a>、<a href="#s13-m1">s13-m1</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/cohort/papers.parquet</code></td><td><a href="#h-false-examples">h-false-examples</a>、<a href="#h-false-pool">h-false-pool</a>、<a href="#h-stats-bins">h-stats-bins</a>、<a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s13-overview">s13-overview</a>、<a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/config/analysis_plan.json</code></td><td><a href="#g-labels-groups">g-labels-groups</a>、<a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#s1011-s10-common">s1011-s10-common</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/config/analysis_plan_before_tol05.json</code></td><td><a href="#h-compute-tol">h-compute-tol</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/config/conditions_manifest.json</code></td><td><a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-spec">g-scoring-spec</a>、<a href="#h-false">h-false</a>、<a href="#h-false-79">h-false-79</a>、<a href="#h-false-algo">h-false-algo</a>、<a href="#h-false-cost">h-false-cost</a>、<a href="#h-false-pool">h-false-pool</a>、<a href="#h-false-tiers">h-false-tiers</a>、<a href="#s1011-s10-titlespec">s1011-s10-titlespec</a>、<a href="#s1011-stage10">s1011-stage10</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/config/lenses.json</code></td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s1011-s10-main">s1011-s10-main</a>、<a href="#s12-n2">s12-n2</a>、<a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/config/manifest.json</code></td><td><a href="#g-data-package">g-data-package</a>、<a href="#g-scoring-names">g-scoring-names</a>、<a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s1011-stage10">s1011-stage10</a>、<a href="#s12-ov-scope">s12-ov-scope</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/config/protocol.json</code></td><td><a href="#g-data-cohort">g-data-cohort</a>、<a href="#g-model-id">g-model-id</a>、<a href="#g-model-jlens">g-model-jlens</a>、<a href="#h-lens-defs">h-lens-defs</a>、<a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/analyze_s10_analyze_main_11373362.log</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/analyze_s10_analyze_title_11375853.log</code></td><td><a href="#s1011-s10-titlespec">s1011-s10-titlespec</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/analyze_s10x_analyze_11378377.log</code></td><td><a href="#s1011-s10-fine">s1011-s10-fine</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/decision_11363838.log</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/extra_11376473.log</code></td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/extra_fmt_11376890.log</code></td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/freeze_conditions_11333739.log</code></td><td><a href="#h-false">h-false</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/parity_ext_11338000.log</code></td><td><a href="#s1011-s10-fine">s1011-s10-fine</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/logs/pool/job_s10p_ext_true_11363851.log</code></td><td><a href="#h-lens-use">h-lens-use</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/reports/crosscheck_stage6.csv</code></td><td><a href="#h-compute-parity">h-compute-parity</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/reports/parity.json</code></td><td><a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#h-compute-parity">h-compute-parity</a>、<a href="#h-compute-table">h-compute-table</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#s1011-s10-fine">s1011-s10-fine</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/reports/r0_r1_analysis.md</code></td><td><a href="#g-labels-match">g-labels-match</a>、<a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/reports/r0_sensitivity.md</code></td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary/A_group_layer.csv</code></td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary/B_target_vs_control_within_bin.csv</code></td><td><a href="#h-stats-bins">h-stats-bins</a>、<a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary/C_graded_mc_team_a.csv</code></td><td><a href="#s1011-s10-tc">s1011-s10-tc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X1_by_format.csv</code></td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X1_cond.csv</code></td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X1_cond_by_first_role.csv</code></td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X2_by_bin.csv</code></td><td><a href="#s1011-s10-cite">s1011-s10-cite</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X2_spearman.csv</code></td><td><a href="#s1011-s10-cite">s1011-s10-cite</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X3_means.csv</code></td><td><a href="#s1011-s10-lens">s1011-s10-lens</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X3_pairwise.csv</code></td><td><a href="#s1011-s10-lens">s1011-s10-lens</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_extra/X3_tc_spec_vs_logit.csv</code></td><td><a href="#s1011-s10-lens">s1011-s10-lens</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_r0/target_R1_minus_R0_within_bin.csv</code></td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_r0r1/C_minus_A.csv</code></td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_r0r1/R1_author_written_minus_missed.csv</code></td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_r0r1/tc_R0.csv</code></td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/A_group_layer.csv</code></td><td><a href="#s1011-s10-titlespec">s1011-s10-titlespec</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/B_sens_drop_low_bins.csv</code></td><td><a href="#s1011-s10-tc">s1011-s10-tc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv</code></td><td><a href="#s1011-s10-fine">s1011-s10-fine</a>、<a href="#s1011-s10-tc">s1011-s10-tc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/C_graded_mc_team_a.csv</code></td><td><a href="#s1011-s10-tc">s1011-s10-tc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/negative_control_by_role.csv</code></td><td><a href="#s1011-s10-titlespec">s1011-s10-titlespec</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/351_stage10/summary_title/paper_title_contrasts.parquet</code></td><td><a href="#g-scoring-spec">g-scoring-spec</a>、<a href="#h-false-79">h-false-79</a></td></tr>
+</table>
+<h4>Stage 11</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/config/protocol.json</code></td><td><a href="#s1011-s11-common">s1011-s11-common</a>、<a href="#s1011-stage11">s1011-stage11</a>、<a href="#s12-ov-scope">s12-ov-scope</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/config/protocol_amendment_1.json</code></td><td><a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-e2n">s1011-s11-e2n</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/config/sample.parquet</code></td><td><a href="#g-prompts-align">g-prompts-align</a>、<a href="#s1011-s11-common">s1011-s11-common</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s12-ov-common">s12-ov-common</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/logs/realcheck_11396804.log</code></td><td><a href="#h-compute-parity">h-compute-parity</a>、<a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-e2">s1011-s11-e2</a>、<a href="#s1011-s11-e2n">s1011-s11-e2n</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/raw/patch/shard_000.npz</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/reports/smoke.json</code></td><td><a href="#h-compute-parity">h-compute-parity</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-e2">s1011-s11-e2</a>、<a href="#s1011-s11-e2n">s1011-s11-e2n</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/smoke/raw/patch_title/shard_000.npz</code></td><td><a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E1_recovery.csv</code></td><td><a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E1t_recovery.csv</code></td><td><a href="#s1011-s11-e1t">s1011-s11-e1t</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E2_knockout.csv</code></td><td><a href="#s1011-s11-e2">s1011-s11-e2</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E2n_knockout.csv</code></td><td><a href="#s1011-s11-e2n">s1011-s11-e2n</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E3_chain.csv</code></td><td><a href="#s1011-s11-e3">s1011-s11-e3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E4_probe.csv</code></td><td><a href="#s1011-s11-e4b">s1011-s11-e4b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary/E4_titlepos_lens.csv</code></td><td><a href="#s1011-s11-e4">s1011-s11-e4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/361_stage11/summary_r0/E1_recovery.csv</code></td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+</table>
+<h4>Stage 12</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/alens/progress.json</code></td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#h-lens-table">h-lens-table</a>、<a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/config/alens_eval_exclude.json</code></td><td><a href="#s12-f1">s12-f1</a>、<a href="#s12-f2">s12-f2</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/config/fit_prompts.parquet</code></td><td><a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/config/protocol.json</code></td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s12-f1">s12-f1</a>、<a href="#s12-n2">s12-n2</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/analyze_11413617.log</code></td><td><a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/cpu_11413574.log</code></td><td><a href="#s12-cpu">s12-cpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/work_11413557.log</code></td><td><a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/work_11413572.log</code></td><td><a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/work_11413584.log</code></td><td><a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/work_11413586.log</code></td><td><a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/work_11414108.log</code></td><td><a href="#s12-ov-gpu">s12-ov-gpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/logs/work_11428778.log</code></td><td><a href="#s12-ov-gpu">s12-ov-gpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/reports/stage12_cpu_report.md</code></td><td><a href="#s12-cpu">s12-cpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/reports/stage12_report.md</code></td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s12-f2">s12-f2</a>、<a href="#s12-n1">s12-n1</a>、<a href="#s12-n2">s12-n2</a>、<a href="#s12-p1">s12-p1</a>、<a href="#s12-p2">s12-p2</a>、<a href="#s13-m4">s13-m4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary/F2_author_lens.csv</code></td><td><a href="#s12-f2">s12-f2</a>、<a href="#s13-m4">s13-m4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary/N1_prior_mc.csv</code></td><td><a href="#s12-n1">s12-n1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary/N2_prior_pure.csv</code></td><td><a href="#s12-n2">s12-n2</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary/P1_patch_pos.csv</code></td><td><a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary/P2_patch_comp.csv</code></td><td><a href="#s12-p2">s12-p2</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary_cpu/A_prior_decomposition.csv</code></td><td><a href="#s1011-s10-prior">s1011-s10-prior</a>、<a href="#s12-cpu">s12-cpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary_cpu/B_prior_vs_recognition.csv</code></td><td><a href="#s1011-s10-prior">s1011-s10-prior</a>、<a href="#s12-cpu">s12-cpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary_cpu/C_surname_commonness.csv</code></td><td><a href="#s1011-s10-prior">s1011-s10-prior</a>、<a href="#s12-cpu">s12-cpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/371_stage12/summary_cpu/X1_probe_controls.csv</code></td><td><a href="#s12-cpu">s12-cpu</a></td></tr>
+</table>
+<h4>Stage 13</h4>
+<table class="t">
+<tr><th>文件 / 目录（绝对路径）</th><th>提及章节</th></tr>
+<tr><td><code>~/jlens_work/13_stage13/README.md</code></td><td><a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/pairs.parquet</code></td><td><a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/prereg.json</code></td><td><a href="#h-stats-mult">h-stats-mult</a>、<a href="#s13-m2c">s13-m2c</a>、<a href="#s13-overview">s13-overview</a>、<a href="#s13-x3">s13-x3</a>、<a href="#s13-x5">s13-x5</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/prereg_addendum1.json</code></td><td><a href="#h-leak-a">h-leak-a</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/prereg_addendum2.json</code></td><td><a href="#s13-m2c">s13-m2c</a>、<a href="#s13-overview">s13-overview</a>、<a href="#s13-x1">s13-x1</a>、<a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/prereg_addendum3.json</code></td><td><a href="#s13-x6">s13-x6</a>、<a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/prereg_addendum4.json</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/followup/judge_sample.csv</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/followup/x4tok/shard_000.csv</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/logs/cpu_11438885.log</code></td><td><a href="#s13-m1">s13-m1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/logs/fugpu_11485349.log</code></td><td><a href="#h-compute-parity">h-compute-parity</a>、<a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x3">s13-x3</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/logs/m3_11472899.log</code></td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/logs/para_review_sample20.csv</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/logs/pipetest_11459594.log</code></td><td><a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/logs/userchecks_11474830.log</code></td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/logs/x6_11461197.log</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/raw/para_gen/shard_000.npz</code></td><td><a href="#g-model-id">g-model-id</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/raw/task/shard_000.npz</code></td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/raw/xf_patch/false_0/shard_000.npz</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/cluster_ci.md</code></td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#h-stats-team">h-stats-team</a>、<a href="#s1011-s10-main">s1011-s10-main</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/e4b_split_compare.md</code></td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s12-cpu">s12-cpu</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/m3_report.md</code></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/split_compare.md</code></td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/stage13_cpu_report_group.md</code></td><td><a href="#s13-m1">s13-m1</a>、<a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x1_report.md</code></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x1_similarity.md</code></td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x4_report.md</code></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x4_textbase.md</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x4_textbase2.md</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x4_textbase_posctrl.md</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x6_report.md</code></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x7_report.md</code></td><td><a href="#h-compute-parity">h-compute-parity</a>、<a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s1011-s11-e2">s1011-s11-e2</a>、<a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu/M1_title_sensitivity.csv</code></td><td><a href="#s13-m1">s13-m1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu/M1_top1_classes.csv</code></td><td><a href="#s13-m1">s13-m1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu/M2b_words_vs_probe.csv</code></td><td><a href="#s13-m2b">s13-m2b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/E4b_4configs.csv</code></td><td><a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/M2_probes.csv</code></td><td><a href="#s13-m2">s13-m2</a>、<a href="#s13-m2c">s13-m2c</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/M2b_words_vs_probe.csv</code></td><td><a href="#s13-m2b">s13-m2b</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/M2c_bert_baseline.csv</code></td><td><a href="#s13-m2c">s13-m2c</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/X1controls_4configs.csv</code></td><td><a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu_group/perpaper_probe_spec.parquet</code></td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_m3/m3_transfer.csv</code></td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_m3/x1_similarity.csv</code></td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x1x4/x1_recovery.csv</code></td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x1x4/x4_decodability.csv</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x1x4/x4_earliest.csv</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x1x4/x4_recognition.csv</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x1x4/x4_textbase2_perpaper.csv</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x1x4/x4_textbase2_posctrl.csv</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x3/para_nli.csv</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x6/x6_recovery.csv</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x6/x6_verdict.json</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x7/x7_knockout.csv</code></td><td><a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x7/x7_verdict.json</code></td><td><a href="#s13-x7">s13-x7</a></td></tr>
+</table>
+<p>出处里以通配符、省略号或不带目录的文件名写出、没能解析到唯一路径的条目（按原文写法列出；目录请看提及章节的上下文）：</p>
+<table class="t">
+<tr><th>原文写法</th><th>提及章节</th></tr>
+<tr><td><code>/README_first.md</code></td><td><a href="#g-model-load">g-model-load</a></td></tr>
+<tr><td><code>/Salesforce-wikitext/config.yaml</code></td><td><a href="#h-lens-table">h-lens-table</a></td></tr>
+<tr><td><code>/config.yaml</code></td><td><a href="#h-lens-jac">h-lens-jac</a></td></tr>
+<tr><td><code>/generation_config.json</code></td><td><a href="#g-model-id">g-model-id</a></td></tr>
+<tr><td><code>/model.safetensors.index.json</code></td><td><a href="#g-model-id">g-model-id</a></td></tr>
+<tr><td><code>/shard_*.npz</code></td><td><a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td><code>/step1_README.md</code></td><td><a href="#g-model-chat">g-model-chat</a></td></tr>
+<tr><td><code>/tokenizer_config.json</code></td><td><a href="#g-model-id">g-model-id</a></td></tr>
+<tr><td><code>023.npz</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>351_stage10/logs/parity_*.log</code></td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td><code>351_stage10/logs/pool/job_s10p_*.log</code></td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td><code>351_stage8_README.md</code></td><td><a href="#s19-s8-protocol">s19-s8-protocol</a></td></tr>
+<tr><td><code>E1_target_minus_control.csv</code></td><td><a href="#s1011-s11-e1">s1011-s11-e1</a></td></tr>
+<tr><td><code>E2_knockout.csv</code></td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td><code>E2_target_minus_control.csv</code></td><td><a href="#s1011-s11-e2">s1011-s11-e2</a></td></tr>
+<tr><td><code>M2_probes.csv</code></td><td><a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td><code>R13/config/prereg*.json</code></td><td><a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>R13/logs/x1x4_*.log</code></td><td><a href="#s13-x1">s13-x1</a></td></tr>
+<tr><td><code>R13/raw/*/shard_*.npz</code></td><td><a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>README.md</code></td><td><a href="#g-data-fields">g-data-fields</a>、<a href="#s1011-s10-fine">s1011-s10-fine</a>、<a href="#s19-common">s19-common</a></td></tr>
+<tr><td><code>analysis_plan.json</code></td><td><a href="#g-scoring-agg">g-scoring-agg</a>、<a href="#g-scoring-rank">g-scoring-rank</a></td></tr>
+<tr><td><code>config.json</code></td><td><a href="#g-model-id">g-model-id</a>、<a href="#s12-ov-common">s12-ov-common</a></td></tr>
+<tr><td><code>config.yaml</code></td><td><a href="#g-data-fields">g-data-fields</a>、<a href="#g-labels-match">g-labels-match</a></td></tr>
+<tr><td><code>final_status.json</code></td><td><a href="#h-lens-stage9">h-lens-stage9</a>、<a href="#h-lens-table">h-lens-table</a></td></tr>
+<tr><td><code>full_A_repair_101_100valid/repair_manifest.json</code></td><td><a href="#h-lens-stage9">h-lens-stage9</a></td></tr>
+<tr><td><code>knockout/shard_000.npz</code></td><td><a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td><code>m3_identity.csv</code></td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td><code>parity_before_tol05_amendment.json</code></td><td><a href="#h-compute-parity">h-compute-parity</a></td></tr>
+<tr><td><code>prereg*.json</code></td><td><a href="#h-prereg-files">h-prereg-files</a></td></tr>
+<tr><td><code>protocol.json</code></td><td><a href="#g-model-jlens">g-model-jlens</a>、<a href="#g-prompts-align">g-prompts-align</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#g-scoring-agg">g-scoring-agg</a>、<a href="#g-scoring-rank">g-scoring-rank</a>、<a href="#h-lens-defs">h-lens-defs</a></td></tr>
+<tr><td><code>quality.json</code></td><td><a href="#s19-s72">s19-s72</a></td></tr>
+<tr><td><code>raw/*/shard_*.npz</code></td><td><a href="#s1011-stage11">s1011-stage11</a></td></tr>
+<tr><td><code>raw/patch/*.npz</code></td><td><a href="#s1011-s11-e1">s1011-s11-e1</a></td></tr>
+<tr><td><code>raw/patch_comp/*.npz</code></td><td><a href="#s12-p2">s12-p2</a></td></tr>
+<tr><td><code>raw/patch_pos/*.npz</code></td><td><a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td><code>repair_manifest.json</code></td><td><a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s9-fitA">s19-s9-fitA</a></td></tr>
+<tr><td><code>smoke/raw/*/shard_000.npz</code></td><td><a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td><code>supplement_manifest.json</code></td><td><a href="#s19-s8dsupp">s19-s8dsupp</a></td></tr>
+<tr><td><code>token_layer_scores.csv</code></td><td><a href="#s19-s6-jmrr">s19-s6-jmrr</a></td></tr>
+</table>
+<h3 id="ap-index-jobs">G5.3 Slurm 作业号（按 Stage）</h3>
+<p>注意：Stage 10–13 的 GPU 作业是"池化"的（任何作业可接手其他 Stage 的单元），作业名（如 <code>s12w</code>、<code>s10p_*</code>）不等于它实际算了哪个 Stage，见 <a href="#h-compute-table">h-compute-table</a>。Stage 1–9 都是交互式 <code>bash</code> 会话，没有可对应的作业号（<a href="#s19-common">s19-common</a>）。状态 FAILED 包括崩溃、按规则拒绝运行和 gate/keeper 作业到时退出，具体原因见提及章节。</p>
+<h4>Stage 10</h4>
+<table class="t">
+<tr><th>作业号</th><th>sacct 作业名</th><th>分区</th><th>开始</th><th>用时</th><th>sacct 状态</th><th>提及章节</th></tr>
+<tr><td>11333739</td><td><code>s10_freezecond</code></td><td>short</td><td>2026-10-23 16:59</td><td>00:06:39</td><td>COMPLETED</td><td><a href="#h-false">h-false</a>、<a href="#s1011-s10-titlespec">s1011-s10-titlespec</a></td></tr>
+<tr><td>11334054</td><td><code>s10_parity</code></td><td>gpu</td><td>2026-10-24 12:49</td><td>00:04:45</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s1011-s10-common">s1011-s10-common</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td>11338000</td><td><code>s10x_parity</code></td><td>gpu-short</td><td>2026-10-24 15:14</td><td>00:04:07</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#s1011-s10-fine">s1011-s10-fine</a></td></tr>
+<tr><td>11338002</td><td><code>s10_pool</code></td><td>short</td><td>2026-10-23 21:01</td><td>1-03:28:56</td><td>FAILED</td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>11338033</td><td><code>s10_pool</code></td><td>short</td><td>2026-10-23 21:01</td><td>1-03:24:05</td><td>FAILED</td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>11338068</td><td><code>s10_pool</code></td><td>short</td><td>2026-10-23 21:02</td><td>1-03:23:47</td><td>FAILED</td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>11338070</td><td><code>s10p_ext_true</code></td><td>gpu</td><td>2026-10-25 00:23</td><td>00:00:15</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11338105</td><td><code>s10p_ext_false_3</code></td><td>gpu-short</td><td>2026-10-25 00:28</td><td>00:00:17</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11347140</td><td><code>s10p_ext_false_1</code></td><td>gpu</td><td>2026-10-25 00:28</td><td>00:00:08</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11347585</td><td><code>s10_parity</code></td><td>gpu</td><td>2026-10-24 23:14</td><td>00:33:59</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td>11350173</td><td><code>s10p_ext_false_3</code></td><td>gpu-short</td><td>2026-10-25 00:31</td><td>00:00:13</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11350174</td><td><code>s10_parity_i</code></td><td>gpu-inter+</td><td>2026-10-25 00:32</td><td>00:05:22</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#h-compute-tol">h-compute-tol</a>、<a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td>11358551</td><td><code>s10p_ext_false_3</code></td><td>gpu</td><td>2026-10-25 07:10</td><td>00:00:08</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11363838</td><td><code>s10_decision</code></td><td>short</td><td>2026-10-25 10:55</td><td>00:06:01</td><td>COMPLETED</td><td><a href="#s1011-s10-parity">s1011-s10-parity</a></td></tr>
+<tr><td>11363842</td><td><code>s10_pool</code></td><td>short</td><td>2026-10-25 10:55</td><td>13:10:47</td><td>FAILED</td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>11363844</td><td><code>s10p_main_true</code></td><td>gpu</td><td>2026-10-25 22:29</td><td>01:35:10</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11363850</td><td><code>s10p_main_delete</code></td><td>gpu</td><td>2026-10-27 06:37</td><td>00:53:36</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11363851</td><td><code>s10p_ext_true</code></td><td>gpu</td><td>2026-10-27 06:51</td><td>00:39:49</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11363852</td><td><code>s10p_ext_false_0</code></td><td>gpu-short</td><td>2026-10-25 11:06</td><td>00:58:28</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11363863</td><td><code>s10p_ext_delete</code></td><td>gpu-inter+</td><td>2026-10-27 07:35</td><td>00:00:09</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11373362</td><td><code>s10_analyze_main</code></td><td>short</td><td>2026-10-25 22:55</td><td>00:03:02</td><td>COMPLETED</td><td><a href="#h-compute-parity">h-compute-parity</a>、<a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>11374266</td><td><code>s10_pool</code></td><td>short</td><td>2026-10-26 00:14</td><td>1-14:53:20</td><td>FAILED</td><td><a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>11375853</td><td><code>s10_analyze_title</code></td><td>short</td><td>2026-10-26 02:58</td><td>00:03:58</td><td>COMPLETED</td><td><a href="#s1011-s10-titlespec">s1011-s10-titlespec</a></td></tr>
+<tr><td>11376473</td><td><code>s10_extra</code></td><td>short</td><td>2026-10-26 04:20</td><td>00:12:20</td><td>COMPLETED</td><td><a href="#s1011-s10-cite">s1011-s10-cite</a>、<a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td>11376890</td><td><code>s10_extra_fmt</code></td><td>short</td><td>2026-10-26 04:46</td><td>00:01:26</td><td>COMPLETED</td><td><a href="#s1011-s10-format">s1011-s10-format</a></td></tr>
+<tr><td>11378377</td><td><code>s10x_analyze</code></td><td>short</td><td>2026-10-26 06:23</td><td>00:16:15</td><td>COMPLETED</td><td><a href="#s1011-s10-fine">s1011-s10-fine</a></td></tr>
+<tr><td>11413574</td><td><code>s12_cpu</code></td><td>short</td><td>2026-10-27 14:50</td><td>00:05:25</td><td>COMPLETED</td><td><a href="#s1011-s10-prior">s1011-s10-prior</a>、<a href="#s12-cpu">s12-cpu</a>、<a href="#s12-ov-scope">s12-ov-scope</a></td></tr>
+<tr><td>11429580</td><td><code>s10_r0r1</code></td><td>short</td><td>2026-10-27 23:33</td><td>00:15:40</td><td>COMPLETED</td><td><a href="#s1011-s10-r0r1">s1011-s10-r0r1</a></td></tr>
+<tr><td>11443686</td><td><code>s13_clci</code></td><td>short</td><td>2026-10-28 14:17</td><td>00:02:56</td><td>COMPLETED</td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#h-prereg-files">h-prereg-files</a>、<a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+<tr><td>11443696</td><td><code>s13_clci</code></td><td>short</td><td>2026-10-28 14:39</td><td>00:02:58</td><td>COMPLETED</td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s1011-s10-main">s1011-s10-main</a></td></tr>
+</table>
+<h4>Stage 11</h4>
+<table class="t">
+<tr><th>作业号</th><th>sacct 作业名</th><th>分区</th><th>开始</th><th>用时</th><th>sacct 状态</th><th>提及章节</th></tr>
+<tr><td>11363847</td><td><code>s10p_main_false_2</code></td><td>gpu</td><td>2026-10-27 05:15</td><td>01:21:51</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td>11385983</td><td><code>s11_analyze</code></td><td>short</td><td>2026-10-26 13:24</td><td>18:27:37</td><td>COMPLETED</td><td><a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td>11396804</td><td><code>s11_realcheck</code></td><td>short</td><td>2026-10-27 04:56</td><td>00:26:47</td><td>COMPLETED</td><td><a href="#s1011-s11-e1t">s1011-s11-e1t</a>、<a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
+<tr><td>11443587</td><td><code>s13_e4bg</code></td><td>short</td><td>2026-10-28 12:45</td><td>00:31:34</td><td>COMPLETED</td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#h-prereg-files">h-prereg-files</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a>、<a href="#s12-cpu">s12-cpu</a></td></tr>
+</table>
+<h4>Stage 12</h4>
+<table class="t">
+<tr><th>作业号</th><th>sacct 作业名</th><th>分区</th><th>开始</th><th>用时</th><th>sacct 状态</th><th>提及章节</th></tr>
+<tr><td>11371622</td><td><code>s10p_main_true</code></td><td>gpu-short</td><td>2026-10-27 14:58</td><td>00:06:33</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td>11413494</td><td><code>s12_keeper</code></td><td>short</td><td>2026-10-27 14:46</td><td>1-05:05:51</td><td>COMPLETED</td><td><a href="#s12-ov-scope">s12-ov-scope</a></td></tr>
+<tr><td>11413557</td><td><code>s12fit</code></td><td>gpu</td><td>2026-10-27 15:28</td><td>01:15:38</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s12-f1">s12-f1</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td>11413569</td><td><code>s12fit</code></td><td>gpu-short</td><td>2026-10-27 15:40</td><td>01:19:09</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td>11413572</td><td><code>s12w</code></td><td>gpu-short</td><td>2026-10-27 21:17</td><td>01:19:57</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td>11413584</td><td><code>s12w</code></td><td>gpu-short</td><td>2026-10-27 22:43</td><td>01:20:33</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td>11413586</td><td><code>s12w</code></td><td>gpu-inter+</td><td>2026-10-28 16:47</td><td>00:51:45</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s12-f1">s12-f1</a></td></tr>
+<tr><td>11413591</td><td><code>s12w</code></td><td>gpu-inter+</td><td>2026-10-28 18:16</td><td>00:51:37</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a></td></tr>
+<tr><td>11413617</td><td><code>s12_analyze</code></td><td>short</td><td>2026-10-27 14:52</td><td>1-05:03:15</td><td>COMPLETED</td><td><a href="#s12-ov-scope">s12-ov-scope</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td>11414108</td><td><code>s12w</code></td><td>gpu-short</td><td>2026-10-28 20:15</td><td>00:02:37</td><td>FAILED</td><td><a href="#h-compute-hw">h-compute-hw</a>、<a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11428778</td><td><code>s12w</code></td><td>gpu-short</td><td>2026-10-29 00:10</td><td>00:50:39</td><td>COMPLETED</td><td><a href="#h-compute-hw">h-compute-hw</a>、<a href="#h-compute-table">h-compute-table</a>、<a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s13-m3">s13-m3</a>、<a href="#s13-x1">s13-x1</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+</table>
+<h4>Stage 13</h4>
+<table class="t">
+<tr><th>作业号</th><th>sacct 作业名</th><th>分区</th><th>开始</th><th>用时</th><th>sacct 状态</th><th>提及章节</th></tr>
+<tr><td>11374283</td><td><code>s10p_ext_false_0</code></td><td>gpu</td><td>2026-10-28 19:22</td><td>00:24:38</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11374284</td><td><code>s10p_ext_false_1</code></td><td>gpu-short</td><td>2026-10-29 03:51</td><td>00:39:07</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x3">s13-x3</a>、<a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td>11385971</td><td><code>s11w</code></td><td>gpu</td><td>2026-10-28 20:18</td><td>00:01:47</td><td>FAILED</td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11405680</td><td><code>s11w</code></td><td>gpu</td><td>2026-10-28 20:18</td><td>00:01:59</td><td>FAILED</td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11413886</td><td><code>s12w</code></td><td>gpu</td><td>2026-10-28 19:09</td><td>00:36:58</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11414120</td><td><code>s12w</code></td><td>gpu</td><td>2026-10-28 20:21</td><td>00:02:19</td><td>FAILED</td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11415844</td><td><code>s12w</code></td><td>gpu</td><td>2026-10-28 20:48</td><td>00:51:09</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11416869</td><td><code>s12fit</code></td><td>gpu-short</td><td>2026-10-28 22:54</td><td>00:53:35</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11430308</td><td><code>s12w</code></td><td>gpu-short</td><td>2026-10-28 23:40</td><td>00:09:18</td><td>FAILED</td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11438885</td><td><code>s13_cpu</code></td><td>short</td><td>2026-10-28 06:58</td><td>01:01:37</td><td>COMPLETED</td><td><a href="#s13-m1">s13-m1</a>、<a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td>11439283</td><td><code>s13_m2v2</code></td><td>short</td><td>2026-10-28 08:00</td><td>01:14:20</td><td>COMPLETED</td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s13-m2">s13-m2</a></td></tr>
+<tr><td>11441993</td><td><code>s13_m2b</code></td><td>short</td><td>2026-10-28 10:19</td><td>00:06:47</td><td>COMPLETED</td><td><a href="#h-prereg-status">h-prereg-status</a>、<a href="#s13-m2b">s13-m2b</a></td></tr>
+<tr><td>11443232</td><td><code>s13_m2c</code></td><td>short</td><td>2026-10-28 12:26</td><td>00:05:54</td><td>COMPLETED</td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-m2c">s13-m2c</a></td></tr>
+<tr><td>11443403</td><td><code>s13_group</code></td><td>short</td><td>2026-10-28 12:43</td><td>01:13:35</td><td>COMPLETED</td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#h-prereg-files">h-prereg-files</a>、<a href="#h-prereg-status">h-prereg-status</a>、<a href="#s13-m1">s13-m1</a>、<a href="#s13-m2">s13-m2</a>、<a href="#s13-m2b">s13-m2b</a>、<a href="#s13-m2c">s13-m2c</a></td></tr>
+<tr><td>11443607</td><td><code>s13_cmp</code></td><td>short</td><td>2026-10-28 13:57</td><td>00:00:04</td><td>COMPLETED</td><td><a href="#h-leak-a">h-leak-a</a></td></tr>
+<tr><td>11453127</td><td><code>s12w</code></td><td>gpu-inter+</td><td>2026-10-29 02:31</td><td>01:16:57</td><td>COMPLETED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x1">s13-x1</a>、<a href="#s13-x3">s13-x3</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11454922</td><td><code>s12w</code></td><td>gpu-inter+</td><td>2026-10-29 06:54</td><td>00:06:50</td><td>COMPLETED</td><td><a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td>11459594</td><td><code>s13_pipetest</code></td><td>short</td><td>2026-10-28 23:20</td><td>00:01:44</td><td>COMPLETED</td><td><a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td>11461197</td><td><code>s13_x6</code></td><td>short</td><td>2026-10-29 00:29</td><td>00:02:09</td><td>COMPLETED</td><td><a href="#s13-x6">s13-x6</a></td></tr>
+<tr><td>11470471</td><td><code>s13_x7</code></td><td>short</td><td>2026-10-29 07:29</td><td>00:00:06</td><td>FAILED</td><td><a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td>11470524</td><td><code>s13_x7</code></td><td>short</td><td>2026-10-29 07:30</td><td>00:00:04</td><td>COMPLETED</td><td><a href="#s13-x7">s13-x7</a></td></tr>
+<tr><td>11472859</td><td><code>s13_x1x4</code></td><td>short</td><td>2026-10-29 09:04</td><td>00:00:40</td><td>COMPLETED</td><td><a href="#s13-x1">s13-x1</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11472899</td><td><code>s13_m3</code></td><td>short</td><td>2026-10-29 09:06</td><td>00:37:21</td><td>COMPLETED</td><td><a href="#s13-m3">s13-m3</a></td></tr>
+<tr><td>11472901</td><td><code>s13_x1x4</code></td><td>short</td><td>2026-10-29 09:06</td><td>00:00:09</td><td>COMPLETED</td><td><a href="#s13-x1">s13-x1</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11474830</td><td><code>s13_checks</code></td><td>short</td><td>2026-10-29 10:26</td><td>00:11:04</td><td>COMPLETED</td><td><a href="#s13-m3">s13-m3</a>、<a href="#s13-x1">s13-x1</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11475014</td><td><code>s13_posctrl</code></td><td>short</td><td>2026-10-29 10:38</td><td>00:18:39</td><td>COMPLETED</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11475175</td><td><code>s13_nli</code></td><td>short</td><td>2026-10-29 10:46</td><td>00:05:25</td><td>COMPLETED</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>11475517</td><td><code>s13_text2</code></td><td>short</td><td>2026-10-29 10:59</td><td>00:33:42</td><td>COMPLETED</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11485182</td><td><code>s13_futiny</code></td><td>short</td><td>2026-10-29 20:26</td><td>00:09:22</td><td>FAILED</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11485266</td><td><code>s13_futiny</code></td><td>short</td><td>2026-10-29 20:32</td><td>00:02:39</td><td>COMPLETED</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11485349</td><td><code>s13_fugpu</code></td><td>gpu-short</td><td>2026-10-30 03:15</td><td>00:10:28</td><td>FAILED</td><td><a href="#h-compute-table">h-compute-table</a>、<a href="#s13-x3">s13-x3</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11499990</td><td><code>s13_futiny</code></td><td>short</td><td>2026-10-30 11:02</td><td>00:01:33</td><td>COMPLETED</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>11500050</td><td><code>s13_futiny</code></td><td>short</td><td>2026-10-30 11:06</td><td>00:07:44</td><td>COMPLETED</td><td><a href="#s13-x4">s13-x4</a></td></tr>
+</table>
+<h3 id="ap-index-commits">G5.4 git commit</h3>
+<table class="t">
+<tr><th>commit</th><th>仓库</th><th>提交时间（EDT）</th><th>提交说明（git log 原文）</th><th>提及章节</th></tr>
+<tr><td><code>581d398</code></td><td><code>~/projects/jacobian-lens</code></td><td>2026-07-01 23:37</td><td>Initial release</td><td><a href="#g-model-jlens">g-model-jlens</a>、<a href="#h-lens-jac">h-lens-jac</a></td></tr>
+<tr><td><code>3a4f605</code></td><td><code>/scratch/zhang.zhiqi2/jlens_github_publish</code></td><td>2026-10-21 21:36</td><td>Review fixes: Stage 8 frozen-endpoint supplement and repo cleanup</td><td><a href="#s19-s8dsupp">s19-s8dsupp</a></td></tr>
+<tr><td><code>e2c7156</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-22 00:01</td><td>Add Stage 1–8 experiment code, data, figures and archive records</td><td><a href="#g-data-cohort">g-data-cohort</a>、<a href="#g-data-origin">g-data-origin</a>、<a href="#g-data-package">g-data-package</a>、<a href="#s19-common">s19-common</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a>、<a href="#s19-s1-pilot50">s19-s1-pilot50</a>、<a href="#s19-s2-protocol">s19-s2-protocol</a>、<a href="#s19-s3-exp24">s19-s3-exp24</a>、<a href="#s19-s4-readout">s19-s4-readout</a>、<a href="#s19-s5-crossed">s19-s5-crossed</a>、<a href="#s19-s6-jmrr">s19-s6-jmrr</a>、<a href="#s19-s71">s19-s71</a>、<a href="#s19-s72">s19-s72</a>、<a href="#s19-s73">s19-s73</a>、<a href="#s19-s74">s19-s74</a>、<a href="#s19-s8-protocol">s19-s8-protocol</a>、<a href="#s19-s8a">s19-s8a</a>、<a href="#s19-s8b">s19-s8b</a>、<a href="#s19-s8c">s19-s8c</a>、<a href="#s19-s8d">s19-s8d</a></td></tr>
+<tr><td><code>b4b76ed</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-26 21:35</td><td>Add Stage 10 (full-cohort layer-wise readout) and Stage 11 code/config</td><td><a href="#g-model-jlens">g-model-jlens</a>、<a href="#h-false">h-false</a>、<a href="#h-lens-jac">h-lens-jac</a>、<a href="#s1011-stage10">s1011-stage10</a>、<a href="#s1011-stage11">s1011-stage11</a></td></tr>
+<tr><td><code>c86112f</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-27 03:10</td><td>Stage 11: queue keeper, safer unit claims, parity/agreement misses recorded as WARN instead of stopping GPU work</td><td><a href="#s1011-stage11">s1011-stage11</a></td></tr>
+<tr><td><code>13ae7ec</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-27 15:00</td><td>Stage 12 code; name-prior analysis and probe controls; report and talk updated</td><td><a href="#s1011-stage11">s1011-stage11</a>、<a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s12-ov-scope">s12-ov-scope</a></td></tr>
+<tr><td><code>95dd94d</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-27 15:08</td><td>Stage 12: fix patch_pos for 8/9-token tails; a crashing unit type is disabled instead of holding the queue</td><td><a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s12-ov-scope">s12-ov-scope</a>、<a href="#s12-p1">s12-p1</a></td></tr>
+<tr><td><code>37b8b7b</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-27 18:50</td><td>Report and talk: data provenance, label and lens-fitting details, Stage 11 design details, read-early/spoken-late wording; Stage 12 fit takeover</td><td><a href="#s12-ov-scope">s12-ov-scope</a></td></tr>
+<tr><td><code>d569682</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 06:51</td><td>Stage 13 plan and code (middle-layer content: task vs paper identity); Stage 12 GPU-type guard and Stage 13 hand-over</td><td><a href="#s12-ov-gpu">s12-ov-gpu</a>、<a href="#s12-ov-scope">s12-ov-scope</a></td></tr>
+<tr><td><code>43c8f0c</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 07:07</td><td>Stage 13: provenance audit fixes (equal-prefix no-year templates, year-leak controls in M2), X1/X3/X4 GPU units, partner pairs</td><td><a href="#g-prompts-list">g-prompts-list</a>、<a href="#h-leak-a">h-leak-a</a></td></tr>
+<tr><td><code>355e64d</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 10:40</td><td>Stage 13: pre-registration, X1 random control and tune/test split, BERT baseline (M2c), M2b</td><td><a href="#h-prereg-files">h-prereg-files</a></td></tr>
+<tr><td><code>cf7106d</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 10:52</td><td>Stage 13: group (author-team / donor) folds for all probes, team-grouped tune/test split, prereg addendum 1</td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#h-stats-team">h-stats-team</a></td></tr>
+<tr><td><code>663ac1c</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 11:00</td><td>Stage 12 F2 eval excludes 3 team-overlap papers; E4b/controls and M2 per-paper vs team-split comparison scripts</td><td><a href="#h-leak-a">h-leak-a</a>、<a href="#s12-f2">s12-f2</a>、<a href="#s12-ov-scope">s12-ov-scope</a></td></tr>
+<tr><td><code>0dde4de</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 11:06</td><td>Stage 13 review: E4b title-reuse exclusion (4 configs), team-cluster bootstrap CIs, prereg addendum 2, probe statements marked under review</td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td><code>6d667ab</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 11:42</td><td>Stage 13: X6 (Stage 11 patching with false_1-4, runs first) and X7 (knockout on false runs, last); prereg addendum 3; 6.11 wording under review</td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a></td></tr>
+<tr><td><code>54d8ac2</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 11:56</td><td>Stage 13: X3 lexical-neighbour control, prereg addendum 4 (token roles, wording); report limitations</td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>fb8be6f</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-28 20:31</td><td>Stage 12 done: report, status; stage13 log-line fix</td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#g-prompts-list">g-prompts-list</a>、<a href="#s12-ov-scope">s12-ov-scope</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>8d1a5c0</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-29 20:35</td><td>Stage 13 GPU follow-up script (Qwen judge, X4 per-token)</td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td><code>44d084f</code></td><td><code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code></td><td>2026-10-30 00:42</td><td>Report v19 and merged PPT v12: title-to-name wording; x4tok check fatal</td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+</table>
+<p>另：Stage 7.1B 与 Stage 9 的代码和结果不在 git 里（<a href="#s19-common">s19-common</a>）；<code>3a4f605</code> 在分支 review/stage8-fixes，未合入 main（<a href="#s19-s8dsupp">s19-s8dsupp</a>）。</p>
+</section>
+<!-- UNKNOWN-LIST
+附录本身没有新增"未知"；ap-unknown 表（U01–U54）是 6 个正文部分全部 class="unk"（60 处）去重后的汇总。
+ap-qa Q8 | E2 阻断选用 torch.finfo(bf16).min 而非 −inf 的理由（正文未记录） | Stage 11 原作者（与 U36 同一会话）
+-->
+<!-- CHECK-NUMBERS
+1. 未知/需确认去重后 54 条（组长 10、用户 31、原作者 13）：本文件 ap-unknown 表；来源为 parts/*.unk.txt 与正文 <span class="unk"> 共 60 处（脚本 re.finditer 计数）
+2. "79%" = 35,898 / 45,540 = 0.7883：B_global2.html h-false-79（原始出处 351_stage10/config/conditions_manifest.json tier_summary[strict].n）
+3. Stage 8 冻结主终点 +2.33 pp [+1.50, +3.19]：C_stage1_9.html s19-s8dsupp（原始出处 jlens_github_publish/experiment_files/351_stage8/stage8D_supplement/frozen_plan_endpoints.csv 行 jlens_integrated7_RQ1_paper_mean）
+4. E4b 复核版 1,863 篇（target 896、control 499），tc L24 +0.052 [0.017, 0.088]：D_stage10_11.html s1011-s11-e4b-check（原始出处 381_stage13/summary_cpu_group/E4b_4configs.csv、perpaper_probe_spec.parquet）
+5. 索引中的作业名/开始时间/状态：本次 sacct -X -j <78 个作业号>（2026-10-30）；commit 说明：git -C /scratch/zhang.zhiqi2/jlens-authorship-recall_update log
+-->

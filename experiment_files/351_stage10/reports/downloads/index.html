@@ -1,0 +1,77 @@
+<title>Stage 1–11 汇报文件</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow column; each file is a row with name, size, contents and one Save button. */
+:root {
+  --paper: #F7F7F3; --ink: #22304A; --pen: #5B6474; --rule: #DDE2E8; --card: #FFFFFF; --accent: #D9772B; --ok: #2F7D3B; --err: #B42318;
+  --display: "Caveat", "Patrick Hand", cursive; --body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #161B23; --ink: #E8EBF0; --pen: #A3ADBD; --rule: #2D3645; --card: #1D2430; --accent: #F2A15F; --ok: #8FD49A; --err: #FF8A80; color-scheme: dark } }
+:root[data-theme="dark"] { --paper: #161B23; --ink: #E8EBF0; --pen: #A3ADBD; --rule: #2D3645; --card: #1D2430; --accent: #F2A15F; --ok: #8FD49A; --err: #FF8A80; color-scheme: dark }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--body); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 36px 56px; }
+main { max-width: 760px; margin: 0 auto; display: grid; gap: 22px; }
+h1 { font-family: var(--display); font-size: clamp(38px, 7vw, 54px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.lead { color: var(--pen); margin: 0; }
+ul.files { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.files li { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; align-items: center; }
+.name { font-weight: 700; overflow-wrap: anywhere; }
+.meta { color: var(--pen); font-size: 14px; grid-column: 1; }
+.size { font-variant-numeric: tabular-nums; }
+button { grid-column: 2; grid-row: 1 / span 2; font: 600 15px var(--body); color: var(--card); background: var(--ink); border: 0; border-radius: 8px; padding: 9px 16px; cursor: pointer; white-space: nowrap; }
+button:hover { background: var(--accent); }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .55; cursor: wait; }
+.status { grid-column: 1 / -1; font-size: 14px; min-height: 0; }
+.status.ok { color: var(--ok); } .old { color: var(--pen); font-weight: 600; border: 1px solid var(--rule); border-radius: 6px; padding: 0 6px; } .status.err { color: var(--err); }
+.note { color: var(--pen); font-size: 14px; border-top: 1px solid var(--rule); padding-top: 14px; margin: 0; }
+@media (max-width: 480px) { .files li { grid-template-columns: 1fr; } button { grid-column: 1; grid-row: auto; justify-self: start; } }
+</style>
+<main>
+  <header>
+    <h1>Stage 1–11 汇报文件</h1>
+    <p class="lead">最上面是 2026-10-30 的方法手册（Stage 1–13，A4）；下面是合并 PPT 第 11 版的导出文件，再往下保留第 9 版的旧文件和实验记录 v13 的 PDF。点“保存”，浏览器会先弹出确认框，确认后开始下载。</p>
+  </header>
+  <ul class="files">
+    <li><div class="name">Stage1-13_methods_handbook_A4.pdf</div><div class="meta"><b>新</b> · 方法手册，Stage 1–13 全部实验实际怎么做的，A4，259 页，每个数字附出处 · <span class="size">8.9 MB</span></div><button type="button" id="b1" data-f="Stage1-13_methods_handbook_A4.pdf">保存</button><div class="status" id="s1" role="status"></div></li>
+    <li><div class="name">Stage1-11_deck_v11_with_notes_zh.pdf</div><div class="meta"><b>新版 v11</b> · PPT 带中文讲稿，52 页，上面是幻灯片、下面是讲稿 · <span class="size">12.1 MB</span></div><button type="button" id="b2" data-f="Stage1-11_deck_v11_with_notes_zh.pdf">保存</button><div class="status" id="s2" role="status"></div></li>
+    <li><div class="name">Stage1-11_deck_v11_slides.pdf</div><div class="meta"><b>新版 v11</b> · PPT 无讲稿，52 页，可以直接发给别人 · <span class="size">11.1 MB</span></div><button type="button" id="b3" data-f="Stage1-11_deck_v11_slides.pdf">保存</button><div class="status" id="s3" role="status"></div></li>
+    <li><div class="name">Stage1-11_deck_v11_editable.pptx</div><div class="meta"><b>新版 v11</b> · 可编辑版 pptx，文字框、表格、卡片和流程图都能直接改，讲稿在备注栏，图表是单独的高清图片 · <span class="size">3.2 MB</span></div><button type="button" id="b4" data-f="Stage1-11_deck_v11_editable.pptx" data-b64="Stage1-11_deck_v11_editable.pptx.b64.txt">保存</button><div class="status" id="s4" role="status"></div></li>
+    <li><div class="name">Stage1-11_report_v13_A4.pdf</div><div class="meta">实验记录 v13，A4，71 页（网页版已更新到 v20；这份 PDF 还没有重新导出）· <span class="size">7.2 MB</span></div><button type="button" id="b5" data-f="Stage1-11_report_v13_A4.pdf">保存</button><div class="status" id="s5" role="status"></div></li>
+    <li><div class="name">Stage1-11_deck_v9_with_notes_zh.pdf</div><div class="meta"><span class="old">旧版 v9</span> · PPT 带中文讲稿 · <span class="size">11.4 MB</span></div><button type="button" id="b6" data-f="Stage1-11_deck_v9_with_notes_zh.pdf">保存</button><div class="status" id="s6" role="status"></div></li>
+    <li><div class="name">Stage1-11_deck_v9_slides.pdf</div><div class="meta"><span class="old">旧版 v9</span> · PPT 无讲稿 · <span class="size">10.4 MB</span></div><button type="button" id="b7" data-f="Stage1-11_deck_v9_slides.pdf">保存</button><div class="status" id="s7" role="status"></div></li>
+    <li><div class="name">Stage1-11_deck_v9_editable.pptx</div><div class="meta"><span class="old">旧版 v9</span> · 可编辑版 pptx · <span class="size">3.2 MB</span></div><button type="button" id="b8" data-f="Stage1-11_deck_v9_editable.pptx" data-b64="Stage1-11_deck_v9_editable.pptx.b64.txt">保存</button><div class="status" id="s8" role="status"></div></li>
+    <li><div class="name">Stage1-11_deck_v9_screenshot_notes.pptx</div><div class="meta"><span class="old">旧版 v9</span> · 截图版 pptx，每页是一张图，讲稿在备注栏 · <span class="size">10.1 MB</span></div><button type="button" id="b9" data-f="Stage1-11_deck_v9_screenshot_notes.pptx" data-b64="Stage1-11_deck_v9_screenshot_notes.pptx.b64.txt">保存</button><div class="status" id="s9" role="status"></div></li>
+  </ul>
+  <p class="note">PDF 和截图版 pptx 里的幻灯片图片用 JPEG 压缩过，以符合单个文件 15 MB 的上限，屏幕上看不出差别。集群上的原始无损版本在 /scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk/。可编辑版 pptx 需要先安装字体 Caveat、Patrick Hand、Noto Sans SC（Google Fonts 免费下载），否则 PowerPoint 会换成别的字体，排版会走样。</p>
+</main>
+<script>
+(function () {
+  var dl = null, ready = false;
+  if (window.claude && window.claude.use) window.claude.use('downloads').then(function (d) { dl = d; ready = true; }).catch(function () { ready = true; });
+  document.querySelectorAll('button[data-f]').forEach(function (b, i) {
+    var st = document.getElementById('s' + (i + 1));
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f');
+      if (!dl) { st.className = 'status err'; st.textContent = ready ? '这个查看界面不支持保存文件。请在 claude.ai 网页版里打开这一页再试。' : '还在准备，请过几秒再点。'; return; }
+      b.disabled = true; st.className = 'status'; st.textContent = '正在读取文件…';
+      var b64 = b.getAttribute('data-b64');
+      fetch(b64 || f).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return b64 ? r.text() : r.blob(); })
+        .then(function (x) {
+          if (!b64) return x;
+          var bin = atob(x.trim()), u = new Uint8Array(bin.length);
+          for (var j = 0; j < bin.length; j++) u[j] = bin.charCodeAt(j);
+          return new Blob([u]);
+        })
+        .then(function (blob) { st.textContent = '请在弹出的确认框里点确认。'; return dl.save({ filename: f, data: blob }); })
+        .then(function () { st.className = 'status ok'; st.textContent = '已交给浏览器下载。'; })
+        .catch(function (e) {
+          st.className = 'status err';
+          var c = e && e.code;
+          st.textContent = c === 'declined' ? '已取消。需要时再点一次“保存”。' : c === 'rate_limited' ? '已经有一个确认框打开着，请先处理它。' : '没有保存成功（' + (c || e.message || e) + '）。';
+        })
+        .then(function () { b.disabled = false; });
+    });
+  });
+})();
+</script>

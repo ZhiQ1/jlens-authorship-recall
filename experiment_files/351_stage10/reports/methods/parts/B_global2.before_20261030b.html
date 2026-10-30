@@ -1,0 +1,416 @@
+<!-- 方法手册 · 全局部分 B（假标题、读出工具、统计、切分与泄漏审计、预注册、计算资源）。id 前缀 h-。起草：2026-10-30，只读核查。 -->
+
+<section id="h-false">
+<h2>B1. 假标题（false_0 … false_4）与删标题条件</h2>
+
+<p><b>一句话：</b>每篇论文配 5 个"同领域、元数据相近、但不是这篇论文"的真实标题（来自 cohort 里的其他论文），年份保留目标论文自己的年份，只换标题；再加一个完全不给标题的 delete 条件。这样，名字本身好不好猜（name prior）在 true 与 false 之间抵消，差值只剩"这篇论文"的信息。
+<span class="src">~/jlens_work/10_stage10/351_stage10.py:242-307（match_false_titles）、310-349（freeze_conditions） · /scratch/zhang.zhiqi2/jlens/351_stage10/config/conditions_manifest.json · freeze 作业 11333739（351_stage10/logs/freeze_conditions_11333739.log） · git b4b76ed</span></p>
+
+<h3 id="h-false-pool">候选池与硬约束</h3>
+<table class="t">
+<tr><th>项目</th><th>实际做法</th><th>出处</th></tr>
+<tr><td>候选池</td><td>同一 <code>field</code>（8 个领域）内的全部其他论文；cohort 共 9,108 篇，每个领域 1,067–1,230 篇。donor 只能来自 cohort 本身（不是外部标题库）。</td><td><span class="src">351_stage10.py:262 `for field, g in df.groupby('field')` · cohort/papers.parquet 列 field</span></td></tr>
+<tr><td>硬排除 1：自己</td><td>对角线置 False。</td><td><span class="src">351_stage10.py:267, 276</span></td></tr>
+<tr><td>硬排除 2：任何共享姓氏</td><td>两篇论文的作者姓氏集合有交集就不能互为 donor。姓氏 = 每位作者按空格切分后的<b>最后一个词</b>，经 NFKD→ASCII→小写归一化。这一条同时排除了共享作者的论文（含同名不同人，保守）。</td><td><span class="src">351_stage10.py:258, 268-275（注释 "shared surname (incl. shared author)"）</span></td></tr>
+<tr><td>硬排除 3：近重复标题</td><td>标题词集合（归一化后长度 ≥4 的字母词）Jaccard &gt; 0.6 的排除（<code>NEAR_DUP_JACCARD = .6</code>）。</td><td><span class="src">351_stage10.py:248, 269, 277-280</span></td></tr>
+<tr><td>年份</td><td>假标题 prompt 用<b>目标论文</b>的年份（"title swapped only"）。因此 false prompt 中的年份与 donor 论文自身年份一般不同（Stage 13 审计：与 donor 相同的只有 17.5%）。</td><td><span class="src">351_stage10.py:325 `PROMPT.format(title=d.donor_title, year=p.year)` · conditions_manifest.json `false_title_year` · PROGRESS.md 2026-10-28 ~08:00 条</span></td></tr>
+<tr><td>delete 条件</td><td><code>Who are the authors of the paper ({year})?\nAuthors:</code></td><td><span class="src">351_stage10.py:244 DELETE_PROMPT</span></td></tr>
+</table>
+
+<h3 id="h-false-cost">代价函数（各项与权重）</h3>
+<pre class="code">cost(i, j) = |Δyear| / 5
+           + |Δn_authors| / max(1, 0.25 · n_authors_i)
+           + |Δtitle_tokens| / max(1, 0.2 · title_tokens_i)
+           + 1.5 · |Δcitation_bin_index|</pre>
+<p>i = 目标论文，j = donor；title_tokens 用 Qwen3-32B tokenizer（<code>add_special_tokens=False</code>）计数；citation_bin_index 是 13 个引用档按下界排序后的序号（0-2 → 0 … 4097+ → 12）。权重 1/5、0.25、0.2、1.5 只在代码里写定，没有找到选取理由的书面记录。
+<span class="src">351_stage10.py:264-266, 281 · conditions_manifest.json matching.cost</span>
+<span class="unk">未知/需确认：向 用户 确认（代价权重 1/5、0.25n、0.2len、1.5 的设计理由在 Stage 10 设计会话中没有留下书面依据）</span></p>
+<p><b>注意文档不一致：</b>STATUS.md §2 把代价写成 "|Δyear|/5 + |Δn_authors| + |Δtitle tokens| + 1.5·|Δcitation bin|"，省掉了作者数和标题长度两项的相对归一化分母；代码与 conditions_manifest.json 是带分母的版本，以代码为准。
+<span class="src">/scratch/zhang.zhiqi2/jlens/STATUS.md §2 "Title conditions" · 351_stage10.py:281</span></p>
+
+<h3 id="h-false-tiers">分档（tier）与"严格档"定义</h3>
+<table class="t">
+<tr><th>档</th><th>|Δyear| 上限</th><th>|Δn_authors| 上限</th><th>|Δtitle_tokens| 上限</th><th>|Δbin| 上限</th><th>同一 donor 最多被用几次</th></tr>
+<tr><td>strict（严格档）</td><td>5</td><td>max(1, round(0·n)) = <b>1</b></td><td>max(1, 0.20·len)</td><td>1</td><td>5</td></tr>
+<tr><td>medium</td><td>5</td><td>max(1, round(0.25·n))</td><td>max(1, 0.25·len)</td><td>1</td><td>5</td></tr>
+<tr><td>loose</td><td>8</td><td>max(1, round(0.34·n))</td><td>max(1, 0.30·len)</td><td>1</td><td>5</td></tr>
+<tr><td>nearest</td><td colspan="4">无元数据约束（只保留 3 条硬排除）</td><td>7</td></tr>
+</table>
+<p>"严格档"= 同领域、年份差 ≤5、作者数差 ≤1（相对容差 0，但代码里的 <code>max(1, …)</code> 使下限为 1）、标题 token 数差 ≤ max(1, 20%)、引用档相差 ≤1 档。
+<span class="src">351_stage10.py:245-247 TIERS（元组顺序：tier, max |dyear|, n_authors 相对容差, 标题相对容差, max dbin, donor 使用上限）, 286 · conditions_manifest.json matching.tiers</span></p>
+
+<h3 id="h-false-algo">分配算法与 false_0..false_4 的排序</h3>
+<ol>
+<li>每个领域单独做。每篇论文需要 K = 5 个 donor（<code>K_FALSE = 5</code>）。</li>
+<li>按 strict → medium → loose → nearest 顺序逐档进行。在一档内反复做"最小代价指派"：行 = 还缺 donor 的论文，列 = 还没到使用上限的论文；不满足本档约束、或该 (i,j) 已配过的格子代价设为 BIG = 1e6；另外拼上每行一列 BIG/10 的哑列，允许某行本轮不配。用 <code>scipy.optimize.linear_sum_assignment</code> 求解。一轮中每个 donor 最多用一次（指派是一对一的）；一轮配不出任何有效对时进入下一档。</li>
+<li>donor 使用次数 <code>uses</code> 跨档累计；strict/medium/loose 上限 5，nearest 上限 7。实测最大使用次数 7。</li>
+<li>所有档结束仍有论文不足 5 个 donor 则报错停止（实际没有发生）。</li>
+<li>每篇论文的 5 个 donor 按 (档序, cost, donor_paper_id) 排序，序号 k = 0..4 即 false_0..false_4。所以 <b>false_0 = 最好档里代价最小的那个</b>，不是随机的。</li>
+</ol>
+<span class="src">351_stage10.py:282-307（循环与 sort_values(['paper_id','tier_rank','cost','donor_paper_id'])） · conditions_manifest.json donor_use_max = 7</span>
+
+<h3 id="h-false-79">"79%" 是怎么算的</h3>
+<p>PROGRESS.md 2026-10-23 条写 "5 matched false titles (…; 79% from the strict tier)"。这是 <b>全部 45,540 个（论文, 假标题）配对里来自 strict 档的比例</b>：35,898 / 45,540 = 0.7883 ≈ 79%。不是"79% 的论文 5 个都是 strict"——后者是 6,056 / 9,108 = 66.5%。
+<span class="src">~/jlens_work/PROGRESS.md:1272 · conditions_manifest.json tier_summary（strict n = 35,898；medium 1,638；loose 2,565；nearest 5,439） · 本次用 cohort/conditions/false_titles.parquet 复算：strict 比例 0.788274</span></p>
+<table class="t">
+<tr><th>k</th><th>strict</th><th>medium</th><th>loose</th><th>nearest</th></tr>
+<tr><td>false_0</td><td>8,372</td><td>226</td><td>229</td><td>281</td></tr>
+<tr><td>false_1</td><td>7,732</td><td>349</td><td>443</td><td>584</td></tr>
+<tr><td>false_2</td><td>7,145</td><td>366</td><td>578</td><td>1,019</td></tr>
+<tr><td>false_3</td><td>6,593</td><td>377</td><td>626</td><td>1,512</td></tr>
+<tr><td>false_4</td><td>6,056</td><td>320</td><td>689</td><td>2,043</td></tr>
+</table>
+<p>每篇论文拥有的 strict donor 数：0 个 736 篇，1 个 640，2 个 587，3 个 552，4 个 537，5 个 6,056。各档中位 |Δyear|：strict 2、medium 2、loose 6、nearest 4（nearest 的 p90 为 14 年）；各档 cost 均值：strict 1.96、medium 3.00、loose 3.49、nearest 3.82（最大 30.1）。false_0 共用到 6,247 个不同 donor，其中 2,373 个 donor 作为 false_0 被用了不止一次（这一点后来造成 M2 的泄漏，见 <a href="#h-leak-a">h-leak-a</a>）。
+<span class="src">conditions_manifest.json papers_by_n_strict_donors、tier_summary · false_titles.parquet 本次复算（crosstab k×tier；groupby tier cost.describe；k==0 的 donor value_counts）</span></p>
+<p>"严格档"在分析中的用途：<code>analyze_title</code> 另算 <code>spec_strict_*</code> = true − 仅 strict donor 的 false 均值（没有 strict donor 的 736 篇为 NaN）。
+<span class="src">351_stage10.py:859-870 · 351_stage10/summary_title/paper_title_contrasts.parquet 列 spec_strict_mean_nlr、n_strict_false</span></p>
+
+<h3 id="h-false-use">后续各 Stage 用的是哪几个假标题</h3>
+<table class="t">
+<tr><th>用途</th><th>假标题</th><th>出处</th></tr>
+<tr><td>Stage 10 title-specific 信号 spec = true − mean(false_0..4)</td><td>5 个全用（等权平均）</td><td><span class="src">351_stage10.py:838-866</span></td></tr>
+<tr><td>Stage 11 E1/E2/E4/E4b、Stage 13 M2（false_0 runs）、X7</td><td>只用 false_0</td><td><span class="src">stage13_e4b_group.py:21 DONOR = ft[ft.k == 0] · stage13_cpu.py:152 · stage13_x7_analyze.py docstring</span></td></tr>
+<tr><td>Stage 12 F2（作者提示 lens 读出）</td><td>true + false_0..4</td><td><span class="src">371_stage12.py:41 TC</span></td></tr>
+<tr><td>Stage 13 X6（E1 用 false_1..4 重做）</td><td>5 个分别</td><td><span class="src">stage13_x6_analyze.py:14 TITLES</span></td></tr>
+</table>
+
+<h3 id="h-false-examples">两个真实例子</h3>
+<p><b>例 1（5 个都来自 strict 档）</b> paper_id 03095413eda1…，chemistry，2004，引用档 513-1024，3 位作者。<br>真标题：<i>Chain-growth polymerization for poly(3-hexylthiophene) with a defined molecular weight and a low polydispersity</i></p>
+<table class="t">
+<tr><th>k</th><th>档</th><th>cost</th><th>Δyear</th><th>Δn_auth</th><th>Δtok</th><th>Δbin</th><th>donor paper_id（年, 引用档, 作者数）</th><th>假标题</th></tr>
+<tr><td>0</td><td>strict</td><td>0.345</td><td>0</td><td>0</td><td>2</td><td>0</td><td>4c4a8b954edc…（2004, 513-1024, 3）</td><td>Ultrasensitive electrical biosensing of proteins and DNA: carbon-nanotube derived amplification of the recognition and transduction events.</td></tr>
+<tr><td>1</td><td>strict</td><td>2.062</td><td>1</td><td>1</td><td>5</td><td>0</td><td>dc65c4fe8f83…（2003, 513-1024, 2）</td><td>Reactive oxygen species (ROS) and reactive nitrogen species (RNS) generation by silica in inflammation and fibrosis.</td></tr>
+<tr><td>2</td><td>strict</td><td>2.272</td><td>3</td><td>0</td><td>1</td><td>1</td><td>1c12d4389668…（2007, 1025-2048, 3）</td><td>Palladium complexes of N-heterocyclic carbenes as catalysts for cross-coupling reactions--a synthetic chemist's perspective.</td></tr>
+<tr><td>3</td><td>strict</td><td>2.500</td><td>0</td><td>1</td><td>0</td><td>1</td><td>9a4aaf9db8a4…（2004, 257-512, 2）</td><td>Congener-specific dechlorination of dissolved PCBs by microscale and nanoscale zerovalent iron in a water/methanol solution.</td></tr>
+<tr><td>4</td><td>strict</td><td>3.300</td><td>4</td><td>1</td><td>0</td><td>1</td><td>cf3d351eaad5…（2000, 257-512, 2）</td><td>Recognition of oxytocin and oxytocin-related peptides in aqueous media using a molecularly imprinted polymer synthesized by the epitope approach.</td></tr>
+</table>
+<p><b>例 2（跨档：strict、medium、loose 混合）</b> paper_id 00a30d561d7b…，medicine，2012，引用档 129-256，13 位作者，标题 15 token。<br>真标题：<i>Glucose deprivation activates a metabolic and signaling amplification loop leading to cell death</i></p>
+<table class="t">
+<tr><th>k</th><th>档</th><th>cost</th><th>Δyear</th><th>Δn_auth</th><th>Δtok</th><th>Δbin</th><th>donor paper_id（年, 引用档, 作者数）</th><th>假标题</th></tr>
+<tr><td>0</td><td>strict</td><td>0.308</td><td>0</td><td>1</td><td>0</td><td>0</td><td>dbc7dac161f1…（2012, 129-256, 12）</td><td>Inflammatory breast cancer: what we know and what we need to learn.</td></tr>
+<tr><td>1</td><td>strict</td><td>3.008</td><td>1</td><td>1</td><td>3</td><td>1</td><td>62c586f88f1b…（2011, 65-128, 12）</td><td>Roflumilast attenuates allergen-induced inflammation in mild asthmatic subjects</td></tr>
+<tr><td>2</td><td>medium</td><td>2.956</td><td>1</td><td>3</td><td>1</td><td>1</td><td>7e773f9772dc…（2011, 65-128, 10）</td><td>A microRNA survival signature (MiSS) for advanced ovarian cancer.</td></tr>
+<tr><td>3</td><td>medium</td><td>3.915</td><td>4</td><td>2</td><td>3</td><td>1</td><td>6cd4b17bb322…（2016, 65-128, 15）</td><td>Technical aspects of neurostimulation: Focus on equipment, electric field modeling, and stimulation protocols</td></tr>
+<tr><td>4</td><td>loose</td><td>2.256</td><td>0</td><td>3</td><td>4</td><td>0</td><td>b26281050ffc…（2012, 129-256, 16）</td><td>The EPILEPSIAE database: An extensive electroencephalography database of epilepsy patients</td></tr>
+</table>
+<p>例 2 说明：k 先按档、再按 cost 排，所以 loose 档 cost 2.256 的排在 medium 档 cost 3.915 之后；medium 档 cost 2.956 也排在 strict 档 cost 3.008 之后。
+<span class="src">本次读 351_stage10/cohort/conditions/false_titles.parquet（列 k, tier, cost, d_year, d_n_authors, d_title_tokens, d_bin, donor_paper_id, donor_title）与 cohort/papers.parquet；例 1 = papers.parquet 第 100 行，例 2 = 第一个含 ≥3 个档的 paper_id</span></p>
+
+<h3 id="h-false-limits">局限与质疑</h3>
+<ul>
+<li>false prompt 里的年份是目标论文的年份，与假标题不配套；"title + year"组合本身是不自然的。M2 在 false_0 上读 donor 的年份时，要记住 prompt 年份属于目标论文。<span class="src">PROGRESS.md 2026-10-28 ~08:00 条</span></li>
+<li>同一 donor 最多可被 7 篇论文借用，false_0 donor 中 2,373 个被多次使用 → 任何按论文切分的 probe 都要按 donor 分组（见 h-leak-a）。</li>
+<li>姓氏排除只看"最后一个词"，复姓/姓在前的写法可能漏掉或多排除；未单独审计。</li>
+<li>17% 的配对来自 medium/loose/nearest 档，nearest 档没有元数据约束；为此另算了 spec_strict。</li>
+</ul>
+<p><span class="st st-done">已完成</span>（2026-10-23 17:03 冻结，conditions_manifest.json 记录 false_titles.parquet sha256 f9b410ce…、prompts.parquet sha256 8c846307…）</p>
+</section>
+
+
+<section id="h-lens">
+<h2>B2. 读出工具：logit lens 与三种 Jacobian lens（及 Stage 12 F1 作者提示 lens）</h2>
+
+<h3 id="h-lens-defs">读出的统一定义（是否经过 final norm）</h3>
+<table class="t">
+<tr><th>readout</th><th>计算</th><th>出处</th></tr>
+<tr><td><code>logit</code>（logit lens / "Vanilla"）</td><td><code>lm_head(final_norm(h_l))</code>：第 l 个 decoder block 的输出残差，<b>经过模型的 final RMSNorm</b> 再乘 lm_head。</td><td rowspan="3"><span class="src">351_stage10/config/protocol.json readouts · 351_stage10.py:425-439 fast_readout · ~/projects/jacobian-lens/jlens/hf.py:166-174 unembed = lm_head(final_norm(x)) · lens.py:135-144 transport = h @ J_l^T</span></td></tr>
+<tr><td><code>jlens_&lt;lens&gt;</code></td><td><code>lm_head(final_norm(J_l · h_l))</code>：先用 J_l 把 L_l 残差搬到 L63 残差基，再同样经过 final norm + lm_head。</td></tr>
+<tr><td><code>final</code></td><td><code>lm_head(final_norm(h_63))</code> = 模型真实下一 token logits。</td></tr>
+<tr><td>残差位置</td><td>"output of decoder block l"（jlens ActivationRecorder 约定）；h 先转 float32 再做 transport，unembed 时转回 lm_head 的 bf16。</td><td><span class="src">protocol.json residual · 351_stage10.py:433 · hf.py:167-170</span></td></tr>
+<tr><td>rank</td><td>1 + 词表中严格大于 gold logit 的个数（并列对 gold 有利；并列数另存 ties）。</td><td><span class="src">protocol.json rank/ties · 351_stage10.py:442-449</span></td></tr>
+</table>
+
+<h3 id="h-lens-jac">Jacobian 的估计与平均（三种 lens 共用的 jlens 库）</h3>
+<ul>
+<li>库：Anthropic jlens 公开代码（本地 <code>~/projects/jacobian-lens</code>，git <code>581d398 Initial release</code>）；本地只加了 <code>_stage10_compat.py</code>（transformers 5.x 下补 <code>hf_device_map</code> 属性，只在运行 351_stage10 时生效，不改数学）。仓库镜像 <code>code/jlens_package_patch/</code>（git b4b76ed）。<span class="src">~/projects/jacobian-lens/jlens/_stage10_compat.py · git diff jlens/__init__.py</span></li>
+<li>每条 prompt：一次前向（prompt 复制 dim_batch 份），然后 ceil(5120/dim_batch) 次反向。每次反向在目标层（L63）输出的<b>所有有效位置</b>同时放一个 one-hot cotangent（第 d 维），对各源层残差求梯度，再在<b>有效源位置上取平均</b>，得到 J_l 的第 d 行。所以每个位置 p 的贡献是 Σ_{p'≥p} ∂h_63[p']/∂h_l[p]（跨位置项也算在内），这是论文使用的估计。<span class="src">fitting.py:1-20 模块说明, 100-205 jacobian_for_prompt（198 行 .mean(dim=1)）</span></li>
+<li>有效位置：<code>[skip_first, seq_len−1)</code>，默认 skip_first = 16（跳过注意力 sink 位置，最后一个位置无下一 token）。<span class="src">fitting.py:42, 45-70</span></li>
+<li>跨 prompt：对每条 prompt 的 J_l 做<b>不加权平均</b>（running sum / n_done），与 prompt 长度无关；太短（seq_len ≤ 17）的 prompt 抛 ValueError 被跳过。保存为 fp16。<span class="src">fitting.py:340-366 · lens.py:52-65</span></li>
+<li>目标层：三种 Stage 10 lens 与 F1 都是 L63（最后一个 block 的输出），之后再走 final norm + lm_head。public lens 的 config 写 <code>target_layer: null</code>；按公开 jlens 代码 null 默认为最后一层，且其源层是 0–62，与"目标 63"一致，但 Neuronpedia 包装脚本本身无法核对。<span class="src">fitting.py:73-98 _check_layer_indices · public_neuronpedia/…/config.yaml · 351_provenance_audit/summary/protocol_comparison.csv（target_layer: UNKNOWN_PUBLIC）</span></li>
+</ul>
+
+<h3 id="h-lens-table">三种 Stage 10 lens 与 F1 作者 lens 的拟合参数</h3>
+<table class="t">
+<tr><th></th><th>public（Neuronpedia）</th><th>self100</th><th>fitA（Stage 9 Fit A）</th><th>F1 author lens（Stage 12）</th></tr>
+<tr><td>文件</td><td>public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/Qwen3-32B_jacobian_lens.pt</td><td>qwen32b_jlens_prelim_100.pt</td><td>351_stage9/runner_runs/full_A_repair_101_100valid/lens.pt</td><td>371_stage12/alens/lens.pt</td></tr>
+<tr><td>sha256</td><td>0af5ccf2…</td><td>268aba15…</td><td>4881b830…</td><td>未在 protocol 中登记 lens 本身 sha（fit_prompts.parquet sha be0c3ab7…）</td></tr>
+<tr><td>拟合文本</td><td>Salesforce/wikitext-103-raw-v1 train，text 字段，max_chars 2000；具体哪 557 条<b>没有提供</b></td><td>本地冻结语料 fitting_corpus/wikitext103_qwen32b_1000.jsonl（WikiText-103 train，seed 42 抽 1,000 条恰 128 token 的片段，候选 970,664 段），用索引 0–99</td><td>WikiText-103 train 逐行（去 "= 标题 =" 行，按字符长度过滤，sha256 去重），random.Random(3519001) 洗牌后切出 fit_A 100 / fit_B 100 / holdout 100（互不重叠）</td><td>Stage 10 问句 + 空格 + 真作者列表（逗号分隔）；40 篇 target/control 论文，来自 Stage 11 样本之外，seed 12 抽取（target 31、control 9）；token 长度 27–104（中位 50），没有截断</td></tr>
+<tr><td>条数</td><td>557（运营者在 557 处手动停止；原计划上限 1,000）</td><td>100</td><td>100 有效 / 101 候选（原运行跳过 1 条，追加 1 条 128 token 替补）</td><td>40</td></tr>
+<tr><td>源层</td><td>L0–L62 全部</td><td>L24/32/40/48/56/62</td><td>L16/24/32/40/48/56/62</td><td>L24/32/40/44/48/52/56/62</td></tr>
+<tr><td>目标层</td><td>null（见上）</td><td>63</td><td>63</td><td>63</td></tr>
+<tr><td>max_seq_len / skip_first</td><td>128 / 未记录</td><td>128 / 16</td><td>128 / 16</td><td>128 / 16</td></tr>
+<tr><td>dim_batch</td><td>64</td><td>8</td><td>1</td><td>1</td></tr>
+<tr><td>精度 / 硬件</td><td>bf16，1×B200，torch 2.11，transformers 5.17，jlens_commit 22f0412f，compile=true</td><td>bf16，A100-SXM4-80GB</td><td>bf16，A100-80GB（约 325–360 s/prompt）</td><td>bf16，单卡 A100-80GB（约 269 s/prompt）</td></tr>
+<tr><td>停止规则</td><td>stop_at_delta 0.002 未达到；Δmean 在 5e-3–8e-3 平台，估计均值 J 的相对标准误 ~13%</td><td>固定 100</td><td>固定 100</td><td>固定 40</td></tr>
+<tr><td>出处</td><td><span class="src">…/Salesforce-wikitext/config.yaml（stop_reason.detail） · 351_stage10/config/lenses.json · 351_provenance_audit/summary/protocol_comparison.csv</span></td><td><span class="src">qwen32b_jlens_prelim_100_config.json · fitting_corpus/manifest.json · qwen32b_jlens_prelim_100.log（2026-10-17 23:06 → 10-18 04:45，日志含 4 次续跑）</span></td><td><span class="src">~/jlens_work/09_stage9/351_stage9.py:10-11, 41-66 · 351_stage9/config/plan.json · runner_runs/full_A_repair_101_100valid/{repair_manifest.json, final_status.json}</span></td><td><span class="src">12_stage12/371_stage12.py:40, 50-62, 233 · 371_stage12/config/protocol.json fit · alens/progress.json（done 40，2026-10-28 17:12）</span></td></tr>
+</table>
+<p><span class="unk">未知/需确认：向 用户 确认（public lens 的 557 条 prompt 是哪些、skip_first、模型 revision —— Neuronpedia 没有提供；provenance 审计记为 UNDETERMINED/UNKNOWN_PUBLIC）</span>
+<span class="unk">未知/需确认：向 Stage 3 原作者（laptop 会话）确认（self100 的拟合脚本与 1,000 条语料的生成脚本不在 ~/jlens_work 或 git 仓库里；只有 config.json、manifest.json 和日志）</span>
+<span class="unk">未知/需确认：向 Stage 9 原作者（laptop 会话）确认（Fit A 准备时实际用的 --min-chars/--max-chars；脚本默认 100/1200，但 plan.json 没有记录实际参数）</span></p>
+
+<h3 id="h-lens-stage9">Stage 9 Fit A / Fit B / holdout 的状态</h3>
+<table class="t">
+<tr><th>子项</th><th>状态</th><th>出处</th></tr>
+<tr><td>9A Fit A</td><td><span class="st st-done">已完成</span> 状态 <code>VERIFIED_100_VALID_OF_101_CANDIDATES</code>。原运行到 n_done 94/next_idx 95 时发现 jlens.fit 跳过了 1 条（太短），协议 A_APPEND_ONE_V1 追加 1 条经核验的 128 token WikiText-103 文本（"Senjō no Valkyria 3 …"），估计方法不变。逐层 roundtrip 误差 2.0e-4–2.6e-4。</td><td><span class="src">full_A_repair_101_100valid/repair_manifest.json, final_status.json · 351_stage9_A_repair.log（REPAIRED A COMPLETE, 2026-10-22 05:33）</span></td></tr>
+<tr><td>9A Fit B</td><td><span class="st st-plan">计划未做完</span> 检查点 n_done = 66/100，最后写入 2026-10-21 19:12，之后没有续跑。Stage 10 因此没有用 Fit B。</td><td><span class="src">351_stage9_full_B.log 末行 "prompt 66/100" · STAGES.md Stage 9 表 · PROGRESS.md:556, 1271</span></td></tr>
+<tr><td>9B holdout 比较（Fit A vs Fit B）</td><td><span class="st st-plan">计划未做</span> prompts/holdout.jsonl（100 条）已冻结，没有任何比较结果。</td><td><span class="src">STAGES.md:170</span></td></tr>
+<tr><td>9C</td><td><span class="st st-plan">计划未做</span></td><td><span class="src">PROGRESS.md:556</span></td></tr>
+</table>
+<p>所以"换一批 WikiText 拟合，lens 结论还稳不稳"目前只有：self100 的 50+50 split-half（Stage 3.5.1，只比矩阵和少量 prompt）和 Stage 10 中三把 lens 的并列结果，没有正式的 Fit A vs Fit B 留出集比较。
+<span class="src">02_self_lens_validation/351_self_jlens_split_half.py:117 · 351_self100_split_half/</span></p>
+
+<h3 id="h-lens-use">Stage 10 中怎么用这些 lens</h3>
+<ul>
+<li>层：主轮 L24/32/40/48/56/62（三把 lens 共有的层）+ final L63；扩展轮（ext）只用 public 与 logit，层 L50–55、57–61。<span class="src">351_stage10.py:43 DEFAULT_LAYERS · 351_stage10/logs/pool/job_s10p_ext_true_11363851.log 头行 readouts=jlens_public:logit layers=50:…:61</span></li>
+<li>每把 lens 的 J_l 放在持有第 l 个 block 的 GPU 上（同 dtype），只保留需要的层。<span class="src">351_stage10.py:407-422 open_lenses</span></li>
+<li>F1 作者 lens 在 Stage 12 F2 用于读名字位置与最后一个标题 token。<span class="src">371_stage12.py:251-264 do_alens_read</span></li>
+</ul>
+
+<h3 id="h-lens-limits">局限与质疑</h3>
+<ul>
+<li>三把 Stage 10 lens 都是在通用文本（WikiText-103）上拟合的，不是在作者 prompt 上；F1 是唯一的作者提示 lens，只有 40 条。</li>
+<li>self100 与 fitA 都只有 100 条，public 也未收敛（相对标准误 ~13%）；dim_batch 不同（64/8/1）只影响显存，不改变估计量（审计说明），但数值实现差异未单独验证。<span class="src">351_provenance_audit/reports/audit_report.md Audit 4</span></li>
+<li>public 与自拟合 lens 拟合文本同源（WikiText-103），但 public 的具体条目未知，无法做逐条重叠检查。</li>
+</ul>
+</section>
+
+
+<section id="h-stats">
+<h2>B3. 统计：引用档、分层权重、bootstrap、作者团队、多重比较</h2>
+
+<h3 id="h-stats-bins">引用档（citation_bin）</h3>
+<p>13 档，来自组长的标注包（列 <code>citation_bin</code>），按 2 的幂分档：0-2、3-4、5-8、9-16、17-32、33-64、65-128、129-256、257-512、513-1024、1025-2048、2049-4096、4097+。本次用 papers.parquet 的 citations 复核每档实际最小/最大值都落在标签范围内（例：513-1024 实际 513–1023；4097+ 实际 4,136–63,901）。前 10 档各约 800 篇（0-2 为 796），高档较少（665 / 326 / 122）。
+<span class="src">labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv 列 citation_bin · bin_table.csv · 本次复算 cohort/papers.parquet</span>
+<span class="unk">未知/需确认：向 组长 确认（档的边界由 Dreaming Up Authors 评测集/标注流程定义，标注包 README 没有写边界规则本身）</span></p>
+<p>各档 group_tight 人数（target / control）：0-2 200/352，3-4 207/355，5-8 237/332，9-16 288/275，17-32 327/234，33-64 401/185，65-128 441/165，129-256 497/126，257-512 533/105，513-1024 603/53，1025-2048 539/29，2049-4096 264/9，4097+ 84/0。所以"两组都 ≥30"只剩前 10 档（1025-2048 control 只有 29）。
+<span class="src">本次复算 cohort/papers.parquet crosstab · 351_stage10/summary/B_target_vs_control_within_bin.csv 列 n_strata = 10，n_a = 3,734，n_b = 2,182</span></p>
+
+<h3 id="h-stats-strat">target − control 分层估计（档内比较）</h3>
+<pre class="code">est = Σ_b w_b · ( mean_target,b − mean_control,b ),
+w_b ∝ n_t,b · n_c,b / (n_t,b + n_c,b),  Σ_b w_b = 1,
+只用 n_t,b ≥ min_n 且 n_c,b ≥ min_n 的档。</pre>
+<table class="t">
+<tr><th>实现</th><th>min_n</th><th>bootstrap 方式</th><th>出处</th></tr>
+<tr><td>Stage 10 <code>stratified_diff</code></td><td>30（主分析）；10（bin×field、guard−target、group_both 敏感性）</td><td>权重固定；在每个 档×组 内独立有放回重抽论文，B = 2,000，百分位 95%</td><td><span class="src">351_stage10.py:642-645, 670-691, 748-760</span></td></tr>
+<tr><td>Stage 11 <code>strat_diff</code></td><td>30</td><td>同上（档×组内重抽论文），B = 2,000</td><td><span class="src">11_stage11/stage11_analyze.py:8-9, 32-41</span></td></tr>
+<tr><td>Stage 12 <code>strat</code></td><td>30</td><td>同上</td><td><span class="src">12_stage12/stage12_analyze.py:7, 21-30</span></td></tr>
+<tr><td>Stage 13 <code>strat_cluster</code>（团队版）</td><td>30</td><td>点估计与上相同；区间改为按作者团队重抽（多项分布权重）</td><td><span class="src">13_stage13/stage13_cluster_ci.py:30-50</span></td></tr>
+<tr><td>Stage 13 X4 <code>strat_diff_team</code></td><td><b>10</b></td><td>团队重抽</td><td><span class="src">13_stage13/stage13_x1x4_analyze.py:80-90</span></td></tr>
+</table>
+
+<h3 id="h-stats-boot">Bootstrap：单位、次数、种子（逐脚本）</h3>
+<table class="t">
+<tr><th>脚本</th><th>单位</th><th>B</th><th>种子</th></tr>
+<tr><td>10_stage10/351_stage10.py analyze</td><td>论文（档×组内）</td><td>2,000</td><td>3510（全部表共用一个 rng，按表顺序消耗）</td></tr>
+<tr><td>351_stage10.py analyze_title</td><td>论文</td><td>2,000</td><td>3511</td></tr>
+<tr><td>351_stage10.py parity 抽样</td><td>（抽 12 个 context）</td><td>—</td><td>10</td></tr>
+<tr><td>10_stage10/stage10_extra.py</td><td>论文（context 级按论文聚类）</td><td>2,000</td><td>3512</td></tr>
+<tr><td>stage10_extra_r0.py</td><td>论文</td><td>2,000</td><td>3512</td></tr>
+<tr><td>stage10_extra_cond_role.py / stage10_extra_r0r1.py</td><td>论文</td><td>2,000</td><td>3513（r0r1 内调用 Stage 11 时 3611；probe 折 11）</td></tr>
+<tr><td>stage10_extra_format.py</td><td>论文</td><td>2,000</td><td>3514</td></tr>
+<tr><td>11_stage11/stage11_analyze.py</td><td>论文（比值用配对重抽）</td><td>2,000</td><td>3611；E4b probe 折种子 11</td></tr>
+<tr><td>12_stage12/stage12_cpu.py</td><td>论文</td><td>2,000</td><td>3712；probe 折 11</td></tr>
+<tr><td>12_stage12/stage12_analyze.py</td><td>论文</td><td>2,000</td><td>3713</td></tr>
+<tr><td>13_stage13/stage13_cpu.py（M1/M2）</td><td>论文</td><td><b>1,000</b></td><td>3813；折 13（paper）或 group_folds(seed 13)</td></tr>
+<tr><td>stage13_cluster_ci.py</td><td><b>作者团队</b></td><td>2,000</td><td>函数默认 1/2/3，各表传入</td></tr>
+<tr><td>stage13_x6_analyze.py</td><td>团队（5 个假标题共用同一组抽样）</td><td>2,000</td><td>13</td></tr>
+<tr><td>stage13_x7_analyze.py</td><td>团队（T、F、S 共用）</td><td>2,000</td><td>17</td></tr>
+<tr><td>stage13_x1x4_analyze.py</td><td>团队（pairs.parquet 列 team）</td><td>2,000</td><td>X1 101；X4 202；X4 recognition 303+层号</td></tr>
+<tr><td>stage13_m3_analyze.py</td><td>团队</td><td>2,000</td><td>31</td></tr>
+<tr><td>stage13_x4_textbase.py / textbase2.py</td><td>团队</td><td>2,000</td><td>41 / 43</td></tr>
+<tr><td>stage13_x1_similarity.py</td><td>（置换）</td><td>—</td><td>5</td></tr>
+</table>
+<span class="src">以上均为 `grep -n "default_rng(\|B_BOOT\|NB = \|B = "` 于 ~/jlens_work/1[0-3]_*/*.py 的结果（例：351_stage10.py:645, 748, 875；stage13_cpu.py:26；stage13_cluster_ci.py:18；stage13_x6_analyze.py:13, 51；stage13_x7_analyze.py:15, 50；stage13_m3_analyze.py:19, 96）</span>
+<p>区间一律是百分位法 95%。Stage 13 起（prereg addendum 2）团队版为主，但 Stage 10–12 已发表的表仍是论文级区间，团队版另见 cluster_ci.md。</p>
+
+<h3 id="h-stats-team">作者团队（group_folds）定义</h3>
+<ol>
+<li>作者全名归一化：NFKD → ASCII（丢弃非 ASCII）→ 小写 → 非字母替换为空格 → 按空格切词；<b>只有 ≥2 个词的名字</b>才参与（单词名字不连边）。</li>
+<li>用 union-find：同一 paper_id 合并；任意两篇共享一个归一化全名即合并（同名不同人也合并，保守）。</li>
+<li>false_0 行（<code>donors</code> 参数）：每行再与其 donor 论文（及 donor 的团队）合并，保证同一 donor 标题不跨折。</li>
+<li>分折：团队按大小降序（同大小先用 seed 13 洗牌），依次放入当前最轻的折，k = 5。</li>
+</ol>
+<span class="src">13_stage13/stage13_cpu.py:80-109 group_folds · git cf7106d</span>
+<p>本次复算（9,108 篇）：7,247 个团队；6,503 个单篇团队；最大团队 228 篇（其次 76、42）；5 折大小 1,822/1,822/1,822/1,821/1,821。与 cluster_ci.md（7,247）和 PROGRESS（1,821–1,822）一致。
+<span class="src">本次运行 group_folds（CPU）· 381_stage13/reports/cluster_ci.md 第 3 行</span></p>
+
+<h3 id="h-stats-mult">多重比较</h3>
+<p><b>Stage 10–13 没有做任何多重比较校正</b>（Bonferroni/Holm/FDR 在 10–13 的脚本里都搜不到）。采用的规则是"所有层都报告，不只挑一层"：prereg.json general_rules 第 1 条 "All layers and positions are reported; no result is reported for a hand-picked layer only."，以及 "A difference counts only if its interval excludes 0"。层数多（Stage 10 主轮 6 层 × 4 readout + final，ext 再加 11 层），逐层"区间不含 0"的判断没有族错误率控制。
+<span class="src">grep -rniE "bonferroni|holm|fdr|benjamini|multipletest" ~/jlens_work（10–13 无结果） · 381_stage13/config/prereg.json general_rules</span></p>
+<p>较早阶段：Stage 8 的协议写了"7 个逐层比较 Holm 校正"，但 Stage 8 代码里只在 analysis_plan 字符串中出现 Holm，没有找到实现；Stage 8D supplement 明写 "unadjusted CIs; per-layer rows … not Holm-adjusted"；Stage 7.2/7.4 报告写明未校正。
+<span class="src">08_stage8/351_stage8.py:125 · 351_stage8D_supplement.py:63 · 07_2_stage7_2/351_stage7_2_score.py:193 · 07_4_stage7_4/351_stage7_4.py:91</span>
+<span class="unk">未知/需确认：向 Stage 8 原作者（laptop 会话）确认（Stage 8 计划的 Holm 校正是否在别处实际计算过；HPC 代码中没有实现）</span></p>
+</section>
+
+
+<section id="h-leak">
+<h2>B4. 切分与泄漏审计</h2>
+<p>背景：Stage 11 E4b（标题 token probe）和 Stage 13 M2/M2b/M2c 原来都按<b>论文</b>随机分 5 折（E4b 种子 11，M2 种子 13，所有层/位置/目标共用一套折）。2026-10-28 上午的 probe 切分审读发现：按论文分折本身是一致的，但 donor 标题和作者团队会跨折。
+<span class="src">PROGRESS.md 2026-10-28 11:45 条（"probe-split audit"）</span></p>
+
+<table class="t">
+<tr><th>#</th><th>泄漏</th><th>发现（日期 / 哪次审读）</th><th>影响的结果</th><th>修复（脚本 · 作业）</th><th>修前 → 修后</th></tr>
+
+<tr id="h-leak-a"><td>(a)</td><td><b>M2 false_0：借出标题同时在训练和测试</b>。false_0 共 6,247 个 donor，2,373 个被多篇论文借用；按论文随机分折后，<b>2,004 个 donor 标题</b>的行同时落在训练折与测试折，probe 等于在测试时见过同一标题。</td><td>2026-10-28（PROGRESS 记为 11:45 条）probe 切分审读。本次复算：Stage 11 titlepos/false_0 的 9,108 行按 default_rng(13).integers(0,5) 分折，donor 出现在 &gt;1 折的有 2,004 个。</td><td>M2 false_0 的 year / citations / field 读数（"表征跟随所显示标题的论文"）；Stage 11 E4b 的"用假标题训练的 probe 更强"对照（同源泄漏，见 c）。</td><td>stage13_cpu.group_folds，false_0 按 donor 及其团队分组；SPLIT=group 重跑 M2 → M2b → M2c：作业 <b>11443403</b>（2026-10-28 12:43–13:56），输出 summary_cpu_group/；对比 stage13_split_compare.py 作业 11443607 → reports/split_compare.md。核验：0 个 donor 标题跨折。</td><td>L48 title 位置（R²）：donor year 0.623 → 0.535；log citations 0.588 → 0.488；citations|year 0.570 → 0.471；field acc 0.788 → 0.716。L52：year 0.619 → 0.538，citations 0.580 → 0.484。结论：泄漏确认，但修后数值仍与 true run 可比（true L48 year 0.555）。paper-split 的 false_0 数字被 addendum 1 判为无效。<span class="src">381_stage13/reports/split_compare.md 第 126–133 行（列 value_paper, value_group）· prereg_addendum1.json rules[3]</span></td></tr>
+
+<tr><td>(b)</td><td><b>同作者团队跨折</b>：2,319 对论文共享 ≥1 个全名（64 对共享 ≥2 个），按论文分折时被分在不同折。也影响所有按论文的 bootstrap 区间（论文不独立）。</td><td>同 (a)，2026-10-28 probe 切分审读；区间问题在 report v5 审读（PROGRESS 2026-10-28 12:35 条 review item 3）。</td><td>M2/M2b/M2c、M3/X 系列的 tune/test、Stage 10–11 的全部论文级 CI。</td><td>① probe：group_folds，作业 11443403（同上）；X1/X3/X4 的 tune/test 在 pairs.parquet 按团队重切（0 个团队两边都有，GPU 数据产生前完成）。② 区间：stage13_cluster_ci.py 团队 bootstrap，作业 <b>11443686</b>、11443696 → reports/cluster_ci.md。</td><td>M2 true runs：paper vs team 差 ≤0.005（L48 year 0.556 vs 0.555；recognised AUROC 0.670 vs 0.671）。M2b/M2c 变化 ≤0.02。团队 CI：区间宽度平均放大 0–8%（最大 22%）；380 行中 4 行"区间不含 0"翻转，都在 0 附近：6.4 logit L32（0.005）、6.2 logit L56（+0.035 → [−0.001, 0.069]）、C−A logit L55、6.3 target public L48。<span class="src">split_compare.md M2 true 行 · cluster_ci.md</span></td></tr>
+
+<tr><td>(c)</td><td><b>标题一题两用（title reuse，E4b）</b>：probe 在训练时见过测试论文 prompt 里的标题——true 训练的 probe：测试论文的假标题的 donor 在训练折；false 训练的 probe：同一 donor 标题，或测试论文自己的标题借给了训练论文。</td><td>2026-10-28 report v5 审读（PROGRESS 12:35 条），写入 prereg addendum 2 E4b 条。</td><td>Stage 11 E4b（报告 6.11、6.12 的 probe 陈述）及其对照（随机 gold、同领域 gold、"用假标题训练的 probe"）。</td><td>13_stage13/stage13_e4b_group.py（只替换原函数的折行并注入 hook，per-paper/无排除配置必须复现已发表数字），作业 <b>11443587</b> → reports/e4b_split_compare.md。确认版 = 团队折 + 排除 title reuse。</td><td>受影响比例：约 79.5–82.8% 的测试论文被排除；保留 1,863 篇（target 896、control 499、excluded 433、guard 35）；false 训练对照保留 1,568（810/399）。target−control（pooled within bin）：paper/none L24 +0.024 [0.010, 0.038] → group/dropped +0.052 [0.017, 0.088]；L56 +0.039 → +0.075 [0.038, 0.115]。"用假标题训练的 probe"（全部论文 spec）：L24 0.068 → 0.050，L40 0.081 → 0.057，L56 0.094 → 0.074，修后不再高于标准 probe（0.050 / 0.066 / 0.080），"假标题训练更强"的说法撤回。复现检查：paper/none 与已发表 E4b max |diff| 0.0000，对照 ≤0.0080。<span class="src">e4b_split_compare.md 三张表与 Sanity 行 · summary_cpu_group/perpaper_probe_spec.parquet 本次复算保留数</span></td></tr>
+
+<tr><td>(d)</td><td><b>Stage 12 F2 评估集与 F1 拟合集同名作者</b>：40 篇拟合论文本来就不在 Stage 11 样本里（论文不重叠），但 3 篇样本论文与拟合论文共享一个全名："qiang xu"、"j schwartz"、"j braun"（可能是同名不同人）。</td><td>2026-10-28 审读（PROGRESS 12:00 条）。</td><td>Stage 12 F2（作者提示 lens 的 title-specific 信号）。</td><td>不重拟合（拟合当时 35/40，重拟合约 4 GPU-h），改为评估时排除这 3 篇：371_stage12/config/alens_eval_exclude.json（mtime 2026-10-28 10:58），stage12_analyze.py:136-139 读取并剔除。git 663ac1c。</td><td><b>没有修前数字</b>：排除文件写于 F1 完成（17:12）和 F2 分析（报告 19:55）之前，F2 只按排除后的样本算过一次。<span class="src">371_stage12/reports/stage12_report.md F2 表 · ls --full-time 371_stage12/config, alens, reports</span></td></tr>
+
+<tr><td>(e1)</td><td><b>":" 位置的年份泄漏</b>：Stage 11 残差来自含年份的 prompt；冒号位置已看到年份，所以在 ":" 处 probe 年份（R² 0.98）是泄漏；citations/recognition 也可能借年份。标题最后一个 token 还没看到年份（因果注意力），那里是干净的。</td><td>2026-10-28 ~08:00 数据来源审计（用户要求"年份问题不能用含年份的 prompt"）。</td><td>M2 的 ":" 位置读数。</td><td>":" 处年份只当阳性对照；citations/recognition 加 year-only 基线和"去年份残差"目标；新 GPU 实验（X 系列）改用不含年份、前缀等长的模板。作业 11439283（M2v2）；git 43c8f0c。</td><td>":" 处 citations（去年份）0.40 → 0.62；recognised 0.67 → 0.72（随层，见 PROGRESS）；year-only 基线 citations R² 0.047、recognised AUROC 0.559。<span class="src">PROGRESS.md 2026-10-28 09:35 条 · split_compare.md year-only baseline 行</span></td></tr>
+
+<tr><td>(e2)</td><td>false_0 prompt 带目标论文年份（与 donor 年份相同仅 17.5%）</td><td>同 e1。</td><td>M2 false_0 读 donor 年份的解释。</td><td>只在报告中注明，未改数据。</td><td>—</td></tr>
+
+<tr><td>(e3)</td><td>lens 拟合文本与评估文本重叠</td><td>Stage 3 provenance 审计（Audit 3）。</td><td>self100、public 的 fidelity 评估。</td><td>self100：40 条评估 prompt 与拟合 prompt 0 条完全匹配、0 条 8 词重叠标记。public：拟合条目未提供，<b>无法核对</b>。</td><td>—<span class="src">351_provenance_audit/reports/audit_report.md</span></td></tr>
+
+<tr><td>(e4)</td><td>BERT 基线（M2c）的预训练数据（Wikipedia）可能包含著名论文</td><td>report v5 审读 → addendum 2 M2c 条。</td><td>M2c "Qwen 超过 BERT"的解读。</td><td>规则改为单向：BERT 追上 Qwen 才算支持"风格"，Qwen 超过 BERT 只作参考。</td><td>—</td></tr>
+</table>
+
+<p><b>局限：</b>团队定义只靠全名字符串，单词名字不连边、同名不同人会被合并、拼写变体（如中间名缩写不同）不会合并，没有人工核验。<span class="src">stage13_cpu.py:87-89</span></p>
+<p><span class="st st-rechecked">复核过</span>（a）（b）（c）的修后数字已由 split_compare / e4b_split_compare / cluster_ci 输出，(a) 的 2,004 与 7,247 个团队本次已独立复算一致。</p>
+</section>
+
+
+<section id="h-prereg">
+<h2>B5. 预注册（Stage 13）</h2>
+
+<h3 id="h-prereg-files">文件、哈希与写定时间</h3>
+<p>目录 <code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/</code> 下只有 prereg.json 与 addendum 1–4，<b>没有 addendum 5：补充 5 尚未写定</b>（PROGRESS 2026-10-29/30 多处写"addendum 5 waits for the user"，内容拟为 X3 的 jaccard2 修正与排除 27 条相同改写）。五个 json 都是只读（-r--r--r--）。
+<span class="src">ls -la 381_stage13/config · PROGRESS.md:103, 124, 176</span></p>
+<table class="t">
+<tr><th>文件</th><th>sha256（.sha256 文件）</th><th>本次 sha256sum</th><th>文件内 written</th><th>文件 mtime（EDT）</th><th>git commit 时间</th></tr>
+<tr><td>prereg.json</td><td>18409398945f…32dce701</td><td>一致</td><td>2026-10-28T11:00-04:00</td><td>2026-10-28 10:39:12</td><td>355e64d 10:40:15</td></tr>
+<tr><td>prereg_addendum1.json</td><td>608045ca5946…169ad60f</td><td>一致</td><td>2026-10-28T11:40-04:00</td><td>10:51:25</td><td>cf7106d 10:52:00</td></tr>
+<tr><td>prereg_addendum2.json</td><td>377b79630aa0…2d34205f</td><td>一致</td><td>2026-10-28T12:30-04:00</td><td>11:05:49</td><td>0dde4de 11:06:51</td></tr>
+<tr><td>prereg_addendum3.json</td><td>e01aa6e3d965…5241a74bf</td><td>一致</td><td>2026-10-28T14:00-04:00</td><td>11:42:05</td><td>6d667ab 11:42:31</td></tr>
+<tr><td>prereg_addendum4.json</td><td>ac77da9f1f0f…f512e6d193</td><td>一致</td><td>2026-10-28T14:40-04:00</td><td>11:55:18</td><td>54d8ac2 11:56:02</td></tr>
+</table>
+<span class="src">cat *.sha256; sha256sum prereg*.json（2026-10-30 本次运行）· ls --time-style=full-iso · git log -- experiment_files/381_stage13/config/*（仓库 /scratch/zhang.zhiqi2/jlens-authorship-recall_update）</span>
+<p><b>时间不一致：</b>文件内的 written 字段比文件 mtime 和 git 提交时间晚 20 分钟到 2 小时 45 分钟（PROGRESS 的条目标题时间也用了较晚的时间）。mtime、git 时间与 sacct 互相吻合：prereg 写于 10:39，紧接 M2c 作业 11443232 提交（10:38:42，"submitted, no output yet"）；addendum 1 写于 group 重跑 11443403 提交（10:49:37）之后；addendum 2 写于 E4b 11443587（10:59:40）和 clci 11443686（11:05:08）提交之后。因此应以 mtime/git 为准，written 字段不可当作写定时间引用。
+<span class="src">sacct -j 11443232,11443403,11443587,11443686 -o Submit</span>
+<span class="unk">未知/需确认：向 用户 确认（written 字段与 PROGRESS 标题时间为何比实际文件时间晚；推测是会话里手写的时间，答辩时应引用 git 提交时间）</span></p>
+
+<h3 id="h-prereg-status">写定时已有哪些数据（status_at_writing 与核对）</h3>
+<table class="t">
+<tr><th>文件</th><th>status_at_writing 原文要点</th><th>核对</th></tr>
+<tr><td>prereg</td><td>M1、M2、M2b 已跑；M2c 已提交无输出；M3、X1、X3、X4 无数据（0/144 GPU 单元）。M1/M2/M2b 标为探索性。</td><td>M2b 11441993 结束于 10:25:59 ✓；M2c 12:32 才结束 ✓；381_stage13/raw 下最早 GPU 文件是 xf_patch 2026-10-28 19:46，task 10-29 00:21，xpatch 00:54，pscope 02:44 ✓</td></tr>
+<tr><td>addendum 1</td><td>M3/X1/X3/X4 仍无数据；M2c 与 paper-split M2/M2b 已有；group 重跑 11443403 无输出。</td><td>11443403 开始于 12:43 ✓</td></tr>
+<tr><td>addendum 2</td><td>同上；E4b 重跑、团队 CI、grouped M2/M2b、M2c 已提交无输出。</td><td>E4b 12:45 开始、clci 14:17 开始 ✓</td></tr>
+<tr><td>addendum 3</td><td>X6、X7 无数据；Stage 12 P1/P2 在写之前做过 CPU 预览（促成了审读，但不决定规则）。</td><td>stage12_P1P2_preview.md mtime 11:23 &lt; 11:42 ✓；xf_patch 最早 19:46、ko_false 10-29 04:18 ✓</td></tr>
+<tr><td>addendum 4</td><td>X3（para_gen/para_run）无数据；P1 按 token 角色的拆分是写之前的 CPU 预览，记为探索性。</td><td>para_gen 最早 10-29 03:09 ✓</td></tr>
+</table>
+
+<h3 id="h-prereg-content">内容摘要</h3>
+<table class="t">
+<tr><th>文件</th><th>内容</th></tr>
+<tr><td>prereg.json</td><td>通用规则：所有层/位置都报告；X1/X3/X4 用 pairs.parquet 的 tune/test（target/control 内 50/50），选择在 tune 上做、确认看 test；区间 = 论文 bootstrap 2,000 次，区间不含 0 才算；容差/parity 未达标记 WARN 不改分析；X2 运行前另写补充。<br>M2c：BERT 最佳层 ≥ Qwen 最佳层 − 0.05 → "风格"；Qwen 超过 BERT ≥0.10（R²）/≥0.05（AUROC）→ 超出风格。<br>M3：身份指数 I(l,pos)（同论文跨任务 cos − 不同论文跨任务 cos）；迁移比 T(l)（任务 a 训练、任务 b 测试 / b 内训练测试；year、log citations、field，按论文 5 折）；H2 预测 L8–L24 起 I&gt;0 且 L16–L40 T≥0.8；H1 预测 I≈0 或 T&lt;0.5；lexical floor = L4 的同一量。<br>X1：恢复率 R(src,l)；在 tune 上选 R(authors)−R(random_c) 最大的层；test 上 R(year)、R(field) 都超过 R(random_c) 且在 R(authors) ±0.1 内 → 任务无关身份；random_c 任一层 &gt;0.1 则全部相对它报告并标记。<br>X3：G(l) = cos(原,改写) − cos(原,partner)。<br>X4：D = self − partner；最早区间 &gt;0 的层（tune 选、test 确认）；H2 顺序：year、field 的最早层 ≤ first author；recognition：target 的 D_year、D_author 在档内大于 control（区间不含 0）。<br>X5：身份 → author-by-probe → name-by-lens 的层序。</td></tr>
+<tr><td>addendum 1</td><td>所有 Stage 13 probe 用 group folds；false_0 按 donor 分组；X1/X3/X4 tune/test 按团队；group-split 为确认版，paper-split 的 false_0 数无效；E4b 重跑后才能再引用。</td></tr>
+<tr><td>addendum 2</td><td>M3：I 只能看 I(l)−I(L4)；主判据改为 T，在 L16–L40 判断并相对 T(L4)。X1：取消选层，报告全部层的 R(a)−R(y)、R(a)−R(f) 曲线；≤L16 只作文本替换阳性对照；L24 起：两差的区间都在 [−0.1, 0.1] 内且 R(a)−R(random_c)&gt;0 → 任务无关；R(a)−R(y) 区间下界 &gt;0.1 → 任务特异。M2c 改单向。X3 加词重叠协变量。E4b 四配置，确认版 = 团队折 + title-reuse 排除。区间：两种都算，团队版为主，列出所有翻转。</td></tr>
+<tr><td>addendum 3</td><td>X6：R(l) = mean(patched−false)/mean(true−false)；5 个假标题平均 R(L48)∈[0.70,0.95] 且 R(L52)≥0.95，每个假标题 R(L48) 与 false_0 差 ≤0.10 且 R(L52)≥0.90 → Stage 11 结论成立。X7：S(l) = T(l) − F(l)；S(L52)≤0.05 且 S(L0)≥0.5 → 成立。P1 措辞由最终 Stage 12 分析决定。</td></tr>
+<tr><td>addendum 4</td><td>X3 主比较换成 lexical neighbour D（G' = cos(原,改写) − cos(原,D)，需 G'&gt;0 且 G'−G'(L4)&gt;0）；所有名字上的 patching/probe 结果（E1/E1t/E2、P1/P2/F2、X6/X7）按 token 角色另报；措辞限定为 teacher forcing 下的偏好，不是生成过程。</td></tr>
+</table>
+
+<h3 id="h-prereg-dev">实际分析与预注册的偏离（逐条核对）</h3>
+<table class="t">
+<tr><th>实验</th><th>预注册规则</th><th>实际做法</th><th>判断</th><th>出处</th></tr>
+<tr><td>M3 判据</td><td>addendum 2：T 在 L16–L40 判断，"also relative to T(L4)"；prereg 原文 H2 为 T(l) ≥ 0.8（点估计）</td><td>自动判定用<b>区间</b>：H2 要求所有层 lo ≥ 0.8，H1 要求所有层 hi &lt; 0.5（比点估计更严）；T−T(L4) 和 I−I(L4) 写在表里，但<b>没有进入判定行</b>。报告 title_last 判为 H2（T 0.92–0.99），而 STATUS 的解读是"T 不高于 T(L4)"。</td><td><span class="st st-review">偏离（判定方式）</span></td><td><span class="src">stage13_m3_analyze.py:143-150（147 行 h2/h1） · reports/m3_report.md:83-90 · STATUS.md §6 0c</span></td></tr>
+<tr><td>M3 lexical floor</td><td>L4 的同一量</td><td>按 L4 做差并给团队区间</td><td>一致</td><td><span class="src">stage13_m3_analyze.py:117-127</span></td></tr>
+<tr><td>M3 分折</td><td>prereg "5-fold by paper" → addendum 1 改 group folds</td><td>group_folds</td><td>一致（按补充）</td><td><span class="src">stage13_m3_analyze.py:93</span></td></tr>
+<tr><td>X1 选层</td><td>prereg 在 tune 上选层 → addendum 2 取消，报告全部层</td><td>全部层（L4–L48）×test/tune/all 都报告</td><td>一致（按补充）</td><td><span class="src">stage13_x1x4_analyze.py:40-78</span></td></tr>
+<tr><td>X1 random_c 零检验</td><td>prereg：random_c 任一层 &gt;0.1，所有恢复率相对它报告并标记</td><td>只打 NULL FLAG（L4/L8/L16 约 −0.13～−0.15，L48 +0.12），判定仍用 R(authors)−R(random_c)&gt;0；year/field 的恢复率<b>没有</b>相对 random_c 重算；L48 在 FLAG 下仍判"task-independent"。</td><td><span class="st st-review">部分偏离</span></td><td><span class="src">stage13_x1x4_analyze.py:40-78（61 行 null_flag） · reports/x1_report.md:18, 48</span></td></tr>
+<tr><td>X4 earliest / 顺序</td><td>tune 选最早层、test 确认；H2 顺序</td><td>按规则实现；field 在 title 位置 tune 上无显著层 → 报告写"order undetermined"。STATUS 写成"H2 order does not hold"，与报告措辞不一。</td><td>实现一致，解读措辞不一</td><td><span class="src">stage13_x1x4_analyze.py:105-114, 128-131 · reports/x4_report.md:16-17 · STATUS.md §6 0c</span></td></tr>
+<tr><td>X4 recognition</td><td>档内 target &gt; control（区间不含 0）；Stage 10 估计量（Stage 10 min_n = 30）；通用规则要求在 tune 选、test 确认</td><td><code>min_n=10</code>；在<b>全部论文</b>（tune+test 合并）上逐层报告，没有 tune/test 区分，也没有自动判定行</td><td><span class="st st-review">偏离</span></td><td><span class="src">stage13_x1x4_analyze.py:80（min_n=10）, 115-122</span></td></tr>
+<tr><td>区间（addendum 2）</td><td>论文版与团队版都给，团队为主</td><td>X1/X4/X6/X7/M3 只给团队版</td><td><span class="st st-review">偏离（缺论文版）</span></td><td><span class="src">各分析脚本 docstring</span></td></tr>
+<tr><td>X6</td><td>addendum 3 公式与阈值</td><td>按公式；比值为均值之比；5 个标题平均为 R 的简单平均；判定 target/control/all 三组都 HOLDS</td><td>一致</td><td><span class="src">stage13_x6_analyze.py:55-92（90 行判定） · reports/x6_report.md 末段</span></td></tr>
+<tr><td>X7</td><td>S(L52)≤0.05 且 S(L0)≥0.5</td><td>按公式；control S(L52) = 0.051 → DOES NOT HOLD（差 0.001）；target 0.018、all 0.029 HOLD</td><td>一致（结果如实报告）</td><td><span class="src">stage13_x7_analyze.py:82-86（84 行判定） · reports/x7_report.md · STATUS.md §6 0b</span></td></tr>
+<tr><td>token 角色（addendum 4）</td><td>X6/X7 等名字上的结果也按 token 角色报告</td><td>stage13_x6_analyze.py、stage13_x7_analyze.py 中没有任何 role 拆分；x6/x7 报告也没有</td><td><span class="st st-review">偏离（未做）</span></td><td><span class="src">grep -n role stage13_x6_analyze.py stage13_x7_analyze.py（无结果）</span></td></tr>
+<tr><td>X2、X5</td><td>X2 运行前另写补充；X5 层序</td><td>没有 X2 补充；X2/X5 未运行</td><td><span class="st st-plan">计划未做</span></td><td><span class="src">config 目录 · PROGRESS.md:477</span></td></tr>
+<tr><td>X3</td><td>addendum 2/4 规则；para_ok 人工把关</td><td>para_gen 已完成；para_run 等 para_ok 与 addendum 5，主分析未做</td><td><span class="st st-plan">计划未做完</span></td><td><span class="src">PROGRESS.md 2026-10-29/30 条</span></td></tr>
+</table>
+</section>
+
+
+<section id="h-compute">
+<h2>B6. 计算资源与数值一致性检查</h2>
+
+<h3 id="h-compute-hw">硬件与总量</h3>
+<ul>
+<li>所有 Stage 10–13 GPU 工作的日志头都写 <code>NVIDIA A100-SXM4-80GB</code>（37 次单卡、2 次双卡），节点 d1028/d1029；模型 Qwen3-32B bf16 整模型放在 GPU 上，不允许 CPU offload。<span class="src">grep "gpus \[" 351_stage10/logs 361_stage11/logs 371_stage12/logs 381_stage13/logs · 351_stage10.py:371-386</span></li>
+<li>sacct（2026-10-15 起，用户全部作业）：申请到 GPU 的作业 135 个，合计约 <b>124.3 GPU-h</b>（含失败与等待放弃的时间）：交互式 <code>bash</code> 作业 69 个 89.4 GPU-h（2026-10-15 至 10-22，Stage 3–9），<code>s10p_*</code> 43 个 21.1，<code>s12w</code> 12 个 9.2，<code>s12fit</code> 3 个 3.5，parity 类 5 个 0.9，<code>s11w</code> 3 个 0.07，<code>s13_fugpu</code> 1 个 0.17。按节点：d1029 58.5、d1028 55.9、d1026 6.3（A100-40GB）、d3233 2.0、d1002 1.0、d4054 0.5、d3204 0.1 GPU-h。CPU 作业 97 个（含长时间等待的 gate，墙钟合计 833 h，不代表计算量）。<span class="src">sacct -u zhang.zhiqi2 -S 2026-10-15 -X -o JobID,JobName,Partition,AllocTRES,ElapsedRaw,State,NodeList（2026-10-30 本次汇总；GPU 卡数取 AllocTRES 的 gres/gpu）</span></li>
+<li>每个作业只有 1 张卡，除 s12w 11428778（2×A100，50 min，d1028）和 11414108（2×，2.6 min 失败）。</li>
+</ul>
+<p><span class="unk">未知/需确认：向 用户 确认（d1002、d3204、d3233、d4054 的 GPU 型号；sacct 的 AllocTRES 不含型号，只有 2026-10-15/18 少量交互作业落在这些节点）</span></p>
+
+<h3 id="h-compute-table">各实验的 GPU、作业号与时长</h3>
+<p>Stage 10–13 的 GPU 作业是"池化"的：任何作业可以接手其他 Stage 的单元（hand-over/steal），所以按作业名统计会混在一起。下表的"计算时长"取自工作日志里每个 shard 的秒数之和（不含每个作业约 25–30 min 的权重加载），作业号取自 claims/owner 文件。</p>
+<table class="t">
+<tr><th>实验</th><th>GPU</th><th>shard 计算时长合计</th><th>主要作业号</th><th>日期</th><th>出处</th></tr>
+<tr><td>Stage 3 self100 拟合（100 prompt，~150 s/prompt）</td><td>1×A100-80GB</td><td>约 5.7 h 墙钟（日志 23:06 → 04:45，4 次续跑）</td><td>交互式 srun bash（作业号无法逐一对应）</td><td>10-17/18</td><td><span class="src">qwen32b_jlens_prelim_100.log</span></td></tr>
+<tr><td>Stage 3.5.1 split-half A/B</td><td>1×A100-80GB</td><td>未逐条统计</td><td>交互式</td><td>10-18</td><td><span class="src">351_split_A.log, 351_split_B.log</span></td></tr>
+<tr><td>Stage 4–8 GPU 读出（6、7.2、7.3、8C 等）</td><td>交互式作业多在 d1028/d1029</td><td>未逐条统计（例：Stage 8C 4,200 条，约 6 s/条）</td><td>交互式</td><td>日志 mtime 10-18 至 10-20</td><td><span class="src">351_stage6_run.log, 351_stage7_2_gpu.log, 351_stage7_3_gpu.log, 351_stage8C_full.log</span></td></tr>
+<tr><td>Stage 9 Fit A（含修复）</td><td>1×A100-80GB</td><td>~325 s/prompt × 101</td><td>交互式</td><td>10-18 → 10-22 05:33</td><td><span class="src">351_stage9_full_A.log, 351_stage9_A_repair.log</span></td></tr>
+<tr><td>Stage 9 Fit B（66/100 停止）</td><td>1×A100-80GB</td><td>~330–360 s/prompt × 66</td><td>交互式</td><td>10-20 05:57 → 10-21 19:12</td><td><span class="src">351_stage9_full_B.log</span></td></tr>
+<tr><td>Stage 10 parity</td><td>1×A100-80GB</td><td>4:07（ext）/ 33:59（main）/ 5:22（重复）</td><td>11338000（ext PASS）、11347585（main，0.25 下 FAIL）、11350174（重复，数值完全相同）、11334054（hf_device_map 崩溃）</td><td>10-24/25</td><td><span class="src">351_stage10/logs/parity_*.log · reports/parity.json</span></td></tr>
+<tr><td>Stage 10 主轮（7 条件 × 72 shard，5 readout × 6 层）</td><td>1×A100-80GB</td><td>6.31 h（每条件 0.87–0.91 h，~45 s/shard）</td><td>11363844–11363850（s10p_main_*）及 steal</td><td>10-25 → 10-27</td><td rowspan="2"><span class="src">351_stage10/logs/pool/job_s10p_*.log（"[cond] shard … Ns" 行合计，本次解析）</span></td></tr>
+<tr><td>Stage 10 扩展轮（public + logit，L50–55、57–61）</td><td>1×A100-80GB</td><td>5.87 h</td><td>11363851–11363863（s10p_ext_*）；第一块 11363852</td><td>10-25 → 10-27</td></tr>
+<tr><td>Stage 10 早期失败</td><td>—</td><td>19 个 pool 作业拿到卡后数秒退出（parity 总状态 FAIL 时 run() 拒绝运行）</td><td>11338070–11338105、11347140/41、11350173、11358551–54</td><td>10-25</td><td><span class="src">PROGRESS.md 2026-10-25 ~21:40 条</span></td></tr>
+<tr><td>Stage 11（E1 patch、E1t、E2 knockout、E2n、E3 chain、E4 titlepos）</td><td>1×A100-80GB</td><td>4.66 h（chain 1.46、titlepos 1.80、patch 0.48、patch_title 0.44、knockout 0.25、knockout_name 0.25）</td><td>11363847–11363851（hand-over，claims owner）</td><td>10-27</td><td><span class="src">361_stage11/logs/claims/*/owner · work 日志 shard 行</span></td></tr>
+<tr><td>Stage 12（P1、P2、N1、N2、F2）</td><td>1×A100-80GB</td><td>4.42 h（patch_pos 1.52、prior_mc 1.24、prior_pure 0.61、alens_read 0.56、patch_comp 0.47）</td><td>11413886、11413591、11374283、11413586、11413584、11413569、11413572、11413557、11371622</td><td>10-27 → 10-28</td><td><span class="src">371_stage12/logs/claims · work 日志</span></td></tr>
+<tr><td>Stage 12 F1 作者 lens 拟合（40 prompt）</td><td>单卡 A100-80GB（规则：只有单卡 80GB 才接拟合）</td><td>~269 s/prompt × 40 ≈ 3.0 h</td><td>s12fit 11413557、11413569、11416869 与 s12w 11413572 等</td><td>10-27 15:28 → 10-28 17:12</td><td><span class="src">371_stage12/alens/progress.json · logs/claims/alens_fit.done_* · STATUS.md §3 Stage 13 条</span></td></tr>
+<tr><td>Stage 13（X6 xf_patch、M3 task、X1 xpatch、X4 pscope、X3 para_gen、X7 ko_false）</td><td>1×A100-80GB（11428778 为 2 卡）</td><td>4.41 h（xf_patch 1.87、para_gen 1.08、task 0.54、pscope 0.38、ko_false 0.28、xpatch 0.27）</td><td>11428778、11453127、11416869、11415844、11374284 等</td><td>10-28 19:46 → 10-29</td><td><span class="src">381_stage13/logs/claims · work 日志</span></td></tr>
+<tr><td>Stage 13 GPU follow-up（x4tok + Qwen judge 校准）</td><td>1×A100-80GB</td><td>10:28（x4tok 检查失败后按规则停止）</td><td>11485349</td><td>10-30</td><td><span class="src">381_stage13/logs/fugpu_11485349.log · PROGRESS.md 2026-10-30 03:30 条</span></td></tr>
+</table>
+<p>注：shard 行合计按日志中出现的行计（重跑的 shard 也计入；例如 ko_false 出现 27 行而单元数是 24）。
+<span class="unk">未知/需确认：向 Stage 3–9 原作者（laptop 会话）确认（2026-10-15 至 10-22 的 69 个交互式 bash GPU 作业各自对应哪个实验；sacct 只有作业名 bash）</span>
+<span class="unk">未知/需确认：向 组长 确认（Stage 1 标注运行——开放回答与 4 选 1——使用的 GPU、时长与 run.json）</span></p>
+
+<h3 id="h-compute-parity">bf16 一致性检查</h3>
+<table class="t">
+<tr><th>检查</th><th>比较的是什么</th><th>结果</th><th>出处</th></tr>
+<tr><td>Stage 10 parity（ext）</td><td>快路径（一次前向读所有位置）vs jlens <code>apply</code> 逐前缀单独前向；12 个 context、52 个 token 位置（rng 10）</td><td>22 对全部 ≤0.25，max 0.25（public L52/L58/L61、logit L61）；rank 不一致 2–7/52，全部在 rank ≥37</td><td rowspan="2"><span class="src">351_stage10/reports/parity.json runs[0..2] · parity_before_tol05_amendment.json · 351_stage10.py:464-508</span></td></tr>
+<tr><td>Stage 10 parity（main，两次）</td><td>同上，25 对（3 把 lens + logit × 6 层 + final）</td><td>10/25 对 &gt;0.25，max 0.367 在 <b>final@L63</b>（无 lens 代码）；两次结果逐位相同（确定性）；rank ≤41 全部一致，最小不一致 rank 42，相对变化 ≤18%，log10(1/rank) 变化 ≤0.070</td></tr>
+<tr><td>Stage 10 crosscheck vs Stage 6</td><td>Pilot50 重叠的 972 个 token，jlens_public / logit / final 与 Stage 6 原始行</td><td>token id 100% 一致；rank 完全一致 77–95%；|Δlogprob| 中位 3e-6–7e-5，最大 0.43</td><td><span class="src">351_stage10/reports/crosscheck_stage6.csv · 351_stage10.py:613-633 · 作业 11373362</span></td></tr>
+<tr><td>Stage 11 GPU smoke</td><td>4+2 篇论文写入临时根目录，对比 Stage 10 rank 等</td><td><b>WARN</b>：ko_baseline 与 Stage 10 一致 0.704（阈值 0.75），patch_title_L63_equals_false 0.704，chain 一致 0.833；其余通过。按规则继续。</td><td><span class="src">361_stage11/reports/smoke.json（2026-10-27 05:17） · 361_stage11.py:401-475（466 行阈值）</span></td></tr>
+<tr><td>Stage 11 real-weight CPU check</td><td>真实权重在 CPU 上（无 GPU batch 差异）复算一篇论文</td><td><b>REALCHECK PASS 13/13</b>（1,582 s）；E1t L63 在 CPU 上与 false <b>完全相等</b> → GPU smoke 的 0.70 是 batch 形状的 bf16 舍入，不是 bug</td><td><span class="src">361_stage11/logs/realcheck_11396804.log · PROGRESS.md:705</span></td></tr>
+<tr><td>Stage 12 非 A100 parity</td><td>非单卡 80GB 作业先重算 prior_mc delete shard 0，只记 WARN</td><td>只有 mock 测试文件 v100_smoke.mocktest_20261028.jsonl；实际所有工作都在 A100-80GB，未触发</td><td><span class="src">371_stage12/logs/ · PROGRESS.md:505</span></td></tr>
+<tr><td>Stage 13 X6 复现</td><td>xf_patch false_0 shard 0 vs Stage 11 patch shard 0</td><td>row_id、layers、rank_true/false/patch（516×15）<b>完全相同</b></td><td><span class="src">PROGRESS.md 2026-10-28 21:30 条</span></td></tr>
+<tr><td>Stage 13 X7 自检</td><td>不屏蔽的 false 元素 vs Stage 11 false run</td><td>WARN：只有 59.6% 行完全相同（均 |Δlog10 rank| 0.0105，有符号 −0.0003）；T 与 Stage 11 E2 最大差 9.9e-17</td><td><span class="src">381_stage13/reports/x7_report.md 第 6–8 行</span></td></tr>
+<tr><td>Stage 13 x4tok（例外：致命）</td><td>batch 2（L8、L40）重算 vs 已存 batch 7 的 X4 分数</td><td>FAIL：max |diff| 0.068 &gt; 0.05，作业按设计停止；用户裁定这是正确性检查而非容差，改为致命（--all 在 X4TOK_CHECK_FAILED 存在时拒绝启动）</td><td><span class="src">PROGRESS.md 2026-10-30 03:30 与 2026-10-30 "User-approved rewrite" 条 · 381_stage13/logs/fugpu_11485349.log "STOP: x4tok does not reproduce"</span></td></tr>
+</table>
+
+<h3 id="h-compute-tol">"容差 0.25 → 0.5"的经过</h3>
+<ol>
+<li><b>2026-10-23</b> 冻结：parity 门槛 max |Δlogit| ≤ 0.25（<code>--tol</code>），作为 run() 的放行条件。<span class="src">351_stage10/config/analysis_plan_before_tol05.json（无 amendments） · 351_stage10.py:497</span></li>
+<li><b>10-24 15:18</b> ext parity（11338000）PASS，max 正好 0.25。<b>10-24 23:48</b> main parity（11347585）FAIL：10/25 对超 0.25，max 0.367（final@L63）。<b>10-25 00:37</b> 重复 main parity（11350174）结果逐位相同。</li>
+<li><b>10-25 00:22–00:31、~07:10</b>：19 个 pool 作业拿到 A100 后数秒退出（run() 检查到总状态 FAIL）——这是"容差卡住 GPU"的直接代价。<span class="src">PROGRESS.md 2026-10-25 ~15:00、~21:40 条</span></li>
+<li>诊断：差异在模型自身前向（final@L63 无 lens 代码也 0.367；logit 0.16–0.23），来自一次前向 vs 逐前缀前向的 bf16 累加顺序；|logit| 32–64 时 bf16 最小间隔就是 0.25，0.367 ≈ 1–1.5 个 ulp。<span class="src">PROGRESS.md 2026-10-25 ~22:00 条 · STATUS.md §5</span></li>
+<li><b>10-25 11:00:31</b> 用户批准改为 0.5：在 parity.json 加 <code>tolerance_amendment</code>（old 0.25 → new 0.5，三次运行在 0.5 下均 PASS，各运行原状态保留），analysis_plan.json 加 amendments 条目；备份 parity_before_tol05_amendment.json 与 analysis_plan_before_tol05.json。只在 CPU 上用已存数字重判，没有重跑 GPU。<span class="src">351_stage10/reports/parity.json tolerance_amendment · config/analysis_plan.json amendments[0]</span></li>
+<li>已记录的问题：0.5 是在看到数据之后定的，偏离了冻结的 0.25（计划里已注明）；parity 也抓不到两条路径共有的 bug。<span class="src">PROGRESS.md:1115</span></li>
+<li><b>10-27 03:10</b> 用户把它升为长期规则：parity/容差/一致性未达标一律记 WARN、放宽或忽略后继续算，只有代码崩溃才能停队列；Stage 11 smoke 改为 PASS/WARN 都继续、ERROR 才 stop_queue。写入 CLAUDE.md、STATUS.md §5 与 memory。<span class="src">PROGRESS.md:730-741 · ~/jlens_work/CLAUDE.md 长期约定 · HANDOFF.md:78（之后的 parity 必须用 --tol 0.5，否则脚本会把总状态重算成 FAIL）</span></li>
+<li>例外：2026-10-30 x4tok 自检被用户明确定为"正确性检查"，失败即停（见上表）。</li>
+</ol>
+<p><span class="st st-done">已完成</span> 所有数字取自 parity.json、smoke.json、realcheck 日志与 sacct；GPU 型号对 Stage 10–13 已由日志核实。</p>
+</section>
+
+<!-- UNKNOWN-LIST
+h-false-cost | 代价函数权重 1/5、0.25n、0.2len、1.5 的设计理由无书面记录 | 用户
+h-lens-table | public lens 的 557 条拟合 prompt、skip_first、模型 revision 未提供（provenance 审计 UNDETERMINED） | 用户
+h-lens-table | self100 拟合脚本与 1,000 条 WikiText 语料生成脚本不在 ~/jlens_work 或 git 仓库 | Stage 3 原作者（laptop 会话）
+h-lens-table | Stage 9 Fit A 准备时实际的 --min-chars/--max-chars（plan.json 未记录，默认 100/1200） | Stage 9 原作者（laptop 会话）
+h-stats-bins | 13 个引用档边界的定义来源（标注包只给 citation_bin 列） | 组长
+h-stats-mult | Stage 8 协议中的 Holm 校正是否实际计算（HPC 代码无实现） | Stage 8 原作者（laptop 会话）
+h-prereg-files | prereg 文件内 written 字段与 PROGRESS 标题时间比 mtime/git 晚 20 min–2 h 45 min，原因 | 用户
+h-compute-hw | d1002、d3204、d3233、d4054 的 GPU 型号 | 用户
+h-compute-table | 2026-10-15 至 10-22 的 69 个交互式 bash GPU 作业分别对应哪个实验 | Stage 3–9 原作者（laptop 会话）
+h-compute-table | Stage 1 标注运行（开放回答、4 选 1）的 GPU、时长、run.json | 组长
+-->
+
+<!-- CHECK-NUMBERS
+1. "79%" = 35,898 / 45,540 = 0.7883：/scratch/zhang.zhiqi2/jlens/351_stage10/config/conditions_manifest.json → tier_summary[tier=strict].n = 35898；总数 = 9,108 × 5；PROGRESS.md:1272。
+2. M2 false_0 跨折 donor 2,004 / 6,247（2,373 个多次使用）：本次由 361_stage11/raw/titlepos/false_0/shard_*.npz 的 resid_paper_id + 351_stage10/cohort/conditions/false_titles.parquet(k==0) + default_rng(13).integers(0,5,9108) 复算；PROGRESS.md 2026-10-28 11:45 条；prereg_addendum1.json rules[3]。
+3. M2 false_0 L48 donor year R² 0.623 → 0.535、log citations 0.588 → 0.488：/scratch/zhang.zhiqi2/jlens/381_stage13/reports/split_compare.md 第 127–128 行（value_paper, value_group）。
+4. 团队数 7,247、5 折大小 1,821–1,822：/scratch/zhang.zhiqi2/jlens/381_stage13/reports/cluster_ci.md 第 3 行；本次运行 13_stage13/stage13_cpu.py group_folds 复算。
+5. parity main max 0.367（final@L63）、容差 0.25 → 0.5 于 2026-10-25T11:00:31：/scratch/zhang.zhiqi2/jlens/351_stage10/reports/parity.json → runs[1].max_abs_logit_diff["final@L63"] = 0.3671875；tolerance_amendment.created/old/new。
+-->
