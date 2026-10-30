@@ -1,0 +1,145 @@
+<section id="iu-research">
+<h2>附录 I · "未知/需确认"自查结果（U08–U44 中可自查的条目）</h2>
+<p>2026-10-30 在集群上只读复查（sacct / scontrol / 日志 / 结果文件 / git 全部分支 / 本会话 Claude 转录 <code>~/.claude/projects/-home-zhang-zhiqi2-jlens-work/32eac6b6-….jsonl</code>）。没有提交作业，没有改动任何结果或代码。复算脚本和重建文件都只放在本次子任务的 scratchpad：<code>/tmp/claude-103706/-home-zhang-zhiqi2-jlens-work/32eac6b6-5b2f-4d30-b044-a14d510db11a/scratchpad/</code>（下文简称 <code>$SP</code>）。sacct 的时间和文件 mtime 都是集群本地时间（EDT）。日志里的 <code>timestamp_utc</code> 已减 4 小时换成 EDT。U01–U10 中只涉及 Dreaming Up Authors 包的部分由另一位起草者负责；U08、U09 这里只写用标注包和 Stage 10 数据查到的事实。</p>
+<p>结论标签：<span class="st st-done">已解决</span> · <span class="st st-review">部分解决</span> · <span class="st st-plan">仍需确认</span>。</p>
+
+<table class="t">
+<tr><th>编号</th><th>问题</th><th>查了什么（命令/路径）</th><th>结果（事实 + 出处）</th><th>结论</th></tr>
+
+<tr><td>U08</td><td>papers_9108.csv 与 eval_sample_9108 的关系；提示用哪版标题（17 篇）</td>
+<td>逐篇对比 <code>labels_20261015/…/paper_labels_with_papers.csv</code>（title）、<code>jlens-authorship-recall_update/home_project/data/release/eval_sample_9108.csv.gz</code>（title）、<code>351_stage10/cohort/papers.parquet</code>（title）。在 open_results / mc_results / mc_team 中找提示原文。</td>
+<td>17 篇里，每篇都满足"标注包标题 = <code>' '.join(eval_sample 标题.split())</code>"，即把所有空白（U+00A0 ×6、U+2009 ×3、U+2005 ×1、换行 U+000A ×7）折成单个空格并去掉首尾。标注包标题里没有任何非 ASCII 空白。Stage 10 的 papers.parquet 标题与标注包 9,108/9,108 相同，所以 Stage 10–13 用的是规范化后的标题。标注包的 jsonl 只有分数，不含提示原文，无法看出组长的提示用了哪一版。另：<code>home_project/src/dua/probing/prompts.py:38-52</code>（原论文代码，<code>tests/test_probing_prompts.py:3</code> 写明 "papers_9108.csv is not shipped; it is rebuilt from the released evaluation sample"）直接拿 eval_sample 的原始 title 套模板，不做空白规范化。</td>
+<td><span class="st st-review">部分解决</span>：规范化规则已确定（split/join）。组长 Step 1 的提示里是哪一版标题，仍需向<b>组长</b>确认。包内代码部分由负责 U01–U10 的起草者核对。</td></tr>
+
+<tr><td>U09</td><td>13 个引用档的边界</td>
+<td><code>351_stage10/cohort/papers.parquet</code>：citations（字符串，转成整数）× citation_bin，按档取 min/max。再用规则 bin(c) 逐篇比对。另看 <code>labels…/bin_table.csv</code> 的 bin 列。</td>
+<td>各档实际 [min, max]：0-2 [0,2]；3-4 [3,4]；5-8 [5,8]；9-16 [9,16]；17-32 [17,32]；33-64 [33,64]；65-128 [65,128]；129-256 [129,256]；257-512 [257,512]；513-1024 [513,1023]；1025-2048 [1027,2045]；2049-4096 [2049,4088]；4097+ [4136,63901]。规则"c≤2 → 0-2；2<c≤4096 → (2^(k−1), 2^k]，k=⌈log2 c⌉；c>4096 → 4097+"与 9,108/9,108 篇一致（脚本在本表下方说明）。档名本身就写出边界（bin_table.csv 第 1 列）。</td>
+<td><span class="st st-done">已解决</span>：除 0-2 和 4097+ 两个端档外，都是 2 的幂次档。为什么这样分档，属于组长的设计说明（包内文档由另一位起草者核对）。</td></tr>
+
+<tr><td>U12</td><td>Stage 9 FullFit 实际 GPU 型号</td>
+<td>runtime/fit_status json 里没有 GPU 字段（<code>351_stage9/runner_runs/*/</code>）。改查 <code>351_stage9_full_A.log</code>、<code>_full_B.log</code>、<code>_full_A_recovery.log</code>、<code>_A_repair.log</code> 的 OOM 报错和时间戳，再对照 <code>sacct -u zhang.zhiqi2 -S 2026-10-15 -X -o JobID,…,Start,End,NodeList</code>，并用日志 <code>FULLFIT PLAN budget_seconds</code>（≈ 作业剩余时间）区分同时运行的两个作业。<code>scontrol show node d1026/d1028/d1029</code>。</td>
+<td>全部在 A100 上。① Fit A 0→4（10-18 16:34–16:55）：作业 11191976 @ d1026，<b>A100-40GB</b>。同一作业随后 OOM，报错 "total capacity of 39.49 GiB"（full_A.log:127、223）。② 其余所有段都在 d1028/d1029（<code>Gres=gpu:a100:4</code>，feature <code>a100@80g</code>），报错 "total capacity of 79.25 GiB"（full_A.log:453、481；full_B.log:57、85）。按 budget 认出的作业：Fit A 4→20 → 11195756@d1029；23→42 → 11211146@d1028；42→59 → 11239485@d1028；47→56 → 11242682@d1028；56→100 → 11248534@d1028；恢复 80→100 → 11259149@d1028；修复 → 11291707、11295242/6、11296088/9@d1028。Fit B 0→16 → 11254812/4@d1028；16→34 → 11257769/71@d1028；34→51 → 11259150@d1029；51→66 → 11289356@d1028。在 80GB 卡上的 OOM 报错写着 "Process … has 30.00 GiB memory in use"，即有另一进程同卡。</td>
+<td><span class="st st-done">已解决</span>：Fit A 第一段用 A100-40GB，其余用 A100-80GB（SXM4）。</td></tr>
+
+<tr><td>U14</td><td>public lens 的 557 条拟合 prompt、skip_first、revision</td>
+<td>读 <code>public_neuronpedia/qwen3-32b/jlens/Salesforce-wikitext/config.yaml</code>、<code>…/Qwen3-32B_convergence.csv</code>、provenance 审计 <code>351_provenance_audit/351_provenance_audit_results.tar.gz</code>（summary/audit_summary.json 第 116–134 行，即 lens 文件内的 provenance 字段）。<code>~/projects/neuronpedia-audit</code> 的 HEAD = 22f0412，正是 provenance 里的 jlens_commit：读 <code>utils/neuronpedia-utils/neuronpedia_utils/jlens/fit_lens.py:51-106、465-470</code>，以及 <code>~/projects/jacobian-lens/jlens/fitting.py:42、67</code>。用本地 wikitext parquet 按 load_prompts 的算法重建 557 条。</td>
+<td><b>skip_first = 16</b>、target_layer = 63、n_prompts = 557、dim_batch = 64、t_max = 128、bfloat16、jlens_commit 22f0412f…，这些写在 lens 文件的 provenance 字段里（audit_summary.json:116-134）。convergence.csv 的 seq_len 128 → n_valid 111 与 skip_first 16 一致（mask = [16, seq_len−1)，fitting.py:67）。<b>Prompt 选法</b>是确定性的：流式读取 Salesforce/wikitext、wikitext-103-raw-v1、train，跳过空行和以 "=" 开头的标题行，把文本拼接后切成 2,000 字符一段，取前 N 段（fit_lens.py:84-106）。前 556 条是用 --n_prompts 1000 跑的，之后改为 557 收尾（config.yaml stop_reason），所以前 557 段不变。用本地 parquet（dataset revision b08601e0，<code>fitting_corpus/manifest.json</code>）重建出 557 段、1,113,787 字符，JSON sha256 b5094778…（<code>$SP/public557_prompts_reconstructed.json</code>）。9,108 个队列标题（≥25 字符）无一逐字出现在这 557 段中。<b>模型 revision</b>：fit_lens.py:465-470 调 <code>from_pretrained</code> 时不带 revision，取的是拟合当时（2026-09-20/21）的 main；provenance 里没有记录。本地 HF 缓存的 refs/main = 9216db57（<code>/scratch/zhang.zhiqi2/hf/hub/models--Qwen--Qwen3-32B/refs/main</code>，10-15 下载）。数据集 revision 同样没有固定（Neuronpedia 的 tree 缓存 e166deb5 是 lens 仓库的 revision，不是数据集的）。</td>
+<td><span class="st st-review">部分解决</span>：skip_first 和 prompt 选法已查实，557 条可重建，前提是 wikitext 在 HF 上没有改版。拟合时的模型/数据集 revision 没有记录，只能推定为当时的 main，需向<b>Neuronpedia（lens 发布者）</b>确认。按逐字匹配，未见标题泄漏。</td></tr>
+
+<tr><td>U15</td><td>self100 拟合脚本与 1,000 条 WikiText 语料生成脚本</td>
+<td><code>sha256sum</code> 1,709 个 .py/.bak 文件（/scratch/zhang.zhiqi2、~）。<code>git rev-list --all --objects</code> 遍历 4 个仓库的全部 .py blob（1,932 个）。另 ls <code>~/projects/dreaming-up-authors-code-v0</code>。</td>
+<td>找到了：<code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update/home_project/05_prepare_jlens_corpus.py</code>（sha a975c2a2…）和 <code>…/home_project/05_fit_jlens_prelim_100.py</code>（sha 4dcfb96a…），git commit e2c7156。归档 <code>/scratch/zhang.zhiqi2/jlens_archive_stage1_8/home_project/</code> 有同 sha 的副本（mtime 10-15 07:15 / 07:32）。<code>~/projects/dreaming-up-authors-code-v0/__pycache__/05_*.pyc</code> 的 mtime 与之相同（07:15:16 / 07:32:08）。对应关系：语料脚本固定 Salesforce/wikitext wikitext-103-raw-v1 train，seed 42，128 token，N=1000，蓄水池抽样；产出的 <code>fitting_corpus/manifest.json</code> 记 candidate_chunks_seen 970,664，corpus_sha256 1af8dbff…，与 <code>sha256sum wikitext103_qwen32b_1000.jsonl</code> 一致。拟合脚本取前 100 条，层 [24,32,40,48,56,62]，target 63，dim_batch 8，max_seq_len 128，skip_first 16，revision 取自 manifest（9216db57），它生成的 config dict 与 <code>qwen32b_jlens_prelim_100_config.json</code> 逐字段相同（脚本在 config 不一致时会 assert 失败）。拟合日志 <code>qwen32b_jlens_prelim_100.log</code> 显示 4 段 A100-SXM4-80GB（第 5、35、88、117 行）+ 最后一段 H200（第 163 行；10-18 04:43 从 98/100 续跑，作业 11180979@d4054）。</td>
+<td><span class="st st-done">已解决</span>（脚本在 git 的 home_project/ 和 Stage 1–8 归档里，不在 ~/jlens_work）。</td></tr>
+
+<tr><td>U16</td><td>Stage 9 Fit A 的 --min-chars / --max-chars</td>
+<td>统计 <code>351_stage9/prompts/{fit_A,fit_B,holdout}.jsonl</code> 的字符长度。按 <code>351_stage9.py:40-58</code>（canonical → 长度过滤 → sha256 去重 → 排序后用 SEED=3519001 打乱 → 取前 300）在本地 wikitext parquet 上重做，试 4 组参数（<code>$SP/s9split.py</code>）。</td>
+<td>实际长度：fit_A 100–1196、fit_B 101–1175、holdout 118–1177。用 <b>100 / 1200</b>（脚本默认值，351_stage9.py:223-224）重做，得到 665,604 条去重行，fit_A、fit_B、holdout 三份 text_sha256 列表<b>逐条完全一致</b>。100/1196、64/2000、100/2000 都不一致。</td>
+<td><span class="st st-done">已解决</span>：min_chars = 100，max_chars = 1200。</td></tr>
+
+<tr><td>U19</td><td>节点 d1002、d3204、d3233、d4054 的 GPU 型号</td>
+<td><code>scontrol show node d1002 d3204 d3233 d4054</code>；<code>sinfo -N -n … -o "%N %G %f"</code></td>
+<td>d1002：<code>gpu:v100-sxm2:4</code>（V100-SXM2）。d3204：<code>gpu:a100:8</code>（feature cascadelake,prod,ib）。d3233：<code>gpu:a100:3</code>（cascadelake,prod）。d4054：<code>gpu:h200:8</code>。d3204/d3233 没有 <code>a100@80g</code> 标记（d1028/d1029 有），显存大小未写明。</td>
+<td><span class="st st-done">已解决</span>（d3204/d3233 的 A100 显存规格没有写在节点信息里）。</td></tr>
+
+<tr><td>U20</td><td>10-15 至 10-22 交互式 GPU 作业与实验的对应</td>
+<td>sacct（<code>-X -o JobID,JobName,AllocTRES,Start,End,State,NodeList</code>），筛出 JobName=bash 且有 gres/gpu 的作业，共 69 个。对每个作业，列出 mtime 落在 [Start, End] 内的 <code>/scratch/zhang.zhiqi2/jlens</code> 文件（maxdepth 3）。另用拟合日志的时间戳和 budget_seconds（见 U12），以及 self100 日志里的 "GPU:" 行。</td>
+<td>按时间段对应如下（mtime 只能证明文件在该时段内写过，不排除同时段的另一个作业）：<br>
+• <b>10-15 03:29–09:17</b>（11095644、11095684、11095739、11095800@d1002、11096365、11098482、11099861、11099865、11099964@d3204、11100121/2@d3233）：pilot1_qwen3_32b（04:49），qwen32b_fit_test / multilayer 测试（05:11–05:26），recognition 1000（05:58–06:39），title_hidden 772（06:45–06:52），matched 队列（06:54–07:02），fitting_corpus（07:15–07:19），jlens smoke 2（07:22–07:28，A100-80GB），quick demo / authorship pilot / 29 对（08:06–08:14）。11095800、11099964 期间没有写出文件。<br>
+• <b>10-17 21:50 – 10-18 04:58</b>（11176076、11178329、11178936、11179232、11180877、11180979@d4054、11182526）：self100 拟合（续跑点 15/53/67/98，最后一段在 H200 = 11180979）和 351_all（22:43–05:26）。<br>
+• <b>10-18 05:22–07:20</b>（11183091/7@d1029）：self100 validation / generic / paper、gold_false、stage5_crossed_v2（06:06–06:27）、provenance 审计（06:53）。<b>07:30–09:30</b>（11184297/304）：split_A、Stage 6 运行日志。<b>09:39–13:03</b>（11184317、11186573/4）：Stage 6 收尾（10:49）、7.1（11:06）、7.2（11:14–11:37）、7.3 开始。<b>13:03–15:12</b>（11189077/9）：7.3、split_B、7.4（14:17）、Stage 8 冻结（14:29）、Stage 9 prepare（14:44）、拟合 smoke。<b>15:22–17:22</b>（11191105）：Stage 9 resume / benchmark 测试。<b>16:31–17:22</b>（11191976@d1026）：Fit A 0→4。<b>17:27–19:09</b>（11193135、11193951、11194220、11195032）：没有输出。<b>19:36–22:08</b>（11195756、11199178、11201799）：Fit A 4→20，Stage 8B（21:25），8C smoke（21:48）。<br>
+• <b>10-19</b>：03:14–05:23 Fit A 23→42（11211146，另一个作业 11211180 没有输出）；18:13–22:06 Fit A 42→56（11236380/4、11239398/485/529、11242629/682）和 8C（stage8C.log 22:06，11242682）；22:14–00:18 Fit A 56→100（11248534，另 11248379）。<br>
+• <b>10-20</b>：02:22 11250720 没有输出；05:20–09:31 Fit B 0→34 + 8C full（11254812/4、11257769/71）；09:42–12:23 Fit A 恢复 + 8D（11259149），Fit B 34→51（11259150）；23:04 至 10-21 05:17 的 4 个作业（11272342、11272426、11278944、11278963）期间没有输出。<br>
+• <b>10-21</b>：17:03–19:16 Fit B 51→66（11289356），11289236、11290755、11290896 只写了 full_A 日志里的报错；21:04–23:02 Fit A 修复 + 7.1B 开始（11291707，同卡）。<b>10-22</b>：02:20–08:31 Fit A 修复完成（05:33）+ 7.1B（11295242/6、11296088/9、11296093）。</td>
+<td><span class="st st-review">部分解决</span>：大部分作业能按时间段对上实验。约 15 个作业期间没有输出（失败或空等），用途无法确认，需向<b>用户</b>确认（只影响记录完整性）。</td></tr>
+
+<tr><td>U21</td><td>Validation_Record_351_Completeness_Checked.docx 是否在集群上</td>
+<td><code>find / -xdev -iname "*Validation_Record*"</code>；<code>find /scratch/zhang.zhiqi2 /home/zhang.zhiqi2 /tmp -iname "*Validation_Record*" -o -iname "*Completeness_Checked*"</code>；<code>find … -iname "*.docx"</code>；grep 归档 manifests（SHA256SUMS.txt、verified_file_map.csv 等）。</td>
+<td>集群上没有这个文件，也没有任何 .docx。归档 manifests 里没有它的记录。只有本手册和 stage1_11_report.html 提到这个文件名。</td>
+<td><span class="st st-plan">仍需确认</span>：向<b>用户</b>索取（应在 laptop 上）。</td></tr>
+
+<tr><td>U23</td><td>7.1B 停在 1,166/15,519</td>
+<td><code>351_stage7_1B_terminal/run.log</code> 尾部，raw/ 的 mtime 分布，<code>smoke_check.json</code>，<code>sacct -j 11296093,11296089,11296088 -o …,State,ExitCode</code></td>
+<td>run.log 共 5 次启动（"Complete: 4 / 104 / 304 / 337 / 443 …"）。最后一次从 443 续跑，写到 "SAVED 723"（本次第 723 条）后中断，日志里<b>没有报错和 Traceback</b>。raw 文件分批写在 10-21 21:18–22:06、10-22 03:35–03:38、05:58–06:09、07:17–08:31。最后一个作业 11296093@d1029（06:54 开始，时限 120 min）的 step 0 在 08:31:23 状态为 <b>"CANCELLED by 103706"</b>（103706 是用户本人的 uid），ExitCode 0:9。此时离时限还有约 23 分钟，所以是用户结束的，不是超时。smoke_check.json（10-23 14:44）：complete_contexts 1166 / expected 15519，status "Structural check complete; review score parity before scaling. No full-experiment title effect estimated."</td>
+<td><span class="st st-review">部分解决</span>：停止方式已查实（用户在 08:31 手动结束，之后没有续跑，10-23 只做了结构检查）。是否有意放弃，需向<b>用户</b>确认。</td></tr>
+
+<tr><td>U29</td><td>stage8C_runtime.json.before_mode_fix 与正式版的区别和时间顺序</td>
+<td><code>diff</code> 两份（<code>351_stage8/config/</code>）。<code>ls --full-time</code>。<code>351_stage8C_smoke.log</code>。逐行检查 <code>351_stage8/raw/stage8C_context_scores.jsonl</code> 的 runtime_hash / protocol_hash。</td>
+<td>逐字段只差 3 处：modes 第一项 <code>"final"</code> → <code>"final_L63"</code>，protocol_hash b00dfa98… → 272715c9…，runtime_hash 62bc49cb… → 6dcf3961…（文件第 15、31、34 行）。时间顺序：before_mode_fix 10-18 21:40:20 → 正式版 21:47:31 → 8C 打分文件第一次写入在其后（smoke 日志 21:48，最后写入 10-20 09:05）。smoke.log 显示用旧版跑第 1 条时，在保存前就报 "Unexpected readout modes {'final_L63', …}"（<code>scripts/351_stage8C.py:378</code>），之后 "Stage8C runtime changed; refusing mixed data"（:216）。换成正式版后才保存了第 1 条（"existing=0"）。打分文件 4,200 行的 runtime_hash 全部是 6dcf3961…，protocol_hash 全部是 272715c9…。</td>
+<td><span class="st st-done">已解决</span>：改动只是读出模式的名字（final → final_L63），发生在任何打分保存之前。</td></tr>
+
+<tr><td>U33</td><td>Fit B 停在 66/100</td>
+<td><code>351_stage9_full_B.log</code> 尾部，<code>ls --full-time runner_runs/full_B_100_7layers/</code>，<code>sacct -j 11289356 …</code>，grep PROGRESS/HANDOFF/STATUS</td>
+<td>最后一段从 51/100 续跑（作业 11289356@d1028，17:04:46 开始，时限 120 min；加载权重用了 18 分钟，并有 "Some parameters are on the meta device because they were offloaded to the cpu"）。写到 "prompt 66/100"（19:12:03）后就没有了，没有报错。作业在 19:05:30 TIMEOUT，各 step 在 19:16:35 被 signal 9 结束。checkpoint.pt 最后写入 19:12:14。此后没有任何 Fit B 续跑。下一个 GPU 作业 11291707（21:04）转去做 Fit A 修复和 7.1B。HANDOFF.md:31 写 "no Fit B (it stopped at 66/100)"；PROGRESS.md 第 1311 行（Stage 10 设计）写 "Fit B is left out because it is unfinished"，第 1343 行写 "Fit B is optional"；STATUS.md:313 写 "Optional: Fit B lens"。</td>
+<td><span class="st st-review">部分解决</span>：停止原因已查实（作业 2 h 超时被杀，checkpoint 完好，n_done 66，可以续跑）。是否补做、为什么当时没续跑，需向<b>用户</b>确认。</td></tr>
+
+<tr><td>U34</td><td>Stage 10 冻结脚本 sha 847e7dde 与运行版 9107c80b 的差别</td>
+<td>sha256：/scratch 和 ~ 下 1,709 个 .py/.bak 文件，以及 4,830 个 25–90 KB 的非数据文件。4 个仓库全部分支（<code>git rev-list --all --objects</code>）的 1,932 个 .py blob。<code>~/.claude/file-history</code>、backups、paste-cache（227 个文件）。查本会话转录（从 10-24 00:31Z 开始）。<code>ls --full-time</code>。</td>
+<td><b>没有找到</b> sha 为 847e7dde… 的文件。时间线：<code>config/manifest.json</code> 写于 10-23 15:44:01（记录 847e7dde）→ <code>351_stage10.py</code> mtime 10-23 17:00:31 → <code>freeze-conditions</code> 作业 11333739（日志 <code>logs/freeze_conditions_11333739.log</code> 17:03）生成 <code>conditions_manifest.json</code>（created 17:03:05，记录 9107c80b）。说明 15:44 到 17:00 之间脚本被改过，17:03 起所有运行都用 9107c80b。本会话的 Claude 转录从 10-23 20:31 EDT 才开始，覆盖不到那次修改。</td>
+<td><span class="st st-plan">仍需确认</span>：旧版没有留存，无法 diff。需向 <b>Stage 10 原作者（10-23 下午的会话）或用户</b>确认。laptop 上若有副本，sha 应为 847e7dde7f2005dd…918f2b05。</td></tr>
+
+<tr><td>U35</td><td>stage10_extra_r0.py 的作业号</td>
+<td><code>ls --full-time 351_stage10/summary_r0/ logs/r0_sensitivity.log</code>；sacct 中覆盖 18:56–18:59 的作业；本会话转录中运行这一步的 Bash 调用（10-27T22:55:56Z、22:56:16Z）及当时的 squeue 输出</td>
+<td>输出写于 10-27 18:57:08–18:58:47 EDT。转录显示这个脚本是 Claude 在会话里用 Bash 直接运行的（<code>timeout 3000 python stage10_extra_r0.py &gt; …</code>，run_in_background），没有 sbatch。当时 Claude 所在的交互作业是 <b>11371284</b>（bash@c0591，short，10-25 21:34 – 10-27 21:34）。转录 10-27T22:44Z 的 hostname 输出是 c0591，23:09Z 写"除了我所在的作业 11371284"。</td>
+<td><span class="st st-done">已解决</span>：没有单独的作业号，运行在 Claude 的交互作业 11371284（c0591）里。</td></tr>
+
+<tr><td>U36</td><td>Stage 11 冻结时 sha 26e3f817 与运行版 f8adb8d9 的差别</td>
+<td>与 U34 相同的 sha 搜索，未找到。改为<b>从本会话转录重放</b>：取出 10-26T17:15Z 至 10-27T07:12Z 之间所有写 <code>361_stage11.py</code> 的工具调用（1 次 Write + 13 次 python 就地替换 + 1 次 sed -i），按顺序在 <code>$SP/s11replay/w/</code> 重放，并逐步算 sha256（<code>$SP/s11replay/replay.py</code>）。</td>
+<td>重放得到的各版本 sha 依次为：Write c6927bc5 → 51fc2bae → <b>26e3f817</b>（10-26T17:17:33Z 的 title_positions 修改之后，随即重跑 freeze，protocol.json created 13:17:44 EDT）→ … → 8624a895（= git b4b76ed 版，可作验证）→ … → <b>f8adb8d9</b>（10-27T07:01:56Z 的 sed 之后，= git c86112f）。两端都与记录的 sha 精确吻合。diff 共 239 行（<code>$SP/s11replay/diff_26e3f817_to_f8adb8d9.diff</code>），内容是：① 新增 amendment-1 的单元 E1t patch_title、E2n knockout_name、E4 titlepos、probe_vocab（文档、常量 PT/TP/PROBE_LAYERS、units() 列表、4 个 do_* 函数、Ctx 多打开 TP_PLAN 的 lens 和 sfirst）；② patch hook 增加 <code>('at', pos)</code> 分支，原"对齐尾部"分支不变；③ <code>ko_mask</code> 增加参数 query_from=None，默认行为不变；④ smoke 改为 smoke_run/_smoke（PASS/WARN 继续，ERROR 才停队列）、stop_queue、slurm_minutes_left、claim/_write_owner（单元认领更安全）、只在 GPU 分区停池。原 E1 patch / E2 knockout / chain 三个函数的计算代码没有改动。</td>
+<td><span class="st st-done">已解决</span>：26e3f817 → f8adb8d9 只增加了单元和调度/自检逻辑，原三项计算不变。（重建文件在 scratchpad，是否存档由用户决定。）</td></tr>
+
+<tr><td>U38</td><td>P1 按 token 角色拆分（":" 对首 token 0.50/0.90 等）</td>
+<td>搜索 <code>~/jlens_work/12_stage12/*.py</code> 和 <code>371_stage12/summary*</code>、reports：只有 stage12_cpu.py 有角色拆分（用于先验），P1 没有。用 <code>371_stage12/raw/patch_pos/shard_*.npz</code>（19,077 行）+ <code>351_stage10/cohort/name_tokens.parquet</code> 的 role 列，按 <code>stage12_analyze.py:46-58</code> 的同一估计量（先按论文平均，再算 Σnum/Σden 的比值，recovery = (nlr_patch − nlr_none)/(nlr_true − nlr_none)）重算（<code>$SP/u38_u40_recompute.py</code>，CPU 秒级）。</td>
+<td>重算的 recovery（L48 / L52）："<b>:</b>"（p1）单独打补丁：initial_first 0.502 / 0.917，given_first 0.349 / 0.940，surname_first 0.017 / 0.051，surname_cont 0.013 / 0.040。names（全部名字位置）：surname_first 0.567 / 0.925，surname_cont 0.810 / 0.990，initial_first 0.153 / 0.223，given_first 0.013 / 0.036。true−false 差距 gap：initial 0.114，given 0.293，surname_first 0.548，surname_cont 0.518，punct 0.009（punct 的比值不稳定，不宜解读）。全体：p1 0.074 / 0.172，names 0.612 / 0.847，all 0.825 / 0.996，与 summary/P1_patch_pos.csv 一致。PROGRESS 2026-10-28 14:45 的数（initial 0.50/0.90，given 0.37/0.95，surname 名字位置 0.55/0.92，initial gap 0.11）与重算值相差 ≤0.03。</td>
+<td><span class="st st-done">已解决</span>：数字可以从 raw 重现（PROGRESS 里的预览值与重算值相差 ≤0.03，原预览脚本没有保存）。重算脚本见 <code>$SP/u38_u40_recompute.py</code>，若要正式引用，需另存一份。</td></tr>
+
+<tr><td>U40</td><td>P2 hook 是否生效</td>
+<td>同一个重算脚本：<code>371_stage12/raw/patch_comp</code>（19,077 行 × 23 列：none + attn/mlp × L8…L56）。各列与 none 列比较；none 列与 Stage 11 <code>361_stage11/raw/patch</code> 的 rank_false、rank_true 逐行比较。代码 <code>371_stage12.py:146-170</code>（register_forward_hook 在 self_attn / mlp 输出上做替换）。</td>
+<td>① <b>替换确实改变了输出，而且随层数有系统性变化</b>：L8–L44 各列平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 是 +0.020 到 +0.070（attn48 0.069、mlp56 0.070）。对应 recovery：attn48 0.231、mlp56 0.224、attn L8–44 ≤0.023（summary/P2_patch_comp.csv）。② <b>噪声底</b>：none 列与 Stage 11 rank_false 逐行相同的只有 59.4%，但全部行的 rank 都在 2 倍以内，平均 Δnlr = 0.0000，p99 |Δnlr| 0.146。P1 自己的 none 列在不同层之间也只有 59.7% 的行完全相同。所以这是批大小不同带来的 bf16 数值抖动，不是 hook 泄漏。rank_true 与 Stage 11 100% 相同。③ P2 只测到 L56，<b>没有 L63 边界层</b>，raw 和 reports 里也没有找到专门的 P2 sanity 记录（logs 下只有 P1 的 smoke 项）。</td>
+<td><span class="st st-review">部分解决</span>：从数据看 hook 生效、基线正确。但当时没有做显式的 sanity（例如 L63 或"替换为自身 = 不变"）；是否需要补，需向<b>用户</b>确认。</td></tr>
+
+<tr><td>U41</td><td>Stage 10 名字字符串与 mc_team.jsonl initial_surname 是否一致</td>
+<td>全量对比（不抽样）：<code>351_stage10/cohort/contexts.parquet</code> 的 author（按 author_index 排序）与 <code>labels…/mc_team.jsonl</code> 中 options[correct_index] 的同位置字符串，共 33,811 对。</td>
+<td>mc_team 9,108 篇的 format 全部是 initial_surname，每篇作者人数与 Stage 10 相同（9,108/9,108）。"名的首字母 + '. ' + 最后一个词" 与 mc_team 精确相同的有 33,644 对（99.51%）。另 158 对差在姓氏前缀，mc_team 保留整个前缀姓（例 'F. V. van Dam' → 'F. van Dam'，'Xue Bin Peng' → 'X. Bin Peng'）。剩 9 对是后缀或标点（'Wagner Meira, Jr' → 'W. Meira'，'K. Eriksson,' → 'K. Eriksson'，'J. M. S. Junior' → 'J. S.'）。</td>
+<td><span class="st st-done">已解决</span>：两者格式不同（Stage 10 用全名，mc_team 用首字母 + 姓），但来自同一份作者列表，顺序和人数一致。</td></tr>
+
+<tr><td>U42</td><td>F1 作者提示 lens 的拟合质量</td>
+<td>日志：<code>371_stage12/logs/work_1141355{7,72,84,86}.log</code> 只有 "author-lens fit: a -&gt; b of 40"，没有逐 prompt 的收敛记录。<code>alens/progress.json</code>。<code>alens/checkpoint.pt</code> 只存了 jacobian_sum，没有逐 prompt 的 J，做不了 split-half。改为轻量比较（mmap，逐层）：F1 lens 与 public / Fit A / self100 在共同层上的相对 Frobenius 距离和余弦（<code>$SP/u42_lens_compare.py</code>）。</td>
+<td>F1：40 条 prompt，层 24/32/40/44/48/52/56/62，skip_first 16（checkpoint 字段）。分 6 次拟合（10-27 15:29 至 10-28 16:49），progress.json 记 per_prompt 269 s。<b>与 public 的余弦</b>：L24 0.30、L32 0.29、L40 0.36、L44 0.51、L48 0.69、L52 0.85、L56 0.92、L62 0.996。对照：三个 WikiText lens 之间，Fit A vs public 为 0.80 / 0.85 / 0.89 / 0.97 / 0.997 / 1.0，self100 vs public 为 0.85 / 0.92 / 0.95 / 0.99 / 1.0 / 1.0（L24…L62）。F1 vs Fit A、F1 vs self100 的数值与 F1 vs public 几乎相同。‖J−I‖/‖I‖：public L62 = 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合，说明这个口径可信。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）</td>
+<td><span class="st st-review">部分解决</span>：当时没有做一致性检查；现在补算显示，F1 lens 在 L24–L48 与 WikiText lens 差别很大（余弦 0.3–0.7），而三个 WikiText lens 之间很一致。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，无法区分（checkpoint 只存了总和）。是否补做 split-half 拟合，需向<b>用户</b>确认（需要 GPU）。</td></tr>
+
+<tr><td>U44</td><td>xf_patch 2 个 shard 的脚本 sha 613eb813 是否有副本</td>
+<td>读取 <code>381_stage13/raw/xf_patch/*/shard_*.npz</code> 全部 97 个 meta，统计 script_sha256。在 sha 索引中查 613eb813。读代码 <code>371_stage12.py:350-365</code>（handover13）、<code>381_stage13.py:384、399、409</code>、<code>361_stage11.py:189</code>。</td>
+<td>613eb813… 就是<b>当前的 <code>~/jlens_work/11_stage11/361_stage11.py</code></b>（= git 13ae7ec 的 code/scratch_scripts/361_stage11.py），副本存在。原因是：false_0 shard 0 和 false_1 shard 0（created 10-28 19:46:02/19:46:10）由 Stage 12 worker 交接运行。handover13 把 Stage 12 的上下文 <code>C.env</code> 传给 Stage 13（371_stage12.py:360 <code>env = C.env</code>），而这个 env 是 361_stage11 的 Ctx 生成的，<code>script_sha256=sha_file(__file__)</code> 指向 361_stage11.py（361_stage11.py:189）。所以这个 sha 记录的是被导入的 Stage 11 模块，<b>不是</b> Stage 13 计算代码。实际计算代码是当时的 381_stage13.py：当晚 20:28 才做日志修复，备份 <code>381_stage13/logs/381_stage13.py.before_logfix_20261028</code> 的 sha 为 448b78c2（= git 54d8ac2），推断就是这一版。其余 95 个 shard 记 448b78c2（4 个）或 a7b01a8f（91 个，= 当前 381_stage13.py = git fb8be6f）。</td>
+<td><span class="st st-done">已解决</span>：613eb813 不是丢失的 Stage 13 版本，而是 handover 记录了 Stage 11 模块的 sha，该文件现存。计算代码应为 448b78c2（有备份）。这是一个记录口径问题，建议在正文注明。</td></tr>
+</table>
+
+<h3 id="iu-scripts">复算脚本说明（都在 $SP，只读运行，CPU，几秒到几分钟）</h3>
+<ul>
+<li><code>u38_u40_recompute.py</code>：P1 按角色计算 recovery（与 stage12_analyze.py:46-58 同一估计量），P2 hook 与噪声底检查。</li>
+<li><code>u42_lens_compare.py</code>：F1 / public / Fit A / self100 四个 lens 的逐层 J 余弦、相对距离、‖J−I‖/‖I‖（torch.load mmap，一次只读一层）。</li>
+<li><code>s9split.py</code>：用 4 组 min/max 参数重做 Stage 9 的拆分，与冻结的 text_sha256 列表比对（U16）。</li>
+<li><code>recon557.py</code> → <code>public557_prompts_reconstructed.json</code>：按 Neuronpedia fit_lens.py 的算法重建 557 条 prompt，并做标题逐字匹配（U14）。</li>
+<li><code>s11replay/replay.py</code>、<code>s11replay/w/v_005.py</code>（= 26e3f817）、<code>v_042.py</code>（= f8adb8d9）、<code>diff_26e3f817_to_f8adb8d9.diff</code>（U36）。</li>
+<li>U09 的分档规则：c≤2 → "0-2"；c&gt;4096 → "4097+"；否则 k=⌈log2 c⌉ → "{2^(k−1)+1}-{2^k}"。</li>
+</ul>
+<p>附带说明：在 4 个 git 仓库上做 <code>git rev-list --all --objects</code> / <code>cat-file</code> 时，git 自动触发了后台 "Auto packing"（gc --auto）。这只重新打包对象，不改任何提交或文件内容。</p>
+</section>
+
+<!-- UNKNOWN-LIST
+U08 | 组长 Step 1 提示用的是规范化标题还是原始标题 | 组长
+U14 | public lens 拟合时的 Qwen3-32B 与 wikitext revision（未记录，推定为当时 main） | Neuronpedia
+U20 | 约 15 个期间没有任何输出的交互 GPU 作业的用途 | 用户
+U21 | Validation_Record_351_Completeness_Checked.docx 不在集群 | 用户
+U23 | 7.1B 在 08:31 被用户手动结束后是否有意放弃 | 用户
+U33 | Fit B（超时停在 66/100，checkpoint 可续）是否补做 | 用户
+U34 | 847e7dde 版脚本没有留存，无法 diff | Stage 10 原作者 / 用户
+U40 | 是否补做 P2 显式 sanity（L63 / 自身替换） | 用户
+U42 | 是否补做 F1 lens 的 split-half 拟合（需 GPU） | 用户
+-->
+<!-- CHECK-NUMBERS
+1. U16：min/max = 100/1200 时三份拆分逐条一致；$SP/s9split.py 输出 "100 1200 unique 665604 fit_A match True fit_B True holdout True"
+2. U36：重放 sha 26e3f817（第 005 步之后）、f8adb8d9（第 042 步之后）；$SP/s11replay/replay.py 输出
+3. U38：initial_first 在 p1 的 recovery 为 0.502（L48）/ 0.917（L52）；$SP/u38_u40_recompute.py 输出（数据 371_stage12/raw/patch_pos）
+4. U41：33,644 / 33,811 = 99.51% 精确一致；contexts.parquet × mc_team.jsonl
+5. U42：F1 vs public 的余弦 L48 0.688、L62 0.996；public 的 ‖J−I‖/‖I‖ 在 L62 为 0.482（config.yaml final_identity_distance 0.482116）
+-->

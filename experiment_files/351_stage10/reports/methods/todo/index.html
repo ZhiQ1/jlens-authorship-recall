@@ -107,7 +107,7 @@ grep -l "351_stage8_PROTOCOL\|predeclared replication layer\|secondary_l56" ~/.c
 
 <section id="unk">
 <h2>三 "未知/需确认"分三类</h2>
-<p>正文里共有 60 处标记，合并重复的问题后是 54 条（编号 U01–U54，对应手册附录的同名编号）。其中 4 条已经解决，其余分成三类：A 只有您能答（18 条）、B 只有组长能答（8 条）、C 我继续查（24 条）。</p>
+<p>正文里共有 60 处标记，合并重复的问题后是 54 条（编号 U01–U54，对应手册附录的同名编号）。其中 4 条已经解决，其余分成三类：A 只有您能答（18 条）、B 只有组长能答（15 个问题）、C 我继续查（24 条）。</p>
 <h3>已经解决的 4 条</h3>
 <div class="q"><div class="head"><span class="tag">U18</span>预注册文件里的 written 时间比文件实际写入时间晚</div><div>原因是我：这 5 个文件是本会话在 10-28 写的，写入时间可从会话记录查到（prereg 10:39、补充 1 10:50、补充 2 11:05、补充 3 11:41、补充 4 11:55，EDT），与文件 mtime 和 git 时间一致；文件里的 written 字段是我手填的，错写成更晚的时间。答辩时用实际写入时间，预注册确实比对应数据更早写定。</div></div>
 <div class="q"><div class="head"><span class="tag">U50</span>20 条人工标注的原始记录</div><div>已存档：<code>381_stage13/logs/para_review_sample20_labels.csv</code>（#3、#5、#15 改意思，#4 边界，其余保留，并注明出自您 10-29 的消息）。</div></div>
@@ -135,25 +135,35 @@ grep -l "351_stage8_PROTOCOL\|predeclared replication layer\|secondary_l56" ~/.c
 <div class="q"><div class="head"><span class="tag">U51</span>补充 5 的条款和 para_ok 的放行条件</div><div><span class="lbl">为什么</span>取决于第二部分的标注结果和判断器一致率（低于 80% 就不用判断器）。</div></div>
 <div class="q"><div class="head"><span class="tag">U54</span>X5 还做不做</div><div><span class="lbl">为什么</span>实验设计的决定。</div></div>
 
-<h3 id="cat-b">B 只有组长能答（8 条，可直接转发）</h3>
+<h3 id="cat-b">B 只有组长能答（问题清单，可直接转发）</h3>
+<p class="meta">2026-10-30 已对照 Dreaming Up Authors 代码包（<code>~/archives/dreaming-up-authors-code-v0.zip</code>，dua 1.0.0，manifest 记 2026-08-29、commit 3379af2，sha256 88b75daa…d12d）。论文抽样、元数据来源、引用档、开放回答的提示词与生成设置（贪心、关闭 thinking、max_new_tokens = 96）、名字匹配规则（NameMatcher，L4 = 姓 + 名首字母；用包内代码在 L4 重算，9,095 / 9,108 篇与我们的标签一致）都已从包里查清。但<b>标签本身是由另一套代码 elm 生成的</b>，elm 的源代码和运行记录都不在集群上，所以下面这些仍要问组长。</p>
 <div class="crit">
 <p>以下是关于 2026-10-15 标注包（<code>zhiqi_qwen3-32b_labels_2026-10-15.zip</code>，sha256 <code>58c1b5bc…ee619</code>）的问题：</p>
 <ol>
-<li>两次标注运行（开放回答、多选）的 run.json、提示词、代码和库版本能否补给我们？标注包里没有。</li>
-<li>开放回答的 max_new_tokens 是多少？我们从数据推断是 96（743 条被截断的回答都恰好 96 个 token）。</li>
-<li>开放回答和多选题是否关闭了 thinking？多选读概率的位置是在空的 &lt;think&gt;&lt;/think&gt; 之后吗？</li>
-<li>metrics/panel.py 切分和剥离名字的规则是什么（决定 M/H/U）？</li>
-<li>名字匹配用的是不是 Dreaming Up Authors 的 NameMatcher、阈值 L4（姓 + 名首字母）？</li>
-<li>多选干扰团队是怎么抽的：年份和人数的容差、bin_window / over_cap / et_al_mismatch 各是什么意思、有没有排除共同作者、随机种子是多少？（我们核对到：同领域 100%、同人数 94.8%、同引用档 93.1%，年份差中位数 3、最大 192。）</li>
-<li>选项里的作者名单超过多少人会截断成 "et al."？</li>
-<li>标注运行用的是什么 GPU、batch 多大、加载方式、跑了多久？</li>
-</ol>
-</div>
-
-<h3 id="cat-c">C 我继续查（24 条）</h3>
-<p class="pending">正在查，结果出来后更新到这里。</p>
-<!--CAT-C-->
-<div class="q"><div class="head"><span class="tag">U17</span><span class="tag">U22</span><span class="tag">U24–U27</span><span class="tag">U30</span><span class="tag">U32</span>Stage 3、7、8 中找不到出处的数字和区间</div><div>正在重算（Holm 校正、逐对剔除、7.2/7.3/8D/8E 的区间、L48 范数到底是哪个 lens），算完给您看改前改后再改报告。</div></div>
-<div class="q"><div class="head"><span class="tag">U08 U09 U12 U14 U15 U16 U19 U29 U34 U35 U36 U38 U40 U41 U42 U44</span></div><div>标题版本、引用档边界、GPU 型号、public lens 拟合细节、self100 拟合脚本、Fit A 语料长度、8C 运行文件差异、Stage 10/11 冻结前后的脚本差异、R0 分析作业号、P1 按角色拆分、P2 hook 是否生效、名字格式、F1 拟合质量、旧脚本副本。另外顺手预查 A 类的 U20、U21、U23、U33。</div></div>
+<li>能否提供两次标注运行（v3-measure-a100 和 v3_pilot）的 run.json，以及 open_results_noise.jsonl？</li>
+<li>生成标签用的是 elm 的哪个版本（commit），能否提供 elm 的源代码？</li>
+<li>多选题是否同样关闭了 thinking（enable_thinking=False）？</li>
+<li>多选题的选项概率是在空的 &lt;think&gt;&lt;/think&gt; 之后的第一个位置读取的吗？</li>
+<li>metrics/panel.py 怎么去掉开头的引导语、怎么处理被截断的最后一个名字、怎么处理一个名字内部的逗号？</li>
+<li>elm 是不是直接调用 dua 的 NameMatcher，阈值用 L4？</li>
+<li>抽干扰团队时，年份怎么限制：是硬性容差，还是按年份接近程度优先？</li>
+<li>bin_window 取 0–3 是否表示允许的引用档差，3 表示不限？</li>
+<li>over_cap 是否表示同一篇论文作为干扰团队被使用超过 3 次的次数？</li>
+<li>et_al_mismatch 是否表示干扰选项与真名单在"是否显示 et al."上不一致的个数？</li>
+<li>干扰团队有没有排除真作者的合作者？按什么规则排除？</li>
+<li>多选题抽样用的随机种子是多少？</li>
+<li>为什么 500 道 team_b 题的 bin_window 都是 3？</li>
+<li>显示规则是不是"超过 8 人只显示前 8 人 + et al."，恰好 8 人时全部显示？</li>
+<li>标注运行用的是什么 GPU、batch 多大、怎么加载模型、跑了多久？</li>
+</ol></div>
+<h3 id="cat-c">C 我继续查：结果（2026-10-30）</h3>
+<p class="meta">查证脚本存档在 <code>/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/research_scripts/</code>。</p>
+<div class="q"><div class="head"><span class="tag">已解决</span>由 Dreaming Up Authors 代码包解决</div><div>
+U02 开放回答 max_new_tokens = 96（stage1_generate.py:171）；U05 名字匹配为 dua NameMatcher，阈值 L4；U08 17 个标题只差 Unicode 空白，Stage 10 用的是规范化后的版本；U09 引用档为 0–2、3–4、5–8 … 2049–4096、4097+（config.yaml:44–59），9,108 篇全部吻合。部分解决：U03（开放回答关闭 thinking，多选未知）、U04（只能从数据推断切分规则）、U07（数据符合"超过 8 人截断"，需组长确认）。另发现：已发布报告写"去掉作者 ≥ 20 位的记录"，代码实际是保留 1–20 位、只去掉超过 20 位（MAX_AUTHORS = 20），报告需改。</div></div>
+<div class="q"><div class="head"><span class="tag">已解决</span>其余已查清的 11 条</div><div>
+U12 Stage 9 拟合全部在 A100（Fit A 第一段 40GB，其余 80GB）；U15 self100 拟合脚本就是 git 里的 home_project/05_*；U16 Fit A 字符长度 100 / 1200，可逐哈希复现；U19 d1002 是 V100、d3204 和 d3233 是 A100、d4054 是 H200；U29 Stage 8C 运行文件只改了模式名，在任何打分之前；U35 R0 分析在交互式作业 11371284 里运行；U36 Stage 11 冻结前后只加了补充 1 的单元和调度逻辑，替换、阻断、连写的计算没变；U38 P1 按 token 角色拆分已用原始数据重算，与 PROGRESS 相差 ≤ 0.03；U41 99.51% 的名字字符串符合"首字母. 姓"；U44 那个脚本哈希是转交时记录的 Stage 11 脚本。U17、U22、U24–U27、U30、U32 已由 Stage 7–8 重算解决（报告 v20）。</div></div>
+<div class="q"><div class="head"><span class="tag">部分解决</span>需要您定或补充</div><div>
+U14 public lens 的 557 条拟合提示已复原，不含本研究任何标题，但模型和语料版本没有记录；U20 大部分交互式作业已按时间对上，约 15 个没有输出文件，用途需要您补；U23 Stage 7.1B 是您的账号在时限前 23 分钟手动结束的，日志无报错；U33 Fit B 是作业 2 小时时限到了，停在第 66 条，检查点可续跑（您已定答辩前不补做）；U40 数据显示 P2 的替换确实生效，但没有做过显式检查；U42 F1 作者提示 lens 在 L24–48 与其他三个 lens 一致性差（余弦 0.3–0.7），没有做过拟合质量检查。</div></div>
+<div class="q"><div class="head"><span class="tag">仍查不到</span>2 条</div><div>U21 那个 docx 不在集群上；U34 Stage 10 冻结时的脚本版本在所有位置和 git 历史里都找不到（只能确定是 10-23 15:44–17:00 之间改的）。</div></div>
 </section>
 </main>

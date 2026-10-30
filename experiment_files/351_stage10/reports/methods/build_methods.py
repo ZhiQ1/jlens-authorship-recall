@@ -18,6 +18,7 @@ h1{font-family:var(--serif);font-size:34px;line-height:1.25;margin:0 0 8px}
 h2{font-family:var(--serif);font-size:24px;margin:44px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
 h3{font-size:19px;margin:30px 0 8px}
 h4{font-size:16px;margin:18px 0 4px;color:var(--acc)}
+p,li,dd,dt,div,span{overflow-wrap:anywhere}
 p,li{margin:6px 0}
 a{color:var(--link)}
 section{scroll-margin-top:12px}
