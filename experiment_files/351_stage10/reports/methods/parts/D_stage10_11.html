@@ -723,7 +723,7 @@ target−control：档内合并（≥30/档，B=2000）。<span class="src">stag
 <ul>
 <li>Stage 12 <code>probe_controls()</code>：<span class="src">~/jlens_work/12_stage12/stage12_cpu.py:111–162</span></li>
 <li>Stage 13 <code>stage13_e4b_group.py</code>（作业 11443587，short，16 CPU / 96G）：原样载入 <code>stage10_extra_r0r1.probe</code>（与 Stage 11 预测相同）和 <code>stage12_cpu.probe_controls</code> 的源码，只把分折那一行替换掉，并在形成每篇 spec 之后注入两行（记录 + 可选剔除）。<span class="src">~/jlens_work/13_stage13/stage13_e4b_group.py:1–10, 43–61；stage13_e4b_group.sbatch；git 0dde4de</span></li>
-<li>团队分折 <code>group_folds(pid, k=5, seed=13, donors=None)</code>。<span class="src">~/jlens_work/13_stage13/stage13_cpu.py:80–109</span></li>
+<li>团队分折 <code>group_folds(pid, k=5, seed=13, donors=None)</code>。<span class="src">~/jlens_work/13_stage13/stage13_cpu.py:80–109</span> 2026-10-30 折审计：E4b 原运行（11443587 c0685、trainstd 11500917 c0602，均为无 AVX-512 的 Broadwell）的分折与存档一致（逐篇 dropped 标志指纹 0/9,108 不符），点估计差 0，无需重跑（见 <a href="#h-stats-team">h-stats-team</a>）。<span class="src">381_stage13/reports/fold_audit.md 表中 e4b 两行</span> <span class="st st-rechecked">复核过</span></li>
 </ul>
 
 <h4>4 步骤</h4>

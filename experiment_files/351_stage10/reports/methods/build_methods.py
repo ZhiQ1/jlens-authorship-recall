@@ -65,7 +65,7 @@ def main():
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif+SC:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>{CSS}</style>
 <div class="wrap">
-<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-10-30</p>
+<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-10-31 更新</p>
 <h1>Stage 1–13 方法手册</h1>
 <p>本手册记录<b>实际做了什么</b>，不是计划。每个数字、参数和样本量后面都给了出处（脚本路径和行号或函数名、结果文件、作业号、git commit），出处标为 <span class="src">示例</span>。查不到的地方写成 <span class="unk">未知/需确认：向谁确认</span>，全文共 {n_unk} 处，汇总表见附录。</p>
 <p class="legend">状态标签：<span class="st st-done">已完成</span><span class="st st-rechecked">复核过</span><span class="st st-review">待复核</span><span class="st st-void">作废</span><span class="st st-plan">计划未做</span>。每个实验节固定用 9 个小标题：1 问题与作用 · 2 材料 · 3 工具 · 4 步骤 · 5 公式 · 6 对照 · 7 结果 · 8 局限与质疑 · 9 状态。</p>

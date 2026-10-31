@@ -41,9 +41,9 @@ code{font-family:var(--mono);font-size:.88em;background:var(--code);padding:0 3p
  pre{font-size:8.5pt}.toc{page-break-after:always}}
 </style>
 <div class="wrap">
-<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-10-30</p>
+<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-10-31 更新</p>
 <h1>Stage 1–13 方法手册</h1>
-<p>本手册记录<b>实际做了什么</b>，不是计划。每个数字、参数和样本量后面都给了出处（脚本路径和行号或函数名、结果文件、作业号、git commit），出处标为 <span class="src">示例</span>。查不到的地方写成 <span class="unk">未知/需确认：向谁确认</span>，全文共 18 处，汇总表见附录。</p>
+<p>本手册记录<b>实际做了什么</b>，不是计划。每个数字、参数和样本量后面都给了出处（脚本路径和行号或函数名、结果文件、作业号、git commit），出处标为 <span class="src">示例</span>。查不到的地方写成 <span class="unk">未知/需确认：向谁确认</span>，全文共 15 处，汇总表见附录。</p>
 <p class="legend">状态标签：<span class="st st-done">已完成</span><span class="st st-rechecked">复核过</span><span class="st st-review">待复核</span><span class="st st-void">作废</span><span class="st st-plan">计划未做</span>。每个实验节固定用 9 个小标题：1 问题与作用 · 2 材料 · 3 工具 · 4 步骤 · 5 公式 · 6 对照 · 7 结果 · 8 局限与质疑 · 9 状态。</p>
 <p class="note">路径约定：除非另写，<code>R10</code> = /scratch/zhang.zhiqi2/jlens/351_stage10，<code>R11</code> = …/361_stage11，<code>R12</code> = …/371_stage12，<code>R13</code> = …/381_stage13；代码在 ~/jlens_work/&lt;NN_stage&gt;/；git 仓库是 /scratch/zhang.zhiqi2/jlens-authorship-recall_update（GitHub ZhiQ1/jlens-authorship-recall）。</p>
 </header><nav class="toc" aria-label="目录"><b>目录</b><ol>
@@ -780,7 +780,16 @@ w_b ∝ n_t,b · n_c,b / (n_t,b + n_c,b),  Σ_b w_b = 1,
 <li>分折：团队按大小降序（同大小先用 seed 13 洗牌），依次放入当前最轻的折，k = 5。</li>
 </ol>
 <span class="src">13_stage13/stage13_cpu.py:80-109 group_folds · git cf7106d</span>
-<p><b>复现性问题（2026-10-30 发现）</b>：<code>stage13_cpu.group_folds()</code> 用 pandas <code>value_counts</code> 给团队按大小排序（第 106 行），对同样大小的组排序不稳定，所以不同 CPU 型号上折的分配可能不同：在 d0026（cascadelake）上折分配不同、点估计最多差 0.006；在 c0622（E5-2680 v4）上精确复现原结果。M2 团队区间用的折已固定保存在 <code>381_stage13/summary_cpu_teamci/folds_group.npz</code>；其他调用 group_folds 的脚本是否受影响尚未逐一检查。<span class="src">13_stage13/stage13_cpu.py:80–109（106 行 value_counts）· 381_stage13/reports/m2_teamci.md · PROGRESS.md 2026-10-30 17:30 条（tiny 作业 11501115 折不同、11503471 一致）</span> <span class="st st-review">待复核</span>（其他脚本）</p>
+<p><b>复现性问题（2026-10-30 发现）</b>：<code>stage13_cpu.group_folds()</code> 用 pandas <code>value_counts</code> 给团队按大小排序（第 106 行），对同样大小的组排序不稳定，所以不同 CPU 型号上折的分配可能不同：在 d0026（cascadelake）上折分配不同、点估计最多差 0.006；在 c0622（E5-2680 v4）上精确复现原结果。M2 团队区间用的折已固定保存在 <code>381_stage13/summary_cpu_teamci/folds_group.npz</code>。<span class="src">13_stage13/stage13_cpu.py:80–109（106 行 value_counts）· 381_stage13/reports/m2_teamci.md · PROGRESS.md 2026-10-30 17:30 条（tiny 作业 11501115 折不同、11503471 一致）</span></p>
+<p><b>全部调用者的折审计（2026-10-30 晚，V48 已处理）</b>：排查脚本 <code>13_stage13/stage13_foldaudit_variants.py</code>（在 10 个节点上用未改的函数重算全部 5 种调用方式，作业 11511921–11511930、11512064）与 <code>stage13_foldaudit_fingerprint.py</code>（对照原始输出里存下的指纹）。结论：</p>
+<ul>
+<li><b>原因</b>：<code>value_counts()</code> 在 numpy 1.26.4 下是不稳定 quicksort，有 AVX-512 的 CPU 上用 AVX-512 排序。不稳定排序只在有 AVX-512 的节点（Xeon Platinum 8276 cascadelake，d0026/d0027）上给出不同的分折（9,108 篇中 6,713 篇折不同）；无 AVX-512 的 8 个节点（Broadwell c06xx/c3155、EPYC d0139）完全一致。</li>
+<li><b>团队编号本身与 CPU 无关</b>（并查集是纯 Python，bootstrap 用 <code>pd.factorize</code> 按出现顺序编号），所以所有团队整群 bootstrap（cluster_ci、X1/X4、X4 rolesplit、X4 textbase、X6、X7、M3）不受影响。</li>
+<li><b>原始运行</b>：M2/M2b/M2c 11443403 d0139；E4b 11443587、trainstd 11500917；M3 11472899；X4 textbase/textbase2；cluster_ci；X6/X7；pairs.parquet —— 都在无 AVX-512 节点上跑，分折与存档一致，点估计差 0，无翻转（E4b 另用逐篇 dropped 标志指纹核对：与存档 0/9,108 不符，与 AVX-512 分折 2,872 不符）。</li>
+<li><b>唯一不一致</b>：已标 BAD 的 M2 小测试 11501115（d0026）：点估计最多差 0.0061，无翻转。它的输出改名留档（不删）：<code>381_stage13/summary_cpu_teamci_tiny.BAD_fold_order_differs_d0026_keep/</code>、<code>381_stage13/reports/m2_teamci_tiny.BAD_fold_order_differs_d0026_keep.md</code>。</li>
+<li><b>固定</b>：现在 <code>stage13_cpu.group_folds()</code> 先读存档（<code>summary_cpu_teamci/folds_own9108_k5s13.npz</code>、<code>folds_donor9108_false0_k5s13.npz</code>、<code>folds_pairs1178_k2s1314.npz</code>，README.md 有 sha256）；id 集合部分不符（行数相同、≥90% 重合但不完全相同）会报错；子集（小测试）照旧计算并在 stderr 警告；<code>JLENS_FOLDS_ARCHIVE=off</code> 强制计算。备份 <code>stage13_cpu.before_foldsfreeze_2026-10-30.py</code>。冻结脚本未改，381_stage13.py 通过 import 自动用存档。</li>
+</ul>
+<p><span class="src">381_stage13/reports/fold_audit.md（Cause、Table、Freeze 三段）· 381_stage13/foldaudit_2026-10-30/variants/ · PROGRESS.md 2026-10-30 23:00 条</span> <span class="st st-rechecked">复核过</span></p>
 <p>本次复算（9,108 篇）：7,247 个团队；6,503 个单篇团队；最大团队 228 篇（其次 76、42）；5 折大小 1,822/1,822/1,822/1,821/1,821。与 cluster_ci.md（7,247）和 PROGRESS（1,821–1,822）一致。
 <span class="src">本次运行 group_folds（CPU）· 381_stage13/reports/cluster_ci.md 第 3 行</span></p>
 
@@ -827,7 +836,7 @@ w_b ∝ n_t,b · n_c,b / (n_t,b + n_c,b),  Σ_b w_b = 1,
 <h2>B5. 预注册（Stage 13）</h2>
 
 <h3 id="h-prereg-files">文件、哈希与写定时间</h3>
-<p>目录 <code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/</code> 下只有 prereg.json 与 addendum 1–4，<b>没有 addendum 5：补充 5 尚未写定</b>，草稿已发给用户、等用户确认（内容拟为 X3 的 jaccard2 修正、排除 27 条完全相同改写、37 条姓氏误拒维持拒绝、意义检查改走备用方案）；因为判断器 v2 在新 20 条上一致率只有 0.55 &lt; 0.80，<b>判断器 v2 不可用</b>（见 <a href="#s13-x3">s13-x3</a>）。<span class="src">PROGRESS.md 2026-10-30 14:00、15:00 条 · 381_stage13/followup/judge2_summary.json</span>五个 json 都是只读（-r--r--r--）。
+<p>目录 <code>/scratch/zhang.zhiqi2/jlens/381_stage13/config/</code> 下有 prereg.json 与 addendum 1–5。<b>补充 5 已于 2026-10-30 22:45 写定</b>（用户 2026-10-30 晚批准）：<code>prereg_addendum5.json</code>，sha256 181c72f77a5b354567ecdaad4fff8991733f635cfee35c3ee7191b2fd6b113ab（与 .sha256 一致）。内容：X3 主分析 1,115 条、敏感性 1,015 条；jaccard2 与预先算好的 D；不再加标；判断器 v2 不用（新 20 条上一致率只有 0.55 &lt; 0.80），NLI 只用于敏感性集合（见 <a href="#s13-x3">s13-x3</a>）。<span class="src">sha256sum 381_stage13/config/prereg_addendum5.json（2026-10-31 本次运行）· git log -- experiment_files/381_stage13/config/prereg_addendum5.json → d0b0677· PROGRESS.md 2026-10-30 23:00 条 · 381_stage13/followup/judge2_summary.json</span> <span class="st st-rechecked">复核过</span>六个 json 都是只读（-r--r--r--）。
 <span class="src">ls -la 381_stage13/config · PROGRESS.md:103, 124, 176</span></p>
 <table class="t">
 <tr><th>文件</th><th>sha256（.sha256 文件）</th><th>本次 sha256sum</th><th>文件内 written</th><th>文件 mtime（EDT）</th><th>git commit 时间</th></tr>
@@ -836,6 +845,7 @@ w_b ∝ n_t,b · n_c,b / (n_t,b + n_c,b),  Σ_b w_b = 1,
 <tr><td>prereg_addendum2.json</td><td>377b79630aa0…2d34205f</td><td>一致</td><td>2026-10-28T12:30-04:00</td><td>11:05:49</td><td>0dde4de 11:06:51</td></tr>
 <tr><td>prereg_addendum3.json</td><td>e01aa6e3d965…5241a74bf</td><td>一致</td><td>2026-10-28T14:00-04:00</td><td>11:42:05</td><td>6d667ab 11:42:31</td></tr>
 <tr><td>prereg_addendum4.json</td><td>ac77da9f1f0f…f512e6d193</td><td>一致</td><td>2026-10-28T14:40-04:00</td><td>11:55:18</td><td>54d8ac2 11:56:02</td></tr>
+<tr><td>prereg_addendum5.json</td><td>181c72f77a5b…6b113ab</td><td>一致</td><td>2026-10-30T22:45-04:00</td><td>2026-10-30 22:42:10</td><td>d0b0677 2026-10-31 00:04:16（首次入库，比写定晚约 1.4 小时；git 中文件 sha256 相同）</td></tr>
 </table>
 <span class="src">cat *.sha256; sha256sum prereg*.json（2026-10-30 本次运行）· ls --time-style=full-iso · git log -- experiment_files/381_stage13/config/*（仓库 /scratch/zhang.zhiqi2/jlens-authorship-recall_update）</span>
 <p><b>written 字段是手填错误（U18 已解决）</b>：这些 written 值是当时会话手写的，比真实写入时间晚 20 分钟到 2 小时 45 分钟（PROGRESS 的条目标题时间也用了较晚的时间）。<b>实际写入时间是 2026-10-28 10:39 / 10:50 / 11:05 / 11:41 / 11:55 EDT</b>（prereg、addendum 1–4），会话记录、文件 mtime 与 git 提交时间三者一致。<span class="src">PROGRESS.md 2026-10-30 12:30 条 "U18 resolved" · 上表 mtime 与 git 列</span> <span class="st st-rechecked">复核过</span> mtime、git 时间与 sacct 互相吻合：prereg 写于 10:39，紧接 M2c 作业 11443232 提交（10:38:42，"submitted, no output yet"）；addendum 1 写于 group 重跑 11443403 提交（10:49:37）之后；addendum 2 写于 E4b 11443587（10:59:40）和 clci 11443686（11:05:08）提交之后。因此应以 mtime/git 为准，written 字段不可当作写定时间引用。
@@ -850,6 +860,7 @@ w_b ∝ n_t,b · n_c,b / (n_t,b + n_c,b),  Σ_b w_b = 1,
 <tr><td>addendum 2</td><td>同上；E4b 重跑、团队 CI、grouped M2/M2b、M2c 已提交无输出。</td><td>E4b 12:45 开始、clci 14:17 开始 ✓</td></tr>
 <tr><td>addendum 3</td><td>X6、X7 无数据；Stage 12 P1/P2 在写之前做过 CPU 预览（促成了审读，但不决定规则）。</td><td>stage12_P1P2_preview.md mtime 11:23 &lt; 11:42 ✓；xf_patch 最早 19:46、ko_false 10-29 04:18 ✓</td></tr>
 <tr><td>addendum 4</td><td>X3（para_gen/para_run）无数据；P1 按 token 角色的拆分是写之前的 CPU 预览，记为探索性。</td><td>para_gen 最早 10-29 03:09 ✓</td></tr>
+<tr><td>addendum 5</td><td>para_gen 已完成（24/24，1,186 条改写）；para_run 没跑（logs/para_ok 不存在），没有任何 X3 表示或得分数据。写之前已看过：改写文本、自动检查、NLI 分数（作业 11475175）、40 条人工标签、判断器 v1/v2 校准（作业 11501072）。</td><td>para_run 第 1 个真实分片作业 11511973 在写定之后提交，2026-10-31 仍在排队 ✓</td></tr>
 </table>
 
 <h3 id="h-prereg-content">内容摘要</h3>
@@ -860,24 +871,25 @@ w_b ∝ n_t,b · n_c,b / (n_t,b + n_c,b),  Σ_b w_b = 1,
 <tr><td>addendum 2</td><td>M3：I 只能看 I(l)−I(L4)；主判据改为 T，在 L16–L40 判断并相对 T(L4)。X1：取消选层，报告全部层的 R(a)−R(y)、R(a)−R(f) 曲线；≤L16 只作文本替换阳性对照；L24 起：两差的区间都在 [−0.1, 0.1] 内且 R(a)−R(random_c)&gt;0 → 任务无关；R(a)−R(y) 区间下界 &gt;0.1 → 任务特异。M2c 改单向。X3 加词重叠协变量。E4b 四配置，确认版 = 团队折 + title-reuse 排除。区间：两种都算，团队版为主，列出所有翻转。</td></tr>
 <tr><td>addendum 3</td><td>X6：R(l) = mean(patched−false)/mean(true−false)；5 个假标题平均 R(L48)∈[0.70,0.95] 且 R(L52)≥0.95，每个假标题 R(L48) 与 false_0 差 ≤0.10 且 R(L52)≥0.90 → Stage 11 结论成立。X7：S(l) = T(l) − F(l)；S(L52)≤0.05 且 S(L0)≥0.5 → 成立。P1 措辞由最终 Stage 12 分析决定。</td></tr>
 <tr><td>addendum 4</td><td>X3 主比较换成 lexical neighbour D（G' = cos(原,改写) − cos(原,D)，需 G'&gt;0 且 G'−G'(L4)&gt;0）；所有名字上的 patching/probe 结果（E1/E1t/E2、P1/P2/F2、X6/X7）按 token 角色另报；措辞限定为 teacher forcing 下的偏好，不是生成过程。</td></tr>
+<tr><td>addendum 5</td><td>X3：纳入 —— 主分析 = auto_ok 且去大小写和非字母数字后不与原标题相同（1,115 / 1,186，排除 27 条完全相同；44 条自动拒绝维持，含 37 条姓氏子串误拒）；敏感性 = 主分析再剔除 NLI 双向未都蕴含（nli_both = False）与人工"改意思"（1,015；"边界"保留）。词重合 —— jaccard2 取代补充 4 的词 Jaccard，用于改写–原标题与 D 的选择；D 规则其余不变，预先算在 <code>config/x3_lexical_neighbour_j2.csv</code>（sha256 a1c91c87…ff69）。意义检查 —— 判断器 v2 不用；NLI 只定敏感性集合；不再加标，报告 40 条人工标注：改意思 6/40 = 0.15 [0.071, 0.291]、边界 7/40 = 0.175 [0.087, 0.319]、改意思或边界 13/40 = 0.325 [0.201, 0.480]（Wilson 95%）。分析 —— 所有 X3 结果在两个集合上都报告，以主分析为准，两集结论不同则写"不稳健"。放行 —— 先 1 个真实分片（检查存下的 D 与表一致），再写 logs/para_ok。<span class="src">381_stage13/config/prereg_addendum5.json</span></td></tr>
 </table>
 
 <h3 id="h-prereg-dev">实际分析与预注册的偏离（逐条核对）</h3>
 <table class="t">
 <tr><th>实验</th><th>预注册规则</th><th>实际做法</th><th>判断</th><th>出处</th></tr>
-<tr><td>M3 判据</td><td>addendum 2：T 在 L16–L40 判断，"also relative to T(L4)"；prereg 原文 H2 为 T(l) ≥ 0.8（点估计）</td><td>自动判定用<b>区间</b>：H2 要求所有层 lo ≥ 0.8，H1 要求所有层 hi &lt; 0.5（比点估计更严）；T−T(L4) 和 I−I(L4) 写在表里，但<b>没有进入判定行</b>。报告 title_last 判为 H2（T 0.92–0.99），而 STATUS 的解读是"T 不高于 T(L4)"。</td><td><span class="st st-review">偏离（判定方式）</span></td><td><span class="src">stage13_m3_analyze.py:143-150（147 行 h2/h1） · reports/m3_report.md:83-90 · STATUS.md §6 0c</span></td></tr>
+<tr><td>M3 判据</td><td>addendum 2：T 在 L16–L40 判断，"also relative to T(L4)"；prereg 原文 H2 为 T(l) ≥ 0.8（点估计）</td><td>自动判定用<b>区间</b>：H2 要求所有层 lo ≥ 0.8，H1 要求所有层 hi &lt; 0.5（比点估计更严）；T−T(L4) 和 I−I(L4) 写在表里，但<b>没有进入判定行</b>。报告 title_last 判为 H2（T 0.92–0.99），而 STATUS 的解读是"T 不高于 T(L4)"。<b>2026-10-31 已按补充 2 重判</b>（<code>13_stage13/stage13_m3_verdict2.py</code>，m3_report.md 末节，旧判读段标 SUPERSEDED）：标题位置年份、引用数 T − T(L4) 在 L16–L40 都 &lt; 0，领域与 L4 分不开，I − I(L4) 所有层 &lt; 0 → <b>M3 不支持 H2</b>；":" 位置任务特定不变。</td><td><span class="st st-rechecked">已处理 2026-10-31</span></td><td><span class="src">stage13_m3_analyze.py:143-150（147 行 h2/h1） · reports/m3_report.md 末节 "Reading under prereg addendum 2" · summary_m3/m3_verdict_addendum2.csv · STATUS.md §6 0c</span></td></tr>
 <tr><td>M3 lexical floor</td><td>L4 的同一量</td><td>按 L4 做差并给团队区间</td><td>一致</td><td><span class="src">stage13_m3_analyze.py:117-127</span></td></tr>
 <tr><td>M3 分折</td><td>prereg "5-fold by paper" → addendum 1 改 group folds</td><td>group_folds</td><td>一致（按补充）</td><td><span class="src">stage13_m3_analyze.py:93</span></td></tr>
 <tr><td>X1 选层</td><td>prereg 在 tune 上选层 → addendum 2 取消，报告全部层</td><td>全部层（L4–L48）×test/tune/all 都报告</td><td>一致（按补充）</td><td><span class="src">stage13_x1x4_analyze.py:40-78</span></td></tr>
-<tr><td>X1 random_c 零检验</td><td>prereg：random_c 任一层 &gt;0.1，所有恢复率相对它报告并标记</td><td>只打 NULL FLAG（L4/L8/L16 约 −0.13～−0.15，L48 +0.12），判定仍用 R(authors)−R(random_c)&gt;0；year/field 的恢复率<b>没有</b>相对 random_c 重算；L48 在 FLAG 下仍判"task-independent"。</td><td><span class="st st-review">部分偏离</span></td><td><span class="src">stage13_x1x4_analyze.py:40-78（61 行 null_flag） · reports/x1_report.md:18, 48</span></td></tr>
+<tr><td>X1 random_c 零检验</td><td>prereg：random_c 任一层 &gt;0.1，所有恢复率相对它报告并标记</td><td>只打 NULL FLAG（L4/L8/L16 约 −0.13～−0.15，L48 +0.12），判定仍用 R(authors)−R(random_c)&gt;0；year/field 的恢复率<b>没有</b>相对 random_c 重算；L48 在 FLAG 下仍判"task-independent"。<b>2026-10-31 已相对 random C 重算</b>（<code>13_stage13/stage13_x1_vsC.py</code>，作业 11512702）：R′ = R − R(C) 逐对配对、同一 bootstrap；C 在 a − year、a − field 中完全抵消，按补充 2 的 ±0.1 界 L24–L48 判定都不变；test L48 a − year +0.019 [+0.012, +0.026]（小而确实的任务依赖）。</td><td><span class="st st-rechecked">已处理 2026-10-31</span></td><td><span class="src">stage13_x1x4_analyze.py:40-78（61 行 null_flag） · reports/x1_report.md:18, 48 · reports/x1_vsC.md · summary_x1x4/x1_recovery_vsC.csv</span></td></tr>
 <tr><td>X4 earliest / 顺序</td><td>tune 选最早层、test 确认；H2 顺序</td><td>按规则实现；field 在 title 位置 tune 上无显著层 → 报告写"order undetermined"。STATUS 写成"H2 order does not hold"，与报告措辞不一。</td><td>实现一致，解读措辞不一</td><td><span class="src">stage13_x1x4_analyze.py:105-114, 128-131 · reports/x4_report.md:16-17 · STATUS.md §6 0c</span></td></tr>
 <tr><td>X4 recognition</td><td>档内 target &gt; control（区间不含 0）；Stage 10 估计量（Stage 10 min_n = 30）；通用规则要求在 tune 选、test 确认</td><td><code>min_n=10</code>；在<b>全部论文</b>（tune+test 合并）上逐层报告，没有 tune/test 区分，也没有自动判定行</td><td><span class="st st-review">偏离</span></td><td><span class="src">stage13_x1x4_analyze.py:80（min_n=10）, 115-122</span></td></tr>
 <tr><td>区间（addendum 2）</td><td>论文版与团队版都给，团队为主</td><td>X1/X4/X6/X7/M3 只给团队版</td><td><span class="st st-review">偏离（缺论文版）</span></td><td><span class="src">各分析脚本 docstring</span></td></tr>
 <tr><td>X6</td><td>addendum 3 公式与阈值</td><td>按公式；比值为均值之比；5 个标题平均为 R 的简单平均；判定 target/control/all 三组都 HOLDS</td><td>一致</td><td><span class="src">stage13_x6_analyze.py:55-92（90 行判定） · reports/x6_report.md 末段</span></td></tr>
 <tr><td>X7</td><td>S(L52)≤0.05 且 S(L0)≥0.5</td><td>按公式；control S(L52) = 0.051 → DOES NOT HOLD（差 0.001）；target 0.018、all 0.029 HOLD</td><td>一致（结果如实报告）</td><td><span class="src">stage13_x7_analyze.py:82-86（84 行判定） · reports/x7_report.md · STATUS.md §6 0b</span></td></tr>
-<tr><td>token 角色（addendum 4）</td><td>X6/X7 等名字上的结果也按 token 角色报告</td><td>stage13_x6_analyze.py、stage13_x7_analyze.py 中没有任何 role 拆分；x6/x7 报告也没有。P1 的角色拆分已于 2026-10-30 从原始数据重算（<a href="#s12-p1">s12-p1</a>）；X4 的角色拆分在逐 token 全量（作业 11500437）后完成（<a href="#s13-x4">s13-x4</a>）</td><td><span class="st st-review">部分偏离（X6/X7 未做）</span></td><td><span class="src">grep -n role stage13_x6_analyze.py stage13_x7_analyze.py（无结果）</span></td></tr>
+<tr><td>token 角色（addendum 4）</td><td>X6/X7 等名字上的结果也按 token 角色报告</td><td>原 stage13_x6_analyze.py、stage13_x7_analyze.py 中没有 role 拆分。P1 的角色拆分已于 2026-10-30 从原始数据重算（<a href="#s12-p1">s12-p1</a>）；X4 的角色拆分在逐 token 全量（作业 11500437）后完成（<a href="#s13-x4">s13-x4</a>）；<b>X6/X7 于 2026-10-31 补做</b>（<code>13_stage13/stage13_x6x7_roles.py</code>，作业 11512706，原始文件按 row_id 存逐 token 名次，无需 GPU）：三个预注册角色判定都成立，唯一例外 X6 target 姓第一个 token R(L48) 0.696 &lt; 0.70（<a href="#s13-x6">s13-x6</a>、<a href="#s13-x7">s13-x7</a>）</td><td><span class="st st-done">已完成 2026-10-31</span></td><td><span class="src">reports/x6x7_roles.md · summary_x6/x6_roles.csv · summary_x7/x7_roles.csv</span></td></tr>
 <tr><td>X2、X5</td><td>X2 运行前另写补充；X5 层序</td><td>没有 X2 补充；<b>X2 暂停</b>（用户 2026-10-30 决定）；X5 计划在 M3 与 X4 全量完成后用已有数据在 CPU 上做，尚未做</td><td><span class="st st-plan">计划未做</span></td><td><span class="src">config 目录 · PROGRESS.md:477</span></td></tr>
-<tr><td>X3</td><td>addendum 2/4 规则；para_ok 人工把关</td><td>para_gen 已完成；判断器 v2 检验一致率 0.55 &lt; 0.80，不用，改走备用方案；para_run 等补充 5（待用户确认）与 para_ok，主分析未做</td><td><span class="st st-plan">计划未做完</span></td><td><span class="src">PROGRESS.md 2026-10-29/30 条</span></td></tr>
+<tr><td>X3</td><td>addendum 2/4 规则；para_ok 人工把关；addendum 5（2026-10-30 22:45）</td><td>para_gen 已完成；判断器 v2 检验一致率 0.55 &lt; 0.80，不用，改走备用方案；补充 5 已写定（主分析 1,115、敏感性 1,015、jaccard2、D 预先算好、不再加标）；para_run 先跑 1 个真实分片，作业 11511973 已提交，排队中（2026-10-31），通过后再写 para_ok；主分析未做</td><td><span class="st st-plan">计划未做完</span>（无偏离：规则写在数据之前）</td><td><span class="src">381_stage13/config/prereg_addendum5.json · PROGRESS.md 2026-10-30 23:00 条 · squeue 2026-10-31</span></td></tr>
 </table>
 </section>
 
@@ -2387,7 +2399,7 @@ target−control：档内合并（≥30/档，B=2000）。<span class="src">stag
 <ul>
 <li>Stage 12 <code>probe_controls()</code>：<span class="src">~/jlens_work/12_stage12/stage12_cpu.py:111–162</span></li>
 <li>Stage 13 <code>stage13_e4b_group.py</code>（作业 11443587，short，16 CPU / 96G）：原样载入 <code>stage10_extra_r0r1.probe</code>（与 Stage 11 预测相同）和 <code>stage12_cpu.probe_controls</code> 的源码，只把分折那一行替换掉，并在形成每篇 spec 之后注入两行（记录 + 可选剔除）。<span class="src">~/jlens_work/13_stage13/stage13_e4b_group.py:1–10, 43–61；stage13_e4b_group.sbatch；git 0dde4de</span></li>
-<li>团队分折 <code>group_folds(pid, k=5, seed=13, donors=None)</code>。<span class="src">~/jlens_work/13_stage13/stage13_cpu.py:80–109</span></li>
+<li>团队分折 <code>group_folds(pid, k=5, seed=13, donors=None)</code>。<span class="src">~/jlens_work/13_stage13/stage13_cpu.py:80–109</span> 2026-10-30 折审计：E4b 原运行（11443587 c0685、trainstd 11500917 c0602，均为无 AVX-512 的 Broadwell）的分折与存档一致（逐篇 dropped 标志指纹 0/9,108 不符），点估计差 0，无需重跑（见 <a href="#h-stats-team">h-stats-team</a>）。<span class="src">381_stage13/reports/fold_audit.md 表中 e4b 两行</span> <span class="st st-rechecked">复核过</span></li>
 </ul>
 
 <h4>4 步骤</h4>
@@ -2668,7 +2680,7 @@ recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是
 <ul>
 <li>in-batch 'none'（未替换 false 运行）作为 0 点。</li>
 <li>P2 没有"全替换 = 1"的内置上界检查（替换单层单组件不应恢复 1），当时也<b>没有做显式的 sanity 检查</b>（例如 L63 或"替换为自身 = 不变"；logs 下只有 P1 的 smoke 项）。</li>
-<li><b>从数据看 hook 生效（2026-10-30 重算，U40 部分解决）</b>：各替换列与 none 列相比，L8–L44 平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 明显上升（+0.020 到 +0.070，如 attn48 +0.069、mlp56 +0.070），与 recovery 表一致；基线 none 列与 Stage 11 假标题运行 rank_false 逐行相同的只有 59.4%，但全部行的名次都在 2 倍以内、平均 Δnlr 0.0000、p99 |Δnlr| 0.146，P1 自己的 none 列在不同层之间也只有 59.7% 逐行相同，所以是批大小不同带来的 bf16 噪声，不是 hook 泄漏；rank_true 与 Stage 11 100% 相同。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py（371_stage12/raw/patch_comp，19,077 行 × 23 列）· 371_stage12.py:146–170 · <a href="#iu-research">附录 I</a> U40</span> 是否补做显式检查待用户决定。<span class="unk">未知/需确认：向 用户 确认（是否补做 P2 显式 sanity，例如 L63 或"替换为自身"，U40）</span></li>
+<li><b>从数据看 hook 生效（2026-10-30 重算，U40 部分解决）</b>：各替换列与 none 列相比，L8–L44 平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 明显上升（+0.020 到 +0.070，如 attn48 +0.069、mlp56 +0.070），与 recovery 表一致；基线 none 列与 Stage 11 假标题运行 rank_false 逐行相同的只有 59.4%，但全部行的名次都在 2 倍以内、平均 Δnlr 0.0000、p99 |Δnlr| 0.146，P1 自己的 none 列在不同层之间也只有 59.7% 逐行相同，所以是批大小不同带来的 bf16 噪声，不是 hook 泄漏；rank_true 与 Stage 11 100% 相同。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py（371_stage12/raw/patch_comp，19,077 行 × 23 列）· 371_stage12.py:146–170 · <a href="#iu-research">附录 I</a> U40</span> <b>显式检查（用户 2026-10-30 决定：做，只跑 1 个分片）</b>：新脚本 <code>~/jlens_work/12_stage12/stage12_p2_hookcheck.py</code>（import 371_stage12.py，不改原脚本），用与 P2 相同的 hook 体（加调用计数）：阳性 <code>full_true</code>（0–63 每层 attn + MLP 都换成真运行 → 末层残差应与真运行逐位相同，recovery = 1）与 <code>r62c63_true</code>（第 62 块残差 + attn63 + mlp63 换成真运行 → 也应完全相同）；阴性 <code>full_false</code>（换成假运行自己的组件 → 等于假运行，recovery 0）；parity：<code>none</code>、<code>attn56</code>、<code>mlp56</code> 对照已存的 <code>raw/patch_comp/shard_000.npz</code>。容差 max |Δlogit| ≤ 1.0（4 个 bf16 单位）、|recovery − 1| ≤ 0.01，不达标只记 WARN。tiny CPU 作业 11511943（64 层随机 tiny Qwen3、真 tokenizer、3 篇）PASS：full_true / r62c63_true recovery 1.0000、Δlogit 0、Δ残差 0；full_false Δ 0；264 个 hook 每次前向各触发一次（1,848/1,848）。真实 GPU 作业 11511965（gpu-short，A100-80GB，shard 0）<span class="st st-review">已提交，排队中（2026-10-31）</span>，结果待出，报告将写入 <code>371_stage12/reports/p2_hookcheck.md</code>。<span class="src">PROGRESS.md 2026-10-30 22:45 条 · 371_stage12/hookcheck_2026-10-30/tiny/ · squeue 2026-10-31（11511965 PD）</span></li>
 </ul>
 
 <h4>7 结果</h4>
@@ -2690,7 +2702,7 @@ recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是
 </ul>
 
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span> 24/24（2026-10-27 至 10-28；17:28 时 15/24），分析 2026-10-28 19:55。<span class="src">PROGRESS.md "2026-10-27 17:28" 条 · summary/P2_patch_comp.csv 时间戳</span></p>
+<p><span class="st st-done">已完成</span> 24/24（2026-10-27 至 10-28；17:28 时 15/24），分析 2026-10-28 19:55。<span class="src">PROGRESS.md "2026-10-27 17:28" 条 · summary/P2_patch_comp.csv 时间戳</span> 显式 hook 检查（U40）：tiny 11511943 PASS；1 个真实分片作业 11511965 <span class="st st-review">已提交，排队中（2026-10-31）</span>。</p>
 </section>
 
 
@@ -2864,7 +2876,7 @@ J_l = 40 条提示的平均
 <tr><td>L56</td><td>0.923</td><td>0.923</td><td>0.927</td><td>0.997</td><td>1.001</td></tr>
 <tr><td>L62</td><td>0.996</td><td>0.996</td><td>0.998</td><td>1.009</td><td>1.010</td></tr>
 </table>
-<p>即 F1 在 L24–L48 与三个 WikiText lens 一致性差（余弦约 0.27–0.70），而三个 WikiText lens 彼此很一致；到 L56/L62 才接近。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）口径核对：public 的 ‖J−I‖/‖I‖ 在 L62 为 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，现有数据无法区分。<span class="unk">未知/需确认：向 用户 确认（是否补做 F1 lens 的对半拟合以区分噪声与提示分布，需要 GPU，U42）</span></p>
+<p>即 F1 在 L24–L48 与三个 WikiText lens 一致性差（余弦约 0.27–0.70），而三个 WikiText lens 彼此很一致；到 L56/L62 才接近。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）口径核对：public 的 ‖J−I‖/‖I‖ 在 L62 为 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，现有数据无法区分。<b>用户 2026-10-30 决定：答辩前不做 F1 对半拟合</b>，作为局限写明（见第 8 项；U42 已按用户决定写明）。<span class="src">PROGRESS.md 2026-10-30 23:00 条 (5)</span></p>
 
 <h4>7 结果</h4>
 <p>产出 <code>371_stage12/alens/lens.pt</code>（8 个源层），2026-10-28 17:12 完成。读出结果见 F2。<span class="src">alens/progress.json done=40</span></p>
@@ -2875,10 +2887,11 @@ J_l = 40 条提示的平均
 <li>拟合平均覆盖了提示里所有位置（标题、年份、名字），不是只针对名字位置。</li>
 <li>拟合集 31/9 target/control 不平衡。</li>
 <li>拟合集与评估集论文不重叠，但按作者团队不完全独立：3 篇评估论文与拟合集有同名作者（"qiang xu"、"j schwartz"、"j braun"，可能是同名不同人），已在 F2 中剔除，未重拟合（会浪费约 4 GPU 小时，当时已拟合 35/40）。<span class="src">config/alens_eval_exclude.json · PROGRESS.md "2026-10-28 12:00" 条</span></li>
+<li><b>没有拟合质量检查，答辩前也不补做</b>（用户 2026-10-30 决定）：F1 lens 在 L24–L48 与三个 WikiText lens 的余弦只有约 0.27–0.70（三个 WikiText lens 彼此 ≥ 0.79），这种差别是提示分布不同还是只用 40 条的噪声，没有对半拟合就无法区分（checkpoint 只存了 J 的总和，要区分需重新在 GPU 上分两半拟合）。所以 F2"作者专用 lens 也读不出中间层的标题特异信号"可能部分来自 lens 本身估计不稳。<span class="src">上文"事后一致性比较"表 · research_scripts/u42_lens_compare.py · PROGRESS.md 2026-10-30 23:00 条 (5)</span></li>
 </ul>
 
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span>（40/40）。</p>
+<p><span class="st st-done">已完成</span>（40/40）。对半拟合 <span class="st st-plan">计划未做</span>（用户决定答辩前不做，写为局限，U42）。</p>
 </section>
 
 
@@ -3029,6 +3042,13 @@ X1: W = (AᵀA + λI)⁻¹ Aᵀ(Y − ȳ),  λ = α·tr(AᵀA)/d,  α = 1
 
 <h4>来由</h4>
 <p>用户 2026-10-28 指出"lens 读不出"≠"不存在"，由此开 Stage 13。三个假设：H1 中间层主要表示任务/格式；H2 主要表示"这是哪篇论文"（论文身份）；H3 作者信息已在、只是不在词表方向上。<span class="src">PROG 2026-10-28 ~07:15 条 · stage1_11_report.html Part IV · C13/README.md</span></p>
+<p><b>三个假设的目前结果（2026-10-31，与报告 v22 假设表新加的"目前结果"列一致）</b>：</p>
+<ul>
+<li><b>H1</b>：M3 ":" 位置的状态是任务特定的（L16–L40 的迁移比 T 都 &lt; 0.5），H1 判读不变（<a href="#s13-m3">s13-m3</a>）。</li>
+<li><b>H2</b>：M3 不支持（不高于 L4 文字水平）；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考。另外，X4 最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反（<a href="#s13-x4">s13-x4</a>）。</li>
+<li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足；X2 暂停，H3 没有因果检验（<a href="#s13-x2">s13-x2</a>）。</li>
+</ul>
+<p><span class="src">R13/reports/m3_report.md 末节 "Reading under prereg addendum 2" · R13/summary_m3/m3_verdict_addendum2.csv · R13/reports/x4_report.md · R13/summary_x1x4/x4_rolesplit.csv · PROG 2026-10-31 01:00 条</span> <span class="st st-rechecked">复核过</span></p>
 
 <h4>共用样本</h4>
 <table class="t">
@@ -3040,6 +3060,7 @@ X1: W = (AᵀA + λI)⁻¹ Aᵀ(Y − ȳ),  λ = α·tr(AᵀA)/d,  α = 1
 
 <h4>按作者团队分组（group_folds）</h4>
 <p>审计（2026-10-28 11:45）发现两处泄漏：false_0 运行里 2,004 个借出标题同时出现在训练和测试里；有 2,319 对论文共享至少一位作者全名却分在不同折。修法 <code>group_folds</code>：作者名先做 NFKD→ASCII→小写→只留字母和空格，至少两个词才算"全名"；用并查集把共享任一全名的论文并成一组（同名不同人也并，保守）；false_0 运行再把行与它展示的借出论文绑在一起；整组按"大的先放、放进当前最小的折"分到 k 折（打乱用 seed）。全队列得到 7,247 组；折大小 1,821–1,822；0 个名字、0 个借出标题跨折。<span class="src">C13/stage13_cpu.py:80-109 group_folds · PROG 2026-10-28 11:45 条 · R13/reports/cluster_ci.md 第 3 行（7247 groups）</span></p>
+<p><b>折的复现性审计（2026-10-30）</b>：同样大小的组排序不稳定，只在有 AVX-512 的节点（Xeon Platinum 8276 cascadelake，d0026/d0027）上给出不同的分折（9,108 篇中 6,713 篇折不同）；无 AVX-512 的 8 个节点（Broadwell c06xx/c3155、EPYC d0139）完全一致。团队编号本身与 CPU 无关，所以所有团队整群 bootstrap 不受影响。所有原始运行（M2/M2b/M2c 11443403 d0139；E4b 11443587、trainstd 11500917；M3 11472899；X4 textbase/textbase2；cluster_ci；X6/X7；pairs.parquet）都在无 AVX-512 节点上跑，分折与存档一致，点估计差 0，无翻转；唯一不一致的是已标 BAD 的 M2 小测试 11501115（d0026），点估计最多差 0.0061，无翻转。现在 <code>group_folds()</code> 先读存档（<code>R13/summary_cpu_teamci/folds_own9108_k5s13.npz</code>、<code>folds_donor9108_false0_k5s13.npz</code>、<code>folds_pairs1178_k2s1314.npz</code>，sha256 见同目录 README.md）。详见 <a href="#h-stats-team">h-stats-team</a>。<span class="src">R13/reports/fold_audit.md · 作业 11511921–11511930、11512064 · C13/stage13_cpu.py（备份 stage13_cpu.before_foldsfreeze_2026-10-30.py）</span> <span class="st st-rechecked">复核过</span></p>
 <p>X1/X3/X4 的 tune/test：<code>group_folds(k=2, seed=1314)</code> 只用它的团队编号；然后在 target、control 内各自把团队洗牌（seed 1314），按团队整体依次放进 tune，直到累计篇数达到该组一半，余下放 test。<span class="src">C13/381_stage13.py:165-177</span></p>
 
 <h4>区间</h4>
@@ -3053,9 +3074,9 @@ X1: W = (AᵀA + λI)⁻¹ Aᵀ(Y − ȳ),  λ = α·tr(AᵀA)/d,  α = 1
 <tr><td>prereg_addendum2.json</td><td>11:05（written 字段 12:30）</td><td>377b7963</td><td>替换 M3 身份指数规则（只看 I(l)−I(L4)，迁移比 T 为主）；替换 X1 选层与判定规则；M2c 改为单向；X3 加词重合对照；E4b；全部区间改团队版。</td></tr>
 <tr><td>prereg_addendum3.json</td><td>11:41（written 字段 14:00）</td><td>e01aa6e3</td><td>X6、X7 的定义与判定；X6 先跑、X7 最后跑。</td></tr>
 <tr><td>prereg_addendum4.json</td><td>11:55（written 字段 14:40）</td><td>ac77da9f</td><td>X3 主对照改为词重合近邻 D（G′）；按 token 角色报告；措辞规则（teacher forcing 下的偏好，不是生成过程）。</td></tr>
-<tr><td>prereg_addendum5</td><td>—</td><td>—</td><td><span class="st st-plan">计划未做</span> 尚未写定：草稿已发给用户，等用户确认（X3 排除 27 条完全相同改写、改用 jaccard2、37 条姓氏误拒维持拒绝、意义检查改走备用方案——因为判断器 v2 不可用）。<span class="src">R13/config/ 目录无此文件；PROG 2026-10-29 04:40、12:40 条，2026-10-30 14:00、15:00 条</span></td></tr>
+<tr><td>prereg_addendum5.json</td><td>2026-10-30 22:45（written 字段 2026-10-30T22:45-04:00；文件 mtime 22:42）</td><td>181c72f7</td><td>X3：主分析 1,115 条（auto_ok 且非完全相同），敏感性 1,015 条（再剔除 nli_both=False 与人工"改意思"，"边界"保留）；改写–原标题与 D–原标题的词重合都改用 jaccard2，D 预先算好（<code>config/x3_lexical_neighbour_j2.csv</code>）；不再加标，按已有 40 条人工标注报告改意思比例；判断器 v2 不用，NLI 只用于敏感性集合；放行先 1 个真实分片再写 para_ok。用户已批准（2026-10-30 晚）。<span class="src">R13/config/prereg_addendum5.json（sha256 181c72f77a5b354567ecdaad4fff8991733f635cfee35c3ee7191b2fd6b113ab，与 .sha256 一致）</span> <span class="st st-done">已写定</span></td></tr>
 </table>
-<p><span class="src">R13/config/prereg*.json 与 .sha256</span>。"实际写于"取自会话记录、文件 mtime 与 git 提交时间（三者一致）；文件内的 written 字段是当时会话手填的，比实际晚 20 分钟到 2 小时 45 分钟，不能当作写定时间引用（U18 已解决）。<span class="src">PROG 2026-10-30 12:30 条 · <a href="#h-prereg-files">h-prereg-files</a></span> <span class="st st-rechecked">复核过</span></p>
+<p><span class="src">R13/config/prereg*.json 与 .sha256</span>。"实际写于"取自会话记录、文件 mtime 与 git 提交时间（三者一致）；文件内的 written 字段是当时会话手填的，比实际晚 20 分钟到 2 小时 45 分钟，不能当作写定时间引用（U18 已解决）；补充 5 的 written（22:45）与文件 mtime（22:42:10）只差 3 分钟。<span class="src">PROG 2026-10-30 12:30 条 · <a href="#h-prereg-files">h-prereg-files</a></span> <span class="st st-rechecked">复核过</span></p>
 
 <h4>GPU 单元与调度</h4>
 <p>GPU 部分全部在 <code>381_stage13.py work</code> 里按"单元"领取（claim 目录 <code>R13/logs/claims/</code>），每个单元存一个 <code>raw/&lt;类型&gt;/[条件/]shard_XXX.npz</code>，已存在就跳过；某类单元崩溃会写 <code>logs/broken_&lt;类型&gt;.json</code> 并停用该类型（2026-10-30 查：没有任何 broken 文件）。单元顺序：X6 xf_patch（先 false_0 shard 0 复现检查）→ M3 task 72 → X1 xpatch 24 → X4 pscope 24 → X3 para_gen 24 →（仅当 <code>logs/para_ok</code> 存在）para_run 24 → X7 ko_false 24。它们作为 Stage 12 作业的"转交"运行（<code>371_stage12.py handover13</code>，开关 <code>R13/logs/accept_handover</code>）。模型 Qwen3-32B bf16，单卡 A100-80GB（task 单元的 meta 记录了 2 张 A100-80GB）。<span class="src">C13/381_stage13.py:59-68 units, 395-416 work · R13/raw/*/shard_*.npz 的 meta 字段</span></p>
@@ -3127,7 +3148,7 @@ X1: W = (AᵀA + λI)⁻¹ Aᵀ(Y − ȳ),  λ = α·tr(AᵀA)/d,  α = 1
 <h4>8 局限与质疑</h4>
 <ul>
 <li>M2 原报告的 CI 是按论文 bootstrap、只 200 次，不是补充 2 要求的团队整群 2,000 次；报告头仍写"5-fold CV by paper"（团队版报告也是这句，属硬编码的旧标题）。<span class="src">stage13_cpu.py:142-146, 209</span> 2026-10-30 已按补充 2 补算团队整群区间（见第 7 项末段），U45 已解决。</li>
-<li>团队折的复现性：<code>group_folds()</code> 对同样大小的组排序不稳定（pandas value_counts），不同 CPU 型号上折分配可能不同（d0026 上点估计最多差 0.006；c0622 上精确复现），补算用的折已固定保存在 <code>R13/summary_cpu_teamci/folds_group.npz</code>。<span class="src">PROG 2026-10-30 17:30 条 · <a href="#h-stats-team">h-stats-team</a></span></li>
+<li>团队折的复现性：<code>group_folds()</code> 对同样大小的组排序不稳定（pandas value_counts），补算用的折已固定保存在 <code>R13/summary_cpu_teamci/folds_group.npz</code>。2026-10-30 的折审计查明：只有 AVX-512 节点（cascadelake d0026/d0027）给出不同分折；M2/M2b/M2c 原运行 11443403 在 d0139（EPYC 7702，无 AVX-512）上，分折与存档一致，点估计差 0。唯一不一致的是小测试 11501115（d0026，点估计最多差 0.0061，无翻转），它的输出已改名留档（不删）：<code>R13/summary_cpu_teamci_tiny.BAD_fold_order_differs_d0026_keep/</code>、<code>R13/reports/m2_teamci_tiny.BAD_fold_order_differs_d0026_keep.md</code>。<span class="src">R13/reports/fold_audit.md 表中 m2 各行 · PROG 2026-10-30 17:30、23:00 条 · <a href="#h-stats-team">h-stats-team</a></span> <span class="st st-rechecked">复核过</span></li>
 <li>docstring 列了"first-author first token"目标，但 targets 列表里没有实现；作者首 token probe 在 E4b（<code>stage13_e4b_group.py</code>，属 Stage 11 复核）。<span class="src">stage13_cpu.py:13 vs 178-180</span></li>
 <li>recognised 用 ridge 回归 0/1 标签再算 AUROC（不是 logistic）。</li>
 <li>年份、引用数可能来自标题用词风格而非"认得这篇"——这是 M2b、M2c 的任务。</li>
@@ -3229,8 +3250,14 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 <h4>6 对照</h4>
 <p>L4 作为"纯文本下限"：所有判断都相对 T(L4)、I(L4)。":" 位置作为对照位置。</p>
 <h4>7 结果</h4>
-<p>标题位置：T 在 L16–L40 为 year 0.92–0.95、citations 0.92–0.96、field 0.99，按阈值属 H2；但 T(L4) 已是 0.983 / 0.976 / 0.998，T − T(L4) 在 L16–L40 为 −0.03 到 −0.06（year，区间不含 0）。":" 位置：year、citations 的 T 为负（跨问法 R² 为负），field 0.26–0.36 → H1（任务特异）。身份指数：标题位置 I(L4) = 0.978，I(l) − I(L4) 在所有层都 &lt; 0（L24 −0.011，L48 −0.052）；":" 位置 −0.04 到 −0.64。within-prompt：标题位置 year R² 从 L4 0.130 到 L48 0.543。<span class="src">R13/reports/m3_report.md 全部表 · R13/summary_m3/m3_transfer.csv, m3_identity.csv</span></p>
+<p>标题位置：T 在 L16–L40 为 year 0.92–0.95、citations 0.92–0.96、field 0.99，按绝对阈值属 H2（旧判读，已被下面"按补充 2 重判"取代）；但 T(L4) 已是 0.983 / 0.976 / 0.998，T − T(L4) 在 L16–L40 为 −0.03 到 −0.06（year，区间不含 0）。":" 位置：year、citations 的 T 为负（跨问法 R² 为负），field 0.26–0.36 → H1（任务特异）。身份指数：标题位置 I(L4) = 0.978，I(l) − I(L4) 在所有层都 &lt; 0（L24 −0.011，L48 −0.052）；":" 位置 −0.04 到 −0.64。within-prompt：标题位置 year R² 从 L4 0.130 到 L48 0.543。<span class="src">R13/reports/m3_report.md 全部表 · R13/summary_m3/m3_transfer.csv, m3_identity.csv</span></p>
 <p>解读（作者在 PROG 的原话要点）：三个提示只在标题前 9 个 token 不同、标题完全相同，所以标题位置的 T≈1 只说明"换问法不变"，不说明有超出文本的论文身份。<span class="src">PROG 2026-10-29 10:10 条</span></p>
+<p><b>按补充 2 重判（2026-10-31）</b>：脚本 <code>C13/stage13_m3_verdict2.py</code>，表 <code>R13/summary_m3/m3_verdict_addendum2.csv</code>，写在 <code>R13/reports/m3_report.md</code> 末节 "Reading under prereg addendum 2"；原 "Pre-registered reading" 段（只用 T 的绝对阈值 ≥0.8）已标为 SUPERSEDED（旧版备份 <code>R13/reports/m3_report.before_verdict2_2026-10-31.md</code>）。规则：T 在 L16–L40 相对 T(L4) 判断；身份指数只看 I(l) − I(L4)；区间为团队整群 bootstrap。</p>
+<ul>
+<li><b>标题位置</b>：年份 T − T(L4) 为 −0.031 到 −0.060、log 引用数 −0.016 到 −0.055（L16–L40 各层区间都 &lt; 0）→ 低于 L4；领域 −0.004 到 −0.007（L36 的区间 [−0.007, +0.000] 含 0）→ 与 L4 分不开。I − I(L4)：标题位置 −0.003 到 −0.017，":" 位置 −0.421 到 −0.613，所有层 &lt; 0 → 不支持 H2。<span class="src">m3_verdict_addendum2.csv 列 T_minus_L4_min / T_minus_L4_max（title_last year −0.0601 / −0.0306，log_citations −0.0548 / −0.0157，field −0.0069 / −0.0036；identity_index title_last −0.0166 / −0.0027，colon −0.6134 / −0.4206）· m3_report.md title_last 表 L36 行</span></li>
+<li><b>":" 位置</b>：T − T(L4) 为正（年份 +13.776 到 +19.514）只因 L4 的跨问法 R² 极负（T(L4) 年份 −20.627），T 本身在 L16–L40 都 &lt; 0.5 → 任务特定（H1 判读不变）。<span class="src">m3_report.md colon 表 · m3_verdict_addendum2.csv colon 行</span></li>
+<li><b>结论：M3 不支持 H2</b>（不高于 L4 文字水平）。标题位置 T 0.92–0.99、I 0.96–0.98 虽高，但从未高于完全相同的标题 token 在 L4 已给出的水平。H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考。<span class="src">m3_report.md 末节 Summary · PROG 2026-10-31 01:00 条</span> <span class="st st-rechecked">复核过</span></li>
+</ul>
 <h4>8 局限与质疑</h4>
 <ul>
 <li>标题最后一个 token 在三种问法里看到的上下文只差前缀 9 个 token，T 高几乎是构造决定的；T(l) − T(L4) 和 I(l) − I(L4) 都为负，说明中间层并没有比 L4 更"跨问法一致"。</li>
@@ -3239,7 +3266,7 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 <li>":" 位置 T 为大负数（如 L4 year −20.6），是跨问法 R² 为负除以小的 within R² 所致，数值本身不宜读太细。</li>
 </ul>
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span> 预注册：prereg.json M3（H2：I&gt;0 从 L8–L24 起且 T≥0.8 于 L16–L40；H1：I≈0 或 T&lt;0.5；L4 为词汇下限；按论文 5 折）。补充 1 改为团队折，补充 2 把 I 规则替换为只看 I(l)−I(L4)、T 为主并看 T−T(L4)、区间改团队版。实际按补充 1/2 执行。报告里的"Pre-registered reading"段落只按 T 的绝对阈值（L16–L40 区间下限 ≥0.8 → H2）给出，T−T(L4) 和 I−I(L4) 的判读写在表里和 PROG，没有自动判定语句。<span class="src">stage13_m3_analyze.py:142-149</span></p>
+<p><span class="st st-done">已完成</span> 预注册：prereg.json M3（H2：I&gt;0 从 L8–L24 起且 T≥0.8 于 L16–L40；H1：I≈0 或 T&lt;0.5；L4 为词汇下限；按论文 5 折）。补充 1 改为团队折，补充 2 把 I 规则替换为只看 I(l)−I(L4)、T 为主并看 T−T(L4)、区间改团队版。实际按补充 1/2 执行。原报告的 "Pre-registered reading" 段只按 T 的绝对阈值（L16–L40 区间下限 ≥0.8 → H2）给出，T−T(L4) 和 I−I(L4) 没有进入自动判定（<span class="src">stage13_m3_analyze.py:142-149</span>）；<b>2026-10-31 已按补充 2 重判</b>（见第 7 项末段，旧段标 SUPERSEDED），判定方式的偏离已处理：M3 不支持 H2。<span class="src">C13/stage13_m3_verdict2.py · R13/summary_m3/m3_verdict_addendum2.csv</span> <span class="st st-rechecked">复核过</span>（已处理 2026-10-31）</p>
 
 
 <h3 id="s13-m4">M4　作者专用 lens（Stage 12 F1/F2）</h3>
@@ -3312,16 +3339,18 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 </table>
 <p>NULL FLAG：test L4/L8/L16 的 R(random C) 为 −0.149/−0.139/−0.132，L48 为 +0.122；a − random C 始终 ≥ +0.30。<span class="src">R13/reports/x1_report.md test 表与末行 · R13/summary_x1x4/x1_recovery.csv</span></p>
 <p>相似度（标题最后 token）：同篇两问法余弦 L24 0.983、L40 0.977、L48 0.953；不同论文同问法余弦约 0.25–0.47（L4–L48）；question share L4 0.060、L24 0.147、L40 0.165、L48 0.268、L52 0.329。":" 位置相反：share 在 L4–L44 为 2.9–4.9（问法主导）。用户据此认可的措辞："问法让标题状态移动约 15–27%（以换论文为 1），但替换效果不变"。<span class="src">R13/reports/x1_similarity.md · R13/summary_m3/x1_similarity.csv · PROG 2026-10-29 12:10、12:40 条</span></p>
+<p><b>限定（2026-10-31）</b>：同篇两问法余弦 0.95–0.98 和"移动约 15–27%"都受三种问法标题文字完全相同的影响，<b>不能单独作为论文身份证据</b>；M3 按补充 2 重判也不支持 H2（<a href="#s13-m3">s13-m3</a>）。<span class="src">PROG 2026-10-31 01:00 条 · R13/reports/m3_report.md 末节</span></p>
+<p><b>相对随机 C 重算（2026-10-31，V31）</b>：脚本 <code>C13/stage13_x1_vsC.py</code>，作业 11512702，表 <code>R13/summary_x1x4/x1_recovery_vsC.csv</code>。R′(t) = R(t) − R(C)（逐对配对），N(t) = (R(t) − R(C)) / (1 − R(C))；与 x1_report 用同一团队 bootstrap（种子 101，2,000 次，每次抽样相同），R 与原差值区间复现到 1e-9。因为每对里两个任务减去的是同一个 C，R′(a) − R′(year)、R′(a) − R′(field) 与原差值逐次相同（最大差 3.8e-15），按补充 2（区间在 [−0.1, 0.1] 内）L24–L48 在 test、tune、all 的判定<b>都不变</b>。test L48：R(C) +0.122；R′ 作者 0.302、年份 0.283、领域 0.294；a − year +0.019 [+0.012, +0.026]、a − field +0.008 [+0.001, +0.014]（区间不含 0：小而确实的任务依赖）；以 C 为基线归一化后，年份保留作者效应的 93.6% [91.1%, 96.0%]、领域 97.4% [95.1%, 99.6%]。若把界改严为 0.02（不是预注册的界），L48 在三份数据里都变为 undecided（原曲线同样如此），L24–L40 仍为 task-independent。<span class="src">R13/reports/x1_vsC.md（Reproduction、test 两表、Conclusion）· R13/summary_x1x4/x1_recovery_vsC.csv · PROG 2026-10-31 00:00 条</span> <span class="st st-rechecked">复核过</span></p>
 <h4>8 局限与质疑</h4>
 <ul>
 <li>替换的是<b>全部</b>标题位置；三种问法里标题文本完全相同、前缀只差几个 token，相似度检查显示 L24–L40 状态本来就相近（share 0.15–0.17），所以"恢复一样好"部分是构造所致；但 share 不为 0 而恢复差 ≤0.02，说明问法带来的那部分差异不影响作者恢复。</li>
 <li>L48 的 a − year +0.019 区间不含 0，但在 ±0.1 等价界内，按规则仍判 task-independent（规则是等价界，不是差异检验）。</li>
-<li>random C 不为 0（L4–L16 为负、L48 为正），预注册要求"所有恢复相对它来读"——报告里给了 a − random C 列。</li>
+<li>random C 不为 0（L4–L16 为负、L48 为正），预注册要求"所有恢复相对它来读"——原报告只给了 a − random C 列；2026-10-31 已把 year/field 也相对 C 重算（见第 7 项末段），C 在差值中完全抵消，判定不变（V31 已处理）。</li>
 <li>clean/corrupt 用 batch 1，替换运行用 batch 7，bf16 下批大小不同会有舍入差（与 X4/X7 的问题同源），L4 的 R≈1.004 可能部分来自此。</li>
 <li>相似度检查的置换可能把少数论文配给自己（未排除不动点），影响可忽略；只用标题最后一个 token 代表整个区间。</li>
 </ul>
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span> 预注册：prereg.json X1 原规则（在 tune 上选 R(authors)−R(random_c) 最大的一层，再在 test 上要求 R(year)、R(field) 超过 R(random_c) 且与 R(authors) 相差 ≤0.1）被补充 2 替换为"全曲线、不选层、≤L16 不下结论、L24 起等价界判定"；tune/test 由补充 1 改为按团队。实际按补充 1/2 执行。相似度检查不在预注册内（用户事后要求）。</p>
+<p><span class="st st-done">已完成</span> 预注册：prereg.json X1 原规则（在 tune 上选 R(authors)−R(random_c) 最大的一层，再在 test 上要求 R(year)、R(field) 超过 R(random_c) 且与 R(authors) 相差 ≤0.1）被补充 2 替换为"全曲线、不选层、≤L16 不下结论、L24 起等价界判定"；tune/test 由补充 1 改为按团队。实际按补充 1/2 执行。相似度检查不在预注册内（用户事后要求）。random C 零检验的处理：2026-10-31 按 R′ = R − R(C) 重算（作业 11512702），判定不变，偏离已处理（V31）。</p>
 
 
 <h3 id="s13-x2">X2　只替换子空间（因果）</h3>
@@ -3344,7 +3373,7 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 <h4>2 材料</h4>
 <p>Stage 11 样本 1,186 篇的改写（para_gen 24/24，claim 作业 11374284、11453127）。<span class="src">R13/raw/para_gen/shard_000…023.npz（paper_id, title, paraphrase, auto_ok, word_jaccard）· R13/logs/claims/para_gen_*</span></p>
 <h4>3 工具</h4>
-<p>生成与自动检查：<code>381_stage13.py</code> do_para_gen / para_checks；NLI：<code>C13/stage13_para_nli.py</code>（作业 11475175）；Qwen 判断器：<code>C13/stage13_gpu_followup.py --sample --judge</code>（GPU 作业 11485349）。para_run（真正的实验）：do_para_run 已写好，但只在 <code>R13/logs/para_ok</code> 存在时才排队（2026-10-30 该文件不存在，raw/para_run 不存在）。<span class="src">381_stage13.py:66, 268-325</span></p>
+<p>生成与自动检查：<code>381_stage13.py</code> do_para_gen / para_checks；NLI：<code>C13/stage13_para_nli.py</code>（作业 11475175）；Qwen 判断器：<code>C13/stage13_gpu_followup.py --sample --judge</code>（GPU 作业 11485349）。para_run（真正的实验）：do_para_run 只在 <code>R13/logs/para_ok</code> 存在时才排队。补充 5 写定后改为先跑 1 个真实分片：<code>C13/stage13_para_shard.py 0</code>（检查存下的 lexical_neighbour 与 D 表一致、分数有限），作业 11511973 <span class="st st-review">已提交，排队中（2026-10-31）</span>；通过后再写 para_ok 放行其余分片。<span class="src">381_stage13.py:66, 268-325 · C13/stage13_para_shard.py 文档串 · squeue 2026-10-31（11511973 PD）· PROG 2026-10-30 23:00 条</span></p>
 <h4>4 步骤</h4>
 <p><b>(a) 生成</b>：原始文本（不用对话模板，避免 thinking），贪心（do_sample=False），max_new_tokens=60，pad=eos；解码后只取第一行、去首尾空白和引号。提示原文：<span class="src">381_stage13.py:125-126, 276-286</span></p>
 <pre class="code">Rewrite the title of a research paper using different words while keeping exactly the same meaning. Do not add any information.
@@ -3352,9 +3381,9 @@ Original title: {t}
 Rewritten title:</pre>
 <p><b>(b) 自动检查 para_checks</b>：通过需同时满足 —— 改写非空；年份字符串不出现在改写里；每位作者的姓（作者名按空格切后的最后一段，小写）不作为<b>子串</b>出现在改写的小写文本中；字符长度比 0.5–2.0。另算原版 word Jaccard（只记录，不参与通过判定）。<span class="src">381_stage13.py:268-273</span></p>
 <p>结果：1,186 条中 auto_ok 1,142（96.3%），被拒 44 条。本节作者逐条复算拒因（互不重叠）：37 条因姓氏子串命中，其中 36 条是词内子串（如 "li" 在 "application" 里、"le"、"lo"、"he"、"lu"、"tan"、"ding"），1 条是整词 "and"（某作者姓氏为 "And"）；2 条含年份（原标题本身含年份，如 "…from 2012"）；5 条长度比越界（其中 2 条是 "Sure, here's a rewritten title…" 这类开场白）。所以"误拒 37 条"的原因是子串匹配而非整词匹配。作者提议保留这些保守拒绝。<span class="src">R13/summary_x3/para_nli.csv（auto_ok）与 R10/cohort/papers.parquet 复算 · PROG 2026-10-29 04:40 条</span> <b>用户 2026-10-30 决定：37 条姓氏误拒维持拒绝</b>，写入补充 5（U49）。<span class="src">PROG 2026-10-30 14:00 条 U49</span></p>
-<p><b>(c) 完全相同的改写</b>：标题与改写都小写、去掉所有非 [a-z0-9] 字符后相等即"identical"。共 27 条，全部 auto_ok。用户同意在分析中排除（2026-10-29 10:40）；但 do_para_run 目前只按 auto_ok 过滤，排除尚未写入代码，计划随补充 5 一起改。<span class="src">C13/stage13_para_nli.py:32 · para_nli.csv identical 列 · PROG 2026-10-29 10:40 条第 (3) 项 · 381_stage13.py:313</span></p>
+<p><b>(c) 完全相同的改写</b>：标题与改写都小写、去掉所有非 [a-z0-9] 字符后相等即"identical"。共 27 条，全部 auto_ok。用户同意在分析中排除（2026-10-29 10:40），补充 5 已写定排除（主分析 1,115 = 1,142 auto_ok − 27 identical）。排除在分析时按 D 表的 <code>include_primary</code> / <code>include_sensitive</code> 列执行；do_para_run 仍对全部 auto_ok 改写运行（381_stage13.py 只改了 D 的来源，见 (e)）。<span class="src">C13/stage13_para_nli.py:32 · para_nli.csv identical 列 · PROG 2026-10-29 10:40 条第 (3) 项 · R13/config/prereg_addendum5.json "inclusion" · R13/config/x3_lexical_neighbour_j2.csv（include_primary 1,115、include_sensitive 1,015，本次计数）</span> <span class="st st-done">已写定</span></p>
 <p><b>(d) Jaccard 分词</b>：原版 <code>w()</code>/<code>title_words()</code>：小写，非字母数字变空格，只保留长度 &gt;3 的词，不还原词形。于是 "of"、"M22" 被丢掉，symmetric ≠ symmetrical，样本 #3 "Symmetric generation of M22" → "Symmetrical creation of M22" 算成 0.00；13 个标题只剩 ≤2 个计数词，130 个 ≤4 个。修正版 jaccard2：小写、非 [a-z0-9] 变空格、去掉 sklearn ENGLISH_STOP_WORDS、任意长度都保留、简单去后缀词形还原（按顺序试 ically, ation, ities, ness, ment, ical, ally, ing, ity, ies, ive, al, ed, es, ic, ly, s，词长需 &gt; 后缀长+2），#3 变为 0.50。分布：原版中位数 0.571（q10 0.231，q90 0.875），jaccard2 中位数 0.625（q10 0.273，q90 1.0）。<span class="src">381_stage13.py:269, 289 · C13/stage13_para_nli.py:15-26 · para_nli.csv（word_jaccard, jaccard2）· PROG 2026-10-29 12:40 条 (2d)</span></p>
-<p><b>(e) 近邻 D（lexical_neighbour）</b>：同领域、不同论文、无共同姓氏，词 Jaccard（用原版 title_words）≥ 改写的 Jaccard 中最接近的一篇；若没有 ≥ 的，取最高的。它用的是原版分词，所以受 (d) 的问题影响；但 para_run 还没跑，D 还没有被实际匹配过，因此目前<b>没有结果受影响</b>；修正计划随补充 5 一起改代码。<span class="src">381_stage13.py:292-304, 315 · PROG 第 103 行</span></p>
+<p><b>(e) 近邻 D（lexical_neighbour）</b>：同领域、不同论文、无共同姓氏，词 Jaccard（用原版 title_words）≥ 改写的 Jaccard 中最接近的一篇；若没有 ≥ 的，取最高的。它用的是原版分词，所以受 (d) 的问题影响；para_run 当时没跑，D 没有被实际匹配过，所以<b>没有结果受影响</b>。<b>补充 5 已改</b>：改写–原标题与 D–原标题都用 jaccard2，规则其余不变；D 预先算好存为 <code>R13/config/x3_lexical_neighbour_j2.csv</code>（sha256 a1c91c87…ff69，脚本 <code>C13/stage13_x3_neighbour_j2.py</code>）；<code>381_stage13.py</code> 的 do_para_run 改为读这张表（sha256 a7b01a8f… → 4e0f4849…，只改了 D 的来源这几行；备份 <code>C13/381_stage13.before_addendum5_2026-10-30.py</code>），之后 dry 31/31、pipeline test 48/48。写定前已知：只有 5.9% 的主分析对有匹配的 D（D 的重合 ≥ 改写的；jaccard2 中位数 改写 0.615 vs D 0.15），匹配子集按补充 4 另报，预计很小。<span class="src">381_stage13.py:292-304, 315 · R13/config/prereg_addendum5.json "word_overlap" · x3_lexical_neighbour_j2.csv（d_matched 在 include_primary 中的比例 0.0592，para_jaccard2 / lexical_jaccard2 中位数 0.615 / 0.15，本次计数）· diff 381_stage13.before_addendum5_2026-10-30.py 381_stage13.py · PROG 2026-10-30 23:00 条</span> <span class="st st-done">已写定</span></p>
 <p><b>(f) NLI 双向蕴含</b>：cross-encoder/nli-deberta-v3-large，原→改、改→原两个方向，batch 16、max_length 256，两个方向的 argmax 都是 entailment 才算通过。<span class="src">C13/stage13_para_nli.py:12, 35-46</span> 结果：auto_ok 且非 identical 的 1,115 条中 96 条（8.6%）不通过（全部 1,186 条中 100 条不通过）。在 20 条人工样本上：漏掉 #3（术语替换）、#15、#4；抓到 #5；误拒 #2、#11、#13、#14（某一方向 &lt;0.5，如 #2 正向 0.000、反向 0.994）。结论：单靠 NLI 不够。<span class="src">R13/summary_x3/para_nli.csv（nli_both, p_entail_fwd, p_entail_bwd）· R13/logs/para_review_sample20.csv · PROG 2026-10-29 13:45 条</span></p>
 <p><b>(g) Qwen3-32B 判断器</b>（用户 2026-10-29 同意）：盲测 A/B，两种顺序各问一次（A=原/B=改，A=改/B=原），对话模板、关闭 thinking；分数 = 第一个答案 token 上 P(Yes)/(P(Yes)+P(No))（只在 "Yes"、"No" 两个 token id 上做 softmax）；两种顺序都 &gt;0.5 才算"同义"。提示原文：<span class="src">C13/stage13_gpu_followup.py:25-29（JUDGE）, 56-72（judge）</span></p>
 <pre class="code">Do these two research paper titles have exactly the same meaning?
@@ -3370,25 +3399,27 @@ Answer with Yes or No.</pre>
 <tr><td>边界（#4）</td><td>0</td><td>1</td></tr>
 </table>
 <p>一致率 7/19 = 0.37（不计 #4）。方向没有反：3 条"改变"的两顺序平均 P(Yes) 为 0.000–0.009，16 条"同义"为 0.024–0.940，按平均分完全分开（排序完美）；问题在阈值 0.5 且要求两种顺序都过太严，加上顺序不对称很大（如 #14：0.881 vs 0.182）。全量判断没有启动。<span class="src">R13/followup/judge_sample.csv（p_yes_title_first, p_yes_para_first, judge_both）· R13/logs/fugpu_11485349.log "judge: 20 items, both-yes 0.20" · PROG 2026-10-30 两条</span> 这 20 条人工标签（A 组）已存档为 <code>R13/logs/para_review_sample20_labels.csv</code>（U50 已解决）。<span class="src">PROG 2026-10-30 12:30 条 U50</span></p>
-<p>自评偏差：改写和判断都是同一个 Qwen3-32B；对策为盲 A/B、两种顺序、用人工标签校准、并要求独立的 NLI 也通过（"补充 5 的规则将要求两者都过"）。<span class="src">stage13_gpu_followup.py:3-9（docstring）</span></p>
+<p>自评偏差：改写和判断都是同一个 Qwen3-32B；对策为盲 A/B、两种顺序、用人工标签校准、并要求独立的 NLI 也通过（"补充 5 的规则将要求两者都过"）。<span class="src">stage13_gpu_followup.py:3-9（docstring）</span> 这是当时的计划；最终写定的补充 5 不用判断器，NLI 只用于定义敏感性集合，不作主过滤。<span class="src">R13/config/prereg_addendum5.json "meaning_check"</span></p>
 <p><b>(h) 新 20 条人工标注（B 组）</b>：<code>R13/logs/para_review_sample20_b_labels.csv</code>（已排除前 20 条和完全相同的改写），标注来源一栏写"人工确认（参考了 Claude 的建议）"：<b>保留 11、边界 6（B6、B7、B8、B13、B16、B19）、改意思 3（B11、B15、B20）</b>，各条附理由。<span class="src">para_review_sample20_b_labels.csv 列 human_label、reason、label_source（本次计数）· PROG 2026-10-30 14:00 条</span> <span class="st st-rechecked">复核过</span></p>
-<p><b>(h′) 判断器 v2</b>（<code>C13/stage13_judge2.py</code>，tiny 11501023 通过，GPU 作业 11501072）：提示写入用户的 5 条标准（同一研究对象、同一范围、术语不被换成普通词或别的术语、数字/名字/缩写都在、关系方向不变；只是换说法或换语序仍算 Yes）；盲 A/B、两种顺序、chat 模板、关闭 thinking，分数 = P(Yes)/(P(Yes)+P(No))；在 A 组 20 条上按两顺序平均 P(Yes) 选阈值使一致率最大（边界算"不保留"），阈值 0.024，<b>校准一致率 0.90</b>；在 B 组 20 条（用户在判断器看到之前标好）上检验：<b>一致率 0.55</b>（边界算不保留），去掉 6 条边界后 0.79（14 条）——判断器把 20 条全判为保留，包括 6 条边界和 3 条改意思。用户的规则是低于 0.80 就不用，所以<b>判断器 v2 不用</b>，改走备用方案（人工核对 + 有/无该部分样本的敏感性分析），补充 5 草稿待用户确认。<span class="src">R13/followup/judge2_summary.json（threshold、calibration_agreement、test_agreement_*、test_confusion、verdict）· judge2_sample.csv · stage13_judge2.py:1–11, 78–86 · R13/logs/judge2_11501072.log · PROG 2026-10-30 15:00 条</span> <span class="st st-rechecked">复核过</span> <span class="st st-void">作废</span>（判断器路线）</p>
-<p><b>(i) para_run（计划）</b>：对每篇 A，在作者问法里分别放原标题、改写、搭档 B、近邻 D 四个版本，存 15 层 × 2 位置残差和第一作者得分。<span class="src">381_stage13.py:307-325</span></p>
+<p><b>(h′) 判断器 v2</b>（<code>C13/stage13_judge2.py</code>，tiny 11501023 通过，GPU 作业 11501072）：提示写入用户的 5 条标准（同一研究对象、同一范围、术语不被换成普通词或别的术语、数字/名字/缩写都在、关系方向不变；只是换说法或换语序仍算 Yes）；盲 A/B、两种顺序、chat 模板、关闭 thinking，分数 = P(Yes)/(P(Yes)+P(No))；在 A 组 20 条上按两顺序平均 P(Yes) 选阈值使一致率最大（边界算"不保留"），阈值 0.024，<b>校准一致率 0.90</b>；在 B 组 20 条（用户在判断器看到之前标好）上检验：<b>一致率 0.55</b>（边界算不保留），去掉 6 条边界后 0.79（14 条）——判断器把 20 条全判为保留，包括 6 条边界和 3 条改意思。用户的规则是低于 0.80 就不用，所以<b>判断器 v2 不用</b>，改走备用方案（人工核对 + 有/无该部分样本的敏感性分析），已写入补充 5（2026-10-30 22:45）。<span class="src">R13/followup/judge2_summary.json（threshold、calibration_agreement、test_agreement_*、test_confusion、verdict）· judge2_sample.csv · stage13_judge2.py:1–11, 78–86 · R13/logs/judge2_11501072.log · PROG 2026-10-30 15:00 条</span> <span class="st st-rechecked">复核过</span> <span class="st st-void">作废</span>（判断器路线）</p>
+<p><b>(h″) 人工标注的比例（补充 5，不再加标）</b>：用户决定答辩前不再加标，按已有 40 条人工标注（A、B 两次各随机抽 20 条主分析改写）报告：改意思 6/40 = 0.15（Wilson 95% [0.071, 0.291]）；边界 7/40 = 0.175 [0.087, 0.319]；改意思或边界 13/40 = 0.325 [0.201, 0.480]；保留 27/40 = 0.675 [0.520, 0.799]。<span class="src">R13/config/prereg_addendum5.json "meaning_check.manual" · logs/para_review_sample20_labels.csv、logs/para_review_sample20_b_labels.csv</span></p>
+<p><b>(i) para_run</b>：对每篇 A，在作者问法里分别放原标题、改写、搭档 B、近邻 D 四个版本，存 15 层 × 2 位置残差和第一作者得分。状态：1 个真实分片（作业 11511973）<span class="st st-review">已提交，排队中（2026-10-31）</span>，结果待出。<span class="src">381_stage13.py:307-325 · C13/stage13_para_shard.py · squeue 2026-10-31</span></p>
 <h4>5 公式</h4>
-<p>原版 Jaccard = |W(t) ∩ W(p)| / max(1, |W(t) ∪ W(p)|)，W = 长度 &gt;3 的小写字母数字词；jaccard2 同式，W 换成去停用词、任意长度、去后缀的词集。计划中的主指标（补充 4）：G′(l,pos) = cos(原, 改写) − cos(原, D)，要求 G′(l) &gt; 0 且 G′(l) − G′(L4) &gt; 0（团队区间不含 0），tune 上找、test 上确认；行为：第一作者得分 改写 − D &gt; 0。原指标 G = cos(原, 改写) − cos(原, B) 降为次要。补充 2 另要求在回归里用词 Jaccard 和"共享稀有词比例"（稀有 = 队列标题文档频率 &lt;10）作协变量。<span class="src">prereg.json X3 · prereg_addendum2.json X3 · prereg_addendum4.json X3</span></p>
+<p>原版 Jaccard = |W(t) ∩ W(p)| / max(1, |W(t) ∪ W(p)|)，W = 长度 &gt;3 的小写字母数字词；jaccard2 同式，W 换成去停用词、任意长度、去后缀的词集。主指标（补充 4；补充 5 把 D 的选法改用 jaccard2）：G′(l,pos) = cos(原, 改写) − cos(原, D)，要求 G′(l) &gt; 0 且 G′(l) − G′(L4) &gt; 0（团队区间不含 0），tune 上找、test 上确认；行为：第一作者得分 改写 − D &gt; 0。原指标 G = cos(原, 改写) − cos(原, B) 降为次要。补充 2 另要求在回归里用词 Jaccard 和"共享稀有词比例"（稀有 = 队列标题文档频率 &lt;10）作协变量。<span class="src">prereg.json X3 · prereg_addendum2.json X3 · prereg_addendum4.json X3</span></p>
 <h4>6 对照</h4>
-<p>近邻 D（主）；搭档 B（次）；词 Jaccard 协变量；意义检查（NLI + Qwen 判断器 + 人工 20+20）。</p>
+<p>近邻 D（主）；搭档 B（次）；词 Jaccard 协变量；意义检查（NLI + Qwen 判断器 + 人工 20+20）。按补充 5，所有 X3 结果在主分析集（1,115）和敏感性集（1,015）上都报告；结论以主分析集为准，两集结论不同时写"不稳健"。<span class="src">R13/config/prereg_addendum5.json "analyses"</span></p>
 <h4>7 结果</h4>
-<p>只有生成和意义检查的结果（见上）。X3 主实验无结果。</p>
+<p>只有生成和意义检查的结果（见上）。X3 主实验无结果：para_run 1 个真实分片（作业 11511973）已提交，排队中（2026-10-31）。</p>
 <h4>8 局限与质疑</h4>
 <ul>
 <li>姓氏检查是子串匹配，误拒 37 条（不会放进错误样本，只是少了样本，偏保守）。</li>
 <li>原版 Jaccard 低估词重合，若不修，近邻 D 会被匹配得词重合偏高/偏低，直接影响主对照。</li>
-<li>意义检查没有可接受的自动标准：NLI 误拒 4/20、漏检 3/20；第一版判断器方向对但阈值过严；判断器 v2 在新 20 条上一致率 0.55 &lt; 0.80，不用。</li>
+<li>意义检查没有可接受的自动标准：NLI 误拒 4/20、漏检 3/20；第一版判断器方向对但阈值过严；判断器 v2 在新 20 条上一致率 0.55 &lt; 0.80，不用。主分析集里估计约 15%（6/40，[0.071, 0.291]）的改写改了意思、另约 17.5% 属边界，只靠 40 条人工标注估计，区间较宽；敏感性集只剔除了已标注和 NLI 未过的那部分。</li>
+<li>只有 5.9% 的主分析对找到"词重合不低于改写"的 D，G′ 的大多数对里 D 的词重合低于改写，词重合没有被完全控制住。</li>
 <li>改写与判断用同一模型（自评）。</li>
 </ul>
 <h4>9 状态</h4>
-<p>para_gen <span class="st st-done">已完成</span>；NLI <span class="st st-done">已完成</span>；判断器 v1 校准与 v2 检验已完成，<b>判断器 v2 不用</b>（0.55 &lt; 0.80）；补充 5 <span class="st st-plan">计划未做</span>（草稿待用户确认）；para_run <span class="st st-plan">计划未做</span>（未放行，<code>logs/para_ok</code> 不存在）。预注册：prereg.json 的 X3 inclusion 要求"自动检查 + 人工抽查（para_ok）"——正在执行中；排除完全相同、换 Jaccard、意义检查规则都属于将写的补充 5，现在还没有实际偏离（因为主实验没跑）。用户已定的放行原则：判断器一致率 ≥ 80% 才用，否则走备用方案（人工核对 + 有/无敏感性），写好补充 5 后再放 para_ok；判断器已不可用，所以走备用方案。<span class="src">PROG 2026-10-30 14:00 条 U51、15:00 条</span> <span class="unk">未知/需确认：向用户确认（补充 5 的最终条款，草稿已发出，U51）</span></p>
+<p>para_gen <span class="st st-done">已完成</span>；NLI <span class="st st-done">已完成</span>；判断器 v1 校准与 v2 检验已完成，<b>判断器 v2 不用</b>（0.55 &lt; 0.80）；补充 5 <span class="st st-done">已写定</span>（2026-10-30 22:45，用户已批准；U51 已解决）；para_run：1 个真实分片作业 11511973 <span class="st st-review">已提交，排队中（2026-10-31）</span>，<code>logs/para_ok</code> 尚未写（分片通过后再写）。预注册：prereg.json 的 X3 inclusion 要求"自动检查 + 人工抽查（para_ok）"；排除完全相同、换 jaccard2、D 预先算好、意义检查走备用方案（不用判断器、NLI 只定敏感性集合、不再加标）都已写入补充 5，且写在任何 X3 表示或得分数据产生之前（status_at_writing："para_run has NOT run"）。<span class="src">R13/config/prereg_addendum5.json（status_at_writing、release）· PROG 2026-10-30 23:00 条</span></p>
 
 
 <h3 id="s13-x4">X4　Patchscope：从论文自己的状态解码年份、第一作者、领域</h3>
@@ -3433,11 +3464,11 @@ field : Paper: X\nResearch field:</pre>
 <p><b>按 token 角色（补充 4；b7、L8、title 位置、团队 bootstrap 种子 47）</b>：</p>
 <table class="t">
 <tr><th>第一作者的 token 角色</th><th>篇数</th><th>Qwen D(L8) [95% 团队区间]</th></tr>
-<tr><td>姓的首 token（surname_first）</td><td>1,178</td><td><b>+0.066 [+0.046, +0.088]</b></td></tr>
+<tr><td>姓的首 token（surname_first）</td><td>1,178</td><td><b>+0.066 [+0.045, +0.088]</b></td></tr>
 <tr><td>名的首 token（given_first）</td><td>357</td><td>+0.018 [−0.003, +0.041]（含 0）</td></tr>
 <tr><td>首字母（initial_first）</td><td>880</td><td>+0.017 [+0.006, +0.029]</td></tr>
 </table>
-<p>在名的首 token 上，BERT 文本基线（只看有 given_first 的 357 篇）+0.088（均值/标准差 0.13）<b>大于</b> Qwen 的 +0.018（均值/标准差 0.09），两者逐篇相关 0.07。Qwen 的 L8 信号主要在姓上，而姓这个角色上文本基线的阳性对照没有通过。所以<b>不能排除 L8 的第一作者信号可以由标题文字解释</b>（措辞待用户最终确认，这里先写事实）。<span class="src">R13/summary_x1x4/x4_rolesplit.csv（~/jlens_work/13_stage13/stage13_x4_rolesplit.py，团队 bootstrap 2,000 次，种子 47）</span></p>
+<p>在名的首 token 上，BERT 文本基线（只看有 given_first 的 357 篇）+0.088（均值/标准差 0.13）<b>大于</b> Qwen 的 +0.018（均值/标准差 0.09），两者逐篇相关 0.07。Qwen 的 L8 信号主要在姓上，而姓这个角色上文本基线的阳性对照没有通过。所以<b>不能排除 L8 的第一作者信号可以由标题文字解释</b>（2026-10-30 用户确认的措辞）。对 H3 的含义：文本基线不弱于 Qwen，不能排除文字解释，证据不足。<span class="src">R13/summary_x1x4/x4_rolesplit.csv（~/jlens_work/13_stage13/stage13_x4_rolesplit.py，团队 bootstrap 2,000 次，种子 47；surname_first 区间下界 0.04548）· PROG 2026-10-30 23:00 条 (1)、2026-10-31 01:00 条</span></p>
 <h4>8 局限与质疑</h4>
 <ul>
 <li>源状态和注入都在同一层；注入单一位置。D 很小（log10 名次 0.01–0.07 量级），解读为"内部偏好"，不是生成。</li>
@@ -3492,13 +3523,22 @@ field : Paper: X\nResearch field:</pre>
 <p>false_0 本身（与 Stage 11 相同）；标题间配对差；target/control/all。</p>
 <h4>7 结果</h4>
 <p>平均 R(L48)：target 0.794 [0.777, 0.811]，control 0.876，all 0.821；平均 R(L52)：0.987、1.012、0.995。每个标题 L48 都在 false_0 的 0.02 以内（target 0.788–0.803）。三组都 <b>HOLDS</b>。分母 true − false：target 0.418–0.439，control 0.205–0.221。<span class="src">R13/reports/x6_report.md · R13/summary_x6/x6_recovery.csv · R13/summary_x6/x6_verdict.json</span></p>
+<p><b>按 token 角色（补充 4，2026-10-31，V41）</b>：脚本 <code>C13/stage13_x6x7_roles.py</code>，作业 11512706；原始文件按 row_id 存了逐 token 名次，所以不需要 GPU。同一估计量、同一团队 bootstrap 抽样（种子 13），限于有该角色的论文；角色 ALL 复现原值（max |diff| ≤ 6e-16）。L44 不在存下的层里，表用 L48/L52/L56。全部论文、5 个假标题平均的 R(L48) / R(L52)：</p>
+<table class="t">
+<tr><th>角色</th><th>R48 / R52</th><th>判定（target / control / all）</th></tr>
+<tr><td>合计（ALL）</td><td style="white-space:nowrap">0.821 / 0.995</td><td>HOLDS / HOLDS / HOLDS</td></tr>
+<tr><td>名字第一个 token（name_first）</td><td style="white-space:nowrap">0.791 / 1.045</td><td>HOLDS / HOLDS / HOLDS</td></tr>
+<tr><td>姓第一个 token（surname_first）</td><td style="white-space:nowrap">0.734 / 0.971</td><td><b>DOES NOT HOLD</b>（target R(L48) 0.696 &lt; 0.70，差一点）/ HOLDS / HOLDS</td></tr>
+<tr><td>姓后续 token（surname_cont）</td><td style="white-space:nowrap">0.893 / 0.997</td><td>HOLDS / HOLDS / HOLDS</td></tr>
+</table>
+<p>三个预注册角色在 target/control/全部都成立，唯一例外是 target 的姓第一个 token R(L48) 0.696 &lt; 0.70。各角色 5 个假标题之间 L48 的差 ≤ 0.076。标点的差距 true − false 只有 0.006–0.018 &lt; 0.05，不报比例。次要角色：完整的名（given_first）R(L48) 0.60–0.69，在三组都不成立（R48 &lt; 0.70）。即角色差别在 L48 恢复的大小：姓第一个 token 和完整的名恢复得比姓后续 token 晚；到 L52 每个可报告角色都 ≥ 0.96。<span class="src">R13/reports/x6x7_roles.md（X6 表、Pre-registered verdicts 表、Short conclusion）· R13/summary_x6/x6_roles.csv · PROG 2026-10-31 00:15 条</span> <span class="st st-done">已完成</span></p>
 <h4>8 局限与质疑</h4>
 <ul>
 <li>xf_patch 的 6 个 shard 出自较早的脚本版本（见第 0 节），据记录只差日志行。</li>
 <li>只换了假标题，问法仍是 Stage 10 含年份的问法；年份在真/假运行中相同。</li>
 </ul>
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span> 预注册（补充 3）在 X6 无数据时写好；完全按其执行，无偏离。</p>
+<p><span class="st st-done">已完成</span> 预注册（补充 3）在 X6 无数据时写好；完全按其执行，无偏离。补充 4 要求的按 token 角色报告已于 2026-10-31 完成（作业 11512706，见第 7 项末段；V41 已完成）。</p>
 
 
 <h3 id="s13-x7">X7　在假标题运行上做同样的注意力阻断</h3>
@@ -3528,6 +3568,7 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>all</td><td>+1.004</td><td>−0.173</td><td>+0.029 [+0.021, +0.038]</td><td>HOLDS</td></tr>
 </table>
 <p>F &lt; 0：在假标题运行里挡住（假）标题反而帮助真作者。control 的 S 在 L54 为 0.018，L56 起为 0。<span class="src">R13/reports/x7_report.md · R13/summary_x7/x7_knockout.csv · R13/summary_x7/x7_verdict.json</span></p>
+<p><b>按 token 角色（补充 4，2026-10-31，V41）</b>：同上脚本与作业 11512706，团队 bootstrap 种子 17，角色 ALL 复现原值。全部论文 S(L52)：名字第一个 token 0.029 [−0.017, 0.075]、姓第一个 token 0.032、姓后续 token 0.031，与合计 0.029 无差别（角色 − 合计的区间都含 0）；S(L0) 都约 1.00。target 与全部论文在三个角色都成立；control 合计 0.051 本就不成立，拆开后名字第一个 token 0.078、姓后续 token 0.052 不成立，姓第一个 token 0.049 成立。所以 control 的不成立是合计层面的边界效应，不是由某一个角色带来的。<span class="src">R13/reports/x6x7_roles.md（X7 表、Pre-registered verdicts 表）· R13/summary_x7/x7_roles.csv</span> <span class="st st-done">已完成</span></p>
 <p><b>WARN 的来源</b>：本节作者复算 19,077 行：kF64 与 Stage 11 rank_false 相同的比例 0.5963，|Δlog10 rank| 平均 0.0105、p99 0.146，带符号平均 −0.0003（无偏）。原因：Stage 11 的 false 运行是 batch=1、不传显式 mask（<code>run_final(C, F, posF)</code>），ko_false 的 kF64 是 batch=13、传显式加性 mask，bf16 下舍入不同。按规则只记 WARN，继续分析。<span class="src">361_stage11.py:244, 281 · stage13_x7_analyze.py 文件第 45-46 行</span></p>
 <h4>8 局限与质疑</h4>
 <ul>
@@ -3537,7 +3578,7 @@ field : Paper: X\nResearch field:</pre>
 <li>kF64 与 false 运行不完全相同（批大小舍入），T 与 F 的基线并非逐位一致；带符号差 −0.0003，影响很小。</li>
 </ul>
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span> 预注册（补充 3）在 X7 无数据时写好；按其执行。control 未达标按原样报告，未改阈值；kF64 不一致按"容差不达标记 WARN 继续"处理。无偏离。</p>
+<p><span class="st st-done">已完成</span> 预注册（补充 3）在 X7 无数据时写好；按其执行。control 未达标按原样报告，未改阈值；kF64 不一致按"容差不达标记 WARN 继续"处理。无偏离。补充 4 的按 token 角色报告已于 2026-10-31 完成（作业 11512706；V41 已完成）。</p>
 
 </section>
 
@@ -3634,8 +3675,8 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>team-cluster bootstrap（团队整群 bootstrap）</td><td>对作者团队做多项式抽样得到每篇论文的权重，统计量按加权和重算，2,000 次取 2.5/97.5 百分位；Stage 13 起为主区间。</td><td><a href="#h-stats-strat">h-stats-strat</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#s13-overview">s13-overview</a></td></tr>
 <tr><td>title reuse（标题一题两用）</td><td>probe 训练时已见过测试论文提示里的那个标题（false_0 供体在训练折，或测试论文自己的标题被借给训练论文）；E4b 复核时剔除这些测试论文。</td><td><a href="#h-leak">h-leak</a>、<a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
 <tr><td>多重比较</td><td>Stage 10–13 未做任何校正；规则是"所有层都报告、区间不含 0 才算"。</td><td><a href="#h-stats-mult">h-stats-mult</a></td></tr>
-<tr><td>预注册 prereg / 补充 1–4（addendum）</td><td>Stage 13 的判定规则文件（只读，有 sha256）：补充 1 = 所有 probe 用团队折、tune/test 按团队；补充 2 = 改 M3/X1 判据、M2c 单向、E4b 四配置、团队区间为主；补充 3 = X6/X7 定义与判定；补充 4 = X3 主对照改为近邻 D、按 token 角色报告、措辞限定为 teacher forcing 下的偏好。</td><td><a href="#h-prereg-content">h-prereg-content</a>、<a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-overview">s13-overview</a></td></tr>
-<tr><td>补充 5</td><td>尚未写定的预注册补充（拟含 X3 的 jaccard2、排除完全相同改写、意义检查规则）。</td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>预注册 prereg / 补充 1–5（addendum）</td><td>Stage 13 的判定规则文件（只读，有 sha256）：补充 1 = 所有 probe 用团队折、tune/test 按团队；补充 2 = 改 M3/X1 判据、M2c 单向、E4b 四配置、团队区间为主；补充 3 = X6/X7 定义与判定；补充 4 = X3 主对照改为近邻 D、按 token 角色报告、措辞限定为 teacher forcing 下的偏好；补充 5 = X3 纳入、jaccard2、意义检查与敏感性分析（见下行）。</td><td><a href="#h-prereg-content">h-prereg-content</a>、<a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-overview">s13-overview</a></td></tr>
+<tr><td>补充 5</td><td>X3 的预注册补充，2026-10-30 22:45 写定（<code>381_stage13/config/prereg_addendum5.json</code>，sha256 181c72f7…）：主分析 1,115 条（auto_ok 且非完全相同）、敏感性 1,015 条（再剔除 NLI 未双向蕴含与人工"改意思"）；改写与 D 的词重合改用 jaccard2，D 预先算好；判断器 v2 不用，NLI 只定敏感性集合；不再加标，报告 40 条人工标注的改意思比例 6/40 = 0.15 [0.071, 0.291]；放行先 1 个真实分片。<span class="src">381_stage13/config/prereg_addendum5.json</span></td><td><a href="#h-prereg-files">h-prereg-files</a>、<a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td>H1 / H2 / H3</td><td>Stage 13 的三个假设：中间层主要表示任务/格式（H1）、论文身份（H2）、作者信息已在但不在词表方向（H3）。</td><td><a href="#s13-overview">s13-overview</a></td></tr>
 </table>
 
@@ -3740,19 +3781,19 @@ field : Paper: X\nResearch field:</pre>
 <p>false_0 共 6,247 个 donor，其中 2,373 个被多篇借用；按论文随机分折后 2,004 个 donor 标题同时落在训练与测试折。按 donor 及其团队分组重跑（作业 11443403）后，L48 donor 年份 R² 0.623 → 0.535、log 引用 0.588 → 0.488；真标题运行两种切法只差 ≤ 0.005。补充 1 判定按论文切的 false_0 数字无效。M2 原来的区间是按论文 bootstrap 200 次；2026-10-30 按补充 2 补算团队整群 2,000 次（作业 11503585）：176 个点估计全一致，区间平均宽 1.15 倍（true 1.02、false_0 1.32），0 个翻转。见 <a href="#h-leak-a">h-leak-a</a>、<a href="#s13-m2">s13-m2</a>。</p>
 
 <h3 id="ap-qa-13">Q13　M3 的迁移比接近 1、X1 三种来源恢复一样好，能说明"论文身份"吗？</h3>
-<p>不能单独说明。三种问法只在标题前 9 个 token 不同、标题完全相同，标题位置 T 高几乎由构造决定：T(L4) 已是 0.983 / 0.976 / 0.998，T − T(L4) 在 L16–L40 为 −0.03 到 −0.06，I(l) − I(L4) 在所有层都 &lt; 0，即中间层并不比 L4 更跨问法一致。X1 相似度检查显示 L24–L40 同篇两问法状态本来就相近（question share 0.15–0.17），所以"恢复一样好"部分来自构造；但 share 不为 0 而 a − year、a − field 差 ≤ 0.02，说明问法带来的差异不影响作者恢复。另外 random C 在 L4–L16 为负、L48 为 +0.122，记 NULL FLAG。见 <a href="#s13-m3">s13-m3</a>、<a href="#s13-x1">s13-x1</a>、<a href="#h-prereg-dev">h-prereg-dev</a>。</p>
+<p>不能单独说明。三种问法只在标题前 9 个 token 不同、标题完全相同，标题位置 T 高几乎由构造决定：T(L4) 已是 0.983 / 0.976 / 0.998，T − T(L4) 在 L16–L40 为 −0.03 到 −0.06，I(l) − I(L4) 在所有层都 &lt; 0，即中间层并不比 L4 更跨问法一致。X1 相似度检查显示 L24–L40 同篇两问法状态本来就相近（question share 0.15–0.17），所以"恢复一样好"部分来自构造；但 share 不为 0 而 a − year、a − field 差 ≤ 0.02，说明问法带来的差异不影响作者恢复。另外 random C 在 L4–L16 为负、L48 为 +0.122，记 NULL FLAG。<b>2026-10-31 已按补充 2 重判 M3</b>：标题位置年份 T − T(L4) −0.031 到 −0.060、引用数 −0.016 到 −0.055（都 &lt; 0），领域 −0.004 到 −0.007（与 L4 分不开），I − I(L4) 标题 −0.003 到 −0.017、":" −0.421 到 −0.613 → <b>M3 不支持 H2</b>（不高于 L4 文字水平）。同篇跨问法余弦 0.95–0.98、X1"移动约 15–27%"受三种问法标题文字相同的影响，不能单独作为论文身份证据。X1 已相对 random C 重算（作业 11512702）：C 在差值中抵消，判定不变；test L48 a − year +0.019 [+0.012, +0.026]，是小而确实的任务依赖。H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考。<span class="src">381_stage13/reports/m3_report.md 末节 · summary_m3/m3_verdict_addendum2.csv · reports/x1_vsC.md</span> 见 <a href="#s13-m3">s13-m3</a>、<a href="#s13-x1">s13-x1</a>、<a href="#h-prereg-dev">h-prereg-dev</a>。</p>
 
 <h3 id="ap-qa-14">Q14　X4 说 Qwen 能从论文自己的状态解码第一作者，文本基线排除了"标题风格"吗？</h3>
-<p>只部分排除。文本基线 1（kNN）的阳性对照失败（允许同团队时 TF-IDF −0.025、BERT −0.159），所以它的"文本解释不了"不成立。文本基线 2（监督 LR）只在名字首 token 上通过阳性对照、姓首 token 上失败；起草时还发现它对 821 篇没有 given_first 的论文仍计入了与姓名无关的 OOV 类概率差。总编 2026-10-30 用 CPU 只按实际存在的角色重算：BERT D_text +0.048 [+0.014, +0.083]，与 Qwen D(L8) 逐篇相关 +0.014。逐 token 全量（作业 11500437，b7 逐值复现已存分数）按角色拆开后：Qwen L8 信号主要在姓的首 token（+0.066 [0.046, 0.088]），名的首 token 只有 +0.018 [−0.003, 0.041]，而在名的首 token 上 BERT 文本基线 +0.088 反而更大；姓这个角色上文本基线的阳性对照没有通过。所以<b>不能排除 L8 作者信号可由标题文字解释</b>（措辞待用户最终确认）。见 <a href="#s13-x4">s13-x4</a>。</p>
+<p>只部分排除。文本基线 1（kNN）的阳性对照失败（允许同团队时 TF-IDF −0.025、BERT −0.159），所以它的"文本解释不了"不成立。文本基线 2（监督 LR）只在名字首 token 上通过阳性对照、姓首 token 上失败；起草时还发现它对 821 篇没有 given_first 的论文仍计入了与姓名无关的 OOV 类概率差。总编 2026-10-30 用 CPU 只按实际存在的角色重算：BERT D_text +0.048 [+0.014, +0.083]，与 Qwen D(L8) 逐篇相关 +0.014。逐 token 全量（作业 11500437，b7 逐值复现已存分数）按角色拆开后：Qwen L8 信号主要在姓的首 token（+0.066 [0.045, 0.088]），名的首 token 只有 +0.018 [−0.003, 0.041]，而在名的首 token 上 BERT 文本基线 +0.088 反而更大；姓这个角色上文本基线的阳性对照没有通过。所以<b>不能排除 L8 作者信号可由标题文字解释</b>（2026-10-30 用户确认的措辞）。对 H3：文本基线不弱于 Qwen，不能排除文字解释，证据不足。X4 的最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反。<span class="src">381_stage13/summary_x1x4/x4_rolesplit.csv（surname_first 下界 0.04548）· reports/x4_report.md · PROGRESS.md 2026-10-30 23:00 条 (1)</span> 见 <a href="#s13-x4">s13-x4</a>。</p>
 
 <h3 id="ap-qa-15">Q15　既然规定"容差不达标只记 WARN"，为什么 x4tok 失败就停了？</h3>
 <p>一般规则（2026-10-27 起）是 parity / 一致性未达标记 WARN 继续算，只有代码崩溃才停，例如 Stage 11 smoke 两项 0.7037 和 X7 kF64 59.63% 都按 WARN 继续。x4tok 是 2026-10-30 用户明确定为"正确性检查，不是旁支"的例外：它要求逐 token 平均复现已存的 X4 分数，否则结果不能按 token 角色拆分。失败原因判断为批大小不同（batch 2 vs 原 batch 7）的 bf16 舍入：200 个值平均 |d| 0.0068、D 与已存值相关 0.993（L8）。修法同时算 b7 与 b2，b7 必须复现，两者 L8 平均 D 相差 &gt; 0.005 也停。全量 11500437：b7 与已存 4,712 个值完全相同，L8 平均 D b7 +0.0484 / b2 +0.0490（差 0.0006），批大小不影响结论；旧失败标记已改名保留。见 <a href="#h-compute-tol">h-compute-tol</a>、<a href="#h-compute-parity">h-compute-parity</a>、<a href="#s13-x4">s13-x4</a>。</p>
 
 <h3 id="ap-qa-16">Q16　X7 中 control 组没有通过，怎么解释？</h3>
-<p>补充 3 的判据是 S(L52) ≤ 0.05 且 S(L0) ≥ 0.5；control 的 S(L52) = +0.051 [+0.033, +0.068]，超阈值 0.001，判 DOES NOT HOLD，区间跨过 0.05，属边界；target +0.018、all +0.029 判 HOLDS。报告如实保留，没有改阈值。F(L0) 为负（−0.161 到 −0.196），即在假标题运行里挡住假标题反而帮助真作者，所以 S(L0)/T(L0) &gt; 1，不能读成百分比。自检中 kF64 与 Stage 11 假运行名次相同只有 59.63%（批大小与显式 mask 的舍入，带符号差 −0.0003），记 WARN。见 <a href="#s13-x7">s13-x7</a>、<a href="#h-prereg-dev">h-prereg-dev</a>。</p>
+<p>补充 3 的判据是 S(L52) ≤ 0.05 且 S(L0) ≥ 0.5；control 的 S(L52) = +0.051 [+0.033, +0.068]，超阈值 0.001，判 DOES NOT HOLD，区间跨过 0.05，属边界；target +0.018、all +0.029 判 HOLDS。报告如实保留，没有改阈值。F(L0) 为负（−0.161 到 −0.196），即在假标题运行里挡住假标题反而帮助真作者，所以 S(L0)/T(L0) &gt; 1，不能读成百分比。自检中 kF64 与 Stage 11 假运行名次相同只有 59.63%（批大小与显式 mask 的舍入，带符号差 −0.0003），记 WARN。按 token 角色拆开（2026-10-31，作业 11512706）：control 里名字第一个 token 0.078、姓后续 0.052 不成立，姓第一个 0.049 成立，各角色与合计的差区间都含 0，所以这是合计层面的边界效应，不是某一个角色带来的。<span class="src">381_stage13/reports/x6x7_roles.md</span> 见 <a href="#s13-x7">s13-x7</a>、<a href="#h-prereg-dev">h-prereg-dev</a>。</p>
 
 <h3 id="ap-qa-17">Q17　预注册真的写在数据之前吗？为什么文件里的时间和 git 不一致？</h3>
-<p>5 个文件的 sha256 均与 .sha256 记录一致、文件只读。文件内 written 字段是当时会话<b>手填错误</b>，比实际晚 20 分钟到 2 小时 45 分钟；实际写入时间是 2026-10-28 10:39 / 10:50 / 11:05 / 11:41 / 11:55 EDT（会话记录、mtime、git 三者一致，如 prereg.json mtime 10:39:12、git 355e64d 10:40:15），应以 git 时间为准。按这个时间核对：写 prereg 时 381_stage13/raw 下还没有任何 GPU 文件（最早 xf_patch 10-28 19:46），M1/M2/M2b 已先跑并标为探索性。补充 5 尚未写定（草稿待用户确认）；判断器 v2 一致率 0.55 &lt; 0.80，不用。见 <a href="#h-prereg-files">h-prereg-files</a>、<a href="#h-prereg-status">h-prereg-status</a>。</p>
+<p>5 个文件的 sha256 均与 .sha256 记录一致、文件只读。文件内 written 字段是当时会话<b>手填错误</b>，比实际晚 20 分钟到 2 小时 45 分钟；实际写入时间是 2026-10-28 10:39 / 10:50 / 11:05 / 11:41 / 11:55 EDT（会话记录、mtime、git 三者一致，如 prereg.json mtime 10:39:12、git 355e64d 10:40:15），应以 git 时间为准。按这个时间核对：写 prereg 时 381_stage13/raw 下还没有任何 GPU 文件（最早 xf_patch 10-28 19:46），M1/M2/M2b 已先跑并标为探索性。补充 5 于 2026-10-30 22:45 写定（文件 mtime 22:42:10，written 字段 22:45，git d0b0677 2026-10-31 00:04 首次入库；sha256 181c72f7…），写时 para_run 还没跑、没有任何 X3 表示或得分数据（para_run 第 1 个真实分片作业 11511973 在此之后才提交，2026-10-31 仍在排队）；判断器 v2 一致率 0.55 &lt; 0.80，不用。<span class="src">381_stage13/config/prereg_addendum5.json（status_at_writing）· ls --time-style=full-iso · git log</span> 见 <a href="#h-prereg-files">h-prereg-files</a>、<a href="#h-prereg-status">h-prereg-status</a>。</p>
 
 <h3 id="ap-qa-18">Q18　public lens 是怎么拟合的？可信吗？</h3>
 <p>来自 Neuronpedia：Salesforce/wikitext-103-raw-v1 train、max_chars 2000，557 条（运营者手动停止，原上限 1,000），源层 L0–L62，dim_batch 64，bf16、1×B200；stop_at_delta 0.002 未达到，相对标准误约 13%。557 条提示已于 2026-10-30 按 Neuronpedia 的 fit_lens.py（HEAD 22f0412，与 provenance 的 jlens_commit 相同）复原：skip_first 16、target 63，9,108 个队列标题无一逐字出现在其中。模型与语料 revision 没有记录（推定为拟合当时的 main），需向 Neuronpedia 确认。旁证是 Stage 10 中三把在 WikiText 上拟合的 lens 结论一致（L62 标题特异 target − control +0.228 到 +0.231）。见 <a href="#h-lens-table">h-lens-table</a>、<a href="#s19-s3-exp6">s19-s3-exp6</a>、<a href="#s1011-s10-tc">s1011-s10-tc</a>。</p>
@@ -3767,9 +3808,9 @@ field : Paper: X\nResearch field:</pre>
 <section id="ap-unknown">
 <h2>附录 G3　全部"未知 / 需确认"汇总</h2>
 <p>来源：6 个 *.unk.txt 与正文全部 <code>class="unk"</code> 的 span（共 60 处），按问题去重合并为 54 条；同一问题出现在多个章节的，章节列逐一链接。"向谁"按正文写法归为三类：组长（标注包作者）、用户、原作者（laptop 会话中的 Stage N 原作者；正文写"用户 / 原作者"两可的，按正文第一个写的人归类并在问题后注明）。影响程度是本附录的判断：高 = 动摇主要结论或导师几乎必问；中 = 影响某个实验的可信度或复现性；低 = 只影响记录完整性。</p>
-<p>汇总（起草时）：组长 10 条、用户 31 条、原作者 13 条；影响 高 5、中 24、低 25。<b>2026-10-30 下午按 CHANGES_2026-10-30.md 更新</b>：已解决 40 条（含按用户决定写明的 12 条），部分解决 5 条（U03、U14、U23、U40、U42），仍需确认 9 条（U01、U04、U06、U07、U10 向组长；U21、U28、U51 向用户；U34 向 Stage 10 原作者 / 用户）。各条依据见最后一列与 <a href="#iu-research">附录 I</a>、<a href="#j-dua-package">附录 J</a>。</p>
+<p>汇总（起草时）：组长 10 条、用户 31 条、原作者 13 条；影响 高 5、中 24、低 25。<b>2026-10-30 下午按 CHANGES_2026-10-30.md 更新</b>：已解决 40 条（含按用户决定写明的 12 条），部分解决 5 条（U03、U14、U23、U40、U42），仍需确认 9 条（U01、U04、U06、U07、U10 向组长；U21、U28、U51 向用户；U34 向 Stage 10 原作者 / 用户）。<b>2026-10-31 按 CHANGES_2026-10-30b.md、CHANGES_2026-10-31.md 更新</b>：U51 已解决（补充 5 写定），U42 已按用户决定写明（局限），U40 仍为部分解决（显式检查作业 11511965 已提交，排队中）。现在：<b>已解决 42 条（含按用户决定写明的 13 条），部分解决 4 条（U03、U14、U23、U40），仍需确认 8 条</b>（U01、U04、U06、U07、U10 向组长；U21、U28 向用户；U34 向 Stage 10 原作者 / 用户）。各条依据见最后一列与 <a href="#iu-research">附录 I</a>、<a href="#j-dua-package">附录 J</a>。</p>
 <table class="t">
-<tr><th>编号</th><th>所在章节</th><th>问题</th><th>向谁确认</th><th>影响（理由）</th><th>状态（2026-10-30 下午）</th></tr>
+<tr><th>编号</th><th>所在章节</th><th>问题</th><th>向谁确认</th><th>影响（理由）</th><th>状态（2026-10-30 下午；U40、U42、U51 为 2026-10-31）</th></tr>
 <tr><td>U01</td><td><a href="#g-data-package">g-data-package</a></td><td>两次标注运行的 run.json（设置、提示词 sha256、代码与库版本）、elm 代码版本、open_results_noise.jsonl 不在标注包里。</td><td>组长</td><td>中（复现性）</td><td><span class="st st-plan">仍需确认</span>（组长）；2026-10-30 在集群上也找不到 elm 源码与 run.json <span class="src"><a href="#j-dua-package">附录 J</a></span></td></tr>
 <tr><td>U02</td><td><a href="#g-labels-open">g-labels-open</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td><td>开放回答的 max_new_tokens：只从数据反推为 96（743 条 length 截断都恰为 96），需 run.json 确认。</td><td>组长</td><td>低（数据已自洽）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：dua stage1_generate.py:171 <code>MAX_NEW_TOKENS = 96</code>，与 743 条截断全为 96 一致 <span class="src"><a href="#j-dua-package">附录 J</a> 第 8 行</span></td></tr>
 <tr><td>U03</td><td><a href="#g-model-chat">g-model-chat</a>、<a href="#g-labels-open">g-labels-open</a>、<a href="#s19-s1-cohort">s19-s1-cohort</a></td><td>开放回答与多选题是否关闭 thinking；多选的"答案位置"是否位于空 &lt;think&gt;&lt;/think&gt; 块之后。</td><td>组长</td><td>中（分组标签定义）</td><td><span class="st st-review">部分解决（2026-10-30）</span>：开放题 thinking 关（dua stage1_generate.py:252–284）；多选部分（thinking、答案位置）仍需组长确认 <span class="src"><a href="#j-dua-package">附录 J</a> 第 8 行</span></td></tr>
@@ -3809,9 +3850,9 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>U37</td><td><a href="#s1011-s11-qc">s1011-s11-qc</a></td><td>E1（batch 15 vs batch-1 假基线）的舍入噪声没有同批无替换基线可量化，只有约 0.01 的估计；是否需要补测。</td><td>用户</td><td>中（E1 精度）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>（用户决定）：答辩前不补测，写约 0.01、远小于主效应 <span class="src">PROGRESS.md 2026-10-30 14:00 条</span></td></tr>
 <tr><td>U38</td><td><a href="#s12-p1">s12-p1</a></td><td>P1 按 token 角色拆分的数字（":" 对首 token 0.50/0.90 等）只见于 PROGRESS 2026-10-28 14:45，找不到脚本或 summary 文件。</td><td>用户</td><td>中（补充 4 要求按角色报告）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：按角色用 raw 重算（":" 对首字母 0.502/0.917） <span class="src">research_scripts/u38_u40_recompute.py</span></td></tr>
 <tr><td>U39</td><td><a href="#s12-p1">s12-p1</a></td><td>p5（年份第 3 位数字）在 L44 恢复 0.071 的解读。</td><td>用户</td><td>低（效应小）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>（用户决定）：只描述不解读 <span class="src">PROGRESS.md 2026-10-30 14:00 条</span></td></tr>
-<tr><td>U40</td><td><a href="#s12-p2">s12-p2</a></td><td>P2 是否做过 hook 生效的 sanity（tiny 模型干跑只列了 P1 的检查项）。</td><td>用户</td><td>中（P2 正确性）</td><td><span class="st st-review">部分解决（2026-10-30）</span>：数据显示 hook 生效；显式检查是否补做待用户定 <span class="src"><a href="#iu-research">附录 I</a> U40</span></td></tr>
+<tr><td>U40</td><td><a href="#s12-p2">s12-p2</a></td><td>P2 是否做过 hook 生效的 sanity（tiny 模型干跑只列了 P1 的检查项）。</td><td>用户</td><td>中（P2 正确性）</td><td><span class="st st-review">部分解决（2026-10-31）</span>：数据显示 hook 生效；用户决定做显式检查（1 个分片）：tiny 11511943 PASS，GPU 作业 11511965 已提交，排队中（2026-10-31），结果待填 <span class="src">PROGRESS.md 2026-10-30 22:45 条 · <a href="#s12-p2">s12-p2</a></span></td></tr>
 <tr><td>U41</td><td><a href="#s12-n1">s12-n1</a></td><td>Stage 10 单作者读出用的名字字符串格式是否与 mc_team.jsonl 的 initial_surname 一致。旁证：G4.1 写 Stage 10 名字取自 authors 列、拼写不改（如 "Karin G. Coifman"），G3.4 写多选为 "K. Coifman"。</td><td>原作者（Stage 10）</td><td>低（N1 局限说明）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：99.51% 与"首字母. 姓"一致 <span class="src"><a href="#iu-research">附录 I</a> U41</span></td></tr>
-<tr><td>U42</td><td><a href="#s12-f1">s12-f1</a></td><td>F1 作者提示 lens 是否做过拟合质量检查或与模型输出 / 公开 lens 的一致性检查。</td><td>用户</td><td>中（F2"读不出"的解释）</td><td><span class="st st-review">部分解决（2026-10-30）</span>：L24–L48 与其他 lens 余弦 0.27–0.70；对半拟合是否做待用户定 <span class="src"><a href="#iu-research">附录 I</a> U42</span></td></tr>
+<tr><td>U42</td><td><a href="#s12-f1">s12-f1</a></td><td>F1 作者提示 lens 是否做过拟合质量检查或与模型输出 / 公开 lens 的一致性检查。</td><td>用户</td><td>中（F2"读不出"的解释）</td><td><span class="st st-rechecked">已按用户决定写明（局限）（2026-10-31）</span>：L24–L48 与其他 lens 余弦 0.27–0.70；用户决定答辩前不做 F1 对半拟合，写进 s12-f1 局限与 G4 V50 <span class="src">PROGRESS.md 2026-10-30 23:00 条 (5) · <a href="#s12-f1">s12-f1</a></span></td></tr>
 <tr><td>U43</td><td><a href="#s12-f2">s12-f2</a></td><td>F2 中间层 L44–L52 名字位置 target − control 显著为负的解读。</td><td>用户</td><td>中（导师可能追问）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>（用户决定）：只描述 + 一句可能方向 <span class="src">PROGRESS.md 2026-10-30 14:00 条</span></td></tr>
 <tr><td>U44</td><td><a href="#s13-overview">s13-overview</a></td><td>xf_patch 2 个 shard 的脚本 sha 613eb813 是否留存副本（记录称只差日志行，false_0 shard 0 与 Stage 11 逐值相同）。</td><td>用户</td><td>低（复现已核对）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：613eb813 是转交时记录的 Stage 11 脚本哈希，文件现存 <span class="src"><a href="#iu-research">附录 I</a> U44</span></td></tr>
 <tr><td>U45</td><td><a href="#s13-m2">s13-m2</a></td><td>M2 的区间仍是按论文 bootstrap 200 次，是否按补充 2 补团队整群区间。</td><td>用户</td><td>中（偏离补充 2）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：团队整群区间已补算，0 翻转 <span class="src">381_stage13/reports/m2_teamci.md · 作业 11503585</span></td></tr>
@@ -3820,7 +3861,7 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>U48</td><td><a href="#s13-x2">s13-x2</a></td><td>X2 是否仍做；prereg 要求的 X2 补充未写。</td><td>用户</td><td>中（H3 未检验）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>（用户决定）：X2 暂停 <span class="src">PROGRESS.md 2026-10-30 14:00 条</span></td></tr>
 <tr><td>U49</td><td><a href="#s13-x3">s13-x3</a></td><td>是否接受保留 37 条姓氏子串误拒。</td><td>用户</td><td>低（偏保守）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>（用户决定）：37 条维持拒绝，写入补充 5 <span class="src">PROGRESS.md 2026-10-30 14:00 条</span></td></tr>
 <tr><td>U50</td><td><a href="#s13-x3">s13-x3</a></td><td>20 条人工标注的原始标签记录（只在 PROGRESS 摘要中）。</td><td>用户</td><td>中（判断器校准依据）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：A 组标签存档 logs/para_review_sample20_labels.csv <span class="src">PROGRESS.md 2026-10-30 12:30 条</span></td></tr>
-<tr><td>U51</td><td><a href="#s13-x3">s13-x3</a>、<a href="#h-prereg-files">h-prereg-files</a></td><td>补充 5 的具体条款与 para_ok 的放行条件。</td><td>用户</td><td>高（最关键实验未能开跑）</td><td><span class="st st-plan">仍需确认</span>（用户）：判断器 v2 一致率 0.55 &lt; 0.80 不用，走备用方案；补充 5 草稿待用户确认 <span class="src">381_stage13/followup/judge2_summary.json</span></td></tr>
+<tr><td>U51</td><td><a href="#s13-x3">s13-x3</a>、<a href="#h-prereg-files">h-prereg-files</a></td><td>补充 5 的具体条款与 para_ok 的放行条件。</td><td>用户</td><td>高（最关键实验未能开跑）</td><td><span class="st st-rechecked">已解决（2026-10-31）</span>：补充 5 已写定（2026-10-30 22:45，用户批准；sha256 181c72f7…）；放行条件 = 先 1 个真实分片（作业 11511973，已提交，排队中），通过后写 para_ok <span class="src">381_stage13/config/prereg_addendum5.json · PROGRESS.md 2026-10-30 23:00 条</span></td></tr>
 <tr><td>U52</td><td><a href="#s13-x4">s13-x4</a></td><td>X4 textbase2 对没有 given_first 的 821 篇仍计入 OOV 类概率差，是否有意。注：总编已于 2026-10-30 用 CPU 按实际角色重算（见该节"总编更正"），结论不变；"是否有意"仍待确认。</td><td>用户</td><td>中（文本基线的解释）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：总编按实际角色重算，结论不变 <span class="src">PROGRESS.md 2026-10-30 11:40 条</span></td></tr>
 <tr><td>U53</td><td><a href="#s13-x4">s13-x4</a></td><td>b7 样本通过后，旧的 followup/X4TOK_CHECK_FAILED 会让 --all 拒绝启动，如何处理。</td><td>用户</td><td>中（阻塞复跑）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>：标记已改名，全量 11500437 PASS <span class="src">381_stage13/logs/fugpu_11500437.log</span></td></tr>
 <tr><td>U54</td><td><a href="#s13-x5">s13-x5</a></td><td>X5 是否仍做。</td><td>用户</td><td>低（计划项）</td><td><span class="st st-rechecked">已解决（2026-10-30）</span>（用户决定）：M3、X4 全量完成后在 CPU 上做 <span class="src">PROGRESS.md 2026-10-30 14:00 条</span></td></tr>
@@ -3829,7 +3870,7 @@ field : Paper: X\nResearch field:</pre>
 
 <section id="ap-void">
 <h2>附录 G4　计划未做 / 作废 / 被复核取代 / 待复核 汇总</h2>
-<p>来源：正文全部 <code>st-void</code>、<code>st-plan</code>、<code>st-review</code> 标签（31 处），以及正文描述中明确写为"取代""撤回""无效""放宽""改为"的条目。</p>
+<p>来源：正文全部 <code>st-void</code>、<code>st-plan</code>、<code>st-review</code> 标签（31 处，起草时），以及正文描述中明确写为"取代""撤回""无效""放宽""改为"的条目。<b>2026-10-31 更新</b>：V28（M3 判据）、V31（X1 相对 C）、V48（group_folds）→ 已处理；V41（X6/X7 按角色）→ 已完成；V33、V34、V35、V36 按补充 5 更新；新增 V50（F1 对半拟合不做）。原标为待复核的 5 项（V28、V31、V41、V42、V48）现只剩 V42。</p>
 <table class="t">
 <tr><th>#</th><th>项目</th><th>状态</th><th>原因 / 现状</th><th>出处</th></tr>
 <tr><td>V01</td><td>Stage 3 公共 lens 任务验证 351_validate_public_lens.py 与 …_offload.py 两次运行</td><td><span class="st st-void">作废</span></td><td>前者在 40GB 卡 OOM，后者 device_map='auto' 报 meta tensor 错；由 …_offload_fixed.py（显式 29 层上 GPU）取代。</td><td><a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
@@ -3859,28 +3900,29 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>V25</td><td>M2 区间按补充 2 改为团队整群</td><td>2026-10-30 已补算 <span class="st st-rechecked">复核过</span></td><td>作业 11503585：176 个点估计全一致，区间平均宽 1.15 倍，0 个翻转；折已固定在 folds_group.npz（group_folds 排序不稳定）。</td><td><a href="#s13-m2">s13-m2</a></td></tr>
 <tr><td>V26</td><td>M2c 原双向判据</td><td>被补充 2 取代</td><td>改为单向：只有"BERT 追上 Qwen"才作数；Qwen 高出只作参考。</td><td><a href="#s13-m2c">s13-m2c</a>、<a href="#h-prereg-content">h-prereg-content</a></td></tr>
 <tr><td>V27</td><td>M3 原规则（I &gt; 0 判据、按论文 5 折）与原问法写法</td><td>被补充 1/2 与 commit 43c8f0c 取代</td><td>改为团队折、只看 I(l) − I(L4)、T 为主；问法改成三者标题前都是 9 个 token 的写法（docstring 里还留着旧写法）。</td><td><a href="#s13-m3">s13-m3</a>、<a href="#g-prompts-list">g-prompts-list</a></td></tr>
-<tr><td>V28</td><td>M3 判据实现（自动判定未纳入 T − T(L4)）</td><td><span class="st st-review">待复核</span></td><td>报告按 T 绝对阈值判 H2，而 STATUS 的解读是"T 不高于 T(L4)"。</td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V28</td><td>M3 判据实现（自动判定未纳入 T − T(L4)）</td><td><span class="st st-rechecked">已处理（2026-10-31）</span></td><td>原报告按 T 绝对阈值判 H2。2026-10-31 按补充 2 重判（stage13_m3_verdict2.py，m3_report.md 末节，旧段标 SUPERSEDED）：标题位置年份、引用数 T − T(L4) &lt; 0，领域与 L4 分不开，I − I(L4) 所有层 &lt; 0 → M3 不支持 H2；":" 位置任务特定不变。<span class="src">381_stage13/summary_m3/m3_verdict_addendum2.csv</span></td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
 <tr><td>V29</td><td>M5（逐位置 probe / patchscope / 名字位置真假判别）</td><td><span class="st st-plan">计划未做</span></td><td>无代码、未定义到可执行；patchscope 部分一定程度由 X4 覆盖。<b>处置（用户 2026-10-30）</b>：与 X4 问同一问题的部分并入 X4，否则放弃并写明理由。</td><td><a href="#s13-m5">s13-m5</a></td></tr>
 <tr><td>V30</td><td>X1 原"在 tune 上选层"规则</td><td>被补充 2 取代</td><td>改为全曲线、不选层、≤ L16 只作文本替换阳性对照、L24 起等价界判定。</td><td><a href="#s13-x1">s13-x1</a></td></tr>
-<tr><td>V31</td><td>X1 random_c 零检验的处理</td><td><span class="st st-review">待复核</span></td><td>只打 NULL FLAG，year/field 恢复率没有相对 random_c 重算，L48 在 FLAG 下仍判 task-independent。</td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V31</td><td>X1 random_c 零检验的处理</td><td><span class="st st-rechecked">已处理（2026-10-31）</span></td><td>原来只打 NULL FLAG。2026-10-31 相对随机 C 重算（stage13_x1_vsC.py，作业 11512702）：R′ = R − R(C) 逐对配对、同一 bootstrap（种子 101，2,000 次，复现原值到 1e-9）；a − year、a − field 减去同一 C 后与原值逐次相同，按补充 2（[−0.1, 0.1]）L24–L48 判定都不变。test L48：R′ 作者 0.302、年份 0.283、领域 0.294；a − year +0.019 [+0.012, +0.026]、a − field +0.008 [+0.001, +0.014]（区间不含 0：小而确实的任务依赖）；归一化后年份保留 93.6%、领域 97.4%。<span class="src">381_stage13/reports/x1_vsC.md · summary_x1x4/x1_recovery_vsC.csv</span></td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
 <tr><td>V32</td><td>X2（只替换子空间）</td><td><span class="st st-plan">计划未做</span>（暂停）</td><td>prereg 要求运行前另写补充，未写；无代码；<b>用户 2026-10-30 决定暂停</b>。</td><td><a href="#s13-x2">s13-x2</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
-<tr><td>V33</td><td>X3 主实验 para_run</td><td><span class="st st-plan">计划未做</span></td><td>只在 logs/para_ok 存在时排队，2026-10-30 不存在；等补充 5。</td><td><a href="#s13-x3">s13-x3</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
-<tr><td>V34</td><td>预注册补充 5</td><td><span class="st st-plan">计划未做</span></td><td>尚未写定，草稿已发给用户待确认（拟含 jaccard2、排除 27 条完全相同改写、37 条姓氏误拒维持拒绝、意义检查走备用方案）。</td><td><a href="#s13-overview">s13-overview</a>、<a href="#h-prereg-files">h-prereg-files</a></td></tr>
-<tr><td>V35</td><td>X3 原版 Jaccard 分词与 X3 原主指标 G</td><td>将被 jaccard2 / 已被补充 4 的 G′ 取代</td><td>原分词丢掉 ≤ 3 字母的词、不还原词形；jaccard2 随补充 5 写入代码；主指标已改为 G′（近邻 D）。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
-<tr><td>V36</td><td>X3 排除 27 条完全相同改写</td><td>已同意、未写入代码</td><td>用户 2026-10-29 同意排除，do_para_run 目前只按 auto_ok 过滤。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>V33</td><td>X3 主实验 para_run</td><td><span class="st st-plan">计划未做</span>（1 个真实分片已提交，排队中）</td><td>补充 5 已写定；按其放行规则先跑 1 个真实分片（stage13_para_shard.py 0，作业 11511973），2026-10-31 仍在排队，结果待填；通过后再写 logs/para_ok 放行其余分片。<span class="src">381_stage13/config/prereg_addendum5.json "release" · squeue 2026-10-31</span></td><td><a href="#s13-x3">s13-x3</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V34</td><td>预注册补充 5</td><td><span class="st st-done">已写定（2026-10-30 22:45）</span></td><td>prereg_addendum5.json（sha256 181c72f77a5b354567ecdaad4fff8991733f635cfee35c3ee7191b2fd6b113ab）：主分析 1,115、敏感性 1,015；jaccard2 + 预先算好的 D（x3_lexical_neighbour_j2.csv）；排除 27 条完全相同改写；37 条姓氏误拒维持拒绝；判断器 v2 不用，NLI 只定敏感性集合；不再加标（改意思 6/40 = 0.15 [0.071, 0.291]）。<span class="src">381_stage13/config/prereg_addendum5.json</span></td><td><a href="#s13-overview">s13-overview</a>、<a href="#h-prereg-files">h-prereg-files</a></td></tr>
+<tr><td>V35</td><td>X3 原版 Jaccard 分词与 X3 原主指标 G</td><td>已被 jaccard2（补充 5）/ 补充 4 的 G′ 取代</td><td>原分词丢掉 ≤ 3 字母的词、不还原词形；补充 5 改用 jaccard2，D 预先算好，381_stage13.py 的 do_para_run 改为读 D 表（sha256 a7b01a8f… → 4e0f4849…，备份 381_stage13.before_addendum5_2026-10-30.py；dry 31/31、pipeline test 48/48）；主指标已改为 G′（近邻 D）。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>V36</td><td>X3 排除 27 条完全相同改写</td><td>已写入补充 5</td><td>用户 2026-10-29 同意排除；补充 5 写定主分析 = auto_ok 且非完全相同（1,115）。排除在分析时按 D 表的 include_primary / include_sensitive 列执行，do_para_run 仍对全部 auto_ok 运行。<span class="src">381_stage13/config/x3_lexical_neighbour_j2.csv</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td>V37</td><td>X3 Qwen 判断器（v1 校准与全量判断）</td><td><span class="st st-void">作废</span>（由 v2 取代，v2 也不用）</td><td>v1 校准一致率 7/19，阈值过严，全量未跑；之后写了判断器 v2（见 V46）。</td><td><a href="#s13-x3">s13-x3</a>、<a href="#g-model-chat">g-model-chat</a></td></tr>
 <tr><td>V38</td><td>X4 文本基线 1（kNN）</td><td>结论不成立</td><td>阳性对照失败（TF-IDF −0.025、BERT −0.159），"文本解释不了"不能由它支持。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td>V39</td><td>X4 文本基线 2 原 D_text（含无关 OOV 项）</td><td>被总编更正取代</td><td>821 篇无 given_first 的论文计入了 OOV 类概率差；2026-10-30 CPU 按实际角色重算，结论不变。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td>V40</td><td>X4 逐 token 复算（x4tok，第一版 batch 2）</td><td>被 b7 修法取代 <span class="st st-rechecked">复核过</span></td><td>第一版自检 max |diff| 0.0683 &gt; 0.05，作业 11485349 按设计停止；b7 修法全量 11500437：4,712 个值逐值复现，L8 平均 D b7 +0.0484 / b2 +0.0490（差 0.0006 &lt; 0.005）。</td><td><a href="#s13-x4">s13-x4</a>、<a href="#h-compute-parity">h-compute-parity</a></td></tr>
-<tr><td>V41</td><td>按 token 角色报告（补充 4）：X4、X6、X7</td><td><span class="st st-review">待复核</span>（X6、X7 未完成）</td><td>X4 已于 2026-10-30 按角色报告（姓首 token +0.066 [0.046, 0.088]）；P1 已用 raw 重算；x6/x7 分析脚本与报告中仍没有角色拆分。</td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td>V41</td><td>按 token 角色报告（补充 4）：X4、X6、X7</td><td><span class="st st-done">已完成（2026-10-31）</span></td><td>X4 已于 2026-10-30 按角色报告（姓首 token +0.066 [0.045, 0.088]）；P1 已用 raw 重算；X6/X7 于 2026-10-31 完成（stage13_x6x7_roles.py，作业 11512706，无需 GPU；ALL 复现原值 ≤ 6e-16；L44 未存）。X6（全部论文 R(L48)/R(L52)）：合计 0.821/0.995，名字第一个 token 0.791/1.045，姓第一个 token 0.734/0.971，姓后续 0.893/0.997；三个角色在 target/control/全部都成立，唯一例外 target 姓第一个 token R(L48) 0.696 &lt; 0.70。X7（S(L52)，全部论文）：名字第一个 0.029 [−0.017, 0.075]、姓第一个 0.032、姓后续 0.031，与合计 0.029 无差别；control 合计 0.051 本就不成立，拆开后名字第一个 0.078、姓后续 0.052 不成立，姓第一个 0.049 成立。<span class="src">381_stage13/reports/x6x7_roles.md · summary_x6/x6_roles.csv · summary_x7/x7_roles.csv</span></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td>V42</td><td>X4 recognition 规则与区间版本</td><td><span class="st st-review">待复核</span></td><td>recognition 用 min_n = 10、全部论文、无 tune/test；X1/X4/X6/X7/M3 只给团队版区间（补充 2 要求两种都给）。</td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
 <tr><td>V43</td><td>X5（层序量化）</td><td><span class="st st-plan">计划未做</span></td><td>有预注册条款，无代码，未执行；用户 2026-10-30 定为 M3、X4 全量完成后用已有数据在 CPU 上做。</td><td><a href="#s13-x5">s13-x5</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
 <tr><td>V44</td><td>X7 分析作业 11470471</td><td>失败运行，修复后重跑</td><td>自检里把 D.T 写成 pandas 转置而崩溃；改为 D['T'] 并把自检包成只 WARN，作业 11470524。</td><td><a href="#s13-x7">s13-x7</a></td></tr>
 <tr><td>V45</td><td>文档中与代码不符的说法</td><td>以代码为准</td><td>STATUS.md §2 的代价公式省掉了归一化分母；已发布报告 §3.1"去掉作者 ≥ 20 位"与代码（1–20 含 20）不符；任务说明称 para_gen 用 chat 模板，与代码不符；STAGES.md 的 7.3 完成日期与 mtime 不符。</td><td><a href="#h-false-cost">h-false-cost</a>、<a href="#g-data-origin">g-data-origin</a>、<a href="#g-model-chat">g-model-chat</a>、<a href="#s19-s73">s19-s73</a></td></tr>
-<tr><td>V46</td><td>X3 判断器 v2（stage13_judge2.py，作业 11501072）</td><td><span class="st st-void">作废</span>（按规则不用）</td><td>A 组校准一致率 0.90，B 组检验 0.55（去边界 0.79），低于用户定的 0.80，不用；改走备用方案（人工核对 + 有/无敏感性），补充 5 待用户确认。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>V46</td><td>X3 判断器 v2（stage13_judge2.py，作业 11501072）</td><td><span class="st st-void">作废</span>（按规则不用）</td><td>A 组校准一致率 0.90，B 组检验 0.55（去边界 0.79），低于用户定的 0.80，不用；改走备用方案（人工核对 + 有/无敏感性），已写入补充 5（2026-10-30 22:45：判断器 v2 不用，NLI 只定敏感性集合）。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td>V47</td><td>E1 同批无替换基线（批量舍入噪声的量化）</td><td><span class="st st-plan">计划未做</span></td><td>用户 2026-10-30 决定答辩前不补测，写约 0.01、远小于主效应；GPU 空闲时按 X4 的做法补。</td><td><a href="#s1011-s11-qc">s1011-s11-qc</a></td></tr>
-<tr><td>V48</td><td>Stage 13 group_folds 的折分配</td><td><span class="st st-review">待复核</span></td><td>同大小组排序不稳定，不同 CPU 型号上折可能不同（d0026 上点估计最多差 0.006）；M2 补算已固定折，其他调用脚本未查。</td><td><a href="#h-stats-team">h-stats-team</a></td></tr>
+<tr><td>V48</td><td>Stage 13 group_folds 的折分配</td><td><span class="st st-rechecked">已处理（2026-10-30）</span></td><td>不稳定排序只在 AVX-512 节点（cascadelake d0026/d0027）上给出不同分折（9,108 篇中 6,713 篇）；所有原始运行都在无 AVX-512 节点上，分折与存档一致、点估计差 0、无翻转；团队编号与 CPU 无关。唯一不一致的是已标 BAD 的 M2 小测试 11501115（最多差 0.0061，无翻转），输出改名留档：summary_cpu_teamci_tiny.BAD_fold_order_differs_d0026_keep/、reports/m2_teamci_tiny.BAD_fold_order_differs_d0026_keep.md。group_folds() 现在先读存档（3 个 npz，README 有 sha256）。<span class="src">381_stage13/reports/fold_audit.md · 作业 11511921–11511930、11512064</span></td><td><a href="#h-stats-team">h-stats-team</a></td></tr>
 <tr><td>V49</td><td>E4b 标准化用全部论文（含测试折）</td><td>被训练折标准化重算复核 <span class="st st-rechecked">复核过</span></td><td>作业 11500917：最大差 0.0075，α 不变，确认版无"区间是否含 0"翻转；L44 下界 +0.000（边界）。</td><td><a href="#s1011-s11-e4b-check">s1011-s11-e4b-check</a></td></tr>
+<tr><td>V50</td><td>Stage 12 F1 作者提示 lens 的对半拟合（拟合质量检查）</td><td><span class="st st-plan">计划未做</span>（不补做）</td><td>F1 lens 在 L24–L48 与 WikiText lens 余弦 0.27–0.70，是提示分布不同还是 40 条的噪声无法区分（checkpoint 只存 J 的总和，需 GPU 重拟合）；<b>用户 2026-10-30 决定答辩前不做</b>，写进局限（U42）。</td><td><a href="#s12-f1">s12-f1</a></td></tr>
 </table>
 </section>
 <section id="ap-index">
@@ -4611,7 +4653,7 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>U40</td><td>P2 hook 是否生效</td>
 <td>同一个重算脚本：<code>371_stage12/raw/patch_comp</code>（19,077 行 × 23 列：none + attn/mlp × L8…L56）。各列与 none 列比较；none 列与 Stage 11 <code>361_stage11/raw/patch</code> 的 rank_false、rank_true 逐行比较。代码 <code>371_stage12.py:146-170</code>（register_forward_hook 在 self_attn / mlp 输出上做替换）。</td>
 <td>① <b>替换确实改变了输出，而且随层数有系统性变化</b>：L8–L44 各列平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 是 +0.020 到 +0.070（attn48 0.069、mlp56 0.070）。对应 recovery：attn48 0.231、mlp56 0.224、attn L8–44 ≤0.023（summary/P2_patch_comp.csv）。② <b>噪声底</b>：none 列与 Stage 11 rank_false 逐行相同的只有 59.4%，但全部行的 rank 都在 2 倍以内，平均 Δnlr = 0.0000，p99 |Δnlr| 0.146。P1 自己的 none 列在不同层之间也只有 59.7% 的行完全相同。所以这是批大小不同带来的 bf16 数值抖动，不是 hook 泄漏。rank_true 与 Stage 11 100% 相同。③ P2 只测到 L56，<b>没有 L63 边界层</b>，raw 和 reports 里也没有找到专门的 P2 sanity 记录（logs 下只有 P1 的 smoke 项）。</td>
-<td><span class="st st-review">部分解决</span>：从数据看 hook 生效、基线正确。但当时没有做显式的 sanity（例如 L63 或"替换为自身 = 不变"）；是否需要补，需向<b>用户</b>确认。</td></tr>
+<td><span class="st st-review">部分解决</span>：从数据看 hook 生效、基线正确。但当时没有做显式的 sanity（例如 L63 或"替换为自身 = 不变"）。<b>2026-10-31 更新</b>：用户决定补做，只跑 1 个分片（<code>12_stage12/stage12_p2_hookcheck.py</code>；tiny 11511943 PASS）；真实 GPU 作业 11511965 已提交，排队中（2026-10-31），结果待填（<code>371_stage12/reports/p2_hookcheck.md</code>）。<span class="src">PROGRESS.md 2026-10-30 22:45 条</span></td></tr>
 
 <tr><td>U41</td><td>Stage 10 名字字符串与 mc_team.jsonl initial_surname 是否一致</td>
 <td>全量对比（不抽样）：<code>351_stage10/cohort/contexts.parquet</code> 的 author（按 author_index 排序）与 <code>labels…/mc_team.jsonl</code> 中 options[correct_index] 的同位置字符串，共 33,811 对。</td>
@@ -4621,7 +4663,7 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>U42</td><td>F1 作者提示 lens 的拟合质量</td>
 <td>日志：<code>371_stage12/logs/work_1141355{7,72,84,86}.log</code> 只有 "author-lens fit: a -&gt; b of 40"，没有逐 prompt 的收敛记录。<code>alens/progress.json</code>。<code>alens/checkpoint.pt</code> 只存了 jacobian_sum，没有逐 prompt 的 J，做不了 split-half。改为轻量比较（mmap，逐层）：F1 lens 与 public / Fit A / self100 在共同层上的相对 Frobenius 距离和余弦（<code>$SP/u42_lens_compare.py</code>）。</td>
 <td>F1：40 条 prompt，层 24/32/40/44/48/52/56/62，skip_first 16（checkpoint 字段）。分 6 次拟合（10-27 15:29 至 10-28 16:49），progress.json 记 per_prompt 269 s。<b>与 public 的余弦</b>：L24 0.30、L32 0.29、L40 0.36、L44 0.51、L48 0.69、L52 0.85、L56 0.92、L62 0.996。对照：三个 WikiText lens 之间，Fit A vs public 为 0.80 / 0.85 / 0.89 / 0.97 / 0.997 / 1.0，self100 vs public 为 0.85 / 0.92 / 0.95 / 0.99 / 1.0 / 1.0（L24…L62）。F1 vs Fit A、F1 vs self100 的数值与 F1 vs public 几乎相同。‖J−I‖/‖I‖：public L62 = 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合，说明这个口径可信。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）</td>
-<td><span class="st st-review">部分解决</span>：当时没有做一致性检查；现在补算显示，F1 lens 在 L24–L48 与 WikiText lens 差别很大（余弦 0.3–0.7），而三个 WikiText lens 之间很一致。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，无法区分（checkpoint 只存了总和）。是否补做 split-half 拟合，需向<b>用户</b>确认（需要 GPU）。</td></tr>
+<td><span class="st st-review">部分解决</span>：当时没有做一致性检查；现在补算显示，F1 lens 在 L24–L48 与 WikiText lens 差别很大（余弦 0.3–0.7），而三个 WikiText lens 之间很一致。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，无法区分（checkpoint 只存了总和）。是否补做 split-half 拟合，需向<b>用户</b>确认（需要 GPU）。<b>2026-10-31 更新</b>：用户决定答辩前不做，已作为局限写入 <a href="#s12-f1">s12-f1</a> 与附录 G4 V50（已按用户决定写明）。<span class="src">PROGRESS.md 2026-10-30 23:00 条 (5)</span></td></tr>
 
 <tr><td>U44</td><td>xf_patch 2 个 shard 的脚本 sha 613eb813 是否有副本</td>
 <td>读取 <code>381_stage13/raw/xf_patch/*/shard_*.npz</code> 全部 97 个 meta，统计 script_sha256。在 sha 索引中查 613eb813。读代码 <code>371_stage12.py:350-365</code>（handover13）、<code>381_stage13.py:384、399、409</code>、<code>361_stage11.py:189</code>。</td>

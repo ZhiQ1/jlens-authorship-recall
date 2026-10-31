@@ -181,7 +181,7 @@ recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是
 <ul>
 <li>in-batch 'none'（未替换 false 运行）作为 0 点。</li>
 <li>P2 没有"全替换 = 1"的内置上界检查（替换单层单组件不应恢复 1），当时也<b>没有做显式的 sanity 检查</b>（例如 L63 或"替换为自身 = 不变"；logs 下只有 P1 的 smoke 项）。</li>
-<li><b>从数据看 hook 生效（2026-10-30 重算，U40 部分解决）</b>：各替换列与 none 列相比，L8–L44 平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 明显上升（+0.020 到 +0.070，如 attn48 +0.069、mlp56 +0.070），与 recovery 表一致；基线 none 列与 Stage 11 假标题运行 rank_false 逐行相同的只有 59.4%，但全部行的名次都在 2 倍以内、平均 Δnlr 0.0000、p99 |Δnlr| 0.146，P1 自己的 none 列在不同层之间也只有 59.7% 逐行相同，所以是批大小不同带来的 bf16 噪声，不是 hook 泄漏；rank_true 与 Stage 11 100% 相同。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py（371_stage12/raw/patch_comp，19,077 行 × 23 列）· 371_stage12.py:146–170 · <a href="#iu-research">附录 I</a> U40</span> 是否补做显式检查待用户决定。<span class="unk">未知/需确认：向 用户 确认（是否补做 P2 显式 sanity，例如 L63 或"替换为自身"，U40）</span></li>
+<li><b>从数据看 hook 生效（2026-10-30 重算，U40 部分解决）</b>：各替换列与 none 列相比，L8–L44 平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 明显上升（+0.020 到 +0.070，如 attn48 +0.069、mlp56 +0.070），与 recovery 表一致；基线 none 列与 Stage 11 假标题运行 rank_false 逐行相同的只有 59.4%，但全部行的名次都在 2 倍以内、平均 Δnlr 0.0000、p99 |Δnlr| 0.146，P1 自己的 none 列在不同层之间也只有 59.7% 逐行相同，所以是批大小不同带来的 bf16 噪声，不是 hook 泄漏；rank_true 与 Stage 11 100% 相同。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py（371_stage12/raw/patch_comp，19,077 行 × 23 列）· 371_stage12.py:146–170 · <a href="#iu-research">附录 I</a> U40</span> <b>显式检查（用户 2026-10-30 决定：做，只跑 1 个分片）</b>：新脚本 <code>~/jlens_work/12_stage12/stage12_p2_hookcheck.py</code>（import 371_stage12.py，不改原脚本），用与 P2 相同的 hook 体（加调用计数）：阳性 <code>full_true</code>（0–63 每层 attn + MLP 都换成真运行 → 末层残差应与真运行逐位相同，recovery = 1）与 <code>r62c63_true</code>（第 62 块残差 + attn63 + mlp63 换成真运行 → 也应完全相同）；阴性 <code>full_false</code>（换成假运行自己的组件 → 等于假运行，recovery 0）；parity：<code>none</code>、<code>attn56</code>、<code>mlp56</code> 对照已存的 <code>raw/patch_comp/shard_000.npz</code>。容差 max |Δlogit| ≤ 1.0（4 个 bf16 单位）、|recovery − 1| ≤ 0.01，不达标只记 WARN。tiny CPU 作业 11511943（64 层随机 tiny Qwen3、真 tokenizer、3 篇）PASS：full_true / r62c63_true recovery 1.0000、Δlogit 0、Δ残差 0；full_false Δ 0；264 个 hook 每次前向各触发一次（1,848/1,848）。真实 GPU 作业 11511965（gpu-short，A100-80GB，shard 0）<span class="st st-review">已提交，排队中（2026-10-31）</span>，结果待出，报告将写入 <code>371_stage12/reports/p2_hookcheck.md</code>。<span class="src">PROGRESS.md 2026-10-30 22:45 条 · 371_stage12/hookcheck_2026-10-30/tiny/ · squeue 2026-10-31（11511965 PD）</span></li>
 </ul>
 
 <h4>7 结果</h4>
@@ -203,7 +203,7 @@ recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是
 </ul>
 
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span> 24/24（2026-10-27 至 10-28；17:28 时 15/24），分析 2026-10-28 19:55。<span class="src">PROGRESS.md "2026-10-27 17:28" 条 · summary/P2_patch_comp.csv 时间戳</span></p>
+<p><span class="st st-done">已完成</span> 24/24（2026-10-27 至 10-28；17:28 时 15/24），分析 2026-10-28 19:55。<span class="src">PROGRESS.md "2026-10-27 17:28" 条 · summary/P2_patch_comp.csv 时间戳</span> 显式 hook 检查（U40）：tiny 11511943 PASS；1 个真实分片作业 11511965 <span class="st st-review">已提交，排队中（2026-10-31）</span>。</p>
 </section>
 
 <!-- ===================================================================== N1 -->
@@ -377,7 +377,7 @@ J_l = 40 条提示的平均
 <tr><td>L56</td><td>0.923</td><td>0.923</td><td>0.927</td><td>0.997</td><td>1.001</td></tr>
 <tr><td>L62</td><td>0.996</td><td>0.996</td><td>0.998</td><td>1.009</td><td>1.010</td></tr>
 </table>
-<p>即 F1 在 L24–L48 与三个 WikiText lens 一致性差（余弦约 0.27–0.70），而三个 WikiText lens 彼此很一致；到 L56/L62 才接近。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）口径核对：public 的 ‖J−I‖/‖I‖ 在 L62 为 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，现有数据无法区分。<span class="unk">未知/需确认：向 用户 确认（是否补做 F1 lens 的对半拟合以区分噪声与提示分布，需要 GPU，U42）</span></p>
+<p>即 F1 在 L24–L48 与三个 WikiText lens 一致性差（余弦约 0.27–0.70），而三个 WikiText lens 彼此很一致；到 L56/L62 才接近。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）口径核对：public 的 ‖J−I‖/‖I‖ 在 L62 为 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，现有数据无法区分。<b>用户 2026-10-30 决定：答辩前不做 F1 对半拟合</b>，作为局限写明（见第 8 项；U42 已按用户决定写明）。<span class="src">PROGRESS.md 2026-10-30 23:00 条 (5)</span></p>
 
 <h4>7 结果</h4>
 <p>产出 <code>371_stage12/alens/lens.pt</code>（8 个源层），2026-10-28 17:12 完成。读出结果见 F2。<span class="src">alens/progress.json done=40</span></p>
@@ -388,10 +388,11 @@ J_l = 40 条提示的平均
 <li>拟合平均覆盖了提示里所有位置（标题、年份、名字），不是只针对名字位置。</li>
 <li>拟合集 31/9 target/control 不平衡。</li>
 <li>拟合集与评估集论文不重叠，但按作者团队不完全独立：3 篇评估论文与拟合集有同名作者（"qiang xu"、"j schwartz"、"j braun"，可能是同名不同人），已在 F2 中剔除，未重拟合（会浪费约 4 GPU 小时，当时已拟合 35/40）。<span class="src">config/alens_eval_exclude.json · PROGRESS.md "2026-10-28 12:00" 条</span></li>
+<li><b>没有拟合质量检查，答辩前也不补做</b>（用户 2026-10-30 决定）：F1 lens 在 L24–L48 与三个 WikiText lens 的余弦只有约 0.27–0.70（三个 WikiText lens 彼此 ≥ 0.79），这种差别是提示分布不同还是只用 40 条的噪声，没有对半拟合就无法区分（checkpoint 只存了 J 的总和，要区分需重新在 GPU 上分两半拟合）。所以 F2"作者专用 lens 也读不出中间层的标题特异信号"可能部分来自 lens 本身估计不稳。<span class="src">上文"事后一致性比较"表 · research_scripts/u42_lens_compare.py · PROGRESS.md 2026-10-30 23:00 条 (5)</span></li>
 </ul>
 
 <h4>9 状态</h4>
-<p><span class="st st-done">已完成</span>（40/40）。</p>
+<p><span class="st st-done">已完成</span>（40/40）。对半拟合 <span class="st st-plan">计划未做</span>（用户决定答辩前不做，写为局限，U42）。</p>
 </section>
 
 <!-- ===================================================================== F2 -->
@@ -532,9 +533,9 @@ X1: W = (AᵀA + λI)⁻¹ Aᵀ(Y − ȳ),  λ = α·tr(AᵀA)/d,  α = 1
 </section>
 
 <!-- UNKNOWN-LIST（2026-10-30 下午按 CHANGES_2026-10-30.md 更新）
-仍需确认：
-s12-p2 | U40 是否补做 P2 显式 sanity（数据已显示 hook 生效） | 用户
-s12-f1 | U42 是否补做 F1 lens 对半拟合（需 GPU；事后比较显示 L24–48 余弦 0.27–0.70） | 用户
+2026-10-31 按 CHANGES_2026-10-30b.md 更新：
+s12-p2 | U40 用户决定做显式检查（1 分片）：tiny 11511943 PASS；GPU 11511965 已提交，排队中（2026-10-31），结果待填
+s12-f1 | U42 已按用户决定写明（局限）：答辩前不做 F1 对半拟合
 已解决（2026-10-30）：
 s12-p1 | U38 按角色用 raw 重算（research_scripts/u38_u40_recompute.py）；U39 只描述不解读（用户决定）
 s12-n1 | U41 99.51% 与 "首字母. 姓" 一致

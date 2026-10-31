@@ -95,7 +95,7 @@
 <tr><td>U40</td><td>P2 hook 是否生效</td>
 <td>同一个重算脚本：<code>371_stage12/raw/patch_comp</code>（19,077 行 × 23 列：none + attn/mlp × L8…L56）。各列与 none 列比较；none 列与 Stage 11 <code>361_stage11/raw/patch</code> 的 rank_false、rank_true 逐行比较。代码 <code>371_stage12.py:146-170</code>（register_forward_hook 在 self_attn / mlp 输出上做替换）。</td>
 <td>① <b>替换确实改变了输出，而且随层数有系统性变化</b>：L8–L44 各列平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 是 +0.020 到 +0.070（attn48 0.069、mlp56 0.070）。对应 recovery：attn48 0.231、mlp56 0.224、attn L8–44 ≤0.023（summary/P2_patch_comp.csv）。② <b>噪声底</b>：none 列与 Stage 11 rank_false 逐行相同的只有 59.4%，但全部行的 rank 都在 2 倍以内，平均 Δnlr = 0.0000，p99 |Δnlr| 0.146。P1 自己的 none 列在不同层之间也只有 59.7% 的行完全相同。所以这是批大小不同带来的 bf16 数值抖动，不是 hook 泄漏。rank_true 与 Stage 11 100% 相同。③ P2 只测到 L56，<b>没有 L63 边界层</b>，raw 和 reports 里也没有找到专门的 P2 sanity 记录（logs 下只有 P1 的 smoke 项）。</td>
-<td><span class="st st-review">部分解决</span>：从数据看 hook 生效、基线正确。但当时没有做显式的 sanity（例如 L63 或"替换为自身 = 不变"）；是否需要补，需向<b>用户</b>确认。</td></tr>
+<td><span class="st st-review">部分解决</span>：从数据看 hook 生效、基线正确。但当时没有做显式的 sanity（例如 L63 或"替换为自身 = 不变"）。<b>2026-10-31 更新</b>：用户决定补做，只跑 1 个分片（<code>12_stage12/stage12_p2_hookcheck.py</code>；tiny 11511943 PASS）；真实 GPU 作业 11511965 已提交，排队中（2026-10-31），结果待填（<code>371_stage12/reports/p2_hookcheck.md</code>）。<span class="src">PROGRESS.md 2026-10-30 22:45 条</span></td></tr>
 
 <tr><td>U41</td><td>Stage 10 名字字符串与 mc_team.jsonl initial_surname 是否一致</td>
 <td>全量对比（不抽样）：<code>351_stage10/cohort/contexts.parquet</code> 的 author（按 author_index 排序）与 <code>labels…/mc_team.jsonl</code> 中 options[correct_index] 的同位置字符串，共 33,811 对。</td>
@@ -105,7 +105,7 @@
 <tr><td>U42</td><td>F1 作者提示 lens 的拟合质量</td>
 <td>日志：<code>371_stage12/logs/work_1141355{7,72,84,86}.log</code> 只有 "author-lens fit: a -&gt; b of 40"，没有逐 prompt 的收敛记录。<code>alens/progress.json</code>。<code>alens/checkpoint.pt</code> 只存了 jacobian_sum，没有逐 prompt 的 J，做不了 split-half。改为轻量比较（mmap，逐层）：F1 lens 与 public / Fit A / self100 在共同层上的相对 Frobenius 距离和余弦（<code>$SP/u42_lens_compare.py</code>）。</td>
 <td>F1：40 条 prompt，层 24/32/40/44/48/52/56/62，skip_first 16（checkpoint 字段）。分 6 次拟合（10-27 15:29 至 10-28 16:49），progress.json 记 per_prompt 269 s。<b>与 public 的余弦</b>：L24 0.30、L32 0.29、L40 0.36、L44 0.51、L48 0.69、L52 0.85、L56 0.92、L62 0.996。对照：三个 WikiText lens 之间，Fit A vs public 为 0.80 / 0.85 / 0.89 / 0.97 / 0.997 / 1.0，self100 vs public 为 0.85 / 0.92 / 0.95 / 0.99 / 1.0 / 1.0（L24…L62）。F1 vs Fit A、F1 vs self100 的数值与 F1 vs public 几乎相同。‖J−I‖/‖I‖：public L62 = 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合，说明这个口径可信。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）</td>
-<td><span class="st st-review">部分解决</span>：当时没有做一致性检查；现在补算显示，F1 lens 在 L24–L48 与 WikiText lens 差别很大（余弦 0.3–0.7），而三个 WikiText lens 之间很一致。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，无法区分（checkpoint 只存了总和）。是否补做 split-half 拟合，需向<b>用户</b>确认（需要 GPU）。</td></tr>
+<td><span class="st st-review">部分解决</span>：当时没有做一致性检查；现在补算显示，F1 lens 在 L24–L48 与 WikiText lens 差别很大（余弦 0.3–0.7），而三个 WikiText lens 之间很一致。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，无法区分（checkpoint 只存了总和）。是否补做 split-half 拟合，需向<b>用户</b>确认（需要 GPU）。<b>2026-10-31 更新</b>：用户决定答辩前不做，已作为局限写入 <a href="#s12-f1">s12-f1</a> 与附录 G4 V50（已按用户决定写明）。<span class="src">PROGRESS.md 2026-10-30 23:00 条 (5)</span></td></tr>
 
 <tr><td>U44</td><td>xf_patch 2 个 shard 的脚本 sha 613eb813 是否有副本</td>
 <td>读取 <code>381_stage13/raw/xf_patch/*/shard_*.npz</code> 全部 97 个 meta，统计 script_sha256。在 sha 索引中查 613eb813。读代码 <code>371_stage12.py:350-365</code>（handover13）、<code>381_stage13.py:384、399、409</code>、<code>361_stage11.py:189</code>。</td>
