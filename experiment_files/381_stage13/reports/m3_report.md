@@ -80,7 +80,7 @@ Rule (addendum 2): PRIMARY = transfer ratio T at L16-L40, also relative to T(L4)
 | L63 | title_last | +0.768 [+0.765, +0.772] | -0.210 [-0.212, -0.207] |
 | L63 | colon | +0.150 [+0.148, +0.152] | -0.604 [-0.606, -0.602] |
 
-## Pre-registered reading (L16-L40)
+## Pre-registered reading (L16-L40) - SUPERSEDED 2026-10-31 (absolute threshold, not the addendum-2 rule; see below)
 
 - title_last, year: T at L16-L40 = L16 0.94, L24 0.95, L28 0.94, L32 0.95, L36 0.92, L40 0.94 -> H2 (paper identity, T >= 0.8 throughout)
 - title_last, log_citations: T at L16-L40 = L16 0.96, L24 0.93, L28 0.93, L32 0.94, L36 0.95, L40 0.92 -> H2 (paper identity, T >= 0.8 throughout)
@@ -88,3 +88,19 @@ Rule (addendum 2): PRIMARY = transfer ratio T at L16-L40, also relative to T(L4)
 - colon, year: T at L16-L40 = L16 -6.85, L24 -4.30, L28 -3.94, L32 -2.51, L36 -1.11, L40 -1.13 -> H1 (task-specific, T < 0.5 throughout)
 - colon, log_citations: T at L16-L40 = L16 -30.04, L24 -6.95, L28 -2.13, L32 -1.60, L36 -0.55, L40 -0.96 -> H1 (task-specific, T < 0.5 throughout)
 - colon, field: T at L16-L40 = L16 0.35, L24 0.36, L28 0.33, L32 0.34, L36 0.30, L40 0.26 -> H1 (task-specific, T < 0.5 throughout)
+
+## Reading under prereg addendum 2 (2026-10-31; replaces the "Pre-registered reading" above, which used the absolute threshold T >= 0.8)
+
+Rule: T at L16-L40 judged relative to T(L4); identity index only as I(l) - I(L4) (intervals: team-cluster bootstrap).
+
+- title_last, year: T - T(L4) at L16-L40 = -0.060 to -0.031 -> below the L4 text level at every layer (not above L4) -> M3 does not support H2
+- title_last, log_citations: T - T(L4) at L16-L40 = -0.055 to -0.016 -> below the L4 text level at every layer (not above L4) -> M3 does not support H2
+- title_last, field: T - T(L4) at L16-L40 = -0.007 to -0.004 -> not distinguishable from the L4 text level
+- colon, year: T - T(L4) at L16-L40 = +13.776 to +19.514 -> above the L4 text level at L16, L24, L28, L32, L36, L40; T < 0.5 throughout (task-specific, as before)
+- colon, log_citations: T - T(L4) at L16-L40 = +1.463 to +30.961 -> above the L4 text level at L24, L28, L32, L36, L40; T < 0.5 throughout (task-specific, as before)
+- colon, field: T - T(L4) at L16-L40 = -0.029 to +0.066 -> above the L4 text level at L16, L24, L28, L32, L36; T < 0.5 throughout (task-specific, as before)
+- identity index, title_last: I - I(L4) at L16-L40 = -0.017 to -0.003 -> I - I(L4) < 0 or includes 0 at every layer -> does not support H2
+- identity index, colon: I - I(L4) at L16-L40 = -0.613 to -0.421 -> I - I(L4) < 0 or includes 0 at every layer -> does not support H2
+
+**Summary:** at the title position the cross-prompt transfer and the identity index are high (T 0.92-0.99, I 0.96-0.98) but never above the L4 level, which identical title tokens already give; so M3 does not show a paper-identity state beyond the title text, and does not support H2. At the colon the state is task-specific (H1 reading unchanged). H2 rests on M2 and X1 (M2: Qwen above BERT counts only as a reference under addendum 2).
+

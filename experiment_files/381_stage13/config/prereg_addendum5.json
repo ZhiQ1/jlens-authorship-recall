@@ -1,0 +1,24 @@
+{
+ "title": "Stage 13 pre-registration, addendum 5 (X3 paraphrase inclusion, corrected word overlap, meaning check, sensitivity analysis)",
+ "written": "2026-10-30T22:45-04:00",
+ "approved_by_user": "user message 2026-10-30 (evening): 'X4 措辞同意。补充 5 按草案写，(a) 答辩前不再加标 60 条，按已有 40 条人工标注报告改意思的比例和 95% 区间；(b) 敏感性版本剔除\"人工标为改意思\"和\"NLI 未通过\"的。写定后放行 para_run。'",
+ "status_at_writing": "para_gen done (24/24 shards, 1,186 paraphrases). para_run has NOT run (logs/para_ok absent): no X3 representation or score data exist. Already seen before writing: the paraphrase texts, auto checks, NLI scores (summary_x3/para_nli.csv, job 11475175), 40 manual labels, judge v1/v2 calibration (followup/judge2_summary.json, job 11501072).",
+ "inclusion": {
+  "primary": "auto_ok (para_checks in 381_stage13.py) and not identical to the original title after removing case and non-alphanumerics: 1,115 of 1,186. The 27 identical paraphrases are excluded. The 44 auto-rejected (incl. 37 rejected because a surname appears as a substring of an ordinary word) stay rejected.",
+  "sensitivity": "primary minus (NLI not entailing in both directions, nli_both = False, cross-encoder/nli-deberta-v3-large) minus (manual label 'changed'): 1,015. Borderline manual labels are kept.",
+  "table": "config/x3_lexical_neighbour_j2.csv (sha256 a1c91c8763ef148f64021ca3f0d31203eed1ce294db9bbcf7df099f51a02ff69), columns include_primary / include_sensitive; produced by 13_stage13/stage13_x3_neighbour_j2.py (sha256 aba411cc1f1ff2e8dcc3cfc45bf89204ba8fe8355e8be910eb585102f4a6530d)."
+ },
+ "word_overlap": {
+  "replaces": "the word Jaccard of addendum 4 (lowercase, words > 3 characters, no stemming) for both the paraphrase-original overlap and the choice of the lexical neighbour D",
+  "jaccard2": "lowercase, punctuation -> space, sklearn English stop words removed, tokens of any length kept, light suffix stemming (stage13_para_nli.words2 / jac)",
+  "D_rule": "unchanged from addendum 4 except the overlap measure: a different paper of the same field, no shared surname, jaccard2(A, D) >= jaccard2(A, paraphrase), the closest above; else the highest available. Precomputed in the table above; 381_stage13.py do_para_run reads it (code change 2026-10-30: sha256 a7b01a8f...f7a92b -> 4e0f4849d415836015d4063e16e1ae9801a1551fdb5111a6d58480d585d0055e; backup 13_stage13/381_stage13.before_addendum5_2026-10-30.py). No other line changed.",
+  "known_before_data": "Only 5.9% of primary pairs have a matched D (D's overlap >= the paraphrase's; median jaccard2 paraphrase 0.615 vs D 0.15). The matched subset is reported separately as addendum 4 requires and is expected to be small."
+ },
+ "meaning_check": {
+  "judge": "Qwen3-32B judge v2 NOT used: agreement with manual labels 0.90 on the 20 calibration items but 0.55 on the 20 new test items (0.79 without borderline), below the pre-set 0.80.",
+  "nli": "used only to define the sensitivity set, not as a primary filter.",
+  "manual": "No further labelling before the defence (user decision). Report from the 40 manually labelled primary items (two random draws of 20): changed 6/40 = 0.15 (95% Wilson [0.071, 0.291]); borderline 7/40 = 0.175 [0.087, 0.319]; changed or borderline 13/40 = 0.325 [0.201, 0.480]; keep 27/40 = 0.675 [0.520, 0.799]. Label files logs/para_review_sample20_labels.csv, logs/para_review_sample20_b_labels.csv."
+ },
+ "analyses": "All X3 results (addendum 4 primary G', behaviour, by token role) are reported for both the primary and the sensitivity set. Conclusions follow the primary set; a conclusion that changes between the two sets is stated as not robust.",
+ "release": "para_run is released after this file is written and hashed: first ONE real shard (fixed rule 2) with a check that the stored lexical_neighbour equals the table, then logs/para_ok for the rest."
+}

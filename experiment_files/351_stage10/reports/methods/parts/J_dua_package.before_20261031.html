@@ -1,0 +1,109 @@
+<!-- 方法手册 · 附录 J：Dreaming Up Authors 代码包（dua v1.0.0）逐条核对。起草 2026-10-30。只读：未改动任何代码、数据或结果；未提交作业。
+     包的位置：~/archives/dreaming-up-authors-code-v0.zip（13,678,036 字节，sha256 88b75daae08911f530adee2aadd75c125bf74efc295414f1473414dfd724d12d，zip 内文件时间 2026-08-28 至 2026-09-25）。
+     ~/projects/dreaming-up-authors-code-v0/ 只有空目录骨架 + src/dua.egg-info + .pytest_cache（共 666 KB，没有任何 .py 源文件和数据），不能作为依据；
+     本附录的"出处"均指 zip 内路径（前缀 dreaming-up-authors-code-v0/ 省略），核对时解压到会话 scratchpad 只读使用。
+     "我们的数据" = /scratch/zhang.zhiqi2/jlens/labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/（组长标注包，由 elm 代码生成，不是 dua）。
+     核对脚本用 ~/conda-envs/jlens/bin/python -I 在 short 节点 CPU 上运行，不加载模型。 -->
+
+<section id="j-dua-package">
+<h2>附录 J　Dreaming Up Authors 代码包（dua v1.0.0）逐条核对</h2>
+
+<p><b>包的身份。</b>原件 <code>~/archives/dreaming-up-authors-code-v0.zip</code>（13.7 MB，sha256 <code>88b75daa…d724d12d</code>）。包名 <code>dua</code>，版本 <code>1.0.0</code>（<span class="src">src/dua.egg-info/PKG-INFO</span>），MIT 许可，作者 Sijia Zhong, Tamir Yirga, Yijia Ma, Thai Le, Yifan Hu。发布清单 <span class="src">data/release/manifest.json</span>：<code>generated_at_utc 2026-08-29T01:51:44</code>，<code>git_commit 3379af2</code>，<code>seed 42</code>，<code>rows 9108</code>。<code>~/projects/dreaming-up-authors-code-v0/</code> 是不完整的解压（只有目录骨架与 egg-info，无源码、无数据），以下全部以 zip 为准。</p>
+
+<p><b>最重要的一点。</b>组长的标注包不是 dua 生成的，而是另一套代码 <code>elm</code>（<span class="src">labels_20261015/…/label_README.md:3 <code>elm.stages.label.report</code>；step1_README.md:3 <code>elm.stages.filter.measure.report</code></span>）。集群上找不到 elm 源码（<code>find ~ /scratch/zhang.zhiqi2 -maxdepth 7</code> 无 <code>panel.py</code>、无 <code>elm/</code>、无标注运行的 <code>run.json</code>）。所以 dua 包能确定的是<b>论文样本、元数据、引用档、开放问题的提示与生成设置、NameMatcher</b>；而 <b>panel.py 的剥离规则、多选"真实团队"干扰项的抽取规则、et al. 截断</b>都不在 dua 里，下表只能给出从标注包数据反推的结果。</p>
+
+<table class="t">
+<tr><th>#</th><th>项目</th><th>包里的规定（原文要点）</th><th>出处（zip 内路径:行号 / 函数）</th><th>与我们数据的核对结果</th><th>对应未知编号</th><th>是否已解决</th></tr>
+
+<tr><td>1</td><td>9,108 篇的筛选条件</td>
+<td>两步设计：OAG v2 提供随机抽样，Semantic Scholar（S2）不提供，所以先从 OAG v2 随机样本 9,999,863 条出发，按标题匹配 S2 并富集。五道过滤，顺序固定、比例相对上一步：① 文献类型只留 journal / conference（去 56.9%）；② 作者数 1–20 <b>含 20</b>（<code>MAX_AUTHORS = 20</code>，<code>n &gt; 20</code> 才剔除，即 ≤ 20；去 0.3%）；③ FastText <code>lid.176.bin</code> 判为英语且置信度 ≥ 0.8（标题 + 摘要；去 47.9%）；④ 名字结构：任一作者名属于 Single Name / "Lastname, Firstname"（含逗号）/ Institutional-Group（含 et al、group、 and 、institut）就整篇剔除（去 0.8%）；⑤ OAG 与 S2 的规范化标题完全相同且第一作者姓相同（去 13.5%）。剩 1,921,209 篇（保留 19.2%）。<br>
+分层抽样：8 个领域 × 13 个引用档，每格最多 100 篇、无放回；不足 100 的格全取，所以 9,108 &lt; 10,400。<b>原始抽样在 notebook 里 <code>RANDOM_SEED = None</code>，不可复现</b>；包内代码是 seed 42 的重抽版，与发布样本只比较重叠度，不要求相同（发布样本中有 81 篇会被当前过滤器剔除）。年份范围 1800–2019（OAG）。</td>
+<td><span class="src">src/dua/data/filters.py:1–9（五步与比例）、20–23（常量）、115–125 filter_doc_type、128–138 filter_author_count、141–162 filter_language、78–105 classify_name、165–183 filter_author_name_patterns、186–210 filter_title_match、213–219 PIPELINE</span><br>
+<span class="src">src/dua/sampling/stratified.py:1–9（RANDOM_SEED=None 的说明）、82–90 index_strata、93–129 select_offsets、189–217 verify_against（81 篇）</span><br>
+<span class="src">config/config.yaml:6 seed 42、21–22 corpus / oag_pool、26–29 规模、34–42 八个领域、62–64 per_stratum 100 / theoretical_max 10400</span><br>
+<span class="src">README.md:335–356（Datasheet：Composition / Collection / Preprocessing）；PAPER_EXPERIMENTS.md:94</span></td>
+<td>标注包与 <code>eval_sample_9108.csv.gz</code> 的 paper_id <b>集合相同、行顺序也相同</b>（9,108/9,108）。作者数最小 1、最大 20，恰为 20 的 10 篇，&gt; 20 的 0 篇 → 上限是 ≤ 20。八个领域取值与 config 一致。分层：104 格全部有论文，81 格满 100，单格最大 100；每档合计 796/799/800×8/665/326/122，与标注包 bin_table.csv 完全相同。</td>
+<td>—（手册里原未列为未知；补充 U08 的背景）</td>
+<td><span class="st st-done">已解决</span>（规则清楚；原始抽样本身不可复现，这一点是包里明说的局限）</td></tr>
+
+<tr><td>2</td><td>数据版本</td>
+<td>OAG v2 随机样本 <code>oag_sample_10m.ndjson.gz</code>（9,999,863 条，约 15 GB）→ 策展语料 <code>all_batches_filtered.ndjson.gz</code>（1,921,209 篇，7.3 GB）；两者都<b>不在包里</b>，包里也没写 OAG 的下载日期。S2 富集（引用数、规范作者名、领域）是"单独的分布式流程"，不在包里，<b>快照为 2025 年 9 月</b>，不会再刷新。发布样本 <code>eval_sample_9108.csv.gz</code> sha256 <code>da5934ebc95f7222c61e898603b7eae2d2e4f0c57bbfdf0279f7e39cf5bab2e9</code>（manifest 2026-08-29，git 3379af2，<code>citation_bin_recomputed_mismatches 0</code>）。</td>
+<td><span class="src">config/config.yaml:18–23；README.md:93–95（"Semantic Scholar citation counts, as of September 2025"）、132–137、176–199、372–375；data/release/checksums.sha256:2；data/release/manifest.json</span></td>
+<td>标注包的 year、citations、n_authors、authors（分号连接后逐字比较）、citation_bin、field 与 eval_sample 在 9,108 篇上<b>全部逐字相同</b>。标题有 17 篇不同，17 篇全部只差 Unicode 空白（U+00A0、U+2005、U+2009 等被换成普通空格）——即 <code>data/prepared/papers_9108.csv</code> = eval_sample 把 Unicode 空白规范为 ASCII 空格。标注包的开放题与多选题都写明取自 papers_9108.csv（step1_README.md:35、label_README.md:23），所以提示里用的是规范化后的标题。</td>
+<td>U08</td>
+<td><span class="st st-done">已解决</span>（数据层面；elm 是否另做了别的清洗，仍以 run.json 为准）</td></tr>
+
+<tr><td>3</td><td>元数据字段来源</td>
+<td><code>to_release_row</code>：<b>title</b> = S2 <code>title</code>，缺失才用 OAG <code>title</code>；<b>year</b> = S2 <code>year</code>，缺失才用 OAG（因为提示里插的就是这个年份；与 OAG 不同的约 0.02%，样本里只有 1 篇：S2 2020 / OAG 2019，提示用 2020）；<b>authors</b> = S2 <code>authors[].name</code>，按发表顺序，JSON 列表；<b>citations</b> = S2 <code>citationCount</code>，<b>不回退到 OAG <code>n_citation</code></b>（回退会把 9,975 篇移出 0–2 档）；<b>field</b> = <code>paper_field</code>：按 S2 <code>fieldsOfStudy</code> 的列出顺序，取<b>第一个属于八个领域的条目</b>（不是严格取第一个；严格第一个只复现 98.31%，此规则复现 100%）；venue = S2 优先，doi / doc_type 取 OAG。§2.2 的语料统计另用 <code>primary_field</code>（严格第一个）和 OAG 年份。</td>
+<td><span class="src">src/dua/sampling/stratified.py:24–36 citation_count、39–52 primary_field、55–79 paper_field、143–176 to_release_row；README.md:139–145</span></td>
+<td>标注包的 year 范围 1817–2020，&gt; 2019 的恰好 1 篇，与包的说明一致；field 只有八个小写取值；citations 与 eval_sample 逐篇相同。</td>
+<td>—</td>
+<td><span class="st st-done">已解决</span></td></tr>
+
+<tr><td>4</td><td>NameMatcher 的规则与阈值</td>
+<td>移植自 <code>name_matcher_v3.NameMatcher</code>。每个名字先把连写首字母 <code>W.M.</code> 拆成 <code>W. M.</code>，用 nameparser 解析；规范化 = <code>unidecode</code>（去重音）→ 只留字母和空格（去标点）→ 小写；姓去掉前置词（van, von, de, der, den, del, della, di, da, do, dos, du, la, le, van der, van den, von der, van de, von dem, de la, de las, de los）。级别（越小越强）：<b>L1</b> 原字符串完全相同；<b>L2</b> unidecode 后全名相同；<b>L3</b> 再去标点后相同；<b>L3.5</b> 姓相同（含去前置词后相同）且名完整相同；<b>L4</b> 姓相同且名首字母相同；<b>L5</b> 只姓相同且名首字母不矛盾。每个真作者先试正常顺序，不匹配再试"姓名对调"和"文献格式（姓 名 首字母）"两种补救，取最低级别；按真作者顺序贪心，按下标消耗模型名字，重复名一对一计数。<b>默认阈值 L4</b>（<code>match_level_threshold: 4</code>，即 L1–L4 算命中）；L5 被降级：真作者计入 U、模型名字计入 H（一对弱匹配罚两次）。</td>
+<td><span class="src">src/dua/evaluate/matcher.py:1–18（级别总述）、34–38 前置词、40–68 _strip_particles、70–108 _parse_single_name、110–178 _get_match、180–254 两种补救、256–359 find_matches</span><br>
+<span class="src">src/dua/evaluate/pipeline.py:1–12、64–98 Evaluator.evaluate（L5 双向降级）；config/config.yaml:75–79；PAPER_EXPERIMENTS.md:145；tests/test_matcher.py</span></td>
+<td>用包内 <code>Evaluator</code> 对标注包 open_results 的 <code>names</code>（逗号连接）重新打分：阈值 L4 时 (m, h, u) 与标注包<b>逐篇相同 9,095/9,108（99.86%）</b>，m 相同 9,106/9,108；换成阈值 L3.5 只有 8,470、L5 只有 8,762。所以 elm 的匹配在行为上就是 dua NameMatcher + L4（剩下 13 篇差异来自 dua 的 NameSplitter 对逗号连接字符串的二次切分，不是匹配规则不同）。</td>
+<td>U05</td>
+<td><span class="st st-done">已解决</span>（行为等价已核实；"elm 是否直接 import dua"仍未见源码，但不影响结论）</td></tr>
+
+<tr><td>5</td><td>panel.py 的名字切分与剥离；M/H/U 的计数</td>
+<td><b>包里没有 panel.py</b>（也没有 <code>metrics/</code> 目录）。dua 自己的切分器 <code>NameSplitter.split</code>：把 <code>\s+and\s+</code> 换成逗号 → 按逗号切 → 丢掉空段和 <code>...</code> → 把 Jr./Sr./II/III/PhD/MD 等后缀并回前一段 → 若 ≥ 60% 段像"姓 名 首字母"且 &lt; 20% 像正常格式，按文献格式重排 → 否则若段数为偶数且满足严格条件，按"姓, 名, 姓, 名"交替格式两两合并 → 否则原样返回。M/H/U 的定义：M = 达到 L4 的真作者；H = 没配上的模型名字 + L5 弱匹配的模型名字；U = 没配上的真作者 + L5 弱匹配的真作者。</td>
+<td><span class="src">src/dua/evaluate/splitter.py:284–313 split、253–282 _merge_suffixes、157–212 / 67–148 两种格式检测；src/dua/evaluate/pipeline.py:29–61、76–98</span></td>
+<td>从标注包数据反推 elm 的 panel：(1) 8,187 条 clean_list 的 <code>names</code> 恰好等于按分号切开；(2) 627 条 cut_off 不等于简单切分——末尾被 96 token 截断的半个名字被丢掉（另 116 条恰好截在分隔处，相同）；(3) 6 条 preamble 去掉了"The authors … are:"之类引导语，但名字末尾的句号保留（如 "Sarah Norcross."）；(4) 43 条 refusal 一律 <code>names = []</code>；(5) 129 条 clean_list 段内还有逗号（如 "Ivanov, A. P.; Petrov, S. V."），被进一步按逗号切开成 "A. P."、"Petrov" 等碎片，也有 1 条把整段英文解释当成 3 个"名字"。计数在 9,108 篇上恒有 <code>h = n_names − m</code>、<code>u = 真作者数 − m</code>。</td>
+<td>U04</td>
+<td><span class="st st-review">部分解决</span>（计数规则已确定且与 dua 一致；引导语 / 截断 / 段内逗号的确切剥离规则仍需 panel.py 源码）</td></tr>
+
+<tr><td>6</td><td>多选干扰团队的抽取</td>
+<td>dua 的多选（§6，<b>按附录描述重写，不与论文逐字节一致，未发布任何多选结果</b>）与我们用的完全不同：模型是 GPT-4o API、温度 0，从回答文本里解析字母（不读概率）；三种干扰：<code>random_field</code>（从同领域作者池抽 3k 个名字组成 3 个假团队）、<code>same_field_swap</code>（真名单换掉一人）、<code>collaborator_swap</code>（换成第一作者在 S2 上的真实合作者，至少 3 个可用合作者，否则退回 same_field_swap；合作者取该作者 20 篇论文的共同作者）。排除规则：候选人只要<b>姓</b>与任何真作者相同就排除，再用完整 matcher 复查；随机数 <code>rng(seed=42, "mc", mode, paper_id)</code>；正确项位置均匀随机。<b>包里没有"其他论文的真实团队"这种干扰，也没有 bin_window / over_cap / et_al_mismatch。</b></td>
+<td><span class="src">src/dua/recognition/distractors.py:1–16、94–162 _key/_conflicts/_draw/_repair、164–175 _assemble、178–229 三种构造；src/dua/recognition/collaborators.py:22、28、74–105；src/dua/recognition/run.py:21–35 parse_choice；config/config.yaml:85–89；README.md:80–91（"Reimplemented: not byte-identical"）</span></td>
+<td>从 <code>mc_team.jsonl</code>（9,108 题，27,324 个假选项）反推 elm 的规则：<b>领域</b> 100% 相同；<b>作者数</b>：真名单 ≤ 8 人时假团队人数完全相同，&gt; 8 人时假团队也 &gt; 8 人（显示都是"前 8 + et al."），例外只有 3 个选项（1 题，真 8 人、假 9/11 人，正是 <code>et_al_mismatch = 3</code>）——所以 <b>et_al_mismatch = 该题中 et al. 状态与真名单不同的假选项数</b>；<b>引用档</b>：<code>bin_window</code> 0 / 1 / 2 / 3 分别有 8,025 / 762 / 143 / 178 题，前三类中假团队与真论文的最大档差恰为 0 / 1 / 2，取 3 的题档差 0–12 都有——即 <b>bin_window = 放宽到的档差窗口，3 = 不再限制</b>；<b>over_cap</b>：几乎每篇论文恰好被用作 3 次假团队（9,031 篇），42 篇被用了 4 次，而各题 over_cap 之和（25×1 + 7×2 + 1×3）正好 = 42——即 <b>每篇论文作为干扰的上限是 3 次，over_cap = 本题超过上限的假团队数</b>；<b>年份</b>：没有硬容差（|Δ年| 中位数 3、90% 分位 16、最大 192；bin_window = 0 的题中位数 2），像是"就近"优先而非窗口；<b>共同作者</b>：假选项与真名单没有任何 initial_surname 字符串完全相同（0/27,324），但有 341 个假选项与真名单同姓——没有按姓排除（与 dua 的"同姓即排除"不同）；正确项在规范顺序中恒为 0，4 个固定顺序 [0,1,3,2] [1,2,0,3] [2,3,1,0] [3,0,2,1] 使真名单依次处在 A、C、D、B；team_b 的 500 题全部 bin_window = 3。<b>随机种子无从得知。</b></td>
+<td>U06</td>
+<td><span class="st st-plan">未解决</span>（三个标记的含义已由数据反推且自洽，但规则原文、年份是否参与、是否排除共同作者、种子都需组长确认）</td></tr>
+
+<tr><td>7</td><td>选项显示的 "et al." 截断</td>
+<td><b>包里没有截断</b>：dua 把每个选项的全部名字用 ", " 连接后填入 <code>{option_a}</code>…，不加 et al.；名字也保持原样（不转成"首字母. 姓"）。多选提示模板 <code>mc_recognition.txt</code> 本身与我们一致。</td>
+<td><span class="src">src/dua/recognition/run.py:81–85；src/dua/recognition/distractors.py:53–62 as_record；config/prompts/mc_recognition.txt</span></td>
+<td>标注包 step1_README.md:98–101 的完整样例：11 人名单显示为前 8 人 + ", et al."；<code>mc_team.jsonl</code> 存的是完整名单（最长 20 人），格式 <code>initial_surname</code>（名首字母 + 最后一个词，如 "R. V. D. Wijngaard" → "R. Wijngaard"）。上面第 6 行的作者数分组（≤ 8 精确相同，&gt; 8 视为一类）与"超过 8 人截断为前 8 人"一致。我们多选提示中题干之前的 936 个字符与 <code>mc_recognition.txt</code> 逐字相同。</td>
+<td>U07</td>
+<td><span class="st st-review">部分解决</span>（数据与"&gt; 8 人显示前 8 人 + et al."完全一致；恰为 8 人是否也截断、et al. 的确切写法仍需源码确认）</td></tr>
+
+<tr><td>8</td><td>开放回答与多选的生成 / 读概率设置</td>
+<td><b>开放题（Qwen3-32B 探针运行 stage1_generate）</b>：system = "You are a knowledgeable assistant. Answer factually and concisely. When asked for authors, return a semicolon separated list of full names only, with no additional text."；user = "Who are the authors of the paper titled '{title}' which was published in {year}? Return a semicolon separated list of author names only."；Qwen3 用 <code>apply_chat_template(..., add_generation_prompt=True, enable_thinking=False)</code>；<b>贪心</b> <code>do_sample=False, temperature=None, top_p=None</code>；<b><code>MAX_NEW_TOKENS = 96</code></b>（注释"up to ~20 authors × ~4 tokens each"）；<code>MAX_PROMPT_TOKENS = 512</code>；逐篇（batch 1）生成，bf16，revision main。<br>
+<b>多选（dua）</b>：只有 GPT-4o API 版，温度 0，解析回答首字母，不读 next-token 概率，没有"答案位置"的定义。闭源模型的开放题用另一套 few-shot 逗号提示（max_tokens 500 / 供应商默认）。</td>
+<td><span class="src">src/dua/probing/stages/stage1_generate.py:164–171 SYSTEM_MSG / MAX_*、244–249 _user_text、252–284 build_prompt（qwen3 分支 enable_thinking=False）、697–760 run（generate 参数）、825 --max_new_tokens；config/models.yaml:10–53、74–91；src/dua/recognition/run.py:57–99</span></td>
+<td>标注包开放题的 system / user 文字与 dua 逐字相同（step1_README.md:110–111）；743 条 <code>finish_reason = length</code> 的 n_tokens <b>全部恰为 96</b>，stop 的最大 95 → max_new_tokens = 96 与 dua 默认一致。包内还发布了 dua 自己的 Qwen3-32B 运行（<span class="src">data/release/probing/runs/qwen3_32b/scored.tsv.gz</span>，同提示、贪心、96 token）：与我们的生成文本逐字相同 4,740/9,108（52%），m 相同 8,899/9,108，m = 0 的论文 8,293 对 8,298，平均 HR2 0.9691 对 0.9696——差异主要来自 batch（我们的标注运行按 batch 生成，step1_README 记 batch 1 重跑 400 篇有 45.5% 文本改变）。多选：我们的读出是 next-token 上 "A"/" A" 等字母概率相加，这部分 dua 里没有。</td>
+<td>U02、U03（U10 相关）</td>
+<td>U02 <span class="st st-done">已解决</span>；U03 <span class="st st-review">部分解决</span>（开放题在 dua 里明确关闭 thinking；多选是否关闭 thinking、答案位置是否在空 &lt;think&gt;&lt;/think&gt; 之后，dua 没有对应代码）</td></tr>
+
+<tr><td>9</td><td>引用档 13 个边界</td>
+<td>13 个指数间隔档，<code>lo</code> 与 <code>hi</code> <b>都含端点</b>，最后一档开放：0–2、3–4、5–8、9–16、17–32、33–64、65–128、129–256、257–512、513–1024、1025–2048、2049–4096、4097+（即除首档外第 k 档 = [2^k+1, 2^(k+1)]）。<code>bin_label</code> 负数报错。引用数只取 S2 <code>citationCount</code>（2025 年 9 月快照）。</td>
+<td><span class="src">config/config.yaml:44–59 citation_bins（第 46 行起）；src/dua/bins.py:12–20 bin_label；src/dua/config.py:48–56（CitationBin.contains）；tests/test_config_and_bins.py（test_bin_label、test_thirteen_bins_in_paper_order）</span></td>
+<td>按这 13 个边界用标注包自己的 citations 重新分档，9,108/9,108 与标注包的 citation_bin 相同；manifest 也记 <code>citation_bin_recomputed_mismatches 0</code>。</td>
+<td>U09</td>
+<td><span class="st st-done">已解决</span></td></tr>
+
+<tr><td>10</td><td>运行记录与加载方式</td>
+<td>dua 包不含组长那两次 elm 运行的 <code>run.json</code>、<code>open_results_noise.jsonl</code>、elm 代码版本、batch / GPU / 时长。dua 自己的 Qwen3 运行是 batch 1、bf16，不能代表 elm 运行。</td>
+<td><span class="src">（包内无对应文件）；对照 step1_README.md:24–28</span></td>
+<td>标注包只说"local bf16 weights, greedy decoding, on an A100 80GB"（README_first.md:3），open_results 带 <code>batch_id</code>。</td>
+<td>U01、U10</td>
+<td><span class="st st-plan">未解决</span></td></tr>
+</table>
+
+<h3 id="j-dua-summary">J.1 小结：U01–U10 的状态</h3>
+<table class="t">
+<tr><th>编号</th><th>状态</th><th>依据（一句话）</th></tr>
+<tr><td>U01</td><td><span class="st st-plan">未解决</span></td><td>run.json、noise 文件、elm 版本不在 dua 包里。</td></tr>
+<tr><td>U02</td><td><span class="st st-done">已解决</span></td><td>dua stage1_generate.py:171 <code>MAX_NEW_TOKENS = 96</code>，与 743 条截断全为 96 一致。</td></tr>
+<tr><td>U03</td><td><span class="st st-review">部分解决</span></td><td>开放题 enable_thinking=False 有出处；多选的 thinking 与答案位置无出处。</td></tr>
+<tr><td>U04</td><td><span class="st st-review">部分解决</span></td><td>M/H/U 计数规则确定；panel.py 的剥离细节只能从数据反推。</td></tr>
+<tr><td>U05</td><td><span class="st st-done">已解决</span></td><td>dua NameMatcher + L4 复现标注包 (m, h, u) 9,095/9,108。</td></tr>
+<tr><td>U06</td><td><span class="st st-plan">未解决</span></td><td>dua 没有"真实团队"干扰；三个标记含义靠数据反推，规则原文与种子缺。</td></tr>
+<tr><td>U07</td><td><span class="st st-review">部分解决</span></td><td>数据与"&gt; 8 人显示前 8 人 + et al."一致，但 dua 不截断，elm 源码未见。</td></tr>
+<tr><td>U08</td><td><span class="st st-done">已解决</span></td><td>papers_9108 = eval_sample 把 17 个标题的 Unicode 空白换成空格，其余字段逐字相同。</td></tr>
+<tr><td>U09</td><td><span class="st st-done">已解决</span></td><td>config.yaml:44–59 的 13 档（两端含），重算 9,108/9,108 一致。</td></tr>
+<tr><td>U10</td><td><span class="st st-plan">未解决</span></td><td>elm 运行的加载方式、batch、GPU、时长不在包里。</td></tr>
+</table>
+</section>

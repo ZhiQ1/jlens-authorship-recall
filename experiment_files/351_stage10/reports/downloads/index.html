@@ -30,18 +30,20 @@ button:disabled { opacity: .55; cursor: wait; }
 <main>
   <header>
     <h1>Stage 1–11 汇报文件</h1>
-    <p class="lead">最上面是 2026-10-30 的方法手册（Stage 1–13，A4）；下面是合并 PPT 第 11 版的导出文件，再往下保留第 9 版的旧文件和实验记录 v13 的 PDF。点“保存”，浏览器会先弹出确认框，确认后开始下载。</p>
+    <p class="lead">最上面是 2026-10-30 的方法手册（Stage 1–13，A4）；下面是合并 PPT 第 11 版的导出文件，以及实验记录第 22 版的 PDF；最下面保留第 9 版 PPT、实验记录 v21 和 v13 的旧文件。点“保存”，浏览器会先弹出确认框，确认后开始下载。</p>
   </header>
   <ul class="files">
     <li><div class="name">Stage1-13_methods_handbook_A4.pdf</div><div class="meta"><b>新</b> · 方法手册，Stage 1–13 全部实验实际怎么做的，A4，259 页，每个数字附出处 · <span class="size">8.9 MB</span></div><button type="button" id="b1" data-f="Stage1-13_methods_handbook_A4.pdf">保存</button><div class="status" id="s1" role="status"></div></li>
     <li><div class="name">Stage1-11_deck_v11_with_notes_zh.pdf</div><div class="meta"><b>新版 v11</b> · PPT 带中文讲稿，52 页，上面是幻灯片、下面是讲稿 · <span class="size">12.1 MB</span></div><button type="button" id="b2" data-f="Stage1-11_deck_v11_with_notes_zh.pdf">保存</button><div class="status" id="s2" role="status"></div></li>
     <li><div class="name">Stage1-11_deck_v11_slides.pdf</div><div class="meta"><b>新版 v11</b> · PPT 无讲稿，52 页，可以直接发给别人 · <span class="size">11.1 MB</span></div><button type="button" id="b3" data-f="Stage1-11_deck_v11_slides.pdf">保存</button><div class="status" id="s3" role="status"></div></li>
     <li><div class="name">Stage1-11_deck_v11_editable.pptx</div><div class="meta"><b>新版 v11</b> · 可编辑版 pptx，文字框、表格、卡片和流程图都能直接改，讲稿在备注栏，图表是单独的高清图片 · <span class="size">3.2 MB</span></div><button type="button" id="b4" data-f="Stage1-11_deck_v11_editable.pptx" data-b64="Stage1-11_deck_v11_editable.pptx.b64.txt">保存</button><div class="status" id="s4" role="status"></div></li>
-    <li><div class="name">Stage1-11_report_v13_A4.pdf</div><div class="meta">实验记录 v13，A4，71 页（网页版已更新到 v20；这份 PDF 还没有重新导出）· <span class="size">7.2 MB</span></div><button type="button" id="b5" data-f="Stage1-11_report_v13_A4.pdf">保存</button><div class="status" id="s5" role="status"></div></li>
+    <li><div class="name">Stage1-11_report_v22_A4.pdf</div><div class="meta"><b>新版 v22</b> · 实验记录，A4，79 页，与网页版第 22 版一致（2026-10-31） · <span class="size">8.1 MB</span></div><button type="button" id="b5" data-f="Stage1-11_report_v22_A4.pdf">保存</button><div class="status" id="s5" role="status"></div></li>
     <li><div class="name">Stage1-11_deck_v9_with_notes_zh.pdf</div><div class="meta"><span class="old">旧版 v9</span> · PPT 带中文讲稿 · <span class="size">11.4 MB</span></div><button type="button" id="b6" data-f="Stage1-11_deck_v9_with_notes_zh.pdf">保存</button><div class="status" id="s6" role="status"></div></li>
     <li><div class="name">Stage1-11_deck_v9_slides.pdf</div><div class="meta"><span class="old">旧版 v9</span> · PPT 无讲稿 · <span class="size">10.4 MB</span></div><button type="button" id="b7" data-f="Stage1-11_deck_v9_slides.pdf">保存</button><div class="status" id="s7" role="status"></div></li>
     <li><div class="name">Stage1-11_deck_v9_editable.pptx</div><div class="meta"><span class="old">旧版 v9</span> · 可编辑版 pptx · <span class="size">3.2 MB</span></div><button type="button" id="b8" data-f="Stage1-11_deck_v9_editable.pptx" data-b64="Stage1-11_deck_v9_editable.pptx.b64.txt">保存</button><div class="status" id="s8" role="status"></div></li>
     <li><div class="name">Stage1-11_deck_v9_screenshot_notes.pptx</div><div class="meta"><span class="old">旧版 v9</span> · 截图版 pptx，每页是一张图，讲稿在备注栏 · <span class="size">10.1 MB</span></div><button type="button" id="b9" data-f="Stage1-11_deck_v9_screenshot_notes.pptx" data-b64="Stage1-11_deck_v9_screenshot_notes.pptx.b64.txt">保存</button><div class="status" id="s9" role="status"></div></li>
+    <li><div class="name">Stage1-11_report_v13_A4.pdf</div><div class="meta"><span class="old">旧版 v13</span> · 实验记录，A4，71 页· <span class="size">7.2 MB</span></div><button type="button" id="b10" data-f="Stage1-11_report_v13_A4.pdf">保存</button><div class="status" id="s10" role="status"></div></li>
+    <li><div class="name">Stage1-11_report_v21_A4.pdf</div><div class="meta"><span class="old">旧版 v21</span> · 实验记录，A4，78 页，与网页版第 21 版一致（2026-10-30） · <span class="size">8.0 MB</span></div><button type="button" id="b11" data-f="Stage1-11_report_v21_A4.pdf">保存</button><div class="status" id="s11" role="status"></div></li>
   </ul>
   <p class="note">PDF 和截图版 pptx 里的幻灯片图片用 JPEG 压缩过，以符合单个文件 15 MB 的上限，屏幕上看不出差别。集群上的原始无损版本在 /scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk/。可编辑版 pptx 需要先安装字体 Caveat、Patrick Hand、Noto Sans SC（Google Fonts 免费下载），否则 PowerPoint 会换成别的字体，排版会走样。</p>
 </main>

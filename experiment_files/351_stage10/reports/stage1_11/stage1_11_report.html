@@ -153,7 +153,7 @@ body{margin:0;background:var(--pg);color:var(--pg-ink);font:16.5px/1.75 "PingFan
 </style>
 <div class="wrap">
 <header>
-<p class="kick">jlens 项目 · Section 3.5.1 · Qwen3-32B（revision 9216db57，BF16）· 更新于 2026-10-28</p>
+<p class="kick">jlens 项目 · Section 3.5.1 · Qwen3-32B（revision 9216db57，BF16）· 更新于 2026-10-31（第 22 版）</p>
 <h1>Stage 1–11 实验报告<small>大模型在哪一层“记住”论文作者</small></h1>
 <p class="kick">本报告合并原 Stage 1–9 报告（小样本：20 → 50 → 200 篇）与 Stage 10–11 报告（全量 9,108 篇），并加入跨阶段的 R0/R1 分层分析。之后的新实验都只更新本报告和 Stage 1–11 合并 PPT。</p>
 </header>
@@ -461,8 +461,8 @@ Authors:</pre>
   </div>
   <h3>3.1 论文从哪来 <span class="en">Where the papers come from</span></h3>
   <div class="pair">
-    <p class="zh">论文集合沿用 <i>Dreaming Up Authors</i> 研究构建的评测集，我们没有重新抽样。原研究从 Microsoft Open Academic Graph（OAG v2）中随机抽取 9,999,863 条记录，用 Semantic Scholar API 补全引用数、规范化的作者名和领域（截至 2025 年 9 月），再做质量过滤：只保留期刊和会议论文；去掉没有作者或作者 ≥ 20 位的记录；只留 FastText 判为英文且置信度 ≥ 0.8 的论文；去掉机构名、单 token 名字和格式错误的作者；要求 OAG 和 Semantic Scholar 的标题与第一作者姓一致。过滤后剩 1,921,209 篇（约 19.2%）。</p>
-    <p class="en">The paper set is the evaluation set built by the <i>Dreaming Up Authors</i> study; we did not resample it. That study drew 9,999,863 random records from the Microsoft Open Academic Graph (OAG v2), added citation counts, canonical author names and fields from the Semantic Scholar API (as of September 2025), and filtered them: journal and conference papers only; no records with zero or ≥ 20 authors; English only (FastText confidence ≥ 0.8); institutional, single-token and malformed author names removed; OAG and Semantic Scholar must agree on the title and the first author's surname. 1,921,209 papers (about 19.2%) remained.</p>
+    <p class="zh">论文集合沿用 <i>Dreaming Up Authors</i> 研究构建的评测集，我们没有重新抽样。原研究从 Microsoft Open Academic Graph（OAG v2）中随机抽取 9,999,863 条记录，用 Semantic Scholar API 补全引用数、规范化的作者名和领域（截至 2025 年 9 月），再做质量过滤：只保留期刊和会议论文；去掉没有作者或作者超过 20 位的记录（保留 1–20 位；代码中 MAX_AUTHORS = 20，只去掉 &gt; 20 位；此前写成“≥ 20”有误，2026-10-30 据 Dreaming Up Authors 代码包核对）；只留 FastText 判为英文且置信度 ≥ 0.8 的论文；去掉机构名、单 token 名字和格式错误的作者；要求 OAG 和 Semantic Scholar 的标题与第一作者姓一致。过滤后剩 1,921,209 篇（约 19.2%）。</p>
+    <p class="en">The paper set is the evaluation set built by the <i>Dreaming Up Authors</i> study; we did not resample it. That study drew 9,999,863 random records from the Microsoft Open Academic Graph (OAG v2), added citation counts, canonical author names and fields from the Semantic Scholar API (as of September 2025), and filtered them: journal and conference papers only; no records with zero or more than 20 authors (1–20 kept; MAX_AUTHORS = 20 drops only &gt; 20; the earlier "≥ 20" was wrong, checked against the Dreaming Up Authors code package on 2026-10-30); English only (FastText confidence ≥ 0.8); institutional, single-token and malformed author names removed; OAG and Semantic Scholar must agree on the title and the first author's surname. 1,921,209 papers (about 19.2%) remained.</p>
   </div>
   <div class="pair">
     <p class="zh">8 个领域是在初始集合中随机抽 100,000 篇、按出现频率选出的，合计约占整理后数据的 76.95%。引用数分成 13 个指数间隔的档，每个"领域 × 引用档"最多抽 100 篇，理论上限 10,400 篇；部分高引用档不足 100 篇，最终 9,108 篇。</p>
@@ -1157,8 +1157,8 @@ Authors:</pre>
 <tr><td>E2n ":" + names only · all</td><td class="pos">+0.153<span class="ci">[+0.136, +0.172]</span></td><td class="pos">+0.120<span class="ci">[+0.104, +0.136]</span></td><td class="pos">+0.097<span class="ci">[+0.082, +0.112]</span></td><td class="pos">+0.073<span class="ci">[+0.059, +0.086]</span></td><td class="pos">+0.051<span class="ci">[+0.040, +0.062]</span></td><td class="pos">+0.014<span class="ci">[+0.006, +0.022]</span></td><td>+0.006<span class="ci">[-0.000, +0.012]</span></td><td class="pos">+0.007<span class="ci">[+0.004, +0.010]</span></td></tr>
   </tbody></table></div>
   <div class="pair">
-    <p class="zh"><b>标题位置能不能读出作者。</b>在标题最后一个 token 上用 lens 读，标题特异信号只有约 0.01–0.03，而且中间层目标组和对照组没有差别：lens 在标题位置几乎读不出作者。换成线性 probe（5 折 ridge 回归，把标题位置的表示映射到模型在 ":" 处 L63 的表示）能读出一些。<b>说明：</b>probe 只给每位作者名字的<b>第一个 token</b> 打分，73% 的作者名以首字母开头，所以多数时候打分的是首字母；标题特异信号只减 <b>false_0</b> 这一个假标题，不是 5 个假标题的平均。按作者团队分折、并剔除 probe 训练时见过同一标题的论文后复核（剩 1,863 篇，其中目标 896、对照 499）<span style="display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin:0 4px;border-radius:4px;background:#2F7D3B;color:#fff">已复核</span>：L24 约 +0.05，L40 约 +0.07，L56 约 +0.08；目标组比对照组高 +0.04 到 +0.08（L24–L60，置信区间在 0 以上）。原来按论文分折、未剔除时为 L16 约 +0.04、L52–56 约 +0.08，目标组高 +0.02 到 +0.04（下表），复核后结论不变。对照检验（§6.12）表明，这部分信号是这篇论文特有的，不是题目与名字的泛泛关联。</p>
-    <p class="en"><b>Can the author be read at the title position?</b> Lenses at the last title token give only about 0.01–0.03 title-specific signal, with no target − control difference in middle layers, so the lenses can hardly read the author there. A linear probe (5-fold ridge from the title-position state to the model's own L63 ":" state) reads a little more: re-checked with team folds and title reuse removed, about +0.05 at L24, +0.07 at L40 and +0.08 at L56, with target above control by +0.04 to +0.08 (CIs above zero). Note: the probe scores only the <b>first token</b> of each author's name (73% of names start with an initial, so usually the initial), and the title-specific signal subtracts only <b>false_0</b>, not the mean of 5 false titles. Controls (§6.12) show the signal is specific to the paper, not a generic topic → name association.</p>
+    <p class="zh"><b>标题位置能不能读出作者。</b>在标题最后一个 token 上用 lens 读，标题特异信号只有约 0.01–0.03，而且中间层目标组和对照组没有差别：lens 在标题位置几乎读不出作者。换成线性 probe（5 折 ridge 回归，把标题位置的表示映射到模型在 ":" 处 L63 的表示）能读出一些。<b>说明：</b>probe 只给每位作者名字的<b>第一个 token</b> 打分，73% 的作者名以首字母开头，所以多数时候打分的是首字母；标题特异信号只减 <b>false_0</b> 这一个假标题，不是 5 个假标题的平均。按作者团队分折、并剔除 probe 训练时见过同一标题的论文后复核（剩 1,863 篇，其中目标 896、对照 499）<span style="display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin:0 4px;border-radius:4px;background:#2F7D3B;color:#fff">已复核</span>：L24 约 +0.05，L40 约 +0.06，L56 约 +0.08（+0.050 / +0.061 / +0.075）；目标组比对照组高 +0.03 到 +0.08（L24–L60，置信区间在 0 以上，L44 下界 +0.000 在边界上）。这是 2026-10-30 改为<b>只在训练折内拟合标准化</b>后的数字：原来的标准化用了全部论文（含测试折，<span class="mono">stage10_extra_r0r1.py:244</span>）；改后最大变化 0.0075，正则化强度不变，没有任何区间从“不含 0”变成“含 0”（<span class="mono">381_stage13/reports/e4b_trainstd_compare.md</span>，作业 11500917）。原来按论文分折、未剔除时为 L16 约 +0.04、L52–56 约 +0.08，目标组高 +0.02 到 +0.04（下表），复核后结论不变。对照检验（§6.12）表明，这部分信号是这篇论文特有的，不是题目与名字的泛泛关联。</p>
+    <p class="en"><b>Can the author be read at the title position?</b> Lenses at the last title token give only about 0.01–0.03 title-specific signal, with no target − control difference in middle layers, so the lenses can hardly read the author there. A linear probe (5-fold ridge from the title-position state to the model's own L63 ":" state) reads a little more: re-checked with team folds and title reuse removed, about +0.05 at L24, +0.06 at L40 and +0.08 at L56 (+0.050 / +0.061 / +0.075), with target above control by +0.03 to +0.08 (CIs above zero; the L44 lower bound is +0.000). These use standardisation fitted on the training folds only (2026-10-30); the original standardised over all papers including the test fold. Largest change 0.0075, no CI changes whether it contains 0. Note: the probe scores only the <b>first token</b> of each author's name (73% of names start with an initial, so usually the initial), and the title-specific signal subtracts only <b>false_0</b>, not the mean of 5 false titles. Controls (§6.12) show the signal is specific to the paper, not a generic topic → name association.</p>
   </div>
   <div class="tbl"><table><thead><tr><th>标题最后一个 token 上的标题特异信号</th><th>L16</th><th>L24</th><th>L32</th><th>L40</th><th>L48</th><th>L52</th><th>L56</th><th>L60</th></tr></thead><tbody>
 <tr><td>logit lens · target</td><td>-0.005<span class="ci">[-0.014, +0.004]</span></td><td>+0.002<span class="ci">[-0.006, +0.010]</span></td><td>-0.001<span class="ci">[-0.008, +0.006]</span></td><td class="pos">+0.007<span class="ci">[+0.001, +0.013]</span></td><td class="pos">+0.009<span class="ci">[+0.004, +0.014]</span></td><td class="pos">+0.010<span class="ci">[+0.006, +0.014]</span></td><td class="pos">+0.011<span class="ci">[+0.007, +0.016]</span></td><td class="pos">+0.012<span class="ci">[+0.007, +0.018]</span></td></tr>
@@ -1423,6 +1423,14 @@ Authors:</pre>
 <tr><td>control</td><td>0.866</td><td>0.864–0.885</td><td>0.876 [0.847, 0.904]</td><td>1.012 [1.001, 1.024]</td><td class="ok">成立</td></tr>
 <tr><td>全部</td><td>0.825</td><td>0.813–0.825</td><td>0.821 [0.806, 0.835]</td><td>0.995 [0.990, 1.001]</td><td class="ok">成立</td></tr></table>
 <p>成立的条件是：平均恢复率 L48 在 0.70–0.95 之间，L52 ≥ 0.95；每个假标题的 L48 与 false_0 相差不超过 0.10，L52 ≥ 0.90。三组全部满足，各假标题之间的差都不超过 0.02。所以 §6.11 的“L48 恢复约 80–87%，L52 起 100%”不是 false_0 特有的结果。所有层的数字见 <code>summary_x6/x6_recovery.csv</code>。</p>
+<h4>按名字 token 角色拆开（补充 4 要求，2026-10-31，作业 11512706）</h4>
+<div class="tw"><table><thead><tr><th>角色（全部论文）</th><th>L48 的 R</th><th>L52</th><th>L48 角色 − 合计</th><th>预注册判定（target / control / 全部）</th></tr></thead><tbody>
+<tr><td>合计</td><td>0.821 [0.806, 0.835]</td><td>0.995</td><td>—</td><td>成立 / 成立 / 成立</td></tr>
+<tr><td>名字第一个 token（首字母或名）</td><td>0.791 [0.738, 0.849]</td><td>1.045</td><td>−0.030 [−0.077, +0.021]</td><td>成立 / 成立 / 成立</td></tr>
+<tr><td>姓的第一个 token</td><td>0.734 [0.711, 0.757]</td><td>0.971</td><td>−0.087 [−0.104, −0.070]</td><td><b>差一点不成立</b>（target L48 为 0.696，界线 0.70）/ 成立 / 成立</td></tr>
+<tr><td>姓的后续 token</td><td>0.893 [0.880, 0.906]</td><td>0.997</td><td>+0.072 [+0.057, +0.087]</td><td>成立 / 成立 / 成立</td></tr>
+</tbody></table></div>
+<p>标点的真假差距只有 0.006–0.018，低于 0.05，不报告比例。各角色在 5 个假标题之间 L48 的差都不超过 0.076。角色之间的差别只在 L48 恢复了多少：姓的第一个 token 和完整的名恢复得晚一些（完整的名 L48 只有 0.63，作为次要角色报告），姓的后续 token 早一些；“L48 约 80%”是这些角色的平均。到 L52 各角色都 ≥ 0.96，L56 都是 1.00。<span class="mono">381_stage13/reports/x6x7_roles.md</span></p>
 </section>
 
 <section id="x7-results"><h2><span class="st">Stage 13 · X7</span><span class="ln lC">C 哪一层</span> 阻断实验扣除“模型被带偏”的影响之后</h2>
@@ -1438,16 +1446,17 @@ Authors:</pre>
 <tr><td>L54 及以后</td><td colspan="5">S 都在 ±0.02 以内</td></tr></table>
 <p><b>F 是负的</b>：在假标题运行里阻断标题，真作者的得分反而上升，因为挡掉的是一个误导性的标题。所以 Stage 11 从 L0 阻断时的 83% 损失其实低估了：扣除假标题运行之后，这篇论文特有的损失 S(L0) ≈ 1.0，也就是标题带来的论文特有信号被全部去掉。</p>
 <p><b>预注册判定</b>（S(L52) ≤ 0.05 且 S(L0) ≥ 0.5）：target 成立（S(L52) = 0.018），全部论文成立（0.029），<b>control 差一点不成立</b>（0.051，阈值 0.05；区间 [0.033, 0.068]）。control 组在 L52 还剩约 5% 的论文特有损失，L54 降到 0.018，L56 起为 0。所以“L52 之后不再需要标题”对 target 和全部论文成立；对 control，更准确的说法是“到 L54–56 才完全不需要”。</p>
+<p><b>按名字 token 角色拆开</b>（2026-10-31，作业 11512706）：全部论文的 S(L52)，名字第一个 token 0.029 [−0.017, 0.075]，姓的第一个 token 0.032 [0.021, 0.043]，姓的后续 token 0.031 [0.022, 0.041]，与合计 0.029 都没有差别（差值区间都含 0）。target 和全部论文在三个角色上都成立；control 本来就差一点不成立（0.051），拆开后名字第一个 token 0.078、姓的后续 token 0.052 不成立，姓的第一个 token 0.049 刚好成立。所以 control 的“差一点”是合计层面的小效应，不是某一个角色造成的。<span class="mono">381_stage13/reports/x6x7_roles.md</span></p>
 </section>
 
 <section id="m3x1x4-results"><h2><span class="st">Stage 13 · M3 X1 X4</span><span class="ln lB">B 读出工具</span><span class="ln lC">C 哪一层</span> 中间层的标题状态：是“这篇论文”，还是“这个问题”？</h2>
 <p class="note">2026-10-29 完成。规则见 prereg.json 及补充 1、2：探针按作者团队分 5 折；X1、X4 在按团队划分的调参集上选层、在测试集上确认；区间均为按作者团队重抽的 bootstrap。报告：<code>381_stage13/reports/m3_report.md、x1_report.md、x4_report.md</code></p>
 <h3>M3 同一篇论文换三种问法（问作者 / 问年份 / 问领域），探针能否通用（9,108 篇）</h3>
 <p>迁移比 T = 在一种问法上训练、换另一种问法测试的成绩 ÷ 同一问法内训练和测试的成绩。补充 2 规定的主要指标是 L16–L40 的 T，并且要和 L4（只有文字信息的层）相比。</p>
-<table><tr><th>位置</th><th>年份 T：L4</th><th>L16–L40</th><th>领域 T：L4</th><th>L16–L40</th><th>T − T(L4)，L16–L40</th><th>预注册判定</th></tr>
-<tr><td>标题最后一个 token</td><td>0.98</td><td>0.92–0.95</td><td>1.00</td><td>0.99</td><td>年份 −0.03 到 −0.06，领域 −0.004 到 −0.007</td><td>T ≥ 0.8 → 判为“论文身份”（H2）；但没有超过 L4</td></tr>
+<table><tr><th>位置</th><th>年份 T：L4</th><th>L16–L40</th><th>领域 T：L4</th><th>L16–L40</th><th>T − T(L4)，L16–L40</th><th>判定（按补充 2）</th></tr>
+<tr><td>标题最后一个 token</td><td>0.98</td><td>0.92–0.95</td><td>1.00</td><td>0.99</td><td>年份 −0.03 到 −0.06，引用数 −0.02 到 −0.05（区间都不含 0）；领域 −0.004 到 −0.007</td><td>不高于 L4 文字水平（年份、引用数低于 L4，领域与 L4 分不开）→ <b>M3 不支持 H2</b></td></tr>
 <tr><td>最后的 “:”</td><td>&lt; 0</td><td>&lt; 0</td><td>0.29</td><td>0.26–0.36</td><td>—</td><td>T &lt; 0.5 → 判为“任务特定”（H1）</td></tr></table>
-<p><b>怎么读</b>：三种问法只在标题前的 9 个 token 上不同，标题本身完全一样，所以标题位置的状态从 L4 起就主要由标题文字决定。T 在 L16–L40 一直 ≥ 0.92，按预注册阈值判为 H2，但它没有超过只有文字信息的 L4，反而略低。所以 M3 只能说明标题位置的表示不随问法改变，不能说明模型在标题处多出了文字以外的“论文身份”。到了 “:” 位置，状态已经按问题重新组织：用别的问法训练的探针预测年份和引用数，比直接猜平均值还差（R² 为负，表中写作 &lt; 0）。身份指数 I 在两个位置都低于 L4（标题位置 −0.003 到 −0.016，“:” 位置 −0.42 到 −0.61），同样不支持“高于文字水平”。完整数字见 <code>summary_m3/</code>。</p>
+<p><b>怎么读</b>：三种问法只在标题前的 9 个 token 上不同，标题本身完全一样，所以标题位置的状态从 L4 起就主要由标题文字决定。T 在 L16–L40 一直 ≥ 0.92，但补充 2 规定只看它相对 L4 的变化：年份的 T − T(L4) 为 −0.03 到 −0.06，引用数为 −0.02 到 −0.05，区间都不含 0；领域为 −0.004 到 −0.007，与 L4 分不开。也就是说，中间层并不比只有文字信息的 L4 更跨问法一致，T 高是因为三种问法里标题文字完全相同。所以 <b>M3 不支持 H2</b>：它只说明标题位置的表示不随问法改变，不能说明模型在标题处多出了文字以外的“论文身份”。（2026-10-31 更正：此前的自动判定按 T ≥ 0.8 的绝对阈值写成“判为 H2”，不符合补充 2；已按补充 2 重写，见 <code>381_stage13/reports/m3_report.md</code> 末节，脚本 <code>13_stage13/stage13_m3_verdict2.py</code>。）到了 “:” 位置，状态已经按问题重新组织：用别的问法训练的探针预测年份和引用数，比直接猜平均值还差（R² 为负，表中写作 &lt; 0）。身份指数 I 在两个位置都低于 L4（标题位置 −0.003 到 −0.016，“:” 位置 −0.42 到 −0.61），同样不支持“高于文字水平”。完整数字见 <code>summary_m3/</code>。</p>
 <h3>X1 把 A 从“别的问法”得到的标题状态替换进 B 的作者提示（测试集 582 篇）</h3>
 <table><tr><th>层</th><th>R 作者问法</th><th>R 年份问法</th><th>R 领域问法</th><th>R 随机论文 C</th><th>判定（补充 2）</th></tr>
 <tr><td>L4–L16</td><td>1.00</td><td>1.00</td><td>1.00</td><td>−0.15 到 −0.13</td><td>只作文字替换的对照，不下结论</td></tr>
@@ -1455,13 +1464,21 @@ Authors:</pre>
 <tr><td>L32</td><td>0.97</td><td>0.97</td><td>0.97</td><td>−0.07</td><td>与任务无关</td></tr>
 <tr><td>L40</td><td>0.92</td><td>0.92</td><td>0.92</td><td>−0.01</td><td>与任务无关</td></tr>
 <tr><td>L48</td><td>0.42</td><td>0.41</td><td>0.42</td><td>+0.12</td><td>与任务无关（作者 − 年份 = +0.019）</td></tr></table>
-<p>L24–L48 各层，作者问法减年份问法、作者问法减领域问法都在 ±0.02 以内，区间在 [−0.1, 0.1] 之内；作者问法减随机 C 都 ≥ +0.30，所以判为“与任务无关”。随机 C 的恢复率在 L4–L16 和 L48 的绝对值超过 0.1，按规则标为警告：这些层的恢复率要与 C 对照着读，结论不变。三种问法下标题位置的状态并不相同：以“换一篇论文”的移动距离为 1，换问法让标题状态移动约 0.15（L24）、0.17（L40）、0.27（L48）；同一篇论文两种问法的余弦为 0.98、0.98、0.95，两篇不同论文为 0.30–0.47（<code>381_stage13/reports/x1_similarity.md</code>）。所以准确的说法是：<b>问法让标题状态移动约 15–27%（以换论文为 1），但替换效果不变</b>。对照：在 “:” 位置，换问法的移动距离是换论文的 3–5 倍。</p>
+<p>L24–L48 各层，作者问法减年份问法、作者问法减领域问法都在 ±0.02 以内，区间在 [−0.1, 0.1] 之内；作者问法减随机 C 都 ≥ +0.30，所以判为“与任务无关”。随机 C 的恢复率在 L4–L16 和 L48 的绝对值超过 0.1。2026-10-31 按 C 重算（每对论文先减去 C 的结果，R′ = R − R(C)；同一套团队 bootstrap，作业 11512702）：各问法的恢复率整体移动 −R(C)（测试集 L4–L32 上升约 0.07–0.15，L48 下降 0.12，L48 的 R′ 作者 0.30、年份 0.28、领域 0.29），但“作者 − 年份”“作者 − 领域”两个差值在减去同一个 C 后完全不变，所以按补充 2（区间在 [−0.1, 0.1] 内）L24–L48 的判定都不变。L48 有一点小而确实的任务依赖：作者 − 年份 +0.019 [+0.012, +0.026]、作者 − 领域 +0.008 [+0.001, +0.014]，区间不含 0；相对 C，年份问法保留作者问法效果的 94%，领域 97%。<span class="mono">381_stage13/reports/x1_vsC.md</span>三种问法下标题位置的状态并不相同：以“换一篇论文”的移动距离为 1，换问法让标题状态移动约 0.15（L24）、0.17（L40）、0.27（L48）；同一篇论文两种问法的余弦为 0.98、0.98、0.95，两篇不同论文为 0.30–0.47（<code>381_stage13/reports/x1_similarity.md</code>）。所以准确的说法是：<b>问法让标题状态移动约 15–27%（以换论文为 1），但替换效果不变</b>。这个相似度与 M3 一样受“三种问法标题文字相同”的影响，只说明问法对标题状态影响小，<b>不能单独作为“论文身份”的证据</b>。对照：在 “:” 位置，换问法的移动距离是换论文的 3–5 倍。</p>
 <h3>X4 把论文自己的标题状态放进“X 的发表年份 / 第一作者 / 领域是”这类提示</h3>
 <table><tr><th>答案</th><th>标题位置：最早可读出层（调参集选、测试集确认）</th><th>测试集 D</th><th>“:” 位置</th></tr>
 <tr><td>第一作者</td><td>L8（已确认）</td><td>+0.046 [0.035, 0.059]，L40 最高 +0.068</td><td>L48 起 +0.012</td></tr>
 <tr><td>年份</td><td>L40（已确认）</td><td>+0.013 [0.008, 0.018]</td><td>读不出</td></tr>
 <tr><td>领域</td><td>调参集上读不出（区间很宽）</td><td>—</td><td>读不出</td></tr></table>
-<p>D = 用本论文的状态减去用配对论文的状态得到的答案得分（年份从不出现在提示里）。预注册的顺序（年份、领域不晚于作者）<b>不成立</b>：最先能读出的是第一作者，年份要到 L40 才能读出，而且很弱。在同一引用档内，认得出的论文（target）比 control 更容易读出作者：标题位置 L8–L40 高 +0.04 到 +0.06，区间都不含 0。年份没有这种差别。</p>
+<p>D = 用本论文的状态减去用配对论文的状态得到的答案得分（年份从不出现在提示里）。预注册的顺序（年份、领域不晚于作者）<b>不成立</b>：最先能读出的是第一作者，年份要到 L40 才能读出，而且很弱。也就是说，最早可解码的顺序是第一作者（L8）早于年份（L40），<b>与 H2 预测的方向相反</b>。在同一引用档内，认得出的论文（target）比 control 更容易读出作者：标题位置 L8–L40 高 +0.04 到 +0.06，区间都不含 0。年份没有这种差别。</p>
+<h4>X4 第一作者 L8：按 token 角色拆开，并与纯文本基线比较（2026-10-30）</h4>
+<p>原结果只存了名字各 token 的平均分，所以按 token 重新打分（作业 11500437）。用原来的批大小重算，4,712 个值与原分数完全相同；换一种批大小，L8 平均 D 为 +0.0490 对 +0.0484，只差 0.0006，批大小不影响结论。<span class="mono">381_stage13/summary_x1x4/x4_rolesplit.csv</span></p>
+<div class="tw"><table><thead><tr><th>第一作者名字的 token</th><th>篇数</th><th>Qwen L8 的 D</th><th>Qwen L40 的 D</th><th>纯文本基线（BERT）</th></tr></thead><tbody>
+<tr><td>姓的第一个 token</td><td>1,178</td><td>+0.066 [0.045, 0.088]</td><td>+0.124 [0.099, 0.148]</td><td>阳性对照未通过，不可比</td></tr>
+<tr><td>名的第一个 token（完整的名）</td><td>357</td><td>+0.018 [−0.003, 0.041]</td><td>+0.058 [0.035, 0.083]</td><td>+0.088 [0.020, 0.156]</td></tr>
+<tr><td>首字母</td><td>880</td><td>+0.017 [0.006, 0.029]</td><td>+0.027 [0.016, 0.036]</td><td>—</td></tr>
+</tbody></table></div>
+<p><b>结论（2026-10-30，用户确认的措辞）：</b>在阳性对照通过的名字首 token 上（357 篇），纯文本基线（BERT）的自身优势（均值/标准差 0.13）不小于 Qwen 在同一 token 上的信号（L8 +0.018，0.09，区间含 0），两者逐篇几乎不相关（r = 0.07）。Qwen L8 的信号主要来自姓的首 token（+0.066 [0.045, 0.088]），而姓氏上文本基线的阳性对照没有通过，因此<b>不能排除</b> L8 的作者信号可以由标题文字解释。</p>
 </section>
 
 <section id="p4-plan"><h2><span class="st">Stage 13</span><span class="ln lB">B 读出工具</span><span class="ln lC">C 哪一层</span> 计划：中间层到底表示什么</h2>
@@ -1490,10 +1507,10 @@ Authors:</pre>
 <tr><td>标签</td><td>领域、年份、引用数来自标注包（Semantic Scholar）</td><td>—</td><td>领域可以只靠标题用词推出，所以领域是“主题”基线；年份和引用数从标题推出才算“认出论文”</td></tr>
 </tbody></table></div>
 <h3>三种假设及其预测</h3>
-<div class="tw"><table><thead><tr><th>假设</th><th>M1：lens 在中间层排第一的词</th><th>M2：probe 读非名字的属性</th><th>M3：换任务对照</th></tr></thead><tbody>
-<tr><td>H1 任务 / 格式：中间层在表示“要输出作者名单”</td><td>多为 “author”、标点、名字常见开头，与标题无关</td><td>论文属性读不出或很弱</td><td>同一标题在不同问题下，中间层表示早早分开</td></tr>
-<tr><td>H2 论文身份：中间层在表示“是哪一篇论文”</td><td>与标题有关的词（照抄标题），换假标题就变</td><td>领域、年份（从标题推出）、引用数、是否认得出都读得出，且早于名字</td><td>不同问题下同一篇论文的表示在中间层相近，后期才按任务分开</td></tr>
-<tr><td>H3 作者信息已在，只是不在词表方向</td><td>不一定</td><td>作者首 token 用 probe 读得出，lens 读不出</td><td>按作者训练的 probe 能跨任务迁移；作者专用 lens（M4）在中间层读得出名字</td></tr>
+<div class="tw"><table><thead><tr><th>假设</th><th>M1：lens 在中间层排第一的词</th><th>M2：probe 读非名字的属性</th><th>M3：换任务对照</th><th>目前结果（2026-10-31）</th></tr></thead><tbody>
+<tr><td>H1 任务 / 格式：中间层在表示“要输出作者名单”</td><td>多为 “author”、标点、名字常见开头，与标题无关</td><td>论文属性读不出或很弱</td><td>同一标题在不同问题下，中间层表示早早分开</td><td>见上文 M3、X1 结果</td></tr>
+<tr><td>H2 论文身份：中间层在表示“是哪一篇论文”</td><td>与标题有关的词（照抄标题），换假标题就变</td><td>领域、年份（从标题推出）、引用数、是否认得出都读得出，且早于名字</td><td>不同问题下同一篇论文的表示在中间层相近，后期才按任务分开<br><b>结果：</b>不高于 L4 文字水平，不支持</td><td><b>M3 不支持（不高于 L4 文字水平）；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考。</b>另外，X4 最早可解码的顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反。</td></tr>
+<tr><td>H3 作者信息已在，只是不在词表方向</td><td>不一定</td><td>作者首 token 用 probe 读得出，lens 读不出</td><td>按作者训练的 probe 能跨任务迁移；作者专用 lens（M4）在中间层读得出名字</td><td><b>文本基线不弱于 Qwen，不能排除文字解释，证据不足</b>（X4：名字首 token 上 BERT +0.088 ≥ Qwen L8 +0.018；L8 信号主要在姓上，见上文 X4）</td></tr>
 </tbody></table></div>
 <p>三者不互斥。实验的目标是看每一层主要是哪一种，以及“论文身份”出现的层是否早于“名字”出现的层。</p>
 
@@ -1507,7 +1524,7 @@ Authors:</pre>
 <tr><td>X6 另外 4 个假标题补做替换（<b>最先跑</b>）</td><td>Stage 11 E1（把真标题运行中标题之后的 token 换进假标题运行）原来只用了 false_0。用 false_1–false_4 各重做一遍，代码就是 Stage 11 的原代码，只换假标题条件。“从末尾对齐替换”的长度按 Stage 11 冻结时的同一公式重算：对 false_0 重算与原值完全一致，其余 4 个也都合格。另用 false_0 重跑 1 个 shard，必须与 Stage 11 原结果逐个相同（复现检查）。判定（预注册补充 3）：5 个假标题平均，L48 恢复在 0.70–0.95 之间、L52 ≥ 0.95，且每个假标题在 L48 与 false_0 相差 ≤ 0.10、L52 ≥ 0.90，Stage 11 的时间结论才算稳；否则把各假标题之间的差别作为时间点的不确定性报告。</td><td>4 × 24 个 shard，约 2 GPU 小时；tiny 模型试跑通过</td><td>已排在 Stage 13 GPU 单元最前面</td></tr>
 <tr><td>X7 knockout 的对照（最后跑）</td><td>把同样的 knockout（从第 l 层起禁止看标题）加在假标题运行上，同样给真作者打分。假标题运行里本来就没有这篇论文的信息，所以它的损失只反映“被挡”本身带来的破坏。论文特有的损失 = 真标题运行的损失 − 假标题运行的损失，再除以真假差距。判定：L52 起论文特有损失 ≤ 0.05，且 L0 ≥ 0.5；并报告 L0 的 83% 损失扣掉“破坏”后还剩多少。</td><td>24 个 shard，约 15 GPU 分钟；tiny 模型试跑通过（“什么都不挡”的一列与普通假标题运行逐个相同）</td><td>排在最后</td></tr>
 <tr><td>X2 只替换子空间（因果）</td><td>用 M2/M3 的 probe 找出“论文身份”方向（领域、年份、引用）和“作者首 token”方向，只替换或抹掉这些方向，看作者能否被带过去或被破坏。只换身份方向就够：作者是之后从身份算出来的（H2）；必须换作者方向：作者信息早已以非词表形式存在（H3）。</td><td>依赖 M3 的残差（不含年份的问法）；GPU 约 1 小时</td><td>等 M3 结果后排队</td></tr>
-<tr><td>X3 同义改写 vs 近邻标题（Stage 13 中最关键）</td><td>（主要对照已改为词重合匹配的近邻 D，见第二轮审读。）先用 Qwen3-32B 把每个标题改写成意思相同、用词不同的版本（原始文本贪心生成，不用对话模板，避免 thinking）。自动检查：不含年份、不含作者姓、长度在原标题 0.5–2 倍之间；人工抽查通过后才开始正式运行。再比较原标题、改写标题、近邻标题 B（同领域、同长度）三者的各层表示和作者得分。某一层起改写标题比 B 更接近原标题，而且仍能说出作者：从这一层起表示的是“这篇论文”，而不只是主题词。</td><td>Stage 11 样本；生成约 0.5 小时，正式运行约 1 小时</td><td>生成已排队；正式运行等人工抽查（logs/para_ok）</td></tr>
+<tr><td>X3 同义改写 vs 近邻标题（Stage 13 中最关键）</td><td>（主要对照已改为词重合匹配的近邻 D，见第二轮审读。）先用 Qwen3-32B 把每个标题改写成意思相同、用词不同的版本（原始文本贪心生成，不用对话模板，避免 thinking）。自动检查：不含年份、不含作者姓、长度在原标题 0.5–2 倍之间；人工抽查通过后才开始正式运行。再比较原标题、改写标题、近邻标题 B（同领域、同长度）三者的各层表示和作者得分。某一层起改写标题比 B 更接近原标题，而且仍能说出作者：从这一层起表示的是“这篇论文”，而不只是主题词。</td><td>Stage 11 样本；生成约 0.5 小时，正式运行约 1 小时</td><td>生成已完成（1,186 条）。2026-10-30 写定预注册补充 5（<span class="mono">381_stage13/config/prereg_addendum5.json</span>，sha256 181c72f7…b113ab）：主分析纳入通过自动检查且与原标题不完全相同的 1,115 条；敏感性分析再剔除 NLI 双向未通过和人工标为“改意思”的，剩 1,015 条；词重合度改用修正版 Jaccard（去停用词、任意长度、简单词形还原），近邻 D 按它重选；Qwen 判断器 v2 一致率 0.55 &lt; 0.80，不用。40 条人工标注中“改意思” 6 条，0.15 [0.07, 0.29]（Wilson 95%），“边界” 7 条，0.175 [0.09, 0.32]。正式运行先跑 1 个分片核对，再放行其余。</td></tr>
 <tr><td>X4 Patchscope（用模型自己解码）</td><td>把 A 在作者问题（不含年份）里标题最后一个 token 或 “:” 的第 l 层表示，注入中性提示 “Paper: X\n…” 中 X 的同一层位置，分别问发表年份、第一作者、研究领域，给真实答案打分。对照：注入 B 的表示，以及不注入。年份从不在 A 的提示里出现，所以能解码出年份只能来自模型认出了论文。比较三种答案各从哪一层开始可解码，就能看到“先认出论文、后想起作者”的顺序。</td><td>Stage 11 样本；L8–L56 共 7 层；GPU 约 1 小时</td><td>已排队（随 Stage 12 作业转交）</td></tr>
 <tr><td>X5 层序量化</td><td>同一批论文上画三条曲线：论文身份能被检索（跨任务匹配到是哪一篇）、作者首 token 能被 probe 读出、名字能被 lens 读出，标出各自开始的层。</td><td>M3 + X4 + 已有数据；CPU</td><td>等 M3、X4</td></tr>
 </tbody></table></div>
@@ -1614,6 +1631,7 @@ L62/L63 的主结果（+0.21 到 +0.23）以及 Stage 11 替换和阻断曲线�
 <li><b>两种置换对照仍然约为 0：</b>正确答案换成随机另一篇论文的作者，或同领域另一篇论文的作者，各层都在 −0.005 到 +0.006 之间。</li>
 <li><b>目标组 − 对照组仍为正，而且没有变小：</b>L24–L60 为 +0.036 到 +0.078，区间都在 0 以上。原来是 +0.02 到 +0.04，区间因样本变少而变宽。</li>
 <li><b>“只用假标题训练、信号反而更强”不成立。</b>剔除标题复用后，它在 L24 为 +0.050、L40 为 +0.057、L56 为 +0.074，与普通 probe 相当或略低，不再更强。原来那个“更强”来自泄漏：同一个借出标题同时在训练和测试里。§6.12 的这一句需要改写。</li>
+<li><b>2026-10-30 更新：标准化只在训练折内拟合。</b>上面的数字用全部论文（含测试折）算均值和标准差。改为只用训练折后（作业 11500917），全部论文平均 L24 +0.050、L40 +0.061、L56 +0.075；目标组 − 对照组 L24–L60 为 +0.035 到 +0.078，L44 下界变为 +0.000（边界）。最大变化 0.0075，正则化强度不变，没有结论翻转。正文 §6.11 已改用新值。<span class="mono">381_stage13/reports/e4b_trainstd_compare.md</span></li>
 </ul></div>
 <div class="bx"><b>M2c：BERT 对照（按论文分折，作业 11443232；按团队分折的版本还在跑）</b>BERT 最好一层（L11–L12）读出年份 R² 0.24，引用数 0.19（去掉年份后 0.18），“是否认得出”AUROC 0.63。Qwen 在标题最后一个 token 上分别是 0.56、0.53、0.52、0.67。按预注册规则：
 <ul>
@@ -1634,6 +1652,7 @@ L62/L63 的主结果（+0.21 到 +0.23）以及 Stage 11 替换和阻断曲线�
 <li>“是否认得出”AUROC 从 0.62 升到 0.67，只用年份时是 0.56。</li>
 <li>领域准确率 0.69–0.72，打乱标签对照是 0.13。</li>
 <li>“:” 位置的年份 R² 达 0.98，这是泄题，只作阳性对照。</li>
+<li><b>按作者团队整群的区间（2026-10-30，作业 11503585）：</b>176 个点估计与原结果完全一致；区间平均宽 1.15 倍（真标题 1.02，false_0 1.32），没有任何一行从“不含 0 / 高于随机水平”变为相反。只用年份的基线也补了区间，例如“是否认得出”AUROC 0.555 [0.534, 0.573]。<span class="mono">381_stage13/reports/m2_teamci.md</span></li>
 <li><s>假标题运行读出的是标题所属论文 B 的年份和引用数。</s> 作废：同一借出标题跨了训练和测试，见上方切分审计。</li>
 </ul>
 <p><b>M2b：标题词袋基线。</b>只用标题词（TF-IDF）时，年份 R² 0.11，引用数 0.07，所以 Qwen 读出的不只是用词。但 L16 本身已经是很强的文本模型，词袋太弱，不足以下结论，所以加了 M2c（BERT）和 M3 的 L4/L8。另外，认得出的论文年份误差比认不出的小 0.7–1.2 年，可是词袋基线也小 0.88 年，所以目前还看不出“认得出”带来的额外信息。</p>

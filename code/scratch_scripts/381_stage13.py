@@ -306,13 +306,17 @@ def lexical_neighbour(papers, pid, target_jac):
 
 def do_para_run(C, shard):
     smp, pairs = sample(); P = C.papers.set_index('paper_id'); rows, res = [], []
-    para = {}
+    para = {}; J2 = {}
+    if (ROOT / 'config/x3_lexical_neighbour_j2.csv').exists():
+        import pandas as pd; j = pd.read_csv(ROOT / 'config/x3_lexical_neighbour_j2.csv')
+        J2 = {p: (q, v) for p, q, v in zip(j.paper_id, j.lexical_neighbour_j2, j.lexical_jaccard2)}
     for f in sorted((ROOT / 'raw/para_gen').glob('shard_*.npz')):
         z = np.load(f); para |= {p: (t, ok, j) for p, t, ok, j in zip(z['paper_id'], z['paraphrase'], z['auto_ok'], z['word_jaccard'])}
     for r in smp[smp.shard == shard].itertuples():
         if r.paper_id not in pairs.index or r.paper_id not in para or not para[r.paper_id][1] or r.paper_id not in C.ctx: continue
         name = C.ctx[r.paper_id][0][2]; q = pairs.loc[r.paper_id].partner
-        dpid, djac = lexical_neighbour(C.papers, r.paper_id, para[r.paper_id][2])
+        if r.paper_id in J2: dpid, djac = J2[r.paper_id]   # prereg addendum 5: D chosen with jaccard2 (stage13_x3_neighbour_j2.py)
+        else: dpid, djac = lexical_neighbour(C.papers, r.paper_id, para[r.paper_id][2])
         per, sc = [], []
         for title in (P.loc[r.paper_id].title, para[r.paper_id][0], P.loc[q].title, P.loc[dpid].title):
             ids, it, ic = build(C.tok, title, 'authors', []); acts = C.record(ids, LAYERS)

@@ -1,0 +1,113 @@
+{
+ "verdicts": {
+  "ALL|target": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "ALL|control": {
+   "X6": "HOLDS",
+   "X7": "DOES NOT HOLD"
+  },
+  "ALL|all": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "name_first|target": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "name_first|control": {
+   "X6": "HOLDS",
+   "X7": "DOES NOT HOLD"
+  },
+  "name_first|all": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "surname_first|target": {
+   "X6": "DOES NOT HOLD (avg R48 < 0.70)",
+   "X7": "HOLDS"
+  },
+  "surname_first|control": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "surname_first|all": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "surname_cont|target": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "surname_cont|control": {
+   "X6": "HOLDS",
+   "X7": "DOES NOT HOLD"
+  },
+  "surname_cont|all": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "initial_first|target": {
+   "X6": "DOES NOT HOLD (title spread at L48 > 0.10)",
+   "X7": "HOLDS"
+  },
+  "initial_first|control": {
+   "X6": "DOES NOT HOLD (avg R48 > 0.95, title spread at L48 > 0.10)",
+   "X7": "HOLDS"
+  },
+  "initial_first|all": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "given_first|target": {
+   "X6": "DOES NOT HOLD (avg R48 < 0.70)",
+   "X7": "HOLDS"
+  },
+  "given_first|control": {
+   "X6": "DOES NOT HOLD (avg R48 < 0.70)",
+   "X7": "DOES NOT HOLD"
+  },
+  "given_first|all": {
+   "X6": "DOES NOT HOLD (avg R48 < 0.70)",
+   "X7": "HOLDS"
+  },
+  "given_cont|target": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "given_cont|control": {
+   "X6": "DOES NOT HOLD (avg R48 > 0.95)",
+   "X7": "HOLDS"
+  },
+  "given_cont|all": {
+   "X6": "HOLDS",
+   "X7": "HOLDS"
+  },
+  "punct|target": {
+   "X6": "not reported (gap)",
+   "X7": "not reported (gap)"
+  },
+  "punct|control": {
+   "X6": "not reported (gap)",
+   "X7": "not reported (gap)"
+  },
+  "punct|all": {
+   "X6": "not reported (gap)",
+   "X7": "not reported (gap)"
+  },
+  "particle_first|target": {
+   "X6": "DOES NOT HOLD (avg R48 > 0.95, title spread at L48 > 0.10)",
+   "X7": "HOLDS"
+  },
+  "particle_first|control": {
+   "X6": "DOES NOT HOLD (title spread at L48 > 0.10)",
+   "X7": "DOES NOT HOLD"
+  },
+  "particle_first|all": {
+   "X6": "DOES NOT HOLD (title spread at L48 > 0.10)",
+   "X7": "HOLDS"
+  }
+ },
+ "warn": []
+}

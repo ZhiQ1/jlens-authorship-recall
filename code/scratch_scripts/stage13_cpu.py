@@ -77,11 +77,45 @@ def m1(s10):
     return M1, ch
 
 
+FOLDS_ARCHIVE = ROOT / 'summary_cpu_teamci'          # 2026-10-30 fold audit: archived original-run folds (README.md there)
+
+
+def _archived_folds(pid, k, seed):
+    """2026-10-30 fold audit: return the archived (folds, team ids) of the ORIGINAL runs when the input id set and (k, seed)
+    equal an archive file folds_*_k<k>s<seed>.npz; ids are mapped one by one (same id -> same fold and team), so any
+    input order works. None if no archive matches (then group_folds computes). Raises if an archive has the same number
+    of rows, k and seed and nearly the same ids (>= 90% overlap) but not exactly: that is the same paper set gone wrong.
+    JLENS_FOLDS_ARCHIVE=off disables the archive (used by the audit to recompute)."""
+    if os.environ.get('JLENS_FOLDS_ARCHIVE', 'on') == 'off' or not FOLDS_ARCHIVE.exists():
+        return None
+    ids = np.asarray(pid).astype(str); s = set(ids); near = []
+    for p in sorted(FOLDS_ARCHIVE.glob(f'folds_*_k{k}s{seed}.npz')):
+        z = np.load(p); a = z['ids'].astype(str)
+        if int(z['k']) != k or int(z['seed']) != seed: continue
+        sa = set(a)
+        if sa == s:
+            F = dict(zip(a, z['fold'].astype(int))); T = dict(zip(a, z['team'].astype(int)))
+            print(f'[group_folds] archived folds {p.name} ({len(ids)} rows)', file=sys.stderr, flush=True)
+            return np.array([F[x] for x in ids]), np.array([T[x] for x in ids])
+        if len(a) == len(ids) and len(sa & s) >= 0.9 * max(len(sa), len(s)): near.append((p.name, len(sa - s), len(s - sa)))
+    if near:
+        raise ValueError(f'group_folds: input ids nearly match archived fold file(s) {near} (name, ids only in archive, ids only in input) '
+                         f'but not exactly; refusing to compute new folds for this paper set. Check the paper ids, or set JLENS_FOLDS_ARCHIVE=off.')
+    print(f'[group_folds] WARNING no archived folds for this paper set ({len(ids)} rows, k={k}, seed={seed}); computing '
+          '(tie order may depend on the CPU)', file=sys.stderr, flush=True)
+    return None
+
+
 def group_folds(pid, k=5, seed=13, donors=None):
     """2026-10-28 (review): folds by GROUP, not by paper. Papers sharing any full author name (normalised; homonyms are
     grouped too, which is conservative) are one group; with `donors` (false_0 runs), rows showing the same donor title,
     and the donor's own group, are joined as well. Whole groups go to one fold (largest first, to the smallest fold).
-    Returns (folds, group ids)."""
+    Returns (folds, group ids).
+    2026-10-30 (fold audit): if an archived original-run assignment exists for this exact id set, it is returned instead
+    (see _archived_folds); the computation below is unchanged."""
+    if donors is None:
+        arc = _archived_folds(pid, k, seed)
+        if arc is not None: return arc
     import re, unicodedata
     papers = pd.read_parquet(R10 / 'cohort/papers.parquet').set_index('paper_id')
     def full(a):

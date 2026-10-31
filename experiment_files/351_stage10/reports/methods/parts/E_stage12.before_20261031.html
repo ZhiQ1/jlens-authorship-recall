@@ -1,0 +1,550 @@
+<!-- Part E: Stage 12 methods (P1, P2, N1, N2, F1, F2, CPU analyses). Drafted 2026-10-30 from code + result files, read-only. -->
+
+<section id="s12-overview">
+<h2>Stage 12 总览：单元构成、共用设定、GPU 型号守卫</h2>
+
+<h3 id="s12-ov-scope">范围与代码</h3>
+<p>Stage 12 是 Stage 11 的后续 + 名字先验测量（2026-10-27 启动，用户原话 "run everything except a second model"）。它只读 Stage 10 的冻结 cohort（9,108 篇论文、33,811 个作者上下文、149,999 个名字 token、72 个 shard）和 Stage 11 的样本（1,186 篇），输出写到 <code>/scratch/zhang.zhiqi2/jlens/371_stage12/</code>。
+<span class="src">~/jlens_work/12_stage12/371_stage12.py:1-23（docstring）· /scratch/zhang.zhiqi2/jlens/351_stage10/config/manifest.json（n_papers / n_contexts / n_tokens / n_shards）· /scratch/zhang.zhiqi2/jlens/361_stage11/config/protocol.json → sample.n=1186, n_target=593, n_control=593</span></p>
+<table class="t">
+<tr><th>文件</th><th>作用</th></tr>
+<tr><td><code>12_stage12/371_stage12.py</code></td><td>freeze / work / remaining / analyze；GPU 单元 patch_pos (P1)、patch_comp (P2)、prior_mc (N1)、prior_pure (N2)、alens_read (F2)；F1 作者提示 lens 拟合 <code>fit_step()</code></td></tr>
+<tr><td><code>12_stage12/stage12_analyze.py</code>（+ .sbatch，gate 作业 11413617）</td><td>GPU 单元的统计分析 → <code>summary/*.csv</code>、<code>reports/stage12_report.md</code></td></tr>
+<tr><td><code>12_stage12/stage12_cpu.py</code>（+ .sbatch，作业 11413574）</td><td>CPU：名字先验 A/B/C、Stage 11 探针对照 X1 → <code>summary_cpu/*.csv</code>、<code>reports/stage12_cpu_report.md</code></td></tr>
+<tr><td><code>12_stage12/stage12_v100.py</code>（+ .sbatch）</td><td>V100 上只跑 prior 单元 + smoke parity；写好但<b>从未用于真实计算</b>（见下）</td></tr>
+<tr><td><code>12_stage12/stage12_keeper.py</code>（作业 11413494）、<code>stage12_work.sbatch</code></td><td>队列 keeper：填满 A100 提交位（90 分钟 s12w 作业），在 lens 拟合完成前始终保留一个 s12fit</td></tr>
+</table>
+<p>git（GitHub 镜像 <code>/scratch/zhang.zhiqi2/jlens-authorship-recall_update</code>，文件位于 <code>code/scratch_scripts/</code>）：13ae7ec（Stage 12 代码首版 = freeze 版本）、95dd94d（P1 8/9-token tail 修复）、37b8b7b（任何作业可接手拟合）、d569682（GPU 型号守卫 + Stage 13 hand-over）、663ac1c（F2 剔除 3 篇同名作者论文）、fb8be6f（Stage 12 完成：报告）。
+<span class="src">git log --oneline -- '*stage12*' '*371_stage12*'</span></p>
+
+<h3 id="s12-ov-units">单元总数 408 的构成</h3>
+<table class="t">
+<tr><th>单元类型</th><th>实验</th><th>切分</th><th>单元数</th><th>行数（实测）</th></tr>
+<tr><td>patch_pos</td><td>P1</td><td>Stage 11 样本 24 个 shard（每 shard 50 篇，<code>n11 = 24</code> 硬编码）</td><td>24</td><td>19,077 个名字 token（4,307 个作者上下文）</td></tr>
+<tr><td>patch_comp</td><td>P2</td><td>同上 24 shard</td><td>24</td><td>19,077</td></tr>
+<tr><td>prior_mc</td><td>N1</td><td>2 个提示（delete、true）× Stage 10 的 72 shard（每 shard 128 篇）</td><td>144</td><td>72,864 = 9,108 篇 × 4 选项 × 2 提示</td></tr>
+<tr><td>prior_pure</td><td>N2</td><td>Stage 10 的 72 shard</td><td>72</td><td>149,999 个名字 token（全 cohort）</td></tr>
+<tr><td>alens_read</td><td>F2</td><td>6 个条件（true + false_0..false_4）× 24 shard；F1 完成（<code>alens/lens.pt</code> 存在）后才开放</td><td>144</td><td>每条件 19,077</td></tr>
+<tr><td colspan="3"><b>合计</b></td><td><b>408</b></td><td></td></tr>
+</table>
+<p><span class="src">371_stage12.py:70-80 units()/all_units() · 实测：raw/patch_pos 24、raw/patch_comp 24、raw/prior_mc 144、raw/prior_pure 72、raw/alens_read 144 个 npz（2026-10-30 计数）· PROGRESS.md "2026-10-28 20:35 — [Stage 12] DONE (408/408)"</span>
+F1 拟合本身不是"单元"，不计入 408；它由 <code>try_fit()</code> 在任意 A100-80GB 作业里推进。
+<span class="src">371_stage12.py:304-317</span></p>
+
+<h3 id="s12-ov-common">共用设定（P1/P2/F2 都依赖的 Stage 11 定义）</h3>
+<ul>
+<li><b>提示</b>（Stage 10 冻结）：<code>Who are the authors of the paper titled "{title}" ({year})?\nAuthors:</code>；delete 条件：<code>Who are the authors of the paper ({year})?\nAuthors:</code>。<span class="src">10_stage10/351_stage10.py:29 PROMPT · cohort/conditions/prompts.parquet（condition=='delete' 第一行实测）</span></li>
+<li><b>每个作者单独成一个上下文</b>：输入 = 提示 token + 该作者名字 token 去掉最后一个（<code>T = pt + name[:-1]</code>），在位置 <code>len(pt)-1+j</code> 读出预测 <code>name[j]</code> 的 logits（teacher forcing），所有名字 token 都打分。<span class="src">371_stage12.py:111-112, 150-151 · 361_stage11.py:80-86 contexts_of()</span></li>
+<li><b>false 标题</b>：patching 用 <code>false_0</code>（Stage 10 匹配的第一个假标题；年份保持目标论文的年份，只换标题）。<span class="src">361_stage11.py:57 FALSE_FOR_PATCH · 351_stage10.py:339 false_title_year='target paper year (title swapped only)'</span></li>
+<li><b>对齐尾部（aligned tail）</b>：true 与 false_0 提示的公共后缀，截到两个提示都在最后一个标题 token 之后开始：<code>S = min(common_suffix(pids,fids), len(pids)-1-max(tp), len(fids)-1-max(tf))</code>，存为 sample.parquet 的 <code>tail_prompt</code>。实测 708 篇 S=9、478 篇 S=8。<span class="src">361_stage11.py:117-127 · 361_stage11/config/sample.parquet tail_prompt 计数</span></li>
+<li><b>标题 token 位置</b>：与 <code>titled "</code> 和最后一个 <code>" (</code> 之间字符重叠的 token。<span class="src">361_stage11.py:89-94 title_positions()</span></li>
+<li><b>打分</b>：rank = 1 + #(logit &gt; gold logit)（并列不算更大），指标 log10(1/rank) = −log10(rank)。<span class="src">351_stage10.py:442-448 score() · 361_stage11.py:192-193 ranks() · stage12_analyze.py:8 nlr()</span></li>
+<li><b>模型</b>：Qwen/Qwen3-32B，revision 9216db5781bf21249d130ec9da846c4624c16137，bf16，64 层，d_model 5120。<span class="src">351_stage10.py:27-28 · HF config.json</span></li>
+<li><b>统计</b>：所有 bootstrap B=2000，按论文重抽；GPU 分析 seed 3713，CPU 分析 seed 3712。target−control 一律"按引用 bin 分层"：只用 target、control 各 ≥30 篇的 bin，bin 内差值按 n_t·n_c/(n_t+n_c) 加权。<span class="src">stage12_analyze.py:7, 12-30 · stage12_cpu.py:11, 15-28</span></li>
+</ul>
+
+<h3 id="s12-ov-gpu">GPU 型号守卫与 V100 smoke parity</h3>
+<p>2026-10-28 04:30 前后 A100-80GB 4.5 小时无空位，用户同意"参数、条件、数据不变即可"用别的 GPU。<code>work()</code> 里加了守卫：
+<span class="src">371_stage12.py:287-302, 310, 326, 331 · PROGRESS.md "2026-10-28 04:30 — [Stage 12] no A100-80GB for 4.5 h" · 修改前备份 371_stage12/logs/371_stage12.py.bak_20261028_v100 · commit d569682</span></p>
+<pre class="code">gpus = [torch.cuda.get_device_name(i) ...]
+big = 每张卡 total_memory &gt;= 70 GiB
+same_arch = 每张卡名字含 'A100'
+a100 = big and same_arch          # 单张 A100-80GB：全部单元 + F1 拟合
+not a100 且 same_arch（如 2×A100-40GB）：全部前向单元，不拟合
+not same_arch（V100、H200 等）：只做 prior_mc / prior_pure</pre>
+<p>任何非 "a100" 作业开始时先重算 <code>('prior_mc','delete',0)</code>（已在 A100-80GB 上算过），比较 <code>mean_nlr</code>：行一致且 max|diff| &lt; 0.05 记 PASS，否则 WARN（只记录，不停作业），写入 <code>logs/v100_smoke.jsonl</code>。<code>stage12_v100.py smoke</code> 做同样的比较（加 prior_pure shard 0 的形状/rank≥1 检查）。
+<span class="src">371_stage12.py:296-302 · stage12_v100.py:22-40</span></p>
+<p><b>实际情况</b>：408 个单元的 npz meta 里 GPU 全是单张 <code>NVIDIA A100-SXM4-80GB</code>（实测 2026-10-30）；<code>logs/v100_smoke.jsonl</code> 不存在，只有 <code>logs/v100_smoke.mocktest_20261028.jsonl</code>（CPU mock 测试行，不是真实 GPU 结果）。V100 不可行：QOS 每作业最多 2 GPU，2×32GB &lt; 65.5GB bf16 权重；<code>stage12_v100.py</code> "written but unused"。两个被 scontrol 改成 <code>gpu:a100:2</code> 的作业 11414108、11428778 启动时 Stage 12 已无单元，直接交给 Stage 13。
+<span class="st st-plan">计划未做</span>（V100 路径）<span class="src">PROGRESS.md 2026-10-28 04:30 条 · logs/work_11414108.log、work_11428778.log 第 3 行 "nothing left to claim"</span></p>
+<p><b>脚本 hash 注意</b>：<code>config/protocol.json</code> 记录的 <code>script_sha256 = d695fa…</code> 是 freeze 版（= commit 13ae7ec），之后脚本改过 3 次（P1 valid 修复、any-job 拟合、GPU 守卫/hand-over），当前文件 sha256 = 070a02…。单元 npz meta 里的 <code>script_sha256</code> 是 Stage 11 脚本的 hash（613eb8…，<code>s11.Ctx.env</code> 写的），<b>不能</b>从 meta 区分是哪个 Stage 12 版本算的。比对 13ae7ec→95dd94d 和备份→当前的 diff：计算函数只有 <code>do_patch_pos</code> 在 95dd94d 改过（加 valid mask），其余改动都在 <code>work()</code>/<code>units()</code> 调度逻辑。<span class="src">git diff 13ae7ec 95dd94d -- code/scratch_scripts/371_stage12.py · diff logs/371_stage12.py.bak_20261028_v100 当前文件 · 361_stage11.py:187-188 env</span></p>
+</section>
+
+<!-- ===================================================================== P1 -->
+<section id="s12-p1">
+<h2>P1 单个位置替换（patch_pos）</h2>
+
+<h4>1 问题与作用</h4>
+<p>Stage 11 E1 把 false_0 运行里"标题之后的整段尾部 + 全部名字位置"的残差一次性换成 true 运行的，L52 起恢复约 100%。P1 问：这份"论文信息"具体在哪个 token 上？逐个位置只换一个，看每个位置单独能恢复多少。<span class="src">371_stage12.py:5-8 docstring</span></p>
+
+<h4>2 材料</h4>
+<ul>
+<li>Stage 11 样本 1,186 篇（593 target / 593 control，10 个引用 bin，seed 11），24 shard × 50 篇；4,307 个作者上下文，19,077 个名字 token（其中 3 个上下文只有 1 个名字 token）。<span class="src">361_stage11/config/protocol.json · raw/patch_pos/*.npz row_id 合计 · name_tokens.parquet 按 (paper, author) 计数</span></li>
+<li>两条提示：true 标题、false_0 标题（同年份）。</li>
+<li>层 PP_LAYERS = [32, 40, 44, 48, 50, 52, 56]。<span class="src">371_stage12.py:35</span></li>
+</ul>
+
+<h4>3 工具</h4>
+<p>Qwen3-32B bf16，单张 A100-SXM4-80GB；<code>jlens.hooks.ActivationRecorder</code> 记录 decoder block 输出；替换用 <code>model.layers[l].register_forward_hook</code>（hook 在 decoder block 本身，替换的是 block 的输出 = 该层之后的残差流）。<span class="src">361_stage11.py:196-223 run_final()、226-231 record()</span></p>
+
+<h4>4 步骤</h4>
+<ol>
+<li>对每个作者上下文：T = true 提示 + name[:-1]，F = false_0 提示 + name[:-1]；读出位置 posT / posF = 提示最后一个 token 起往后 len(name) 个位置。<span class="src">371_stage12.py:111-112</span></li>
+<li>跑一次 T，记录 PP_LAYERS 各层所有位置的残差 <code>acts[l]</code>；再跑一次 T 得到 true 的最终输出 rank（<code>rank_true</code>）。<span class="src">371_stage12.py:114, 131</span></li>
+<li>构造固定的 12 个"项目"（item），位置均为 T 坐标，用 <code>pF = pT − len(pt) + len(pfi)</code> 映射到 F：
+<table class="t">
+<tr><th>item</th><th>精确定义（代码）</th><th>典型 token（9-token 尾部，如 2018 年）</th></tr>
+<tr><td>none</td><td>不替换（同一 batch 内的未替换 false 运行，作基线）</td><td>—</td></tr>
+<tr><td>p<i>k</i>, k=1..9</td><td>从提示末尾倒数第 k 个 token：<code>have = {f'p{S-i}': [len(pt)-S+i] for i in range(S)}</code>，即 p1 = 位置 len(pt)−1（最后一个提示 token），p<i>S</i> = 对齐尾部第一个 token。只替换这一个位置。</td><td>p1 = <code>:</code>；p2 = <code>Authors</code>；p3 = <code>)?\n</code>；p4 = 年份第 4 位（<code>8</code>）；p5 = 年份第 3 位（<code>1</code>）；p6 = 年份第 2 位（<code>0</code>）；p7 = 年份第 1 位（<code>2</code>）；p8 = <code>&nbsp;(</code>；p9 = 标题的右引号 <code>"</code></td></tr>
+<tr><td>names</td><td><code>range(len(pt), len(T))</code>：所有名字输入位置（name[0]..name[n−2]），<b>不含</b> <code>:</code></td><td>—</td></tr>
+<tr><td>all</td><td><code>range(len(T)−tail, len(T))</code>，tail = S + len(name) − 1：整段对齐尾部 + 全部名字位置（= Stage 11 E1）</td><td>—</td></tr>
+</table>
+尾部只有 8 个 token 的论文（478 篇；右引号和标题最后一个 token 合并，尾部从 <code>&nbsp;(</code> 开始）没有 p9：p9 不替换并标 <code>valid=False</code>，分析时剔除。p9 有效行 10,566 / 19,077。Qwen 的分词器把年份拆成单个数字（实测 tail_tokens）。<span class="src">371_stage12.py:36 MAX_TAIL=9, 118-123 · raw/patch_pos/*.npz 的 items、valid、tail_tokens（实测最常见：<code>["\"", " (", "2","0","1","8", ")?\n", "Authors", ":"]</code> 222 个上下文）</span></li>
+<li>元素 = 7 层 × 12 item = 84 份 F 的拷贝；元素 (l, item) 在第 l 层 block 输出上把 item 的位置换成 T 的 <code>acts[l][pT]</code>（每个元素只在一层、只换该 item 的位置）。按 48 一批分块前向（两块：48 + 36）。每个元素在最终输出上对 gold 名字 token 求 rank。<span class="src">371_stage12.py:124-137 · 361_stage11.py:205-209（('at', position) 分支）</span></li>
+<li>保存 row_id、rank_true、rank_patch[n, 7, 12]、valid、tail_tokens。<span class="src">371_stage12.py:140-141</span></li>
+</ol>
+
+<h4>5 公式</h4>
+<p>对 token t，nlr = −log10 rank。对每个 (层 l, item i)，先在论文内对有效 token 取平均，再跨论文：</p>
+<pre class="code">num_p = mean_t [ nlr_patch(t, l, i) − nlr_none(t, l) ]
+den_p = mean_t [ nlr_true(t)       − nlr_none(t, l) ]
+recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是均值的比值逐篇）
+95% CI：论文重抽 2000 次，对每次重抽重算比值，取 2.5/97.5 百分位</pre>
+<p>注意 <code>none</code> 按层取（同一层所在的 batch 块里的未替换拷贝），分母也随层变。<span class="src">stage12_analyze.py:12-14 boot_ratio()、46-59</span></p>
+
+<h4>6 对照</h4>
+<ul>
+<li><b>none</b>：同一 batch 内的未替换 false_0 运行，作为每层的 0 点。</li>
+<li><b>all</b>：应复现 Stage 11 E1。实测 P1 all 与 Stage 11 E1 recovery（all 组）：L32 0.143 / 0.144，L40 0.292 / 0.291，L48 0.825 / 0.825，L50 0.933 / 0.932，L52 0.996 / 0.996，L56 0.999 / 0.998。<span class="st st-rechecked">复核过</span><span class="src">summary/P1_patch_pos.csv（item=all, group=all）· 361_stage11/summary/E1_recovery.csv（group=all）</span></li>
+<li>上线前 tiny 模型 CPU 干跑 14/14 PASS（含 "all = Stage 11 E1 尾部替换"、"none = false 运行"），8/9-token 修复后用一篇 8-token、一篇 9-token 论文重跑 14/14 PASS。<span class="src">PROGRESS.md "2026-10-27 ~15:10" 和 "~15:40" 条</span></li>
+<li>年份在 true/false 运行里相同（年份 token 落在公共后缀里），因此年份位置本身不会造成 true/false 差异。<span class="src">PROGRESS.md 2026-10-28 13:05 条 "Year: identical in true and false runs" · 351_stage10.py:339</span></li>
+</ul>
+
+<h4>7 结果</h4>
+<p>recovery（全部论文，95% CI）：</p>
+<table class="t">
+<tr><th>item</th><th>L32</th><th>L40</th><th>L44</th><th>L48</th><th>L50</th><th>L52</th><th>L56</th></tr>
+<tr><td>p9 右引号</td><td>+0.011</td><td>+0.024</td><td>+0.027 [+0.022, +0.033]</td><td>+0.011</td><td>+0.004</td><td>+0.002</td><td>−0.000</td></tr>
+<tr><td>p5 年份第 3 位</td><td>+0.012</td><td>+0.033</td><td>+0.071 [+0.063, +0.079]</td><td>+0.062</td><td>+0.035</td><td>+0.027</td><td>−0.000</td></tr>
+<tr><td>p1 <code>:</code></td><td>+0.005</td><td>+0.008</td><td>+0.011</td><td>+0.074 [+0.065, +0.083]</td><td>+0.157</td><td>+0.172 [+0.156, +0.187]</td><td>+0.130</td></tr>
+<tr><td>names</td><td>+0.094</td><td>+0.175</td><td>+0.236</td><td>+0.612 [+0.594, +0.630]</td><td>+0.726</td><td>+0.847 [+0.830, +0.864]</td><td>+0.878</td></tr>
+<tr><td>all</td><td>+0.143</td><td>+0.292</td><td>+0.429</td><td>+0.825</td><td>+0.933</td><td>+0.996</td><td>+0.999</td></tr>
+</table>
+<p>p2、p3、p4、p6、p7、p8 在所有层都 ≤ 0.008。target / control 分组在 CSV 的 group 列。<span class="src">371_stage12/reports/stage12_report.md §P1 · summary/P1_patch_pos.csv · 作业：P1 24/24 由 11413557、11413569（d1029）等在 2026-10-27 完成（PROGRESS "2026-10-27 17:28"）</span></p>
+<p><b>按 token 角色拆分（2026-10-30 用原始数据重算，U38 已解决）</b>：用 <code>371_stage12/raw/patch_pos/shard_*.npz</code>（19,077 行）与 <code>351_stage10/cohort/name_tokens.parquet</code> 的 role 列，按 stage12_analyze.py:46–58 的同一估计量（先按论文平均，再算 Σnum/Σden，recovery = (nlr_patch − nlr_none)/(nlr_true − nlr_none)）重算，CPU 秒级。本手册编辑于 2026-10-30 下午重新运行脚本，数字一致。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py · <a href="#iu-research">附录 I</a> U38</span> <span class="st st-rechecked">复核过</span></p>
+<table class="t">
+<tr><th>token 角色</th><th>行数</th><th>":"（p1）单独替换 L48 / L52</th><th>names 替换 L48 / L52</th><th>true − false 差距 gap</th></tr>
+<tr><td>initial_first（首字母）</td><td>3,479</td><td><b>0.502 / 0.917</b></td><td>0.153 / 0.223</td><td>0.114</td></tr>
+<tr><td>given_first（名的首 token）</td><td>1,378</td><td><b>0.349 / 0.940</b></td><td>0.013 / 0.036</td><td>0.293</td></tr>
+<tr><td>surname_first（姓的首 token）</td><td>4,306</td><td>0.017 / 0.051</td><td><b>0.567 / 0.925</b></td><td>0.548</td></tr>
+<tr><td>surname_cont（姓的后续 token）</td><td>4,940</td><td>0.013 / 0.040</td><td>0.810 / 0.990</td><td>0.518</td></tr>
+<tr><td>全体</td><td>19,077</td><td>0.074 / 0.172</td><td>0.612 / 0.847</td><td>0.316</td></tr>
+</table>
+<p>即名字第一个 token（首字母或名）的恢复几乎全来自 ":" 位置，姓的 token 主要来自名字位置；"全体"一行与 summary/P1_patch_pos.csv 一致。punct（标点）的 gap 只有 0.009，比值不稳定，不解读。PROGRESS 2026-10-28 14:45 的预览值（首字母 0.50/0.90、名 0.37/0.95、姓名字位置 0.55/0.92）与重算值相差 ≤ 0.03，原预览脚本没有保存，以重算值为准。</p>
+
+<h4>8 局限与质疑</h4>
+<ul>
+<li><b>names 的因果可及范围</b>：名字的第一个 token 是在 <code>:</code>（p1）位置预测的，位于所有名字位置之前；因果注意力下替换 names 不可能影响第一个 token 的预测。因此"names 恢复 0.85"主要来自第 2 个及以后的名字 token，第一个 token 只能由 p 项恢复。3 个单 token 上下文的 names 项是空替换。<span class="src">371_stage12.py:112, 120（推导）</span></li>
+<li>单位置 recovery 不可相加：多个位置之间有冗余（names 0.85 + p1 0.17 &gt; 1 at L52）。</li>
+<li>p5（年份第 3 位）在 L44 达到 0.071。<b>只描述，不解读</b>（用户 2026-10-30 决定，U39）。<span class="src">PROGRESS.md 2026-10-30 14:00 条 U39</span></li>
+<li>只用了 false_0 一个假标题；Stage 13 X6 用 false_1..4 重做了 E1（整段尾部），但没有重做单位置版本。</li>
+<li>评分是 teacher-forced 下的 rank，不是生成。</li>
+<li>每层只替换一层；跨层组合未测。</li>
+</ul>
+
+<h4>9 状态</h4>
+<p><span class="st st-done">已完成</span> 24/24 shard（2026-10-27），分析 2026-10-28 19:55（gate 作业 11413617）。"all" 与 Stage 11 E1 吻合 <span class="st st-rechecked">复核过</span>。首次运行时作业 11371622 在 8/9-token 尾部上崩溃（np.concatenate 11 vs 12 项），修复后（commit 95dd94d）才产出现有数据。<span class="src">PROGRESS.md "2026-10-27 ~15:40" 条 · logs/analyze_11413617.log 末行 "STAGE12 ANALYZED"</span></p>
+</section>
+
+<!-- ===================================================================== P2 -->
+<section id="s12-p2">
+<h2>P2 注意力 vs MLP 组件替换（patch_comp）</h2>
+
+<h4>1 问题与作用</h4>
+<p>Stage 11 E1 说明论文信息在 L24–L50 间到达标题之后的位置。P2 问：是注意力把标题信息"搬"过来，还是这些位置上的 MLP 自己"算"出来？做法：只把某一层的注意力输出或 MLP 输出换成 true 运行的，其余照常。<span class="src">371_stage12.py:9-11</span></p>
+
+<h4>2 材料</h4>
+<p>与 P1 相同：Stage 11 样本 1,186 篇、4,307 个上下文、19,077 个名字 token；true vs false_0。层 PC_LAYERS = [8, 16, 24, 28, 32, 36, 40, 44, 48, 52, 56]；组件列表 comps = ['none'] + 每层的 attn<i>l</i>、mlp<i>l</i>，共 23 项。<span class="src">371_stage12.py:37, 146 · raw/patch_comp/*.npz comps</span></p>
+
+<h4>3 工具</h4>
+<p>PyTorch forward hook 挂在 <b>子模块</b> 上：</p>
+<ul>
+<li>注意力：<code>model.layers[l].self_attn</code>（HF <code>Qwen3Attention</code>）。其 forward 返回 <code>(attn_output, attn_weights)</code>，其中 <code>attn_output = self.o_proj(...)</code>，即 <b>o_proj 之后、加回残差之前</b>的注意力输出。hook 取/改 <code>o[0]</code>。</li>
+<li>MLP：<code>model.layers[l].mlp</code>（<code>Qwen3MLP</code>），输出 = <code>down_proj(act(gate_proj(x)) * up_proj(x))</code>，即 <b>down_proj 输出、加回残差之前</b>。</li>
+<li>Decoder block 里：<code>h = residual + self_attn(input_layernorm(residual))[0]</code>，然后 <code>h = h + mlp(post_attention_layernorm(h))</code>。所以替换后的组件输出在本层被<b>加回 false 运行自己的残差流</b>（注意力输出加在 block 输入残差上；MLP 输出加在注意力之后的残差上），下游所有层照常重算。</li>
+</ul>
+<p><span class="src">371_stage12.py:156-157（记录）、166-171（替换）· transformers 5.19.0 models/qwen3/modeling_qwen3.py:271-272（o_proj）、81（down_proj）、296-314（decoder layer 残差相加）。注：运行时的 transformers 版本未写入 meta，此处是当前 conda 环境的版本</span></p>
+
+<h4>4 步骤</h4>
+<ol>
+<li>每个作者上下文 T、F、posT/posF 同 P1；<code>tail = S + len(name) − 1</code>（对齐提示尾部 + 全部名字输入位置，即"标题之后的全部 tail"，与 P1 的 all 相同）。<span class="src">371_stage12.py:150-151</span></li>
+<li>跑 T 一次，在 PC_LAYERS 每层的 self_attn 和 mlp 上挂记录 hook，存 <code>o[0][0, -tail:]</code>（注意力）和 <code>o[0, -tail:]</code>（MLP）——即最后 tail 个位置的组件输出；同时得到 rank_true。<span class="src">371_stage12.py:154-160</span></li>
+<li>把 F 复制 23 份放进一个 batch；第 e 份（comps[e] = attn<i>l</i> 或 mlp<i>l</i>）在第 l 层对应子模块的输出上执行 <code>t[e, -tail:] = 记录值</code>（只改这一份、这一层、这个组件、最后 tail 个位置）；第 0 份 'none' 不改。<span class="src">371_stage12.py:161-174</span></li>
+<li>在最终输出（block 63 + final norm + lm_head）对每个名字 token 求 rank。<span class="src">361_stage11.py:219-222</span></li>
+</ol>
+
+<h4>5 公式</h4>
+<pre class="code">recovery(comp, l) = mean_p mean_t[nlr_patch − nlr_none] / mean_p mean_t[nlr_true − nlr_none]
+（none = 同一 batch 第 0 份；CI 同 P1：论文重抽 2000 次）</pre>
+<p><span class="src">stage12_analyze.py:68-77</span></p>
+
+<h4>6 对照</h4>
+<ul>
+<li>in-batch 'none'（未替换 false 运行）作为 0 点。</li>
+<li>P2 没有"全替换 = 1"的内置上界检查（替换单层单组件不应恢复 1），当时也<b>没有做显式的 sanity 检查</b>（例如 L63 或"替换为自身 = 不变"；logs 下只有 P1 的 smoke 项）。</li>
+<li><b>从数据看 hook 生效（2026-10-30 重算，U40 部分解决）</b>：各替换列与 none 列相比，L8–L44 平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 明显上升（+0.020 到 +0.070，如 attn48 +0.069、mlp56 +0.070），与 recovery 表一致；基线 none 列与 Stage 11 假标题运行 rank_false 逐行相同的只有 59.4%，但全部行的名次都在 2 倍以内、平均 Δnlr 0.0000、p99 |Δnlr| 0.146，P1 自己的 none 列在不同层之间也只有 59.7% 逐行相同，所以是批大小不同带来的 bf16 噪声，不是 hook 泄漏；rank_true 与 Stage 11 100% 相同。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py（371_stage12/raw/patch_comp，19,077 行 × 23 列）· 371_stage12.py:146–170 · <a href="#iu-research">附录 I</a> U40</span> 是否补做显式检查待用户决定。<span class="unk">未知/需确认：向 用户 确认（是否补做 P2 显式 sanity，例如 L63 或"替换为自身"，U40）</span></li>
+</ul>
+
+<h4>7 结果</h4>
+<table class="t">
+<tr><th>层</th><th>attention</th><th>MLP</th></tr>
+<tr><td>L8–L44</td><td>≤ +0.023（L24 +0.023 [+0.020, +0.028] 为最大）</td><td>≤ +0.009</td></tr>
+<tr><td>L48</td><td><b>+0.231 [+0.221, +0.244]</b></td><td>+0.068 [+0.061, +0.075]</td></tr>
+<tr><td>L52</td><td>+0.109 [+0.101, +0.118]</td><td><b>+0.178 [+0.168, +0.190]</b></td></tr>
+<tr><td>L56</td><td>+0.058 [+0.052, +0.064]</td><td><b>+0.224 [+0.208, +0.239]</b></td></tr>
+</table>
+<p>顺序：L48 注意力先搬，L52–56 MLP 后算。<span class="src">reports/stage12_report.md §P2 · summary/P2_patch_comp.csv（comp, layer, group=all）</span></p>
+
+<h4>8 局限与质疑</h4>
+<ul>
+<li>只替换单层单组件；层是稀疏的（L44→L48→L52），L45–47、L49–51 未测，"L48 注意力"可能代表相邻几层。</li>
+<li>替换的是组件对残差的增量，作用在 false 运行的残差上：如果 false 残差本身已偏离，相同增量的效果不同（非线性）。</li>
+<li>替换范围是整段 tail（含 <code>:</code> 和名字位置），没有按位置拆分组件；"注意力从哪个源位置读"没有做（没有 head 级、没有注意力模式分析）。</li>
+<li>各层 recovery 不可相加。</li>
+</ul>
+
+<h4>9 状态</h4>
+<p><span class="st st-done">已完成</span> 24/24（2026-10-27 至 10-28；17:28 时 15/24），分析 2026-10-28 19:55。<span class="src">PROGRESS.md "2026-10-27 17:28" 条 · summary/P2_patch_comp.csv 时间戳</span></p>
+</section>
+
+<!-- ===================================================================== N1 -->
+<section id="s12-n1">
+<h2>N1 多选选项先验（prior_mc）</h2>
+
+<h4>1 问题与作用</h4>
+<p>Stage 1 的多选题（选出真作者名单）把论文分成 target/control。质疑：模型选中真名单，会不会只是因为真名单"听起来更像"（名字先验高），而不是认得这篇论文？N1 把 4 个选项都当作作者链打分，分别在不给标题（delete）和给真标题时比较。<span class="src">371_stage12.py:12-14</span></p>
+
+<h4>2 材料</h4>
+<ul>
+<li>全部 9,108 篇论文（Stage 10 的 72 shard）。</li>
+<li>选项来自标注包 <code>labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/mc_team.jsonl</code>（9,108 行，kind=team）：每篇 4 个选项，<b>option 0 = 真作者名单</b>（<code>correct_index</code> 全部为 0，实测），option 1–3 = 另外 3 篇论文的真实作者团队（<code>false_sources</code> 记录来源论文）；名字格式全部为 <code>initial_surname</code>（如 "S. Bree"）。这里用的是规范顺序（option 0..3），不是多选题实际展示的 4 种顺序。<span class="src">371_stage12.py:183-187 mc_options() · mc_team.jsonl（实测 correct_index、format 计数）· 标注包 step1_README.md:53 "team (the three wrong options are the real author lists of other papers)"</span></li>
+<li>两种提示：<code>delete</code>（<code>Who are the authors of the paper ({year})?\nAuthors:</code>）和 <code>true</code>（带真标题）。<span class="src">371_stage12.py:192</span></li>
+</ul>
+
+<h4>3 工具</h4>
+<p><code>s10.fast_readout(..., [('final', 63)])</code>：一次前向，只取最终输出 logits。<span class="src">351_stage10.py:425-439 · 371_stage12.py:203</span></p>
+
+<h4>4 步骤</h4>
+<ol>
+<li>对每篇论文、每个选项 oi=0..3：序列 = 提示 ids；对选项里每个名字 n（第 2 个起先加逗号 token <code>,</code>，id 11），把 <code>' ' + 名字</code> 分词后逐 token 追加，每个 token 的读出位置是它前一个位置。得到 "Authors: A1, A2, …" 作者链；逗号不打分。<span class="src">371_stage12.py:196-201 · 361_stage11.py:187-188（comma == [11]）</span></li>
+<li>序列超过 1000 token 跳过（实测 0 篇被跳过：72,864 行 = 9,108×4×2）。</li>
+<li>前向 <code>ids[:-1]</code>，每个名字 token 求 rank；存每个选项的 <code>mean_nlr</code>（全部名字 token 的平均 log10(1/rank)）、<code>first_author_nlr</code>、<code>first_token_nlr</code>、n_tokens。<span class="src">371_stage12.py:203-210</span></li>
+</ol>
+
+<h4>5 公式</h4>
+<p>只用 recall_level ∈ {R0, R1} 的论文（8,894 篇；其中 target 4,621、control 2,220，其余为 excluded 组，计入 "all"）。按论文、按选项透视 <code>mean_nlr</code>：</p>
+<pre class="code">margin_p        = mean_nlr(option 0) − mean( mean_nlr(option 1), mean_nlr(option 2), mean_nlr(option 3) )
+most_plausible_p = 1  if mean_nlr(option 0) &gt;= max(option 1..3)  else 0     （并列算真名单赢）
+报告：margin 和 most_plausible 的论文平均 + bootstrap CI；机会水平 0.25
+target − control：margin 按引用 bin 分层（见总览）
+Spearman( mc_team_a , margin − 该 bin 内 margin 均值 )   mc_team_a = 多选 4 种顺序中答对的次数 (0–4)</pre>
+<p><span class="src">stage12_analyze.py:84-98 · summary/N1_prior_mc.csv n 列 · 标注包 label_README.md:27 mc_team_a 定义</span></p>
+
+<h4>6 对照</h4>
+<ul>
+<li>delete vs true：同一组选项，无标题时的差别 = 纯名字先验；有标题时的差别 = 先验 + 标题。</li>
+<li>机会水平 0.25（4 选 1）。</li>
+<li>distractor 是真实的作者团队（不是编造的名字），所以名字分布接近。</li>
+</ul>
+
+<h4>7 结果</h4>
+<table class="t">
+<tr><th>提示</th><th>组</th><th>n</th><th>margin</th><th>真名单 most plausible 比例</th></tr>
+<tr><td>delete</td><td>all</td><td>8,894</td><td>+0.004 [−0.002, +0.009]</td><td>0.255 [0.246, 0.264]</td></tr>
+<tr><td>delete</td><td>target</td><td>4,621</td><td>+0.017 [+0.008, +0.024]</td><td>0.269 [0.256, 0.282]</td></tr>
+<tr><td>delete</td><td>control</td><td>2,220</td><td>−0.011 [−0.023, −0.000]</td><td>0.248 [0.230, 0.266]</td></tr>
+<tr><td>delete</td><td>target − control（bin 内）</td><td></td><td>+0.032 [+0.017, +0.048]</td><td></td></tr>
+<tr><td>delete</td><td>Spearman(margin, mc_team_a)</td><td></td><td>+0.045</td><td></td></tr>
+<tr><td>true</td><td>all</td><td>8,894</td><td>+0.313 [+0.305, +0.319]</td><td>0.625 [0.615, 0.635]</td></tr>
+<tr><td>true</td><td>target</td><td>4,621</td><td>+0.444 [+0.435, +0.453]</td><td>0.771 [0.758, 0.783]</td></tr>
+<tr><td>true</td><td>control</td><td>2,220</td><td>+0.125 [+0.113, +0.137]</td><td>0.406 [0.384, 0.427]</td></tr>
+<tr><td>true</td><td>target − control（bin 内）</td><td></td><td>+0.236 [+0.218, +0.253]</td><td></td></tr>
+<tr><td>true</td><td>Spearman(margin, mc_team_a)</td><td></td><td>+0.273</td><td></td></tr>
+</table>
+<p>无标题时真名单在 25.5% 的论文里得分最高（≈ 机会 25%）；多选成功不是由名字"像不像"驱动。<span class="src">summary/N1_prior_mc.csv · reports/stage12_report.md §N1</span></p>
+
+<h4>8 局限与质疑</h4>
+<ul>
+<li>打分格式是 "Authors: A1, A2, …" 的 teacher-forced 链式 rank，不是多选题本身的字母概率；两者是不同任务。</li>
+<li>名单长短不同（选项来自不同论文，作者数不同），mean_nlr 对长名单是更多 token 的平均；链后部的名字受前面名字影响（同一团队内部的共现先验）。</li>
+<li>Spearman 没有给 CI（代码只算点估计）。</li>
+<li>名字格式是标注包的 "首字母. 姓"，Stage 10 单作者读出用的是全名。2026-10-30 全量比对（33,811 对）：两者来自同一份作者列表，每篇人数与顺序相同（9,108/9,108）；"名的首字母 + '. ' + 最后一个词"与 mc_team 精确相同的 <b>33,644 对（99.51%）</b>，另 158 对差在姓氏前缀（mc_team 保留整个前缀姓，如 'F. V. van Dam' → 'F. van Dam'），9 对是后缀或标点。<span class="src">351_stage10/cohort/contexts.parquet × labels_20261015/…/mc_team.jsonl（options[correct_index]）· <a href="#iu-research">附录 I</a> U41</span> <span class="st st-rechecked">复核过</span>（U41 已解决）</li>
+</ul>
+
+<h4>9 状态</h4>
+<p><span class="st st-done">已完成</span> 144/144（2026-10-28；18:28 时 103/144，约 31 s/shard）。<span class="src">PROGRESS.md "2026-10-28 17:28"、"18:28" 条</span></p>
+</section>
+
+<!-- ===================================================================== N2 -->
+<section id="s12-n2">
+<h2>N2 纯名字先验（prior_pure）</h2>
+
+<h4>1 问题与作用</h4>
+<p>Stage 10 的 delete 条件（无标题）仍有年份和"论文作者"语境。N2 用一个完全不提论文的提示，测每个作者名字本身的先验，并与 delete、true 配对比较：target 组的优势有多少来自名字本身？<span class="src">371_stage12.py:15-16</span></p>
+
+<h4>2 材料</h4>
+<p>全部 9,108 篇、149,999 个名字 token（行 id 沿用 Stage 10 的 row_id，可与 Stage 10 true/delete 逐 token 配对）。提示原文：</p>
+<pre class="code">The following is the name of a researcher.
+Name:</pre>
+<p>（Python 字符串 <code>'The following is the name of a researcher.\nName:'</code>）<span class="src">371_stage12.py:38 PURE_PROMPT · config/protocol.json pure_prompt</span></p>
+
+<h4>3 工具</h4>
+<p><code>fast_readout</code>，读出计划 PURE_PLAN = final@63 + logit lens @ L48/56/62 + 公开 J-lens（jlens_public，557 条 Salesforce-wikitext 提示拟合）@ L48/56/62。<span class="src">371_stage12.py:39 · 351_stage10/config/lenses.json public.n_prompts=557</span></p>
+
+<h4>4 步骤</h4>
+<ol>
+<li>每个作者：ids = <code>tok(PURE_PROMPT).input_ids + name[:-1]</code>，读出位置 = 提示最后一个 token 起 len(name) 个位置（与 Stage 10 同样的单作者 teacher forcing，只是前缀换成纯名字提示）。<span class="src">371_stage12.py:214-218</span></li>
+<li>每个读出求 rank，存 <code>final@63</code>、<code>logit@48/56/62</code>、<code>jlens_public@48/56/62</code>。<span class="src">371_stage12.py:219-221</span></li>
+<li>分析：取 Stage 10 冻结输出 <code>final@63</code> 的 true 和 delete rank（72 shard），按 row_id 对齐。<span class="src">stage12_analyze.py:108-114</span></li>
+</ol>
+
+<h4>5 公式</h4>
+<pre class="code">每篇论文：pure / delete / true = 该论文所有名字 token 的 log10(1/rank) 平均（模型输出）
+组均值：直接平均（无 CI）
+year_prompt = mean(delete − pure)
+target − control：pure、delete、true 各自按引用 bin 分层 + bootstrap CI</pre>
+<p><span class="src">stage12_analyze.py:115-122</span></p>
+
+<h4>6 对照</h4>
+<p>同一 token 的三个条件配对（pure → delete → true），差值逐层剥离：pure = 名字本身；delete − pure = "论文作者 + 年份"语境；true − delete = 标题。</p>
+
+<h4>7 结果</h4>
+<table class="t">
+<tr><th>组</th><th>n 篇</th><th>pure</th><th>delete（无标题）</th><th>true</th></tr>
+<tr><td>all</td><td>9,108</td><td>−1.229</td><td>−1.089</td><td>−0.812</td></tr>
+<tr><td>target</td><td>4,621</td><td>−1.215</td><td>−1.061</td><td>−0.708</td></tr>
+<tr><td>control</td><td>2,220</td><td>−1.261</td><td>−1.150</td><td>−1.004</td></tr>
+</table>
+<p>target − control（bin 内）：pure +0.047 [+0.031, +0.062]；delete +0.087 [+0.070, +0.103]；true +0.247 [+0.229, +0.266]。由此 pure / true = 0.047/0.247 ≈ 19%，delete / true ≈ 35%（STATUS §3 的说法，是这两个数的比值）。<span class="src">summary/N2_prior_pure.csv（tc_pure、tc_delete、tc_true 行）· reports/stage12_report.md §N2 · STATUS.md §3 Stage 12 "≈ 19% of the true-title gap (35% with the no-title prompt)"</span></p>
+
+<h4>8 局限与质疑</h4>
+<ul>
+<li>logit lens / 公开 J-lens 的 L48/56/62 读出已经算了并存在 raw 里，但 <code>stage12_analyze.py</code> 只分析了 final@63。<span class="st st-plan">计划未做</span>（层剖面分析）<span class="src">stage12_analyze.py:109 只读 'final@63'</span></li>
+<li>组均值没有 CI；"19%"是两个点估计之比，没有对比值本身做 bootstrap。</li>
+<li>"纯"提示仍然是英文研究者语境，不是零语境；结果依赖提示措辞，只测了一种。</li>
+</ul>
+
+<h4>9 状态</h4>
+<p><span class="st st-done">已完成</span> 72/72（2026-10-28）。<span class="src">raw/prior_pure 72 个 npz</span></p>
+</section>
+
+<!-- ===================================================================== F1 -->
+<section id="s12-f1">
+<h2>F1 作者提示 lens 拟合（alens_fit）</h2>
+
+<h4>1 问题与作用</h4>
+<p>Stage 10 用的公开 J-lens 是在维基文本上拟合的，中间层读不出作者名。质疑：会不会是 lens 的拟合分布不对？F1 在"提示 + 真作者名单"这种作者文本上重新拟合一个 Jacobian lens，供 F2 读出。<span class="src">371_stage12.py:17-18</span></p>
+
+<h4>2 材料</h4>
+<ul>
+<li>40 篇论文，从 Stage 10 cohort 中 <code>group_tight ∈ {target, control}</code> 且<b>不在 Stage 11 样本</b>里的论文中随机抽取（<code>np.random.default_rng(12).choice(len(pool), 40, replace=False)</code>）。实测 31 target / 9 control，年份 1955–2018。<span class="src">371_stage12.py:40, 52-58 · config/fit_prompts.parquet</span></li>
+<li>每条文本 = Stage 10 提示 + 空格 + 真作者名单（作者用 <code>, </code> 连接）。例（第一条原文）：
+<pre class="code">Who are the authors of the paper titled "Laccase: Properties and applications" (2009)?
+Authors: V. Madhavi, S. Lele</pre>
+token 长度 27–104（中位 50），没有超过 max_seq_len=128 的；有效位置合计 1,566 个。<span class="src">371_stage12.py:56 · fit_prompts.parquet text 列（Qwen3 分词器实测）</span></li>
+<li>冻结：<code>config/fit_prompts.parquet</code> sha256 be0c3ab7…（写在 protocol.json fit.sha256）。<span class="src">config/protocol.json</span></li>
+</ul>
+
+<h4>3 工具</h4>
+<p><code>jlens.fit</code>（本地 jacobian-lens 包，<code>~/projects/jacobian-lens/jlens/fitting.py</code>）。参数：<code>source_layers = [24, 32, 40, 44, 48, 52, 56, 62]</code>，<code>target_layer = 63</code>，<code>dim_batch = 1</code>，<code>max_seq_len = 128</code>，<code>skip_first = 16</code>，<code>checkpoint_every = 1</code>，可续跑。<span class="src">371_stage12.py:233-234 · protocol.json fit</span></p>
+
+<h4>4 步骤</h4>
+<ol>
+<li>每个作业按剩余预算估计能拟合几条（<code>n = max(1, int((budget_min − 6)/7))</code>），从 checkpoint 续跑到 <code>min(40, done + n)</code>，更新 <code>alens/progress.json</code>。<span class="src">371_stage12.py:225-235</span></li>
+<li>任何 A100-80GB 作业都可以通过 claim 文件 <code>logs/claims/alens_fit</code> 接手拟合（2026-10-27 18:45 起），剩余预算需 ≥20 分钟；出错写 <code>logs/fit_error_*.json</code>，之后所有作业停止拟合（未发生）。<span class="src">371_stage12.py:304-317 · logs/ 无 fit_error 文件</span></li>
+<li>拟合进度（作业日志）：11413557 0→10（2026-10-27 15:29）、11413572 10→20→22、11413584 22→32→35、11413586 35→40，2026-10-28 17:12:17 "author lens COMPLETE"，写 <code>alens/lens.pt</code>。最后一段 5 条用 1,344 s（269 s/条）。<span class="src">logs/work_11413557.log、work_11413572.log、work_11413584.log、work_11413586.log · alens/progress.json</span></li>
+</ol>
+
+<h4>5 公式</h4>
+<p>对每个源层 l，拟合矩阵 J_l ∈ ℝ<sup>5120×5120</sup>：</p>
+<pre class="code">对每条提示：对每个输出维 d（dim_batch=1 → 每条提示 5120 次反向），
+  在所有有效目标位置同时注入 one-hot cotangent e_d 于 h_63，反向得到 ∂(Σ_{p'≥p} h_63[p'])_d / ∂h_l[p]，
+  在有效源位置 p ∈ [16, seq_len−2] 上取平均 → 该条提示的 J_l 的第 d 行
+J_l = 40 条提示的平均
+读出：lens_l(h) = unembed( J_l · h )     （unembed = final RMSNorm + lm_head）</pre>
+<p><span class="src">jlens/fitting.py:1-21（模块 docstring）、45-72 valid_position_mask()、100-210 jacobian_for_prompt()、365/386（求和与平均）</span></p>
+
+<h4>6 对照</h4>
+<p>对照是 Stage 10 的公开 lens（557 条 wikitext 提示，L0–L62）。F1 当时<b>没有做拟合质量检查</b>（如 held-out 上的 top-1 一致率；日志只有 "author-lens fit: a -&gt; b of 40"，checkpoint 只存了 J 的总和，做不了 split-half）。</p>
+<p><b>事后一致性比较（2026-10-30，CPU，mmap 逐层读，U42 部分解决）</b>：F1 与 public / fitA / self100 在共同层上的矩阵余弦。本手册编辑于 2026-10-30 下午重新运行脚本，数字一致。<span class="src">351_stage10/reports/methods/research_scripts/u42_lens_compare.py · <a href="#iu-research">附录 I</a> U42</span> <span class="st st-rechecked">复核过</span></p>
+<table class="t">
+<tr><th>层</th><th>F1 vs public</th><th>F1 vs fitA</th><th>F1 vs self100</th><th>fitA vs public</th><th>self100 vs public</th></tr>
+<tr><td>L24</td><td>0.296</td><td>0.269</td><td>0.278</td><td>0.795</td><td>0.853</td></tr>
+<tr><td>L32</td><td>0.294</td><td>0.295</td><td>0.296</td><td>0.846</td><td>0.916</td></tr>
+<tr><td>L40</td><td>0.357</td><td>0.354</td><td>0.365</td><td>0.892</td><td>0.953</td></tr>
+<tr><td>L44</td><td>0.511</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>L48</td><td>0.688</td><td>0.679</td><td>0.700</td><td>0.969</td><td>0.987</td></tr>
+<tr><td>L52</td><td>0.848</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>L56</td><td>0.923</td><td>0.923</td><td>0.927</td><td>0.997</td><td>1.001</td></tr>
+<tr><td>L62</td><td>0.996</td><td>0.996</td><td>0.998</td><td>1.009</td><td>1.010</td></tr>
+</table>
+<p>即 F1 在 L24–L48 与三个 WikiText lens 一致性差（余弦约 0.27–0.70），而三个 WikiText lens 彼此很一致；到 L56/L62 才接近。（单精度累加有约 0.01 的误差，故有 1.01 这样的值。）口径核对：public 的 ‖J−I‖/‖I‖ 在 L62 为 0.482，与 Neuronpedia config.yaml 的 final_identity_distance 0.4821 吻合。这种差别可能来自提示分布不同，也可能来自只用 40 条造成的噪声，现有数据无法区分。<span class="unk">未知/需确认：向 用户 确认（是否补做 F1 lens 的对半拟合以区分噪声与提示分布，需要 GPU，U42）</span></p>
+
+<h4>7 结果</h4>
+<p>产出 <code>371_stage12/alens/lens.pt</code>（8 个源层），2026-10-28 17:12 完成。读出结果见 F2。<span class="src">alens/progress.json done=40</span></p>
+
+<h4>8 局限与质疑</h4>
+<ul>
+<li>只有 40 条提示（公开 lens 557 条），J 的估计方差较大；提示很短（中位 50 token），skip_first=16 后每条平均约 39 个有效位置。</li>
+<li>拟合平均覆盖了提示里所有位置（标题、年份、名字），不是只针对名字位置。</li>
+<li>拟合集 31/9 target/control 不平衡。</li>
+<li>拟合集与评估集论文不重叠，但按作者团队不完全独立：3 篇评估论文与拟合集有同名作者（"qiang xu"、"j schwartz"、"j braun"，可能是同名不同人），已在 F2 中剔除，未重拟合（会浪费约 4 GPU 小时，当时已拟合 35/40）。<span class="src">config/alens_eval_exclude.json · PROGRESS.md "2026-10-28 12:00" 条</span></li>
+</ul>
+
+<h4>9 状态</h4>
+<p><span class="st st-done">已完成</span>（40/40）。</p>
+</section>
+
+<!-- ===================================================================== F2 -->
+<section id="s12-f2">
+<h2>F2 作者提示 lens 读出（alens_read）</h2>
+
+<h4>1 问题与作用</h4>
+<p>用 F1 的作者提示 lens 重做 Stage 10 风格的读出：如果换一个"懂作者文本"的 lens，中间层能否读出标题特异的作者信号？同时在最后一个标题 token 上读。<span class="src">371_stage12.py:19-20</span></p>
+
+<h4>2 材料</h4>
+<ul>
+<li>评估样本：Stage 11 样本 1,186 篇，6 个条件 true + false_0..false_4（delete 不在内），每条件 19,077 个名字 token。</li>
+<li><b>剔除</b>：<code>config/alens_eval_exclude.json</code>（2026-10-28 写）—— 规则 "Stage 11 sample papers sharing any full author name with the 40 author-lens fit papers"，3 篇（均为 target）：8baa8249…（"qiang xu"）、d3104dd7…（"j schwartz"）、debd096c…（"j braun"）。剔除后 1,183 篇（590 target / 593 control）。<span class="src">config/alens_eval_exclude.json · stage12_analyze.py:136-139 · commit 663ac1c</span></li>
+</ul>
+
+<h4>3 工具</h4>
+<p>F1 的 <code>alens/lens.pt</code>（<code>jlens.JacobianLens.load</code>，每层 J 放到该层所在 GPU）；<code>ActivationRecorder</code> 记录 FIT_LAYERS 的 block 输出；<code>L.transport(h, l)</code> = J_l·h，再 <code>model.unembed</code>。<span class="src">371_stage12.py:242-248, 259-264</span></p>
+
+<h4>4 步骤</h4>
+<ol>
+<li>对每个条件、每篇样本论文：取该条件提示的最后一个标题 token 位置 <code>it = title_positions(...)[-1]</code>（false 条件就是假标题的最后一个 token）。</li>
+<li>对每个作者：ids = 该条件提示 + name[:-1]，一次前向，记录 8 个源层。</li>
+<li>name 读出：在名字读出位置（<code>len(pids)−1+j</code>）对 h 做 transport + unembed，求每个名字 token 的 rank。</li>
+<li>title 读出：在 <code>it</code> 位置对 h 做 transport + unembed，得到一个 logits 向量，复制 len(name) 份，对该作者的每个名字 token 求 rank（即在标题位置上，所有名字 token 的排名）。<span class="src">371_stage12.py:255-266</span></li>
+</ol>
+
+<h4>5 公式</h4>
+<pre class="code">每篇论文、每个 (层, 位置)：x_c = 该论文所有名字 token 的 log10(1/rank) 平均，c ∈ {true, false_0..4}
+spec = x_true − mean(x_false_0 .. x_false_4)       （标题特异信号）
+报告：target、control 各自 spec 的平均 + bootstrap CI；target − control 按引用 bin 分层
+只用 6 个条件都存在、且不在剔除名单里的论文</pre>
+<p><span class="src">stage12_analyze.py:129-149</span></p>
+
+<h4>6 对照</h4>
+<ul>
+<li>5 个假标题均值作为基线（同一 token、同一论文配对）。</li>
+<li>对照 lens：Stage 10 公开 lens 在同样设计下的结果（Stage 10 / Stage 11 E4）。但 F2 分析里<b>没有</b>把两种 lens 放在同一张表里直接比较。</li>
+</ul>
+
+<h4>7 结果</h4>
+<table class="t">
+<tr><th>位置</th><th>层</th><th>target spec</th><th>control spec</th><th>target − control（bin 内）</th></tr>
+<tr><td>name</td><td>L24</td><td>+0.011</td><td>+0.022</td><td>−0.011 [−0.023, +0.002]</td></tr>
+<tr><td>name</td><td>L44</td><td>−0.004</td><td>+0.037</td><td>−0.041 [−0.061, −0.020]</td></tr>
+<tr><td>name</td><td>L48</td><td>+0.009</td><td>+0.067</td><td>−0.058 [−0.088, −0.028]</td></tr>
+<tr><td>name</td><td>L52</td><td>+0.036</td><td>+0.098</td><td>−0.062 [−0.096, −0.028]</td></tr>
+<tr><td>name</td><td>L56</td><td>+0.143</td><td>+0.144</td><td>−0.001 [−0.038, +0.036]</td></tr>
+<tr><td>name</td><td>L62</td><td>+0.489</td><td>+0.252</td><td><b>+0.238 [+0.210, +0.267]</b></td></tr>
+<tr><td>title</td><td>L24–L52</td><td>+0.031 ~ +0.061</td><td>0.000 ~ +0.108</td><td>CI 均含 0（−0.053 ~ +0.039）</td></tr>
+<tr><td>title</td><td>L56</td><td>+0.049</td><td>+0.020</td><td>+0.030 [+0.000, +0.060]</td></tr>
+</table>
+<p>全部 16 行见 <code>summary/F2_author_lens.csv</code>。结论：作者提示 lens 也读不出中间层的 target 特异作者信号；target − control 只在 L62 为正。<span class="src">summary/F2_author_lens.csv · reports/stage12_report.md §F2 · STATUS.md §3 F2</span></p>
+
+<h4>8 局限与质疑</h4>
+<ul>
+<li>F1 只有 40 条提示，"读不出"也可能是 lens 质量问题（没有拟合质量检查，见 F1）。</li>
+<li>中间层 control 的 spec 反而比 target 大（L44–52 的 target − control 显著为负）。<b>只描述</b>（用户 2026-10-30 决定，U43）；一个可能的方向（未检验）：作者提示 lens 偏向常见名字。另外 F1 在这些层与 WikiText lens 一致性差（见 F1），读出本身的可靠性也有限。<span class="src">PROGRESS.md 2026-10-30 14:00 条 U43</span></li>
+<li>title 位置的读出是在标题最后一个 token 上，对所有名字 token（包括后续 token）打分，后续名字 token 在该位置上本不该被预测，值偏低且噪声大。</li>
+<li>剔除按"完整名字字符串相同"，不能发现拼写不同的同一人。</li>
+</ul>
+
+<h4>9 状态</h4>
+<p><span class="st st-done">已完成</span> 144/144（2026-10-28 19:28 时剩 132，约 20:00 完成），分析 19:55（含剔除）。<span class="src">PROGRESS.md "2026-10-28 19:28"、"20:35" 条</span></p>
+</section>
+
+<!-- ===================================================================== CPU -->
+<section id="s12-cpu">
+<h2>Stage 12 CPU 分析（stage12_cpu.py）：名字先验 A/B/C 与探针对照 X1</h2>
+
+<h4>1 问题与作用</h4>
+<ul>
+<li><b>A</b>：把 Stage 10 模型输出上的作者信号拆成三段：先验（无标题）→ 主题（假标题 − 无标题）→ 论文特异（真标题 − 假标题），按 token 角色和组。</li>
+<li><b>B</b>：名字先验能否解释多选识别（mc_team_a）？</li>
+<li><b>C</b>：名字常见程度（姓氏频率）与先验、论文特异信号的关系。</li>
+<li><b>X1</b>：Stage 11 标题位置线性探针（E4b）的对照：换 gold、在假标题对上训练。</li>
+</ul>
+<p><span class="src">stage12_cpu.py:1-3 · 作业 11413574（short，16 CPU，64G）</span></p>
+
+<h4>2 材料</h4>
+<ul>
+<li>A/B/C：Stage 10 冻结汇总 <code>351_stage10/summary_title/paper_title_contrasts.parquet</code>（每篇论文 × 读出 × 层，含 true / false（5 个假标题均值）/ delete 的 mean_nlr，按角色细分）；<code>cohort/papers.parquet</code>（authors、field、mc_team_a、recall_level）。<span class="src">stage12_cpu.py:36-37 · 351_stage10.py:839-864（contrast 定义：spec = true − mean(false_k)，topic = mean(false_k) − delete）</span></li>
+<li>X1：Stage 11 <code>raw/titlepos/true</code> 与 <code>false_0</code> 的残差（最后标题 token 在 PROBE_LAYERS 的残差 <code>resid_title</code>；<code>:</code> 位置 PROBE_LAYERS + L63 的残差 <code>resid_colon</code>，fp16），<code>raw/probe_vocab</code>（final norm 权重、cohort 中所有作者首 token / 姓氏首 token 的 lm_head 行）。gold = 每个作者名字的第一个 token（kind=='first'）。<span class="src">stage12_cpu.py:111-120 · 361_stage11.py:355-391 do_titlepos()</span></li>
+</ul>
+
+<h4>3 工具</h4>
+<p>numpy / pandas / scipy（spearmanr）；ridge 回归用闭式解 <code>np.linalg.solve</code>。<span class="src">stage12_cpu.py:143-144</span></p>
+
+<h4>4 步骤</h4>
+<ol>
+<li><b>A</b>：对每个 (读出, 层, 角色)：prior = delete，topic = false − delete，spec = true − false，true；按 all/target/control 平均；target − control 对四项各做 bin 内分层 + bootstrap。角色：all_tokens、surname_first、surname_cont、given_first、initial_first、punct。另存按 bin（A_prior_by_bin.csv）和按层（logit / jlens_public，A_prior_by_layer.csv）。<span class="src">stage12_cpu.py:39-72</span></li>
+<li><b>B</b>：R0/R1 且 mc_team_a 非空的论文（8,894 篇），prior 和 spec（模型输出，all tokens）先在引用 bin 内去均值，再与 mc_team_a 求 Spearman；CI = 500 次论文重抽。<span class="src">stage12_cpu.py:74-83</span></li>
+<li><b>C</b>：每个作者取最后一个空格分隔的词（小写）作姓氏，在全 cohort 作者中计数；每篇论文 = 各作者 log10(计数) 的平均；与 prior、spec 求 Spearman；target − control 的姓氏常见度做 bin 内分层。<span class="src">stage12_cpu.py:89-99</span></li>
+<li><b>X1</b>：层 L24/40/56；5 折（<code>default_rng(11).integers(0,5)</code> 按论文随机分折）。ridge：X = 标题位置残差（训练集标准化），Y = <code>:</code> 位置 L63 残差，λ = 1.0 × trace(AᵀA)/d。预测的 L63 残差 → RMSNorm（norm 权重、eps）→ 名字词表 lm_head 行 → gold 首 token 在名字词表内的 rank → log10(1/rank)，对作者平均。spec = 探针(true 标题残差) − 探针(false_0 标题残差)。四种设定：
+  <ul>
+  <li>probe（同 Stage 11）：true 对训练；</li>
+  <li>gold = 随机另一篇论文的作者（全局置换，seed 3712 的 rng）；</li>
+  <li>gold = 同领域随机另一篇论文的作者；</li>
+  <li>在 false_0 对（X=false 标题残差，Y=false 运行 <code>:</code> L63）上训练。</li>
+  </ul>
+  <span class="src">stage12_cpu.py:111-158</span></li>
+</ol>
+
+<h4>5 公式</h4>
+<pre class="code">A:  prior = nlr_delete；topic = nlr_false − nlr_delete；spec = nlr_true − nlr_false；（nlr_false = 5 个假标题均值）
+B:  rho = Spearman( mc_team_a , metric − mean_bin(metric) )
+C:  log_surname_freq_p = mean_authors log10( count(surname) )
+X1: W = (AᵀA + λI)⁻¹ Aᵀ(Y − ȳ),  λ = α·tr(AᵀA)/d,  α = 1
+    score = mean_gold −log10(1 + #{名字词表中 logit 更大的 token})
+    spec  = score(true 残差) − score(false_0 残差)</pre>
+
+<h4>6 对照</h4>
+<p>X1 的两个 gold 置换是"信号应为 0"的负对照；在假标题上训练是检验探针是否只是学到了"真标题"的通用特征。</p>
+
+<h4>7 结果</h4>
+<p><b>A（模型输出，all tokens）</b>：target prior −1.061 / topic −0.128 / spec +0.481 / true −0.708；control −1.150 / −0.053 / +0.200 / −1.004。target − control（bin 内）：prior +0.087 [+0.070, +0.103]，topic −0.047 [−0.055, −0.038]，spec +0.207 [+0.195, +0.220]；surname_first 上 prior +0.022 [−0.019, +0.063]（不显著）、spec +0.423 [+0.393, +0.454]。<span class="src">reports/stage12_cpu_report.md §A · summary_cpu/A_prior_decomposition.csv（readout=final）</span></p>
+<p><b>B</b>：prior 与 mc_team_a 的 ρ = +0.085 [+0.063, +0.106]；spec ρ = +0.329 [+0.312, +0.346]（n = 8,894）。<span class="src">summary_cpu/B_prior_vs_recognition.csv</span></p>
+<p><b>C</b>：姓氏常见度与 prior ρ = −0.215（all），与 spec ρ = −0.091；target 姓氏比 control 少见：−0.199 [−0.233, −0.166]。<span class="src">summary_cpu/C_surname_commonness.csv</span></p>
+<p><b>X1</b>（spec，全部论文）：</p>
+<table class="t">
+<tr><th>层</th><th>probe</th><th>gold=随机论文</th><th>gold=同领域随机</th><th>假标题上训练</th></tr>
+<tr><td>L24</td><td>+0.045 [+0.040, +0.050]</td><td>−0.002</td><td>+0.002</td><td>+0.068 [+0.063, +0.073]</td></tr>
+<tr><td>L40</td><td>+0.062 [+0.056, +0.067]</td><td>−0.003</td><td>−0.004</td><td>+0.081 [+0.076, +0.087]</td></tr>
+<tr><td>L56</td><td>+0.081 [+0.075, +0.087]</td><td>+0.001</td><td>+0.000</td><td>+0.094 [+0.088, +0.100]</td></tr>
+</table>
+<p><span class="src">summary_cpu/X1_probe_controls.csv · reports/stage12_cpu_report.md §X1</span></p>
+<p><b>X1 的复核（Stage 13）</b>：按作者团队分折 + 剔除"探针训练时见过该测试论文的提示标题"（title reuse，随机分折下约 80% 测试论文受影响）重跑后：置换对照仍 ≈0、probe 本身成立；但"在假标题上训练更强"<b>不成立</b>（剔除后 L24/40/56 = +0.050/+0.057/+0.074，与 probe 持平或更低），原因是假标题供体泄漏。<span class="st st-void">作废</span>（仅"假标题训练更强"这一句）<span class="st st-rechecked">复核过</span>（置换对照）<span class="src">381_stage13/reports/e4b_split_compare.md（group / dropped 列；sanity 行 max|diff| 0.0080）· 作业 11443587 · PROGRESS.md "2026-10-28 12:00"、"12:35" 及 ~19:10 前的复核条</span></p>
+
+<h4>8 局限与质疑</h4>
+<ul>
+<li>A 的 "false" 是 5 个假标题均值，假标题来自同领域匹配论文，"topic" 混入了匹配质量。</li>
+<li>C 的姓氏取"最后一个词"，对复姓、东亚名字顺序、"Jr." 等处理粗糙；只在本 cohort 内计频。</li>
+<li>X1 原版按论文随机分折，存在标题复用泄漏和同团队泄漏（已由 Stage 13 E4b 复核处理）。</li>
+<li>X1 只看 L24/40/56 三层；gold 只用首 token。</li>
+</ul>
+
+<h4>9 状态</h4>
+<p>A/B/C <span class="st st-done">已完成</span>（2026-10-27 14:56，作业 11413574）。X1 <span class="st st-rechecked">复核过</span>（Stage 13 E4b 团队分折），其中"假标题训练更强"<span class="st st-void">作废</span>。<span class="src">logs/cpu_11413574.log 末行 "STAGE12 CPU DONE"</span></p>
+</section>
+
+<!-- UNKNOWN-LIST（2026-10-30 下午按 CHANGES_2026-10-30.md 更新）
+仍需确认：
+s12-p2 | U40 是否补做 P2 显式 sanity（数据已显示 hook 生效） | 用户
+s12-f1 | U42 是否补做 F1 lens 对半拟合（需 GPU；事后比较显示 L24–48 余弦 0.27–0.70） | 用户
+已解决（2026-10-30）：
+s12-p1 | U38 按角色用 raw 重算（research_scripts/u38_u40_recompute.py）；U39 只描述不解读（用户决定）
+s12-n1 | U41 99.51% 与 "首字母. 姓" 一致
+s12-f2 | U43 只描述 + 一句可能方向（用户决定）
+-->
+<!-- CHECK-NUMBERS
+1. P1 names L52 recovery +0.847 [+0.830, +0.864]；p1 ':' L52 +0.172 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/P1_patch_pos.csv 行 layer=52, item=names/p1, group=all
+2. P2 attn L48 +0.231 [+0.221, +0.244]；mlp L56 +0.224 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/P2_patch_comp.csv 行 comp=attn, layer=48, group=all；comp=mlp, layer=56, group=all
+3. N1 delete/all true_list_most_plausible 0.255 (n=8894)；true/all 0.625 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/N1_prior_mc.csv 行 prompt=delete,group=all 和 prompt=true,group=all 列 true_list_most_plausible
+4. N2 target−control pure +0.047 [+0.031,+0.062]、true +0.247 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/N2_prior_pure.csv 行 tc_pure（列 pure, lo, hi）、tc_true（列 true）
+5. F2 name L62 target−control +0.238 [+0.210, +0.267]；剔除 3 篇 — /scratch/zhang.zhiqi2/jlens/371_stage12/summary/F2_author_lens.csv 行 layer=62, position=name 列 tc/tc_lo/tc_hi；config/alens_eval_exclude.json paper_ids
+6. 单元 408 = 24+24+144+72+144 — 371_stage12.py:70-80；raw/ 下 npz 计数
+-->
