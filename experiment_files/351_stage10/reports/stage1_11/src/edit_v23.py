@@ -35,3 +35,14 @@ R = [
 for a, b in R:
     n = s.count(a); assert n == 1, (n, a[:60]); s = s.replace(a, b)
 open(p, 'w', encoding='utf-8').write(s); print('applied', len(R))
+
+# --- v23b (2026-11-01): numbers corrected to the source files (found by the handbook check) ---
+s = open(p, encoding='utf-8').read()
+R2 = [
+('有匹配近邻的子集 0.73 [0.57, 0.89]。', '有匹配近邻的子集测试集 0.75 [0.56, 0.97]（37 篇；全部 66 篇 0.73 [0.61, 0.84]）。'),
+('<tr><td>敏感性分析（506 篇）</td><td>+0.31</td><td>相近</td><td>L36 约 +0.16</td><td>—</td><td>&lt; 0</td></tr>',
+ '<tr><td>敏感性分析（506 篇）</td><td>+0.30</td><td>相近</td><td>L36 +0.161 [0.147, 0.173]</td><td>+0.017 [0.001, 0.033]</td><td>&lt; 0</td></tr>'),
+]
+for a, b in R2:
+    n = s.count(a); assert n == 1, (n, a[:60]); s = s.replace(a, b)
+open(p, 'w', encoding='utf-8').write(s); print('v23b applied', len(R2))

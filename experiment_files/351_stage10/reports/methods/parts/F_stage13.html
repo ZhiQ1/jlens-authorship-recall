@@ -6,13 +6,13 @@
 
 <h4>来由</h4>
 <p>用户 2026-10-28 指出"lens 读不出"≠"不存在"，由此开 Stage 13。三个假设：H1 中间层主要表示任务/格式；H2 主要表示"这是哪篇论文"（论文身份）；H3 作者信息已在、只是不在词表方向上。<span class="src">PROG 2026-10-28 ~07:15 条 · stage1_11_report.html Part IV · C13/README.md</span></p>
-<p><b>三个假设的目前结果（2026-10-31，与报告 v22 假设表新加的"目前结果"列一致）</b>：</p>
+<p><b>三个假设的目前结果（2026-11-01，与报告 v23 假设表"目前结果"列一致）</b>：</p>
 <ul>
 <li><b>H1</b>：M3 ":" 位置的状态是任务特定的（L16–L40 的迁移比 T 都 &lt; 0.5），H1 判读不变（<a href="#s13-m3">s13-m3</a>）。</li>
-<li><b>H2</b>：M3 不支持（不高于 L4 文字水平）；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考。另外，X4 最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反（<a href="#s13-x4">s13-x4</a>）。</li>
+<li><b>H2</b>：M3 不支持；X3 显示中间层超出用词的语义表示，但不能与论文身份区分；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考（M3 见 <a href="#s13-m3">s13-m3</a>，X3 见 <a href="#s13-x3">s13-x3</a>）。另外，X4 最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反（<a href="#s13-x4">s13-x4</a>）。</li>
 <li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足；X2 暂停，H3 没有因果检验（<a href="#s13-x2">s13-x2</a>）。</li>
 </ul>
-<p><span class="src">R13/reports/m3_report.md 末节 "Reading under prereg addendum 2" · R13/summary_m3/m3_verdict_addendum2.csv · R13/reports/x4_report.md · R13/summary_x1x4/x4_rolesplit.csv · PROG 2026-10-31 01:00 条</span> <span class="st st-rechecked">复核过</span></p>
+<p><span class="src">R13/reports/m3_report.md 末节 "Reading under prereg addendum 2" · R13/summary_m3/m3_verdict_addendum2.csv · R13/reports/x4_report.md · R13/summary_x1x4/x4_rolesplit.csv · PROG 2026-10-31 01:00 条 · R13/reports/x3_report.md、x3_textbase_recovery.md、x3_groupsplit.md · stage1_11_report.html 假设表"目前结果（2026-11-01）"列（v23）· PROG 2026-11-01 条</span> <span class="st st-rechecked">复核过</span></p>
 
 <h4>共用样本</h4>
 <table class="t">
@@ -337,7 +337,8 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 <h4>2 材料</h4>
 <p>Stage 11 样本 1,186 篇的改写（para_gen 24/24，claim 作业 11374284、11453127）。<span class="src">R13/raw/para_gen/shard_000…023.npz（paper_id, title, paraphrase, auto_ok, word_jaccard）· R13/logs/claims/para_gen_*</span></p>
 <h4>3 工具</h4>
-<p>生成与自动检查：<code>381_stage13.py</code> do_para_gen / para_checks；NLI：<code>C13/stage13_para_nli.py</code>（作业 11475175）；Qwen 判断器：<code>C13/stage13_gpu_followup.py --sample --judge</code>（GPU 作业 11485349）。para_run（真正的实验）：do_para_run 只在 <code>R13/logs/para_ok</code> 存在时才排队。补充 5 写定后改为先跑 1 个真实分片：<code>C13/stage13_para_shard.py 0</code>（检查存下的 lexical_neighbour 与 D 表一致、分数有限），作业 11511973 <span class="st st-review">已提交，排队中（2026-10-31）</span>；通过后再写 para_ok 放行其余分片。<span class="src">381_stage13.py:66, 268-325 · C13/stage13_para_shard.py 文档串 · squeue 2026-10-31（11511973 PD）· PROG 2026-10-30 23:00 条</span></p>
+<p>生成与自动检查：<code>381_stage13.py</code> do_para_gen / para_checks；NLI：<code>C13/stage13_para_nli.py</code>（作业 11475175）；Qwen 判断器：<code>C13/stage13_gpu_followup.py --sample --judge</code>（GPU 作业 11485349）。para_run（真正的实验）：do_para_run 只在 <code>R13/logs/para_ok</code> 存在时才排队。补充 5 写定后改为先跑 1 个真实分片：<code>C13/stage13_para_shard.py 0</code>（检查存下的 lexical_neighbour 与 D 表一致、分数有限）。实际由合并作业 <b>11513313</b>（<code>C13/stage13_combo_para1_hookcheck.sbatch</code>，gpu-interactive，d1029，2026-10-31 07:05 开始，用时 4 分钟；同一作业还跑了 U40 的 hook 检查，见 <a href="#s12-p2">s12-p2</a>）跑完分片 0：49 行，存下的近邻与补充 5 的 D 表一致，分数有限。原单独提交的作业 11511973（以及 U40 的 11511965）按用户指示取消。2026-10-31 07:15 建 <code>logs/para_ok</code> 放行其余分片；分片 1–23 由 s11w 作业 <b>11385978</b>（gpu-short，d1029，9.6 分钟）跑完，24/24。<span class="src">381_stage13.py:66, 268-325 · C13/stage13_para_shard.py 文档串 · C13/stage13_combo_para1_hookcheck.sbatch · sacct 11513313（s13_combo，00:04:04，COMPLETED）、11385978（s11w，00:09:36，COMPLETED）、11511973 / 11511965（CANCELLED）· PROG 2026-10-31 07:15 条、"User order" 条、10:15 条 · R13/raw/para_run/shard_000…023.npz</span></p>
+<p>分析（全部 CPU）：<code>C13/stage13_x3_analyze.py</code>（作业 11521572，short）→ <code>R13/reports/x3_report.md</code>、<code>summary_x3/x3_gap.csv</code>、<code>x3_behaviour.csv</code>、<code>x3_overlap_control.csv</code>、<code>x3_identity_verdict.csv</code>；文本模型基线 <code>C13/stage13_x3_textbase.py</code>（作业 11522507，short，11 分钟）→ <code>summary_x3/x3_textbase_gap.csv</code>、<code>x3_textbase_ratio.csv</code>；行为恢复比例 <code>C13/stage13_x3_recovery.py</code>（会话内直接运行）→ <code>summary_x3/x3_recovery.csv</code>，两者的报告为 <code>R13/reports/x3_textbase_recovery.md</code>；target / control 拆分与 D 的词重合分布 <code>C13/stage13_x3_groupsplit.py</code> → <code>R13/reports/x3_groupsplit.md</code>、<code>summary_x3/x3_groupsplit.csv</code>。后三项是事后加的（用户 2026-10-31 / 11-01 要求）。<span class="src">sacct 11521572（s13_x3an，00:00:57）、11522507（s13_x3tb，00:11:02）· x3_textbase_recovery.md 第 3 行 "User request 2026-10-31 (tasks 1 and 3)" · stage13_x3_groupsplit.py 文档串 "user 2026-11-01" · PROG 2026-10-31 11:22 条、2026-11-01 条</span></p>
 <h4>4 步骤</h4>
 <p><b>(a) 生成</b>：原始文本（不用对话模板，避免 thinking），贪心（do_sample=False），max_new_tokens=60，pad=eos；解码后只取第一行、去首尾空白和引号。提示原文：<span class="src">381_stage13.py:125-126, 276-286</span></p>
 <pre class="code">Rewrite the title of a research paper using different words while keeping exactly the same meaning. Do not add any information.
@@ -367,23 +368,96 @@ Answer with Yes or No.</pre>
 <p><b>(h) 新 20 条人工标注（B 组）</b>：<code>R13/logs/para_review_sample20_b_labels.csv</code>（已排除前 20 条和完全相同的改写），标注来源一栏写"人工确认（参考了 Claude 的建议）"：<b>保留 11、边界 6（B6、B7、B8、B13、B16、B19）、改意思 3（B11、B15、B20）</b>，各条附理由。<span class="src">para_review_sample20_b_labels.csv 列 human_label、reason、label_source（本次计数）· PROG 2026-10-30 14:00 条</span> <span class="st st-rechecked">复核过</span></p>
 <p><b>(h′) 判断器 v2</b>（<code>C13/stage13_judge2.py</code>，tiny 11501023 通过，GPU 作业 11501072）：提示写入用户的 5 条标准（同一研究对象、同一范围、术语不被换成普通词或别的术语、数字/名字/缩写都在、关系方向不变；只是换说法或换语序仍算 Yes）；盲 A/B、两种顺序、chat 模板、关闭 thinking，分数 = P(Yes)/(P(Yes)+P(No))；在 A 组 20 条上按两顺序平均 P(Yes) 选阈值使一致率最大（边界算"不保留"），阈值 0.024，<b>校准一致率 0.90</b>；在 B 组 20 条（用户在判断器看到之前标好）上检验：<b>一致率 0.55</b>（边界算不保留），去掉 6 条边界后 0.79（14 条）——判断器把 20 条全判为保留，包括 6 条边界和 3 条改意思。用户的规则是低于 0.80 就不用，所以<b>判断器 v2 不用</b>，改走备用方案（人工核对 + 有/无该部分样本的敏感性分析），已写入补充 5（2026-10-30 22:45）。<span class="src">R13/followup/judge2_summary.json（threshold、calibration_agreement、test_agreement_*、test_confusion、verdict）· judge2_sample.csv · stage13_judge2.py:1–11, 78–86 · R13/logs/judge2_11501072.log · PROG 2026-10-30 15:00 条</span> <span class="st st-rechecked">复核过</span> <span class="st st-void">作废</span>（判断器路线）</p>
 <p><b>(h″) 人工标注的比例（补充 5，不再加标）</b>：用户决定答辩前不再加标，按已有 40 条人工标注（A、B 两次各随机抽 20 条主分析改写）报告：改意思 6/40 = 0.15（Wilson 95% [0.071, 0.291]）；边界 7/40 = 0.175 [0.087, 0.319]；改意思或边界 13/40 = 0.325 [0.201, 0.480]；保留 27/40 = 0.675 [0.520, 0.799]。<span class="src">R13/config/prereg_addendum5.json "meaning_check.manual" · logs/para_review_sample20_labels.csv、logs/para_review_sample20_b_labels.csv</span></p>
-<p><b>(i) para_run</b>：对每篇 A，在作者问法里分别放原标题、改写、搭档 B、近邻 D 四个版本，存 15 层 × 2 位置残差和第一作者得分。状态：1 个真实分片（作业 11511973）<span class="st st-review">已提交，排队中（2026-10-31）</span>，结果待出。<span class="src">381_stage13.py:307-325 · C13/stage13_para_shard.py · squeue 2026-10-31</span></p>
+<p><b>(i) para_run</b>：对每篇 A，在作者问法（不含年份）里分别放原标题、改写、搭档 B、近邻 D 四个版本，存 15 层（L4、8、16、24、28、32、36、40、44、48、52、56、60、62、63）× 2 位置（标题最后一个 token、":"）的残差和第一作者得分（teacher forcing，第一作者名字 token 的平均 log10(1/rank)）。<span class="st st-done">已完成</span> 24/24（分片 0 作业 11513313，分片 1–23 作业 11385978，见上"3 工具"），共 1,137 行。<span class="src">381_stage13.py:307-325 · x3_report.md 第 5–6 行（"Shards: 24 of 24. Rows 1137 … Layers [4, 8, …, 63]; positions ['title_last', 'colon']"）</span></p>
+<p><b>(j) 预注册分析</b>（<code>stage13_x3_analyze.py</code>）：主分析集 n = 1,110（补充 5 的 1,115 篇中有 5 篇不在 pairs.parquet，脚本记 WARN），敏感性集 n = 1,012（补充 5：1,015）；"有匹配 D" 子集（D 的 jaccard2 ≥ 改写的）主 66 / 敏感性 55，另报无匹配子集。每个集合 × tune / test / all × 两个位置 × 15 层算 G′ 与 G′ − G′(L4)；规则：在 tune 上取第一个 G′ − G′(L4) 区间 &gt; 0 的层为起始层，在 test 上确认。补充 2 的词重合对照：每层每位置 OLS dcos ~ 1 + djac + drare，截距 = 词重合相同时的版本效应，与主结果并列报告、不改判定。行为：第一作者得分 改写 − D（test）。区间：按 pairs.parquet 的 <code>team</code> 重抽的 95% bootstrap，2,000 次（主），论文 bootstrap 另存 x3_gap.csv。<span class="src">x3_report.md 第 3–11 行、"Verdict (automatic)" 节、"Word overlap" 节末注 · PROG 2026-10-31 07:40 条（种子 311–333）</span></p>
+<p><b>(k) 文本模型基线</b>（事后加，用户 2026-10-31 要求）：原标题、改写、D、搭档 B 每条文本<b>单独编码、不加提示</b>（1,137 篇，3,949 条不同文本）。bert-base-uncased：隐藏层 0–12（L0 = 词嵌入层 = 文字基线，对应 Qwen 的 L4），位置 title_last（[SEP] 前最后一个 wordpiece）、mean_title、cls；all-mpnet-base-v2：隐藏层 0–12，位置 mean（模型自身的池化）、title_last、cls，另加句向量层（与 L12 mean 余弦相同，最大 |cos − 1| = 2.4e-07）。与 Qwen 用同一组团队重抽（同种子、同抽样），所以模型间差值是配对的。不同模型的余弦差不在同一尺度上，所以比较用无量纲比值（见公式）。<span class="src">x3_textbase_recovery.md "Task 1" 节第 1–2 段 · C13/stage13_x3_textbase.py（+ .sbatch）· 作业 11522507</span></p>
+<p><b>(l) 行为恢复比例</b>（事后加，用户 2026-10-31 要求）：（改写 − 假）÷（真 − 假），用第一作者 teacher-forced 得分；"真" = para_run 的原标题得分，"假" = 近邻 D 的得分。Stage 10 的 false_0 <b>不用</b>：X3 para_run 的提示是 <code>Who are the authors of the paper titled "{t}"?\nAuthors:</code>（不含年份），Stage 10 false_0 的提示是 <code>Who are the authors of the paper titled "{title}" ({year})?\nAuthors:</code>（含年份），两者不同。分组 = pairs.parquet 的 <code>group</code>（与 Stage 11 sample.parquet、Stage 10 papers.parquet 的 group 在全部 1,178 对上相同）。估计量：均值之比，团队重抽区间；只有全部 |真 − 假| ≥ 0.1 时才另报逐篇比值的均值。<span class="src">x3_textbase_recovery.md "Task 3" 节 "Template check" 段 · C13/stage13_x3_recovery.py · summary_x3/x3_recovery.csv</span></p>
+<p><b>(m) target / control 拆分与 D 的词重合分布</b>（事后加，用户 2026-11-01 要求）：标题最后 token 的 G′(l) − G′(L4) 按 target / control 分开，各自与差值给团队 bootstrap 区间（2,000 次，种子 411）；另列改写与 D 的 jaccard2 分位数，解释为什么只有 66 对有匹配 D。只读 x3_cos_per_paper.csv.gz 与 x3_pairs.csv，不重算余弦。<span class="src">C13/stage13_x3_groupsplit.py 文档串 · x3_groupsplit.md 第 3 行</span></p>
 <h4>5 公式</h4>
 <p>原版 Jaccard = |W(t) ∩ W(p)| / max(1, |W(t) ∪ W(p)|)，W = 长度 &gt;3 的小写字母数字词；jaccard2 同式，W 换成去停用词、任意长度、去后缀的词集。主指标（补充 4；补充 5 把 D 的选法改用 jaccard2）：G′(l,pos) = cos(原, 改写) − cos(原, D)，要求 G′(l) &gt; 0 且 G′(l) − G′(L4) &gt; 0（团队区间不含 0），tune 上找、test 上确认；行为：第一作者得分 改写 − D &gt; 0。原指标 G = cos(原, 改写) − cos(原, B) 降为次要。补充 2 另要求在回归里用词 Jaccard 和"共享稀有词比例"（稀有 = 队列标题文档频率 &lt;10）作协变量。<span class="src">prereg.json X3 · prereg_addendum2.json X3 · prereg_addendum4.json X3</span></p>
+<p>事后加的两个量：文本基线比值 = max<sub>l &gt; base</sub> (G′(l) − G′(base)) ÷ G′(base)，base = 文字基线层（BERT、mpnet 为 L0，Qwen 为 L4；另报 "下一层" 版本 L1 / L8），最大层按点估计选定，区间在该层上团队重抽；"Qwen − 模型" 为配对差。行为恢复比例 = mean(改写 − 假) ÷ mean(真 − 假)（均值之比）。<span class="src">x3_textbase_recovery.md "Scale-free comparison" 段首、"Task 3" 段首</span></p>
 <h4>6 对照</h4>
 <p>近邻 D（主）；搭档 B（次）；词 Jaccard 协变量；意义检查（NLI + Qwen 判断器 + 人工 20+20）。按补充 5，所有 X3 结果在主分析集（1,115）和敏感性集（1,015）上都报告；结论以主分析集为准，两集结论不同时写"不稳健"。<span class="src">R13/config/prereg_addendum5.json "analyses"</span></p>
+<p>事后加的对照（不在预注册里）：不认识作者的文本模型 bert-base-uncased 与句子向量模型 all-mpnet-base-v2 上的同一 G′；target 与 control 分开比较（认不认得这篇论文）；行为恢复比例按 target / control 分开。<span class="src">x3_textbase_recovery.md · x3_groupsplit.md</span></p>
 <h4>7 结果</h4>
-<p>只有生成和意义检查的结果（见上）。X3 主实验无结果：para_run 1 个真实分片（作业 11511973）已提交，排队中（2026-10-31）。</p>
+<p><span class="st st-done">已完成</span>（数据 2026-10-31；结论措辞 2026-11-01 用户确认）。n：主分析 1,110 篇，敏感性 1,012 篇，有匹配 D 的子集 66 / 55；test 集主分析 552 篇（target 274、control 278）。生成与意义检查的结果见"4 步骤"。<span class="src">x3_report.md 第 5–11 行（WARN 只关于 n）· x3_groupsplit.md "primary / test (target n = 274, control n = 278)"</span></p>
+<p><b>(1) 主指标 G′ = cos(原, 改写) − cos(原, D)，标题最后一个 token，主分析 test（n = 552）</b>：</p>
+<table class="t">
+<tr><th>层</th><th>G′</th><th>G′ − G′(L4) [95% 团队区间]</th></tr>
+<tr><td>L4</td><td>+0.304</td><td>0</td></tr>
+<tr><td>L8</td><td>+0.316</td><td>+0.012 [+0.004, +0.019]</td></tr>
+<tr><td>L16</td><td>+0.310</td><td>+0.006 [−0.003, +0.016]（含 0）</td></tr>
+<tr><td>L24</td><td>+0.324</td><td>+0.020 [+0.008, +0.032]</td></tr>
+<tr><td>L28</td><td>+0.365</td><td>+0.062 [+0.050, +0.074]</td></tr>
+<tr><td>L32</td><td>+0.434</td><td>+0.130 [+0.118, +0.142]</td></tr>
+<tr><td>L36</td><td>+0.462</td><td><b>+0.159 [+0.146, +0.171]</b>（最高）</td></tr>
+<tr><td>L40</td><td>+0.424</td><td>+0.120 [+0.107, +0.133]</td></tr>
+<tr><td>L44</td><td>+0.336</td><td>+0.033 [+0.019, +0.046]</td></tr>
+<tr><td>L48</td><td>+0.317</td><td>+0.013 [−0.003, +0.029]（含 0）</td></tr>
+<tr><td>L52</td><td>+0.337</td><td>+0.033 [+0.017, +0.050]</td></tr>
+<tr><td>L56</td><td>+0.330</td><td>+0.027 [+0.009, +0.044]</td></tr>
+<tr><td>L60</td><td>+0.274</td><td>−0.029 [−0.047, −0.011]</td></tr>
+<tr><td>L62</td><td>+0.181</td><td>−0.123 [−0.143, −0.102]</td></tr>
+<tr><td>L63</td><td>+0.290</td><td>−0.013 [−0.035, +0.009]</td></tr>
+</table>
+<p><span class="src">x3_textbase_recovery.md "Qwen3-32B title_last, same papers and draws (base L4)" 行 = x3_report.md "primary / all: G′" 节 title_last 表 test、test − L4 列（四位小数，如 L36 +0.1590 [+0.1459, +0.1714]）· summary_x3/x3_gap.csv</span></p>
+<p>L4 的 G′ 已有 +0.30，来自用词（见 (2)）。按规则（tune 上第一个显著层）：主分析起始层 <b>L8</b>（tune − L4 +0.0086 [+0.0010, +0.0159]；test − L4 +0.0120 [+0.0044, +0.0192]，脚本判 confirmed）；敏感性集起始层 <b>L24</b>（test − L4 +0.0218 [+0.0095, +0.0344]）。起始层在两集之间不同，按补充 5 记"<b>不稳健</b>"，起始层不作结论。中间层的优势在敏感性集相同（L36 − L4 +0.1605 [+0.1473, +0.1734]；L48 为 +0.0170 [+0.0009, +0.0330]，主分析 L48 区间含 0）。次要指标 G（对搭档 B）形状相同（test − L4：L8 +0.0160 [+0.0090, +0.0226]，L36 +0.1540，L48 −0.0026 含 0）。词重合对照后的版本效应（回归截距）在 test 各层都 &gt; 0（L8 +0.2535 [+0.2054, +0.3033]）。有匹配 D 的子集（test n = 37）：L4 的 G′ +0.118，L8 − L4 +0.0359 [+0.0128, +0.0583]，L36 − L4 +0.224。<span class="src">x3_report.md "Verdict (automatic)" 各行、"Robustness" 行（"identity layer differs (both confirmed) -&gt; not robust"）、"sensitivity / all: G′" 节 title_last 表 · x3_textbase_recovery.md 比值表 primary/d_matched/test Qwen 行（max +0.224，L36）</span></p>
+<p>":" 位置：各版本余弦在 L4–L8 都接近 1，G′ 只有约 0.002（L4 +0.0021，L8 +0.0026），<b>不作解读</b>；L56–L60 增到 +0.25–0.29。<span class="src">x3_report.md "primary / all: G′" 节 colon 表 test 列 · PROG 2026-10-31 07:40、10:15 条</span></p>
+<p><b>(2) 为什么只有 66 对有匹配 D</b>（主分析 1,110）：改写与原标题的 jaccard2 中位数 0.611（q10 0.273，q90 0.900），87.7% &gt; 0.3；D 与原标题中位数 0.154（q90 0.235，最大 0.600），只有 2.4% &gt; 0.3。D 的 jaccard2 ≥ 改写的只有 66 对，这 66 对的改写本身用词变化很大（jaccard2 中位数 0.143；无匹配的 0.625）。稀有词共享比例：改写 0.729，D 0.072。<span class="src">x3_groupsplit.md "Why only 66 primary pairs have a matched D" · x3_report.md "Word overlap" 表</span></p>
+<p><b>(3) target / control 拆分</b>（G′(l) − G′(L4)，标题最后 token，主分析 test）：</p>
+<table class="t">
+<tr><th>层</th><th>target（274）</th><th>control（278）</th><th>target − control</th></tr>
+<tr><td>L24</td><td>+0.015 [−0.001, +0.031]</td><td>+0.025 [+0.008, +0.042]</td><td>−0.010 [−0.033, +0.015]</td></tr>
+<tr><td>L28</td><td>+0.060 [+0.044, +0.077]</td><td>+0.063 [+0.046, +0.081]</td><td>−0.003 [−0.028, +0.021]</td></tr>
+<tr><td>L32</td><td>+0.130 [+0.113, +0.146]</td><td>+0.130 [+0.113, +0.147]</td><td>−0.000 [−0.023, +0.024]</td></tr>
+<tr><td>L36</td><td>+0.158 [+0.140, +0.175]</td><td>+0.160 [+0.141, +0.178]</td><td>−0.002 [−0.027, +0.025]</td></tr>
+<tr><td>L40</td><td>+0.118 [+0.100, +0.134]</td><td>+0.122 [+0.105, +0.140]</td><td>−0.005 [−0.029, +0.021]</td></tr>
+<tr><td>L44</td><td>+0.029 [+0.009, +0.047]</td><td>+0.037 [+0.018, +0.056]</td><td>−0.008 [−0.036, +0.019]</td></tr>
+<tr><td>L48</td><td>+0.006 [−0.018, +0.027]</td><td>+0.021 [−0.002, +0.043]</td><td>−0.015 [−0.047, +0.018]</td></tr>
+</table>
+<p>L28–L40 两组几乎相同，L24–L48 各层差值区间都含 0；全部论文、敏感性集同样。<span class="src">x3_groupsplit.md "primary / test"、"primary / all"、"sensitivity / test"、"sensitivity / all" 表 · summary_x3/x3_groupsplit.csv</span></p>
+<p><b>(4) 文本模型基线</b>（主分析 test，G′(l) − G′(基线层)）：bert-base-uncased 每一层都低于它的 L0（title_last：L0 +0.495，之后 −0.06 到 −0.21；mean_title −0.08 到 −0.18），没有中间层优势；它的 [CLS] 从 0 升到 +0.13（L11），但 [CLS] 在 L0 对所有文本相同、没有文字基线。all-mpnet-base-v2（mean 池化）L1–L10 低于 L0（−0.15 到 −0.19），只在最后一层 / 句向量超出：+0.142 [+0.129, +0.156]。</p>
+<table class="t">
+<tr><th>集合 · 模型 · 位置</th><th>基线层 G′ → 最大层：超出</th><th>比值 [区间]</th><th>Qwen − 该模型</th></tr>
+<tr><td>主 test（552） · BERT · title_last</td><td>L0 +0.495 → L1：−0.057</td><td>−0.12 [−0.12, −0.11]</td><td>+0.64 [+0.58, +0.71]</td></tr>
+<tr><td>主 test · BERT · mean_title</td><td>L0 +0.325 → L1：−0.081</td><td>−0.25 [−0.26, −0.24]</td><td>+0.77 [+0.71, +0.84]</td></tr>
+<tr><td>主 test · mpnet · mean</td><td>L0 +0.475 → L12：+0.142</td><td>+0.30 [+0.27, +0.33]</td><td>+0.22 [+0.16, +0.30]</td></tr>
+<tr><td>主 test · mpnet · title_last</td><td>L0 +0.518 → L12：+0.090</td><td>+0.17 [+0.10, +0.26]</td><td>+0.35 [+0.29, +0.41]</td></tr>
+<tr><td>主 test · Qwen3-32B · title_last</td><td>L4 +0.304 → L36：+0.159</td><td><b>+0.52 [+0.46, +0.59]</b></td><td>—</td></tr>
+<tr><td>匹配 D，test（37） · mpnet · mean</td><td>L0 +0.224 → L12：+0.314</td><td><b>+1.40 [+1.11, +1.73]</b></td><td>+0.50 [−0.50, +4.02]（含 0）</td></tr>
+<tr><td>匹配 D，test · Qwen3-32B · title_last</td><td>L4 +0.118 → L36：+0.224</td><td><b>+1.90 [+0.93, +5.44]</b></td><td>—</td></tr>
+</table>
+<p>即：在全部论文上 Qwen 的中间层比值大于 mpnet（差 +0.22 [+0.16, +0.30]，敏感性集、全部论文相同）；但在用词匹配的子集上，只懂语义、不认识作者的 mpnet 也大幅超出自己的基线，与 Qwen 之差的区间含 0。mpnet 训练时（&gt; 10 亿句对，含 S2ORC 标题–摘要 / 引用对、SPECTER 对）可能见过这些标题，但从未以作者为目标。<span class="src">x3_textbase_recovery.md "primary / all / test" 表、"Scale-free comparison" 表 primary/all/test 与 primary/d_matched/test 行、"Conclusion" 第 1–3 条、"Caveat" 段 · summary_x3/x3_textbase_ratio.csv、x3_textbase_gap.csv</span></p>
+<p><b>(5) 行为</b>（第一作者 teacher-forced 得分，test）：改写 − D <b>+0.239 [+0.212, +0.266]</b>（n = 552；全部 +0.254；敏感性 +0.238 [+0.208, +0.266]；匹配 D 子集 +0.162 [+0.079, +0.252]，n = 37）；改写 − 搭档 B +0.322 [+0.292, +0.352]。恢复比例（假 = D）：</p>
+<table class="t">
+<tr><th>主分析</th><th>n</th><th>真</th><th>改写</th><th>假（D）</th><th>恢复比例 [区间]</th></tr>
+<tr><td>test 全部</td><td>552</td><td>−0.909</td><td>−0.936</td><td>−1.175</td><td><b>0.90 [0.87, 0.94]</b>（0.901）</td></tr>
+<tr><td>test target</td><td>274</td><td>−0.768</td><td>−0.804</td><td>−1.117</td><td>0.90 [0.85, 0.94]（0.896）</td></tr>
+<tr><td>test control</td><td>278</td><td>−1.049</td><td>−1.066</td><td>−1.231</td><td>0.91 [0.84, 0.98]（0.909）</td></tr>
+<tr><td>target − control</td><td></td><td></td><td></td><td></td><td>−0.01 [−0.09, +0.07]（−0.012）</td></tr>
+<tr><td>匹配 D，test</td><td>37</td><td>−1.115</td><td>−1.169</td><td>−1.330</td><td>0.75 [0.56, 0.97]</td></tr>
+<tr><td>匹配 D，全部</td><td>66</td><td>−0.961</td><td>−1.043</td><td>−1.262</td><td>0.73 [0.61, 0.84]</td></tr>
+</table>
+<p>假 = 搭档 B 时 test 全部 0.92 [0.90, 0.95]；敏感性集与全部论文相同（test 0.89 [0.85, 0.93]）。control 的 真 − 假 差较小（test 0.18，target 0.35），19–26% 的 control 论文 真 ≤ 假，所以只报均值之比。<span class="src">x3_report.md "Behaviour" 表 · x3_textbase_recovery.md "Task 3" 表与 "Conclusion" 第 4–5 条 · summary_x3/x3_behaviour.csv、x3_recovery.csv</span></p>
+<p><b>(6) 结论（2026-11-01 用户确认的措辞，照抄报告 v23 X3 节）</b>：改写标题在 Qwen 中间层（L28–L40，最高 L36 +0.16）比用词相近的近邻 D 更接近原标题，超出 L4 文字水平；行为上改写保留了原标题对 D 约 90% 的第一作者偏好（教师强制打分）。但这不足以说明“论文身份”：只懂语义、不认识作者的句子向量模型（all-mpnet）在用词匹配的子集上也有相当的优势；行为恢复和中间层优势在 target 与 control 之间都没有差别，与“认出论文”无关。所以 X3 只说明 Qwen 中间层表示了标题的意思而不只是用词，<b>不能区分“论文身份”与“语义”</b>。起始层在主分析和敏感性分析之间不一致（L8 对 L24），不作为结论。<span class="src">stage1_11_report.html x3-results 节"结论（2026-11-01 用户确认的措辞）"段 · PROG 2026-11-01 条</span> <span class="st st-rechecked">复核过</span></p>
+<p>对 H2：M3 不支持；X3 显示中间层超出用词的语义表示，但不能与论文身份区分；H2 目前依据 M2 和 X1（见 <a href="#s13-overview">s13-overview</a>）。</p>
 <h4>8 局限与质疑</h4>
 <ul>
 <li>姓氏检查是子串匹配，误拒 37 条（不会放进错误样本，只是少了样本，偏保守）。</li>
 <li>原版 Jaccard 低估词重合，若不修，近邻 D 会被匹配得词重合偏高/偏低，直接影响主对照。</li>
 <li>意义检查没有可接受的自动标准：NLI 误拒 4/20、漏检 3/20；第一版判断器方向对但阈值过严；判断器 v2 在新 20 条上一致率 0.55 &lt; 0.80，不用。主分析集里估计约 15%（6/40，[0.071, 0.291]）的改写改了意思、另约 17.5% 属边界，只靠 40 条人工标注估计，区间较宽；敏感性集只剔除了已标注和 NLI 未过的那部分。</li>
-<li>只有 5.9% 的主分析对找到"词重合不低于改写"的 D，G′ 的大多数对里 D 的词重合低于改写，词重合没有被完全控制住。</li>
+<li>只有 66 / 1,110（5.9%）主分析对找到"词重合不低于改写"的 D：同领域与原标题 jaccard2 &gt; 0.3 的论文只占 2.4%，而改写有 88% &gt; 0.3。所以 L4 的 G′ 已有 +0.30（用词），G′ − G′(L4) 只减去了 L4 水平，词重合没有被完全控制住；匹配子集小（test 37）。<span class="src">x3_groupsplit.md 末节</span></li>
+<li><b>语义与论文身份分不开</b>：在用词匹配的子集上，不认识作者的 all-mpnet 比值 1.40 与 Qwen 1.90 之差的区间含 0；中间层优势和行为恢复在 target 与 control 之间都没有差别（L36 差 −0.002 [−0.027, +0.025]；恢复比例差 −0.01 [−0.09, +0.07]）。X3 因此只说明中间层表示了标题的意思，不能说明"论文身份"。</li>
+<li>起始层不稳健：主分析 L8、敏感性 L24，不作结论；L8 的超出只有 +0.012。</li>
+<li>不同模型的余弦差不在同一尺度（各向异性、维度），所以只比无量纲比值；mpnet 训练语料可能含这些标题（但没有作者）。</li>
+<li>行为是 teacher forcing 下对正确第一作者 token 的偏好，不是生成过程（补充 4 的措辞规则）；control 的 真 − 假 差小（0.18 对 target 0.35），19–26% 的 control 论文 真 ≤ 假，逐篇比值不稳定，只报均值之比；"假" 用 D 而不是 Stage 10 的 false_0（后者提示含年份，模板不同）。</li>
+<li>按 token 角色的报告做不到：para_run 只存了每个名字的平均分。":" 位置 L4–L8 各版本余弦接近 1（差约 0.002），不作解读。</li>
 <li>改写与判断用同一模型（自评）。</li>
 </ul>
 <h4>9 状态</h4>
-<p>para_gen <span class="st st-done">已完成</span>；NLI <span class="st st-done">已完成</span>；判断器 v1 校准与 v2 检验已完成，<b>判断器 v2 不用</b>（0.55 &lt; 0.80）；补充 5 <span class="st st-done">已写定</span>（2026-10-30 22:45，用户已批准；U51 已解决）；para_run：1 个真实分片作业 11511973 <span class="st st-review">已提交，排队中（2026-10-31）</span>，<code>logs/para_ok</code> 尚未写（分片通过后再写）。预注册：prereg.json 的 X3 inclusion 要求"自动检查 + 人工抽查（para_ok）"；排除完全相同、换 jaccard2、D 预先算好、意义检查走备用方案（不用判断器、NLI 只定敏感性集合、不再加标）都已写入补充 5，且写在任何 X3 表示或得分数据产生之前（status_at_writing："para_run has NOT run"）。<span class="src">R13/config/prereg_addendum5.json（status_at_writing、release）· PROG 2026-10-30 23:00 条</span></p>
+<p>para_gen <span class="st st-done">已完成</span>；NLI <span class="st st-done">已完成</span>；判断器 v1 校准与 v2 检验已完成，<b>判断器 v2 不用</b>（0.55 &lt; 0.80）；补充 5 <span class="st st-done">已写定</span>（2026-10-30 22:45，用户已批准；U51 已解决）；para_run <span class="st st-done">已完成</span> 24/24（分片 0 合并作业 11513313，分片 1–23 作业 11385978）；分析 <span class="st st-done">已完成</span>（作业 11521572）；文本基线（作业 11522507）、行为恢复比例、target / control 拆分 <span class="st st-done">已完成</span>；结论措辞 2026-11-01 用户确认。放行过程：分片 0 通过后 2026-10-31 07:15 建 <code>logs/para_ok</code>，<code>351_stage10/logs/pool/PAUSED</code> 改名为 <code>PAUSED_resolved_2026-10-31_para_run_released</code>；09:59 空闲作业 11385979 运行 11 秒结束（"nothing left to claim"）触发守护脚本报警 = 误报，因已无剩余单元，PAUSED 保持，11405916、11385980 已 hold（未取消）。<span class="src">PROG 2026-10-31 07:15 条、09:59:58 ALARM 条、10:15 条 · R13/logs/para_ok</span></p>
+<p>预注册：prereg.json 的 X3 inclusion 要求"自动检查 + 人工抽查（para_ok）"；排除完全相同、换 jaccard2、D 预先算好、意义检查走备用方案（不用判断器、NLI 只定敏感性集合、不再加标）都已写入补充 5，且写在任何 X3 表示或得分数据产生之前（status_at_writing："para_run has NOT run"）。<span class="src">R13/config/prereg_addendum5.json（status_at_writing、release）· PROG 2026-10-30 23:00 条</span></p>
+<p><b>与预注册的偏离</b> <span class="st st-review">偏离</span>：① 补充 4/5 要求所有 X3 结果也按 token 角色报告，但 para_run 只存了每个名字的平均分，<b>做不到</b>；② n 为 1,110 / 1,012，少于补充 5 的 1,115 / 1,015（主分析 5 篇不在 pairs.parquet；敏感性少 3 篇；记 WARN）；③ ":" 位置 L4–L8 余弦近 1，不解读（规则里没有这一条）；④ 文本模型基线、行为恢复比例、target / control 拆分与 D 分布是<b>事后加的</b>（用户 2026-10-31 / 11-01 要求），不在预注册里，结论中只作解释；⑤ 起始层在两集之间不同，按补充 5 标"不稳健"。按补充 5 的规则判定本身照做。<span class="src">x3_report.md 第 9–11 行（WARN）、第 51 行（"Token roles: not applicable"）· prereg_addendum5.json "analyses" · prereg_addendum4.json token_roles · stage1_11_report.html x3-results 末段 note</span></p>
 
 <!-- ====================================================== X4 -->
 <h3 id="s13-x4">X4　Patchscope：从论文自己的状态解码年份、第一作者、领域</h3>
@@ -548,7 +622,7 @@ field : Paper: X\nResearch field:</pre>
 
 <!-- UNKNOWN-LIST（2026-10-30 下午按 CHANGES_2026-10-30.md 更新）
 2026-10-31 按 CHANGES_2026-10-30b.md、CHANGES_2026-10-31.md 更新：
-s13-x3 | U51 已解决：补充 5 写定（prereg_addendum5.json，sha256 181c72f7…）；para_run 1 分片 11511973 排队中
+s13-x3 | U51 已解决：补充 5 写定（prereg_addendum5.json，sha256 181c72f7…）；para_run 24/24 已完成（11513313 分片 0，11385978 分片 1–23），分析 11521572（2026-11-01 更新）
 s13-x4 | X4 措辞已由用户确认（2026-10-30）；姓首 token 区间下界 0.045
 s13-m3 | M3 按补充 2 重判（V28 已处理）；s13-x1 V31 已处理；s13-x6/x7 V41 已完成；s13-overview V48 已处理
 已解决 / 已按用户决定写明（2026-10-30）：

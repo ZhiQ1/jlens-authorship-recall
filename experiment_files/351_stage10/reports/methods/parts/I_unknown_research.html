@@ -95,7 +95,7 @@
 <tr><td>U40</td><td>P2 hook 是否生效</td>
 <td>同一个重算脚本：<code>371_stage12/raw/patch_comp</code>（19,077 行 × 23 列：none + attn/mlp × L8…L56）。各列与 none 列比较；none 列与 Stage 11 <code>361_stage11/raw/patch</code> 的 rank_false、rank_true 逐行比较。代码 <code>371_stage12.py:146-170</code>（register_forward_hook 在 self_attn / mlp 输出上做替换）。</td>
 <td>① <b>替换确实改变了输出，而且随层数有系统性变化</b>：L8–L44 各列平均 Δnlr 在 −0.001 到 +0.008 之间（基本是噪声），L48–L56 是 +0.020 到 +0.070（attn48 0.069、mlp56 0.070）。对应 recovery：attn48 0.231、mlp56 0.224、attn L8–44 ≤0.023（summary/P2_patch_comp.csv）。② <b>噪声底</b>：none 列与 Stage 11 rank_false 逐行相同的只有 59.4%，但全部行的 rank 都在 2 倍以内，平均 Δnlr = 0.0000，p99 |Δnlr| 0.146。P1 自己的 none 列在不同层之间也只有 59.7% 的行完全相同。所以这是批大小不同带来的 bf16 数值抖动，不是 hook 泄漏。rank_true 与 Stage 11 100% 相同。③ P2 只测到 L56，<b>没有 L63 边界层</b>，raw 和 reports 里也没有找到专门的 P2 sanity 记录（logs 下只有 P1 的 smoke 项）。</td>
-<td><span class="st st-review">部分解决</span>：从数据看 hook 生效、基线正确。但当时没有做显式的 sanity（例如 L63 或"替换为自身 = 不变"）。<b>2026-10-31 更新</b>：用户决定补做，只跑 1 个分片（<code>12_stage12/stage12_p2_hookcheck.py</code>；tiny 11511943 PASS）；真实 GPU 作业 11511965 已提交，排队中（2026-10-31），结果待填（<code>371_stage12/reports/p2_hookcheck.md</code>）。<span class="src">PROGRESS.md 2026-10-30 22:45 条</span></td></tr>
+<td><span class="st st-done">已解决</span>：从数据看 hook 生效、基线正确。但当时没有做显式的 sanity（例如 L63 或"替换为自身 = 不变"）。<b>2026-10-31 更新</b>：用户决定补做，只跑 1 个分片（<code>12_stage12/stage12_p2_hookcheck.py</code>；tiny 11511943 PASS）。<b>结果（2026-10-31，U40 已解决）</b>：真实分片 0 在合并作业 <b>11513313</b>（<code>13_stage13/stage13_combo_para1_hookcheck.sbatch</code>，gpu-interactive，d1029，4 分钟；同一作业先跑 X3 para_run 分片 0）中完成，50 篇、117 个作者上下文、516 个名字 token；原单独作业 11511965（与 X3 的 11511973）按用户指示取消。<code>full_true</code> 与 <code>r62c63_true</code>：recovery 1（nlr 与 log-prob 都是 1.0000），max |logit − 真| = 0（全词表），末层残差与真运行<b>逐位相等</b>（差 0.0）；每次前向 264 个 hook 各触发一次，共 30,888 / 30,888 次；与已存 P2 分片 0（<code>raw/patch_comp/shard_000.npz</code>，516 行全部对上）rank_true 一致比例 1.0，none / attn56 / mlp56 平均 |Δnlr| 0.0088 / 0.0090 / 0.0094（约 0.009）。对照：只换 L63 组件（<code>c63_true</code>）不可能精确，max |Δlogit| 18.55，符合预期。<b>唯一 WARN</b>：<code>full_false</code> 相对批量 none 的 recovery −0.0118（界 |x| ≤ 0.01）；但 full_false 与 batch-1 单条假运行逐位相同（logit 差 0、残差差 0），而批量 none 与单条假运行差 0.64 logit（≤ 1.0）→ 来自 bf16 下批大小不同的舍入，不是 hook。结论：P2 的 hook 生效。<span class="src">371_stage12/reports/p2_hookcheck.md（"Status: WARN"；Per element 表；Checks 表；Hooks 行 total_calls 30888 / expected_total 30888；Parity 行）· 371_stage12/hookcheck_2026-10-30/ · sacct 11513313（s13_combo，00:04:04，COMPLETED）、11511965（CANCELLED）· PROGRESS.md 2026-10-31 07:15 条、"User order" 条</span></td></tr>
 
 <tr><td>U41</td><td>Stage 10 名字字符串与 mc_team.jsonl initial_surname 是否一致</td>
 <td>全量对比（不抽样）：<code>351_stage10/cohort/contexts.parquet</code> 的 author（按 author_index 排序）与 <code>labels…/mc_team.jsonl</code> 中 options[correct_index] 的同位置字符串，共 33,811 对。</td>
@@ -133,7 +133,7 @@ U21 | Validation_Record_351_Completeness_Checked.docx 不在集群 | 用户
 U23 | 7.1B 在 08:31 被用户手动结束后是否有意放弃 | 用户
 U33 | Fit B（超时停在 66/100，checkpoint 可续）是否补做 | 用户
 U34 | 847e7dde 版脚本没有留存，无法 diff | Stage 10 原作者 / 用户
-U40 | 是否补做 P2 显式 sanity（L63 / 自身替换） | 用户
+U40 | 已解决（2026-11-01 更新）：显式检查真实分片 0 在合并作业 11513313 中完成（371_stage12/reports/p2_hookcheck.md）
 U42 | 是否补做 F1 lens 的 split-half 拟合（需 GPU） | 用户
 -->
 <!-- CHECK-NUMBERS
