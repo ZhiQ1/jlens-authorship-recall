@@ -41,7 +41,7 @@ code{font-family:var(--mono);font-size:.88em;background:var(--code);padding:0 3p
  pre{font-size:8.5pt}.toc{page-break-after:always}}
 </style>
 <div class="wrap">
-<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-11-01 更新</p>
+<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-11-02 更新</p>
 <h1>Stage 1–13 方法手册</h1>
 <p>本手册记录<b>实际做了什么</b>，不是计划。每个数字、参数和样本量后面都给了出处（脚本路径和行号或函数名、结果文件、作业号、git commit），出处标为 <span class="src">示例</span>。查不到的地方写成 <span class="unk">未知/需确认：向谁确认</span>，全文共 15 处，汇总表见附录。</p>
 <p class="legend">状态标签：<span class="st st-done">已完成</span><span class="st st-rechecked">复核过</span><span class="st st-review">待复核</span><span class="st st-void">作废</span><span class="st st-plan">计划未做</span>。每个实验节固定用 9 个小标题：1 问题与作用 · 2 材料 · 3 工具 · 4 步骤 · 5 公式 · 6 对照 · 7 结果 · 8 局限与质疑 · 9 状态。</p>
@@ -922,6 +922,7 @@ w_b ∝ n_t,b · n_c,b / (n_t,b + n_c,b),  Σ_b w_b = 1,
 <tr><td>Stage 12（P1、P2、N1、N2、F2）</td><td>1×A100-80GB</td><td>4.42 h（patch_pos 1.52、prior_mc 1.24、prior_pure 0.61、alens_read 0.56、patch_comp 0.47）</td><td>11413886、11413591、11374283、11413586、11413584、11413569、11413572、11413557、11371622</td><td>10-27 → 10-28</td><td><span class="src">371_stage12/logs/claims · work 日志</span></td></tr>
 <tr><td>Stage 12 F1 作者 lens 拟合（40 prompt）</td><td>单卡 A100-80GB（规则：只有单卡 80GB 才接拟合）</td><td>~269 s/prompt × 40 ≈ 3.0 h</td><td>s12fit 11413557、11413569、11416869 与 s12w 11413572 等</td><td>10-27 15:28 → 10-28 17:12</td><td><span class="src">371_stage12/alens/progress.json · logs/claims/alens_fit.done_* · STATUS.md §3 Stage 13 条</span></td></tr>
 <tr><td>Stage 13（X6 xf_patch、M3 task、X1 xpatch、X4 pscope、X3 para_gen、X7 ko_false）</td><td>1×A100-80GB（11428778 为 2 卡）</td><td>4.41 h（xf_patch 1.87、para_gen 1.08、task 0.54、pscope 0.38、ko_false 0.28、xpatch 0.27）</td><td>11428778、11453127、11416869、11415844、11374284 等</td><td>10-28 19:46 → 10-29</td><td><span class="src">381_stage13/logs/claims · work 日志</span></td></tr>
+<tr><td>Stage 13 X3 para_run + U40 P2 显式检查（2026-10-31）</td><td>1×A100-80GB（d1029）</td><td>0.23 h（合并作业 11513313：para 分片 0 + U40，4.1 min；s11w 11385978：para 分片 1–23，9.6 min；空闲作业 11385979 11 s）</td><td>11513313、11385978、11385979</td><td>10-31 07:05 → 09:59</td><td><span class="src">sacct -j 11513313,11385978,11385979 · 381_stage13/logs/combo_11513313.log · 361_stage11/logs/work_11385978.log</span></td></tr>
 <tr><td>Stage 13 GPU follow-up（x4tok + Qwen judge 校准）</td><td>1×A100-80GB</td><td>10:28（x4tok 检查失败后按规则停止）</td><td>11485349</td><td>10-30</td><td><span class="src">381_stage13/logs/fugpu_11485349.log · PROGRESS.md 2026-10-30 03:30 条</span></td></tr>
 </table>
 <p>注：shard 行合计按日志中出现的行计（重跑的 shard 也计入；例如 ko_false 出现 27 行而单元数是 24）。
@@ -3475,6 +3476,7 @@ Answer with Yes or No.</pre>
 <tr><td>匹配 D，全部</td><td>66</td><td>−0.961</td><td>−1.043</td><td>−1.262</td><td>0.73 [0.61, 0.84]</td></tr>
 </table>
 <p>假 = 搭档 B 时 test 全部 0.92 [0.90, 0.95]；敏感性集与全部论文相同（test 0.89 [0.85, 0.93]）。control 的 真 − 假 差较小（test 0.18，target 0.35），19–26% 的 control 论文 真 ≤ 假，所以只报均值之比。<span class="src">x3_report.md "Behaviour" 表 · x3_textbase_recovery.md "Task 3" 表与 "Conclusion" 第 4–5 条 · summary_x3/x3_behaviour.csv、x3_recovery.csv</span></p>
+<p><b>预注册判定与事后检验（2026-11-02 补写）</b>：按补充 4 的预注册判据（G′ &gt; 0 且 G′ − G′(L4) &gt; 0，调参集上找、测试集上确认；行为：改写 − D &gt; 0），X3 判为<b>“存在论文身份信号”</b>：主分析起始层 L8 在测试集上确认（+0.012 [0.004, 0.019]），敏感性分析起始层 L24 确认，行为 +0.239 [0.212, 0.266] &gt; 0。文本模型基线（BERT、all-mpnet）和 target / control 拆分是<b>看到结果后加的检验，不在预注册里</b>（用户 2026-10-31、11-01 要求）；据此把解读降为<b>“语义表示，不能与论文身份区分”</b>。两者都报告；这一降级标为与预注册的出入。 <span class="src">prereg_addendum4.json X3 · x3_report.md "Verdict (automatic)" · x3_textbase_recovery.md · x3_groupsplit.md</span> <span class="st st-review">偏离</span></p>
 <p><b>(6) 结论（2026-11-01 用户确认的措辞，照抄报告 v23 X3 节）</b>：改写标题在 Qwen 中间层（L28–L40，最高 L36 +0.16）比用词相近的近邻 D 更接近原标题，超出 L4 文字水平；行为上改写保留了原标题对 D 约 90% 的第一作者偏好（教师强制打分）。但这不足以说明“论文身份”：只懂语义、不认识作者的句子向量模型（all-mpnet）在用词匹配的子集上也有相当的优势；行为恢复和中间层优势在 target 与 control 之间都没有差别，与“认出论文”无关。所以 X3 只说明 Qwen 中间层表示了标题的意思而不只是用词，<b>不能区分“论文身份”与“语义”</b>。起始层在主分析和敏感性分析之间不一致（L8 对 L24），不作为结论。<span class="src">stage1_11_report.html x3-results 节"结论（2026-11-01 用户确认的措辞）"段 · PROG 2026-11-01 条</span> <span class="st st-rechecked">复核过</span></p>
 <p>对 H2：M3 不支持；X3 显示中间层超出用词的语义表示，但不能与论文身份区分；H2 目前依据 M2 和 X1（见 <a href="#s13-overview">s13-overview</a>）。</p>
 <h4>8 局限与质疑</h4>
@@ -3483,6 +3485,7 @@ Answer with Yes or No.</pre>
 <li>原版 Jaccard 低估词重合，若不修，近邻 D 会被匹配得词重合偏高/偏低，直接影响主对照。</li>
 <li>意义检查没有可接受的自动标准：NLI 误拒 4/20、漏检 3/20；第一版判断器方向对但阈值过严；判断器 v2 在新 20 条上一致率 0.55 &lt; 0.80，不用。主分析集里估计约 15%（6/40，[0.071, 0.291]）的改写改了意思、另约 17.5% 属边界，只靠 40 条人工标注估计，区间较宽；敏感性集只剔除了已标注和 NLI 未过的那部分。</li>
 <li>只有 66 / 1,110（5.9%）主分析对找到"词重合不低于改写"的 D：同领域与原标题 jaccard2 &gt; 0.3 的论文只占 2.4%，而改写有 88% &gt; 0.3。所以 L4 的 G′ 已有 +0.30（用词），G′ − G′(L4) 只减去了 L4 水平，词重合没有被完全控制住；匹配子集小（test 37）。<span class="src">x3_groupsplit.md 末节</span></li>
+<li><b>预注册判定与最终解读不同</b>：按补充 4 判为“存在论文身份信号”；事后加的文本模型基线和 target / control 拆分（非预注册）把解读降为“语义表示，不能与论文身份区分”。两者都报告，记为与预注册的出入（附录 V54）。</li>
 <li><b>语义与论文身份分不开</b>：在用词匹配的子集上，不认识作者的 all-mpnet 比值 1.40 与 Qwen 1.90 之差的区间含 0；中间层优势和行为恢复在 target 与 control 之间都没有差别（L36 差 −0.002 [−0.027, +0.025]；恢复比例差 −0.01 [−0.09, +0.07]）。X3 因此只说明中间层表示了标题的意思，不能说明"论文身份"。</li>
 <li>起始层不稳健：主分析 L8、敏感性 L24，不作结论；L8 的超出只有 +0.012。</li>
 <li>不同模型的余弦差不在同一尺度（各向异性、维度），所以只比无量纲比值；mpnet 训练语料可能含这些标题（但没有作者）。</li>
@@ -4001,7 +4004,7 @@ field : Paper: X\nResearch field:</pre>
 <tr><td>V51</td><td>X3 按 token 角色报告（补充 4；补充 5 要求所有 X3 结果按角色另报）</td><td><span class="st st-plan">计划未做</span>（做不到）</td><td>para_run 只存了每个名字的平均分，没有逐 token 分数，无法按角色拆分；不补跑。<span class="src">381_stage13/reports/x3_report.md 第 51 行 "Token roles: not applicable"</span></td><td><a href="#s13-x3">s13-x3</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
 <tr><td>V52</td><td>X3 样本量少于补充 5</td><td>WARN（照常分析）</td><td>主分析 1,110（补充 5：1,115，5 篇不在 pairs.parquet），敏感性 1,012（补充 5：1,015）；匹配 D 66 / 55。<span class="src">x3_report.md 第 9–11 行</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td>V53</td><td>X3 ":" 位置 L4–L8 的 G′</td><td>不解读</td><td>各版本余弦在 L4–L8 都接近 1，G′ 只有约 0.002；脚本虽判 confirmed，不作解读（预注册里没有这一条，属事后决定）。<span class="src">x3_report.md colon 表 · stage1_11_report.html x3-results 末段 note</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
-<tr><td>V54</td><td>X3 文本模型基线、行为恢复比例、target / control 拆分与 D 分布</td><td>事后加的分析（不在预注册里）</td><td>用户 2026-10-31 / 11-01 要求：stage13_x3_textbase.py（作业 11522507）、stage13_x3_recovery.py、stage13_x3_groupsplit.py；结论中只用于解释（X3 不能区分论文身份与语义）。<span class="src">x3_textbase_recovery.md · x3_groupsplit.md</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>V54</td><td>X3 文本模型基线、行为恢复比例、target / control 拆分与 D 分布</td><td>事后加的分析（不在预注册里）</td><td>用户 2026-10-31 / 11-01 要求：stage13_x3_textbase.py（作业 11522507）、stage13_x3_recovery.py、stage13_x3_groupsplit.py；按补充 4 的预注册判据 X3 判为“存在论文身份信号”；据这些事后检验把解读降为“语义表示，不能与论文身份区分”。两者都报告（2026-11-02 补写）。<span class="src">x3_textbase_recovery.md · x3_groupsplit.md</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td>V55</td><td>X3 起始层（tune 上第一个显著层）</td><td>不稳健，不作结论</td><td>主分析 L8、敏感性 L24；按补充 5，两集不同即"不稳健"。中间层（L28–L40）优势在两集相同。<span class="src">x3_report.md "Robustness" 行</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 </table>
 </section>
