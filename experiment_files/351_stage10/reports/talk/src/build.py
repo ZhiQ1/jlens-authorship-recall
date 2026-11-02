@@ -271,12 +271,17 @@ for i, (h, b) in enumerate(pts):
     text(s, 0.9, y, 3.1, 0.85, h, size=28, font=TITLE_F, bold=True, color=[TGT, GRN, CTL, GRN, INK, TGT][i])
     text(s, 4.0, y + 0.1, 8.6, 0.85, b, size=20)
 
-# 16 caveats & next -----------------------------------------------------------------
-s = new_slide('Limits and next steps. Patching and knockout fix when the title is read (L24-L50) but not what happens inside those layers. Stage 12 is running: single-position patching, attention versus MLP patching, a lens fitted on author prompts, and two name-prior baselines. A second model is out of scope: the groups come from the group lead labelling run of Qwen3-32B.')
-title(s, 'Caveats and next steps')
-text(s, 0.9, 1.6, 6.0, 4.8, [[B('Caveats')], [T('- Readout is correlational; patching/knockout fix the timing, not the mechanism inside L24-L50')], [T('- Parity tolerance raised 0.25 -> 0.5 after the fact')],
-                            [T('- Groups are model-specific; low-citation "recognition" is near chance')], [T('- Few control papers above 1,000 citations')], [T('- Label run settings (max length, thinking mode) not in the package')]], size=21, space=10)
-note(s, 7.4, 1.7, 5.1, 3.9, [[B('Stage 12 (running)')], [T('1. Patch single positions (quote, year, "Authors:") - done, analysing')], [T('2. Attention vs MLP patching in L8-L56')], [T('3. A lens fitted on author prompts, read at L24-L62')], [T('4. Name-prior baselines: distractor lists without a title; a prompt with no paper')]], rot=1.5, size=19)
+# 16 limits & next (final, 2026-11-02: Stage 12 and 13 done) -----------------------------------------------------------------
+s = new_slide('Limits and next steps. Stage 12 and Stage 13 are done. Stage 12: single-position patching (P1), attention versus MLP patching (P2, with an explicit hook check that passed), two name-prior baselines (N1, N2) and a lens fitted on author prompts (F1, F2): the middle layers are still not readable as names. Stage 13: probes read year, citations and field at the title from L16 or earlier (M2), but the task-swap identity index never exceeds the L4 text level (M3); the replacement effect is task-independent (X1); paraphrases share meaning beyond wording in L28 to L40, which cannot be separated from paper identity (X3); the first author is decodable at L8 but may be explained by the title text (X4); five false titles confirm the Stage 11 timing (X6, X7). Limits: one model, teacher-forced preference rather than generation, labels from the team lead package without the labelling code, and H2 and H3 are not established.')
+title(s, 'Limits and next steps')
+text(s, 0.9, 1.45, 6.75, 5.6, [[B('Done: Stage 12', GRN)],
+                            [T('- Single-position patching (P1); attention vs MLP (P2, hook check passed)')],
+                            [T('- Name priors (N1, N2); author-prompt lens (F1, F2): middle layers still not readable')],
+                            [B('Done: Stage 13', GRN)],
+                            [T('- Probes read year, citations, field at the title from ≤L16 (M2); identity not above the L4 text level (M3)')],
+                            [T('- Replacement is task-independent (X1); paraphrase meaning beyond wording in L28-L40, not separable from paper identity (X3)')],
+                            [T('- First author decodable at L8, may be text-explainable (X4); 5 false titles confirm the Stage 11 timing (X6, X7)')]], size=19, space=7)
+note(s, 8.0, 1.75, 4.6, 4.1, [[B('Limits')], [T('- One model (Qwen3-32B)')], [T('- Teacher-forced preference, not generation')], [T('- Labels from the team lead\'s package; labelling code (elm) not available')], [T('- H2 (paper identity) and H3 (hidden author knowledge) not established')], [B('Next: ', TGT), T('a second model; checks in free generation')]], rot=1.5, size=19)
 
 # R0/R1 a: three views -----------------------------------------------------------------
 s = new_slide('Is the target advantage just the R1 papers? Target pools R0 papers, where the open answer named no true author, and R1 papers, where it named a few; 11 percent of target papers are R1 but only 1.5 percent of controls. Left: three views of target minus control within citation bins. R0 only (groups A versus B, the Stage 1 to 9 comparison) gives +0.199 at the output against +0.207 pooled, and the curve has the same shape. R1 target papers against R0 controls give +0.37: they know their papers better, but they also only pull ahead after L52. Control R1 has only 34 papers, so it is described, not tested. Right: Stage 11 patching by recall level; R1 targets (36 papers) recover a little later but are complete by L52. The title-position probe gives the same picture: R0 view +0.02 to +0.04. Conclusion unchanged.')
@@ -293,8 +298,8 @@ note(s, 9.95, 1.9, 2.9, 4.0, [[T('written - missed, output: '), B('+0.20', TGT)]
 # stage labels (top right), by build index; none on the title, conclusions and appendix divider
 TAGS = ['', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10',
         'Stage 11', 'Stage 11', 'Stage 11', 'Stage 11', 'Stage 11', 'Stage 12', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10', 'Stage 10',
-        '', 'Stage 12 plan', 'Stage 10-11', 'Stage 10-11']
-TAG_COL = {'Stage 10-11': PUR, 'Stage 10': CTL, 'Stage 11': TGT, 'Stage 12': GRN, 'Stage 12 plan': GRN}
+        '', 'Stage 12-13', 'Stage 10-11', 'Stage 10-11']
+TAG_COL = {'Stage 10-11': PUR, 'Stage 10': CTL, 'Stage 11': TGT, 'Stage 12': GRN, 'Stage 12 plan': GRN, 'Stage 12-13': GRN}
 for sl, tg in zip(prs.slides, TAGS):
     if not tg: continue
     sh = sl.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(11.2), Inches(0.2), Inches(1.85), Inches(0.42)); sh.adjustments[0] = 0.3

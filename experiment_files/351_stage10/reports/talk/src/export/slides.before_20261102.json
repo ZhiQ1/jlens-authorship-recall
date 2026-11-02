@@ -1,0 +1,338 @@
+[
+ {
+  "i": 1,
+  "kind": "html",
+  "text": "Stages 1–9 Small samples: find a signal, try to break it 20 → 50 → 200 papers Stages 10–11 Full cohort: locate it, then intervene 9,108 papers · 149,999 name tokens Where does Qwen3-32B hold a paper’s authors?",
+  "figs": []
+ },
+ {
+  "i": 2,
+  "kind": "html",
+  "text": "Overview One question, four lines of argument Each line narrows the space of explanations; small samples set it up, the full cohort settles it dark pages = Stages 1–9 light pages = Stages 10–11 purple tag = comparison Where does Qwen3-32B hold a paper’s authors, and can it say them? A · This paper? Paper-specific, not an easy name? 1–9 · Stage 5, 7.2, 7.3, 8 10–11 · title signal, name prior, probe B · Readout tool What can each readout see? 1–9 · Stage 3, 7.4, 8, 9 10–11 · lens comparison, linear probe C · Which layer When does it appear, when is it used? 1–9 · Stage 4, 7.2, 7.3, 8 (L56) 10–11 · fine layers, patching, knockout D · Which token Which part of name or prompt carries it? 1–9 · Stage 6, 7.1 10–11 · name format, tail tokens, co-authors",
+  "figs": []
+ },
+ {
+  "i": 3,
+  "kind": "html",
+  "text": "Stages 1–9 · 20–200 papers Pilot design Pilot50 / Stage 8: 50 and 200 papers Mostly first-listed author, first token Score: gold vs 1 or 100 false names (logit margin, win rate) A/B both R0, matched in pairs Wrong titles: 1 crossed or 20 shuffled Layer L56 chosen after repeated looks Overview · design Stages 10–11 · 9,108 papers Full-cohort design All 9,108 papers, every author, every token Score: rank over the whole vocabulary, log10(1/rank) target = A + C, control = B + D (R0 + R1), compared within citation bins 5 matched false titles + no title All layers reported, fine layers added Parity and Stage 6 cross-check before analysis What changed in the design, and why Small samples could not separate “small effect” from “no effect” in a given layer. The full cohort trades candidate-based scores for full-vocabulary ranks and pays for it with GPU time. Note: target/control include R1 papers; with R0 only (A vs B, as in the pilot) the output gap is +0.199 vs +0.207 and every layer looks the same.",
+  "figs": []
+ },
+ {
+  "i": 4,
+  "kind": "html",
+  "text": "Overview · groups Same papers, two ways of grouping Stages 1–9 compare A vs B; Stages 10–11 compare target vs control. Counts from the 6,841-paper cohort. recognised (target) not recognised (control) R0 · no true author written A = 4,110 B = 2,186 R1 · some authors written (HR2 &gt; 0.5) C = 511 D = 34 Total target = A + C = 4,621 control = B + D = 2,220 Stages 1–9 A vs B: both R0, so the contrast is purely “knows but cannot say” Stages 10–11 (A + C) vs (B + D): adds 511 partial-recall papers, almost all on the target side Check done: with R0 only (A vs B) the output gap is +0.199, versus +0.207 for target vs control, and every layer looks the same. The two phases compare like with like.",
+  "figs": []
+ },
+ {
+  "i": 5,
+  "kind": "html",
+  "text": "Stage 1 Cohort and behavioural labels From the 15 Oct label package (9,108 papers) to a frozen 6,841-paper analysis cohort Group Recognition / open recall Full Pilot50 A pass / R0 (no true author written) 4,110 20 B fail / R0 2,186 20 C pass / R1 (some authors matched) 511 7 D fail / R1 34 3 Pass = 4/4 option orders correct and mean true-option probability ≥ 0.5; fail = 0–1/4 Pilot50: seed 35150, keeps the 20 Stage 4 papers + 30 new 20 A/B pairs matched on exact field and citation bin, then |Δyear| + 2·|Δauthors| Why A vs B? Both groups write no correct author. They differ only in whether the model recognises the true list. That isolates “knows but cannot say”. Caveat In the 0–2-citation bin the strict pass rate is 25.5% , above the planned ≤10% floor: “pass” is not proof of stored knowledge.",
+  "figs": []
+ },
+ {
+  "i": 6,
+  "kind": "html",
+  "text": "Stage 2 One fixed model, prompt and score Everything later is measured under these settings Model Qwen/Qwen3-32B, BF16, revision 9216db57, 64 blocks, d = 5,120 Layers L16, 24, 32, 40, 48, 56, 62 → target L63 Readouts Public J-Lens · Vanilla (logit lens) · real final logits Position last input position; context limit 512 Names encode(prompt) + encode(\" \" + author) Hardware 29 blocks on GPU, 35 offloaded to CPU Who are the authors of the paper titled \"{title}\" ({year})? Authors: Rank r = 1 + #tokens with a strictly larger logit JMRR = mean over authors of mean over tokens of 1/r Integrated = average of the 7 source layers (L63 excluded) Guard: forced token IDs are checked, and a J-Lens/Vanilla final-logit gap &gt; 0.1 rejects the run.",
+  "figs": []
+ },
+ {
+  "i": 7,
+  "kind": "deck",
+  "deck": 4,
+  "notes": "The rules behind every number. Open answer: greedy decoding inside the chat template; a deterministic fuzzy name match counts matched, hallucinated and unretrieved authors; HR2 = (H+U)/(M+H+U); R2 if HR2 is at most 0.5, otherwise R0 if nothing matched and R1 if something did. No human or model judge. Multiple choice: the true list against the real teams of 3 other papers from the same field, with similar team size, the same citation bin and a similar year; 4 orders; the letter probabilities come from the next-token distribution, A and space-A summed, not renormalised (mass is 1.00 on average). Target: 4 of 4 orders right and mean true-letter probability at least 0.5; control: at most 1 of 4. False titles: 5 per paper from the same field, year kept, minimum-cost matching on year, author count, title length and citation bin, no shared surname, word Jaccard at most 0.6; 79 percent strict tier. Statistics: target versus control only within citation bins with at least 30 papers per group, weighted n_t n_c over n_t plus n_c; bootstrap over papers 2,000 times; sensitivity without bins 0-4."
+ },
+ {
+  "i": 8,
+  "kind": "deck",
+  "deck": 5,
+  "notes": "Method. Prompt: Who are the authors of the paper titled \"...\" (year)? Authors: then one author name. Teacher forcing: at each name token we ask what rank the correct token gets. Readouts: logit lens, three Jacobian lenses (public from Neuronpedia, self100, fitA), and the real model output. Layers 24 to 62. Metric log10(1/rank): 0 = rank 1, -1 = rank 10. Each paper is also run with 5 matched false titles and with no title; title-specific signal = true minus mean of the false titles, so name guessability cancels out."
+ },
+ {
+  "i": 9,
+  "kind": "deck",
+  "deck": 17,
+  "notes": "Checks before trusting numbers: the fast path matches a per-prefix reference up to bf16 rounding; ranks match a previous stage on 972 tokens; punctuation tokens, which cannot depend on the title, show no title-specific signal. The parity tolerance was raised from 0.25 to 0.5 after seeing the results - say this openly."
+ },
+ {
+  "i": 10,
+  "kind": "html",
+  "text": "Overview · Line A ✗ its authors Line A Is it about this paper? small samples asked Does the true title beat a crossed or shuffled title? Does A gain more than B? → the full cohort answered Title-specific signal for every token; target beats control only late; name prior split out; probe controls",
+  "figs": []
+ },
+ {
+  "i": 11,
+  "kind": "html",
+  "text": "Stage 5 · Line A Crossed title–author control Is the gold name high because of the title, or because the name is easy? Paper P (author G) and source paper Q (author F, same field &amp; bin). M = logit(G) − logit(F)&nbsp;&nbsp;·&nbsp;&nbsp; T = M(P title) − M(Q title) A fixed preference for G cancels out. All 50 papers: L56 +1.17 [0.53, 1.84], L62 +1.08 [0.36, 1.82] Matched A−B, 7-layer integrated: +0.08 [−0.43, +0.65] Left: all 50 papers · Right: 20 A/B pairs The title changes which name wins in late layers. Whether A gains more than B: not established .",
+  "figs": [
+   "Left: all 50 papers · Right: 20 A/B pairs"
+  ]
+ },
+ {
+  "i": 12,
+  "kind": "html",
+  "text": "Stage 7.3 · Line A Shuffled titles: the true title helps Same 100 candidates, 20 metadata-matched wrong titles per paper, 1,000 contexts; only the title changes All 50 papers: true vs mean of 20 alternative titles Pooled L56: 0.616 vs 0.523 → +9.3 pp [4.7, 13.9], 35/50 papers positive Leave-one-out: +8.6 to +10.0 pp Vanilla L56 +10.6 pp, final output +7.2 pp Matched A−B integrated: +0.018 [−0.021, +0.063] Two different questions: “does the title help?” yes ; “does it help A more than B?” not shown .",
+  "figs": [
+   "All 50 papers: true vs mean of 20 alternative titles"
+  ]
+ },
+ {
+  "i": 13,
+  "kind": "html",
+  "text": "Stage 7.3 · robustness Does the title effect survive the obvious objections? Source-author overlap 199/1,000 wrong titles come from a paper whose author is in the false pool. Excluding them: +0.026 → +0.028. Candidate weighting Author-, unique-token- and non-collision weights: pooled +0.026 to +0.032; all six A−B CIs include 0. Low citations 0–2 citations (n = 6): L56 +0.22, 5/6 positive, but 0/6 beyond its own 20-title tail (≤ 0.05). Title-adjusted A−B win rate by layer Layer heterogeneity L56 +0.11 but L32 −0.03 (CI below 0). Reporting only the positive layers would mislead.",
+  "figs": [
+   "Title-adjusted A−B win rate by layer"
+  ]
+ },
+ {
+  "i": 14,
+  "kind": "html",
+  "text": "Stage 8D · Lines A, B On 200 new papers the title effect replicates Stage 8D frozen estimates, 95% CI (pp) Estimate 95% CI RQ1 title +5.18 pp [+2.93, +7.48] RQ2 A−B +4.98 pp [+0.32, +9.91] RQ3 low−high +2.45 pp [−3.69, +8.60] J-Lens−Vanilla −1.38 pp [−3.48, +0.68] Citation bands: low +6.8 [2.6, 11.6], mid +4.8, high +4.4 [−1.1, 10.0] RQ1 is the first independent confirmation: correct titles help the gold author on new papers. J-Lens still adds nothing over Vanilla.",
+  "figs": [
+   "Stage 8D frozen estimates, 95% CI (pp)"
+  ]
+ },
+ {
+  "i": 15,
+  "kind": "html",
+  "text": "Stage 8D–8E · Line A But the A−B gap rests on a few pairs Remaining A−B after removing the largest positive pairs 100 pairs: 55 positive, 45 negative; median +4.4 pp One pair (S8P094) ≈ +84 pp Remove top 5 → +1.9 pp; top 10 → −0.4 pp 8E external audit (post-hoc) Unique-token weights: RQ1 +4.6, RQ2 +5.4 pp Wrong-title length gap: +0.12 pp per token (association only) Scripts not yet archived: not a completed experiment Small samples can show a positive A−B mean that a handful of papers carry. This is the main reason Stage 10 moved to the full cohort.",
+  "figs": [
+   "Remaining A−B after removing the largest positive pairs"
+  ]
+ },
+ {
+  "i": 16,
+  "kind": "deck",
+  "deck": 6,
+  "notes": "Now remove name guessability: true title minus false titles. Flat up to L48 for both groups. Starts at L56, big at L62 and the output. Target ends roughly twice as high as control."
+ },
+ {
+  "i": 17,
+  "kind": "deck",
+  "deck": 12,
+  "notes": "How much is just the name prior? We score the same names with no title at all. Without a title the correct name already sits around rank 12 on average: punctuation and the rest of a surname are easy once the prefix is given. The true title improves the surname first token the most: for target papers from about rank 146 to rank 24. Split the target minus control gap within citation bins: about 0.09 is already there without a title (target names are a bit easier to guess), false titles take back 0.05, and 0.21 is paper-specific. On the surname first token the prior part is about zero and 0.42 is paper-specific. The prior barely tracks multiple-choice recognition (Spearman 0.09 vs 0.33 for the paper-specific part)."
+ },
+ {
+  "i": 18,
+  "kind": "deck",
+  "deck": 21,
+  "notes": "Is the probe at the title token reading real paper knowledge, or just topic to name associations? If we score its output against the authors of another paper, or of another paper in the same field, the signal drops to zero. If we train it only on false-title pairs it gives a similar signal (the earlier even-stronger result came from a leak: the same donor title in training and test). So the last title token carries linearly decodable, paper-specific author information already at L24, more for target papers, even though the lenses cannot read it."
+ },
+ {
+  "i": 19,
+  "kind": "deck",
+  "deck": 24,
+  "notes": "Citations. Within both groups the title-specific signal rises steadily with citation bin: target from +0.35 in bin 0-2 to +0.64 in 4097+. Spearman with log citations: 0.45 overall, 0.33 within target, 0.19 within control. The level itself changes much less - names are not easier to guess for famous papers, the model just knows famous papers better."
+ },
+ {
+  "i": 20,
+  "kind": "deck",
+  "deck": 13,
+  "notes": "Is the target advantage just the R1 papers? Target pools R0 papers, where the open answer named no true author, and R1 papers, where it named a few; 11 percent of target papers are R1 but only 1.5 percent of controls. Left: three views of target minus control within citation bins. R0 only (groups A versus B, the Stage 1 to 9 comparison) gives +0.199 at the output against +0.207 pooled, and the curve has the same shape. R1 target papers against R0 controls give +0.37: they know their papers better, but they also only pull ahead after L52. Control R1 has only 34 papers, so it is described, not tested. Right: Stage 11 patching by recall level; R1 targets (36 papers) recover a little later but are complete by L52. The title-position probe gives the same picture: R0 view +0.02 to +0.04. Conclusion unchanged."
+ },
+ {
+  "i": 21,
+  "kind": "deck",
+  "deck": 20,
+  "notes": "Inside R1 papers the open answer got some authors right and missed others. The label package only counts matches, so we rebuilt which authors matched; the rebuilt count equals the package count for 99.3 percent of R1 papers. In 495 papers with both kinds, the authors the model wrote correctly carry more title-specific signal at the output, +0.20, and the same holds without first authors. But the difference is zero up to L52 and grows from L54: even for authors the model actually produces, the paper-specific signal appears only in the last layers. They are also somewhat easier to guess without a title, +0.10."
+ },
+ {
+  "i": 22,
+  "kind": "html",
+  "text": "Stages 1–9 · 20–200 papers What we saw True title helps: pilot L56 +9.3 pp; 200 new papers +5.2 pp A−B uncertain in the pilot; +5.0 pp on 200 papers but gone after dropping 10 pairs Low − high citation: inconclusive Overview · Line A Stages 10–11 · 9,108 papers What scale showed Title-specific signal clear in every group, ≈0.44 at L62 target − control ≈0 in middle layers, +0.21 [0.20, 0.22] at the output Name prior is only ~1/3 of the gap; ~0 on surnames Signal rises steadily with citations (ρ = 0.45) Same groups as the pilot (R0 only, A − B): +0.20 [0.19, 0.21], same late shape R1 papers (C) know more (+0.11 over A) but are just as late Line A: from “the title helps” to “this paper, late, graded by fame” The pilot was right that the title matters. It could not see that the target advantage is real but confined to the last layers, so the 7-layer average and the L56 endpoint both diluted it. Restricting the full cohort to the pilot’s A/B groups (R0 only) changes nothing: the R1 papers do not drive the result.",
+  "figs": []
+ },
+ {
+  "i": 23,
+  "kind": "html",
+  "text": "Overview · Line B B?ee probe lens Line B What can each readout see? small samples asked Is J-Lens better than Vanilla? Is the fitted lens stable? → the full cohort answered Lenses read name shape earlier, not paper identity; a probe at the title token reads paper-specific information",
+  "figs": []
+ },
+ {
+  "i": 24,
+  "kind": "html",
+  "text": "Stage 3 · Exp 1–4 Two lenses: Public-557 vs Self-100 Can a middle layer approximate the final next-token distribution? (20 generic + 20 paper prompts) KL(final ‖ readout), lower is better Both checkpoints numerically valid (63/63 and 6/6 finite) Self-100 has lower KL on 6/6 generic and 5/6 paper layers (paper L32: 11.1 → 7.2) But at paper L62, Self-100 KL beats Vanilla (0.58 vs 0.81) while Top-10 overlap is worse (0.36 vs 0.72) Author pilot: both lenses 14/20 full-name wins at L48 Lesson: a better distribution match does not mean better author ranking. Fidelity cannot stand in for the task.",
+  "figs": [
+   "KL(final ‖ readout), lower is better"
+  ]
+ },
+ {
+  "i": 25,
+  "kind": "html",
+  "text": "Stage 7.4 · Line B Cross-stage audit: does J-Lens add value? Read-only joins of Stages 5–7.3; 20,000 bootstrap draws J-Lens minus Vanilla title advantage, with leave-one-out ranges Stage 5 vs 7.3 at L56 r = 0.45, ρ = 0.47; signs agree 32/50 J-Lens − Vanilla +0.002 [−0.008, +0.012]; median −0.002; 24/50 positive A−B of that increment −0.014 [−0.033, +0.004] Dropping one paper can flip the sign of the J-Lens increment. The pilot shows no added title-specific value from J-Lens over Vanilla. Everything so far is exploratory: L56 was inspected repeatedly.",
+  "figs": [
+   "J-Lens minus Vanilla title advantage, with leave-one-out ranges"
+  ]
+ },
+ {
+  "i": 26,
+  "kind": "html",
+  "text": "Stage 9 · Line B Stage 9: is the lens stable across fitting data? New FullFit protocol, different from the historical 50+50 split Historical split-half Stage 9 FullFit Fit data Self-100 split 50 + 50 two disjoint 100-prompt sets Holdout 20 generic + 20 paper independent 100 WikiText Layers 6 7 (adds L16) Status complete only Fit A completed; Fit B and holdout not run WikiText-103 train, 100–1,200 chars, deduplicated by hash, seed 3519001 ~324 s Jacobian time per prompt, ~62 GiB CPU RAM; per-prompt checkpoints Archived progress: Fit A 4/100, Fit B 0/100 at the time of writing Only Fit A was finished, and Stage 10 used it as “fitA”. Without Fit B and the holdout, fitting stability is untested .",
+  "figs": [
+   "Archived progress: Fit A 4/100, Fit B 0/100 at the time of writing"
+  ]
+ },
+ {
+  "i": 27,
+  "kind": "deck",
+  "deck": 18,
+  "notes": "All readouts get better with depth. The logit lens reads almost nothing before L48 (ranks in the tens of thousands) and jumps at L62. Jacobian lenses read more from L40, fitA the most. The real output is best of all."
+ },
+ {
+  "i": 28,
+  "kind": "deck",
+  "deck": 22,
+  "notes": "Comparing lenses. On readout quality fitA is best in most middle layers, self100 at L40; at L48 the Jacobian lenses put the right token in the top 10 for 15-18% of tokens versus 1% for the logit lens. At L62 the plain logit lens is best."
+ },
+ {
+  "i": 29,
+  "kind": "deck",
+  "deck": 23,
+  "notes": "Do Jacobian lenses see paper-specific information the logit lens misses? A little: +0.01 to +0.03 more title-specific signal at L24-L48, CIs above zero, but tiny next to 0.44 at L62. And it is not bigger for target: target minus control of that extra is about zero, negative at L48 and L56."
+ },
+ {
+  "i": 30,
+  "kind": "deck",
+  "deck": 11,
+  "notes": "Is the author readable at the title itself? With the lenses, barely: about 0.01 to 0.03 title-specific signal at the last title token. A linear probe trained across papers gets more: re-checked with author-team folds and with papers whose prompt title the probe saw in training removed, about 0.05 at L24 rising to 0.08 at L56, and 0.04 to 0.08 more for target papers. The controls (appendix) show this probe signal is specific to the paper, not a topic-to-name association. This is not in conflict with the lens result: the title is read early, at the title token, but names only become readable at the name positions in L57 to L61. Read early, spoken late."
+ },
+ {
+  "i": 31,
+  "kind": "html",
+  "text": "Stages 1–9 · 20–200 papers What we saw Self-100 fits the final distribution better; author ranking not better J-Lens − Vanilla ≈0 (7.4: +0.002; Stage 8: −1.4 pp) Stage 9: only Fit A fitted, stability not tested Overview · Line B Stages 10–11 · 9,108 papers What scale showed Jacobian lenses: top-10 rate 15–18% at L48 vs 1% for logit lens Extra title-specific signal only +0.01–0.03, not target-specific At L62 the plain logit lens is best Linear probe at the title token: +0.04 → +0.08, paper-specific Line B: the information is there, but not in a form the lenses read Both phases agree: no lens reveals hidden paper knowledge in middle layers. Scale adds the positive side: a trained probe can decode it at the title, so the limit is the readout, not the absence of information.",
+  "figs": []
+ },
+ {
+  "i": 32,
+  "kind": "html",
+  "text": "Overview · Line C said L57–61 read L24–50 title Line C When does it appear, and when is it used? small samples asked Which layer peaks? (L56 kept standing out) → the full cohort answered Readable late (L57–61) but read from the title early (L24–50)",
+  "figs": []
+ },
+ {
+  "i": 33,
+  "kind": "html",
+  "text": "Stage 4 First readout: is any author signal there? 20 papers, 93 authors (A8 / B8 / C3 / D1); ~91 s per paper, ~29.5 GiB GPU Layer profiles: first-listed first-token RR (left) and conditional full-name JMRR (right) The pipeline works and J-Lens rises above Vanilla in middle layers L56 first-author mean RR 0.0070, median only 0.0009 One paper = 71% of the L56 mean Dropping it: 0.0070 → 0.0021. A layer peak can be a single easy paper, so every later stage adds controls.",
+  "figs": [
+   "Layer profiles: first-listed first-token RR (left) and conditional full-name JMRR (right)"
+  ]
+ },
+ {
+  "i": 34,
+  "kind": "html",
+  "text": "Stage 7.2 · Line A Gold vs 100 real false authors 50 matched (same field, token count, year) + 50 random names per paper; 75,000 scored pairs Matched A−B gold win rate, 100-candidate pool J-Lens A−B: L40 +0.15, L48 +0.19 , L56 +0.19 (CIs above 0); L62 +0.04 (spans 0) 7-layer integrated: +0.105 [−0.012, +0.228] 156/5,000 false names share the gold first token (ties) 100 names → only ~46 distinct first tokens Gold beats real names in middle layers for A more than B. But the same names might win under any title: 7.3 tests that.",
+  "figs": [
+   "Matched A−B gold win rate, 100-candidate pool"
+  ]
+ },
+ {
+  "i": 35,
+  "kind": "deck",
+  "deck": 7,
+  "notes": "Key slide. Target minus control within citation bins. Left: true title only - middle layers are even slightly negative for the Jacobian lens. Right: title-specific part - about zero until L56, then +0.21 to +0.23 at L62 and the output. Robustness: 11 percent of target papers are R1 (a few authors right) against 1.5 percent of controls; keeping R0 papers only in both groups, the output difference is +0.199 instead of +0.207 and every layer looks the same, and the Stage 11 curves do not change either. The target advantage is late and almost entirely title-specific."
+ },
+ {
+  "i": 36,
+  "kind": "deck",
+  "deck": 8,
+  "notes": "Fine layers L50 to L61 were added afterwards for the logit lens and the public lens. The target advantage does not switch on at L62: for the logit lens the title-specific target minus control difference is +0.007 at L50, +0.03 at L54, +0.07 at L56, +0.11 at L58, +0.18 at L60 and +0.23 at L62. The public lens is negative up to L54 and turns positive at L57. The steepest rise is L57 to L61. Both groups peak at L61."
+ },
+ {
+  "i": 37,
+  "kind": "deck",
+  "deck": 9,
+  "notes": "Stage 11 turns the readout question into interventions. 593 target and 593 control papers, matched within citation bins. Patching: run the paper with its true title and with a matched false title, and copy the true run hidden state into the false run at one layer. Knockout: forbid attention to the title tokens from layer l to the end. Probe: train a linear map from the last title token to the output state. Chain: score every author after the previous ones."
+ },
+ {
+  "i": 38,
+  "kind": "deck",
+  "deck": 10,
+  "notes": "Two causal curves. Left: copying the hidden states of the tokens after the title (closing quote, year, Authors:, the name) from the true run into the false run recovers 29 percent at L40, 83 percent at L48 and everything from L52. Copying only the last title token recovers about 12 percent. Right: blocking attention to the title from L0 removes 83 percent of the effect, from L32 37 percent, from L48 6 percent, from L52 nothing. Blocking only the colon and name positions removes at most 15 percent, so the information is routed through the tokens right after the title. Target and control follow the same curves."
+ },
+ {
+  "i": 39,
+  "kind": "html",
+  "text": "Stages 1–9 · 20–200 papers What we saw Stage 4 peak at L56 driven by one paper (71%) 7.2: A−B win-rate positive at L40–L56 7.3, 8: L56 title advantage; L56 became the primary layer Overview · Line C Stages 10–11 · 9,108 papers What scale showed L56 is where it starts ; steepest rise L57–L61 Patching: copying tail states recovers 80–87% at L48, 100% from L52 Knockout: blocking the title from L52 on costs nothing Line C: “read early, spoken late” L56 was a real landmark, but not the peak. Interventions add what readouts cannot: the title is consumed in L24–50, and the answer only becomes readable at the name a dozen layers later.",
+  "figs": []
+ },
+ {
+  "i": 40,
+  "kind": "html",
+  "text": "Overview · Line D S. ␣B ree initial surname signal Line D Which token carries it? small samples asked First token or the rest of the name? → the full cohort answered Depends on name format; routed through the tokens right after the title; co-authors partly replace the title",
+  "figs": []
+ },
+ {
+  "i": 41,
+  "kind": "html",
+  "text": "Stage 6 · Line D From first token to the full name 50 papers, 227 authors, 972 name tokens; every listed author scored with teacher forcing Conditional full-author JMRR by group Group Integrated JMRR A (20) 0.085 [0.075, 0.096] B (20) 0.068 [0.057, 0.080] C (7) 0.106 D (3) 0.050 L62 A−B +0.097 [0.028, 0.163]; Vanilla also +0.091 Positive, but each token after the first is given the correct prefix. Next: split first token from the rest (7.1).",
+  "figs": [
+   "Conditional full-author JMRR by group"
+  ]
+ },
+ {
+  "i": 42,
+  "kind": "html",
+  "text": "Stage 7.1 · Line D The A−B gap sits on the rest of the name CPU-only re-analysis of Stage 6; 10,000 pair-bootstrap draws Integrated A−B JMRR by token position Endpoint A−B (7 layers) First token +0.001 [−0.011, +0.015] Continuation +0.021 [+0.002, +0.039] All tokens +0.017 [+0.003, +0.030] At L62: first +0.014 (12/20 pairs) vs continuation +0.121 (15/20) Completing a name is easier than starting it. A continuation gap cannot show unaided recall. Open: is this about initials vs surnames?",
+  "figs": [
+   "Integrated A−B JMRR by token position"
+  ]
+ },
+ {
+  "i": 43,
+  "kind": "deck",
+  "deck": 25,
+  "notes": "Is the signal decided by the first token? It depends on the name format. Initial-first names: the initial carries little, the signal is on the later tokens that include the surname. Given-name-first names: the given name carries about as much as the rest. Note teacher forcing: later tokens already see the correct prefix in every condition, so their title-specific signal can only come from the title."
+ },
+ {
+  "i": 44,
+  "kind": "deck",
+  "deck": 26,
+  "notes": "Does knowing the first word make the rest easier? For a full given name, yes: when it is in the top 10 the surname is +0.22 better at the output, +0.32 for the logit lens at L62. For an initial, no. Mixing both formats would even show a negative effect, because initials are easy and the surnames after them are hard."
+ },
+ {
+  "i": 45,
+  "kind": "deck",
+  "deck": 27,
+  "notes": "Left: title-specific signal by token role at the output - surname first token carries most, initials least, punctuation about zero (negative control). Right: across all unrecalled papers, the more multiple-choice orders right, the better the model output (Spearman 0.27)."
+ },
+ {
+  "i": 46,
+  "kind": "deck",
+  "deck": 19,
+  "notes": "Author chain. When the earlier authors are in the context, later authors become easier: plus 0.17 to 0.23 for target, 0.12 to 0.18 for control. But the title matters less: the title-specific signal drops from 0.45 to 0.26 for later target authors, because the co-authors already identify the paper. Target still beats control within bins, plus 0.11 to 0.15."
+ },
+ {
+  "i": 47,
+  "kind": "html",
+  "text": "Stages 1–9 · 20–200 papers What we saw A−B lives on continuation tokens (+0.021), not the first token (+0.001) Open question: is that teacher forcing, initials or surnames? Overview · Line D Stages 10–11 · 9,108 papers What scale showed 73% of names start with an initial, which carries little Full given names carry as much as surnames and help predict them (+0.22) Information travels title → tail tokens → name Earlier co-authors make later ones easier, title matters less Line D: the puzzle from 7.1 is explained by name format The pilot’s “continuation” result was mostly a format effect: for “S. Bree” the surname is a continuation token. Stage 12 P1 now patches single tail positions.",
+  "figs": []
+ },
+ {
+  "i": 48,
+  "kind": "html",
+  "text": "Overview · Lines A–D Keys and shelves Is the book on the shelf, or is the key failing to get it out? the model’s shelves this paper’s authors ① key = the title ② S. Bree…? handed out late, faintly ③ which shelf? memory or title ④ layers L0 L24–50 key turns L57–61 said 1 Is the book on the shelf? Yes True title beats false titles (≈0.44 at L62); a probe on the title token reads paper-specific authors from L16 Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, turned at L24–50 Patching recovers 80–87% at L48, 100% from L52; knockout after L52 costs almost nothing Line C · Stage 11 3 Book there but stuck? Not supported Target − control ≈ 0 in middle layers, grows only at L57–61 (+0.21 at output): retrieval itself is weak Lines A, C · Stage 7.2, 10 4 Which shelf? Open Memory (MLP) or carried from the title (attention)? Stage 12 P2 · 15/24 done Caveat: a readout not finding it ≠ absent. Middle layers may hold the task or the paper’s identity, which rank-based lenses cannot score.",
+  "figs": []
+ },
+ {
+  "i": 49,
+  "kind": "html",
+  "text": "Overview What the small samples taught us to watch for Single-paper leverage : one paper = 71% of the Stage 4 L56 mean Tail-driven contrasts : Stage 8 A−B disappears after removing 10 of 100 pairs Forking paths : L56 inspected repeatedly, then made primary Candidate artefacts : 100 false names share ~46 first tokens; 3% tie with gold Label noise : strict “pass” 25.5% in the 0–2 citation bin Partial coverage : first-listed author stands in for the team Metric choice : KL fidelity and author ranking disagree Protocol drift : primary endpoint changed between README and run Stage 10 answered each one by design: full cohort, every author and token, all layers reported, full-vocabulary ranks, within-bin comparison, frozen inputs with parity checks. What it cannot fix: groups still come from one labelling run of the same model.",
+  "figs": []
+ },
+ {
+  "i": 50,
+  "kind": "html",
+  "text": "Overview Small vs large, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 papers) Verdict True title helps +9.3 pp pilot, +5.2 pp new 200 ≈0.44 title-specific at L62 confirmed Recognised &gt; not recognised uncertain, tail-driven +0.21 at output, ≈0 middle confirmed, late only Same groups (A vs B, R0 only) A − B as above +0.20 at output, ≈0 middle; R1 adds strength, not timing comparable, unchanged Key layer L56 starts L56, rises L57–61; read L24–50 refined J-Lens over Vanilla no increment more name shape, no paper identity consistent First vs rest of name gap on continuation explained by initials vs given names explained Citations low−high inconclusive monotonic, ρ = 0.45 resolved Lens stability split-half one split; Stage 9 only Fit A three Jacobian lenses agree still to verify",
+  "figs": []
+ },
+ {
+  "i": 51,
+  "kind": "deck",
+  "deck": 14,
+  "notes": "Wrap up. One line: read early, spoken late. The title is taken in during L24 to L50 (patching, knockout, probe at the title token), but the author names only become readable at the name positions in L57 to L61. The lens result (no middle-layer lead for target) and the probe result (a small target lead at the title token) are about different positions and do not conflict."
+ },
+ {
+  "i": 52,
+  "kind": "deck",
+  "deck": 15,
+  "notes": "Limits and next steps. Patching and knockout fix when the title is read (L24-L50) but not what happens inside those layers. Stage 12 is running: single-position patching, attention versus MLP patching, a lens fitted on author prompts, and two name-prior baselines. A second model is out of scope: the groups come from the group lead labelling run of Qwen3-32B."
+ }
+]

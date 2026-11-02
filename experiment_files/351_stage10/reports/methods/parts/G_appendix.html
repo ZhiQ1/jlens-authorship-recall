@@ -134,7 +134,7 @@
 <tr><td>D_text（文本基线）</td><td>只从标题文本预测第一作者名字 token 的同样差值（kNN 版与监督 LR 版）。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td>x4tok / X4TOK_CHECK_FAILED</td><td>X4 逐 token 复算及其自检；第一次 max |diff| 0.0683 &gt; 0.05 写出失败标记，被用户定为致命的正确性检查。</td><td><a href="#s13-x4">s13-x4</a>、<a href="#h-compute-parity">h-compute-parity</a></td></tr>
 <tr><td>b7 / b2</td><td>x4tok 修法中的两种批大小：b7 = 一次注入全部 7 个 PS_LAYERS（与原 X4 相同），b2 = 只注入 L8、L40。</td><td><a href="#s13-x4">s13-x4</a></td></tr>
-<tr><td>X5</td><td>计划中的层序量化（身份 → probe 读作者 → lens 读名字），未执行。</td><td><a href="#s13-x5">s13-x5</a></td></tr>
+<tr><td>X5</td><td>层序量化：把各实验已有结果的"最早出现层"（按各来源自己的规则；"≤ Lx" = 网格第一层已通过）放到同一条层轴上，对照 H2 预测的顺序（身份 → probe 读作者 → lens 读名字 L57–61）。2026-11-02 在 CPU 上完成，只用已有结果；预注册的 M3 top-1 检索曲线没有计算。</td><td><a href="#s13-x5">s13-x5</a></td></tr>
 <tr><td>X6</td><td>用 false_1 … false_4 重做 Stage 11 E1。</td><td><a href="#s13-x6">s13-x6</a></td></tr>
 <tr><td>X7 / S = T − F</td><td>在 false_0 运行上做与 E2 相同的阻断：T = 真运行损失比，F = 假运行损失比，S = T − F 为论文特有损失。</td><td><a href="#s13-x7">s13-x7</a></td></tr>
 <tr><td>kT64 / kF64</td><td>真 / 假运行中"不挡（l = 64）但走显式 mask"的那一份。</td><td><a href="#s13-x7">s13-x7</a></td></tr>
@@ -283,7 +283,7 @@
 
 <section id="ap-void">
 <h2>附录 G4　计划未做 / 作废 / 被复核取代 / 待复核 汇总</h2>
-<p>来源：正文全部 <code>st-void</code>、<code>st-plan</code>、<code>st-review</code> 标签（31 处，起草时），以及正文描述中明确写为"取代""撤回""无效""放宽""改为"的条目。<b>2026-10-31 更新</b>：V28（M3 判据）、V31（X1 相对 C）、V48（group_folds）→ 已处理；V41（X6/X7 按角色）→ 已完成；V33、V34、V35、V36 按补充 5 更新；新增 V50（F1 对半拟合不做）。原标为待复核的 5 项（V28、V31、V41、V42、V48）现只剩 V42。<b>2026-11-01 更新</b>：V33（X3 para_run）→ 已完成；新增 V51–V55（X3 与预注册的出入：按 token 角色报告做不到、n 少于补充 5、":" 位置 L4–L8 不解读、事后加的三项分析、起始层不稳健）。</p>
+<p>来源：正文全部 <code>st-void</code>、<code>st-plan</code>、<code>st-review</code> 标签（31 处，起草时），以及正文描述中明确写为"取代""撤回""无效""放宽""改为"的条目。<b>2026-10-31 更新</b>：V28（M3 判据）、V31（X1 相对 C）、V48（group_folds）→ 已处理；V41（X6/X7 按角色）→ 已完成；V33、V34、V35、V36 按补充 5 更新；新增 V50（F1 对半拟合不做）。原标为待复核的 5 项（V28、V31、V41、V42、V48）现只剩 V42。<b>2026-11-01 更新</b>：V33（X3 para_run）→ 已完成；新增 V51–V55（X3 与预注册的出入：按 token 角色报告做不到、n 少于补充 5、":" 位置 L4–L8 不解读、事后加的三项分析、起始层不稳健）。<b>2026-11-02 更新</b>：V43（X5）→ 已完成（有偏离）；新增 V56（X5 预注册的 top-1 检索曲线没有计算）。</p>
 <table class="t">
 <tr><th>#</th><th>项目</th><th>状态</th><th>原因 / 现状</th><th>出处</th></tr>
 <tr><td>V01</td><td>Stage 3 公共 lens 任务验证 351_validate_public_lens.py 与 …_offload.py 两次运行</td><td><span class="st st-void">作废</span></td><td>前者在 40GB 卡 OOM，后者 device_map='auto' 报 meta tensor 错；由 …_offload_fixed.py（显式 29 层上 GPU）取代。</td><td><a href="#s19-s3-exp0">s19-s3-exp0</a></td></tr>
@@ -328,7 +328,7 @@
 <tr><td>V40</td><td>X4 逐 token 复算（x4tok，第一版 batch 2）</td><td>被 b7 修法取代 <span class="st st-rechecked">复核过</span></td><td>第一版自检 max |diff| 0.0683 &gt; 0.05，作业 11485349 按设计停止；b7 修法全量 11500437：4,712 个值逐值复现，L8 平均 D b7 +0.0484 / b2 +0.0490（差 0.0006 &lt; 0.005）。</td><td><a href="#s13-x4">s13-x4</a>、<a href="#h-compute-parity">h-compute-parity</a></td></tr>
 <tr><td>V41</td><td>按 token 角色报告（补充 4）：X4、X6、X7</td><td><span class="st st-done">已完成（2026-10-31）</span></td><td>X4 已于 2026-10-30 按角色报告（姓首 token +0.066 [0.045, 0.088]）；P1 已用 raw 重算；X6/X7 于 2026-10-31 完成（stage13_x6x7_roles.py，作业 11512706，无需 GPU；ALL 复现原值 ≤ 6e-16；L44 未存）。X6（全部论文 R(L48)/R(L52)）：合计 0.821/0.995，名字第一个 token 0.791/1.045，姓第一个 token 0.734/0.971，姓后续 0.893/0.997；三个角色在 target/control/全部都成立，唯一例外 target 姓第一个 token R(L48) 0.696 &lt; 0.70。X7（S(L52)，全部论文）：名字第一个 0.029 [−0.017, 0.075]、姓第一个 0.032、姓后续 0.031，与合计 0.029 无差别；control 合计 0.051 本就不成立，拆开后名字第一个 0.078、姓后续 0.052 不成立，姓第一个 0.049 成立。<span class="src">381_stage13/reports/x6x7_roles.md · summary_x6/x6_roles.csv · summary_x7/x7_roles.csv</span></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td>V42</td><td>X4 recognition 规则与区间版本</td><td><span class="st st-review">待复核</span></td><td>recognition 用 min_n = 10、全部论文、无 tune/test；X1/X4/X6/X7/M3 只给团队版区间（补充 2 要求两种都给）。</td><td><a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
-<tr><td>V43</td><td>X5（层序量化）</td><td><span class="st st-plan">计划未做</span></td><td>有预注册条款，无代码，未执行；用户 2026-10-30 定为 M3、X4 全量完成后用已有数据在 CPU 上做。</td><td><a href="#s13-x5">s13-x5</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
+<tr><td>V43</td><td>X5（层序量化）</td><td><span class="st st-done">已完成（2026-11-02）</span> <span class="st st-review">偏离</span></td><td>按用户 2026-10-30 的决定（U54），在 M3、X4 全量完成后用已有结果在 CPU 上做：<code>13_stage13/stage13_x5_layer_order.py</code>（2026-11-02 10:27，无 Slurm 作业）→ <code>381_stage13/summary_x5/x5_layer_order.csv</code>、<code>reports/x5_layer_order.png/.svg</code>、<code>reports/x5_report.md</code>。偏离：预注册的 top-1 检索曲线没有计算（V56）；Stage 10 行的 0.05 更强阈值是 Stage 10 的约定，不是预注册阈值；扩充了预注册三条曲线以外的行；区间类型按来源混用（团队 / 论文 / Stage 12 bootstrap）。<span class="src">381_stage13/reports/x5_report.md "Caveats" · PROGRESS.md 2026-11-02 10:27 条</span></td><td><a href="#s13-x5">s13-x5</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
 <tr><td>V44</td><td>X7 分析作业 11470471</td><td>失败运行，修复后重跑</td><td>自检里把 D.T 写成 pandas 转置而崩溃；改为 D['T'] 并把自检包成只 WARN，作业 11470524。</td><td><a href="#s13-x7">s13-x7</a></td></tr>
 <tr><td>V45</td><td>文档中与代码不符的说法</td><td>以代码为准</td><td>STATUS.md §2 的代价公式省掉了归一化分母；已发布报告 §3.1"去掉作者 ≥ 20 位"与代码（1–20 含 20）不符；任务说明称 para_gen 用 chat 模板，与代码不符；STAGES.md 的 7.3 完成日期与 mtime 不符。</td><td><a href="#h-false-cost">h-false-cost</a>、<a href="#g-data-origin">g-data-origin</a>、<a href="#g-model-chat">g-model-chat</a>、<a href="#s19-s73">s19-s73</a></td></tr>
 <tr><td>V46</td><td>X3 判断器 v2（stage13_judge2.py，作业 11501072）</td><td><span class="st st-void">作废</span>（按规则不用）</td><td>A 组校准一致率 0.90，B 组检验 0.55（去边界 0.79），低于用户定的 0.80，不用；改走备用方案（人工核对 + 有/无敏感性），已写入补充 5（2026-10-30 22:45：判断器 v2 不用，NLI 只定敏感性集合）。</td><td><a href="#s13-x3">s13-x3</a></td></tr>
@@ -341,6 +341,7 @@
 <tr><td>V53</td><td>X3 ":" 位置 L4–L8 的 G′</td><td>不解读</td><td>各版本余弦在 L4–L8 都接近 1，G′ 只有约 0.002；脚本虽判 confirmed，不作解读（预注册里没有这一条，属事后决定）。<span class="src">x3_report.md colon 表 · stage1_11_report.html x3-results 末段 note</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td>V54</td><td>X3 文本模型基线、行为恢复比例、target / control 拆分与 D 分布</td><td>事后加的分析（不在预注册里）</td><td>用户 2026-10-31 / 11-01 要求：stage13_x3_textbase.py（作业 11522507）、stage13_x3_recovery.py、stage13_x3_groupsplit.py；按补充 4 的预注册判据 X3 判为“存在论文身份信号”；据这些事后检验把解读降为“语义表示，不能与论文身份区分”。两者都报告（2026-11-02 补写）。<span class="src">x3_textbase_recovery.md · x3_groupsplit.md</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td>V55</td><td>X3 起始层（tune 上第一个显著层）</td><td>不稳健，不作结论</td><td>主分析 L8、敏感性 L24；按补充 5，两集不同即"不稳健"。中间层（L28–L40）优势在两集相同。<span class="src">x3_report.md "Robustness" 行</span></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td>V56</td><td>X5 的身份曲线：M3 跨问法 top-1 检索（prereg.json X5 原文 "M3, top-1 retrieval among the test papers"）</td><td><span class="st st-plan">计划未做</span> <span class="st st-review">偏离</span></td><td>从未计算；X5 用 M3 身份指数 I(l) − I(L4)（补充 2）代替，它在标题最后 token 与 ":" 都从不高于 L4（最大 −0.003 @ L16、−0.041 @ L8），所以 X5 没有"身份层"。<span class="src">381_stage13/summary_x5/x5_layer_order.csv M3 行（rule 列 "top-1 cross-task retrieval was NOT computed"）· summary_m3/m3_verdict_addendum2.csv</span></td><td><a href="#s13-x5">s13-x5</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
 </table>
 </section>
 <section id="ap-index">
@@ -483,6 +484,7 @@
 <tr><td><code>~/jlens_work/13_stage13/stage13_x3_textbase.sbatch</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td><code>~/jlens_work/13_stage13/stage13_x4_textbase.py</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td><code>~/jlens_work/13_stage13/stage13_x4_textbase2.py</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>~/jlens_work/13_stage13/stage13_x5_layer_order.py</code></td><td><a href="#s13-x5">s13-x5</a></td></tr>
 <tr><td><code>~/jlens_work/13_stage13/stage13_x6_analyze.py</code></td><td><a href="#h-false-use">h-false-use</a>、<a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#h-stats-boot">h-stats-boot</a>、<a href="#s13-x6">s13-x6</a></td></tr>
 <tr><td><code>~/jlens_work/13_stage13/stage13_x6_analyze.sbatch</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
 <tr><td><code>~/jlens_work/13_stage13/stage13_x6x7_roles.py</code></td><td><a href="#s13-x6">s13-x6</a>、<a href="#s13-x7">s13-x7</a>、<a href="#h-prereg-dev">h-prereg-dev</a></td></tr>
@@ -787,6 +789,8 @@
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x4_textbase.md</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x4_textbase2.md</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x4_textbase_posctrl.md</code></td><td><a href="#s13-x4">s13-x4</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x5_layer_order.png</code>、<code>x5_layer_order.svg</code></td><td><a href="#s13-x5">s13-x5</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x5_report.md</code></td><td><a href="#s13-x5">s13-x5</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x6_report.md</code></td><td><a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s1011-s11-e1">s1011-s11-e1</a>、<a href="#s13-x6">s13-x6</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x7_report.md</code></td><td><a href="#h-compute-parity">h-compute-parity</a>、<a href="#h-prereg-dev">h-prereg-dev</a>、<a href="#s1011-s11-e2">s1011-s11-e2</a>、<a href="#s13-x7">s13-x7</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_cpu/M1_title_sensitivity.csv</code></td><td><a href="#s13-m1">s13-m1</a></td></tr>
@@ -817,6 +821,7 @@
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x3/x3_recovery.csv</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x3/x3_textbase_gap.csv</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x3/x3_textbase_ratio.csv</code></td><td><a href="#s13-x3">s13-x3</a></td></tr>
+<tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x5/x5_layer_order.csv</code></td><td><a href="#s13-x5">s13-x5</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x6/x6_recovery.csv</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x6/x6_verdict.json</code></td><td><a href="#s13-x6">s13-x6</a></td></tr>
 <tr><td><code>/scratch/zhang.zhiqi2/jlens/381_stage13/summary_x7/x7_knockout.csv</code></td><td><a href="#s13-x7">s13-x7</a></td></tr>

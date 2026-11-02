@@ -302,7 +302,7 @@
  {
   "i": 47,
   "kind": "html",
-  "text": "Stages 1–9 · 20–200 papers What we saw A−B lives on continuation tokens (+0.021), not the first token (+0.001) Open question: is that teacher forcing, initials or surnames? Overview · Line D Stages 10–11 · 9,108 papers What scale showed 73% of names start with an initial, which carries little Full given names carry as much as surnames and help predict them (+0.22) Information travels title → tail tokens → name Earlier co-authors make later ones easier, title matters less Line D: the puzzle from 7.1 is explained by name format The pilot’s “continuation” result was mostly a format effect: for “S. Bree” the surname is a continuation token. Stage 12 P1 now patches single tail positions.",
+  "text": "Stages 1–9 · 20–200 papers What we saw A−B lives on continuation tokens (+0.021), not the first token (+0.001) Open question: is that teacher forcing, initials or surnames? Overview · Line D Stages 10–11 · 9,108 papers What scale showed 73% of names start with an initial, which carries little Full given names carry as much as surnames and help predict them (+0.22) Information travels title → tail tokens → name Earlier co-authors make later ones easier, title matters less Line D: the puzzle from 7.1 is explained by name format The pilot’s “continuation” result was mostly a format effect: for “S. Bree” the surname is a continuation token. Stage 12 P1 (done) patched single positions: the name positions carry the signal (+0.85 at L52), the colon alone little (+0.17).",
   "figs": []
  },
  {
@@ -324,15 +324,33 @@
   "figs": []
  },
  {
-  "i": 51,
+  "kind": "html",
+  "text": "Stage 12–13 Stage 12–13: what the middle layers hold Paper facts are readable at the title early (M2), but neither paper identity (H2) nor hidden author knowledge (H3) is established [table image: hypotheses H1–H3 × readouts M1–M3 and current results (report, 2026-11-01)]",
+  "figs": [
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/downloads/Stage13_hypotheses_table_v23_tableonly.png"
+  ],
+  "added": "2026-11-02",
+  "i": 51
+ },
+ {
+  "kind": "html",
+  "text": "Stage 13 · X5 Layer order (X5) Earliest layer at which each kind of information appears · existing results only, each source keeps its own rule Read early, carried, spoken late ≤L8–L16: title facts and the first-author token L48–L52: the paper signal reaches the post-title tail (patching R ≥ 0.5 at L48, ≥ 0.95 at L52; knockout costs nothing from L52) L53–L62: names readable by lens",
+  "figs": [
+   "/scratch/zhang.zhiqi2/jlens/381_stage13/reports/x5_layer_order.png"
+  ],
+  "added": "2026-11-02",
+  "i": 52
+ },
+ {
+  "i": 53,
   "kind": "deck",
   "deck": 14,
   "notes": "Wrap up. One line: read early, spoken late. The title is taken in during L24 to L50 (patching, knockout, probe at the title token), but the author names only become readable at the name positions in L57 to L61. The lens result (no middle-layer lead for target) and the probe result (a small target lead at the title token) are about different positions and do not conflict."
  },
  {
-  "i": 52,
+  "i": 54,
   "kind": "deck",
   "deck": 15,
-  "notes": "Limits and next steps. Patching and knockout fix when the title is read (L24-L50) but not what happens inside those layers. Stage 12 is running: single-position patching, attention versus MLP patching, a lens fitted on author prompts, and two name-prior baselines. A second model is out of scope: the groups come from the group lead labelling run of Qwen3-32B."
+  "notes": "Limits and next steps. Stage 12 and Stage 13 are done. Stage 12: single-position patching (P1), attention versus MLP patching (P2, with an explicit hook check that passed), two name-prior baselines (N1, N2) and a lens fitted on author prompts (F1, F2): the middle layers are still not readable as names. Stage 13: probes read year, citations and field at the title from L16 or earlier (M2), but the task-swap identity index never exceeds the L4 text level (M3); the replacement effect is task-independent (X1); paraphrases share meaning beyond wording in L28 to L40, which cannot be separated from paper identity (X3); the first author is decodable at L8 but may be explained by the title text (X4); five false titles confirm the Stage 11 timing (X6, X7). Limits: one model, teacher-forced preference rather than generation, labels from the team lead package without the labelling code, and H2 and H3 are not established."
  }
 ]
