@@ -245,7 +245,7 @@
   "i": 38,
   "kind": "deck",
   "deck": 10,
-  "notes": "Two causal curves. Left: copying the hidden states of the tokens after the title (closing quote, year, Authors:, the name) from the true run into the false run recovers 29 percent at L40, 83 percent at L48 and everything from L52. Copying only the last title token recovers about 12 percent. Right: blocking attention to the title from L0 removes 83 percent of the effect, from L32 37 percent, from L48 6 percent, from L52 nothing. Blocking only the colon and name positions removes at most 15 percent, so the information is routed through the tokens right after the title. Target and control follow the same curves."
+  "notes": "Two causal curves. Left: copying the hidden states of the tokens after the title (closing quote, year, Authors:, the name) from the true run into the false run recovers 29 percent at L40, 83 percent at L48 and everything from L52. Copying only the last title token recovers about 12 percent. Right: blocking attention to the title from L0 removes 83 percent of the effect, from L32 37 percent, from L48 6 percent, from L52 nothing. Blocking only the colon and name positions removes at most 15 percent, so the information enters the name positions at L44–52, partly via the tokens right after the title. Target and control follow the same curves."
  },
  {
   "i": 39,
@@ -256,7 +256,7 @@
  {
   "i": 40,
   "kind": "html",
-  "text": "Overview · Line D S. ␣B ree initial surname signal Line D Which token carries it? small samples asked First token or the rest of the name? → the full cohort answered Depends on name format; routed through the tokens right after the title; co-authors partly replace the title",
+  "text": "Overview · Line D S. ␣B ree initial surname signal Line D Which token carries it? small samples asked First token or the rest of the name? → the full cohort answered Depends on name format; the information enters the name positions at L44–52, partly via the tokens right after the title; co-authors partly replace the title",
   "figs": []
  },
  {
@@ -308,7 +308,7 @@
  {
   "i": 48,
   "kind": "html",
-  "text": "Overview · Lines A–D Keys and shelves Is the book on the shelf, or is the key failing to get it out? the model’s shelves this paper’s authors ① key = the title ② S. Bree…? handed out late, faintly ③ which shelf? memory or title ④ layers L0 L24–50 key turns L57–61 said 1 Is the book on the shelf? Yes True title beats false titles (≈0.44 at L62); a probe on the title token reads paper-specific authors from L16 Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, turned at L24–50 Patching recovers 80–87% at L48, 100% from L52; knockout after L52 costs almost nothing Line C · Stage 11 3 Book there but stuck? Not supported Target − control ≈ 0 in middle layers, grows only at L57–61 (+0.21 at output): retrieval itself is weak Lines A, C · Stage 7.2, 10 4 Which shelf? Open Memory (MLP) or carried from the title (attention)? Stage 12 P2 · 15/24 done Caveat: a readout not finding it ≠ absent. Middle layers may hold the task or the paper’s identity, which rank-based lenses cannot score.",
+  "text": "Overview · Lines A–D Keys and shelves Is the book on the shelf, or is the key failing to get it out? the model’s shelves this paper’s authors ① key = the title ② S. Bree…? handed out late, faintly ③ which shelf? memory or title ④ layers L0 L24–50 key turns L57–61 said 1 Is the book on the shelf? Yes True title beats false titles (≈0.44 at L62); a probe on the title token reads paper-specific authors from L16 Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, turned at L24–50 Patching recovers 80–87% at L48, 100% from L52; knockout after L52 costs almost nothing Line C · Stage 11 3 Book there but stuck? Not supported Target − control ≈ 0 in middle layers, grows only at L57–61 (+0.21 at output): retrieval itself is weak Lines A, C · Stage 7.2, 10 4 Which shelf? Open Memory (MLP) or carried from the title (attention)? Stage 12 P2 · 15/24 done Caveat: a readout not finding it ≠ absent. Stage 13: ':' and name positions hold the task; the title position holds paper attributes and meaning beyond the words, not shown to be paper identity.",
   "figs": []
  },
  {
@@ -320,12 +320,12 @@
  {
   "i": 50,
   "kind": "html",
-  "text": "Overview Small vs large, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 papers) Verdict True title helps +9.3 pp pilot, +5.2 pp new 200 ≈0.44 title-specific at L62 confirmed Recognised &gt; not recognised uncertain, tail-driven +0.21 at output, ≈0 middle confirmed, late only Same groups (A vs B, R0 only) A − B as above +0.20 at output, ≈0 middle; R1 adds strength, not timing comparable, unchanged Key layer L56 starts L56, rises L57–61; read L24–50 refined J-Lens over Vanilla no increment more name shape, no paper identity consistent First vs rest of name gap on continuation explained by initials vs given names explained Citations low−high inconclusive monotonic, ρ = 0.45 resolved Lens stability split-half one split; Stage 9 only Fit A three Jacobian lenses agree still to verify",
+  "text": "Overview Small vs large, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 papers) Verdict True title helps +9.3 pp pilot, +5.2 pp new 200 ≈0.44 title-specific at L62 confirmed Recognised &gt; not recognised uncertain, tail-driven +0.21 at output, ≈0 middle confirmed, late only Same groups (A vs B, R0 only) A − B as above +0.20 at output, ≈0 middle; R1 adds strength, not timing comparable, unchanged Key layer L56 starts L56, rises L57–61; read L24–50 refined J-Lens over Vanilla no increment more name shape, no paper identity consistent First vs rest of name gap on continuation explained by initials vs given names explained Citations low−high inconclusive monotonic, ρ = 0.45 resolved Lens stability split-half one split; Stage 9 only Fit A three Jacobian lenses agree only one piece of evidence (Stage 9 Fit A); Fit B not completed",
   "figs": []
  },
  {
   "kind": "html",
-  "text": "Stage 12–13 Stage 12–13: what the middle layers hold Paper facts are readable at the title early (M2), but neither paper identity (H2) nor hidden author knowledge (H3) is established [table image: hypotheses H1–H3 × readouts M1–M3 and current results (report, 2026-11-01)]",
+  "text": "Stage 12–13 Stage 12–13: what the middle layers hold Paper facts are readable at the title early (M2) · H2 (paper identity) partly supported but not established; H3 (hidden author knowledge): insufficient evidence [table image: hypotheses H1–H3 × readouts M1–M3 and current results (report, 2026-11-01)]",
   "figs": [
    "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/downloads/Stage13_hypotheses_table_v23_tableonly.png"
   ],
@@ -351,6 +351,6 @@
   "i": 54,
   "kind": "deck",
   "deck": 15,
-  "notes": "Limits and next steps. Stage 12 and Stage 13 are done. Stage 12: single-position patching (P1), attention versus MLP patching (P2, with an explicit hook check that passed), two name-prior baselines (N1, N2) and a lens fitted on author prompts (F1, F2): the middle layers are still not readable as names. Stage 13: probes read year, citations and field at the title from L16 or earlier (M2), but the task-swap identity index never exceeds the L4 text level (M3); the replacement effect is task-independent (X1); paraphrases share meaning beyond wording in L28 to L40, which cannot be separated from paper identity (X3); the first author is decodable at L8 but may be explained by the title text (X4); five false titles confirm the Stage 11 timing (X6, X7). Limits: one model, teacher-forced preference rather than generation, labels from the team lead package without the labelling code, and H2 and H3 are not established."
+  "notes": "Limits and next steps. Stage 12 and Stage 13 are done. Stage 12: single-position patching (P1), attention versus MLP patching (P2, with an explicit hook check that passed), two name-prior baselines (N1, N2) and a lens fitted on author prompts (F1, F2): the middle layers are still not readable as names. Stage 13: probes read year, citations and field at the title from L16 or earlier (M2), but the task-swap identity index never exceeds the L4 text level (M3); the replacement effect is task-independent (X1); paraphrases share meaning beyond wording in L28 to L40, which cannot be separated from paper identity (X3); the first author is decodable at L8 but may be explained by the title text (X4); five false titles confirm the Stage 11 timing (X6, X7). Limits: one model, teacher-forced preference rather than generation, labels from the team lead package without the labelling code, H2 (paper identity) is partly supported but not established, and for H3 (hidden author knowledge) the evidence is insufficient."
  }
 ]

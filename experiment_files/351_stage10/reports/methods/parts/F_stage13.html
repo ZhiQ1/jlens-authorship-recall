@@ -12,6 +12,7 @@
 <li><b>H2</b>：M3 不支持；X3 显示中间层超出用词的语义表示，但不能与论文身份区分；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考（M3 见 <a href="#s13-m3">s13-m3</a>，X3 见 <a href="#s13-x3">s13-x3</a>）。另外，X4 最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反（<a href="#s13-x4">s13-x4</a>）。<b>X5 层序（2026-11-02 已完成，CPU，只用已有结果）</b>：M3 身份指数从不高于 L4，预注册的跨问法 top-1 检索没有计算，所以 X5 没有"身份层"；作者首 token 由 probe 在 ≤ L16（E4b）读出；名字位置 lens 读出按 0.05 界在 L53–L58，F2 在 L62（<a href="#s13-x5">s13-x5</a>）。</li>
 <li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足；X2 暂停，H3 没有因果检验（<a href="#s13-x2">s13-x2</a>）。</li>
 </ul>
+<p><b>总体判断（2026-11-03，与报告、PPT 统一）：H2 部分支持但未确立，H3 证据不足。</b></p>
 <p><span class="src">R13/reports/m3_report.md 末节 "Reading under prereg addendum 2" · R13/summary_m3/m3_verdict_addendum2.csv · R13/reports/x4_report.md · R13/summary_x1x4/x4_rolesplit.csv · PROG 2026-10-31 01:00 条 · R13/reports/x3_report.md、x3_textbase_recovery.md、x3_groupsplit.md · stage1_11_report.html 假设表"目前结果（2026-11-01）"列（v23）· PROG 2026-11-01 条</span> <span class="st st-rechecked">复核过</span></p>
 
 <h4>共用样本</h4>
