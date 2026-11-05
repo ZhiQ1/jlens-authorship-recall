@@ -1,9 +1,9 @@
 # README
-newest experiment report:
+**newest experiment report**: [stage 1-13 experiment report](https://github.com/ZhiQ1/jlens-authorship-recall/blob/main/Stage1-13_report_v28_A4.pdf)
 
 > **Current documents (Stages 1–11, kept up to date; all new results go only into these two):**
-> - **Slides:** [Stage 1–11 merged deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD)
-> - **Report:** [Stage 1–11 combined experiment report](https://claude.ai/artifact/QB335qoaBWvSdFyfvc2bSe)
+> - **Slides:** [Stage 1–11 merged deck](---)
+> - **Report:** [Stage 1–11 combined experiment report](---)
 >
 > Both pages are private claude.ai artifacts; ask the owner for access.
 
