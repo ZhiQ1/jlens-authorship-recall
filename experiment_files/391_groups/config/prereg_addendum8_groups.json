@@ -1,0 +1,27 @@
+{
+ "title": "Addendum 8: author position in P2, and the GPU re-runs for R2 and R0-uncertain (written before any P2 result and before any re-run)",
+ "written": "2026-11-05 (exact time = sha256 file mtime and git)",
+ "approved_by_user": "user message 2026-11-05 (points 1 and 2): author position confounds P2; lock stratified reporting before seeing P2; GPU re-runs R2 (204) E1 + E2 + P1/P2 and R0-uncertain 600 (bin-balanced) E1 + E2, written here before submission.",
+ "status_at_writing": "No P2 result has been computed or seen (391_groups has no outputs; the group helper was told to hold P2 until this file exists). No re-run exists.",
+ "author position": {
+  "reason": "In C the unwritten authors are mostly second and later authors, while A includes the first author; author position changes the signal, so pooled C - A is biased.",
+  "P2": "C - A on unwritten authors is reported STRATIFIED by author position: first author vs other authors (position >= 2), each within citation bin as in addendum 7; the stratified estimates are primary for P2. Holm over P1, P2-first, P2-other, P3 (4 tests).",
+  "regression": "author position (first vs other; and position as a numeric covariate in a sensitivity version) is added to every confounder regression of addendum 7, at the author level with team-cluster bootstrap.",
+  "rule": "if a stratified P2 estimate and the pooled P2 estimate disagree in direction, the stratified result is the conclusion; the pooled one is reported as biased by author position.",
+  "also": "all exploratory group contrasts that pool authors report the author-position split beside the pooled number."
+ },
+ "GPU re-runs": {
+  "R2": {
+   "papers": "all R2 x strong papers (recall_level R2, mc_team_outcome_tight strong; 204) that have scored author contexts in the Stage 10 cohort.",
+   "experiments": "Stage 11 E1 (tail + name patching, true -> false_0, layers as Stage 11) and E2 (attention knockout from layer l), Stage 12 P1 (single-position patching) and P2 (attention vs MLP component patching); identical code, prompts, layers, false_0 title (Stage 10 matched false title) and batch sizes as the original runs; only the paper list differs."
+  },
+  "U0 sample": {
+   "papers": "600 R0 x uncertain papers, allocated over citation bins in proportion to the Stage 11 sample's bin distribution (config/sample.parquet, 1,186 papers), drawn within bin with numpy default_rng(1105); if a bin has too few papers, take all and give the remainder to the other bins proportionally.",
+   "experiments": "Stage 11 E1 and E2 only, identical settings as above."
+  },
+  "shards": "50 papers per shard; outputs under /scratch/zhang.zhiqi2/jlens/391_groups/raw/<experiment>/<group>/shard_XXX.npz; skip if exists.",
+  "checks (WARN only)": ["a re-run of 1 original Stage 11 shard (A/B papers) through the new driver reproduces the stored E1/E2 values within bf16 batch noise", "tiny-model whole-pipeline test before any GPU job; one real shard first"],
+  "analysis": "same estimands as Stage 11/12 (E1 recovery R(l), E2 paper-specific loss, P1/P2 recovery), on unwritten authors (addendum 7), with team-cluster CIs; R2 is a reference (addendum 7); R0-uncertain is compared with A and B descriptively and through the continuous-recognition curves; n rules of addendum 7 apply.",
+  "queue": "these re-runs are submitted before X2 GPU work; short time limits (<= 45 min per job)."
+ }
+}

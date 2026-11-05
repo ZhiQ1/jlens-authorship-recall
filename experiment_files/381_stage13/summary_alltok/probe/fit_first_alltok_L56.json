@@ -1,0 +1,1 @@
+{"run": "first_alltok", "layer": 56, "alpha": 1.0, "alpha_errs_fold0": [449.19031842700656, 358.4938690336173, 409.87631816334203], "n_papers": 9108, "heldout_r2_true": 0.47858190536499023, "n_dropped": 7245, "tiny": false}

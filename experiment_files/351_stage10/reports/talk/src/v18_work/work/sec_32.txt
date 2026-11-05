@@ -1,0 +1,13 @@
+<section class="slide dk" aria-label="slide 22"><span class="tag">Stage 7.4 · Line B</span>
+<h2>Cross-stage audit: does J-Lens add value?</h2>
+<p class="sub">Read-only joins of Stages 5–7.3; 20,000 bootstrap draws</p>
+<div class="row">
+ <div style="width:620px"><figure class="card" style="transform:rotate(0.5deg);"><img alt="J-Lens minus Vanilla title advantage, with leave-one-out ranges" src="DATA" style=""><figcaption>J-Lens minus Vanilla title advantage, with leave-one-out ranges</figcaption></figure></div>
+ <div class="col t">
+ <table class="tb">
+ <tr><td>Stage 5 vs 7.3 at L56</td><td>r = 0.45, ρ = 0.47; signs agree 32/50</td></tr>
+ <tr><td>J-Lens − Vanilla</td><td class="r">+0.002 [−0.008, +0.012]; median −0.002; 24/50 positive</td></tr>
+ <tr><td>A−B of that increment</td><td>−0.014 [−0.033, +0.004]</td></tr></table>
+ </div>
+</div>
+<div class="note" style="position:absolute;left:90px;bottom:62px;width:700px">Dropping one paper can flip the sign of the J-Lens increment. The pilot shows <b>no added title-specific value</b> from J-Lens over Vanilla. Everything so far is exploratory: L56 was inspected repeatedly.</div><span class="pg"></span></section>

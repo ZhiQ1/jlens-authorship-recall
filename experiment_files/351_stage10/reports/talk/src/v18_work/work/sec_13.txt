@@ -1,0 +1,15 @@
+<section class="slide dk" aria-label="slide 10"><span class="tag">Stage 5 · Line A</span>
+<h2>Crossed title–author control</h2>
+<p class="sub">Is the gold name high because of the title, or because the name is easy?</p>
+<div class="row">
+ <div class="col t">
+  <div class="box" style="font-size:21px">Paper P (author G) and source paper Q (author F, same field &amp; bin).<br>
+  M = logit(G) − logit(F)&nbsp;&nbsp;·&nbsp;&nbsp;<span class="a">T = M(P title) − M(Q title)</span><br>A fixed preference for G cancels out.</div>
+  <ul style="margin-top:16px">
+   <li>All 50 papers: L56 <span class="hl">+1.17</span> [0.53, 1.84], L62 +1.08 [0.36, 1.82]</li>
+   <li>Matched A−B, 7-layer integrated: +0.08 [−0.43, +0.65]</li>
+  </ul>
+ </div>
+ <div style="width:560px"><figure class="card" style="transform:rotate(0.7deg);"><img alt="Left: all 50 papers · Right: 20 A/B pairs" src="DATA" style=""><figcaption>Left: all 50 papers · Right: 20 A/B pairs</figcaption></figure></div>
+</div>
+<div class="note" style="position:absolute;left:90px;bottom:62px;width:560px">The title changes which name wins in late layers. Whether A gains more than B: <b>not established</b>.</div><span class="pg"></span></section>

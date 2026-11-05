@@ -1,0 +1,13 @@
+experiment,group,design_papers,papers_with_rows,papers_unwritten,authors_unwritten,authors_written,inconsistent_papers
+E1,A,557,557,557,2140,0,0
+E1,B,588,588,586,1928,0,2
+E1,C,36,36,32,166,44,0
+E1,D,5,5,5,16,6,0
+E1,U0,600,600,599,2096,0,1
+E1,R2,204,204,28,34,412,4
+E2,A,557,557,557,2140,0,0
+E2,B,588,588,586,1928,0,2
+E2,C,36,36,32,166,44,0
+E2,D,5,5,5,16,6,0
+E2,U0,600,600,599,2096,0,1
+E2,R2,204,204,28,34,412,4

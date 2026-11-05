@@ -1,0 +1,14 @@
+<section class="slide dk" aria-label="slide 39"><span class="tag">Stage 7.1 · Line D</span>
+<h2>The A−B gap sits on the rest of the name</h2>
+<p class="sub">CPU-only re-analysis of Stage 6; 10,000 pair-bootstrap draws</p>
+<div class="row">
+ <div style="width:600px"><figure class="card" style="transform:rotate(0.6deg);"><img alt="Integrated A−B JMRR by token position" src="DATA" style=""><figcaption>Integrated A−B JMRR by token position</figcaption></figure></div>
+ <div class="col t">
+  <table class="tb"><tr><th>Endpoint</th><th>A−B (7 layers)</th></tr>
+  <tr><td>First token</td><td>+0.001 [−0.011, +0.015]</td></tr>
+  <tr><td>Continuation</td><td class="a">+0.021 [+0.002, +0.039]</td></tr>
+  <tr><td>All tokens</td><td>+0.017 [+0.003, +0.030]</td></tr></table>
+  <p style="margin-top:12px">At L62: first +0.014 (12/20 pairs) vs continuation +0.121 (15/20)</p>
+ </div>
+</div>
+<div class="note" style="position:absolute;left:90px;bottom:62px;width:620px">Completing a name is easier than starting it. A continuation gap cannot show unaided recall. <b>Open:</b> is this about initials vs surnames?</div><span class="pg"></span></section>

@@ -1,0 +1,487 @@
+[
+ {
+  "slide": 1,
+  "old": "20 → 50 → 200 papers</p>",
+  "new": "20 → 50 → 200 papers<span class=\"src\">​(Stage 4, Pilot50, Stage 8 cohorts)</span></p>"
+ },
+ {
+  "slide": 1,
+  "old": "9,108 papers · 149,999 name tokens</p>",
+  "new": "9,108 papers · 149,999 name tokens<span class=\"src\">​(Stage 10 cohort: papers.parquet, name_tokens.parquet)</span></p>"
+ },
+ {
+  "slide": 3,
+  "old": "<li>Pilot50 / Stage 8: 50 and 200 papers</li>",
+  "new": "<li>Pilot50 / Stage 8: 50 and 200 papers<span class=\"src\">​(pilot50_v1.csv, stage8_papers.csv)</span></li>"
+ },
+ {
+  "slide": 3,
+  "old": "<li>All 9,108 papers, every author, every token</li>",
+  "new": "<li>All 9,108 papers<span class=\"src\">​(papers.parquet)</span>, every author, every token</li>"
+ },
+ {
+  "slide": 3,
+  "old": "the output gap is +0.199 vs +0.207",
+  "new": "the output gap is +0.199 vs +0.207<span class=\"src\">​(Stage 10, final L63, R0 3,423 vs 2,151; §6.13)</span>"
+ },
+ {
+  "slide": 4,
+  "old": "Counts from the 6,841-paper cohort.",
+  "new": "Counts from the 6,841-paper cohort.<span class=\"src\">​(Stage 1, 351_audit.json group_counts)</span>"
+ },
+ {
+  "slide": 4,
+  "old": "adds 511 partial-recall papers",
+  "new": "adds 511<span class=\"src\">​(351_audit.json)</span> partial-recall papers"
+ },
+ {
+  "slide": 4,
+  "old": "the output gap is +0.199, versus +0.207 for target vs control",
+  "new": "the output gap is +0.199, versus +0.207 for target vs control<span class=\"src\">​(Stage 10, final L63, within-bin; §6.13)</span>"
+ },
+ {
+  "slide": 6,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">Counts: 351_stage10/cohort/papers.parquet (recall_level × MC outcome); 593 + 593: 361_stage11 sample (1,186 papers); 1,178 pairs: Stage 13 X1/X3 pair table</text></svg>"
+ },
+ {
+  "slide": 7,
+  "old": "From the 15 Oct label package (9,108 papers) to a frozen 6,841-paper analysis cohort",
+  "new": "From the 15 Oct label package (9,108 papers) to a frozen 6,841-paper analysis cohort<span class=\"src\">​(351_audit.json total, four_group_total)</span>"
+ },
+ {
+  "slide": 7,
+  "old": "<th>Full</th>",
+  "new": "<th>Full<span class=\"src\">​(351_audit.json)</span></th>"
+ },
+ {
+  "slide": 7,
+  "old": "<th>Pilot50</th>",
+  "new": "<th>Pilot50<span class=\"src\">​(pilot50_v1.csv)</span></th>"
+ },
+ {
+  "slide": 7,
+  "old": "the strict pass rate is <b>25.5%</b>",
+  "new": "the strict pass rate is <b>25.5%</b><span class=\"src\">​(796 papers; label_README.md l.8)</span>"
+ },
+ {
+  "slide": 13,
+  "old": "L62 +1.08 [0.36, 1.82]",
+  "new": "L62 +1.08 [0.36, 1.82]<span class=\"src\">​(Stage 5, J-Lens, 50 papers, layer_summary.csv)</span>"
+ },
+ {
+  "slide": 13,
+  "old": "+0.08 [−0.43, +0.65]",
+  "new": "+0.08 [−0.43, +0.65]<span class=\"src\">​(20 pairs, matched_ab_summary.csv)</span>"
+ },
+ {
+  "slide": 14,
+  "old": "35/50 papers positive",
+  "new": "35/50 papers positive<span class=\"src\">​(J-Lens L56, 50 papers; paper_null_distribution.csv; CI recomputed 10-30)</span>"
+ },
+ {
+  "slide": 14,
+  "old": "Leave-one-out: +8.6 to +10.0 pp",
+  "new": "Leave-one-out: +8.6 to +10.0 pp<span class=\"src\">​(stage7_l56_loo.csv)</span>"
+ },
+ {
+  "slide": 14,
+  "old": "final output +7.2 pp",
+  "new": "final output +7.2 pp<span class=\"src\">​(paper_null_distribution.csv)</span>"
+ },
+ {
+  "slide": 14,
+  "old": "+0.018 [−0.021, +0.063]",
+  "new": "+0.018 [−0.021, +0.063]<span class=\"src\">​(20 pairs, integrated_ab_bootstrap.csv)</span>"
+ },
+ {
+  "slide": 15,
+  "old": "Excluding them: +0.026 → +0.028.",
+  "new": "Excluding them: +0.026 → +0.028.<span class=\"src\">​(quality.json; paper_null_distribution.csv)</span>"
+ },
+ {
+  "slide": 15,
+  "old": "pooled +0.026 to +0.032; all six A−B CIs include 0.",
+  "new": "pooled +0.026 to +0.032; all six A−B CIs include 0.<span class=\"src\">​(stage7_weighting_title_advantage.csv)</span>"
+ },
+ {
+  "slide": 15,
+  "old": "0/6 beyond its own 20-title tail (≤ 0.05).",
+  "new": "0/6 beyond its own 20-title tail (≤ 0.05).<span class=\"src\">​(floor_L56_low_six.csv)</span>"
+ },
+ {
+  "slide": 15,
+  "old": "(CI below 0).",
+  "new": "(CI below 0).<span class=\"src\">​(20 pairs, matched_ab_bootstrap.csv)</span>"
+ },
+ {
+  "slide": 16,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">+5.18 pp: Stage 8D RQ1, J-Lens L56, 200 papers, stage8D/summary/primary_questions.csv · +2.33 pp: J-Lens 7-layer, 200 papers, recompute_2026-10-30/s8_endpoints.csv</text></svg>"
+ },
+ {
+  "slide": 17,
+  "old": "<tr><th></th><th>Estimate</th>",
+  "new": "<tr><th><span class=\"src\">​(Stage 8D, J-Lens L56; primary_questions.csv)</span></th><th>Estimate</th>"
+ },
+ {
+  "slide": 17,
+  "old": "<td class=\"a\">RQ1 title</td>",
+  "new": "<td class=\"a\">RQ1 title<span class=\"src\">​(200 papers)</span></td>"
+ },
+ {
+  "slide": 17,
+  "old": "<td class=\"a\">RQ2 A−B</td>",
+  "new": "<td class=\"a\">RQ2 A−B<span class=\"src\">​(100 pairs)</span></td>"
+ },
+ {
+  "slide": 17,
+  "old": "<td class=\"a\">RQ3 low−high</td>",
+  "new": "<td class=\"a\">RQ3 low−high<span class=\"src\">​(25 + 25 pairs)</span></td>"
+ },
+ {
+  "slide": 17,
+  "old": "<td class=\"b\">J-Lens−Vanilla</td>",
+  "new": "<td class=\"b\">J-Lens−Vanilla<span class=\"src\">​(jlens_minus_vanilla.csv)</span></td>"
+ },
+ {
+  "slide": 17,
+  "old": "high +4.4 [−1.1, 10.0]",
+  "new": "high +4.4 [−1.1, 10.0]<span class=\"src\">​(50/100/50 papers; layer_and_band_summary.csv)</span>"
+ },
+ {
+  "slide": 18,
+  "old": "median +4.4 pp</li>",
+  "new": "median +4.4 pp<span class=\"src\">​(J-Lens L56; matched_pair_differences.csv)</span></li>"
+ },
+ {
+  "slide": 18,
+  "old": "top 10 → <span class=\"r\">−0.4 pp</span>",
+  "new": "top 10 → <span class=\"r\">−0.4 pp</span><span class=\"src\">​(recomputed from same file)</span>"
+ },
+ {
+  "slide": 18,
+  "old": "RQ1 +4.6, RQ2 +5.4 pp",
+  "new": "RQ1 +4.6, RQ2 +5.4 pp<span class=\"src\">​(s8_8E_weighting_by_paper.csv)</span>"
+ },
+ {
+  "slide": 18,
+  "old": "+0.12 pp per token",
+  "new": "+0.12 pp per token<span class=\"src\">​(200 papers; s8_unsourced_intervals.csv)</span>"
+ },
+ {
+  "slide": 19,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">Ranks: 351_stage10/raw/[cond_*/]final/L63/shard_011.npz rows 25025–40 (author 1 shown) · nlr, spec, total, topic: summary_title/paper_title_contrasts.parquet (final, L63)</text></svg>"
+ },
+ {
+  "slide": 20,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">7,247 teams among 9,108 papers: 381_stage13/reports/cluster_ci.md</text></svg>"
+ },
+ {
+  "slide": 23,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"698\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">+0.061: Stage 13 E4b re-check, probe scores ONLY THE FIRST NAME TOKEN, all papers (1,863), team folds, title reuse dropped; e4b_trainstd_compare.md</text><text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">year R² 0.38 → 0.56: Stage 13 M2, 9,108 papers, team CI; summary_cpu_teamci/M2_teamci.csv</text></svg>"
+ },
+ {
+  "slide": 29,
+  "old": "pilot L56 +9.3 pp",
+  "new": "pilot L56 +9.3 pp<span class=\"src\">​(7.3, 50 papers)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "<span class=\"a\">+5.2 pp</span>",
+  "new": "<span class=\"a\">+5.2 pp</span><span class=\"src\">​(8D RQ1, 200 papers)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "+5.0 pp on 200 papers but gone after dropping 10 pairs",
+  "new": "+5.0 pp on 200 papers but gone after dropping 10 pairs<span class=\"src\">​(8D RQ2, 100 pairs)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "≈0.44 at L62",
+  "new": "≈0.44 at L62<span class=\"src\">​(L62, §6.9)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "[0.20, 0.22] at the output",
+  "new": "[0.20, 0.22] at the output<span class=\"src\">​(L63, §6.4)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "Name prior is only ~1/3 of the gap; ~0 on surnames",
+  "new": "Name prior is only ~1/3 of the gap; ~0 on surnames<span class=\"src\">​(§6.12)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "(ρ = 0.45)",
+  "new": "(ρ = 0.45)<span class=\"src\">​(§6.8)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "<span class=\"b\">+0.20</span> [0.19, 0.21]",
+  "new": "<span class=\"b\">+0.20</span> [0.19, 0.21]<span class=\"src\">​(R0, §6.13)</span>"
+ },
+ {
+  "slide": 29,
+  "old": "(+0.11 over A)",
+  "new": "(+0.11 over A)<span class=\"src\">​(§6.13)</span>"
+ },
+ {
+  "slide": 31,
+  "old": "(63/63 and 6/6 finite)",
+  "new": "(63/63 and 6/6 finite)<span class=\"src\">​(matrices.csv; frobenius_norms.csv)</span>"
+ },
+ {
+  "slide": 31,
+  "old": "(paper L32: 11.1 → 7.2)",
+  "new": "(paper L32: 11.1 → 7.2)<span class=\"src\">​(20 + 20 prompts; metrics.csv)</span>"
+ },
+ {
+  "slide": 31,
+  "old": "Top-10 overlap is worse (0.36 vs 0.72)",
+  "new": "Top-10 overlap is worse (0.36 vs 0.72)<span class=\"src\">​(metrics.csv)</span>"
+ },
+ {
+  "slide": 31,
+  "old": "both lenses 14/20 full-name wins at L48",
+  "new": "both lenses 14/20 full-name wins at L48<span class=\"src\">​(20 papers, layer_summary.csv)</span>"
+ },
+ {
+  "slide": 32,
+  "old": "r = 0.45, ρ = 0.47; signs agree 32/50",
+  "new": "r = 0.45, ρ = 0.47; signs agree 32/50<span class=\"src\">​(50 papers, cross_stage_correlations.csv)</span>"
+ },
+ {
+  "slide": 32,
+  "old": "24/50 positive",
+  "new": "24/50 positive<span class=\"src\">​(jlens_increment_bootstrap.csv)</span>"
+ },
+ {
+  "slide": 32,
+  "old": "<td>−0.014 [−0.033, +0.004]</td>",
+  "new": "<td>−0.014 [−0.033, +0.004]<span class=\"src\">​(20 pairs)</span></td>"
+ },
+ {
+  "slide": 33,
+  "old": "~324 s Jacobian time per prompt, ~62 GiB CPU RAM",
+  "new": "~324 s Jacobian time per prompt, ~62 GiB CPU RAM<span class=\"src\">​(full_A.log; benchmark log)</span>"
+ },
+ {
+  "slide": 33,
+  "old": "<figcaption>Archived progress: Fit A 4/100, Fit B 0/100 at the time of writing",
+  "new": "<figcaption>Archived progress: Fit A 4/100, Fit B 0/100 at the time of writing<span class=\"src\">​(351_stage9 checkpoints)</span>"
+ },
+ {
+  "slide": 34,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">Ranks of “Co” (author 1, token 5), true title: 351_stage10/raw/logit/L{24…62}/shard_011.npz row 25029; out = raw/final/L63</text></svg>"
+ },
+ {
+  "slide": 39,
+  "old": "(7.4: +0.002; Stage 8: −1.4 pp)",
+  "new": "(7.4: +0.002; Stage 8: −1.4 pp)<span class=\"src\">​(50 / 200 papers)</span>"
+ },
+ {
+  "slide": 39,
+  "old": "top-10 rate 15–18% at L48 vs 1% for logit lens",
+  "new": "top-10 rate 15–18% at L48 vs 1% for logit lens<span class=\"src\">​(9,108 papers; X3_means.csv)</span>"
+ },
+ {
+  "slide": 39,
+  "old": "Extra title-specific signal only +0.01–0.03",
+  "new": "Extra title-specific signal only +0.01–0.03<span class=\"src\">​(L24–L48; X3_means.csv)</span>"
+ },
+ {
+  "slide": 39,
+  "old": "+0.05 → +0.08 (re-checked)",
+  "new": "+0.05 → +0.08 (re-checked)<span class=\"src\">​(E4b, scores only the first name token; e4b_trainstd_compare.md)</span>"
+ },
+ {
+  "slide": 41,
+  "old": "~91 s per paper, ~29.5 GiB GPU",
+  "new": "~91 s per paper, ~29.5 GiB GPU<span class=\"src\">​(351_stage4_readout.log)</span>"
+ },
+ {
+  "slide": 41,
+  "old": "L56 first-author mean RR 0.0070, median only 0.0009",
+  "new": "L56 first-author mean RR 0.0070, median only 0.0009<span class=\"src\">​(20 papers; audit_report.md table 1)</span>"
+ },
+ {
+  "slide": 41,
+  "old": "Dropping it: 0.0070 → 0.0021.",
+  "new": "Dropping it: 0.0070 → 0.0021.<span class=\"src\">​(same file)</span>"
+ },
+ {
+  "slide": 42,
+  "old": "75,000 scored pairs",
+  "new": "75,000 scored pairs<span class=\"src\">​(candidate_pairwise_scores.csv)</span>"
+ },
+ {
+  "slide": 42,
+  "old": "L62 +0.04 (spans 0)",
+  "new": "L62 +0.04 (spans 0)<span class=\"src\">​(20 pairs, matched_ab_bootstrap.csv)</span>"
+ },
+ {
+  "slide": 42,
+  "old": "7-layer integrated: +0.105 [−0.012, +0.228]",
+  "new": "7-layer integrated: +0.105 [−0.012, +0.229]<span class=\"src\">​(20 pairs; recomputed 10-30)</span>"
+ },
+ {
+  "slide": 42,
+  "old": "156/5,000 false names share the gold first token (ties)",
+  "new": "156/5,000 false names share the gold first token (ties)<span class=\"src\">​(quality.json)</span>"
+ },
+ {
+  "slide": 42,
+  "old": "only ~46 distinct first tokens",
+  "new": "only ~46 distinct first tokens<span class=\"src\">​(mean of 50 papers; candidates csv)</span>"
+ },
+ {
+  "slide": 45,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">R(l): Stage 13 X6, mean of 5 false titles, all 1,186 papers; 381_stage13/summary_x6/x6_recovery.csv</text></svg>"
+ },
+ {
+  "slide": 46,
+  "old": "</svg>",
+  "new": "<text x=\"390\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">S(l): Stage 13 X7, 1,186 papers (593 target + 593 control); 381_stage13/reports/x7_report.md</text></svg>"
+ },
+ {
+  "slide": 61,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">R: Stage 13 X1, test set 582 papers; 381_stage13/reports/x1_report.md</text></svg>"
+ },
+ {
+  "slide": 62,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"698\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">Word overlap 0.22 / 0.14: config/x3_lexical_neighbour_j2.csv (this paper) · medians: x3_report.md (primary set, 1,110) · G′: x3_textbase_recovery.md (test)</text><text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">+0.239: Stage 13 X3 behaviour, test, 552 papers; x3_textbase_recovery.md</text></svg>"
+ },
+ {
+  "slide": 63,
+  "old": "</svg>",
+  "new": "<text x=\"70\" y=\"712\" class=\"src\" font-size=\"12.5\" fill=\"#8a8f98\" text-anchor=\"start\">D: Stage 13 X4, test set, team CI; first author L8 +0.046 [0.035, 0.059], year L40 +0.013 [0.008, 0.018]; 381_stage13/reports/x4_report.md</text></svg>"
+ },
+ {
+  "slide": 49,
+  "old": "driven by one paper (71%)",
+  "new": "driven by one paper (71%)<span class=\"src\">​(audit_report.md)</span>"
+ },
+ {
+  "slide": 49,
+  "old": "recovers 80–87% at L48, 100% from L52",
+  "new": "recovers 80–87% at L48, 100% from L52<span class=\"src\">​(Stage 11 E1, 593 + 593; x6_report.md)</span>"
+ },
+ {
+  "slide": 51,
+  "old": "50 papers, 227 authors, 972 name tokens",
+  "new": "50 papers, 227 authors, 972 name tokens<span class=\"src\">​(token_layer_scores.csv)</span>"
+ },
+ {
+  "slide": 51,
+  "old": "<th>Integrated JMRR</th>",
+  "new": "<th>Integrated JMRR<span class=\"src\">​(integrated_group.csv)</span></th>"
+ },
+ {
+  "slide": 51,
+  "old": "Vanilla also +0.091",
+  "new": "Vanilla also +0.091<span class=\"src\">​(20 pairs, matched_ab_bootstrap.csv)</span>"
+ },
+ {
+  "slide": 52,
+  "old": "<th>A−B (7 layers)</th>",
+  "new": "<th>A−B (7 layers)<span class=\"src\">​(20 pairs; layer_and_integrated_effects.csv)</span></th>"
+ },
+ {
+  "slide": 52,
+  "old": "continuation +0.121 (15/20)",
+  "new": "continuation +0.121 (15/20)<span class=\"src\">​(layer_position_effects.csv)</span>"
+ },
+ {
+  "slide": 57,
+  "old": "not the first token (+0.001)",
+  "new": "not the first token (+0.001)<span class=\"src\">​(7.1, 20 pairs)</span>"
+ },
+ {
+  "slide": 57,
+  "old": "73% of names start with an initial",
+  "new": "73% of names start with an initial<span class=\"src\">​(24,739 / 33,780; §6.7)</span>"
+ },
+ {
+  "slide": 57,
+  "old": "help predict them (+0.22)",
+  "new": "help predict them (+0.22)<span class=\"src\">​(final L63; §6.7)</span>"
+ },
+ {
+  "slide": 57,
+  "old": "the colon alone little (+0.17)",
+  "new": "the colon alone little (+0.17)<span class=\"src\">​(P1, 1,186 papers; P1_patch_pos.csv)</span>"
+ },
+ {
+  "slide": 58,
+  "old": "True title beats false titles (≈0.44 at L62)",
+  "new": "True title beats false titles (≈0.44 at L62<span class=\"src\">​(§6.9)</span>)"
+ },
+ {
+  "slide": 58,
+  "old": "name positions alone 0.61 → 0.85; ‘:’ alone ≤ 0.17",
+  "new": "name positions alone 0.61 → 0.85; ‘:’ alone ≤ 0.17<span class=\"src\">​(E1, P1; 1,186 papers)</span>"
+ },
+ {
+  "slide": 58,
+  "old": "(+0.21 at output)",
+  "new": "(+0.21 at output<span class=\"src\">​(§6.4)</span>)"
+ },
+ {
+  "slide": 58,
+  "old": "MLP takes over at L52–56 (0.18, 0.22)",
+  "new": "MLP takes over at L52–56 (0.18, 0.22)<span class=\"src\">​(P2, 1,186 papers)</span>"
+ },
+ {
+  "slide": 59,
+  "old": "one paper = 71% of the Stage 4 L56 mean",
+  "new": "one paper = 71% of the Stage 4 L56 mean<span class=\"src\">​(20 papers)</span>"
+ },
+ {
+  "slide": 59,
+  "old": "removing 10 of 100 pairs",
+  "new": "removing 10 of 100 pairs<span class=\"src\">​(8D, matched_pair_differences.csv)</span>"
+ },
+ {
+  "slide": 59,
+  "old": "3% tie with gold",
+  "new": "3% tie with gold<span class=\"src\">​(7.2 quality.json: 156/5,000)</span>"
+ },
+ {
+  "slide": 59,
+  "old": "strict “pass” 25.5% in the 0–2 citation bin",
+  "new": "strict “pass” 25.5% in the 0–2 citation bin<span class=\"src\">​(label_README.md)</span>"
+ },
+ {
+  "slide": 60,
+  "old": "+9.3 pp pilot, +5.2 pp new 200",
+  "new": "+9.3 pp pilot, +5.2 pp new 200<span class=\"src\">​(7.3; 8D RQ1)</span>"
+ },
+ {
+  "slide": 60,
+  "old": "≈0.44 title-specific at L62",
+  "new": "≈0.44 title-specific at L62<span class=\"src\">​(X3_means.csv)</span>"
+ },
+ {
+  "slide": 60,
+  "old": "<td>+0.21 at output, ≈0 middle</td>",
+  "new": "<td>+0.21 at output<span class=\"src\">​(§6.4)</span>, ≈0 middle</td>"
+ },
+ {
+  "slide": 60,
+  "old": "+0.20 at output, ≈0 middle; R1 adds strength",
+  "new": "+0.20 at output<span class=\"src\">​(§6.13)</span>, ≈0 middle; R1 adds strength"
+ },
+ {
+  "slide": 60,
+  "old": "monotonic, ρ = 0.45",
+  "new": "monotonic, ρ = 0.45<span class=\"src\">​(X2_spearman.csv)</span>"
+ }
+]

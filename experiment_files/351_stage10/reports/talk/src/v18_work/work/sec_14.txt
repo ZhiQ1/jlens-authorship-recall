@@ -1,0 +1,13 @@
+<section class="slide dk" aria-label="slide 11"><span class="tag">Stage 7.3 · Line A</span>
+<h2>Shuffled titles: the true title helps</h2>
+<p class="sub">Same 100 candidates, 20 metadata-matched wrong titles per paper, 1,000 contexts; only the title changes</p>
+<div class="row">
+ <div style="width:640px"><figure class="card" style="transform:rotate(0.6deg);"><img alt="All 50 papers: true vs mean of 20 alternative titles" src="DATA" style=""><figcaption>All 50 papers: true vs mean of 20 alternative titles</figcaption></figure></div>
+ <div class="col t"><ul>
+  <li>Pooled L56: 0.616 vs 0.523 → <span class="hl">+9.3 pp</span> [4.7, 13.9], 35/50 papers positive</li>
+  <li>Leave-one-out: +8.6 to +10.0 pp</li>
+  <li>Vanilla L56 +10.6 pp, final output +7.2 pp</li>
+  <li class="r">Matched A−B integrated: +0.018 [−0.021, +0.063]</li>
+ </ul></div>
+</div>
+<div class="note" style="position:absolute;left:90px;bottom:62px;width:640px">Two different questions: “does the title help?” <b>yes</b>; “does it help A more than B?” <b>not shown</b>.</div><span class="pg"></span></section>

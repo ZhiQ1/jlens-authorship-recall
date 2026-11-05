@@ -1,0 +1,360 @@
+[
+ {
+  "old": "（约 −4.4 到 −4.6，相当于排在几万名），L56 到 −3.5，L62 跳到约 −1.0。",
+  "new": "（约 −4.4 到 −4.6，相当于排在几万名），L56 到 −3.5，L62 跳到约 −1.0<span class=\"src\">（Stage 10，真标题，logit lens L24–L62，目标 4,621 + 对照 2,220 篇，平均 log10(1/名次)；§6.1 表；351_stage10/summary/A_group_layer.csv）</span>。"
+ },
+ {
+  "old": "明显好于 logit lens（约 −3.0）",
+  "new": "明显好于 logit lens（约 −3.0）<span class=\"src\">（Stage 10，真标题，Jacobian lens public/self100/fitA L40–L48，目标 4,621 + 对照 2,220 篇，平均 log10(1/名次)；§6.1 表（列出 public）；351_stage10/summary/A_group_layer.csv）</span>"
+ },
+ {
+  "old": "(about −4.4 to −4.6, i.e. ranks in the tens of thousands), reaches −3.5 at L56 and jumps to about −1.0 at L62.",
+  "new": "(about −4.4 to −4.6, i.e. ranks in the tens of thousands), reaches −3.5 at L56 and jumps to about −1.0 at L62<span class=\"src\">(Stage 10, true title, logit lens L24–L62, target 4,621 + control 2,220 papers, mean log10(1/rank); §6.1 table; 351_stage10/summary/A_group_layer.csv)</span>."
+ },
+ {
+  "old": "from L40 on (about −3.0)",
+  "new": "from L40 on (about −3.0)<span class=\"src\">(Stage 10, true title, Jacobian lenses public/self100/fitA L40–L48, target 4,621 + control 2,220 papers, mean log10(1/rank); §6.1 table (public shown); 351_stage10/summary/A_group_layer.csv)</span>"
+ },
+ {
+  "old": "95% 置信区间宽度约 ±0.01–0.03。",
+  "new": "95% 置信区间宽度约 ±0.01–0.03<span class=\"src\">（Stage 10，论文 bootstrap 95% CI 半宽，目标/对照/guard 214 篇；351_stage10/summary/A_group_layer.csv 列 mean_nlr_lo/hi）</span>。"
+ },
+ {
+  "old": "95% CIs are about ±0.01–0.03.",
+  "new": "95% CIs are about ±0.01–0.03<span class=\"src\">(Stage 10, paper bootstrap 95% CI half-widths, target/control/guard 214 papers; 351_stage10/summary/A_group_layer.csv cols mean_nlr_lo/hi)</span>."
+ },
+ {
+  "old": "最终输出 <strong class=\"k\">+0.247</strong> [0.230, 0.265]，",
+  "new": "最终输出 <strong class=\"k\">+0.247</strong> [0.230, 0.265]<span class=\"src\">（Stage 10，真标题，最终输出 L63，引用档内 目标−对照，目标 3,734 + 对照 2,182 篇（共有引用档），论文 bootstrap 95% CI；§6.2 表；351_stage10/summary/B_target_vs_control_within_bin.csv）</span>，"
+ },
+ {
+  "old": "各种读出在 L62 为 +0.225 到 +0.247。",
+  "new": "各种读出在 L62 为 +0.225 到 +0.247<span class=\"src\">（Stage 10，真标题，四种读出 L62，引用档内 目标−对照；§6.2 表；351_stage10/summary/B_target_vs_control_within_bin.csv）</span>。"
+ },
+ {
+  "old": "L56 为 −0.09 到 −0.11，置信区间都在 0 以下；logit lens 在 L48 之前约为 0。",
+  "new": "L56 为 −0.09 到 −0.11<span class=\"src\">（Stage 10，真标题，三种 Jacobian lens，引用档内 目标−对照，论文 bootstrap 95% CI；§6.2 表；351_stage10/summary/B_target_vs_control_within_bin.csv）</span>，置信区间都在 0 以下；logit lens 在 L48 之前约为 0<span class=\"src\">（Stage 10，logit lens L24–L48，−0.011 到 +0.002；§6.2 表；351_stage10/summary/B_target_vs_control_within_bin.csv）</span>。"
+ },
+ {
+  "old": "final output <strong class=\"k\">+0.247</strong> [0.230, 0.265], and +0.225 to +0.247 for every readout at L62.",
+  "new": "final output <strong class=\"k\">+0.247</strong> [0.230, 0.265]<span class=\"src\">(Stage 10, true title, final L63, within-bin target − control, target 3,734 + control 2,182 papers in shared bins, paper bootstrap 95% CI; §6.2 table; 351_stage10/summary/B_target_vs_control_within_bin.csv)</span>, and +0.225 to +0.247 for every readout at L62<span class=\"src\">(Stage 10, all four readouts at L62, within-bin target − control; §6.2 table; 351_stage10/summary/B_target_vs_control_within_bin.csv)</span>."
+ },
+ {
+  "old": "−0.09 to −0.11 at L56, with CIs below zero; the logit lens is about zero up to L48.",
+  "new": "−0.09 to −0.11 at L56<span class=\"src\">(Stage 10, true title, three Jacobian lenses, within-bin target − control, paper bootstrap 95% CI; §6.2 table; 351_stage10/summary/B_target_vs_control_within_bin.csv)</span>, with CIs below zero; the logit lens is about zero up to L48<span class=\"src\">(Stage 10, logit lens L24–L48, −0.011 to +0.002; §6.2 table; 351_stage10/summary/B_target_vs_control_within_bin.csv)</span>."
+ },
+ {
+  "old": "把真标题和 5 个假标题对比后",
+  "new": "把真标题和 5 个假标题对比后<span class=\"src\">（Stage 10 标题条件：true、false_0–false_4、delete；351_stage10.py K_FALSE，351_stage10/config/conditions_manifest.json）</span>"
+ },
+ {
+  "old": "两组的标题特异信号都不超过 0.05；L56 开始上升（+0.10 到 +0.18）；L62 达到最大，目标组 +0.48 到 +0.58，对照组 +0.20 到 +0.25。",
+  "new": "两组的标题特异信号都不超过 0.05<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，四种读出 L24–L48，目标 4,621 + 对照 2,220 篇，最大 0.039；§6.3 图；351_stage10/summary_title/A_group_layer.csv）</span>；L56 开始上升（+0.10 到 +0.18）<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，四种读出 L56，两组；§6.3 图；351_stage10/summary_title/A_group_layer.csv）</span>；L62 达到最大，目标组 +0.48 到 +0.58，对照组 +0.20 到 +0.25<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，四种读出 L62 与最终输出 L63（目标组 +0.48 为 L63），目标 4,621 + 对照 2,220 篇；§6.3 图；351_stage10/summary_title/A_group_layer.csv）</span>。"
+ },
+ {
+  "old": "Contrasting the true title with 5 false titles",
+  "new": "Contrasting the true title with 5 false titles<span class=\"src\">(Stage 10 title conditions: true, false_0–false_4, delete; 351_stage10.py K_FALSE, 351_stage10/config/conditions_manifest.json)</span>"
+ },
+ {
+  "old": "signal is at most 0.05 in both groups; it rises at L56 (+0.10 to +0.18) and peaks at L62, +0.48 to +0.58 for target and +0.20 to +0.25 for control.",
+  "new": "signal is at most 0.05 in both groups<span class=\"src\">(Stage 10, true − mean of 5 false titles, four readouts L24–L48, target 4,621 + control 2,220 papers, max 0.039; §6.3 figure; 351_stage10/summary_title/A_group_layer.csv)</span>; it rises at L56 (+0.10 to +0.18)<span class=\"src\">(Stage 10, true − mean of 5 false titles, four readouts at L56, both groups; §6.3 figure; 351_stage10/summary_title/A_group_layer.csv)</span> and peaks at L62, +0.48 to +0.58 for target and +0.20 to +0.25 for control<span class=\"src\">(Stage 10, true − mean of 5 false titles, four readouts at L62 and final L63 (target +0.48 is L63), target 4,621 + control 2,220 papers; §6.3 figure; 351_stage10/summary_title/A_group_layer.csv)</span>."
+ },
+ {
+  "old": "标题特异信号 = 真标题 − 5 个假标题平均，",
+  "new": "标题特异信号 = 真标题 − 5 个假标题平均<span class=\"src\">（定义见 351_stage10.py analyze-title（spec = true − mean(false_k)））</span>，"
+ },
+ {
+  "old": "Title-specific signal = true − mean of 5 false titles,",
+  "new": "Title-specific signal = true − mean of 5 false titles<span class=\"src\">(definition in 351_stage10.py analyze-title, spec = true − mean(false_k))</span>,"
+ },
+ {
+  "old": "L24–L40 约为 0；L48 Jacobian lens 略负（−0.04 到 −0.05）；L56 约为 0（logit lens +0.065）；L62/L63 为 <strong class=\"k\">+0.21 到 +0.23</strong>。",
+  "new": "L24–L40 约为 0；L48 Jacobian lens 略负（−0.04 到 −0.05）；L56 约为 0（logit lens +0.065）<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，引用档内 目标−对照，四种读出 L24–L56，目标 3,734 + 对照 2,182 篇（共有引用档），论文 bootstrap 95% CI；§6.4 表；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>；L62/L63 为 <strong class=\"k\">+0.21 到 +0.23</strong><span class=\"src\">（Stage 10，同上，L62 四种读出 + 最终输出 L63（+0.207 [0.196, 0.220]）；§6.4 表；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>。"
+ },
+ {
+  "old": "6.2 中目标组在输出处的优势（+0.22 到 +0.25）",
+  "new": "6.2 中目标组在输出处的优势（+0.22 到 +0.25）<span class=\"src\">（Stage 10，真标题，引用档内 目标−对照，L62/L63；§6.2 表；351_stage10/summary/B_target_vs_control_within_bin.csv）</span>"
+ },
+ {
+  "old": "（L62/L63 为 +0.21 到 +0.24）",
+  "new": "（L62/L63 为 +0.21 到 +0.24）<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，去掉 0-2、3-4 档，8 个引用档，目标 3,327 + 对照 1,475 篇，引用档内 目标−对照；351_stage10/summary_title/B_sens_drop_low_bins.csv）</span>"
+ },
+ {
+  "old": "It is about zero at L24–L40, slightly negative for the Jacobian lenses at L48 (−0.04 to −0.05), about zero at L56 (logit lens +0.065), and <strong class=\"k\">+0.21 to +0.23</strong> at L62/L63.",
+  "new": "It is about zero at L24–L40, slightly negative for the Jacobian lenses at L48 (−0.04 to −0.05), about zero at L56 (logit lens +0.065)<span class=\"src\">(Stage 10, true − mean of 5 false titles, within-bin target − control, four readouts L24–L56, target 3,734 + control 2,182 papers in shared bins, paper bootstrap 95% CI; §6.4 table; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>, and <strong class=\"k\">+0.21 to +0.23</strong> at L62/L63<span class=\"src\">(Stage 10, same, four readouts at L62 + final L63 (+0.207 [0.196, 0.220]); §6.4 table; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>."
+ },
+ {
+  "old": "at the output in 6.2 (+0.22 to +0.25)",
+  "new": "at the output in 6.2 (+0.22 to +0.25)<span class=\"src\">(Stage 10, true title, within-bin target − control, L62/L63; §6.2 table; 351_stage10/summary/B_target_vs_control_within_bin.csv)</span>"
+ },
+ {
+  "old": "(+0.21 to +0.24 at L62/L63)",
+  "new": "(+0.21 to +0.24 at L62/L63)<span class=\"src\">(Stage 10, true − mean of 5 false titles, bins 0-2 and 3-4 dropped, 8 bins, target 3,327 + control 1,475 papers, within-bin target − control; 351_stage10/summary_title/B_sens_drop_low_bins.csv)</span>"
+ },
+ {
+  "old": "（最大 0.014）",
+  "new": "（最大 0.014）<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，标点 token，全部 9,108 篇，所有读出与层；351_stage10/summary_title/negative_control_by_role.csv 列 spec_mean_nlr_punct_mean）</span>"
+ },
+ {
+  "old": "（L62 为 +0.80 到 +0.88）",
+  "new": "（L62 为 +0.80 到 +0.88）<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，姓的第一个 token，四种读出 L62，全部 9,108 篇；351_stage10/summary_title/negative_control_by_role.csv 列 spec_mean_nlr_surname_first_mean）</span>"
+ },
+ {
+  "old": "(at most 0.014)",
+  "new": "(at most 0.014)<span class=\"src\">(Stage 10, true − mean of 5 false titles, punctuation tokens, all 9,108 papers, all readouts and layers; 351_stage10/summary_title/negative_control_by_role.csv col spec_mean_nlr_punct_mean)</span>"
+ },
+ {
+  "old": "(+0.80 to +0.88 at L62)",
+  "new": "(+0.80 to +0.88 at L62)<span class=\"src\">(Stage 10, true − mean of 5 false titles, first surname token, four readouts at L62, all 9,108 papers; 351_stage10/summary_title/negative_control_by_role.csv col spec_mean_nlr_surname_first_mean)</span>"
+ },
+ {
+  "old": "答对 0 次 −0.137、1 次 −0.122、2 次 −0.047、3 次 −0.018、4 次 +0.076，单调上升，档内 Spearman ρ = 0.27（p &lt; 0.001）。",
+  "new": "答对 0 次 −0.137、1 次 −0.122、2 次 −0.047、3 次 −0.018、4 次 +0.076<span class=\"src\">（Stage 10，真标题，最终输出 L63，引用档内中心化的平均 log10(1/名次)，各档 945/1,275/994/1,058/4,622 篇；351_stage10/summary/C_graded_mc_team_a.csv（metric=mean_nlr））</span>，单调上升，档内 Spearman ρ = 0.27（p &lt; 0.001）<span class=\"src\">（同上，8,894 篇，引用档内 Spearman；351_stage10/summary/C_graded_mc_team_a.csv，ρ = 0.268）</span>。"
+ },
+ {
+  "old": "rises monotonically: −0.137, −0.122, −0.047, −0.018, +0.076, with a within-bin Spearman ρ of 0.27 (p &lt; 0.001).",
+  "new": "rises monotonically: −0.137, −0.122, −0.047, −0.018, +0.076<span class=\"src\">(Stage 10, true title, final L63, mean log10(1/rank) centred within citation bin, 945/1,275/994/1,058/4,622 papers; 351_stage10/summary/C_graded_mc_team_a.csv (metric=mean_nlr))</span>, with a within-bin Spearman ρ of 0.27 (p &lt; 0.001)<span class=\"src\">(same, 8,894 papers, within-bin Spearman; 351_stage10/summary/C_graded_mc_team_a.csv, ρ = 0.268)</span>."
+ },
+ {
+  "old": "每位作者的名字被切成若干 token（平均 4.4 个）",
+  "new": "每位作者的名字被切成若干 token（平均 4.4 个）<span class=\"src\">（Stage 10 打分单元，149,999 个名字 token / 33,811 个作者上下文 = 4.44；351_stage10/config/manifest.json）</span>"
+ },
+ {
+  "old": "split into several tokens (4.4 on average)",
+  "new": "split into several tokens (4.4 on average)<span class=\"src\">(Stage 10 scoring units, 149,999 name tokens / 33,811 author contexts = 4.44; 351_stage10/config/manifest.json)</span>"
+ },
+ {
+  "old": "，其余不到 1%。",
+  "new": "，其余不到 1%<span class=\"src\">（Stage 10，按第 1 个 token 角色：首字母开头 24,739、完整名开头 8,876 / 33,780 位作者；351_stage10/summary_extra/X1_by_format.csv 列 n_tokens，351_stage10/summary_extra/X1_cond.csv 列 n_contexts）</span>。"
+ },
+ {
+  "old": "and under 1% with something else.",
+  "new": "and under 1% with something else<span class=\"src\">(Stage 10, by role of the first token: initial-first 24,739, given-name-first 8,876 of 33,780 authors; 351_stage10/summary_extra/X1_by_format.csv col n_tokens, 351_stage10/summary_extra/X1_cond.csv col n_contexts)</span>."
+ },
+ {
+  "old": "（输出处 +0.112 [0.104, 0.120]），目标−对照只有 +0.048 [0.028, 0.069]；信号几乎都在后续 token 上（+0.447 [0.440, 0.454]，目标−对照 <strong class=\"k\">+0.253</strong> [0.237, 0.269]）。",
+  "new": "（输出处 +0.112 [0.104, 0.120]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，首字母开头·第 1 个 token，8,275 篇，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>），目标−对照只有 +0.048 [0.028, 0.069]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，首字母开头·第 1 个 token，引用档内 目标−对照，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>；信号几乎都在后续 token 上（+0.447 [0.440, 0.454]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，首字母开头·后续 token，8,275 篇，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>，目标−对照 <strong class=\"k\">+0.253</strong> [0.237, 0.269]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，首字母开头·后续 token，引用档内 目标−对照，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>）。"
+ },
+ {
+  "old": "（+0.358 [0.342, 0.374]，目标−对照 <strong class=\"k\">+0.174</strong> [0.136, 0.213]），和后续 token 相当（+0.396 [0.385, 0.409]，目标−对照 +0.202 [0.173, 0.232]）。",
+  "new": "（+0.358 [0.342, 0.374]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，完整名开头·第 1 个 token，4,157 篇，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>，目标−对照 <strong class=\"k\">+0.174</strong> [0.136, 0.213]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，完整名开头·第 1 个 token，引用档内 目标−对照，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>），和后续 token 相当（+0.396 [0.385, 0.409]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，完整名开头·后续 token，4,157 篇，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>，目标−对照 +0.202 [0.173, 0.232]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，完整名开头·后续 token，引用档内 目标−对照，论文 bootstrap 95% CI；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>）。"
+ },
+ {
+  "old": "已经有 +0.25 左右的标题特异信号，目标−对照为 +0.065 到 +0.120，而首字母在 L56 的目标−对照为负。",
+  "new": "已经有 +0.25 左右的标题特异信号<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，完整名开头·第 1 个 token，public J-lens 与 logit lens L56（+0.259 / +0.253），4,157 篇；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>，目标−对照为 +0.065 到 +0.120<span class=\"src\">（同上，引用档内 目标−对照；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>，而首字母在 L56 的目标−对照为负<span class=\"src\">（首字母开头·第 1 个 token，L56：public −0.074，logit −0.056；§6.7 表；351_stage10/summary_extra/X1_by_format.csv）</span>。"
+ },
+ {
+  "old": "(+0.112 [0.104, 0.120] at the output) and a target − control difference of only +0.048 [0.028, 0.069]; nearly all the signal is on the later tokens (+0.447 [0.440, 0.454], target − control <strong class=\"k\">+0.253</strong> [0.237, 0.269]).",
+  "new": "(+0.112 [0.104, 0.120] at the output)<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, initial-first, first token, 8,275 papers, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span> and a target − control difference of only +0.048 [0.028, 0.069]<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, initial-first, first token, within-bin target − control, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>; nearly all the signal is on the later tokens (+0.447 [0.440, 0.454]<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, initial-first, later tokens, 8,275 papers, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>, target − control <strong class=\"k\">+0.253</strong> [0.237, 0.269]<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, initial-first, later tokens, within-bin target − control, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>)."
+ },
+ {
+  "old": "(+0.358 [0.342, 0.374], target − control <strong class=\"k\">+0.174</strong> [0.136, 0.213]), comparable to the later tokens (+0.396 [0.385, 0.409], target − control +0.202 [0.173, 0.232]).",
+  "new": "(+0.358 [0.342, 0.374]<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, given-name-first, first token, 4,157 papers, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>, target − control <strong class=\"k\">+0.174</strong> [0.136, 0.213]<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, given-name-first, first token, within-bin target − control, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>), comparable to the later tokens (+0.396 [0.385, 0.409]<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, given-name-first, later tokens, 4,157 papers, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>, target − control +0.202 [0.173, 0.232]<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, given-name-first, later tokens, within-bin target − control, paper bootstrap 95% CI; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>)."
+ },
+ {
+  "old": "already shows about +0.25 title-specific signal with a target − control difference of +0.065 to +0.120, whereas for initials the L56 target − control difference is negative.",
+  "new": "already shows about +0.25 title-specific signal<span class=\"src\">(Stage 10, true − mean of 5 false titles, given-name-first first token, public J-lens and logit lens L56 (+0.259 / +0.253), 4,157 papers; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span> with a target − control difference of +0.065 to +0.120<span class=\"src\">(same, within-bin target − control; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>, whereas for initials the L56 target − control difference is negative<span class=\"src\">(initial-first first token, L56: public −0.074, logit −0.056; §6.7 table; 351_stage10/summary_extra/X1_by_format.csv)</span>."
+ },
+ {
+  "old": "姓的第一个 token 出现在第 1 个位置的比例为 0%）",
+  "new": "姓的第一个 token 出现在第 1 个位置的比例为 0%<span class=\"src\">（Stage 10，33,780 位作者；stage10_extra_format.py:62–65 打印的 share at token_index 0；PROGRESS.md 2026-10-26 05:20 条）</span>）"
+ },
+ {
+  "old": "(checked: 0% of first-surname tokens are at position 1)",
+  "new": "(checked: 0% of first-surname tokens are at position 1<span class=\"src\">(Stage 10, 33,780 authors; printed share at token_index 0 in stage10_extra_format.py:62–65; PROGRESS.md 2026-10-26 05:20 entry)</span>)"
+ },
+ {
+  "old": "（6.5 中输出处 +0.13）",
+  "new": "（6.5 中输出处 +0.13<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，首字母 token（0.129），全部 9,108 篇；§6.5；351_stage10/summary_title/negative_control_by_role.csv）</span>）"
+ },
+ {
+  "old": "名的信号中等（+0.36）",
+  "new": "名的信号中等（+0.36<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，名的第一个 token（0.364），全部 9,108 篇；§6.5；351_stage10/summary_title/negative_control_by_role.csv）</span>）"
+ },
+ {
+  "old": "姓的第一个 token 信号最多（+0.69）",
+  "new": "姓的第一个 token 信号最多（+0.69<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，姓的第一个 token（0.685），全部 9,108 篇；§6.5；351_stage10/summary_title/negative_control_by_role.csv）</span>）"
+ },
+ {
+  "old": "(+0.13 at the output in 6.5)",
+  "new": "(+0.13 at the output in 6.5<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, initial token (0.129), all 9,108 papers; §6.5; 351_stage10/summary_title/negative_control_by_role.csv)</span>)"
+ },
+ {
+  "old": "given names carry a medium amount (+0.36)",
+  "new": "given names carry a medium amount (+0.36<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, first given-name token (0.364), all 9,108 papers; §6.5; 351_stage10/summary_title/negative_control_by_role.csv)</span>)"
+ },
+ {
+  "old": "the first surname token carries the most (+0.69)",
+  "new": "the first surname token carries the most (+0.69<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, first surname token (0.685), all 9,108 papers; §6.5; 351_stage10/summary_title/negative_control_by_role.csv)</span>)"
+ },
+ {
+  "old": "首字母 8,275 篇，完整名 4,157 篇",
+  "new": "首字母 8,275 篇，完整名 4,157 篇<span class=\"src\">（Stage 10；351_stage10/summary_extra/X1_by_format.csv 列 n_papers）</span>"
+ },
+ {
+  "old": "initial 8,275, given name 4,157",
+  "new": "initial 8,275, given name 4,157<span class=\"src\">(Stage 10; 351_stage10/summary_extra/X1_by_format.csv col n_papers)</span>"
+ },
+ {
+  "old": "第 1 个 token 进前 10 时后续 token 为 −0.740，没进时为 −0.780，差 +0.041 [0.029, 0.052]，后续 token 进前 10 的比例为 69.5% 对 67.5%。L62 的 logit lens 和 Jacobian lens 也只差 +0.05 到 +0.07。中间层第 1 个 token 几乎从不进前 10（L56 只有 0.2%–1.2%）",
+  "new": "第 1 个 token 进前 10 时后续 token 为 −0.740，没进时为 −0.780，差 +0.041 [0.029, 0.052]<span class=\"src\">（Stage 10，真标题，按第 1 个 token 是否进前 10 分作者，最终输出 L63，后续 token 平均 log10(1/名次)，14,730 对 19,050 位作者，论文聚类 bootstrap 95% CI；351_stage10/summary_extra/X1_cond.csv（unit=token, group=all））</span>，后续 token 进前 10 的比例为 69.5% 对 67.5%<span class=\"src\">（Stage 10，真标题，按第 1 个 token 是否进前 10 分作者，最终输出 L63，后续 token 进前 10 比例；351_stage10/summary_extra/X1_cond.csv（unit=token, group=all））</span>。L62 的 logit lens 和 Jacobian lens 也只差 +0.04 到 +0.07<span class=\"src\">（Stage 10，真标题，按第 1 个 token 是否进前 10 分作者，L62 四种读出的差值：logit +0.072，public +0.051，self100 +0.053，fitA +0.036；351_stage10/summary_extra/X1_cond.csv（unit=token, group=all））</span>。中间层第 1 个 token 几乎从不进前 10（L56 只有 0.2%–1.3%<span class=\"src\">（Stage 10，真标题，按第 1 个 token 是否进前 10 分作者，L56 第 1 个 token 进前 10 的比例：logit 0.2%，三种 Jacobian lens 1.2%–1.3%；351_stage10/summary_extra/X1_cond.csv（unit=token, group=all））</span>）",
+  "fix": true
+ },
+ {
+  "old": "later tokens score −0.740 when the first token is in the top 10 and −0.780 when it is not, a difference of +0.041 [0.029, 0.052]; later tokens reach the top 10 in 69.5% versus 67.5% of cases. At L62 the logit and Jacobian lenses differ by only +0.05 to +0.07. In middle layers the first token almost never reaches the top 10 (0.2%–1.2% at L56)",
+  "new": "later tokens score −0.740 when the first token is in the top 10 and −0.780 when it is not, a difference of +0.041 [0.029, 0.052]<span class=\"src\">(Stage 10, true title, authors split by first-token top-10, final L63, mean log10(1/rank) of later tokens, 14,730 vs 19,050 authors, paper-clustered bootstrap 95% CI; 351_stage10/summary_extra/X1_cond.csv (unit=token, group=all))</span>; later tokens reach the top 10 in 69.5% versus 67.5% of cases<span class=\"src\">(Stage 10, true title, authors split by first-token top-10, final L63, share of later tokens in top 10; 351_stage10/summary_extra/X1_cond.csv (unit=token, group=all))</span>. At L62 the logit and Jacobian lenses differ by only +0.04 to +0.07<span class=\"src\">(Stage 10, true title, authors split by first-token top-10, L62 differences: logit +0.072, public +0.051, self100 +0.053, fitA +0.036; 351_stage10/summary_extra/X1_cond.csv (unit=token, group=all))</span>. In middle layers the first token almost never reaches the top 10 (0.2%–1.3% at L56<span class=\"src\">(Stage 10, true title, authors split by first-token top-10, share of first tokens in top 10 at L56: logit 0.2%, three Jacobian lenses 1.2%–1.3%; 351_stage10/summary_extra/X1_cond.csv (unit=token, group=all))</span>)",
+  "fix": true
+ },
+ {
+  "old": "输出处 +0.222 [0.165, 0.275]，L62 logit lens +0.322 [0.253, 0.388]。",
+  "new": "输出处 +0.222 [0.165, 0.275]<span class=\"src\">（Stage 10，真标题，完整名开头 8,876 位作者（名进前 10：678 位），最终输出 L63，姓（后续 token）平均 log10(1/名次)，进前 10 − 未进，论文聚类 bootstrap 95% CI；351_stage10/summary_extra/X1_cond_by_first_role.csv）</span>，L62 logit lens +0.322 [0.253, 0.388]<span class=\"src\">（Stage 10，真标题，完整名开头 8,876 位作者（名进前 10：678 位），logit lens L62，论文聚类 bootstrap 95% CI；351_stage10/summary_extra/X1_cond_by_first_role.csv）</span>。"
+ },
+ {
+  "old": "（输出处 −0.009 [−0.031, +0.013]）",
+  "new": "（输出处 −0.009 [−0.031, +0.013]）<span class=\"src\">（Stage 10，真标题，首字母开头 24,739 位作者，最终输出 L63，进前 10 − 未进，论文聚类 bootstrap 95% CI；351_stage10/summary_extra/X1_cond_by_first_role.csv）</span>"
+ },
+ {
+  "old": "（输出处 −0.113）",
+  "new": "（输出处 −0.113）<span class=\"src\">（Stage 10，真标题，两种格式合并，按第一个词是否进前 10，最终输出 L63，33,665 位作者；351_stage10/summary_extra/X1_cond.csv（unit=word, group=all））</span>"
+ },
+ {
+  "old": "首字母很容易进前 10（54%）",
+  "new": "首字母很容易进前 10（54%）<span class=\"src\">（Stage 10，首字母开头 24,739 位作者，最终输出 L63 首字母进前 10 的比例；351_stage10/summary_extra/X1_cond_by_first_role.csv 列 share_first_word_top10）</span>"
+ },
+ {
+  "old": "+0.222 [0.165, 0.275] at the output and +0.322 [0.253, 0.388] for the logit lens at L62.",
+  "new": "+0.222 [0.165, 0.275] at the output<span class=\"src\">(Stage 10, true title, given-name-first 8,876 authors (678 with given name in top 10), final L63, surname (later tokens) mean log10(1/rank), top-10 − not, paper-clustered bootstrap 95% CI; 351_stage10/summary_extra/X1_cond_by_first_role.csv)</span> and +0.322 [0.253, 0.388] for the logit lens at L62<span class=\"src\">(Stage 10, true title, given-name-first 8,876 authors (678 with given name in top 10), logit lens L62, paper-clustered bootstrap 95% CI; 351_stage10/summary_extra/X1_cond_by_first_role.csv)</span>."
+ },
+ {
+  "old": "(−0.009 [−0.031, +0.013] at the output)",
+  "new": "(−0.009 [−0.031, +0.013] at the output)<span class=\"src\">(Stage 10, true title, initial-first 24,739 authors, final L63, top-10 − not, paper-clustered bootstrap 95% CI; 351_stage10/summary_extra/X1_cond_by_first_role.csv)</span>"
+ },
+ {
+  "old": "(−0.113 at the output)",
+  "new": "(−0.113 at the output)<span class=\"src\">(Stage 10, true title, both formats pooled, split by first word in top 10, final L63, 33,665 authors; 351_stage10/summary_extra/X1_cond.csv (unit=word, group=all))</span>"
+ },
+ {
+  "old": "initials reach the top 10 easily (54%)",
+  "new": "initials reach the top 10 easily (54%)<span class=\"src\">(Stage 10, initial-first 24,739 authors, share of initials in top 10 at final L63; 351_stage10/summary_extra/X1_cond_by_first_role.csv col share_first_word_top10)</span>"
+ },
+ {
+  "old": "按 13 个引用档分别计算",
+  "new": "按 13 个引用档<span class=\"src\">（Stage 10 引用档定义 0-2 … 4097+，351_stage10.py；351_stage10/summary_extra/X2_by_bin.csv）</span>分别计算"
+ },
+ {
+  "old": "computed in each of the 13 citation bins",
+  "new": "computed in each of the 13 citation bins<span class=\"src\">(Stage 10 citation bins 0-2 … 4097+, 351_stage10.py; 351_stage10/summary_extra/X2_by_bin.csv)</span>"
+ },
+ {
+  "old": "从 0-2 档的 +0.347 [0.317, 0.377] 单调升到 4097+ 档的 <strong class=\"k\">+0.644</strong> [0.591, 0.701]；对照组从 +0.158 [0.136, 0.179] 升到 257-512 档的 +0.274 [0.240, 0.309] 左右",
+  "new": "从 0-2 档的 +0.347 [0.317, 0.377] 单调升到 4097+ 档的 <strong class=\"k\">+0.644</strong> [0.591, 0.701]<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，最终输出 L63，目标组 0-2 档 200 篇、4097+ 档 84 篇，论文 bootstrap 95% CI；§6.8 图与表；351_stage10/summary_extra/X2_by_bin.csv）</span>；对照组从 +0.158 [0.136, 0.179] 升到 257-512 档的 +0.274 [0.240, 0.309]<span class=\"src\">（同上，对照组 0-2 档 352 篇、257-512 档 105 篇；§6.8 图与表；351_stage10/summary_extra/X2_by_bin.csv）</span> 左右"
+ },
+ {
+  "old": "rises monotonically from +0.347 [0.317, 0.377] in bin 0-2 to <strong class=\"k\">+0.644</strong> [0.591, 0.701] in bin 4097+; the control group's rises from +0.158 [0.136, 0.179] to about +0.274 [0.240, 0.309] in bin 257-512",
+  "new": "rises monotonically from +0.347 [0.317, 0.377] in bin 0-2 to <strong class=\"k\">+0.644</strong> [0.591, 0.701] in bin 4097+<span class=\"src\">(Stage 10, true − mean of 5 false titles, final L63, target 200 papers in 0-2 and 84 in 4097+, paper bootstrap 95% CI; §6.8 figure and table; 351_stage10/summary_extra/X2_by_bin.csv)</span>; the control group's rises from +0.158 [0.136, 0.179] to about +0.274 [0.240, 0.309] in bin 257-512<span class=\"src\">(same, control 352 papers in 0-2 and 105 in 257-512; §6.8 figure and table; 351_stage10/summary_extra/X2_by_bin.csv)</span>"
+ },
+ {
+  "old": "最终输出的标题特异信号 ρ = 0.451 [0.433, 0.467]，读出水平 ρ = 0.317 [0.297, 0.336]。在组内，标题特异信号仍然明显（目标组 0.328、对照组 0.187），读出水平的相关则弱很多（目标组 0.181、对照组 0.084）。",
+  "new": "最终输出的标题特异信号 ρ = 0.451 [0.433, 0.467]<span class=\"src\">（Stage 10，最终输出 L63，论文指标对 log10(引用数+1) 的 Spearman ρ，标题特异信号，全部 9,108 篇，bootstrap 95% CI；§6.8 表；351_stage10/summary_extra/X2_spearman.csv）</span>，读出水平 ρ = 0.317 [0.297, 0.336]<span class=\"src\">（Stage 10，最终输出 L63，论文指标对 log10(引用数+1) 的 Spearman ρ，真标题读出水平，全部 9,108 篇，bootstrap 95% CI；§6.8 表；351_stage10/summary_extra/X2_spearman.csv）</span>。在组内，标题特异信号仍然明显（目标组 0.328、对照组 0.187）<span class=\"src\">（Stage 10，最终输出 L63，论文指标对 log10(引用数+1) 的 Spearman ρ，标题特异信号，目标 4,621 / 对照 2,220 篇，bootstrap 95% CI；§6.8 表；351_stage10/summary_extra/X2_spearman.csv）</span>，读出水平的相关则弱很多（目标组 0.181、对照组 0.084）<span class=\"src\">（Stage 10，最终输出 L63，论文指标对 log10(引用数+1) 的 Spearman ρ，读出水平，目标 4,621 / 对照 2,220 篇，bootstrap 95% CI；§6.8 表；351_stage10/summary_extra/X2_spearman.csv）</span>。"
+ },
+ {
+  "old": "ρ = 0.451 [0.433, 0.467] for the output's title-specific signal and ρ = 0.317 [0.297, 0.336] for the readout level. Within groups the title-specific correlation remains clear (target 0.328, control 0.187), while the level correlation is much weaker (target 0.181, control 0.084).",
+  "new": "ρ = 0.451 [0.433, 0.467] for the output's title-specific signal<span class=\"src\">(Stage 10, final L63, Spearman ρ of paper metric vs log10(citations+1), title-specific signal, all 9,108 papers, bootstrap 95% CI; §6.8 table; 351_stage10/summary_extra/X2_spearman.csv)</span> and ρ = 0.317 [0.297, 0.336] for the readout level<span class=\"src\">(Stage 10, final L63, Spearman ρ of paper metric vs log10(citations+1), true-title readout level, all 9,108 papers, bootstrap 95% CI; §6.8 table; 351_stage10/summary_extra/X2_spearman.csv)</span>. Within groups the title-specific correlation remains clear (target 0.328, control 0.187)<span class=\"src\">(Stage 10, final L63, Spearman ρ of paper metric vs log10(citations+1), title-specific, target 4,621 / control 2,220 papers, bootstrap 95% CI; §6.8 table; 351_stage10/summary_extra/X2_spearman.csv)</span>, while the level correlation is much weaker (target 0.181, control 0.084)<span class=\"src\">(Stage 10, final L63, Spearman ρ of paper metric vs log10(citations+1), level, target 4,621 / control 2,220 papers, bootstrap 95% CI; §6.8 table; 351_stage10/summary_extra/X2_spearman.csv)</span>."
+ },
+ {
+  "old": "（L48 为 −2.69，logit lens 为 −4.42）",
+  "new": "（L48 为 −2.69，logit lens 为 −4.42）<span class=\"src\">（Stage 10 X3，真标题，全部 9,108 篇，同一批 token 配对，平均 log10(1/名次)，fitA vs logit；§6.9 表；351_stage10/summary_extra/X3_means.csv）</span>"
+ },
+ {
+  "old": "（−1.02 对 −1.05 到 −1.09）",
+  "new": "（−1.02 对 −1.05 到 −1.09）<span class=\"src\">（Stage 10 X3，真标题，全部 9,108 篇，同一批 token 配对，L62 平均 log10(1/名次)，logit vs 三种 Jacobian lens；§6.9 表；351_stage10/summary_extra/X3_means.csv）</span>"
+ },
+ {
+  "old": "L48 的 Jacobian lens 为 15%–18%，logit lens 只有 1.1%；L62 则 logit lens 最高（59.3% 对 53.6%–54.6%）。",
+  "new": "L48 的 Jacobian lens 为 15%–18%，logit lens 只有 1.1%<span class=\"src\">（Stage 10 X3，真标题，全部 9,108 篇，同一批 token 配对，L48 前 10 命中率（token 比例）；§6.9 表；351_stage10/summary_extra/X3_means.csv）</span>；L62 则 logit lens 最高（59.3% 对 53.6%–54.6%）<span class=\"src\">（Stage 10 X3，真标题，全部 9,108 篇，同一批 token 配对，L62 前 10 命中率；§6.9 表；351_stage10/summary_extra/X3_means.csv）</span>。"
+ },
+ {
+  "old": "(−2.69 at L48 versus −4.42 for the logit lens)",
+  "new": "(−2.69 at L48 versus −4.42 for the logit lens)<span class=\"src\">(Stage 10 X3, true title, all 9,108 papers, paired on the same tokens, mean log10(1/rank), fitA vs logit; §6.9 table; 351_stage10/summary_extra/X3_means.csv)</span>"
+ },
+ {
+  "old": "(−1.02 versus −1.05 to −1.09)",
+  "new": "(−1.02 versus −1.05 to −1.09)<span class=\"src\">(Stage 10 X3, true title, all 9,108 papers, paired on the same tokens, L62 mean log10(1/rank), logit vs three Jacobian lenses; §6.9 table; 351_stage10/summary_extra/X3_means.csv)</span>"
+ },
+ {
+  "old": "the Jacobian lenses reach 15%–18% at L48 versus 1.1% for the logit lens; at L62 the logit lens is highest (59.3% versus 53.6%–54.6%).",
+  "new": "the Jacobian lenses reach 15%–18% at L48 versus 1.1% for the logit lens<span class=\"src\">(Stage 10 X3, true title, all 9,108 papers, paired on the same tokens, L48 top-10 hit rate (share of tokens); §6.9 table; 351_stage10/summary_extra/X3_means.csv)</span>; at L62 the logit lens is highest (59.3% versus 53.6%–54.6%)<span class=\"src\">(Stage 10 X3, true title, all 9,108 papers, paired on the same tokens, L62 top-10 hit rate; §6.9 table; 351_stage10/summary_extra/X3_means.csv)</span>."
+ },
+ {
+  "old": "均值的置信区间宽度均小于 ±0.01",
+  "new": "均值的置信区间宽度均小于 ±0.01<span class=\"src\">（Stage 10 X3，论文 bootstrap 95% CI 半宽，最大约 0.011（L56 读出水平）；351_stage10/summary_extra/X3_means.csv）</span>"
+ },
+ {
+  "old": "CIs of the means are narrower than ±0.01",
+  "new": "CIs of the means are narrower than ±0.01<span class=\"src\">(Stage 10 X3, paper bootstrap 95% CI half-widths, max about 0.011 (L56 level); 351_stage10/summary_extra/X3_means.csv)</span>"
+ },
+ {
+  "old": "高 +0.007 到 +0.030（置信区间都在 0 以上），而 L62 的标题特异信号约为 0.44，",
+  "new": "高 +0.007 到 +0.030（置信区间都在 0 以上）<span class=\"src\">（Stage 10 X3，真标题 − 5 个假标题平均，lens − logit 配对差，L24–L48，全部 9,108 篇，论文 bootstrap 95% CI；§6.9 表；351_stage10/summary_extra/X3_pairwise.csv）</span>，而 L62 的标题特异信号约为 0.44<span class=\"src\">（Stage 10 X3，真标题 − 5 个假标题平均，L62 四种读出 0.436–0.463，全部 9,108 篇；351_stage10/summary_extra/X3_means.csv）</span>，"
+ },
+ {
+  "old": "L24–L40 约为 0，L48 和 L56 为负（−0.04 到 −0.06），L62 约为 0。",
+  "new": "L24–L40 约为 0，L48 和 L56 为负（−0.04 到 −0.06），L62 约为 0<span class=\"src\">（Stage 10 X3，(lens − logit) 标题特异信号的引用档内 目标−对照，三种 Jacobian lens，论文 bootstrap 95% CI；§6.9 最后一表；351_stage10/summary_extra/X3_tc_spec_vs_logit.csv）</span>。"
+ },
+ {
+  "old": "show +0.007 to +0.030 more title-specific signal than the logit lens (CIs above zero), against about 0.44 at L62,",
+  "new": "show +0.007 to +0.030 more title-specific signal than the logit lens (CIs above zero)<span class=\"src\">(Stage 10 X3, true − mean of 5 false titles, paired lens − logit difference, L24–L48, all 9,108 papers, paper bootstrap 95% CI; §6.9 table; 351_stage10/summary_extra/X3_pairwise.csv)</span>, against about 0.44 at L62<span class=\"src\">(Stage 10 X3, true − mean of 5 false titles, four readouts at L62 0.436–0.463, all 9,108 papers; 351_stage10/summary_extra/X3_means.csv)</span>,"
+ },
+ {
+  "old": "gives about zero at L24–L40, negative values at L48 and L56 (−0.04 to −0.06), and about zero at L62.",
+  "new": "gives about zero at L24–L40, negative values at L48 and L56 (−0.04 to −0.06), and about zero at L62<span class=\"src\">(Stage 10 X3, within-bin target − control of the (lens − logit) title-specific signal, three Jacobian lenses, paper bootstrap 95% CI; last §6.9 table; 351_stage10/summary_extra/X3_tc_spec_vs_logit.csv)</span>."
+ },
+ {
+  "old": "（public Jacobian lens 和 logit lens，7 个标题条件全部）",
+  "new": "（public Jacobian lens 和 logit lens，7 个标题条件全部<span class=\"src\">（Stage 10 扩展计算：true、false_0–false_4、delete；stage10_ext_worker.sbatch；PROGRESS.md Stage 10 扩展条（用户决定））</span>）"
+ },
+ {
+  "old": "(public Jacobian lens and logit lens, all 7 title conditions)",
+  "new": "(public Jacobian lens and logit lens, all 7 title conditions<span class=\"src\">(Stage 10 extension: true, false_0–false_4, delete; stage10_ext_worker.sbatch; PROGRESS.md Stage 10 extension entry (user decision))</span>)"
+ },
+ {
+  "old": "L50 为 +0.007 [0.001, 0.014]，之后逐层上升：L52 +0.018、L54 +0.030、L56 +0.065、L58 +0.114、L60 +0.178、L62 +0.229，",
+  "new": "L50 为 +0.007 [0.001, 0.014]<span class=\"src\">（Stage 10 主轮 + 扩展，真标题 − 5 个假标题平均，引用档内 目标−对照，logit lens L48–L50，目标 3,734 + 对照 2,182 篇（共有引用档），论文 bootstrap 95% CI；§6.10 图与表；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>，之后逐层上升：L52 +0.018、L54 +0.030、L56 +0.065、L58 +0.114、L60 +0.178、L62 +0.229<span class=\"src\">（Stage 10 主轮 + 扩展，真标题 − 5 个假标题平均，引用档内 目标−对照，logit lens L52–L62，目标 3,734 + 对照 2,182 篇（共有引用档），论文 bootstrap 95% CI；§6.10 图与表；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>，"
+ },
+ {
+  "old": "在 L48–L54 为负（−0.02 到 −0.05），L55–L56 约为 0，L57 起转正（+0.029 [0.009, 0.048]），到 L61 为 +0.207。",
+  "new": "在 L48–L54 为负（−0.02 到 −0.05），L55–L56 约为 0<span class=\"src\">（Stage 10 主轮 + 扩展，真标题 − 5 个假标题平均，引用档内 目标−对照，public J-lens L48–L56，目标 3,734 + 对照 2,182 篇（共有引用档），论文 bootstrap 95% CI；§6.10 图与表；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>，L57 起转正（+0.029 [0.009, 0.048]）<span class=\"src\">（Stage 10 主轮 + 扩展，真标题 − 5 个假标题平均，引用档内 目标−对照，public J-lens L57，目标 3,734 + 对照 2,182 篇（共有引用档），论文 bootstrap 95% CI；§6.10 图与表；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>，到 L61 为 +0.207<span class=\"src\">（Stage 10 主轮 + 扩展，真标题 − 5 个假标题平均，引用档内 目标−对照，public J-lens L61，目标 3,734 + 对照 2,182 篇（共有引用档），论文 bootstrap 95% CI；§6.10 图与表；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>。"
+ },
+ {
+  "old": "+0.007 [0.001, 0.014] at L50, then rises steadily: L52 +0.018, L54 +0.030, L56 +0.065, L58 +0.114, L60 +0.178, L62 +0.229,",
+  "new": "+0.007 [0.001, 0.014] at L50<span class=\"src\">(Stage 10 main round + extension, true − mean of 5 false titles, within-bin target − control, logit lens L48–L50, target 3,734 + control 2,182 papers in shared bins, paper bootstrap 95% CI; §6.10 figure and table; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>, then rises steadily: L52 +0.018, L54 +0.030, L56 +0.065, L58 +0.114, L60 +0.178, L62 +0.229<span class=\"src\">(Stage 10 main round + extension, true − mean of 5 false titles, within-bin target − control, logit lens L52–L62, target 3,734 + control 2,182 papers in shared bins, paper bootstrap 95% CI; §6.10 figure and table; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>,"
+ },
+ {
+  "old": "negative at L48–L54 (−0.02 to −0.05), about 0 at L55–L56, positive from L57 (+0.029 [0.009, 0.048]), and +0.207 at L61.",
+  "new": "negative at L48–L54 (−0.02 to −0.05), about 0 at L55–L56<span class=\"src\">(Stage 10 main round + extension, true − mean of 5 false titles, within-bin target − control, public J-lens L48–L56, target 3,734 + control 2,182 papers in shared bins, paper bootstrap 95% CI; §6.10 figure and table; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>, positive from L57 (+0.029 [0.009, 0.048])<span class=\"src\">(Stage 10 main round + extension, true − mean of 5 false titles, within-bin target − control, public J-lens L57, target 3,734 + control 2,182 papers in shared bins, paper bootstrap 95% CI; §6.10 figure and table; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>, and +0.207 at L61<span class=\"src\">(Stage 10 main round + extension, true − mean of 5 false titles, within-bin target − control, public J-lens L61, target 3,734 + control 2,182 papers in shared bins, paper bootstrap 95% CI; §6.10 figure and table; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>."
+ },
+ {
+  "old": "目标组从 L50 的 +0.022 涨到 L61 的 +0.596，对照组从 +0.020 涨到 +0.282，",
+  "new": "目标组从 L50 的 +0.022 涨到 L61 的 +0.596，对照组从 +0.020 涨到 +0.282<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，logit lens，L50 → L61 各组均值，目标 4,621 + 对照 2,220 篇；§6.10；351_stage10/summary_title/A_group_layer.csv）</span>，"
+ },
+ {
+  "old": "（目标组 +0.583，对照组 +0.252）",
+  "new": "（目标组 +0.583，对照组 +0.252）<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，logit lens，L62 各组均值，目标 4,621 + 对照 2,220 篇；§6.10；351_stage10/summary_title/A_group_layer.csv）</span>"
+ },
+ {
+  "old": "比标题特异差晚 2–3 层",
+  "new": "比标题特异差晚 2–3 层<span class=\"src\">（Stage 10，真标题，引用档内 目标−对照，logit lens 与 public J-lens L50–L62，目标 3,734 + 对照 2,182 篇（共有引用档）；351_stage10/summary/B_target_vs_control_within_bin.csv；对比 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>"
+ },
+ {
+  "old": "target from +0.022 at L50 to +0.596 at L61, control from +0.020 to +0.282,",
+  "new": "target from +0.022 at L50 to +0.596 at L61, control from +0.020 to +0.282<span class=\"src\">(Stage 10, true − mean of 5 false titles, logit lens, group means L50 → L61, target 4,621 + control 2,220 papers; §6.10; 351_stage10/summary_title/A_group_layer.csv)</span>,"
+ },
+ {
+  "old": "(target +0.583, control +0.252)",
+  "new": "(target +0.583, control +0.252)<span class=\"src\">(Stage 10, true − mean of 5 false titles, logit lens, group means at L62, target 4,621 + control 2,220 papers; §6.10; 351_stage10/summary_title/A_group_layer.csv)</span>"
+ },
+ {
+  "old": "2–3 layers later than the title-specific difference",
+  "new": "2–3 layers later<span class=\"src\">(Stage 10, true title, within-bin target − control, logit lens and public J-lens L50–L62, target 3,734 + control 2,182 papers in shared bins; 351_stage10/summary/B_target_vs_control_within_bin.csv; compare 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span> than the title-specific difference"
+ }
+]

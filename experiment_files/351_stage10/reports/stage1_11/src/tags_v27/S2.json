@@ -1,0 +1,426 @@
+[
+ {
+  "old": "本实验用 9,108 篇论文，逐层",
+  "new": "本实验用 9,108 篇论文<span class=\"src\">（Stage 10 全部队列，标注包全部论文；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv；351_stage10/cohort/papers.parquet）</span>，逐层"
+ },
+ {
+  "old": "每篇论文还换成 5 个匹配好的假标题和删掉标题再测一遍。",
+  "new": "每篇论文还换成 5 个匹配好的假标题和删掉标题再测一遍<span class=\"src\">（Stage 10 标题条件设计，K = 5 加删标题；351_stage10/config/conditions_manifest.json）</span>。"
+ },
+ {
+  "old": "Using 9,108 papers,",
+  "new": "Using 9,108 papers<span class=\"src\">(Stage 10 full cohort, all papers of the label package; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv)</span>,"
+ },
+ {
+  "old": "scored with 5 matched false titles and with the title deleted.",
+  "new": "scored with 5 matched false titles and with the title deleted<span class=\"src\">(Stage 10 title-condition design, K = 5 plus delete; 351_stage10/config/conditions_manifest.json)</span>."
+ },
+ {
+  "old": "95% 置信区间都在 0 以上）",
+  "new": "95% 置信区间都在 0 以上<span class=\"src\">（Stage 10，真标题−5 个假标题平均，L62 四种读出 0.228–0.231 与最终输出 L63 0.207；引用档内目标−对照，10 档，目标 3,734 + 对照 2,182 篇；论文 bootstrap 95% CI；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>）"
+ },
+ {
+  "old": "all 95% CIs above zero)",
+  "new": "all 95% CIs above zero<span class=\"src\">(Stage 10, true − mean of 5 false titles, four readouts at L62 0.228–0.231 and final L63 0.207, within-bin target − control, 10 bins, 3,734 target + 2,182 control papers, paper bootstrap 95% CI; 351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv)</span>)"
+ },
+ {
+  "old": "首字母本身 +0.048）",
+  "new": "首字母本身 +0.048<span class=\"src\">（Stage 10 补充 X1，真标题−5 个假标题平均，最终输出 L63；首字母开头的名字 8,275 篇：后续 token 与首字母 token 的目标−对照；351_stage10/summary_extra/X1_by_format.csv）</span>）"
+ },
+ {
+  "old": "（+0.174 与 +0.202）",
+  "new": "（+0.174 与 +0.202<span class=\"src\">（同上 X1，名开头的名字 4,157 篇：名的 token 与后续 token 的目标−对照；351_stage10/summary_extra/X1_by_format.csv）</span>）"
+ },
+ {
+  "old": "（Spearman ρ = 0.45）",
+  "new": "（Spearman ρ = 0.45<span class=\"src\">（Stage 10 补充 X2，标题特异信号与引用数，最终输出 L63，全部 9,108 篇，Spearman ρ 0.451 [0.433, 0.467]；351_stage10/summary_extra/X2_spearman.csv）</span>）"
+ },
+ {
+  "old": "（+0.01 到 +0.03）",
+  "new": "（+0.01 到 +0.03<span class=\"src\">（Stage 10 补充 X3，三种 Jacobian lens 减 logit lens 的标题特异信号，L24–L48，全部 9,108 篇；351_stage10/summary_extra/X3_means.csv、X3_pairwise.csv；目标−对照见 X3_tc_spec_vs_logit.csv）</span>）"
+ },
+ {
+  "old": "versus +0.048 on the initial)",
+  "new": "versus +0.048 on the initial<span class=\"src\">(Stage 10 follow-up X1, true − mean of 5 false titles, final L63, initial-first names, 8,275 papers, target − control; 351_stage10/summary_extra/X1_by_format.csv)</span>)"
+ },
+ {
+  "old": "(+0.174 and +0.202)",
+  "new": "(+0.174 and +0.202<span class=\"src\">(X1, given-name-first names, 4,157 papers, target − control; 351_stage10/summary_extra/X1_by_format.csv)</span>)"
+ },
+ {
+  "old": "(Spearman ρ = 0.45)",
+  "new": "(Spearman ρ = 0.45<span class=\"src\">(Stage 10 follow-up X2, title-specific signal vs citations, final L63, all 9,108 papers, ρ 0.451 [0.433, 0.467]; 351_stage10/summary_extra/X2_spearman.csv)</span>)"
+ },
+ {
+  "old": "(+0.01 to +0.03)",
+  "new": "(+0.01 to +0.03<span class=\"src\">(Stage 10 follow-up X3, Jacobian lens − logit lens title-specific signal, L24–L48, all 9,108 papers; 351_stage10/summary_extra/X3_means.csv, X3_pairwise.csv; target − control in X3_tc_spec_vs_logit.csv)</span>)"
+ },
+ {
+  "old": "L48 已恢复 83%，L52 起恢复 100%；从 L52 起屏蔽对标题的注意力已没有影响。",
+  "new": "L48 已恢复 83%，L52 起恢复 100%<span class=\"src\">（Stage 11 E1 替换，真标题→false_0，标题之后全部位置；最终输出恢复比例，目标+对照 593+593 篇，L48 0.825 [0.807, 0.842]，L52 0.996；论文 bootstrap 95% CI；§6.11 恢复比例图；361_stage11/summary/E1_recovery.csv（group=all））</span>；从 L52 起屏蔽对标题的注意力已没有影响<span class=\"src\">（Stage 11 E2 阻断，标题之后全部位置不看标题，从 L52 起到末层；损失比例 0.007 [0.001, 0.013]，593+593 篇；§6.11 阻断图；361_stage11/summary/E2_knockout.csv）</span>。"
+ },
+ {
+  "old": "（只换名字位置 L52 恢复 0.85，只换标题之后的单个 token 最多 0.17）",
+  "new": "（只换名字位置 L52 恢复 0.85，只换标题之后的单个 token 最多 0.17<span class=\"src\">（Stage 12 P1 逐位置替换，真标题→false_0，最终输出恢复比例，Stage 11 样本全部论文；名字位置 L52 0.847，单个位置最大为 \":\" L52 0.172；371_stage12/summary/P1_patch_pos.csv）</span>）"
+ },
+ {
+  "old": "（control 组到 L54–56），这一时间对 5 个假标题都成立。",
+  "new": "（control 组到 L54–56<span class=\"src\">（Stage 13 X7，扣除假标题运行后的论文特有阻断损失 S，control 593 篇：L52 0.051，L54 0.018，L56 0.000；团队聚类 95% CI；381_stage13/reports/x7_report.md）</span>），这一时间对 5 个假标题都成立<span class=\"src\">（Stage 13 X6，E1 替换分别对 false_0–false_4，L52 起恢复 0.98–1.02（目标与对照）；381_stage13/reports/x6_report.md）</span>。"
+ },
+ {
+  "old": "作者信息（+0.05 到 +0.08），目标组更高（+0.04 到 +0.08）",
+  "new": "作者信息（+0.05 到 +0.08<span class=\"src\">（Stage 13 E4b 复核，标题最后一个 token 上的线性 probe，按作者团队分折、剔除标题复用；全部论文标题特异信号 L24 0.050、L40 0.066、L56 0.080；381_stage13/reports/e4b_split_compare.md（group / title-reuse dropped））</span>），目标组更高（+0.04 到 +0.08<span class=\"src\">（同上，引用档内目标−对照合并，L24–L60 为 0.036–0.078，95% CI 均在 0 以上；381_stage13/reports/e4b_split_compare.md）</span>）"
+ },
+ {
+  "old": "recovers 83% at L48 and 100% from L52, and blocking attention to the title from L52 on has no effect.",
+  "new": "recovers 83% at L48 and 100% from L52<span class=\"src\">(Stage 11 E1 patching, true → false_0, all post-title positions, final-output recovery, 593 + 593 papers, L48 0.825 [0.807, 0.842], L52 0.996, paper bootstrap 95% CI; §6.11 recovery figure; 361_stage11/summary/E1_recovery.csv, group=all)</span>, and blocking attention to the title from L52 on has no effect<span class=\"src\">(Stage 11 E2 knockout from L52, loss fraction 0.007 [0.001, 0.013], 593 + 593 papers; §6.11 knockout figure; 361_stage11/summary/E2_knockout.csv)</span>."
+ },
+ {
+  "old": "any single post-title token at most 0.17)",
+  "new": "any single post-title token at most 0.17<span class=\"src\">(Stage 12 P1 per-position patching, true → false_0, final-output recovery, Stage 11 sample; names L52 0.847, best single position \":\" L52 0.172; 371_stage12/summary/P1_patch_pos.csv)</span>)"
+ },
+ {
+  "old": "(L54–56 for control), the same for all 5 false titles.",
+  "new": "(L54–56 for control<span class=\"src\">(Stage 13 X7, paper-specific knockout loss S, control 593 papers: L52 0.051, L54 0.018, L56 0.000, team-cluster 95% CI; 381_stage13/reports/x7_report.md)</span>), the same for all 5 false titles<span class=\"src\">(Stage 13 X6, E1 patching with each of false_0–false_4, recovery 0.98–1.02 from L52; 381_stage13/reports/x6_report.md)</span>."
+ },
+ {
+  "old": "from L24 on (+0.05 to +0.08), more for target papers (target − control +0.04 to +0.08;",
+  "new": "from L24 on (+0.05 to +0.08<span class=\"src\">(Stage 13 E4b re-check, linear probe at the last title token, team folds, title reuse dropped; all papers L24 0.050, L40 0.066, L56 0.080; 381_stage13/reports/e4b_split_compare.md)</span>), more for target papers (target − control +0.04 to +0.08<span class=\"src\">(same, within-bin target − control pooled, L24–L60 0.036–0.078, 95% CIs above 0; 381_stage13/reports/e4b_split_compare.md)</span>;"
+ },
+ {
+  "old": "对大约一半的论文\"写不全",
+  "new": "对大约一半的论文<span class=\"src\">（标注包 group_tight：目标组 4,621 / 9,108 篇 = 50.7%；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv）</span>\"写不全"
+ },
+ {
+  "old": "for roughly half of the papers Qwen3-32B",
+  "new": "for roughly half of the papers<span class=\"src\">(label package group_tight: target 4,621 of 9,108 papers = 50.7%; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv)</span> Qwen3-32B"
+ },
+ {
+  "old": "材料 1,067）",
+  "new": "材料 1,067<span class=\"src\">（标注包 9,108 篇按 field 计数；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv）</span>）"
+ },
+ {
+  "old": "引用数 0–63,901（中位数 50.5），",
+  "new": "引用数 0–63,901（中位数 50.5）<span class=\"src\">（同一文件 year、citations 列）</span>，"
+ },
+ {
+  "old": "2049-4096, 4097+）。每篇论文平均 3.7 位作者（1–20 位）。",
+  "new": "2049-4096, 4097+）<span class=\"src\">（同一文件 citation_bin 列；分档规则见 Dreaming Up Authors 代码包 ~/archives/dreaming-up-authors-code-v0.zip config/config.yaml citation_bins）</span>。每篇论文平均 3.7 位作者（1–20 位）<span class=\"src\">（同一文件 n_authors 列，均值 3.71）</span>。"
+ },
+ {
+  "old": "materials science 1,067).",
+  "new": "materials science 1,067)<span class=\"src\">(label package, 9,108 papers counted by field; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv)</span>."
+ },
+ {
+  "old": "citations 0–63,901 (median 50.5),",
+  "new": "citations 0–63,901 (median 50.5)<span class=\"src\">(same file, year and citations columns)</span>,"
+ },
+ {
+  "old": "2049-4096, 4097+). Papers have 3.7 authors on average (1–20).",
+  "new": "2049-4096, 4097+)<span class=\"src\">(same file, citation_bin column; bin rule in the Dreaming Up Authors code package ~/archives/dreaming-up-authors-code-v0.zip, config/config.yaml citation_bins)</span>. Papers have 3.7 authors on average (1–20)<span class=\"src\">(same file, n_authors column, mean 3.71)</span>."
+ },
+ {
+  "old": "随机抽取 9,999,863 条记录，",
+  "new": "随机抽取 9,999,863 条记录<span class=\"src\">（Dreaming Up Authors 代码包 ~/archives/dreaming-up-authors-code-v0.zip，README.md Datasheet；src/dua.egg-info/PKG-INFO）</span>，"
+ },
+ {
+  "old": "代码包核对）",
+  "new": "代码包核对<span class=\"src\">（Dreaming Up Authors 代码包 ~/archives/dreaming-up-authors-code-v0.zip src/dua/data/filters.py MAX_AUTHORS）</span>）"
+ },
+ {
+  "old": "置信度 ≥ 0.8 的论文；",
+  "new": "置信度 ≥ 0.8 的论文<span class=\"src\">（同上 filters.py filter_language；README.md Datasheet）</span>；"
+ },
+ {
+  "old": "过滤后剩 1,921,209 篇（约 19.2%）。",
+  "new": "过滤后剩 1,921,209 篇（约 19.2%）<span class=\"src\">（Dreaming Up Authors 代码包 ~/archives/dreaming-up-authors-code-v0.zip，README.md Datasheet（19.2% retention））</span>。"
+ },
+ {
+  "old": "drew 9,999,863 random records",
+  "new": "drew 9,999,863 random records<span class=\"src\">(Dreaming Up Authors code package ~/archives/dreaming-up-authors-code-v0.zip, README.md datasheet; src/dua.egg-info/PKG-INFO)</span>"
+ },
+ {
+  "old": "code package on 2026-10-30)",
+  "new": "code package on 2026-10-30<span class=\"src\">(Dreaming Up Authors code package ~/archives/dreaming-up-authors-code-v0.zip, src/dua/data/filters.py MAX_AUTHORS)</span>)"
+ },
+ {
+  "old": "(FastText confidence ≥ 0.8)",
+  "new": "(FastText confidence ≥ 0.8<span class=\"src\">(same package, filters.py filter_language; README.md datasheet)</span>)"
+ },
+ {
+  "old": "1,921,209 papers (about 19.2%) remained",
+  "new": "1,921,209 papers (about 19.2%)<span class=\"src\">(Dreaming Up Authors code package ~/archives/dreaming-up-authors-code-v0.zip, README.md datasheet, 19.2% retention)</span> remained"
+ },
+ {
+  "old": "合计约占整理后数据的 76.95%。",
+  "new": "合计约占整理后数据的 76.95%<span class=\"src\">（Dreaming Up Authors 原研究的数据说明（用户提供的 Dataset Provenance 文稿）；代码包与项目结果目录中出处文件未找到）</span>。"
+ },
+ {
+  "old": "理论上限 10,400 篇；部分高引用档不足 100 篇，最终 9,108 篇。",
+  "new": "理论上限 10,400 篇<span class=\"src\">（Dreaming Up Authors 代码包 ~/archives/dreaming-up-authors-code-v0.zip config/config.yaml citation_bins、per_stratum 100、theoretical_max 10400）</span>；部分高引用档不足 100 篇，最终 9,108 篇<span class=\"src\">（104 格中 81 格满 100 篇；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/bin_table.csv；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv）</span>。"
+ },
+ {
+  "old": "cover about 76.95% of the curated data.",
+  "new": "cover about 76.95% of the curated data<span class=\"src\">(data description of the original Dreaming Up Authors study (user-provided Dataset Provenance text); source file not found in the code package or project results)</span>."
+ },
+ {
+  "old": "(at most 10,400); some high-citation strata had fewer than 100 eligible papers, giving 9,108.",
+  "new": "(at most 10,400)<span class=\"src\">(Dreaming Up Authors code package ~/archives/dreaming-up-authors-code-v0.zip, config/config.yaml citation_bins, per_stratum 100, theoretical_max 10400)</span>; some high-citation strata had fewer than 100 eligible papers, giving 9,108<span class=\"src\">(81 of 104 strata full; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/bin_table.csv; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv)</span>."
+ },
+ {
+  "old": "其余为 excluded。",
+  "new": "其余为 excluded<span class=\"src\">（标注包规则：rules.yaml（tightened min_orders 4、min_p_true 0.5）；label_README.md group_tight）</span>。"
+ },
+ {
+  "old": "the rest are excluded.",
+  "new": "the rest are excluded<span class=\"src\">(label package rules: rules.yaml, tightened min_orders 4, min_p_true 0.5; label_README.md group_tight)</span>."
+ },
+ {
+  "old": "M &gt; 0 为 R1。",
+  "new": "M &gt; 0 为 R1<span class=\"src\">（标注包 rules.yaml recall_failure_threshold 0.5；step1_README.md）</span>。"
+ },
+ {
+  "old": "M &gt; 0 is R1.",
+  "new": "M &gt; 0 is R1<span class=\"src\">(label package rules.yaml recall_failure_threshold 0.5; step1_README.md)</span>."
+ },
+ {
+  "old": "要求只答一个字母。",
+  "new": "要求只答一个字母<span class=\"src\">（标注包 step1_README.md（order_index 0–3：ABDC、BCAD、CDBA、DACB）；mc_team.jsonl）</span>。"
+ },
+ {
+  "old": "asks for a single letter.",
+  "new": "asks for a single letter<span class=\"src\">(label package step1_README.md, order_index 0–3: ABDC, BCAD, CDBA, DACB; mc_team.jsonl)</span>."
+ },
+ {
+  "old": "（4 个字母概率之和平均为 1.00，没有一次低于 0.5）",
+  "new": "（4 个字母概率之和平均为 1.00，36,432 次中只有 3 次低于 0.5<span class=\"src\">（标注包 mc_results.jsonl，kind=team，36,432 次：mass 均值 0.998，最小 0.142，低于 0.5 的 3 次都在同一篇论文；mc_n_low_mass 列；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md 检查行）</span>）",
+  "fix": true
+ },
+ {
+  "old": "(the four letters sum to 1.00 on average and never below 0.5)",
+  "new": "(the four letters sum to 1.00 on average and fall below 0.5 in only 3 of 36,432 orders<span class=\"src\">(label package mc_results.jsonl, kind=team, 36,432 orders: mean mass 0.998, min 0.142, the 3 below 0.5 all in one paper; mc_n_low_mass column; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md)</span>)",
+  "fix": true
+ },
+ {
+  "old": "98.1% 通过多选；另抽 500 篇换一批干扰项重测，通过与否的一致率 83.6%（kappa 0.63）。",
+  "new": "98.1% 通过多选<span class=\"src\">（标注包检查：recall_level=R2 的 214 篇中 mc_team_outcome 为 strong 或 pass 的比例；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md 检查行；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv）</span>；另抽 500 篇换一批干扰项重测，通过与否的一致率 83.6%（kappa 0.63）<span class=\"src\">（第二批干扰项 500 篇，pass_agree 列 both 296 + neither 122；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md 检查行）</span>。"
+ },
+ {
+  "old": "98.1% of the 214 R2 papers pass the multiple choice;",
+  "new": "98.1% of the 214 R2 papers pass the multiple choice<span class=\"src\">(label package check: share of the 214 R2 papers with mc_team_outcome strong or pass; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv)</span>;"
+ },
+ {
+  "old": "agrees 83.6% of the time (kappa 0.63).",
+  "new": "agrees 83.6% of the time (kappa 0.63)<span class=\"src\">(second distractor draw, 500 papers, pass_agree both 296 + neither 122; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md)</span>."
+ },
+ {
+  "old": "D = 未认出·R1 34）",
+  "new": "D = 未认出·R1 34<span class=\"src\">（标注包 group_tight × recall_level 交叉计数（target/control × R0/R1）；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv）</span>）"
+ },
+ {
+  "old": "D = not recognised·R1 34)",
+  "new": "D = not recognised·R1 34<span class=\"src\">(label package, group_tight × recall_level counts, target/control × R0/R1; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv)</span>)"
+ },
+ {
+  "old": "输出处标题特异的目标−对照差为 +0.199 [0.187, 0.212]（合并口径 +0.207）",
+  "new": "输出处标题特异的目标−对照差为 +0.199 [0.188, 0.212]（合并口径 +0.207）<span class=\"src\">（Stage 10 只用 R0，A 3,423 vs B 2,151 篇，真标题−5 个假标题平均，最终输出 L63，引用档内目标−对照，论文 bootstrap 95% CI，下限 0.1877；合并口径为 R0+R1；351_stage10/reports/r0_sensitivity.md；summary_r0/B_spec_target_vs_control_within_bin_R0.csv）</span>",
+  "fix": true
+ },
+ {
+  "old": "比 R0（A）多 +0.11，",
+  "new": "比 R0（A）多 +0.11<span class=\"src\">（目标组内引用档内 R1−R0，C 485 vs A 3,204 篇，最终输出 L63 标题特异信号 +0.110 [0.086, 0.135]；351_stage10/summary_r0/target_R1_minus_R0_within_bin.csv）</span>，"
+ },
+ {
+  "old": "比没写对的高 +0.20，",
+  "new": "比没写对的高 +0.20<span class=\"src\">（R1 论文 495 篇内写对−没写对的作者，最终输出 L63 标题特异信号 +0.199 [0.168, 0.232]；351_stage10/summary_r0r1/R1_author_written_minus_missed.csv）</span>，"
+ },
+ {
+  "old": "gap is +0.199 [0.187, 0.212] (pooled +0.207)",
+  "new": "gap is +0.199 [0.188, 0.212] (pooled +0.207)<span class=\"src\">(Stage 10 R0 only, A 3,423 vs B 2,151 papers, true − mean of 5 false titles, final L63, within-bin target − control, paper bootstrap 95% CI, lower bound 0.1877; pooled = R0+R1; 351_stage10/reports/r0_sensitivity.md)</span>",
+  "fix": true
+ },
+ {
+  "old": "exceed R0 targets (A) by +0.11,",
+  "new": "exceed R0 targets (A) by +0.11<span class=\"src\">(within target and within bins, R1 − R0, C 485 vs A 3,204 papers, final L63, +0.110 [0.086, 0.135]; 351_stage10/summary_r0/target_R1_minus_R0_within_bin.csv)</span>,"
+ },
+ {
+  "old": "exceed the missed ones by +0.20,",
+  "new": "exceed the missed ones by +0.20<span class=\"src\">(495 R1 papers, written − missed authors, final L63, +0.199 [0.168, 0.232]; 351_stage10/summary_r0r1/R1_author_written_minus_missed.csv)</span>,"
+ },
+ {
+  "old": "149,999 个名字 token。",
+  "new": "149,999 个名字 token<span class=\"src\">（Stage 10 冻结队列；351_stage10/cohort/contexts.parquet、name_tokens.parquet）</span>。"
+ },
+ {
+  "old": "姓氏前缀 323 个。",
+  "new": "姓氏前缀 323 个<span class=\"src\">（351_stage10/cohort/name_tokens.parquet role 列）</span>。"
+ },
+ {
+  "old": "149,999 name tokens.",
+  "new": "149,999 name tokens<span class=\"src\">(Stage 10 frozen cohort; 351_stage10/cohort/contexts.parquet, name_tokens.parquet)</span>."
+ },
+ {
+  "old": "particle 323.",
+  "new": "particle 323<span class=\"src\">(351_stage10/cohort/name_tokens.parquet, role column)</span>."
+ },
+ {
+  "old": "词表最差约 −5.18。",
+  "new": "词表最差约 −5.18<span class=\"src\">（Stage 10 主指标定义；351_stage10/config/analysis_plan.json primary_metric）</span>。"
+ },
+ {
+  "old": "the worst possible is about −5.18.",
+  "new": "the worst possible is about −5.18<span class=\"src\">(Stage 10 primary metric; 351_stage10/config/analysis_plan.json primary_metric)</span>."
+ },
+ {
+  "old": "另加模型真实输出（L63）：",
+  "new": "另加模型真实输出（L63）<span class=\"src\">（~/jlens_work/10_stage10/351_stage10.py DEFAULT_LAYERS；351_stage10/config/lenses.json）</span>："
+ },
+ {
+  "old": "plus the model's actual output (L63):",
+  "new": "plus the model's actual output (L63)<span class=\"src\">(~/jlens_work/10_stage10/351_stage10.py DEFAULT_LAYERS; 351_stage10/config/lenses.json)</span>:"
+ },
+ {
+  "old": "覆盖全部层）",
+  "new": "覆盖全部层<span class=\"src\">（351_stage10/config/lenses.json public：n_prompts 557，source_layers 0–62）</span>）"
+ },
+ {
+  "old": "max_seq_len 128, all layers)",
+  "new": "max_seq_len 128, all layers<span class=\"src\">(351_stage10/config/lenses.json public: n_prompts 557, source_layers 0–62)</span>)"
+ },
+ {
+  "old": "skip_first 16，dim_batch 8。",
+  "new": "skip_first 16，dim_batch 8<span class=\"src\">（qwen32b_jlens_prelim_100_config.json；351_stage10/config/lenses.json self100）</span>。"
+ },
+ {
+  "old": "skip_first 16, dim_batch 8.",
+  "new": "skip_first 16, dim_batch 8<span class=\"src\">(qwen32b_jlens_prelim_100_config.json; 351_stage10/config/lenses.json self100)</span>."
+ },
+ {
+  "old": "每条存一次检查点。",
+  "new": "每条存一次检查点<span class=\"src\">（351_stage9/runner_runs/full_A_100_7layers/fitting_config.json；351_stage10/config/lenses.json fitA）</span>。"
+ },
+ {
+  "old": "a checkpoint after every prompt.",
+  "new": "a checkpoint after every prompt<span class=\"src\">(351_stage9/runner_runs/full_A_100_7layers/fitting_config.json; 351_stage10/config/lenses.json fitA)</span>."
+ },
+ {
+  "old": "5120×5120 的变换矩阵。",
+  "new": "5120×5120 的变换矩阵<span class=\"src\">（Qwen3-32B hidden_size 5120（HF config.json））</span>。"
+ },
+ {
+  "old": "5120×5120 map per layer.",
+  "new": "5120×5120 map per layer<span class=\"src\">(Qwen3-32B hidden_size 5120, HF config.json)</span>."
+ },
+ {
+  "old": "VERIFIED_100_VALID_OF_101_CANDIDATES</span>），",
+  "new": "VERIFIED_100_VALID_OF_101_CANDIDATES</span>）<span class=\"src\">（Stage 9 Fit A 修复；351_stage9/runner_runs/full_A_repair_101_100valid/final_status.json：n_done 100，next_idx 101，skipped 1）</span>，"
+ },
+ {
+  "old": "Fit B 只完成了 66/100，",
+  "new": "Fit B 只完成了 66/100<span class=\"src\">（Stage 9 Fit B 检查点 n_done 66；351_stage9/runner_runs/full_B_100_7layers/checkpoint.pt；STATUS.md 第 1 节）</span>，"
+ },
+ {
+  "old": "VERIFIED_100_VALID_OF_101_CANDIDATES</span>),",
+  "new": "VERIFIED_100_VALID_OF_101_CANDIDATES</span>)<span class=\"src\">(Stage 9 Fit A repair; 351_stage9/runner_runs/full_A_repair_101_100valid/final_status.json: n_done 100, next_idx 101, skipped 1)</span>,"
+ },
+ {
+  "old": "Fit B reached only 66/100 ",
+  "new": "Fit B reached only 66/100<span class=\"src\">(Stage 9 Fit B checkpoint n_done 66; 351_stage9/runner_runs/full_B_100_7layers/checkpoint.pt; STATUS.md section 1)</span> "
+ },
+ {
+  "old": "({year})?</span>）。假标题",
+  "new": "({year})?</span>）<span class=\"src\">（Stage 10 条件设计：conditions、K = 5、delete_prompt；351_stage10/config/conditions_manifest.json）</span>。假标题"
+ },
+ {
+  "old": "nearest 5,439 个。",
+  "new": "nearest 5,439 个<span class=\"src\">（9,108 篇 × 5 个假标题 = 45,540 个匹配；351_stage10/config/conditions_manifest.json tier_summary；cohort/conditions/false_titles.parquet）</span>。"
+ },
+ {
+  "old": "({year})?</span>). False",
+  "new": "({year})?</span>)<span class=\"src\">(Stage 10 condition design: conditions, K = 5, delete_prompt; 351_stage10/config/conditions_manifest.json)</span>. False"
+ },
+ {
+  "old": "nearest 5,439.",
+  "new": "nearest 5,439<span class=\"src\">(9,108 papers × 5 false titles = 45,540 matches; 351_stage10/config/conditions_manifest.json tier_summary; cohort/conditions/false_titles.parquet)</span>."
+ },
+ {
+  "old": "4097+ 档占 99%）",
+  "new": "4097+ 档占 99%<span class=\"src\">（标注包各档多选 4/4 认出（strong）的比例：0-2 档 25.5%，4097+ 档 99.2%；351_stage10/reports/stage10_report.md Caveats；按 group_tight 目标组占全部论文为 25.1% 与 68.9%；≥ 30 篇与权重规则见 351_stage10/config/analysis_plan.json）</span>）"
+ },
+ {
+  "old": "（2,000 次）。",
+  "new": "（2,000 次）<span class=\"src\">（351_stage10/config/analysis_plan.json B_primary_contrast）</span>。"
+ },
+ {
+  "old": "接近随机偏好的 25%）。",
+  "new": "接近随机偏好的 25%）<span class=\"src\">（0-2、3-4 档多选 4/4 认出比例 25.5% / 26.0%；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv；敏感性结果 351_stage10/summary_title/B_sens_drop_low_bins.csv）</span>。"
+ },
+ {
+  "old": "99% in 4097+)",
+  "new": "99% in 4097+<span class=\"src\">(share recognised 4/4 (strong) in the label package: 25.5% in bin 0-2, 99.2% in 4097+; 351_stage10/reports/stage10_report.md caveats; group_tight target share of all papers is 25.1% and 68.9%; ≥ 30 rule and weights in 351_stage10/config/analysis_plan.json)</span>)"
+ },
+ {
+  "old": "(2,000 draws).",
+  "new": "(2,000 draws)<span class=\"src\">(351_stage10/config/analysis_plan.json B_primary_contrast)</span>."
+ },
+ {
+  "old": "the 25% rate of a fixed preference.",
+  "new": "the 25% rate of a fixed preference<span class=\"src\">(strong share 25.5% / 26.0% in bins 0-2 / 3-4; labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv; sensitivity in 351_stage10/summary_title/B_sens_drop_low_bins.csv)</span>."
+ },
+ {
+  "old": "（每个 128 篇）。",
+  "new": "（每个 128 篇）<span class=\"src\">（351_stage10/config/protocol.json shards）</span>。"
+ },
+ {
+  "old": "输出 12,600 个文件，全部完成。",
+  "new": "输出 12,600 个文件，全部完成<span class=\"src\">（7 × 72 × 25；351_stage10/raw/ 各条件 1,800 个主轮 npz）</span>。"
+ },
+ {
+  "old": "每个 shard 约 46 秒。",
+  "new": "每个 shard 约 46 秒<span class=\"src\">（PROGRESS.md 2026-10-25 22:52 条：主轮 shard 约 46 s；504 个 shard × 46 s ≈ 6.4 GPU 小时）</span>。"
+ },
+ {
+  "old": "72 shards of 128.",
+  "new": "72 shards of 128<span class=\"src\">(351_stage10/config/protocol.json shards)</span>."
+ },
+ {
+  "old": "12,600 output files, all complete.",
+  "new": "12,600 output files, all complete<span class=\"src\">(7 × 72 × 25; 1,800 main-round npz per condition in 351_stage10/raw/)</span>."
+ },
+ {
+  "old": "about 46 s per shard.",
+  "new": "about 46 s per shard<span class=\"src\">(PROGRESS.md 2026-10-25 22:52: about 46 s per main shard; 504 shards × 46 s ≈ 6.4 GPU-h)</span>."
+ },
+ {
+  "old": "在 12 个样本、52 个位置上比较。",
+  "new": "在 12 个样本、52 个位置上比较<span class=\"src\">（351_stage10/reports/parity.json：n_contexts 12，n_token_positions 52）</span>。"
+ },
+ {
+  "old": "排名前 41 位在所有位置完全一致。",
+  "new": "排名前 41 位在所有位置完全一致<span class=\"src\">（Stage 10 parity 主轮，25 对读出×层；351_stage10/reports/parity.json runs，max_abs_logit_diff 0.156–0.367；tolerance_amendment：名次 < 42 全部一致）</span>。"
+ },
+ {
+  "old": "看到结果后放宽到 0.5，",
+  "new": "看到结果后放宽到 0.5<span class=\"src\">（351_stage10/reports/parity.json tolerance_amendment；351_stage10/config/analysis_plan.json amendments）</span>，"
+ },
+ {
+  "old": "12 sampled contexts and 52 positions.",
+  "new": "12 sampled contexts and 52 positions<span class=\"src\">(351_stage10/reports/parity.json: n_contexts 12, n_token_positions 52)</span>."
+ },
+ {
+  "old": "ranks 1–41 matched exactly at every position.",
+  "new": "ranks 1–41 matched exactly at every position<span class=\"src\">(Stage 10 main parity, 25 readout-layer pairs; 351_stage10/reports/parity.json runs, max_abs_logit_diff 0.156–0.367; tolerance_amendment: all ranks < 42 agree)</span>."
+ },
+ {
+  "old": "raised to 0.5 after seeing these results;",
+  "new": "raised to 0.5 after seeing these results<span class=\"src\">(351_stage10/reports/parity.json tolerance_amendment; 351_stage10/config/analysis_plan.json amendments)</span>;"
+ },
+ {
+  "old": "排名完全相同的比例为 77–95%，",
+  "new": "排名完全相同的比例为 77–95%<span class=\"src\">（13 组读出×层，各 972 个 token；rank_exact 0.765–0.955，median_logprob_diff 3×10⁻⁶–6.6×10⁻⁵；351_stage10/reports/crosscheck_stage6.csv）</span>，"
+ },
+ {
+  "old": "77–95% of ranks are identical;",
+  "new": "77–95% of ranks are identical<span class=\"src\">(13 readout-layer rows, 972 tokens each; rank_exact 0.765–0.955, median log-prob diff 3e-6 to 6.6e-5; 351_stage10/reports/crosscheck_stage6.csv)</span>;"
+ }
+]

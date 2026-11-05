@@ -1,0 +1,8 @@
+<section class="slide" aria-label="slide 3">
+<div class="split">
+ <div class="half dk"><p class="m" style="font-size:19px">Stages 1–9 · 20–200 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">Pilot design</h2><div class="t"><ul><li>Pilot50 / Stage 8: 50 and 200 papers</li><li>Mostly first-listed author, first token</li><li>Score: gold vs 1 or 100 false names (logit margin, win rate)</li><li>A/B both R0, matched in pairs</li><li>Wrong titles: 1 crossed or 20 shuffled</li><li>Layer L56 chosen after repeated looks</li></ul></div></div>
+ <div class="half lt"><span class="tag ov">Overview · design</span><p class="m" style="font-size:19px">Stages 10–11 · 9,108 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">Full-cohort design</h2><div class="t"><ul><li>All 9,108 papers, every author, every token</li><li>Score: rank over the whole vocabulary, log10(1/rank)</li><li>target = A + C, control = B + D (R0 + R1), compared within citation bins</li><li>5 matched false titles + no title</li><li>All layers reported, fine layers added</li><li>Parity and Stage 6 cross-check before analysis</li></ul></div><span class="pg"></span></div>
+</div>
+<div class="note" style="position:absolute;left:50%;bottom:58px;width:900px;margin-left:-450px;transform:rotate(-.5deg)"><span class="h">What changed in the design, and why</span>Small samples could not separate “small effect” from “no effect” in a given layer. The full cohort trades candidate-based scores for full-vocabulary ranks and pays for it with GPU time. <b>Note:</b> target/control include R1 papers; with R0 only (A vs B, as in the pilot) the output gap is +0.199 vs +0.207 and every layer looks the same.</div></section>

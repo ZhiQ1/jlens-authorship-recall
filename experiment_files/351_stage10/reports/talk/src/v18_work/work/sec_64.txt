@@ -1,0 +1,5 @@
+<section class="slide lt" aria-label="Stage 12-13 hypotheses"><span class="tag">Stage 12–13</span>
+<h2>Stage 12–13: what the middle layers hold</h2>
+<p class="sub" style="margin-bottom:16px">Paper facts are readable at the title early (M2) · H2 (paper identity) partly supported but not established; H3 (hidden author knowledge): insufficient evidence</p>
+<div style="width:990px;margin:0 auto"><figure class="card" style="transform:rotate(-0.4deg)"><img alt="Hypotheses H1–H3 against readouts M1–M3 and the current results" src="DATA"><figcaption>Hypotheses H1–H3 × readouts M1–M3 and current results (report, 2026-11-01)</figcaption></figure></div>
+<span class="pg"></span></section>

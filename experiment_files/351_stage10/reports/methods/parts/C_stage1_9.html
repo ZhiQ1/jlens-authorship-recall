@@ -394,7 +394,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <tr><td>全部 token</td><td>+0.016620 [+0.002640, +0.029887]</td><td>15/20</td><td>+0.096579 [+0.028582, +0.161619]</td><td>17/20</td></tr>
 </table>
 <p><span class="src">351_stage7_1/reports/experiment_report.md 两张表 · summary/layer_and_integrated_effects.csv</span>。Vanilla 积分：首 +0.014693 [−0.002449, +0.033563]，后续 +0.016844 [−0.002067, +0.033707]。</p>
-<p>补充：第一作者首 token RR 与全部作者首 token RR 的论文级相关（J-Lens）：L40 r = 0.691、L56 r = 0.723、L62 r = 0.771（本手册从 <code>351_stage6/raw/token_layer_scores.csv</code> 重算，与报告一致；报告原始出处文件未找到）。</p>
+<p>补充：第一作者首 token RR 与全部作者首 token RR 的论文级相关（J-Lens）：L40 r = 0.691、L56 r = 0.723、L62 r = 0.771（本手册从 <code>351_stage6/raw/token_layer_scores.csv</code> 重算，与报告一致）。</p>
 <h4>8 局限与质疑</h4><p>后续 token 的差异以给出正确前缀为条件，不是自由回忆；排在后面的作者，提示里并不包含前面的作者名（每位作者单独接在 "Authors:" 后），所以"首 token"对每位作者都是无前缀的；原因当时未解释。</p>
 <h4>9 状态</h4><p><span class="st st-done">已完成</span> 2026-10-15。Git <code>e2c7156</code>。</p>
 

@@ -1,0 +1,8 @@
+<section class="slide" aria-label="slide 28">
+<div class="split">
+ <div class="half dk"><p class="m" style="font-size:19px">Stages 1–9 · 20–200 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">What we saw</h2><div class="t"><ul><li>Self-100 fits the final distribution better; author ranking not better</li><li>J-Lens − Vanilla ≈0 (7.4: +0.002; Stage 8: −1.4 pp)</li><li>Stage 9: only Fit A fitted, stability not tested</li></ul></div></div>
+ <div class="half lt"><span class="tag ov">Overview · Line B</span><p class="m" style="font-size:19px">Stages 10–11 · 9,108 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">What scale showed</h2><div class="t"><ul><li>Jacobian lenses: top-10 rate 15–18% at L48 vs 1% for logit lens</li><li>Extra title-specific signal only +0.01–0.03, not target-specific</li><li>At L62 the plain logit lens is best</li><li>Linear probe at the title token: +0.05 → +0.08 (re-checked), paper-specific</li></ul></div><span class="pg"></span></div>
+</div>
+<div class="note" style="position:absolute;left:50%;bottom:58px;width:900px;margin-left:-450px;transform:rotate(-.5deg)"><span class="h">Line B: the information is there, but not in a form the lenses read</span>Both phases agree: no lens reveals hidden paper knowledge in middle layers. Scale adds the positive side: a trained probe can decode it at the title, so the limit is the readout, not the absence of information.</div></section>

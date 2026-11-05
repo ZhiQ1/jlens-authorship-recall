@@ -1,0 +1,20 @@
+{
+ "shard": 40,
+ "n_rows": 2145,
+ "n_nonfinite": 0,
+ "max_abs_resid": 4192.0,
+ "n_fp16_overflow_risk": 0,
+ "C1_n": 481,
+ "C1_max_abs": 32.0,
+ "C1_mean_maxabs": 3.6403326988220215,
+ "C1_rel_norm_max": 0.02523650787770748,
+ "C1_rel_norm_mean": 0.004073056858032942,
+ "C1_status": "WARN",
+ "C2_rank_bf16_match": 1.0,
+ "C2_rank_bf16_mean_abs_dlog10": 0.0,
+ "C2_rank_fp16_match": 1.0,
+ "C2_rank_fp16_mean_abs_dlog10": 0.0,
+ "C2_fp16_vs_bf16_match": 1.0,
+ "C2_status": "OK",
+ "fp16_status": "OK"
+}

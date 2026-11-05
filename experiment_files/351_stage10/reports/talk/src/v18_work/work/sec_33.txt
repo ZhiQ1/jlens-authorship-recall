@@ -1,0 +1,17 @@
+<section class="slide dk" aria-label="slide 23"><span class="tag">Stage 9 · Line B</span>
+<h2>Stage 9: is the lens stable across fitting data?</h2>
+<p class="sub">New FullFit protocol, different from the historical 50+50 split</p>
+<div class="row">
+ <div class="col t">
+ <table class="tb"><tr><th></th><th>Historical split-half</th><th>Stage 9 FullFit</th></tr>
+ <tr><td class="m">Fit data</td><td>Self-100 split 50 + 50</td><td>two disjoint 100-prompt sets</td></tr>
+ <tr><td class="m">Holdout</td><td>20 generic + 20 paper</td><td>independent 100 WikiText</td></tr>
+ <tr><td class="m">Layers</td><td>6</td><td>7 (adds L16)</td></tr>
+ <tr><td class="m">Status</td><td class="g">complete</td><td class="a">only Fit A completed; Fit B and holdout not run</td></tr></table>
+ <ul style="margin-top:14px">
+ <li>WikiText-103 train, 100–1,200 chars, deduplicated by hash, seed 3519001</li>
+ <li>~324 s Jacobian time per prompt, ~62 GiB CPU RAM; per-prompt checkpoints</li>
+ </ul></div>
+ <div style="width:470px"><figure class="card" style="transform:rotate(0.7deg);"><img alt="Archived progress: Fit A 4/100, Fit B 0/100 at the time of writing" src="DATA" style=""><figcaption>Archived progress: Fit A 4/100, Fit B 0/100 at the time of writing</figcaption></figure></div>
+</div>
+<div class="note" style="position:absolute;left:90px;bottom:62px;width:660px">Only Fit A was finished, and Stage 10 used it as “fitA”. Without Fit B and the holdout, fitting stability is <b>untested</b>.</div><span class="pg"></span></section>

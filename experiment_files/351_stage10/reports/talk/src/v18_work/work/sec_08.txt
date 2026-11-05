@@ -1,0 +1,24 @@
+<section class="slide dk" aria-label="slide 5"><span class="tag">Stage 2</span>
+<h2>One fixed model, prompt and score</h2>
+<p class="sub">Everything later is measured under these settings</p>
+<div class="row">
+ <div class="col t">
+  <table class="tb">
+  <tr><td class="m">Model</td><td>Qwen/Qwen3-32B, BF16, revision 9216db57, 64 blocks, d = 5,120</td></tr>
+  <tr><td class="m">Layers</td><td>L16, 24, 32, 40, 48, 56, 62 → target L63</td></tr>
+  <tr><td class="m">Readouts</td><td>Public J-Lens · Vanilla (logit lens) · real final logits</td></tr>
+  <tr><td class="m">Position</td><td>last input position; context limit 512</td></tr>
+  <tr><td class="m">Names</td><td>encode(prompt) + encode(" " + author)</td></tr>
+  <tr><td class="m">Hardware</td><td>29 blocks on GPU, 35 offloaded to CPU</td></tr>
+  </table>
+ </div>
+ <div class="col">
+  <div class="box" style="font-size:22px;margin-bottom:18px">Who are the authors of the paper titled "{title}" ({year})?<br>Authors:</div>
+  <div class="t">
+  <p><span class="a">Rank</span> r = 1 + #tokens with a strictly larger logit</p>
+  <p style="margin-top:6px"><span class="a">JMRR</span> = mean over authors of mean over tokens of 1/r</p>
+  <p style="margin-top:6px"><span class="a">Integrated</span> = average of the 7 source layers (L63 excluded)</p>
+  <p class="m" style="margin-top:12px;font-size:20px">Guard: forced token IDs are checked, and a J-Lens/Vanilla final-logit gap &gt; 0.1 rejects the run.</p>
+  </div>
+ </div>
+</div><span class="pg"></span></section>

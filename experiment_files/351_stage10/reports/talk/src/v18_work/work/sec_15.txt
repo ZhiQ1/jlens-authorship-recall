@@ -1,0 +1,14 @@
+<section class="slide dk" aria-label="slide 12"><span class="tag">Stage 7.3 · robustness</span>
+<h2>Does the title effect survive the obvious objections?</h2>
+<div class="row" style="margin-top:10px">
+ <div class="col box t"><p class="a" style="font-size:24px">Source-author overlap</p>
+ 199/1,000 wrong titles come from a paper whose author is in the false pool. Excluding them: +0.026 → +0.028.</div>
+ <div class="col box t"><p class="a" style="font-size:24px">Candidate weighting</p>
+ Author-, unique-token- and non-collision weights: pooled +0.026 to +0.032; all six A−B CIs include 0.</div>
+ <div class="col box t"><p class="a" style="font-size:24px">Low citations</p>
+ 0–2 citations (n = 6): L56 +0.22, 5/6 positive, but 0/6 beyond its own 20-title tail (≤ 0.05).</div>
+</div>
+<div class="row" style="margin-top:24px">
+ <div style="width:600px"><figure class="card" style="transform:rotate(-0.6deg);"><img alt="Title-adjusted A−B win rate by layer" src="DATA" style=""><figcaption>Title-adjusted A−B win rate by layer</figcaption></figure></div>
+ <div class="note col" style="margin-top:20px"><span class="h">Layer heterogeneity</span>L56 +0.11 but L32 <b>−0.03</b> (CI below 0). Reporting only the positive layers would mislead.</div>
+</div><span class="pg"></span></section>

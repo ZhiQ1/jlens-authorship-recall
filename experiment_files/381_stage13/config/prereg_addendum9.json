@@ -1,0 +1,21 @@
+{
+ "title": "Addendum 9: title-position probe on ALL name tokens, by token role (extends Stage 11 E4b, which scored only the first name token)",
+ "written": "2026-11-05 (exact time = sha256 file mtime and git)",
+ "approved_by_user": "user message 2026-11-05: the probe scored only the first token, which is usually an initial; score all tokens and separate initials, given names and surnames.",
+ "status_at_writing": "No all-token probe result exists. Known: E4b (first name token only, team folds, title reuse removed, training-fold standardisation) gives title-specific +0.050 / +0.061 / +0.075 at L24 / L40 / L56; 73% of names start with an initial. The needed targets (the model's own L63 state at every name position) were never saved.",
+ "GPU step (data only)": {
+  "what": "For all 9,108 papers (Stage 10 prompt with the year, true title, every author context as in Stage 10), record the model's residual at L63 at the position that PREDICTS each name token (for the first token of the first author this is the ':' state used by E4b). Save fp16 with row_id. No other change to prompts or batching.",
+  "cost": "about 1 A100-80GB hour (72 shards), about 1.5 GB; queued after the addendum-8 group re-runs and after X2.",
+  "checks (WARN only)": "the recorded ':'-predicting state for the first token equals the Stage 11 titlepos resid_colon L63 within bf16 noise; decoding the recorded state ranks the gold token as Stage 10 final@63 did."
+ },
+ "probe": {
+  "inputs": "title-last residual at the E4b layers (16, 24, 32, 40, 44, 48, 52, 56, 60) from Stage 11 titlepos (true and false_0 runs).",
+  "targets": "per paper and per token role r, the MEAN recorded L63 state over that paper's name tokens of role r (all authors).",
+  "roles": "initial (first token is an initial), given_first, given_cont, surname_first, surname_cont; punctuation excluded (gap rule of addendum 4: no ratios for roles with true - false gap < 0.05).",
+  "fit": "ridge, one probe per (layer, role); alpha by CV on fold 0 as E4b; standardisation fitted on training folds only; folds = archived author-team folds (stage13_cpu.group_folds); title-reuse exclusion as the confirmatory E4b.",
+  "score": "decode the predicted state (final norm + unembedding, as E4b) and score EACH gold token of role r by log10(1/rank); paper score = mean over its tokens of role r; title-specific = probe(true) - probe(false_0)."
+ },
+ "report": "per role and layer: all-paper title-specific signal (team-cluster CI) and target - control within citation bin; the first-token-only E4b recomputed in the same code as a parity check; per role on unwritten authors only for the group split (addendum 7).",
+ "primary question": "Is the title-position probe signal carried by surnames (surname_first) and not only by initials? Primary contrast: surname_first title-specific signal at L40 (the E4b reference layer) > 0 (team CI), and surname_first minus initial at L40; all other layers/roles descriptive.",
+ "wording": "teacher-forced preference, not generation (addendum 4)."
+}

@@ -9,8 +9,8 @@
 <p><b>三个假设的目前结果（2026-11-01，与报告 v23 假设表"目前结果"列一致）</b>：</p>
 <ul>
 <li><b>H1</b>：M3 ":" 位置的状态是任务特定的（L16–L40 的迁移比 T 都 &lt; 0.5），H1 判读不变（<a href="#s13-m3">s13-m3</a>）。</li>
-<li><b>H2</b>：M3 不支持；X3 显示中间层超出用词的语义表示，但不能与论文身份区分；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考（M3 见 <a href="#s13-m3">s13-m3</a>，X3 见 <a href="#s13-x3">s13-x3</a>）。另外，X4 最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反（<a href="#s13-x4">s13-x4</a>）。<b>X5 层序（2026-11-02 已完成，CPU，只用已有结果）</b>：M3 身份指数从不高于 L4，预注册的跨问法 top-1 检索没有计算，所以 X5 没有"身份层"；作者首 token 由 probe 在 ≤ L16（E4b）读出；名字位置 lens 读出按 0.05 界在 L53–L58，F2 在 L62（<a href="#s13-x5">s13-x5</a>）。</li>
-<li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足；X2 暂停，H3 没有因果检验（<a href="#s13-x2">s13-x2</a>）。</li>
+<li><b>H2</b>：M3 不支持；X3 显示中间层超出用词的语义表示，但不能与论文身份区分；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考（M3 见 <a href="#s13-m3">s13-m3</a>，X3 见 <a href="#s13-x3">s13-x3</a>）。另外，X4 最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反（<a href="#s13-x4">s13-x4</a>）。X2 不支持 H2（<a href="#s13-x2">s13-x2</a>）。<b>X5 层序（2026-11-02 已完成，CPU，只用已有结果）</b>：M3 身份指数从不高于 L4，预注册的跨问法 top-1 检索没有计算，所以 X5 没有"身份层"；作者首 token 由 probe 在 ≤ L16（E4b）读出；名字位置 lens 读出按 0.05 界在 L53–L58，F2 在 L62（<a href="#s13-x5">s13-x5</a>）。</li>
+<li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足；X2 按规则通过但子空间无解码能力，证据仍不足（<a href="#s13-x2">s13-x2</a>）。</li>
 </ul>
 <p><b>总体判断（2026-11-03，与报告、PPT 统一）：H2 部分支持但未确立，H3 证据不足。</b></p>
 <p><span class="src">R13/reports/m3_report.md 末节 "Reading under prereg addendum 2" · R13/summary_m3/m3_verdict_addendum2.csv · R13/reports/x4_report.md · R13/summary_x1x4/x4_rolesplit.csv · PROG 2026-10-31 01:00 条 · R13/reports/x3_report.md、x3_textbase_recovery.md、x3_groupsplit.md · stage1_11_report.html 假设表"目前结果（2026-11-01）"列（v23）· PROG 2026-11-01 条</span> <span class="st st-rechecked">复核过</span></p>
@@ -259,6 +259,7 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 
 <!-- ====================================================== M5 -->
 <h3 id="s13-m5">M5　逐位置 probe / patchscope / 名字位置上的真假判别（提议）</h3>
+<div class="fix"><b>2026-11-05 补（事后分析）：</b>M5 中能用已有数据回答的部分已做（名字位置上的真假标题判别，lens 读出；标题 / “:” 位置用 probe 区分真标题与 false_0 运行），在名字位置做 probe / patchscope 需要新的 GPU 运行，未提交。结果见 <a href="#k-cpu">十一 · CPU 补充</a>。<span class="src">381_stage13/reports/m5_report.md</span></div>
 <h4>1 问题与作用</h4>
 <p>PROG 原文："M5 (per-position probes, patchscope, true/false at name positions) is proposed and will be decided after M1–M3."报告 Part IV 提到"真/假判别要在上下文里已经出现作者名字的位置上做（M5③）"，因为在标题和 ":" 位置真假标题都是真实论文、设计上不可区分。<span class="src">PROG 第 491 行 · stage1_11_report.html Part IV "关于区分真标题和假标题"</span></p>
 <h4>2 材料</h4><p>—</p>
@@ -319,17 +320,17 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 
 <!-- ====================================================== X2 -->
 <h3 id="s13-x2">X2　只替换子空间（因果）</h3>
-<h4>1 问题与作用</h4>
-<p>计划：用 M2/M3 的 probe 找出"论文身份"方向（领域、年份、引用）和"作者首 token"方向，只替换或抹掉这些方向，看作者能否被带过去或被破坏；只换身份方向就够 → H2；必须换作者方向 → H3。依赖 M3 残差，约 1 GPU 小时，"等 M3 结果后排队"。<span class="src">stage1_11_report.html Part IV 实验表 X2 行 · PROG 第 477 行</span></p>
-<p>注意：Stage 10 也有一个叫"X2"的分析（引用数分箱，<code>stage10_extra.py</code>），与此无关。</p>
-<h4>2 材料</h4><p>—</p>
-<h4>3 工具</h4><p>无代码。</p>
-<h4>4 步骤</h4><p>—</p>
-<h4>5 公式</h4><p>—</p>
-<h4>6 对照</h4><p>—</p>
-<h4>7 结果</h4><p>无。</p>
-<h4>8 局限与质疑</h4><p>prereg.json 规定"X2 跑之前另写补充"，该补充未写；H3 因此没有因果检验。<b>X2 暂停</b>（用户 2026-10-30 决定，U48）。<span class="src">PROG 2026-10-30 14:00 条 U48</span></p>
-<h4>9 状态</h4><p><span class="st st-plan">计划未做</span>（暂停）</p>
+<div class="fix"><b>2026-11-05 完成。</b>按预注册判据，H3 通过、H2 不支持。但作者子空间本身几乎解码不出作者（留出 R² ≤ 0.003，第一作者名字 token 猜中率 0.078–0.079，低于常数基线 0.080），它搬动的量只有完整替换的约 4%，因此不能作为 H3 的有力证据。从标题传到作者名字的信息，几乎全部分散在这两个子空间之外。<span class="src">381_stage13/reports/x2_report.md “Verdict”“Subspace fits” · summary_x2/x2_verdict.csv、fit_sanity.csv</span></div>
+<h4>1 问题与作用</h4><p>从标题带到作者名字的信息，是在“论文属性”的低维方向里（H2），还是在“作者”的低维方向里（H3），还是都不是？做法是只替换或抹掉这些方向，看第一作者的分数是否跟着走。<span class="src">381_stage13/config/prereg_addendum6.json “question”</span></p>
+<p>注意：Stage 10 也有一个叫“X2”的分析（引用数分箱，<code>stage10_extra.py</code>），与此无关。</p>
+<h4>2 材料</h4><p>配对与 X1 相同：标题等长的 1,178 对（调参集 596、测试集 582，按作者团队划分）。子空间在不属于任何配对团队的 5,041 篇训练论文上拟合（M3 残差缓存，作者问法不含年份，标题最后一个 token）。<span class="src">x2_report.md 首段与 “Subspace fits” 表 · config/pairs.parquet · summary_m3/resid_cache.f16</span></p>
+<h4>3 工具</h4><p><code>~/jlens_work/13_stage13/stage13_x2.py</code>（拟合 + GPU 替换），<code>stage13_x2_analyze.py</code>（汇总）；GPU 作业 11637663（分片 0）、11654745（分片 1–13，被系统 kill 后续跑）、11655027（分片 14–23），分析作业 11655257。<span class="src">PROGRESS.md 2026-11-05 X2 条目</span></p>
+<h4>4 步骤</h4><ol><li>每层（L16、L24、L32、L40、L48）用 ridge 拟合 S_id：年份、log 引用数、8 个领域的读出方向，QR 正交化（9 维）；S_auth：预测第一作者首 token 反嵌入的 10 个方向；S_rand：3 个随机 10 维子空间（种子 61–63）。</li><li>搬运臂：在 B 的作者提示里，把每个标题位置的状态改为 h_B + P_S(h_A − h_B)，给 A 的第一作者打分。</li><li>移除臂：在 A 自己的提示里，把状态改为 h_A − P_S(h_A − μ)（μ = 训练均值）。</li><li>调参集上选 R_S − R_rand 最大的层，测试集上确认；区间为作者团队聚类 bootstrap（2,000 次）。</li></ol>
+<h4>5 公式</h4><p>R_S = mean(patched − corrupt) / mean(clean − corrupt)；L_S = mean(clean − removed) / mean(clean − corrupt)；分数 = 第一作者名字 token 的 log10(1/名次) 平均（教师强制）。<span class="src">x2_report.md 首段</span></p>
+<h4>6 对照</h4><p>S_rand（3 个随机 10 维子空间的平均）；S_full（完整替换，= X1）作上限；S = 0（恒等替换）作自检。</p>
+<h4>7 结果</h4><table class="t"><tr><th>子空间</th><th>调参集选的层</th><th>测试集 R_S</th><th>R_rand</th><th>R_full</th><th>R_S − R_rand [95% CI]</th><th>移除臂 L_S − L_rand [95% CI]</th></tr><tr><td>S_id（9 维）</td><td>L40</td><td>+0.005</td><td>+0.003</td><td>+0.920</td><td>+0.002 [−0.001, +0.005]</td><td>+0.001 [−0.003, +0.005]</td></tr><tr><td>S_auth（10 维）</td><td>L48</td><td>+0.018</td><td>+0.003</td><td>+0.428</td><td>+0.015 [+0.010, +0.020]</td><td>+0.001 [−0.004, +0.006]</td></tr></table><p>H2：R_id +0.005 &lt; 0.5 × R_full +0.460（L40）→ 不支持。H3：R_auth − R_id +0.014 [+0.008, +0.020]（L48）→ 按规则通过。S_auth 的作者映射留出 R² 0.0009–0.0033，猜中率 0.078–0.079（L16–L48 各层；常数基线 0.080）；S_id 的年份 R² 0.36–0.52、引用数 R² 0.26–0.49、领域准确率 0.68–0.71。R_auth / R_full = 0.018 / 0.428 ≈ 4%。<span class="src">x2_report.md “Verdict”与 “Subspace fits” 表；测试集 582 对</span></p>
+<h4>8 局限与质疑</h4><ul><li>H3 按规则通过，但作者子空间本身几乎没有解码能力，搬动量只有完整替换的约 4%，降级为“证据仍不足”（与 X3 的处理方式相同；附录 V57）。</li><li>S_id 只有 9 维（同一 alpha 下 8 个领域方向之和为 0），与 10 维随机子空间比较对 S_id 略偏保守。</li><li>“调参集选层”取 R_S − R_rand 最大的层（沿用 X1 规则）；移除臂的 S_full 只作参照（补充 6 只为搬运臂定义 S_full）。</li><li>自检 WARN：S = 0 在 GPU 上不逐位相同（最大差 0.103，bf16 批量舍入）；3 个随机子空间之间只有搬运臂 L24 一处差 +0.003 [+0.001, +0.006]。</li></ul><span class="src">x2_report.md “Checks”“Deviations from addendum 6”</span>
+<h4>9 状态</h4><p><span class="st st-done">已完成</span>（2026-11-05） <span class="st st-review">偏离</span>（H3 降级；见附录 V57）</p>
 
 <!-- ====================================================== X3 -->
 <h3 id="s13-x3">X3　同义改写标题 vs 词重合近邻</h3>
@@ -531,6 +532,7 @@ field : Paper: X\nResearch field:</pre>
 <p>注意：阳性对照中 given_first 通过的 2,442 篇是全体 cohort 里有该 token 的论文，X4 样本中只有 357 篇。之前对用户报告的"0.12 vs Qwen 0.31"用的是含错误项的数字，已于同日更正。结论（文本信号与 Qwen 逐篇信号不相关）不变。</p></div>
 <!-- ====================================================== X5 -->
 <h3 id="s13-x5">X5　层序量化（只用已有结果）</h3>
+<div class="fix"><b>2026-11-05 补：</b>预注册的跨任务 top-1 检索曲线已补算（CPU，M3 残差缓存）：没有一层高于 L4 文字水平。见 <a href="#k-cpu">十一 · CPU 补充</a>。<span class="src">381_stage13/reports/x5_retrieval.md</span></div>
 <h4>1 问题与作用</h4>
 <p>预注册要求在同一张层轴上标出三件事各自开始出现的层，检验 H2 预测的顺序。prereg.json X5 原文：<span class="src">R13/config/prereg.json "X5"</span></p>
 <pre class="code">what       : for each layer: paper identity retrievable across tasks (M3, top-1 retrieval among the test papers), first-author token by probe (M2/E4b), name by lens (Stage 10)

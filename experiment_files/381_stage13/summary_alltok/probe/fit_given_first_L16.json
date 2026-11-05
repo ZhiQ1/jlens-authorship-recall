@@ -1,0 +1,1 @@
+{"run": "given_first", "layer": 16, "alpha": 1.0, "alpha_errs_fold0": [786.3841227615891, 523.6997137481809, 530.0022011760595], "n_papers": 4202, "heldout_r2_true": 0.2547624111175537, "n_dropped": 1955, "tiny": false}

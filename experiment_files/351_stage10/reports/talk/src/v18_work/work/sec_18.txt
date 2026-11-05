@@ -1,0 +1,15 @@
+<section class="slide dk" aria-label="slide 14"><span class="tag">Stage 8D–8E · Line A</span>
+<h2>But the A−B gap rests on a few pairs</h2>
+<div class="row" style="margin-top:8px">
+ <div style="width:520px"><figure class="card" style="transform:rotate(0.6deg);"><img alt="Remaining A−B after removing the largest positive pairs" src="DATA" style=""><figcaption>Remaining A−B after removing the largest positive pairs</figcaption></figure></div>
+ <div class="col t"><ul>
+  <li>100 pairs: 55 positive, 45 negative; median +4.4 pp</li>
+  <li>One pair (S8P094) ≈ +84 pp</li>
+  <li>Remove top 5 → +1.9 pp; top 10 → <span class="r">−0.4 pp</span></li>
+ </ul>
+ <p class="b" style="font-size:24px;margin-top:16px">8E external audit (post-hoc)</p>
+ <ul><li>Unique-token weights: RQ1 +4.6, RQ2 +5.4 pp</li>
+ <li>Wrong-title length gap: +0.12 pp per token (association only)</li>
+ <li>Scripts not yet archived: <span class="r">not a completed experiment</span></li></ul></div>
+</div>
+<div class="note" style="position:absolute;right:80px;bottom:62px;width:470px">Small samples can show a positive A−B mean that a handful of papers carry. This is the main reason Stage 10 moved to the full cohort.</div><span class="pg"></span></section>

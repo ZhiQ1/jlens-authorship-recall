@@ -1,0 +1,6 @@
+<section class="slide lt" aria-label="Stage 13 X5 layer order"><span class="tag">Stage 13 · X5</span>
+<h2>Layer order (X5)</h2>
+<p class="sub" style="margin-bottom:12px">Earliest layer at which each kind of information appears · existing results only, each source keeps its own rule</p>
+<div class="row" style="gap:22px;align-items:flex-start"><div style="width:880px;flex:none"><figure class="card" style="transform:rotate(0.4deg)"><img alt="Stage 13 X5: earliest layer per readout" src="DATA"></figure></div>
+<div class="note" style="flex:1;font-size:18px;line-height:1.35;padding:14px 16px;margin-top:20px;transform:rotate(1.2deg)"><span class="h" style="font-size:20px">Read early, carried, spoken late</span><b>≤L8–L16</b>: title facts and the first-author token<br><br><b>L48–L52</b>: the paper signal reaches the post-title tail (patching R ≥ 0.5 at L48, ≥ 0.95 at L52; knockout costs nothing from L52)<br><br><b>L53–L62</b>: names readable by lens</div></div>
+<span class="pg"></span></section>

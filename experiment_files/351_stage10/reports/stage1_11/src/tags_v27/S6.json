@@ -1,0 +1,555 @@
+[
+ {
+  "old": "按作者团队重抽的 bootstrap。报告：",
+  "new": "按作者团队重抽的 bootstrap<span class=\"src\">（Stage 13 M3/X1/X4 设计：5 折按作者团队分折，调参集/测试集按团队各半，团队整群 bootstrap 2,000 次；381_stage13/config/prereg_addendum1.json、prereg_addendum2.json；381_stage13/reports/x1_vsC.md 第 3 行）</span>。报告："
+ },
+ {
+  "old": "标题前的 9 个 token 上不同",
+  "new": "标题前的 9 个 token<span class=\"src\">（Stage 13 M3 设计常数：三种问法模板前缀都是 9 个 token，381_stage13.py 自动检查；见本节“开跑前的数据来源审计”表）</span> 上不同"
+ },
+ {
+  "old": "T 在 L16–L40 一直 ≥ 0.92",
+  "new": "T 在 L16–L40 一直 ≥ 0.92<span class=\"src\">（Stage 13 M3，标题最后一个 token，迁移比 T：年份 0.92–0.95、引用数 0.92–0.96、领域 0.99；9,108 篇；上表；381_stage13/reports/m3_report.md transfer 表 title_last）</span>"
+ },
+ {
+  "old": "年份的 T − T(L4) 为 −0.03 到 −0.06，引用数为 −0.02 到 −0.05，区间都不含 0；领域为 −0.004 到 −0.007",
+  "new": "年份的 T − T(L4) 为 −0.03 到 −0.06，引用数为 −0.02 到 −0.05，区间都不含 0；领域为 −0.004 到 −0.007<span class=\"src\">（Stage 13 M3，标题最后一个 token，L16–L40，T − T(L4)，团队整群 95% CI；9,108 篇；上表；381_stage13/summary_m3/m3_verdict_addendum2.csv、reports/m3_report.md）</span>"
+ },
+ {
+  "old": "T ≥ 0.8 的绝对阈值",
+  "new": "T ≥ 0.8<span class=\"src\">（prereg.json M3 判定阈值；381_stage13/config/prereg.json）</span> 的绝对阈值"
+ },
+ {
+  "old": "（R² 为负，表中写作 &lt; 0）",
+  "new": "（R² 为负<span class=\"src\">（Stage 13 M3，“:” 位置，L16–L40 迁移比 T：年份 −6.9 到 −1.1、引用数 −30.0 到 −0.5；381_stage13/reports/m3_report.md colon 表）</span>，表中写作 &lt; 0）"
+ },
+ {
+  "old": "（标题位置 −0.003 到 −0.016，“:” 位置 −0.42 到 −0.61）",
+  "new": "（标题位置 −0.003 到 −0.016，“:” 位置 −0.42 到 −0.61<span class=\"src\">（Stage 13 M3，身份指数 I − I(L4)，L16–L40，团队整群 95% CI；9,108 篇；381_stage13/summary_m3/m3_verdict_addendum2.csv、reports/m3_report.md Identity index 表）</span>）"
+ },
+ {
+  "old": "都在 ±0.02 以内，区间在 [−0.1, 0.1] 之内",
+  "new": "都在 ±0.02 以内，区间在 [−0.1, 0.1] 之内<span class=\"src\">（Stage 13 X1，测试集 582 篇，L24–L48，R(作者) − R(年份) 与 R(作者) − R(领域)，最大 +0.019，团队整群 95% CI；上表；381_stage13/reports/x1_report.md test 表）</span>"
+ },
+ {
+  "old": "作者问法减随机 C 都 ≥ +0.30",
+  "new": "作者问法减随机 C 都 ≥ +0.30<span class=\"src\">（Stage 13 X1，测试集 582 篇，R(作者) − R(C)，L48 最小 +0.302；381_stage13/reports/x1_report.md test 表）</span>"
+ },
+ {
+  "old": "随机 C 的恢复率在 L4–L16 和 L48 的绝对值超过 0.1",
+  "new": "随机 C 的恢复率在 L4–L16 和 L48 的绝对值超过 0.1<span class=\"src\">（Stage 13 X1，测试集 R(C)：L4–L16 −0.15 到 −0.13，L48 +0.12；381_stage13/reports/x1_report.md Null check 行）</span>"
+ },
+ {
+  "old": "L48 的 R′ 作者 0.30、年份 0.28、领域 0.29",
+  "new": "L48 的 R′ 作者 0.30、年份 0.28、领域 0.29<span class=\"src\">（Stage 13 X1 相对随机 C，测试集 582 篇，R′ = R − R(C)；381_stage13/reports/x1_vsC.md test 表与 Conclusion 第 1、3 条）</span>"
+ },
+ {
+  "old": "作者 − 领域 +0.008 [+0.001, +0.014]",
+  "new": "作者 − 领域 +0.008 [+0.001, +0.014]<span class=\"src\">（Stage 13 X1，测试集 582 篇，L48，团队整群 95% CI；上表；381_stage13/reports/x1_report.md test 表）</span>"
+ },
+ {
+  "old": "年份问法保留作者问法效果的 94%，领域 97%",
+  "new": "年份问法保留作者问法效果的 94%，领域 97%<span class=\"src\">（Stage 13 X1，测试集 L48，R′(年份)/R′(作者) 0.936、R′(领域)/R′(作者) 0.974；381_stage13/reports/x1_vsC.md test 表 share 列）</span>"
+ },
+ {
+  "old": "移动约 0.15（L24）、0.17（L40）、0.27（L48）",
+  "new": "移动约 0.15（L24）、0.17（L40）、0.27（L48）<span class=\"src\">（Stage 13 X1 相似度检查，标题最后一个 token，换问法距离 ÷ 换论文距离；9,108 篇；381_stage13/reports/x1_similarity.md title_last 表）</span>"
+ },
+ {
+  "old": "同一篇论文两种问法的余弦为 0.98、0.98、0.95，两篇不同论文为 0.30–0.47",
+  "new": "同一篇论文两种问法的余弦为 0.98、0.98、0.95，两篇不同论文为 0.30–0.47<span class=\"src\">（Stage 13 X1 相似度检查，标题最后一个 token，L24/L40/L48 原始余弦；9,108 篇；381_stage13/reports/x1_similarity.md title_last 表）</span>"
+ },
+ {
+  "old": "移动约 15–27%（以换论文为 1）",
+  "new": "移动约 15–27%（以换论文为 1）<span class=\"src\">（Stage 13 X1 相似度检查，标题最后一个 token，L24–L48 换问法距离 ÷ 换论文距离 0.147–0.268；9,108 篇；381_stage13/reports/x1_similarity.md title_last 表）</span>"
+ },
+ {
+  "old": "按补充 2（区间在 [−0.1, 0.1] 内）",
+  "new": "按补充 2（区间在 [−0.1, 0.1] 内<span class=\"src\">（补充 2 判定界；381_stage13/config/prereg_addendum2.json）</span>）"
+ },
+ {
+  "old": "换问法的移动距离是换论文的 3–5 倍",
+  "new": "换问法的移动距离是换论文的 3–5 倍<span class=\"src\">（Stage 13 X1 相似度检查，“:” 位置，L4–L40 为 3.0–4.9 倍（L48 起降到 2.2 及以下）；381_stage13/reports/x1_similarity.md colon 表）</span>"
+ },
+ {
+  "old": "标题位置 L8–L40 高 +0.04 到 +0.06，区间都不含 0",
+  "new": "标题位置 L8–L40 高 +0.04 到 +0.06，区间都不含 0<span class=\"src\">（Stage 13 X4，第一作者，引用档内 target − control 的 D，全部 1,178 篇，团队整群 95% CI；381_stage13/reports/x4_report.md Recognition 表）</span>"
+ },
+ {
+  "old": "4,712 个值与原分数完全相同",
+  "new": "4,712 个值与原分数完全相同<span class=\"src\">（Stage 13 X4 按 token 复算（作业 11500437）；~/jlens_work/PROGRESS.md “x4tok --all” 条）</span>"
+ },
+ {
+  "old": "L8 平均 D 为 +0.0490 对 +0.0484，只差 0.0006",
+  "new": "L8 平均 D 为 +0.0490 对 +0.0484，只差 0.0006<span class=\"src\">（Stage 13 X4，标题最后一个 token，第一作者，1,178 篇，批大小 2 对 7；~/jlens_work/PROGRESS.md “x4tok --all” 条）</span>"
+ },
+ {
+  "old": "名字首 token 上（357 篇）",
+  "new": "名字首 token 上（357 篇<span class=\"src\">（Stage 13 X4，名的首 token 篇数；381_stage13/summary_x1x4/x4_rolesplit.csv；阳性对照见 381_stage13/reports/x4_textbase_posctrl.md）</span>）"
+ },
+ {
+  "old": "自身优势（均值/标准差 0.13）",
+  "new": "自身优势（均值/标准差 0.13<span class=\"src\">（BERT kNN 文本基线，名的首 token，357 篇，均值/标准差；381_stage13/summary_x1x4/x4_rolesplit.csv text_bert given_first）</span>）"
+ },
+ {
+  "old": "（L8 +0.018，0.09，区间含 0）",
+  "new": "（L8 +0.018，0.09，区间含 0<span class=\"src\">（Stage 13 X4，Qwen L8，名的首 token，357 篇，均值与均值/标准差，团队整群 95% CI [−0.003, 0.041]；381_stage13/summary_x1x4/x4_rolesplit.csv）</span>）"
+ },
+ {
+  "old": "（r = 0.07）",
+  "new": "（r = 0.07<span class=\"src\">（逐篇相关，BERT 与 Qwen L8，357 篇；381_stage13/summary_x1x4/x4_rolesplit.csv corr_with_qwen_L8）</span>）"
+ },
+ {
+  "old": "姓的首 token（+0.066 [0.045, 0.088]）",
+  "new": "姓的首 token（+0.066 [0.045, 0.088]<span class=\"src\">（Stage 13 X4，Qwen L8，姓的首 token，1,178 篇，团队整群 95% CI；381_stage13/summary_x1x4/x4_rolesplit.csv；上表）</span>）"
+ },
+ {
+  "old": "敏感性分析 1,012 篇。",
+  "new": "敏感性分析 1,012 篇<span class=\"src\">（Stage 13 X3，24/24 分片；主分析 1,110、敏感性 1,012 篇（补充 5 写 1,115 / 1,015）；381_stage13/reports/x3_report.md 第 5 行与 WARN；381_stage13/config/prereg_addendum5.json）</span>。"
+ },
+ {
+  "old": "中位数 0.611，近邻 D 只有 0.154",
+  "new": "中位数 0.611，近邻 D 只有 0.154<span class=\"src\">（Stage 13 X3 主分析 1,110 篇，修正版 Jaccard 中位数；381_stage13/reports/x3_report.md Word overlap 表）</span>"
+ },
+ {
+  "old": "在 94% 的论文上",
+  "new": "在 94%<span class=\"src\">（Stage 13 X3 主分析，1 − 有匹配 D 的比例 0.059（1,110 篇中 66 篇）；381_stage13/reports/x3_report.md Word overlap 表、x3_groupsplit.md 末节）</span> 的论文上"
+ },
+ {
+  "old": "只占 2.4%，而改写有 88% 超过 0.3",
+  "new": "只占 2.4%，而改写有 88% 超过 0.3<span class=\"src\">（Stage 13 X3 主分析 1,110 篇，Jaccard &gt; 0.3 的比例：近邻 D 0.024、改写 0.877；381_stage13/reports/x3_groupsplit.md “Why only 66 primary pairs have a matched D”）</span>"
+ },
+ {
+  "old": "只有 66 篇改写本身用词变化很大（中位数 0.143）",
+  "new": "只有 66 篇改写本身用词变化很大（中位数 0.143）<span class=\"src\">（Stage 13 X3 主分析，有匹配 D 的 66 篇中改写 Jaccard 中位数；381_stage13/reports/x3_groupsplit.md 末节）</span>"
+ },
+ {
+  "old": "得到 L8（+0.012），敏感性分析是 L24",
+  "new": "得到 L8（+0.012），敏感性分析是 L24<span class=\"src\">（Stage 13 X3，标题最后一个 token，测试集 G′ − G′(L4)，主分析 552 篇 +0.012 [0.004, 0.019]，团队整群 95% CI；381_stage13/reports/x3_report.md Verdict 节与 Robustness 行）</span>"
+ },
+ {
+  "old": "（L36：target +0.158，control +0.160，差 −0.002 [−0.027, +0.025]），L24–L48 各层两组之差的区间都含 0",
+  "new": "（L36：target +0.158，control +0.160，差 −0.002 [−0.027, +0.025]），L24–L48 各层两组之差的区间都含 0<span class=\"src\">（Stage 13 X3 主分析测试集，target 274 + control 278 篇，G′ − G′(L4)，团队整群 95% CI；381_stage13/reports/x3_groupsplit.md primary / test 表）</span>"
+ },
+ {
+  "old": "BERT 每一层都低于它的第 0 层（−0.06 到 −0.21）",
+  "new": "BERT 每一层都低于它的第 0 层（−0.06 到 −0.21）<span class=\"src\">（Stage 13 X3 文本基线，bert-base-uncased 标题最后一个 wordpiece，G′(l) − G′(L0)，L1–L12，主分析测试集 552 篇；381_stage13/reports/x3_textbase_recovery.md primary / all / test 表）</span>"
+ },
+ {
+  "old": "只在最后一层超出（+0.142 [0.129, 0.156]）",
+  "new": "只在最后一层超出（+0.142 [0.129, 0.156]<span class=\"src\">（all-mpnet-base-v2 mean 池化，最后一层，主分析测试集 552 篇，团队整群 95% CI；381_stage13/reports/x3_textbase_recovery.md primary / all / test 表）</span>）"
+ },
+ {
+  "old": "Qwen 0.52 [0.46, 0.59]，mpnet 0.30，BERT 为负",
+  "new": "Qwen 0.52 [0.46, 0.59]，mpnet 0.30，BERT 为负<span class=\"src\">（最大优势 ÷ 基线层 G′，主分析测试集 552 篇，团队整群 95% CI；381_stage13/reports/x3_textbase_recovery.md Scale-free comparison 表 primary/all/test）</span>"
+ },
+ {
+  "old": "但在用词匹配的 66 篇子集上，mpnet（1.40）与 Qwen（1.90）之差的区间含 0",
+  "new": "但在用词匹配子集的测试集（37 篇）上，mpnet（1.40）与 Qwen（1.90）之差的区间含 0<span class=\"src\">（Stage 13 X3 文本基线，primary/d_matched/test 37 篇，最大优势 ÷ 基线层 G′，Qwen − mpnet +0.50 [−0.50, +4.02]，团队整群 95% CI；381_stage13/reports/x3_textbase_recovery.md Scale-free comparison 表）</span>",
+  "fix": true
+ },
+ {
+  "old": "改写 − D 为 +0.239 [0.212, 0.266]",
+  "new": "改写 − D 为 +0.239 [0.212, 0.266]<span class=\"src\">（Stage 13 X3 行为，第一作者教师强制打分 log10(1/rank)，主分析测试集 552 篇，团队整群 95% CI；381_stage13/reports/x3_report.md Behaviour 表）</span>"
+ },
+ {
+  "old": "全部 0.90 [0.87, 0.94]，target 0.90 [0.85, 0.94]，control 0.91 [0.84, 0.98]，两组之差 −0.01 [−0.09, +0.07]",
+  "new": "全部 0.90 [0.87, 0.94]，target 0.90 [0.85, 0.94]，control 0.91 [0.84, 0.98]，两组之差 −0.01 [−0.09, +0.07]<span class=\"src\">（Stage 13 X3 行为恢复比例（均值之比），主分析测试集 552 篇（target 274、control 278），团队整群 95% CI；381_stage13/reports/x3_textbase_recovery.md Task 3 表）</span>"
+ },
+ {
+  "old": "有匹配近邻的子集测试集 0.75 [0.56, 0.97]（37 篇；全部 66 篇 0.73 [0.61, 0.84]）",
+  "new": "有匹配近邻的子集测试集 0.75 [0.56, 0.97]（37 篇；全部 66 篇 0.73 [0.61, 0.84]）<span class=\"src\">（Stage 13 X3 行为恢复比例，primary/d_matched，团队整群 95% CI；381_stage13/reports/x3_textbase_recovery.md Task 3 表）</span>"
+ },
+ {
+  "old": "在测试集上确认（+0.012 [0.004, 0.019]）",
+  "new": "在测试集上确认（+0.012 [0.004, 0.019]<span class=\"src\">（Stage 13 X3 主分析测试集 552 篇，标题最后一个 token，G′ − G′(L4)，团队整群 95% CI；381_stage13/reports/x3_report.md Verdict 节）</span>）"
+ },
+ {
+  "old": "行为 +0.239 [0.212, 0.266]",
+  "new": "行为 +0.239 [0.212, 0.266]<span class=\"src\">（Stage 13 X3 行为，改写 − D，主分析测试集 552 篇；381_stage13/reports/x3_report.md Behaviour 表）</span>"
+ },
+ {
+  "old": "最高 L36 +0.16）",
+  "new": "最高 L36 +0.16<span class=\"src\">（Stage 13 X3 主分析测试集 552 篇，G′ − G′(L4) +0.159 [0.146, 0.171]；381_stage13/reports/x3_report.md G′ 表）</span>）"
+ },
+ {
+  "old": "约 90% 的第一作者偏好",
+  "new": "约 90%<span class=\"src\">（Stage 13 X3 行为恢复比例 0.90 [0.87, 0.94]，测试集 552 篇；381_stage13/reports/x3_textbase_recovery.md Task 3 表）</span> 的第一作者偏好"
+ },
+ {
+  "old": "差距只有约 0.002",
+  "new": "差距只有约 0.002<span class=\"src\">（Stage 13 X3，“:” 位置，测试集 G′（L8 +0.0026）；381_stage13/reports/x3_report.md colon 表）</span>"
+ },
+ {
+  "old": "替换在 L48 恢复一半、L52 恢复 95% 以上",
+  "new": "替换在 L48 恢复一半、L52 恢复 95% 以上<span class=\"src\">（Stage 13 X6，5 个假标题平均，恢复比例 L48 0.821、L52 0.995，团队整群；381_stage13/summary_x5/x5_layer_order.csv X6 行、summary_x6/x6_recovery.csv）</span>"
+ },
+ {
+  "old": "0.05 是 Stage 10 的“约为 0”惯例",
+  "new": "0.05<span class=\"src\">（Stage 10 惯例，非预注册阈值；381_stage13/reports/x5_report.md Caveats 第 4 条）</span> 是 Stage 10 的“约为 0”惯例"
+ },
+ {
+  "old": "token 上（L48 恢复 83%，L52 起 100%）",
+  "new": "token 上（L48 恢复 83%，L52 起 100%）<span class=\"src\">（Stage 11 E1 替换，真标题→false_0，标题后全部位置，最终输出名字 token 恢复比例 0.825 / 0.996；593+593 篇；361_stage11/summary/E1_recovery.csv）</span>"
+ },
+ {
+  "old": "标题特异信号 L24–L48 约为 0",
+  "new": "标题特异信号 L24–L48 约为 0<span class=\"src\">（Stage 10，名字位置 logit lens / J-lens，标题特异信号 ≤ 0.05；STATUS.md §3 Stage 10 结果第 1 条；381_stage13/reports/x5_report.md Caveats 第 4 条）</span>"
+ },
+ {
+  "old": "（+0.04 到 +0.08）",
+  "new": "（+0.04 到 +0.08<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，全部论文标题特异信号 L16–L60 +0.042 到 +0.080，按团队分折并剔除标题复用（1,863 篇），论文 bootstrap 95% CI；381_stage13/reports/e4b_trainstd_compare.md）</span>）"
+ },
+ {
+  "old": "（GPU 单元 0/144）",
+  "new": "（GPU 单元 0/144<span class=\"src\">（Stage 13 GPU 单元写定时计数；~/jlens_work/PROGRESS.md “Stage 13 GPU 0/144” 条；方法手册 B_global2 预注册核对表）</span>）"
+ },
+ {
+  "old": "（各一半，目标组和对照组分别分）",
+  "new": "（各一半<span class=\"src\">（prereg.json 共同规则；381_stage13/config/prereg.json、prereg_addendum1.json）</span>，目标组和对照组分别分）"
+ },
+ {
+  "old": "差异的 95% 区间不含 0 才算数",
+  "new": "差异的 95% 区间不含 0 才算数<span class=\"src\">（prereg.json 共同规则；381_stage13/config/prereg.json）</span>"
+ },
+ {
+  "old": "约 80% 的测试论文会被去掉，剩 1,863 篇（目标 896、对照 499）",
+  "new": "约 80% 的测试论文会被去掉，剩 1,863 篇（目标 896、对照 499）<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token；标题复用比例 0.795–0.828，按团队分折剔除后 1,863 篇；381_stage13/reports/e4b_split_compare.md；方法手册 B_global2 泄漏表 (c)）</span>"
+ },
+ {
+  "old": "按种子 12",
+  "new": "按种子 12<span class=\"src\">（Stage 12 F1 设计常数；371_stage12.py:40, 52–58（default_rng(12)，40 篇））</span>"
+ },
+ {
+  "old": "Stage 11 样本（1,186 篇）",
+  "new": "Stage 11 样本（1,186 篇）<span class=\"src\">（Stage 11 样本 593 + 593 篇；361_stage11/config/protocol.json）</span>"
+ },
+ {
+  "old": "有 3 篇评估论文",
+  "new": "有 3 篇评估论文<span class=\"src\">（Stage 12 F2 评估排除；371_stage12/config/alens_eval_exclude.json）</span>"
+ },
+ {
+  "old": "逐个位置替换完（24/24）",
+  "new": "逐个位置替换完（24/24<span class=\"src\">（Stage 12 P1 GPU 单元；~/jlens_work/PROGRESS.md 2026-10-28 13:05 条）</span>）"
+ },
+ {
+  "old": "在 L48 恢复 0.61，L52 恢复 0.85",
+  "new": "在 L48 恢复 0.61，L52 恢复 0.85<span class=\"src\">（Stage 12 P1，真标题→false_0，只替换名字位置，最终输出名字 token 恢复比例；1,186 篇、19,077 个名字 token；371_stage12/reports/stage12_P1P2_preview.md、371_stage12/summary/P1_patch_pos.csv）</span>"
+ },
+ {
+  "old": "只替换 “:”，在 L52 恢复 0.17",
+  "new": "只替换 “:”，在 L52 恢复 0.17<span class=\"src\">（Stage 12 P1，只替换 “:”（p1）；371_stage12/reports/stage12_P1P2_preview.md、371_stage12/summary/P1_patch_pos.csv）</span>"
+ },
+ {
+  "old": "最多恢复 0.07（L44）",
+  "new": "最多恢复 0.07（L44）<span class=\"src\">（Stage 12 P1，只替换 p5；371_stage12/reports/stage12_P1P2_preview.md、371_stage12/summary/P1_patch_pos.csv）</span>"
+ },
+ {
+  "old": "其余单个位置都 ≤ 0.03",
+  "new": "其余单个位置都 ≤ 0.03<span class=\"src\">（Stage 12 P1，p2–p4、p6–p9 在 L32–L56；371_stage12/reports/stage12_P1P2_preview.md、371_stage12/summary/P1_patch_pos.csv）</span>"
+ },
+ {
+  "old": "最多只损失 15%",
+  "new": "最多只损失 15%<span class=\"src\">（Stage 11 E2n，从 L0 阻断，损失比例 0.153 [0.136, 0.172]；1,186 篇；361_stage11/summary/E2n_knockout.csv）</span>"
+ },
+ {
+  "old": "（单层注意力或 MLP 输出替换，24/24 已完成）",
+  "new": "（单层注意力或 MLP 输出替换，24/24 已完成<span class=\"src\">（Stage 12 P2 GPU 单元；~/jlens_work/PROGRESS.md 2026-10-28 13:05 条）</span>）"
+ },
+ {
+  "old": "L48 的注意力输出恢复 0.23（MLP 0.07）",
+  "new": "L48 的注意力输出恢复 0.23（MLP 0.07）<span class=\"src\">（Stage 12 P2，单层组件替换，标题后全部位置，恢复比例；1,186 篇；371_stage12/reports/stage12_P1P2_preview.md、371_stage12/summary/P2_patch_comp.csv）</span>"
+ },
+ {
+  "old": "恢复 0.18 和 0.22（注意力 0.11 和 0.06）",
+  "new": "恢复 0.18 和 0.22（注意力 0.11 和 0.06）<span class=\"src\">（Stage 12 P2；371_stage12/reports/stage12_P1P2_preview.md、371_stage12/summary/P2_patch_comp.csv）</span>"
+ },
+ {
+  "old": "L8–L44 的单层组件都 ≤ 0.03",
+  "new": "L8–L44 的单层组件都 ≤ 0.03<span class=\"src\">（Stage 12 P2，最大为 L24 注意力 0.023；371_stage12/reports/stage12_P1P2_preview.md、371_stage12/summary/P2_patch_comp.csv）</span>"
+ },
+ {
+  "old": "从 L0 挡损失 83%",
+  "new": "从 L0 挡损失 83%<span class=\"src\">（Stage 11 E2 knockout，从 L0 阻断，损失比例 0.831 [0.801, 0.862]；1,186 篇；361_stage11/summary/E2_knockout.csv）</span>"
+ },
+ {
+  "old": "时间点（L48 恢复 83%，L52 起 100%）",
+  "new": "时间点（L48 恢复 83%，L52 起 100%）<span class=\"src\">（Stage 11 E1 替换，真标题→false_0，标题后全部位置，最终输出名字 token 恢复比例 0.825 / 0.996；593+593 篇；361_stage11/summary/E1_recovery.csv）</span>"
+ },
+ {
+  "old": "1,186 篇里有 10% 的真假差距 |gap| &lt; 0.05，也有 10% 的差距为负",
+  "new": "1,186 篇里有 10% 的真假差距 |gap| &lt; 0.05，也有 10% 的差距为负<span class=\"src\">（Stage 11 E1，逐篇真 − 假差距（0.102 / 0.101）；~/jlens_work/PROGRESS.md 2026-10-28 13:05 条 Stage 11 review 第 5 条；本次由 361_stage11/raw/patch 复算）</span>"
+ },
+ {
+  "old": "（例如 L52 有 13 篇超出 ±5）",
+  "new": "（例如 L52 有 13 篇超出 ±5<span class=\"src\">（Stage 11 E1，L52 逐篇恢复比例；本次由 361_stage11/raw/patch/*.npz 复算（13 篇））</span>）"
+ },
+ {
+  "old": "所用方法的结果是 0.996，逐篇比例的中位数是 0.988，逐篇比例的均值是 1.31",
+  "new": "所用方法的结果是 0.996，逐篇比例的中位数是 0.988，逐篇比例的均值是 1.31<span class=\"src\">（Stage 11 E1，L52，1,186 篇；361_stage11/summary/E1_recovery.csv；~/jlens_work/PROGRESS.md 2026-10-28 13:05 条；本次由 raw/patch 复算一致）</span>"
+ },
+ {
+  "old": "（593 + 593 篇，每个引用档两组至少 30 篇）",
+  "new": "（593 + 593 篇，每个引用档两组至少 30 篇<span class=\"src\">（Stage 11 抽样设计；361_stage11/config/protocol.json；361_stage11.py:56）</span>）"
+ },
+ {
+  "old": "（P1 共 19,077 个）",
+  "new": "（P1 共 19,077 个<span class=\"src\">（Stage 12 P1 名字 token 行数；371_stage12/raw/patch_pos 合计；~/jlens_work/PROGRESS.md 2026-10-28 14:45 条）</span>）"
+ },
+ {
+  "old": "首字母在 L48 恢复 0.50、L52 恢复 0.90；名在 L48 恢复 0.37、L52 恢复 0.95",
+  "new": "首字母在 L48 恢复 0.50、L52 恢复 0.90；名在 L48 恢复 0.37、L52 恢复 0.95<span class=\"src\">（Stage 12 P1，只替换 “:”；Stage 12 P1 CPU 预览，按 token 角色；~/jlens_work/PROGRESS.md 2026-10-28 14:45 条；2026-10-30 重算差 ≤ 0.03，见方法手册 E_stage12 P1 token 角色表）</span>"
+ },
+ {
+  "old": "首字母的真假差距只有 0.11",
+  "new": "首字母的真假差距只有 0.11<span class=\"src\">（Stage 12 P1 CPU 预览，按 token 角色；~/jlens_work/PROGRESS.md 2026-10-28 14:45 条；2026-10-30 重算差 ≤ 0.03，见方法手册 E_stage12 P1 token 角色表）</span>"
+ },
+ {
+  "old": "真假差距约 0.5，是信号主体",
+  "new": "真假差距约 0.5<span class=\"src\">（Stage 12 P1 CPU 预览，按 token 角色；~/jlens_work/PROGRESS.md 2026-10-28 14:45 条；2026-10-30 重算差 ≤ 0.03，见方法手册 E_stage12 P1 token 角色表）</span>，是信号主体"
+ },
+ {
+  "old": "姓第一个 token 在 L48 恢复 0.55、L52 恢复 0.92",
+  "new": "姓第一个 token 在 L48 恢复 0.55、L52 恢复 0.92<span class=\"src\">（Stage 12 P1，只替换名字位置；Stage 12 P1 CPU 预览，按 token 角色；~/jlens_work/PROGRESS.md 2026-10-28 14:45 条；2026-10-30 重算差 ≤ 0.03，见方法手册 E_stage12 P1 token 角色表）</span>"
+ },
+ {
+  "old": "标点的真假差距约为 0",
+  "new": "标点的真假差距约为 0<span class=\"src\">（Stage 12 P1，punct 差距 0.009；方法手册 E_stage12 P1 token 角色表）</span>"
+ },
+ {
+  "old": "名字位置恢复 0.85”",
+  "new": "名字位置恢复 0.85”<span class=\"src\">（Stage 12 P1，只替换名字位置，L52 0.847；371_stage12/summary/P1_patch_pos.csv）</span>"
+ },
+ {
+  "old": "真假差距小于 0.05 的角色不报告恢复比例",
+  "new": "真假差距小于 0.05 的角色不报告恢复比例<span class=\"src\">（规则；381_stage13/config/prereg_addendum4.json token_roles）</span>"
+ },
+ {
+  "old": "同一组按论文的 5 折（种子 13）",
+  "new": "同一组按论文的 5 折（种子 13）<span class=\"src\">（Stage 13 M2 设计常数；~/jlens_work/13_stage13/stage13_cpu.py；方法手册 F_stage13）</span>"
+ },
+ {
+  "old": "有 2,004 个借出标题同时出现在训练和测试里",
+  "new": "有 2,004 个借出标题同时出现在训练和测试里<span class=\"src\">（Stage 13 切分审计；~/jlens_work/PROGRESS.md 2026-10-28 11:45 条；方法手册 F_stage13 group_folds）</span>"
+ },
+ {
+  "old": "（读借出论文年份 R² 0.50–0.62）",
+  "new": "（读借出论文年份 R² 0.50–0.62<span class=\"src\">（Stage 13 M2 按论文切，false_0，标题最后一个 token，L16–L60 年份 R² 0.496–0.623；381_stage13/reports/stage13_cpu_report.md）</span>）"
+ },
+ {
+  "old": "有 2,319 对论文共享至少一位作者全名",
+  "new": "有 2,319 对论文共享至少一位作者全名<span class=\"src\">（Stage 13 切分审计；~/jlens_work/PROGRESS.md 2026-10-28 11:45 条；方法手册 F_stage13 group_folds）</span>"
+ },
+ {
+  "old": "5 折大小均衡（1,821–1,822）",
+  "new": "5 折大小均衡（1,821–1,822）<span class=\"src\">（按团队分折，9,108 篇，7,247 组；~/jlens_work/PROGRESS.md 2026-10-28 11:45 条；381_stage13/reports/cluster_ci.md 第 3 行）</span>"
+ },
+ {
+  "old": "（0 个团队跨两边）",
+  "new": "（0 个团队跨两边<span class=\"src\">（X1/X3/X4 调参集/测试集按团队划分；~/jlens_work/PROGRESS.md 2026-10-28 11:45 条；381_stage13/config/pairs.parquet）</span>）"
+ },
+ {
+  "old": "共 1,863 篇（目标 896、对照 499；其余为 excluded 与 guard）",
+  "new": "共 1,863 篇（目标 896、对照 499；其余为 excluded 与 guard）<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，按团队分折并剔除标题复用；381_stage13/reports/e4b_split_compare.md；方法手册 B_global2 泄漏表 (c)）</span>"
+ },
+ {
+  "old": "共 1,395 篇",
+  "new": "共 1,395 篇<span class=\"src\">（896 + 499；同上）</span>"
+ },
+ {
+  "old": "一组剩 1,568 篇（目标 810、对照 399）",
+  "new": "一组剩 1,568 篇（目标 810、对照 399）<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，只用假标题训练的 probe，剔除条件更严；方法手册 B_global2 泄漏表 (c)）</span>"
+ },
+ {
+  "old": "改为 +0.05 到 +0.08，目标组高 +0.04 到 +0.08",
+  "new": "改为 +0.05 到 +0.08，目标组高 +0.04 到 +0.08<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，按团队分折并剔除标题复用，L24–L60：全部论文标题特异信号 +0.047 到 +0.080，引用档内 target − control +0.035 到 +0.078；381_stage13/reports/e4b_trainstd_compare.md）</span>"
+ },
+ {
+  "old": "各目标各层变化都在 0.005 以内",
+  "new": "各目标各层变化都在 0.005 以内<span class=\"src\">（Stage 13 M2 真标题运行，按论文切 vs 按团队切；381_stage13/reports/split_compare.md）</span>"
+ },
+ {
+  "old": "L48 年份 R² 0.555 vs 0.556，“是否认得出”AUROC 0.671 vs 0.670",
+  "new": "L48 年份 R² 0.555 vs 0.556，“是否认得出”AUROC 0.671 vs 0.670<span class=\"src\">（Stage 13 M2，标题最后一个 token，团队切 vs 论文切；381_stage13/reports/split_compare.md）</span>"
+ },
+ {
+  "old": "数字下降了约 0.1",
+  "new": "数字下降了约 0.1<span class=\"src\">（Stage 13 M2 false_0，标题最后一个 token，L16–L48 年份 R² 降 0.09–0.14；381_stage13/reports/split_compare.md）</span>"
+ },
+ {
+  "old": "年份 R² 从 0.62 降到 0.54，引用数从 0.59 降到 0.49",
+  "new": "年份 R² 从 0.62 降到 0.54，引用数从 0.59 降到 0.49<span class=\"src\">（Stage 13 M2 false_0，L48，0.623→0.535、0.588→0.488；381_stage13/reports/split_compare.md；方法手册 F_stage13）</span>"
+ },
+ {
+  "old": "变化都在 0.02 以内",
+  "new": "变化都在 0.02 以内<span class=\"src\">（Stage 13 M2b、M2c 按论文切 vs 按团队切；方法手册 B_global2 泄漏表 (b)；381_stage13/summary_cpu_group/）</span>"
+ },
+ {
+  "old": "（7,247 个团队，9,108 篇论文",
+  "new": "（7,247 个团队，9,108 篇论文<span class=\"src\">（Stage 13 团队整群 bootstrap；381_stage13/reports/cluster_ci.md 第 3 行）</span>"
+ },
+ {
+  "old": "区间平均只变宽 0–8%（最多 22%）",
+  "new": "区间平均只变宽 0–8%（最多 22%）<span class=\"src\">（团队区间宽 ÷ 论文区间宽，各表均值 0.97–1.08、最大 1.22；381_stage13/reports/cluster_ci.md Interval width ratio 表）</span>"
+ },
+ {
+  "old": "380 行里只有 4 行",
+  "new": "380 行里只有 4 行<span class=\"src\">（381_stage13/reports/cluster_ci.md “Rows where interval excludes 0 changes”）</span>"
+ },
+ {
+  "old": "logit lens L32：+0.005，原区间 [0.000, 0.011]，团队区间 [−0.000, 0.010]",
+  "new": "logit lens L32：+0.005，原区间 [0.000, 0.011]，团队区间 [−0.000, 0.010]<span class=\"src\">（Stage 10 6.4 标题特异 target − control；团队整群 vs 论文 bootstrap；381_stage13/reports/cluster_ci.md）</span>"
+ },
+ {
+  "old": "logit lens L56：+0.035，原区间 [0.006, 0.064]，团队区间 [−0.001, 0.069]",
+  "new": "logit lens L56：+0.035，原区间 [0.006, 0.064]，团队区间 [−0.001, 0.069]<span class=\"src\">（Stage 10 6.2 真标题 target − control；团队整群 vs 论文 bootstrap；381_stage13/reports/cluster_ci.md）</span>"
+ },
+ {
+  "old": "L55：+0.025，原区间 [−0.000, 0.049]，团队区间 [0.000, 0.050]",
+  "new": "L55：+0.025，原区间 [−0.000, 0.049]，团队区间 [0.000, 0.050]<span class=\"src\">（Stage 10 R1 C − A；团队整群 vs 论文 bootstrap；381_stage13/reports/cluster_ci.md）</span>"
+ },
+ {
+  "old": "public lens L48：−0.007，原区间 [−0.014, 0.000]，团队区间 [−0.015, −0.000]",
+  "new": "public lens L48：−0.007，原区间 [−0.014, 0.000]，团队区间 [−0.015, −0.000]<span class=\"src\">（Stage 10 6.3 标题特异，目标组；团队整群 vs 论文 bootstrap；381_stage13/reports/cluster_ci.md）</span>"
+ },
+ {
+  "old": "主结果（+0.21 到 +0.23）",
+  "new": "主结果（+0.21 到 +0.23<span class=\"src\">（Stage 10 6.4 标题特异 target − control，L62 各 lens 0.228–0.231、最终输出 L63 0.207；381_stage13/summary_cpu_group/cluster_ci_all.csv）</span>）"
+ },
+ {
+  "old": "（最大差 0.0000）",
+  "new": "（最大差 0.0000<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，按论文分折不剔除 vs 已发表 E4b；381_stage13/reports/e4b_split_compare.md Sanity 行）</span>）"
+ },
+ {
+  "old": "对照组的数字最大差 0.008",
+  "new": "对照组的数字最大差 0.008<span class=\"src\">（381_stage13/reports/e4b_split_compare.md Sanity 行（0.0080））</span>"
+ },
+ {
+  "old": "约 80% 的测试论文，它提示里",
+  "new": "约 80% 的测试论文<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token；标题复用比例 0.795–0.828；381_stage13/reports/e4b_split_compare.md 首表）</span>，它提示里"
+ },
+ {
+  "old": "另有 excluded 433、guard 35）",
+  "new": "另有 excluded 433、guard 35）<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，按团队分折并剔除标题复用；381_stage13/reports/e4b_split_compare.md；方法手册 B_global2 泄漏表 (c)）</span>"
+ },
+ {
+  "old": "更严，剩 1,568 篇（目标 810、对照 399）",
+  "new": "更严，剩 1,568 篇（目标 810、对照 399）<span class=\"src\">（只用假标题训练的 probe；方法手册 B_global2 泄漏表 (c)）</span>"
+ },
+ {
+  "old": "L24 为 +0.050（原来 +0.045），L40 为 +0.066（原来 +0.062），L56 为 +0.080（原来 +0.081）",
+  "new": "L24 为 +0.050（原来 +0.045），L40 为 +0.066（原来 +0.062），L56 为 +0.080（原来 +0.081）<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，全部论文标题特异信号，按团队分折并剔除标题复用 vs 按论文分折不剔除，论文 bootstrap 95% CI；381_stage13/reports/e4b_split_compare.md Controls 表）</span>"
+ },
+ {
+  "old": "各层都在 −0.005 到 +0.006 之间",
+  "new": "各层都在 −0.005 到 +0.006 之间<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，正确答案换成随机论文 / 同领域论文的作者，按团队分折并剔除标题复用；381_stage13/reports/e4b_split_compare.md Controls 表）</span>"
+ },
+ {
+  "old": "L24–L60 为 +0.036 到 +0.078",
+  "new": "L24–L60 为 +0.036 到 +0.078<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，引用档内 target − control，按团队分折并剔除标题复用，论文 bootstrap 95% CI；381_stage13/reports/e4b_split_compare.md 首个 E4b 表）</span>"
+ },
+ {
+  "old": "原来是 +0.02 到 +0.04",
+  "new": "原来是 +0.02 到 +0.04<span class=\"src\">（按论文分折不剔除，L16–L60 +0.019 到 +0.039；381_stage13/reports/e4b_split_compare.md 首个 E4b 表）</span>"
+ },
+ {
+  "old": "它在 L24 为 +0.050、L40 为 +0.057、L56 为 +0.074",
+  "new": "它在 L24 为 +0.050、L40 为 +0.057、L56 为 +0.074<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，只用假标题训练，剔除标题复用后；381_stage13/reports/e4b_split_compare.md Controls 表）</span>"
+ },
+ {
+  "old": "全部论文平均 L24 +0.050、L40 +0.061、L56 +0.075",
+  "new": "全部论文平均 L24 +0.050、L40 +0.061、L56 +0.075<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，标准化只在训练折内拟合（作业 11500917），按团队分折并剔除标题复用；381_stage13/reports/e4b_trainstd_compare.md）</span>"
+ },
+ {
+  "old": "L24–L60 为 +0.035 到 +0.078，L44 下界变为 +0.000（边界）",
+  "new": "L24–L60 为 +0.035 到 +0.078，L44 下界变为 +0.000（边界）<span class=\"src\">（Stage 11 E4b probe，标题最后一个 token，probe 只打分第一个名字 token，引用档内 target − control，训练折标准化；381_stage13/reports/e4b_trainstd_compare.md）</span>"
+ },
+ {
+  "old": "最大变化 0.0075",
+  "new": "最大变化 0.0075<span class=\"src\">（381_stage13/reports/e4b_trainstd_compare.md “Max |new − orig|” 行）</span>"
+ },
+ {
+  "old": "读出年份 R² 0.24，引用数 0.19（去掉年份后 0.18），“是否认得出”AUROC 0.63",
+  "new": "读出年份 R² 0.24，引用数 0.19（去掉年份后 0.18），“是否认得出”AUROC 0.63<span class=\"src\">（Stage 13 M2c，bert-base-uncased 各层最高，按论文 5 折，9,108 篇；381_stage13/summary_cpu/M2c_bert_baseline.csv）</span>"
+ },
+ {
+  "old": "Qwen 在标题最后一个 token 上分别是 0.56、0.53、0.52、0.67",
+  "new": "Qwen 在标题最后一个 token 上分别是 0.56、0.53、0.52、0.67<span class=\"src\">（Stage 13 M2，按论文 5 折，各层最高；381_stage13/reports/stage13_cpu_report.md true title run, title position 表）</span>"
+ },
+ {
+  "old": "BERT 的 0.63 已达到 Qwen 的 0.67 − 0.05",
+  "new": "BERT 的 0.63 已达到 Qwen 的 0.67 − 0.05<span class=\"src\">（M2c 判定规则见 381_stage13/config/prereg.json；数值同上）</span>"
+ },
+ {
+  "old": "正确的那个 token 在 L52 只占 0.1%，L62 占 2%",
+  "new": "正确的那个 token 在 L52 只占 0.1%，L62 占 2%<span class=\"src\">（Stage 13 M1，public J-lens，名字第一个 token，真标题，排第一的词的类别比例 0.001 / 0.019；381_stage13/reports/stage13_cpu_report.md M1 表）</span>"
+ },
+ {
+  "old": "L62 占 87%",
+  "new": "L62 占 87%<span class=\"src\">（Stage 13 M1，logit lens，L62 像人名的词 0.867；381_stage13/reports/stage13_cpu_report.md M1 表）</span>"
+ },
+ {
+  "old": "排第一的词也有 28–64% 会变",
+  "new": "排第一的词也有 28–64% 会变<span class=\"src\">（Stage 13 M1b，真标题→false_0，L24–L48 各 lens 0.283–0.636；381_stage13/reports/stage13_cpu_report.md M1b 表）</span>"
+ },
+ {
+  "old": "年份 R² 从 0.39（L16）升到 0.56（L52）",
+  "new": "年份 R² 从 0.39（L16）升到 0.56（L52）<span class=\"src\">（Stage 13 M2，真标题，标题最后一个 token，按论文 5 折，9,108 篇；381_stage13/reports/stage13_cpu_report.md）</span>"
+ },
+ {
+  "old": "引用数 R² 从 0.28 升到 0.53；去掉年份后仍为 0.27 到 0.52，只用年份时是 0.05",
+  "new": "引用数 R² 从 0.28 升到 0.53；去掉年份后仍为 0.27 到 0.52，只用年份时是 0.05<span class=\"src\">（Stage 13 M2，真标题，标题最后一个 token，按论文 5 折，9,108 篇；381_stage13/reports/stage13_cpu_report.md）</span>"
+ },
+ {
+  "old": "AUROC 从 0.62 升到 0.67，只用年份时是 0.56",
+  "new": "AUROC 从 0.62 升到 0.67，只用年份时是 0.56<span class=\"src\">（Stage 13 M2，真标题，标题最后一个 token，按论文 5 折，9,108 篇；381_stage13/reports/stage13_cpu_report.md（引用档内 AUROC））</span>"
+ },
+ {
+  "old": "领域准确率 0.69–0.72，打乱标签对照是 0.13",
+  "new": "领域准确率 0.69–0.72，打乱标签对照是 0.13<span class=\"src\">（Stage 13 M2，真标题，标题最后一个 token，按论文 5 折，9,108 篇；381_stage13/reports/stage13_cpu_report.md）</span>"
+ },
+ {
+  "old": "年份 R² 达 0.98",
+  "new": "年份 R² 达 0.98<span class=\"src\">（Stage 13 M2，真标题，“:” 位置，L16–L52；381_stage13/reports/stage13_cpu_report.md）</span>"
+ },
+ {
+  "old": "176 个点估计",
+  "new": "176 个点估计<span class=\"src\">（Stage 13 M2 团队整群复算（作业 11503585）；381_stage13/reports/m2_teamci.md Point-estimate check）</span>"
+ },
+ {
+  "old": "区间平均宽 1.15 倍（真标题 1.02，false_0 1.32）",
+  "new": "区间平均宽 1.15 倍（真标题 1.02，false_0 1.32）<span class=\"src\">（381_stage13/reports/m2_teamci.md；381_stage13/summary_cpu_teamci/M2_teamci.csv width_ratio）</span>"
+ },
+ {
+  "old": "AUROC 0.555 [0.534, 0.573]",
+  "new": "AUROC 0.555 [0.534, 0.573]<span class=\"src\">（Stage 13 M2 只用年份基线，团队整群 95% CI；381_stage13/reports/m2_teamci.md）</span>"
+ },
+ {
+  "old": "年份 R² 0.11，引用数 0.07",
+  "new": "年份 R² 0.11，引用数 0.07<span class=\"src\">（TF-IDF 标题词袋；Stage 13 M2b，按论文 5 折，9,108 篇；381_stage13/summary_cpu/M2b_words_vs_probe.csv）</span>"
+ },
+ {
+  "old": "小 0.7–1.2 年",
+  "new": "小 0.7–1.2 年<span class=\"src\">（residual probe L16–L52 的 target − control 年份绝对误差 −0.68 到 −1.15 年；Stage 13 M2b，按论文 5 折，9,108 篇；381_stage13/summary_cpu/M2b_words_vs_probe.csv）</span>"
+ },
+ {
+  "old": "也小 0.88 年",
+  "new": "也小 0.88 年<span class=\"src\">（Stage 13 M2b，按论文 5 折，9,108 篇；381_stage13/summary_cpu/M2b_words_vs_probe.csv）</span>"
+ },
+ {
+  "old": "fairshare 0.09（偏低）",
+  "new": "fairshare 0.09<span class=\"src\">（~/jlens_work/PROGRESS.md 2026-10-28 11:05 条 GPU queue）</span>（偏低）"
+ },
+ {
+  "old": "优先级约 4,900，前面至少有 15 个别人的 A100 作业，优先级 5,300–9,900",
+  "new": "优先级约 4,900，前面至少有 15 个别人的 A100 作业，优先级 5,300–9,900<span class=\"src\">（~/jlens_work/PROGRESS.md 2026-10-28 11:05 条 GPU queue）</span>"
+ },
+ {
+  "old": "剩余时间 1.3–7 小时",
+  "new": "剩余时间 1.3–7 小时<span class=\"src\">（~/jlens_work/PROGRESS.md 2026-10-28 11:05 条 GPU queue）</span>"
+ },
+ {
+  "old": "把 20 个排队作业的时长从 90 分钟缩短到 60 分钟",
+  "new": "把 20 个排队作业的时长从 90 分钟缩短到 60 分钟<span class=\"src\">（~/jlens_work/PROGRESS.md 2026-10-28 11:05 条 GPU queue）</span>"
+ }
+]

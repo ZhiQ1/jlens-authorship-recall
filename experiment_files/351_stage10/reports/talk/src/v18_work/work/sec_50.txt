@@ -1,0 +1,13 @@
+<section class="slide lt" aria-label="slide 37"><span class="tag ov">Overview · Line D</span>
+<div style="position:absolute;right:70px;top:44px;transform:rotate(3deg)"><svg viewBox="-10 0 270 240" width="226" height="200">
+<rect x="14" y="150" width="52" height="40" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/><text x="40.0" y="177" text-anchor="middle" font-size="20" fill="var(--ink)" style="font-family:var(--hand)">S.</text><rect x="28.0" y="128" width="24" height="12" rx="4" fill="var(--lR)"/><rect x="74" y="150" width="46" height="40" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/><text x="97.0" y="177" text-anchor="middle" font-size="20" fill="var(--ink)" style="font-family:var(--hand)">␣B</text><rect x="85.0" y="70" width="24" height="70" rx="4" fill="var(--lR)"/><rect x="128" y="150" width="46" height="40" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/><text x="151.0" y="177" text-anchor="middle" font-size="20" fill="var(--ink)" style="font-family:var(--hand)">ree</text><rect x="139.0" y="40" width="24" height="100" rx="4" fill="var(--lR)"/>
+<line x1="10" y1="141" x2="230" y2="141" stroke="var(--pen)" stroke-width="1.5"/>
+<text x="40" y="220" text-anchor="middle" font-size="15" fill="var(--pen)" style="font-family:var(--hand)">initial</text><text x="150" y="220" text-anchor="middle" font-size="15" fill="var(--pen)" style="font-family:var(--hand)">surname</text>
+<text x="192" y="60" font-size="15" fill="var(--lR)" style="font-family:var(--hand)">signal</text></svg></div>
+<p class="m" style="font-size:24px;margin-top:60px">Line D</p>
+<h1 class="r" style="font-size:84px;max-width:820px">Which token carries it?</h1>
+<div class="row" style="margin-top:44px;gap:30px">
+ <div class="col" style="background:var(--bd);color:var(--chalk);padding:20px 26px;border-radius:14px 4px 12px 4px"><p style="font-size:20px;color:var(--chalk2)">small samples asked</p><p class="t">First token or the rest of the name?</p></div>
+ <div class="arrow" style="align-self:center">→</div>
+ <div class="col box"><p class="m" style="font-size:20px">the full cohort answered</p><p class="t">Depends on name format; the information enters the name positions at L44–52, partly via the tokens right after the title; co-authors partly replace the title</p></div>
+</div><span class="pg"></span></section>

@@ -1,0 +1,131 @@
+===== 1 885
+<section class="slide on" aria-label="slide 1">
+<div class="split">
+ <div class="half dk" style="padding-top:150px"><p class="m" style="font-size:22px">Stages 1–9</p>
+   <h1 style="font-size:78px">Small samples:<br><span class="a">find</span> a signal,<br>try to break it</h1>
+   <p class="m" style="font-size:22px;margin-top:20px">20 → 50 → 200 papers</p></div>
+ <div class="half lt" style="padding-top:150px"><p class="m" style="font-size:22px">Stages 10–11</p>
+   <h1 style="font-size:78px">Full cohort:<br><span class="b">locate</span> it,<br>then intervene</h1>
+   <p class="m" style="font-size:22px;margin-top:20px">9,108 papers · 149,999 name tokens</p></div>
+</div>
+<div class="note" style="position:absolute;left:50%;top:44px;width:760px;margin-left:-380px;text-align:center;font-size:30px;transform:rotate(-.6deg)">Where does Qwen3-32B hold a paper’s authors?</div></section>
+===== 2 4918
+<section class="slide lt" aria-label="slide 2"><span class="tag ov">Overview</span>
+<h2>One question, four lines of argument</h2>
+<p class="sub">Each line narrows the space of explanations; small samples set it up, the full cohort settles it</p>
+<p class="legend" style="margin-bottom:16px"><span style="background:var(--bd);color:var(--chalk)">dark pages = Stages 1–9</span><span style="background:#fff;border:1.5px solid var(--ink)">light pages = Stages 10–11</span><span style="color:#9B7BD8;border:1.5px solid #9B7BD8">purple tag = comparison</span></p>
+<svg viewBox="0 0 1140 470" width="100%" style="display:block;margin-top:4px" role="img" aria-label="Mind map: one question, four lines">
+<g fill="none" stroke-width="3" stroke-linecap="round">
+<path d="M480 215 C430 180 420 110 400 100" stroke="var(--lA)"/>
+<path d="M660 215 C710 180 720 110 740 100" stroke="var(--lB)"/>
+<path d="M480 255 C430 290 420 360 400 370" stroke="var(--lG)"/>
+<path d="M660 255 C710 290 720 360 740 370" stroke="var(--lR)"/></g>
+<ellipse cx="570" cy="235" rx="118" ry="72" fill="var(--note)" stroke="var(--ink)" stroke-width="2.5" transform="rotate(-2 570 235)"/>
+<text x="570" y="218" text-anchor="middle" style="font-family:var(--hand)" font-size="21" fill="var(--note-ink)">Where does Qwen3-32B</text>
+<text x="570" y="244" text-anchor="middle" style="font-family:var(--hand)" font-size="21" fill="var(--note-ink)">hold a paper’s authors,</text>
+<text x="570" y="270" text-anchor="middle" style="font-family:var(--hand)" font-size="21" fill="var(--note-ink)">and can it say them?</text>
+<g transform="translate(30,14)">
+<rect x="0" y="0" width="370" height="168" rx="16" fill="var(--pp)" stroke="var(--lA)" stroke-width="3"/>
+<text x="18" y="38" style="font-family:var(--title);font-weight:700" font-size="34" fill="var(--lA)">A · This paper?</text>
+<text x="18" y="68" style="font-family:var(--hand)" font-size="19" fill="var(--ink)">Paper-specific, not an easy name?</text>
+<rect x="14" y="84" width="342" height="32" rx="8" fill="var(--bd)"/>
+<text x="26" y="106" style="font-family:var(--hand)" font-size="17" fill="var(--chalk)">1–9 · Stage 5, 7.2, 7.3, 8</text>
+<rect x="14" y="124" width="342" height="32" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+<text x="26" y="146" style="font-family:var(--hand)" font-size="17" fill="var(--ink)">10–11 · title signal, name prior, probe</text></g>
+<g transform="translate(740,14)">
+<rect x="0" y="0" width="370" height="168" rx="16" fill="var(--pp)" stroke="var(--lB)" stroke-width="3"/>
+<text x="18" y="38" style="font-family:var(--title);font-weight:700" font-size="34" fill="var(--lB)">B · Readout tool</text>
+<text x="18" y="68" style="font-family:var(--hand)" font-size="19" fill="var(--ink)">What can each readout see?</text>
+<rect x="14" y="84" width="342" height="32" rx="8" fill="var(--bd)"/>
+<text x="26" y="106" style="font-family:var(--hand)" font-size="17" fill="var(--chalk)">1–9 · Stage 3, 7.4, 8, 9</text>
+<rect x="14" y="124" width="342" height="32" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+<text x="26" y="146" style="font-family:var(--hand)" font-size="17" fill="var(--ink)">10–11 · lens comparison, linear probe</text></g>
+<g transform="translate(30,288)">
+<rect x="0" y="0" width="370" height="168" rx="16" fill="var(--pp)" stroke="var(--lG)" stroke-width="3"/>
+<text x="18" y="38" style="font-family:var(--title);font-weight:700" font-size="34" fill="var(--lG)">C · Which layer</text>
+<text x="18" y="68" style="font-family:var(--hand)" font-size="19" fill="var(--ink)">When does it appear, when is it used?</text>
+<rect x="14" y="84" width="342" height="32" rx="8" fill="var(--bd)"/>
+<text x="26" y="106" style="font-family:var(--hand)" font-size="17" fill="var(--chalk)">1–9 · Stage 4, 7.2, 7.3, 8 (L56)</text>
+<rect x="14" y="124" width="342" height="32" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+<text x="26" y="146" style="font-family:var(--hand)" font-size="17" fill="var(--ink)">10–11 · fine layers, patching, knockout</text></g>
+<g transform="translate(740,288)">
+<rect x="0" y="0" width="370" height="168" rx="16" fill="var(--pp)" stroke="var(--lR)" stroke-width="3"/>
+<text x="18" y="38" style="font-family:var(--title);font-weight:700" font-size="34" fill="var(--lR)">D · Which token</text>
+<text x="18" y="68" style="font-family:var(--hand)" font-size="19" fill="var(--ink)">Which part of name or prompt carries it?</text>
+<rect x="14" y="84" width="342" height="32" rx="8" fill="var(--bd)"/>
+<text x="26" y="106" style="font-family:var(--hand)" font-size="17" fill="var(--chalk)">1–9 · Stage 6, 7.1</text>
+<rect x="14" y="124" width="342" height="32" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>
+<text x="26" y="146" style="font-family:var(--hand)" font-size="17" fill="var(--ink)">10–11 · name format, tail tokens, co-authors</text></g>
+</svg>
+<span class="pg"></span></section>
+===== 3 1694
+<section class="slide" aria-label="slide 3">
+<div class="split">
+ <div class="half dk"><p class="m" style="font-size:19px">Stages 1–9 · 20–200 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">Pilot design</h2><div class="t"><ul><li>Pilot50 / Stage 8: 50 and 200 papers</li><li>Mostly first-listed author, first token</li><li>Score: gold vs 1 or 100 false names (logit margin, win rate)</li><li>A/B both R0, matched in pairs</li><li>Wrong titles: 1 crossed or 20 shuffled</li><li>Layer L56 chosen after repeated looks</li></ul></div></div>
+ <div class="half lt"><span class="tag ov">Overview · design</span><p class="m" style="font-size:19px">Stages 10–11 · 9,108 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">Full-cohort design</h2><div class="t"><ul><li>All 9,108 papers, every author, every token</li><li>Score: rank over the whole vocabulary, log10(1/rank)</li><li>target = A + C, control = B + D (R0 + R1), compared within citation bins</li><li>5 matched false titles + no title</li><li>All layers reported, fine layers added</li><li>Parity and Stage 6 cross-check before analysis</li></ul></div><span class="pg"></span></div>
+</div>
+<div class="note" style="position:absolute;left:50%;bottom:58px;width:900px;margin-left:-450px;transform:rotate(-.5deg)"><span class="h">What changed in the design, and why</span>Small samples could not separate “small effect” from “no effect” in a given layer. The full cohort trades candidate-based scores for full-vocabulary ranks and pays for it with GPU time. <b>Note:</b> target/control include R1 papers; with R0 only (A vs B, as in the pilot) the output gap is +0.199 vs +0.207 and every layer looks the same.</div></section>
+===== 4 1534
+<section class="slide lt" aria-label="groups mapping"><span class="tag ov">Overview · groups</span>
+<h2>Same papers, two ways of grouping</h2>
+<p class="sub">Stages 1–9 compare A vs B; Stages 10–11 compare target vs control. Counts from the 6,841-paper cohort.</p>
+<table class="tb" style="width:100%;font-size:26px;margin-top:10px">
+<tr><th></th><th>recognised (target)</th><th>not recognised (control)</th></tr>
+<tr><td>R0 · no true author written</td><td><span class="a">A</span> = 4,110</td><td><span class="b">B</span> = 2,186</td></tr>
+<tr><td>R1 · some authors written (HR2 &gt; 0.5)</td><td>C = 511</td><td>D = 34</td></tr>
+<tr><td><b>Total</b></td><td><b class="a">target = A + C = 4,621</b></td><td><b class="b">control = B + D = 2,220</b></td></tr>
+</table>
+<div class="row" style="margin-top:30px;gap:24px">
+<div class="col" style="background:var(--bd);color:var(--chalk);padding:16px 22px;border-radius:14px 4px 12px 4px"><p style="font-size:20px;color:var(--chalk2)">Stages 1–9</p><p class="t">A vs B: both R0, so the contrast is purely “knows but cannot say”</p></div>
+<div class="col box"><p class="m" style="font-size:20px">Stages 10–11</p><p class="t">(A + C) vs (B + D): adds 511 partial-recall papers, almost all on the target side</p></div>
+</div>
+<div class="note" style="margin:26px auto 0;width:860px">Check done: with R0 only (A vs B) the output gap is +0.199, versus +0.207 for target vs control, and every layer looks the same. The two phases compare like with like.</div>
+<span class="pg"></span></section>
+===== 7 1468
+<section class="slide dk" aria-label="slide 4"><span class="tag">Stage 1</span>
+<h2>Cohort and behavioural labels</h2>
+<p class="sub">From the 15 Oct label package (9,108 papers) to a frozen 6,841-paper analysis cohort</p>
+<div class="row">
+ <div class="col t">
+  <table class="tb"><tr><th>Group</th><th>Recognition / open recall</th><th>Full</th><th>Pilot50</th></tr>
+  <tr><td class="a">A</td><td>pass / R0 (no true author written)</td><td>4,110</td><td>20</td></tr>
+  <tr><td class="b">B</td><td>fail / R0</td><td>2,186</td><td>20</td></tr>
+  <tr><td>C</td><td>pass / R1 (some authors matched)</td><td>511</td><td>7</td></tr>
+  <tr><td>D</td><td>fail / R1</td><td>34</td><td>3</td></tr></table>
+  <ul style="margin-top:16px">
+   <li>Pass = 4/4 option orders correct <i>and</i> mean true-option probability ≥ 0.5; fail = 0–1/4</li>
+   <li>Pilot50: seed 35150, keeps the 20 Stage 4 papers + 30 new</li>
+   <li>20 A/B pairs matched on exact field and citation bin, then |Δyear| + 2·|Δauthors|</li>
+  </ul>
+ </div>
+ <div class="note" style="width:360px;margin-top:20px"><span class="h">Why A vs B?</span>
+ Both groups write <b>no</b> correct author. They differ only in whether the model recognises the true list. That isolates “knows but cannot say”.<br><br>
+ <span class="h">Caveat</span>In the 0–2-citation bin the strict pass rate is <b>25.5%</b>, above the planned ≤10% floor: “pass” is not proof of stored knowledge.</div>
+</div><span class="pg"></span></section>
+===== 8 1514
+<section class="slide dk" aria-label="slide 5"><span class="tag">Stage 2</span>
+<h2>One fixed model, prompt and score</h2>
+<p class="sub">Everything later is measured under these settings</p>
+<div class="row">
+ <div class="col t">
+  <table class="tb">
+  <tr><td class="m">Model</td><td>Qwen/Qwen3-32B, BF16, revision 9216db57, 64 blocks, d = 5,120</td></tr>
+  <tr><td class="m">Layers</td><td>L16, 24, 32, 40, 48, 56, 62 → target L63</td></tr>
+  <tr><td class="m">Readouts</td><td>Public J-Lens · Vanilla (logit lens) · real final logits</td></tr>
+  <tr><td class="m">Position</td><td>last input position; context limit 512</td></tr>
+  <tr><td class="m">Names</td><td>encode(prompt) + encode(" " + author)</td></tr>
+  <tr><td class="m">Hardware</td><td>29 blocks on GPU, 35 offloaded to CPU</td></tr>
+  </table>
+ </div>
+ <div class="col">
+  <div class="box" style="font-size:22px;margin-bottom:18px">Who are the authors of the paper titled "{title}" ({year})?<br>Authors:</div>
+  <div class="t">
+  <p><span class="a">Rank</span> r = 1 + #tokens with a strictly larger logit</p>
+  <p style="margin-top:6px"><span class="a">JMRR</span> = mean over authors of mean over tokens of 1/r</p>
+  <p style="margin-top:6px"><span class="a">Integrated</span> = average of the 7 source layers (L63 excluded)</p>
+  <p class="m" style="margin-top:12px;font-size:20px">Guard: forced token IDs are checked, and a J-Lens/Vanilla final-logit gap &gt; 0.1 rejects the run.</p>
+  </div>
+ </div>
+</div><span class="pg"></span></section>

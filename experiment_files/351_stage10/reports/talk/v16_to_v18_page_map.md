@@ -1,0 +1,86 @@
+# Deck v16 → v18 page map (2026-11-05)
+
+v18 = 75 slides. No v16 slide was removed. Titles are the v18 slide titles (first line).
+
+| v16 | v18 | title (v18) |
+|---|---|---|
+| 1 | 1 | Small samples: find a signal, try to break it |
+| 2 | 2 | Overview — One question, four lines of argument |
+| 3 | 3 | Overview · design — Pilot design |
+| 4 | 4 | Overview · groups — Same papers, two ways of grouping |
+| 5 | 7 | Stage 1 — Cohort and behavioural labels |
+| 6 | 8 | Stage 2 — One fixed model, prompt and score |
+| 7 | 9 | How groups and contrasts are built |
+| 8 | 10 | How we read the model |
+| 9 | 11 | Can we trust the numbers? |
+| 10 | 12 | Overview · Line A — Is it about this paper? |
+| 11 | 13 | Stage 5 · Line A — Crossed title–author control |
+| 12 | 14 | Stage 7.3 · Line A — Shuffled titles: the true title helps |
+| 13 | 15 | Stage 7.3 · robustness — Does the title effect survive the obvious objections? |
+| 14 | 17 | Stage 8D · Lines A, B — On 200 new papers the title effect replicates |
+| 15 | 18 | Stage 8D–8E · Line A — But the A−B gap rests on a few pairs |
+| 16 | 21 | Knowing the paper shows up only at the end |
+| 17 | 22 | How much is just the name prior? |
+| 18 | 24 | The probe signal is paper-specific |
+| 19 | 25 | More citations, more paper knowledge |
+| 20 | 27 | Is it just the R1 papers? No. |
+| 21 | 28 | Authors it wrote vs authors it missed |
+| 22 | 29 | Overview · Line A — What we saw |
+| 23 | 30 | Overview · Line B — What can each readout see? |
+| 24 | 31 | Stage 3 · Exp 1–4 — Two lenses: Public-557 vs Self-100 |
+| 25 | 32 | Stage 7.4 · Line B — Cross-stage audit: does J-Lens add value? |
+| 26 | 33 | Stage 9 · Line B — Stage 9: is the lens stable across fitting data? |
+| 27 | 35 | Names become readable late |
+| 28 | 36 | Which lens reads best? |
+| 29 | 37 | Do lenses reveal hidden paper knowledge? |
+| 30 | 38 | Read early: a probe finds it at the title |
+| 31 | 39 | Overview · Line B — What we saw |
+| 32 | 40 | Overview · Line C — When does it appear, and when is it used? |
+| 33 | 41 | Stage 4 — First readout: is any author signal there? |
+| 34 | 42 | Stage 7.2 · Line A — Gold vs 100 real false authors |
+| 35 | 43 | Target pulls ahead only in the last layers |
+| 36 | 44 | It builds up over the last dozen layers |
+| 37 | 47 | Stage 11: intervene, do not just read |
+| 38 | 48 | The title is read in L24-L50, early |
+| 39 | 49 | Overview · Line C — What we saw |
+| 40 | 50 | Overview · Line D — Which token carries it? |
+| 41 | 51 | Stage 6 · Line D — From first token to the full name |
+| 42 | 52 | Stage 7.1 · Line D — The A−B gap sits on the rest of the name |
+| 43 | 53 | First token or the rest of the name? |
+| 44 | 54 | Knowing the given name helps with the surname |
+| 45 | 55 | Where the signal sits, and a dose-response |
+| 46 | 56 | Co-authors help, and partly replace the title |
+| 47 | 57 | Overview · Line D — What we saw |
+| 48 | 58 | Overview · Lines A–D — Keys and shelves |
+| 49 | 59 | Overview — What the small samples taught us to watch for |
+| 50 | 60 | Overview — Small vs large, in one table |
+| 51 | 64 | Stage 12–13 — Stage 12–13: what the middle layers hold |
+| 52 | 65 | Stage 13 · X5 — Layer order (X5) |
+| 53 | 70 | What we learned: read early, spoken late |
+| 54 | 71 | Limits |
+
+## Slides new since v16 (v17 method pages + v18 additions)
+
+| v18 | status | title |
+|---|---|---|
+| 5 | new in v17 (method page legend) | Method · Legend for the method figures — method: Legend for the method figures |
+| 6 | new in v17 (method page groups) | Method · Groups and samples — method: Groups and samples |
+| 16 | new in v17 (method page replication) | Method · Independent replication (Stage 8) — method: Independent replication (Stage 8) |
+| 19 | new in v17 (method page scoring) | Method · Scoring: rank, log, spec — method: Scoring: rank, log, spec |
+| 20 | new in v17 (method page stats) | Method · Statistical conventions — method: Statistical conventions |
+| 23 | new in v17 (method page probe) | Method · Probe — method: Probe |
+| 26 | new in v17 (method page compare) | Method · Group comparisons — method: Group comparisons |
+| 34 | new in v17 (method page readout) | Method · Layer-by-layer readout — method: Layer-by-layer readout |
+| 45 | new in v17 (method page patch) | Method · Replacement (patching) — method: Replacement (patching) |
+| 46 | new in v17 (method page knockout) | Method · Knockout (block) — method: Knockout (block) |
+| 61 | new in v17 (method page question) | Method · Changing the question — method: Changing the question |
+| 62 | new in v17 (method page paraphrase) | Method · Paraphrased title — method: Paraphrased title |
+| 63 | new in v17 (method page patchscope) | Method · Patchscope — method: Patchscope |
+| 66 | new in v18 | Stage 12: where the paper information travels |
+| 67 | new in v18 | The Stage 11 timing holds for all 5 false titles |
+| 68 | new in v18 | Same title, different question |
+| 69 | new in v18 | Patchscope and paraphrases |
+| 72 | new in v18 | Added after the defence (2026-11-05) |
+| 73 | new in v18 | Group comparisons: plan and status |
+| 74 | new in v18 | CPU leftovers on existing data (post-hoc) |
+| 75 | new in v18 | Still running (status only, no results) |

@@ -1,0 +1,238 @@
+[
+ {
+  "old": "（种子 35171）。",
+  "new": "（种子 35171）<span class=\"src\">（Stage 7.1 设计，作者等权、按配对重抽；~/jlens_work/07_1_stage7_1/351_stage7.py:14,86-87,181）</span>。"
+ },
+ {
+  "old": "（最大差 1.1×10⁻¹⁶）",
+  "new": "（最大差 1.1×10⁻¹⁶）<span class=\"src\">（Stage 7.1 与 Stage 6 历史聚合值逐行核对，750 行；351_stage7_1/reports/experiment_report.md）</span>"
+ },
+ {
+  "old": "L62 r=0.77，",
+  "new": "L62 r=0.77<span class=\"src\">（Stage 7.1 补充，J-Lens，Pilot50 50 篇，论文级 Pearson r；方法手册 C 部分从 351_stage6/raw/token_layer_scores.csv 重算一致；报告原出处文件未找到）</span>，"
+ },
+ {
+  "old": "（来自 6,841 篇，种子 35172）。",
+  "new": "（来自 6,841 篇，种子 35172）<span class=\"src\">（Stage 7.2 设计，Pilot50 每篇 1 金标准 + 50 匹配 + 50 随机，共 5,050 条候选；~/jlens_work/07_2_stage7_2/351_stage7_2.py:62-111；351_stage7_2/summary/quality.json）</span>。"
+ },
+ {
+  "old": "实际匹配数 2,159 / 182 / 135 / 24。",
+  "new": "实际匹配数 2,159 / 182 / 135 / 24<span class=\"src\">（Stage 7.2，tier 0/1/2/3 匹配错误作者数，50 篇 × 50；351_stage7_2/summary/quality.json \"matching_tiers\"）</span>。"
+ },
+ {
+  "old": "（50 × 100 × 15）。",
+  "new": "（50 × 100 × 15）<span class=\"src\">（Stage 7.2，50 篇 × 100 个错误作者 × 15 种读出；351_stage7_2/summary/candidate_pairwise_scores.csv）</span>。"
+ },
+ {
+  "old": "配对 bootstrap 10,000 次</figcaption>",
+  "new": "配对 bootstrap 10,000 次<span class=\"src\">（Stage 7.2，真标题，J-Lens 各层，合并池，Pilot50 20 对；351_stage7_2/summary/matched_ab_bootstrap.csv）</span></figcaption>"
+ },
+ {
+  "old": "L62 +0.038（跨 0）。",
+  "new": "L62 +0.038（跨 0）<span class=\"src\">（Stage 7.2，真标题，首 token 金标准胜率，J-Lens 各层，合并池，Pilot50 20 对 A−B，配对 bootstrap 95% CI；图 7.2；351_stage7_2/summary/matched_ab_bootstrap.csv）</span>。"
+ },
+ {
+  "old": "2026-10-30 按逐对数据重算）",
+  "new": "2026-10-30 按逐对数据重算）<span class=\"src\">（Stage 7.2，真标题，首 token 金标准胜率 7 层积分，合并池，20 对 A−B，配对 bootstrap 95% CI；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 \"7.2 integrated7 A-B jlens/vanilla pool=combined\"）</span>"
+ },
+ {
+  "old": "156 个与金标准首 token 相同，记为平局",
+  "new": "156 个与金标准首 token 相同，记为平局<span class=\"src\">（Stage 7.2，50 篇 × 100 个错误作者，A 79、B 62、C 9、D 6；351_stage7_2/summary/quality.json \"first_token_collision_count_by_group\"）</span>"
+ },
+ {
+  "old": "45.76 个不同的首 token。",
+  "new": "45.76 个不同的首 token<span class=\"src\">（Stage 7.2，50 篇平均；方法手册 C 部分从 351_stage7_2/candidates/pilot50_author_candidates.csv 统计）</span>。"
+ },
+ {
+  "old": "全部出现在同一篇 A 论文中",
+  "new": "全部出现在同一篇 A 论文中<span class=\"src\">（Stage 7.2，配对 P004；方法手册 C 部分从 351_stage7_2/candidates/pilot50_author_candidates.csv 统计）</span>"
+ },
+ {
+  "old": "种子 20261037；2026-10-30 重算）",
+  "new": "种子 20261037；2026-10-30 重算）<span class=\"src\">（Stage 7.3，J-Lens，匹配池，去掉 P004 后 19 对，7 层积分标题优势 A−B，配对 bootstrap 95% CI；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 \"7.3 integrated7 A-B drop P004 jlens pool=matched\"）</span>"
+ },
+ {
+  "old": "共 1,000 个上下文。",
+  "new": "共 1,000 个上下文<span class=\"src\">（Stage 7.3 设计，50 篇 × 20 个替代标题；~/jlens_work/07_3_stage7_3/351_stage7_3.py:83-91；351_stage7_3/reports/freeze_audit.md）</span>。"
+ },
+ {
+  "old": "放宽引用档（179）。",
+  "new": "放宽引用档（179）<span class=\"src\">（Stage 7.3，1,000 个替代标题按 tier 0/1/2 计数；351_stage7_3/summary/quality.json）</span>。"
+ },
+ {
+  "old": "同档 82.1%。",
+  "new": "同档 82.1%<span class=\"src\">（Stage 7.3，1,000 个替代标题与目标论文的差异均值和比例；351_stage7_3/summary/quality.json）</span>。"
+ },
+ {
+  "old": "20 个替代标题的平均 W。",
+  "new": "20 个替代标题的平均 W<span class=\"src\">（Stage 7.3 定义；~/jlens_work/07_3_stage7_3/351_stage7_3_score.py:156-158）</span>。"
+ },
+ {
+  "old": "论文内标题优势（右）</figcaption>",
+  "new": "论文内标题优势（右）<span class=\"src\">（Stage 7.3，J-Lens 各层，合并池，Pilot50 50 篇；351_stage7_3/summary/paper_null_distribution.csv）</span></figcaption>"
+ },
+ {
+  "old": "种子 20261046；原区间无出处文件，2026-10-30 重算）",
+  "new": "种子 20261046；原区间无出处文件，2026-10-30 重算）<span class=\"src\">（Stage 7.3，J-Lens L56，真标题 − 20 个替代标题平均，合并池，50 篇，论文 bootstrap 95% CI；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 \"7.3 L56 J-Lens title advantage pool=combined (B=20,000)\"）</span>"
+ },
+ {
+  "old": "+8.64 到 +9.99。",
+  "new": "+8.64 到 +9.99<span class=\"src\">（Stage 7.3，J-Lens L56 标题优势，50 篇逐一留出一篇的均值范围；351_stage7_3/recompute_2026-10-30/stage7_l56_loo.csv）</span>。"
+ },
+ {
+  "old": "最终输出 +7.2 pp：",
+  "new": "最终输出 +7.2 pp<span class=\"src\">（Stage 7.3，Vanilla L56 / 最终输出 L63，真标题 − 20 个替代标题平均，合并池，50 篇；351_stage7_3/summary/paper_null_distribution.csv）</span>："
+ },
+ {
+  "old": "Vanilla +0.0315 [−0.0090, +0.0757]，均跨 0。",
+  "new": "Vanilla +0.0315 [−0.0090, +0.0757]，均跨 0<span class=\"src\">（Stage 7.3，7 层积分标题优势的匹配 A−B，合并池，20 对，配对 bootstrap 95% CI；351_stage7_3/summary/integrated_ab_bootstrap.csv 行 pool=combined）</span>。"
+ },
+ {
+  "old": "L32 −0.032 [−0.058, −0.006]。",
+  "new": "L32 −0.032 [−0.058, −0.006]<span class=\"src\">（Stage 7.3，J-Lens 单层标题优势的匹配 A−B，合并池，20 对，配对 bootstrap 95% CI；351_stage7_3/summary/matched_ab_bootstrap.csv 行 jlens_L56 / jlens_L32 combined）</span>。"
+ },
+ {
+  "old": "扣除 20 标题参照后的 A−B 胜率对比</figcaption>",
+  "new": "扣除 20 标题参照后的 A−B 胜率对比<span class=\"src\">（Stage 7.3，Pilot50 20 对，J-Lens 与 Vanilla；351_stage7_3/summary/matched_ab_bootstrap.csv）</span></figcaption>"
+ },
+ {
+  "old": "199/1,000 个替代标题的来源论文作者在错误作者池中。",
+  "new": "199/1,000 个替代标题的来源论文作者在错误作者池中<span class=\"src\">（Stage 7.3；351_stage7_3/summary/quality.json）</span>。"
+ },
+ {
+  "old": "+0.0262 变为 +0.0283。",
+  "new": "+0.0262 变为 +0.0283<span class=\"src\">（Stage 7.3，J-Lens 7 层积分标题优势，合并池，50 篇均值；351_stage7_3/summary/paper_null_distribution.csv 列 title_advantage / advantage_no_source_false_overlap，方法手册重算）</span>。"
+ },
+ {
+  "old": "（分别为 +0.026 / +0.032 / +0.027）",
+  "new": "（分别为 +0.026 / +0.032 / +0.027）<span class=\"src\">（Stage 7.3，J-Lens 7 层积分标题优势，作者加权 / 唯一 token / 去平局，50 篇；351_stage7_3/recompute_2026-10-30/stage7_weighting_title_advantage.csv）</span>"
+ },
+ {
+  "old": "全部跨 0（2026-10-30 重算，见 351_stage7_3/recompute_2026-10-30/）",
+  "new": "全部跨 0（2026-10-30 重算，见 351_stage7_3/recompute_2026-10-30/）<span class=\"src\">（Stage 7.3，3 种加权 × J-Lens/Vanilla 的 7 层积分 A−B，20 对，配对 bootstrap 95% CI；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 16–27）</span>"
+ },
+ {
+  "old": "1/21 ≈ 0.048）。",
+  "new": "1/21 ≈ 0.048）<span class=\"src\">（Stage 7.4 低引用分析，J-Lens L56 标题优势，0–2 档 6 篇；351_stage7_4/summary/floor_L56_low_six.csv、overview.json \"floor_low_six_L56\"）</span>。"
+ },
+ {
+  "old": "bootstrap 20,000 次（种子 741）。",
+  "new": "bootstrap 20,000 次（种子 741）<span class=\"src\">（Stage 7.4 设计；~/jlens_work/07_4_stage7_4/351_stage7_4.py:10-13）</span>。"
+ },
+ {
+  "old": "−0.000046 到 +0.003494：",
+  "new": "−0.000046 到 +0.003494<span class=\"src\">（Stage 7.4，J-Lens − Vanilla 7 层积分标题优势，50 篇留一法；351_stage7_4/summary/overview.json \"integrated_jlens_minus_vanilla\"）</span>："
+ },
+ {
+  "old": "合并标题优势 +9.34 pp，",
+  "new": "合并标题优势 +9.34 pp<span class=\"src\">（Stage 7.3，J-Lens L56，真标题 − 20 个替代标题平均，50 篇；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv）</span>，"
+ },
+ {
+  "old": "3|Δ作者数|）。",
+  "new": "3|Δ作者数|）<span class=\"src\">（Stage 8A 设计；~/jlens_work/08_stage8/351_stage8.py:26-55）</span>。"
+ },
+ {
+  "old": "种子 3518001 只用于哈希）。",
+  "new": "种子 3518001 只用于哈希）<span class=\"src\">（Stage 8A 设计；~/jlens_work/08_stage8/351_stage8.py:8,30,56-61）</span>。"
+ },
+ {
+  "old": "高（129+）25 对。",
+  "new": "高（129+）25 对<span class=\"src\">（Stage 8A，可用候选对 low 194、mid 1,154、high 314；351_stage8/summary/matching_audit.json \"actual\"）</span>。"
+ },
+ {
+  "old": "7 个单层比较做 Holm 校正",
+  "new": "7 个单层比较做 Holm 校正<span class=\"src\">（Stage 8 冻结计划；351_stage8/config/analysis_plan.json \"multiplicity\"）</span>"
+ },
+ {
+  "old": "20 个匹配错误标题。",
+  "new": "20 个匹配错误标题<span class=\"src\">（Stage 8B 设计，种子 3518201；~/jlens_work/08_stage8/351_stage8B.py；351_stage8/config/stage8B_manifest.json）</span>。"
+ },
+ {
+  "old": "共 20,200 条候选记录、4,000 条错误标题记录。",
+  "new": "共 20,200 条候选记录、4,000 条错误标题记录<span class=\"src\">（Stage 8B，200 金标准 + 10,000 匹配 + 10,000 随机；200 篇 × 20 个错误标题；351_stage8/config/stage8B_manifest.json）</span>。"
+ },
+ {
+  "old": "不打后续 token。",
+  "new": "不打后续 token<span class=\"src\">（Stage 8C 设计；~/jlens_work/08_stage8/351_stage8C.py:126,360-400）</span>。"
+ },
+ {
+  "old": "63,000 个上下文-模式组合全部完成。",
+  "new": "63,000 个上下文-模式组合全部完成<span class=\"src\">（Stage 8C，200 篇 × 21 个上下文 × 15 种模式；351_stage8C_full.log 末行 \"4200/4200\"；351_stage8/raw/stage8C_context_scores.jsonl）</span>。"
+ },
+ {
+  "old": "（上下文不等于独立论文）</figcaption>",
+  "new": "（上下文不等于独立论文）<span class=\"src\">（Stage 8C，200 篇 × 21 个上下文；351_stage8/raw/stage8C_context_scores.jsonl）</span></figcaption>"
+ },
+ {
+  "old": "种子 3518401；单位为百分点。",
+  "new": "种子 3518401<span class=\"src\">（Stage 8D 设计，RQ1/RQ2/RQ3 分别 +1/+2/+3；~/jlens_work/08_stage8/351_stage8D.py:9,34-49）</span>；单位为百分点。"
+ },
+ {
+  "old": "最有影响的一对 S8P094 约 +84.4 pp。",
+  "new": "最有影响的一对 S8P094 约 +84.4 pp<span class=\"src\">（Stage 8D RQ2，J-Lens L56 匹配 A−B，100 对；351_stage8/stage8D/summary/matched_pair_differences.csv mode=jlens_L56）</span>。"
+ },
+ {
+  "old": "100 对的 L56 A−B 差</figcaption>",
+  "new": "100 对的 L56 A−B 差<span class=\"src\">（Stage 8D RQ2，J-Lens L56；351_stage8/stage8D/summary/matched_pair_differences.csv mode=jlens_L56）</span></figcaption>"
+ },
+ {
+  "old": "短标题 +4.82 pp。",
+  "new": "短标题 +4.82 pp<span class=\"src\">（Stage 8D，J-Lens L56 标题优势，200 篇（短标题 199 篇）；351_stage8/stage8D/summary/sensitivity.csv）</span>。"
+ },
+ {
+  "old": "+4.79 [−0.24, +9.83]（99 对）。",
+  "new": "+4.79 [−0.24, +9.83]（99 对）<span class=\"src\">（Stage 8D，J-Lens L56 匹配 A−B，100 对（标题差 ≤10 为 99 对），配对 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_unsourced_intervals.csv 行 \"8D paired sensitivity L56 A-B\"）</span>。"
+ },
+ {
+  "old": "种子 20261132，2026-10-30 重算）",
+  "new": "种子 20261132，2026-10-30 重算）<span class=\"src\">（Stage 8E，J-Lens L56，4,000 个错误标题上下文，200 篇，论文固定效应 OLS 斜率，论文聚类 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_unsourced_intervals.csv 行 \"8E title-token-gap slope\"）</span>"
+ },
+ {
+  "old": "+2.33 pp [+1.50, +3.19]，",
+  "new": "+2.33 pp [+1.50, +3.19]<span class=\"src\">（Stage 8 冻结计划主终点，J-Lens 7 层积分，真标题 − 20 个错误标题平均，200 篇，论文 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_endpoints.csv）</span>，"
+ },
+ {
+  "old": "（bootstrap 双侧 p = 0.002）",
+  "new": "（bootstrap 双侧 p = 0.002）<span class=\"src\">（Stage 8 主组检验，J-Lens 7 层积分匹配 A−B，100 对，配对 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_endpoints.csv；p = 0.0019 见 s8_holm.csv F0）</span>"
+ },
+ {
+  "old": "+2.14 到 +2.61 之间，区间全部不含 0",
+  "new": "+2.14 到 +2.61 之间，区间全部不含 0<span class=\"src\">（Stage 8 逐对剔除 100 次，J-Lens 7 层积分 A−B，每次 99 对；351_stage8/recompute_2026-10-30/s8_lopo_summary.csv 行 jlens_int7 RQ2）</span>"
+ },
+ {
+  "old": "14 / 100 次的区间跨 0",
+  "new": "14 / 100 次的区间跨 0<span class=\"src\">（Stage 8 逐对剔除，J-Lens L56 匹配 A−B，n_ci_excluding_0 = 86；351_stage8/recompute_2026-10-30/s8_lopo_summary.csv 行 jlens_56 RQ2）</span>"
+ },
+ {
+  "old": "（0.17、0.19）",
+  "new": "（0.17、0.19）<span class=\"src\">（Stage 8 F1 族，J-Lens 7 个单层匹配 A−B，100 对，bootstrap 双侧 p，B = 100,000，Holm；351_stage8/recompute_2026-10-30/s8_holm.csv）</span>"
+ },
+ {
+  "old": "在 200 篇新论文上复现",
+  "new": "在 200 篇新论文上复现<span class=\"src\">（Stage 8D RQ1，J-Lens L56，200 篇；351_stage8/stage8D/summary/primary_questions.csv）</span>"
+ },
+ {
+  "old": "Holdout100。",
+  "new": "Holdout100<span class=\"src\">（Stage 9A.1 设计，三份各 100 条；351_stage9.py:50-62；351_stage9/config/plan.json、manifest.json \"counts\"）</span>。"
+ },
+ {
+  "old": "CPU 内存峰值约 62.06 GiB。",
+  "new": "CPU 内存峰值约 62.06 GiB<span class=\"src\">（Stage 9 单条提示 7 层基准；351_stage9_benchmark_A1_7layers.log）</span>。"
+ },
+ {
+  "old": "（下降但不能说明收敛）。",
+  "new": "（下降但不能说明收敛）<span class=\"src\">（Stage 9 正式 Fit A 第 1–4 条，每条 325/323/325/322 s；351_stage9_full_A.log）</span>。"
+ },
+ {
+  "old": "约 8.6 计算小时，不含排队。",
+  "new": "约 8.6 计算小时<span class=\"src\">（Stage 9，按 96 × 323.75 s 线性外推；351_stage9_full_A.log）</span>，不含排队。"
+ },
+ {
+  "old": "20–200 篇论文。",
+  "new": "20–200 篇论文<span class=\"src\">（Stage 5–7 Pilot50 50 篇 / 20 对，Stage 8 200 篇；351_stage7_4/summary/overview.json、351_stage8/summary/matching_audit.json）</span>。"
+ },
+ {
+  "old": "2.5% / 97.5% 百分位。",
+  "new": "2.5% / 97.5% 百分位<span class=\"src\">（附录 A 表所列各 Stage 脚本的 bootstrap 实现；方法手册 parts/C_stage1_9.html 各 Stage 第 4 步）</span>。"
+ }
+]

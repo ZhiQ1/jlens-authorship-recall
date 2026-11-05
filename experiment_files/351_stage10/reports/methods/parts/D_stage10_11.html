@@ -359,7 +359,7 @@ tail_fraction(p) = (1 + #{k: m_{false_k} ≥ m_true}) / 6（参考尾比例，�
 <p>pooled（R0+R1）作参照；R1 view 用 R0 control 作参照（control R1 太少）；去掉第一作者的版本。</p>
 
 <h4>7 结果</h4>
-<p>R0 view final 标题特异 +0.199 [0.187, 0.212]（3,423 / 2,151 篇；pooled +0.207）；C − A +0.110 [0.086, 0.133]（485 / 3,204）；R1 内部写对 − 没写对 +0.199 [0.168, 0.232]（495 篇），去掉第一作者 +0.204 [0.165, 0.241]（333 篇）。重建匹配与 m 一致率：R0 99.9%、R1 99.3%、R2 98.1%。Stage 11 R0-only：E1 L48 0.81 / 0.87（target/control），E2 从 L0 损失 0.84 / 0.81。
+<p>R0 view final 标题特异 +0.199 [0.188, 0.212]（3,423 / 2,151 篇；pooled +0.207）；C − A +0.110 [0.086, 0.135]（r0_sensitivity.md；485 / 3,204）；R1 内部写对 − 没写对 +0.199 [0.168, 0.232]（495 篇），去掉第一作者 +0.204 [0.165, 0.241]（333 篇）。重建匹配与 m 一致率：R0 99.9%、R1 99.3%、R2 98.1%。Stage 11 R0-only：E1 L48 0.81 / 0.87（target/control），E2 从 L0 损失 0.84 / 0.81。
 <span class="src">351_stage10/summary_r0r1/tc_R0.csv、C_minus_A.csv、R1_author_written_minus_missed.csv（readout=final）；reports/r0_r1_analysis.md 第 244–248 行；361_stage11/summary_r0/E1_recovery.csv、E2_knockout.csv；reports/r0_sensitivity.md</span></p>
 
 <h4>8 局限与质疑</h4>
@@ -481,7 +481,7 @@ CI：配对 bootstrap 论文（同一组重抽样本同时用于分子和分母�
 <tr><td>target（593）</td><td>0.070</td><td>0.267</td><td>0.803 [0.784, 0.824]</td><td>0.911</td><td>0.986 [0.979, 0.994]</td><td>1.001</td><td>1.000</td><td>0.418</td></tr>
 <tr><td>control（593）</td><td>0.092</td><td>0.337</td><td>0.866 [0.835, 0.903]</td><td>0.974</td><td>1.016 [1.002, 1.031]</td><td>1.003</td><td>1.000</td><td>0.214</td></tr>
 </table>
-<p>即"L48 恢复 83%"= all 0.825；"L52 起 100%"= all L52 0.996、L54 起 0.998–1.001（target 到 L54 才到 1.00）。gain 的 target−control（档内）从 L52 起约 +0.19 到 +0.20。
+<p>即"L48 恢复 82%"= all 0.825；"L52 起 100%"= all L52 0.996、L54 起 0.998–1.001（target 到 L54 才到 1.00）。gain 的 target−control（档内）从 L52 起约 +0.19 到 +0.20。
 <span class="src">361_stage11/summary/E1_recovery.csv（列 group, layer, recovery, rec_lo, rec_hi, true_minus_false）；E1_target_minus_control.csv（gain_tc）</span></p>
 
 <h4>8 局限与质疑</h4>
@@ -667,6 +667,7 @@ drop(l) = mean_p[ K̄_p(64) − K̄_p(l) ]；CI 为配对 bootstrap 论文；tar
 
 <!-- ================================================================== -->
 <h3 id="s1011-s11-e4b">11-7 E4b 标题位置线性 probe（Stage 11 原版）</h3>
+<div class="fix"><b>注意（2026-11-05 补）：E4b 只给每位作者名字的第一个 token 打分</b>（gold = 每位作者的第 1 个名字 token；73% 的名字以首字母开头，所以多数时候打分的是首字母，不是整个名字）<span class="src">stage11_analyze.py:163–171；本节“步骤”</span>。下文所有 E4b 数字（含按团队分折、剔除标题复用、训练折标准化的确认版）都只代表第一个名字 token。给全部名字 token 打分、按首字母 / 名 / 姓分开的版本按预注册补充 9 进行中<span class="src">381_stage13/config/prereg_addendum9.json（sha256 a9896357…）</span>，尚无结果；见 <a href="#k-running">十一 · 进行中</a>。</div>
 
 <h4>1 问题与作用</h4><p>lens 读不出，但标题最后一个 token 的残差里是否线性地含有这篇论文的作者信息？</p>
 
@@ -714,6 +715,7 @@ target−control：档内合并（≥30/档，B=2000）。<span class="src">stag
 
 <!-- ================================================================== -->
 <h3 id="s1011-s11-e4b-check">11-8 E4b 的对照与复核（Stage 12 X1 对照；Stage 13 按作者团队分折 + 剔除标题复用）</h3>
+<div class="fix"><b>注意（2026-11-05 补）：E4b 只给每位作者名字的第一个 token 打分</b>（gold = 每位作者的第 1 个名字 token；73% 的名字以首字母开头，所以多数时候打分的是首字母，不是整个名字）<span class="src">stage11_analyze.py:163–171；本节“步骤”</span>。下文所有 E4b 数字（含按团队分折、剔除标题复用、训练折标准化的确认版）都只代表第一个名字 token。给全部名字 token 打分、按首字母 / 名 / 姓分开的版本按预注册补充 9 进行中<span class="src">381_stage13/config/prereg_addendum9.json（sha256 a9896357…）</span>，尚无结果；见 <a href="#k-running">十一 · 进行中</a>。</div>
 
 <h4>1 问题与作用</h4><p>E4b 的信号是"这篇论文"的，还是"这类标题配这类名字"的泛泛关联？是否来自同一作者团队跨折或同一标题跨折的泄漏？</p>
 

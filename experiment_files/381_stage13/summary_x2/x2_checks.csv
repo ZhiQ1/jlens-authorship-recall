@@ -1,0 +1,9 @@
+check,value,threshold,ok,detail
+S_full vs X1 authors@L16,-0.0016941954670123271,0.05,True,"R_full 0.9972 vs X1 R_authors 0.9989 on 1178 common pairs; per pair |score diff| max 0.1033, exact share 0.156; clean |diff| max 0.0000, corrupt |diff| max 0.0000"
+S_full vs X1 authors@L24,-9.073531595193973e-05,0.05,True,"R_full 0.9927 vs X1 R_authors 0.9928 on 1178 common pairs; per pair |score diff| max 0.1187, exact share 0.138; clean |diff| max 0.0000, corrupt |diff| max 0.0000"
+S_full vs X1 authors@L32,0.00030589332833297345,0.05,True,"R_full 0.9749 vs X1 R_authors 0.9745 on 1178 common pairs; per pair |score diff| max 0.2036, exact share 0.164; clean |diff| max 0.0000, corrupt |diff| max 0.0000"
+S_full vs X1 authors@L40,-0.00028266249543462685,0.05,True,"R_full 0.9188 vs X1 R_authors 0.9191 on 1178 common pairs; per pair |score diff| max 0.1845, exact share 0.137; clean |diff| max 0.0000, corrupt |diff| max 0.0000"
+S_full vs X1 authors@L48,0.00035210619409870025,0.05,True,"R_full 0.4205 vs X1 R_authors 0.4201 on 1178 common pairs; per pair |score diff| max 0.1078, exact share 0.062; clean |diff| max 0.0000, corrupt |diff| max 0.0000"
+identity patch S=0 (carry == corrupt),0.10297618934631969,0.0,False,"max |diff| 0.1030, mean 0.00830, exact share 0.030; ratio with S=0 per layer +0.0007, +0.0015, +0.0006, +0.0009, +0.0027"
+identity patch S=0 (remove == clean),0.1365006360318689,0.0,False,"max |diff| 0.1365, mean 0.00821, exact share 0.145; ratio with S=0 per layer +0.0008, +0.0019, +0.0010, -0.0003, +0.0009"
+"3 random subspaces agree (all pairs, both arms, all layers)",0.003329115938928577,,False,"interval excludes 0 at: carry L24 rand62 - rand63 +0.003 [+0.001, +0.006]"

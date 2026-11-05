@@ -1,0 +1,74 @@
+<div class="partbar" id="p5"><span class="tagp">第五部分</span><h2>答辩后新增（2026-11-05）</h2><p>答辩材料在 2026-11-02 定稿之后完成的工作。分组对比的分析计划在看结果之前写定（补充 7、8）；其余 CPU 补充分析是事后分析（post-hoc），只作描述，不作确认性结论。正在进行的实验只写状态，不写结果。</p></div>
+<div class="p19"><main>
+<section id="pd-groups"><h2><span class="st">分组对比</span><span class="ln lA">A 这篇论文？</span> 认得出、写对一部分作者、识别程度：A/B/C/D 等分组的比较</h2>
+<p class="note">计划：<span class="mono">391_groups/config/prereg_addendum7_groups.json</span>（sha256 621525e4…）、<span class="mono">prereg_addendum8_groups.json</span>（sha256 c29bbe09…），都在算出任何分组结果之前写定。代码 <span class="mono">~/jlens_work/14_groups/</span>；结果 <span class="mono">/scratch/zhang.zhiqi2/jlens/391_groups/</span>（<span class="mono">primary.csv</span>、<span class="mono">summary_table.md</span>、<span class="mono">stage10_contrasts.csv</span>、<span class="mono">stage10_curves.csv</span>、<span class="mono">figures/</span>）。全部只用已有的 Stage 10–13 数据（CPU）。</p>
+<h3>分组与规则</h3>
+<ul>
+<li>按开放回答写对的作者数（R0 一个都没写对 / R1 写对一部分 / R2 基本写对）和 4 种选项顺序的多选识别（strong 4 种顺序全对且真选项平均概率 ≥ 0.5 / fail 至多 1 种对 / 其余为 uncertain）交叉分组：A = R0 × strong（4,110 篇<span class="src">（标注包 351_stage10/cohort/papers.parquet，recall_level × mc_team_outcome_tight；补充 7 “groups”）</span>），B = R0 × fail（2,186<span class="src">（同上）</span>），C = R1 × strong（511<span class="src">（同上）</span>），D = R1 × fail（34<span class="src">（同上）</span>），U0 = R0 × uncertain（2,002<span class="src">（同上）</span>），U1 = R1 × uncertain（51<span class="src">（同上）</span>），R2s = R2 × strong（204<span class="src">（同上）</span>，只作上限参照）。重建的写对作者数与标注不一致的论文被排除：A 6、B 3、C 4、U0 1、R2s 4 篇<span class="src">（groups_build.py 输出 391_groups/papers_used.csv；PROGRESS.md 2026-11-05 02:45）</span>。</li>
+<li><b>避免循环论证：</b>R1/R2 论文里有模型自己写出的作者，这些作者的分数天然高。所以所有分组比较只用<b>模型没写出的作者</b>；写出的作者只作参照列，不用于结论。</li>
+<li>主要指标：Stage 10 的标题特异信号（最终输出 L63，真标题 − 5 个假标题平均，log10(1/名次)），对每篇论文的未写出作者的名字 token 平均。比较在同一引用档内进行（权重 n<sub>1</sub>n<sub>2</sub>/(n<sub>1</sub>+n<sub>2</sub>)）；区间是按作者团队重抽的 bootstrap（2,000 次）95% 区间；P1、P2-first、P2-other、P3 四个主要检验做 Holm 校正。每个主要比较另做控制混杂的回归（领域、年份、作者人数、以首字母开头的名字比例；作者层面再加作者排位）。<span class="src">（规则：391_groups/config/prereg_addendum7_groups.json “primary”“confounders”；补充 8 作者排位；代码 14_groups/groups_analysis.py）</span></li>
+</ul>
+<h3>三个主要发现（用户 2026-11-05 确认的措辞；发现 3 的分层表述按用户 2026-11-05 17:20 的修改）</h3>
+<p class="note">答辩后新增的分析，分析计划在看结果前写定（补充 7、8）。</p>
+<p><b>发现 1：识别的效应。</b>两组都一个作者没写对（R0）时，在模型没写出的作者上，认得出的论文（A）比认不出的论文（B）在输出层的标题特异信号高 <b>+0.200 [0.188, 0.213]</b><span class="src">（分组对比 P1 A − B，真标题 − 5 个假标题平均，最终输出 L63，未写出作者，A 3,417 / B 2,148 篇、10 个引用档，引用档内差，团队聚类 95% CI；图 P5.1 第 1 行；391_groups/primary.csv “P1 A - B, within-bin”）</span>（同一引用档内比较，Holm 校正后 p ≤ 0.002，受 2,000 次重抽的分辨率限制<span class="src">（primary.csv p_holm 列；团队 bootstrap 2,000 次）</span>）。控制领域、年份、作者人数和首字母开头名字的比例后：论文层面 +0.173 [0.161, 0.186]<span class="src">（P1 论文层面回归 + 混杂，5,565 篇，团队聚类 95% CI；图 P5.1 第 3 行；primary.csv “paper-level regression + confounders (add. 7)”）</span>；作者层面再加作者排位 +0.151 [0.139, 0.163]<span class="src">（P1 作者层面回归 + 混杂 + 首位/其他，19,893 位作者，团队聚类 95% CI；图 P5.1 第 4 行；primary.csv “author-level + confounders + first/other (add. 8)”）</span>。</p>
+<p><b>发现 2：识别程度与信号成梯度关系。</b>在 R0 论文里，多选题 4 种选项顺序中每多答对一次，输出层信号高 <b>+0.059 [0.056, 0.063]</b><span class="src">（分组对比 P3，R0 论文 A+U0+B 共 8,288 篇，最终输出 L63 标题特异信号对 mc_team_a 的斜率，引用档固定效应，团队聚类 95% CI；图 P5.1 “P3” 第 1 行；primary.csv “P3 slope, regression, bin FE only”）</span>（控制同一引用档；Holm 校正后 p ≤ 0.002，受 2,000 次重抽的分辨率限制<span class="src">（primary.csv p_holm 列）</span>；控制混杂后 +0.046 [0.042, 0.049]<span class="src">（P3 作者层面回归 + 混杂 + 首位/其他，30,060 位作者，团队聚类 95% CI；primary.csv “author-level + confounders + first/other (add. 8)”）</span>）。全错时约 0.17，全对时约 0.46<span class="src">（R0 论文未写出作者的最终输出 L63 平均信号，mc_team_a = 0：0.170，927 篇；= 4：0.463，4,105 篇；简单平均，团队聚类 95% CI；图 P5.2 左；391_groups/stage10_curves.csv）</span>；识别不确定的论文落在两组之间。</p>
+<p><b>发现 3：写对一部分作者，对没写出的作者的额外帮助较小（约为识别效应的三分之一），而且只出现在最终输出。</b>在模型没写出的作者上，写对一部分作者的论文（C）比一个都没写对的（A）：合作者高 <b>+0.061 [0.034, 0.090]</b><span class="src">（分组对比 P2-other C − A，第 2 位及以后的未写出作者，最终输出 L63，C 390 / A 2,826 篇、9 个引用档，引用档内差，团队聚类 95% CI；图 P5.1 “P2-other” 第 1 行；primary.csv）</span>（Holm 校正后 p ≤ 0.002，受 2,000 次重抽的分辨率限制<span class="src">（primary.csv p_holm 列）</span>），第一作者 +0.031 [−0.007, 0.069]<span class="src">（P2-first C − A，未写出的第一作者，最终输出 L63，C 292 / A 3,199 篇、9 个引用档，团队聚类 95% CI，Holm p 0.112；图 P5.1 “P2-first” 第 1 行；primary.csv）</span>，不显著。logit lens 下 L48–L62 约为 0<span class="src">（P2-other C − A 按层，logit lens L48–L62，未写出的合作者：−0.019 到 +0.035，团队聚类 95% CI 都含 0；391_groups/stage10_contrasts.csv “unwritten_other, P2 C - A (by layer)”）</span>；公开 J-lens 下 L48–L59 为 −0.07 到 −0.11<span class="src">（同一比较，public J-lens：L48 −0.084、L53 −0.073、L57 −0.107、L59 −0.077，团队聚类 95% CI 都在 0 以下；L60 −0.038（CI 含 0）、L62 +0.038；同一文件）</span>。以前用全部作者算出的约 +0.11<span class="src">（Stage 10 R0/R1 分析 C − A，全部作者，最终输出 L63，引用档内差，C 485 / A 3,204；351_stage10/reports/r0_r1_analysis.md §2；本报告第三部分第 2 节）</span>，主要是因为模型已经写出的作者分数本来就高（循环论证）。</p>
+<p><b>参照（不作结论）：</b>R2（开放回答基本写对，识别通过）写出的作者在输出层为 +0.844<span class="src">（R2s 写出的作者，最终输出 L63 标题特异信号简单平均，200 篇 / 412 位作者，团队聚类 95% CI [+0.807, +0.887]；表 P5.1 R2s 行；391_groups/summary_table.md）</span>，作为上限参照；R2 里有未写出作者的论文只有 28 篇<span class="src">（表 P5.1 R2s 行 “n = 28 (34 authors)”）</span>，不做对比。</p>
+<p class="note">出处：<span class="mono">/scratch/zhang.zhiqi2/jlens/391_groups/primary.csv</span>、<span class="mono">summary_table.md</span>；补充 7 sha256 621525e4…，补充 8 sha256 c29bbe09…。</p>
+<figure><img alt="主要比较与回归版本" src="{{FIG3}}" style="width:100%;height:auto;border:1px solid var(--line);border-radius:8px"><figcaption>图 P5.1 主要比较（蓝色粗线 = 预注册主要版本）与回归版本（灰 = 论文层面只控引用档；橙 = 论文层面 + 混杂；绿 / 紫 = 作者层面 + 混杂 + 排位）。横轴：未写出作者的输出层（L63）标题特异信号之差（P1、P2）或每多答对一种选项顺序的变化（P3）；团队 bootstrap 95% 区间。<span class="src">（391_groups/figures/fig3_primary_contrasts.png；数值 primary.csv）</span></figcaption></figure>
+<figure><img alt="识别程度与信号" src="{{FIG2}}" style="width:100%;height:auto;border:1px solid var(--line);border-radius:8px"><figcaption>图 P5.2 识别程度与未写出作者的输出层信号（简单平均，团队 bootstrap 95% 区间，n &lt; 30 只作描述）。左：多选题答对的选项顺序数（0–4）；右：真选项平均概率分档。蓝 = R0 论文，绿 = R1 论文。<span class="src">（391_groups/figures/fig2_signal_vs_mc.png；数值 stage10_curves.csv）</span></figcaption></figure>
+<h3>汇总表（每格：估计 [95% 区间]；n = 论文数（作者数））</h3>
+{{SUMMARY_TABLE}}
+<p class="note">表 P5.1 来源：<span class="mono">391_groups/summary_table.md</span>（<span class="mono">groups_summary.py</span>）。输出层两列 = Stage 10 全部 9,108 篇<span class="src">（Stage 10 队列，351_stage10/cohort/papers.parquet）</span>里的分组；E1 / E2 / E4b / M2 / X3 列 = Stage 11–13 的 GPU 样本（目标/对照 593 + 593 篇<span class="src">（Stage 11 样本，§6.11；361_stage11 样本表）</span>）按分组重新汇总。<b>E4b 列的 probe 只给每位作者名字的第一个 token 打分（多数是首字母），不是整个名字</b>；全部 token、按角色分开的版本见下文“进行中”。n &lt; 30 篇的格只作描述。U0 和 R2s 的 E1 / E2 格在汇总表生成时还没有数据（“not available”），重跑结果见下一节。</p>
+<h3>补充 8 的干预重跑：分子、分母与识别程度</h3>
+<p class="note">R2 × strong 204 篇（E1、E2、P1、P2）与 R0 × uncertain 600 篇（E1、E2）已在 GPU 上跑完，与 Stage 11 原样本（A、B、C、D）一起只按模型没写出的作者汇总。E1 恢复比例 R = mean(替换 − 假标题) ÷ mean(真标题 − 假标题)：分子是替换后恢复的绝对量，分母是这组论文真假标题的差距。区间为作者团队聚类 bootstrap 95% CI。出处：<span class="mono">391_groups/reports/rerun_report.md</span>、<span class="mono">e1_num_den.md</span>、<span class="mono">summary_rerun/*.csv</span>。</p>
+<ul>
+<li><b>B 的恢复比例更高，是分母小造成的。</b>分母（真标题 − 假标题）：A 0.407、B 0.214、U0 0.293、C 0.464<span class="src">（补充 8 / Stage 11，E1，未写出作者，最终输出，mean(真 − false_0)；A 557、B 586、U0 599、C 32 篇；391_groups/reports/e1_num_den.md E1 表 denominator 列）</span>。分子 B − A 在 L24、L40、L48、L52 分别为 −0.010、−0.040、−0.144、−0.184，区间都在 0 以下<span class="src">（E1 分子 B − A，配对团队 bootstrap 95% CI：L24 [−0.015, −0.004]、L40 [−0.052, −0.028]、L48 [−0.169, −0.119]、L52 [−0.213, −0.154]；391_groups/summary_rerun/e1_e2_num_den_B_minus_A.csv）</span>。B 的比值较高（L48 B 0.869、A 0.811<span class="src">（E1 R(L48)，A 557 / B 586 篇；e1_num_den.md）</span>），只是因为分母约为 A 的一半（B/A 0.53<span class="src">（同上文件 “B/A denominator”）</span>）。在任何一层，B 携带的论文特有绝对信号都不比 A 多。E2 阻断的分子同样是 B 小于 A（L24–L48 为 A 的 0.49–0.59 倍<span class="src">（E2 分子 B/A；e1_e2_num_den_B_minus_A.csv）</span>）。</li>
+<li><b>识别程度改变信号的大小，不改变时间。</b>R0 论文按多选题答对的选项顺序数从 0 到 4，分母从 0.185 升到 0.407<span class="src">（R0 论文 A + U0 + B，E1 真 − false_0，未写出作者；0 种对 241 篇、4 种对 557 篇；391_groups/reports/rerun_report.md “Continuous recognition within R0” 表）</span>，而 E1 R(L48) 基本持平，从 0.90 到 0.81<span class="src">（同表 L48 列：0.904 [0.848, 0.965] → 0.811 [0.790, 0.832]）</span>。</li>
+<li><b>识别不确定的 R0 论文（U0）时间点与 A、B 相同（描述）。</b>U0 的 R(L48) 0.844、R(L52) 1.000<span class="src">（E1，U0 599 篇，团队 CI [0.814, 0.877] / [0.988, 1.012]；rerun_report.md E1 表）</span>；A 为 0.811 / 0.988，B 为 0.869 / 1.016<span class="src">（同表）</span>。</li>
+<li><b>R2 只作上限参照。</b>R2 写出的作者真假差距 0.845<span class="src">（R2 × strong 写出的作者，200 篇，E1 分母 [0.798, 0.897]；e1_num_den.md）</span>。C 只有 32 篇、D 5 篇、R2 中有未写出作者的论文 28 篇<span class="src">（rerun_report.md Counts 表，papers_unwritten 列）</span>，都只作描述，不下结论。</li>
+</ul>
+<div class="tw"><table><thead><tr><th>组（未写出作者）</th><th>篇数</th><th>分母：真 − 假标题</th><th>E1 分子 L48</th><th>E1 R(L48)</th><th>E1 分子 L52</th><th>E1 R(L52)</th></tr></thead><tbody>
+<tr><td>A（R0 × 认得出）</td><td>557</td><td>+0.407 [0.386, 0.430]</td><td>+0.330</td><td>+0.811 [0.790, 0.832]</td><td>+0.402</td><td>+0.988 [0.980, 0.996]</td></tr>
+<tr><td>B（R0 × 认不出）</td><td>586</td><td>+0.214 [0.196, 0.234]</td><td>+0.186</td><td>+0.869 [0.835, 0.906]</td><td>+0.218</td><td>+1.016 [1.002, 1.031]</td></tr>
+<tr><td>U0（R0 × 不确定）</td><td>599</td><td>+0.293 [0.271, 0.316]</td><td>+0.248</td><td>+0.844 [0.814, 0.877]</td><td>+0.293</td><td>+1.000 [0.988, 1.012]</td></tr>
+<tr><td>C（R1 × 认得出，描述）</td><td>32</td><td>+0.464 [0.388, 0.538]</td><td>+0.335</td><td>+0.721 [0.650, 0.806]</td><td>+0.462</td><td>+0.996 [0.968, 1.026]</td></tr>
+<tr><td>R2 写出的作者（参照）</td><td>200</td><td>+0.845 [0.798, 0.897]</td><td>+0.566</td><td>+0.670 [0.630, 0.707]</td><td>+0.801</td><td>+0.948 [0.927, 0.965]</td></tr>
+</tbody></table></div>
+<p class="note">表 P5.2 来源：<span class="mono">391_groups/reports/e1_num_den.md</span>（E1 表，<span class="mono">summary_rerun/e1_e2_num_den.csv</span>）；D（5 篇）和 R2 中未写出的作者（28 篇）见原表，只作描述。</p>
+<h3 id="pd-p1p2-numden">P1 / P2 按组的分子与分母（计算中）</h3>
+<p class="note">P1（只替换单个位置）和 P2（注意力 / MLP）按组的分子 / 分母拆分正在计算，结果出来后补入本节。</p>
+
+</section>
+
+<section id="pd-cpu"><h2><span class="st">CPU 补充</span><span class="ln lC">C 哪一层</span> 答辩后补算的 CPU 分析（已有数据，事后分析）</h2>
+<p class="note">都只用已有数据，没有新的 GPU 运行。除 X5 检索曲线的定义来自预注册外，其余都不在预注册或补充 1–6 里，属于事后分析，只作描述。</p>
+
+<h3>X5 预注册的跨任务检索曲线（V56）</h3>
+<p>预注册 X5 的一条曲线当时没算：同一篇论文在“问作者 / 问年份 / 问领域”三种提示下的标题状态，能否在全部论文中检索回自己（top-1，6 种提示配对平均，随机水平 1/n）。按补充 2 的规则只看高于 L4（只有文字信息的层）的部分。结果：<b>没有一层高于 L4</b>。标题最后一个 token 上，L4–L44 的 top-1 都是 1.000，L48 起下降，到最终输出为 0.734<span class="src">（Stage 13 X5 检索，M3 残差缓存，标题最后一个 token，全部 9,108 篇，top-1 检索率；团队聚类 95% CI [0.725, 0.742]；381_stage13/reports/x5_retrieval.md “title_last” 表 L63 all）</span>；“:” 位置从 L4 的 1.000 一路降到 L44 的 0.113<span class="src">（同上，“:” 位置，9,108 篇；x5_retrieval.md “colon” 表 L44 all，CI [0.110, 0.117]）</span>。调参集和测试集上都找不到高于 L4 的最早层<span class="src">（x5_retrieval.md “Earliest layer above the L4 text level”；summary_x5/x5_retrieval_earliest.csv）</span>。也就是说，跨任务能认回同一篇论文，靠的是相同的标题文字，没有证据显示中间层多出了“论文身份”。这与 M3 身份指数一致。</p>
+
+<h3>M3 提示下的行为分数（U46，事后）</h3>
+<p>M3 运行时在模型输出端存了两个教师强制分数：问年份时年份 token 的 log10(1/名次)，问作者时第一作者第一个 token 的 log10(1/名次)。没有层和位置维度。全部队列、引用档内目标 − 对照：年份 +0.0072 [+0.0025, +0.0122]<span class="src">（M3 年份分数，最终输出，目标 4,621 / 对照 2,220 篇，10 个引用档，引用档内目标 − 对照，团队聚类 95% CI；381_stage13/reports/m3_scores.md 第 3 节）</span>，第一作者首 token +0.147 [+0.096, +0.191]<span class="src">（同上，第一作者首 token 分数；m3_scores.md 第 3 节）</span>。年份差很小；作者差与分组的定义（认得出作者名单）有关，只是描述。两个分数几乎不相关（Spearman ρ = +0.001<span class="src">（9,108 篇；m3_scores.md 第 4 节）</span>）。</p>
+
+<h3>N2 名字先验按读出和层拆开（V21，事后）</h3>
+<p>Stage 12 N2 只分析了最终输出。按层拆开后：最终输出 L63，没有论文的纯名字提示下目标 − 对照为 +0.047 [+0.031, +0.062]<span class="src">（Stage 12 N2，纯名字提示，最终输出 L63，目标 4,621 / 对照 2,220，引用档内差，团队聚类 95% CI；371_stage12/reports/n2_layers.md “Target - control” 表）</span>，真标题下为 +0.247 [+0.228, +0.265]<span class="src">（同上，真标题；n2_layers.md）</span>；logit lens L62 的模式相同（纯名字 +0.039，真标题 +0.247<span class="src">（logit lens L62，同上；n2_layers.md）</span>）。public J-lens 在 L48 / L56 上真标题反而低于无标题（全部论文 true − 无标题：L48 −0.239，L56 −0.082<span class="src">（public J-lens，全部 9,108 篇均值，团队聚类 95% CI [−0.247, −0.232] / [−0.092, −0.072]；n2_layers.md “Group means” 表）</span>），目标 − 对照为负（真标题 L48 −0.133<span class="src">（public J-lens L48，引用档内差，团队聚类 95% CI [−0.161, −0.107]；n2_layers.md）</span>），不呈现输出端的模式。只有 L62（两种 lens）重现了输出端的模式。</p>
+
+<h3>论文 bootstrap 与团队聚类区间的对照（V42，事后）</h3>
+<p>X1、X4、X6、X7、M3 和 X5 检索共 1,155 行<span class="src">（381_stage13/summary_v42/v42_paper_vs_team.csv）</span>，论文区间宽度 / 团队区间宽度的中位数在 0.97–1.00 之间（范围 0.71–1.09）<span class="src">（381_stage13/reports/v42_paper_vs_team.md 第 1 节）</span>：按团队聚类几乎不改变区间。“区间是否含 0”只在 2 行改变：X4 测试集 D_year_title L16（+0.0044；团队 [−0.0003, +0.0094] 含 0，论文 [+0.0001, +0.0092] 不含）<span class="src">（v42_paper_vs_team.md 第 2 节）</span>和 X7 目标组 T L60（+0.0029；团队 [+0.0000, +0.0056]，论文 [−0.0000, +0.0056]）<span class="src">（同上）</span>。另外，X4“认得出”对比在调参集上选出的层（年份 “:” L8、作者 标题 L8、作者 “:” L16）在测试集上都没有得到确认（例如作者 · 标题 L8：+0.0231 [−0.0006, +0.0478]<span class="src">（X4 目标 − 对照的 self − partner，引用档内，测试集，团队聚类 95% CI；v42_paper_vs_team.md 第 3 节）</span>）。</p>
+
+<h3>M5 能用已有数据回答的部分（V29，事后）</h3>
+<ul>
+<li><b>名字位置上的真假标题判别（lens 读出）：</b>真标题运行的名字分数高于假标题运行的配对比例（0.5 = 随机）。最终输出 0.919 [0.915, 0.924]<span class="src">（M5 Part A，全部名字 token，最终输出 L63，全部论文 × 5 个假标题配对，团队聚类 95% CI；381_stage13/reports/m5_report.md “role: all” 表）</span>（目标 0.976、对照 0.812<span class="src">（同表，目标 / 对照列）</span>）；logit lens L24 0.516，L56 0.688，L62 0.899<span class="src">（同表，logit 行，全部论文）</span>；public J-lens L24 0.557，L48 0.518，L62 0.902<span class="src">（同表，jlens_public 行）</span>。两种 lens 在第一个测量层 L24 已略高于 0.5，但很小；中间层 public J-lens 上目标组反而低于对照（L48 目标 − 对照 −0.057 [−0.078, −0.037]<span class="src">（同表，引用档内目标 − 对照）</span>）。</li>
+<li><b>标题位置和 “:” 位置上用 probe 区分真标题运行和 false_0 运行：</b>AUROC 在标题位置为 0.501–0.505（L16–L60），在 “:” 位置为 0.506–0.516<span class="src">（M5 Part B，Stage 11 titlepos 残差，18,216 行，5 折，团队聚类 95% CI；m5_report.md Part B 表）</span>，基本分不开（真假标题都是真实论文，见第四部分的说明）。</li>
+<li>在名字位置上做 probe 和 patchscope 需要新的 GPU 运行（从没存过名字位置的残差），没有提交。</li>
+</ul>
+</section>
+
+<section id="pd-running"><h2><span class="st">进行中</span> 正在进行的实验（只写状态，没有结果）</h2>
+<ul>
+<li><b>X2 子空间替换（补充 6）：</b>已完成，结果见第四部分 <a href="#x2-results">X2</a>。</li>
+<li><b>标题位置 probe 改为全部名字 token、按角色分开（补充 9，<span class="mono">381_stage13/config/prereg_addendum9.json</span>，sha256 a9896357…）：</b>现有 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头<span class="src">（Stage 11 E4b 打分规则，stage11_analyze.py:163–171；方法手册 E4b 节）</span>，所以多数时候打分的是首字母）。补充 9 改为给每个名字 token 打分，按首字母 / 名 / 姓 分开报告，主要问题是姓的第一个 token 在 L40 是否有标题特异信号。需要一步 GPU 数据（约 1 个 A100 小时）。尚无结果。</li>
+<li><b>分组干预重跑（补充 8）：</b>E1 / E2 已完成（见上文）；P1 / P2 按组的分子 / 分母拆分正在计算。</li>
+</ul>
+</section>
+</main></div>

@@ -1,0 +1,8 @@
+<section class="slide" aria-label="slide 44">
+<div class="split">
+ <div class="half dk"><p class="m" style="font-size:19px">Stages 1–9 · 20–200 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">What we saw</h2><div class="t"><ul><li>A−B lives on continuation tokens (+0.021), not the first token (+0.001)</li><li>Open question: is that teacher forcing, initials or surnames?</li></ul></div></div>
+ <div class="half lt"><span class="tag ov">Overview · Line D</span><p class="m" style="font-size:19px">Stages 10–11 · 9,108 papers</p>
+   <h2 style="font-size:46px;margin:2px 0 14px">What scale showed</h2><div class="t"><ul><li>73% of names start with an initial, which carries little</li><li>Full given names carry as much as surnames and help predict them (+0.22)</li><li>Information travels title → name positions (L44–52), partly via tail tokens</li><li>Earlier co-authors make later ones easier, title matters less</li></ul></div><span class="pg"></span></div>
+</div>
+<div class="note" style="position:absolute;left:50%;bottom:58px;width:900px;margin-left:-450px;transform:rotate(-.5deg)"><span class="h">Line D: the puzzle from 7.1 is explained by name format</span>The pilot’s “continuation” result was mostly a format effect: for “S. Bree” the surname is a continuation token. Stage 12 P1 (done) patched single positions: the name positions carry the signal (+0.85 at L52), the colon alone little (+0.17).</div></section>

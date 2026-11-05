@@ -1,0 +1,13 @@
+<section class="slide lt" aria-label="slide 46"><span class="tag ov">Overview</span>
+<h2>Small vs large, in one table</h2>
+<table class="tb" style="width:100%;margin-top:8px;font-size:20px">
+<tr><th>Finding</th><th>Stages 1–9 (20–200 papers)</th><th>Stages 10–11 (9,108 papers)</th><th>Verdict</th></tr>
+<tr><td>True title helps</td><td>+9.3 pp pilot, +5.2 pp new 200</td><td>≈0.44 title-specific at L62</td><td class="g">confirmed</td></tr>
+<tr><td>Recognised &gt; not recognised</td><td>uncertain, tail-driven</td><td>+0.21 at output, ≈0 middle</td><td class="g">confirmed, late only</td></tr>
+<tr><td>Same groups (A vs B, R0 only)</td><td>A − B as above</td><td>+0.20 at output, ≈0 middle; R1 adds strength, not timing</td><td class="g">comparable, unchanged</td></tr>
+<tr><td>Key layer</td><td>L56</td><td>starts L56, rises L57–61; read L24–50</td><td class="a">refined</td></tr>
+<tr><td>J-Lens over Vanilla</td><td>no increment</td><td>more name shape, no paper identity</td><td class="g">consistent</td></tr>
+<tr><td>First vs rest of name</td><td>gap on continuation</td><td>explained by initials vs given names</td><td class="a">explained</td></tr>
+<tr><td>Citations</td><td>low−high inconclusive</td><td>monotonic, ρ = 0.45</td><td class="a">resolved</td></tr>
+<tr><td>Lens stability</td><td>split-half one split; Stage 9 only Fit A</td><td>three Jacobian lenses fitted on different text agree; fit stability rests on Stage 9 Fit A only</td><td class="r">only one piece of evidence (Stage 9 Fit A); Fit B not completed</td></tr>
+</table><span class="pg"></span></section>

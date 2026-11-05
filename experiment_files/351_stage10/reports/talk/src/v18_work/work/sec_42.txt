@@ -1,0 +1,13 @@
+<section class="slide dk" aria-label="slide 31"><span class="tag">Stage 7.2 · Line A</span>
+<h2>Gold vs 100 real false authors</h2>
+<p class="sub">50 matched (same field, token count, year) + 50 random names per paper; 75,000 scored pairs</p>
+<div class="row">
+ <div style="width:620px"><figure class="card" style="transform:rotate(-0.5deg);"><img alt="Matched A−B gold win rate, 100-candidate pool" src="DATA" style=""><figcaption>Matched A−B gold win rate, 100-candidate pool</figcaption></figure></div>
+ <div class="col t"><ul>
+  <li>J-Lens A−B: L40 +0.15, L48 <span class="hl">+0.19</span>, L56 +0.19 (CIs above 0); L62 +0.04 (spans 0)</li>
+  <li>7-layer integrated: +0.105 [−0.012, +0.228]</li>
+  <li>156/5,000 false names share the gold first token (ties)</li>
+  <li>100 names → only ~46 distinct first tokens</li>
+ </ul></div>
+</div>
+<div class="note" style="position:absolute;right:80px;bottom:62px;width:520px">Gold beats real names in middle layers for A more than B. But the same names might win under any title: 7.3 tests that.</div><span class="pg"></span></section>

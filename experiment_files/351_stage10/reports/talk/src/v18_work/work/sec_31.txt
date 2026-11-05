@@ -1,0 +1,15 @@
+<section class="slide dk" aria-label="slide 21"><span class="tag">Stage 3 · Exp 1–4</span>
+<h2>Two lenses: Public-557 vs Self-100</h2>
+<p class="sub">Can a middle layer approximate the final next-token distribution? (20 generic + 20 paper prompts)</p>
+<div class="row" style="gap:30px">
+ <div style="width:740px"><figure class="card" style="transform:rotate(-0.8deg);"><img alt="KL(final ‖ readout), lower is better" src="DATA" style=""><figcaption>KL(final ‖ readout), lower is better</figcaption></figure></div>
+ <div class="col t">
+  <ul>
+   <li>Both checkpoints numerically valid (63/63 and 6/6 finite)</li>
+   <li>Self-100 has lower KL on 6/6 generic and 5/6 paper layers (paper L32: 11.1 → 7.2)</li>
+   <li><span class="a">But</span> at paper L62, Self-100 KL beats Vanilla (0.58 vs 0.81) while Top-10 overlap is worse (0.36 vs 0.72)</li>
+   <li>Author pilot: both lenses 14/20 full-name wins at L48</li>
+  </ul>
+ </div>
+</div>
+<div class="note" style="position:absolute;left:90px;bottom:60px;width:640px;transform:rotate(-1deg)">Lesson: a better distribution match does not mean better author ranking. Fidelity cannot stand in for the task.</div><span class="pg"></span></section>

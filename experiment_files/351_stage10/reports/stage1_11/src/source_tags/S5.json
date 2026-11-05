@@ -1,0 +1,242 @@
+[
+ {
+  "old": "在 control 中只占 1.5%（D = 34 篇）",
+  "new": "在 control 中只占 1.5%（D = 34 篇）<span class=\"src\">（标注包 recall_level × group_tight 计数；R1 占比 = 511/4,621 与 34/2,220；R0/R1 分层表；351_stage10/reports/r0_r1_analysis.md §0）</span>"
+ },
+ {
+  "old": "R1 相关比较因为样本少放宽到每格 ≥ 10 篇），bootstrap 2,000 次",
+  "new": "R1 相关比较因为样本少放宽到每格 ≥ 10 篇），bootstrap 2,000 次<span class=\"src\">（设计常数：档内每组 ≥ 30 篇、R1 比较 ≥ 10 篇、B = 2,000、seed 3513；~/jlens_work/10_stage10/stage10_extra_r0r1.py 第 22、75–79 行，调用冻结 351_stage10.py stratified_diff）</span>"
+ },
+ {
+  "old": "（同样的 5 折和正则化选择）",
+  "new": "（同样的 5 折和正则化选择）<span class=\"src\">（设计常数：5 折、α ∈ {0.1, 1, 10}；stage10_extra_r0r1.py probe()）</span>"
+ },
+ {
+  "old": "从合并口径的 +0.207 变为 <b>+0.199 [0.187, 0.212]</b>",
+  "new": "从合并口径的 +0.207<span class=\"src\">（Stage 10，合并口径 target − control，真标题 − 5 个假标题平均，最终输出 L63，引用档内差；target 3,734 / control 2,182 篇；351_stage10/summary_r0r1/tc_pooled.csv）</span> 变为 <b>+0.199 [0.187, 0.212]</b><span class=\"src\">（Stage 10，R0 口径 A − B，真标题 − 5 个假标题平均，最终输出 L63，引用档内 目标−对照，论文 bootstrap 95% CI；A 3,423 / B 2,151 篇；§1 表；351_stage10/summary_r0r1/tc_R0.csv）</span>"
+ },
+ {
+  "old": "L24–L48 仍约为 0（Jacobian lens 在 L48–L52 略负）",
+  "new": "L24–L48 仍约为 0（Jacobian lens 在 L48–L52 略负）<span class=\"src\">（Stage 10 R0 口径 A − B，logit lens L24–L48 +0.003 到 +0.007，public J-lens L48–L52 −0.032 到 −0.045；§1 表；351_stage10/summary_r0r1/tc_R0.csv）</span>"
+ },
+ {
+  "old": "L62 为 +0.22",
+  "new": "L62 为 +0.22<span class=\"src\">（Stage 10 R0 口径 A − B，logit lens L62，+0.220 [0.205, 0.236]；§1 表；351_stage10/summary_r0r1/tc_R0.csv）</span>"
+ },
+ {
+  "old": "合并口径 3,734 / 2,182",
+  "new": "合并口径 3,734 / 2,182<span class=\"src\">（Stage 10 最终输出 L63 引用档内可比较论文数；351_stage10/reports/r0_r1_analysis.md §1；合并口径见 methods handbook D 部分 10 档）</span>"
+ },
+ {
+  "old": "因为 D 只有 34 篇",
+  "new": "因为 D 只有 34 篇<span class=\"src\">（351_stage10/reports/r0_r1_analysis.md §0）</span>"
+ },
+ {
+  "old": "A / B 在 L40 为 0.28 / 0.34，L48 为 0.81 / 0.87，L52 起 0.99–1.02",
+  "new": "A / B 在 L40 为 0.28 / 0.34，L48 为 0.81 / 0.87，L52 起 0.99–1.02<span class=\"src\">（Stage 11 E1 替换，真标题→false_0，标题之后全部位置；最终输出名字 token 恢复比例；A 557 / B 588 篇；361_stage11/summary_r0r1/stage11_curves_by_recall.csv）</span>"
+ },
+ {
+  "old": "损失 0.84 / 0.81，从 L52 起约为 0",
+  "new": "损失 0.84 / 0.81，从 L52 起约为 0<span class=\"src\">（Stage 11 E2 阻断标题之后全部位置对标题的注意力；损失比例；A 557 / B 588 篇；L52 A 0.004、B 0.010；361_stage11/summary_r0r1/stage11_curves_by_recall.csv）</span>"
+ },
+ {
+  "old": "R0 口径的目标−对照为 +0.02 到 +0.04（L16 +0.018，L32 +0.034，L56 +0.038，置信区间都在 0 以上）",
+  "new": "R0 口径的目标−对照为 +0.02 到 +0.04（L16 +0.018，L32 +0.034，L56 +0.038，置信区间都在 0 以上）<span class=\"src\">（Stage 11 E4b 标题位置 probe，probe(真标题) − probe(false_0)，A 4,110 / B 2,186 篇，A − B 引用档内，bootstrap 95% CI；361_stage11/summary_r0r1/E4b_probe_by_recall.csv）</span>"
+ },
+ {
+  "old": "（C 485 / A 3,204）",
+  "new": "（C 485 / A 3,204）<span class=\"src\">（Stage 10，引用档内每格 ≥ 10 篇后的可比较论文数；§2 表；351_stage10/summary_r0r1/C_minus_A.csv）</span>"
+ },
+ {
+  "old": "名字先验的差在输出处只有 +0.02，置信区间含 0",
+  "new": "名字先验的差在输出处只有 +0.02，置信区间含 0<span class=\"src\">（Stage 10 C − A，无标题（名字先验），最终输出 L63，引用档内，+0.021 [−0.001, 0.044]；§2 表；351_stage10/summary_r0r1/C_minus_A.csv）</span>"
+ },
+ {
+  "old": "Jacobian lens 在 L48–L56 甚至为负",
+  "new": "Jacobian lens 在 L48–L56 甚至为负<span class=\"src\">（Stage 10 C − A 标题特异，public J-lens L48–L56 −0.046 到 −0.092，fitA L48 −0.077、L56 −0.046；351_stage10/summary_r0r1/C_minus_A.csv）</span>"
+ },
+ {
+  "old": "L40 恢复 0.16 [0.12, 0.21]，A 为 0.28；L48 为 0.72 / 0.81；到 L52 两者都恢复 0.97 以上",
+  "new": "L40 恢复 0.16 [0.12, 0.21]，A 为 0.28；L48 为 0.72 / 0.81；到 L52 两者都恢复 0.97 以上<span class=\"src\">（Stage 11 E1 替换，真标题→false_0，标题之后全部位置；最终输出名字 token 恢复比例，bootstrap 95% CI；C 36 / A 557 篇；L52 C 0.968、A 0.988；361_stage11/summary_r0r1/stage11_curves_by_recall.csv）</span>"
+ },
+ {
+  "old": "从 L48 起阻断，C 仍损失 0.11，A 为 0.06",
+  "new": "从 L48 起阻断，C 仍损失 0.11，A 为 0.06<span class=\"src\">（Stage 11 E2 阻断，损失比例；C 36 / A 557 篇；C 0.105、A 0.062；361_stage11/summary_r0r1/stage11_curves_by_recall.csv）</span>"
+ },
+ {
+  "old": "C 只有 36 篇，这一点只作描述",
+  "new": "C 只有 36 篇，这一点只作描述<span class=\"src\">（Stage 11 样本 target R1；351_stage10/reports/r0_r1_analysis.md §5）</span>"
+ },
+ {
+  "old": "D 在 Stage 11 样本里只有 5 篇",
+  "new": "D 在 Stage 11 样本里只有 5 篇<span class=\"src\">（351_stage10/reports/r0_r1_analysis.md §5）</span>"
+ },
+ {
+  "old": "R0 99.9%、R1 99.3%、R2 98.1%",
+  "new": "R0 99.9%、R1 99.3%、R2 98.1%<span class=\"src\">（重建匹配人数 = 标注包 m 的比例；R0 8,298 / R1 596 / R2 214 篇；351_stage10/reports/r0_r1_analysis.md §4；~/jlens_work/10_stage10/stage10_extra_r0r1.py）</span>"
+ },
+ {
+  "old": "同时有写对和没写对作者的论文 495 篇",
+  "new": "同时有写对和没写对作者的论文 495 篇<span class=\"src\">（351_stage10/reports/r0_r1_analysis.md §4；351_stage10/summary_r0r1/R1_author_hits.csv）</span>"
+ },
+ {
+  "old": "（全部作者中第一作者占 18%）",
+  "new": "（全部作者中第一作者占 18%）<span class=\"src\">（351_stage10/reports/r0_r1_analysis.md §4；351_stage10/summary_r0r1/R1_author_hits.csv）</span>"
+ },
+ {
+  "old": "比同一篇论文里没写出的作者高 +0.20",
+  "new": "比同一篇论文里没写出的作者高 +0.20<span class=\"src\">（Stage 10，R1 论文，写对 − 没写对作者（论文内配对），真标题 − 5 个假标题平均，最终输出 L63，+0.199 [0.168, 0.232]，论文 bootstrap 95% CI；495 篇；§4 表；351_stage10/summary_r0r1/R1_author_written_minus_missed.csv）</span>"
+ },
+ {
+  "old": "L57–L61 最快，与全组的时间点完全相同",
+  "new": "L57–L61 最快，与全组的时间点完全相同<span class=\"src\">（Stage 10，写对 − 没写对，logit lens L48 −0.007、L52 +0.019、L54 +0.046、L57–L61 +0.173 到 +0.349；495 篇；§4 表；351_stage10/summary_r0r1/R1_author_written_minus_missed.csv）</span>"
+ },
+ {
+  "old": "（不给标题时输出处 +0.10；public lens 在 L24–L48 也有 +0.05 到 +0.10）",
+  "new": "（不给标题时输出处 +0.10<span class=\"src\">（Stage 10，写对 − 没写对，无标题（名字先验），最终输出 L63，+0.097 [0.060, 0.134]；495 篇；R1_author_written_minus_missed.csv）</span>；public lens 在 L24–L48 也有 +0.05 到 +0.10<span class=\"src\">（同上，无标题，public J-lens L24 +0.050、L32 +0.058、L40 +0.102、L48 +0.099；351_stage10/summary_r0r1/R1_author_written_minus_missed.csv）</span>）"
+ },
+ {
+  "old": "减去假标题后的标题特异差在中间层约为 0",
+  "new": "减去假标题后的标题特异差在中间层约为 0<span class=\"src\">（Stage 10，写对 − 没写对，标题特异，public J-lens L24–L48 −0.005 到 +0.009，logit lens −0.007 到 −0.002；351_stage10/reports/r0_r1_analysis.md §4）</span>"
+ },
+ {
+  "old": "合并口径与 R0 口径只差约 0.01",
+  "new": "合并口径与 R0 口径只差约 0.01<span class=\"src\">（Stage 10，最终输出 L63，引用档内 目标−对照，+0.207 − (+0.199)；351_stage10/summary_r0r1/tc_pooled.csv、tc_R0.csv）</span>"
+ },
+ {
+  "old": "Stage 4 中一篇论文占 L56 均值的 71%",
+  "new": "Stage 4 中一篇论文占 L56 均值的 71%<span class=\"src\">（Stage 4，L56 J-Lens 第一作者首 token RR，最大单篇占总和 71.03%；351_all/351_stage4_artifacts/audit/audit_report.md 表 1 行 L56）</span>"
+ },
+ {
+  "old": "Stage 8 A−B 去掉 10/100 对后消失",
+  "new": "Stage 8 A−B 去掉 10/100 对后消失<span class=\"src\">（Stage 8D RQ2，J-Lens L56 金标准胜率 A−B 配对差，100 对，均值 +4.98 pp，去掉最大 10 对后 −0.39 pp；351_stage8/stage8D/summary/matched_pair_differences.csv（mode=jlens_L56，methods handbook C 部分重算））</span>"
+ },
+ {
+  "old": "100 个错误名字只有约 46 个不同首 token，约 3% 与金标准平局",
+  "new": "100 个错误名字只有约 46 个不同首 token，约 3% 与金标准平局<span class=\"src\">（Stage 7.2，Pilot50 每篇 100 个错误名字，共 5,000 个候选；平均 45.76 个不同首 token；156/5,000 = 3.1% 与金标准首 token 相同；351_stage7_2/summary/quality.json、candidates csv）</span>"
+ },
+ {
+  "old": "0–2 引用档严格通过率 25.5%",
+  "new": "0–2 引用档严格通过率 25.5%<span class=\"src\">（标注包自检，0-2 引用档 796 篇，收紧规则多选通过率；labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/label_README.md 第 8 行）</span>"
+ },
+ {
+  "old": "结论不变：输出处 +0.199 vs +0.207",
+  "new": "结论不变：输出处 +0.199 vs +0.207<span class=\"src\">（Stage 10，R0 口径 A − B vs 合并口径 target − control，真标题 − 5 个假标题平均，最终输出 L63，引用档内差；351_stage10/summary_r0r1/tc_R0.csv、tc_pooled.csv）</span>"
+ },
+ {
+  "old": "全部 408 个单元完成",
+  "new": "全部 408 个单元完成<span class=\"src\">（Stage 12 单元 24 + 24 + 144 + 72 + 144；371_stage12.py units()；371_stage12/raw/ npz 计数；PROGRESS 2026-10-28 20:35 条）</span>"
+ },
+ {
+  "old": "标题之后的单个 token 最多只带 “:” 的 0.17",
+  "new": "标题之后的单个 token 最多只带 “:” 的 0.17<span class=\"src\">（Stage 12 P1，真标题→false_0，只替换 “:”（p1），L52；最终输出名字 token 恢复比例 +0.172 [0.156, 0.187]；Stage 11 样本 1,186 篇；P1 表；371_stage12/summary/P1_patch_pos.csv）</span>"
+ },
+ {
+  "old": "最多只损失 15%",
+  "new": "最多只损失 15%<span class=\"src\">（Stage 11 E2n，从 L0 阻断 “:” 和名字位置对标题的注意力；损失比例，全部 0.153 [0.136, 0.172]；1,186 篇；361_stage11/summary/E2n_knockout.csv）</span>"
+ },
+ {
+  "old": "比例是 0.255，和随机的 0.25 一样，margin +0.004 [−0.002, +0.009]",
+  "new": "比例是 0.255，和随机的 0.25 一样，margin +0.004 [−0.002, +0.009]<span class=\"src\">（Stage 12 N1，无标题（delete），4 个选项作者链，最终输出 L63；R0/R1 论文 8,894 篇；“最像真”比例与 margin，论文 bootstrap 95% CI；371_stage12/summary/N1_prior_mc.csv）</span>"
+ },
+ {
+  "old": "给了真标题后升到 0.625",
+  "new": "给了真标题后升到 0.625<span class=\"src\">（Stage 12 N1，真标题，全部 8,894 篇，0.625 [0.615, 0.635]；371_stage12/summary/N1_prior_mc.csv）</span>"
+ },
+ {
+  "old": "只有 +0.047 [0.031, 0.062]，没有标题时是 +0.087，有真标题时是 +0.247",
+  "new": "只有 +0.047 [0.031, 0.062]，没有标题时是 +0.087，有真标题时是 +0.247<span class=\"src\">（Stage 12 N2，纯名字提示 / 无标题 / 真标题，最终输出 L63，全部 9,108 篇，引用档内 target − control，论文 bootstrap 95% CI；371_stage12/summary/N2_prior_pure.csv）</span>"
+ },
+ {
+  "old": "先验约占真标题差距的 19%（按无标题提示算是 35%）",
+  "new": "先验约占真标题差距的 19%（按无标题提示算是 35%）<span class=\"src\">（点估计之比 0.047/0.247 与 0.087/0.247，无 CI；371_stage12/summary/N2_prior_pure.csv）</span>"
+ },
+ {
+  "old": "和 Stage 10 的“名字先验约占 1/3”一致",
+  "new": "和 Stage 10 的“名字先验约占 1/3”一致<span class=\"src\">（Stage 10 名字先验分解，最终输出 L63，引用档内 target − control：prior +0.087 / true +0.247 ≈ 0.35；371_stage12/summary_cpu/A_prior_decomposition.csv）</span>"
+ },
+ {
+  "old": "（L44–L52 为 −0.04 到 −0.06，置信区间不含 0），只有 L62 是 +0.238",
+  "new": "（L44–L52 为 −0.04 到 −0.06，置信区间不含 0），只有 L62 是 +0.238<span class=\"src\">（Stage 12 F2，作者提示拟合的 lens，名字位置，真标题 − 5 个假标题平均，引用档内 target − control，bootstrap 95% CI；Stage 11 样本剔除后 1,183 篇；371_stage12/summary/F2_author_lens.csv）</span>"
+ },
+ {
+  "old": "除 L56（+0.030 [0.000, 0.060]）外",
+  "new": "除 L56（+0.030 [0.000, 0.060]）外<span class=\"src\">（Stage 12 F2，标题位置，同上；371_stage12/summary/F2_author_lens.csv）</span>"
+ },
+ {
+  "old": "97 个 GPU 单元",
+  "new": "97 个 GPU 单元<span class=\"src\">（false_1–4 各 24 shard + false_0 第 0 分片复现检查；381_stage13/raw/xf_patch/；PROGRESS 2026-10-29 00:35 条）</span>"
+ },
+ {
+  "old": "（最大差 2×10⁻¹⁶）",
+  "new": "（最大差 2×10⁻¹⁶）<span class=\"src\">（max|diff| 2.22e-16；381_stage13/logs/x6_11461197.log SELFTEST 行）</span>"
+ },
+ {
+  "old": "平均恢复率 L48 在 0.70–0.95 之间，L52 ≥ 0.95；每个假标题的 L48 与 false_0 相差不超过 0.10，L52 ≥ 0.90",
+  "new": "平均恢复率 L48 在 0.70–0.95 之间，L52 ≥ 0.95；每个假标题的 L48 与 false_0 相差不超过 0.10，L52 ≥ 0.90<span class=\"src\">（设计常数：预注册补充 3 X6 判据；381_stage13/config/prereg_addendum3.json）</span>"
+ },
+ {
+  "old": "各假标题之间的差都不超过 0.02",
+  "new": "各假标题之间的差都不超过 0.02<span class=\"src\">（Stage 13 X6，各假标题 R(L48) 与 false_0 之差最大 target 0.015、control 0.019、全部 0.012；381_stage13/reports/x6x7_roles.md 判定表；x6_report.md）</span>"
+ },
+ {
+  "old": "L48 恢复约 80–87%，L52 起 100%",
+  "new": "L48 恢复约 80–87%，L52 起 100%<span class=\"src\">（Stage 11 E1 = X6 false_0 列，target / control L48 0.803 / 0.866，L52 0.986 / 1.016；381_stage13/reports/x6_report.md）</span>"
+ },
+ {
+  "old": "标点的真假差距只有 0.006–0.018，低于 0.05",
+  "new": "标点的真假差距只有 0.006–0.018，低于 0.05<span class=\"src\">（Stage 13 X6 按角色，punct 真 − 假差距（5 个假标题、3 组）；门槛 0.05 为补充 4 规则；381_stage13/reports/x6x7_roles.md gap 表）</span>"
+ },
+ {
+  "old": "各角色在 5 个假标题之间 L48 的差都不超过 0.076",
+  "new": "各角色在 5 个假标题之间 L48 的差都不超过 0.076<span class=\"src\">（三个预注册角色 max|R(L48) − false_0|，最大为 control 名字第一个 token 0.076；381_stage13/reports/x6x7_roles.md 判定表）</span>"
+ },
+ {
+  "old": "完整的名 L48 只有 0.63",
+  "new": "完整的名 L48 只有 0.63<span class=\"src\">（given_first，全部论文，5 个假标题平均 R(L48) 0.632 [0.583, 0.686]；381_stage13/summary_x6/x6_roles.csv）</span>"
+ },
+ {
+  "old": "到 L52 各角色都 ≥ 0.96，L56 都是 1.00",
+  "new": "到 L52 各角色都 ≥ 0.96，L56 都是 1.00<span class=\"src\">（三个预注册角色，L52 最低为 target 姓的第一个 token 0.963，L56 0.996–1.001；381_stage13/summary_x6/x6_roles.csv）</span>"
+ },
+ {
+  "old": "24 个 GPU 单元，1,186 篇论文",
+  "new": "24 个 GPU 单元，1,186 篇论文<span class=\"src\">（ko_false false_0 24 shard；Stage 11 样本 593 + 593 篇；381_stage13/reports/x7_report.md）</span>"
+ },
+ {
+  "old": "（与 Stage 11 E2 一致，最大差 1×10⁻¹⁶）",
+  "new": "（与 Stage 11 E2 一致，最大差 1×10⁻¹⁶）<span class=\"src\">（max|diff| 9.9e-17；381_stage13/reports/x7_report.md Self-checks 行）</span>"
+ },
+ {
+  "old": "只有 60% 的行与 Stage 11 假标题运行完全相同，平均差 0.010 个 log10 名次",
+  "new": "只有 60% 的行与 Stage 11 假标题运行完全相同，平均差 0.010 个 log10 名次<span class=\"src\">（19,077 行，相同比例 0.5963，|Δlog10 名次| 平均 0.0105、p99 0.146、带符号 −0.0003；381_stage13/reports/x7_report.md WARN 行；PROGRESS 2026-10-29 X7 条）</span>"
+ },
+ {
+  "old": "Stage 11 从 L0 阻断时的 83% 损失",
+  "new": "Stage 11 从 L0 阻断时的 83% 损失<span class=\"src\">（Stage 11 E2 = X7 T(L0)，全部 1,186 篇 0.831 [0.800, 0.862]（target 0.839）；381_stage13/reports/x7_report.md）</span>"
+ },
+ {
+  "old": "S(L0) ≈ 1.0，也就是",
+  "new": "S(L0) ≈ 1.0，也就是<span class=\"src\">（Stage 13 X7，S = T − F，target 1.000 [0.994, 1.006]、control 1.012、全部 1.004，团队聚类 95% CI；381_stage13/summary_x7/x7_knockout.csv）</span>"
+ },
+ {
+  "old": "（S(L52) ≤ 0.05 且 S(L0) ≥ 0.5）",
+  "new": "（S(L52) ≤ 0.05 且 S(L0) ≥ 0.5）<span class=\"src\">（设计常数：预注册补充 3 X7 判据；381_stage13/config/prereg_addendum3.json）</span>"
+ },
+ {
+  "old": "（0.051，阈值 0.05；区间 [0.033, 0.068]）",
+  "new": "（0.051，阈值 0.05；区间 [0.033, 0.068]）<span class=\"src\">（Stage 13 X7，S(L52)，target 593 / control 593 / 全部 1,186 篇，团队聚类 95% CI；X7 表；381_stage13/summary_x7/x7_knockout.csv、x7_verdict.json）</span>"
+ },
+ {
+  "old": "还剩约 5% 的论文特有损失，L54 降到 0.018，L56 起为 0",
+  "new": "还剩约 5% 的论文特有损失，L54 降到 0.018，L56 起为 0<span class=\"src\">（Stage 13 X7 control，S(L52) 0.051、S(L54) 0.018 [0.007, 0.029]、S(L56) 0.000；381_stage13/reports/x7_report.md）</span>"
+ },
+ {
+  "old": "与合计 0.029 都没有差别（差值区间都含 0）",
+  "new": "与合计 0.029 都没有差别（差值区间都含 0）<span class=\"src\">（Stage 13 X7 按角色，全部论文 S(L52)，团队聚类 95% CI；381_stage13/reports/x6x7_roles.md X7 表；summary_x7/x7_roles.csv）</span>"
+ },
+ {
+  "old": "姓的第一个 token 0.049 刚好成立",
+  "new": "姓的第一个 token 0.049 刚好成立<span class=\"src\">（Stage 13 X7 按角色，control S(L52)；381_stage13/reports/x6x7_roles.md 判定表）</span>"
+ }
+]

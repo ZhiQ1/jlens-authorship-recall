@@ -1,0 +1,27 @@
+{
+ "title": "Addendum 7: group comparisons beyond target vs control (analysis plan, written before any group result was computed)",
+ "written": "2026-11-05 (exact time = sha256 file mtime and git)",
+ "approved_by_user": "user messages 2026-11-05: advisor request to add A/B/C/D, relatively successful recall and other comparisons; user's 7-point refinement (circularity, primary contrasts + Holm, confounder regression, continuous recognition, n rules, GPU decision deferred, summary table).",
+ "status_at_writing": "No group-comparison result exists (the helper that started stopped after writing a helper library only, ~/jlens_work/14_groups/groups_lib.py; no outputs in 391_groups). Known before writing: the published target - control results and the Stage 10 R0/R1 analysis (A vs B +0.199 at the output; C stronger than A by about +0.11 from L56).",
+ "groups": {
+  "source": "/scratch/zhang.zhiqi2/jlens/351_stage10/cohort/papers.parquet (recall_level, mc_team_outcome_tight, mc_team_a = correct option orders 0-4, mc_team_p_true = mean true-option probability, m, n_authors)",
+  "A": "R0 x strong (4,110)", "B": "R0 x fail (2,186)", "C": "R1 x strong (511)", "D": "R1 x fail (34)",
+  "U0": "R0 x uncertain (2,002)", "U1": "R1 x uncertain (51)", "R2s": "R2 x strong (204); R2 x uncertain 9, R2 x fail 1",
+  "R2 role": "upper reference only; never a contrast group for conclusions"
+ },
+ "circularity rule": "R1/R2 papers contain authors the model itself wrote, whose scores are high by construction. Every group comparison is computed on UNWRITTEN authors only (author not matched in the model's open answer; per-author matching = the Stage 10 R0/R1 reconstruction, surname + first initial, both orders; papers whose reconstructed count differs from the label m are excluded). A 'written authors' column is reported beside it as a reference and is never used for a conclusion. Measures available only per paper for the first author use papers whose first author was NOT written; measures that are per paper and not per author (e.g. M2 probe AUROC) are reported descriptively per group.",
+ "primary": {
+  "measure": "Stage 10 title-specific signal at the output (final L63), log10(1/rank) true minus the mean of the 5 matched false titles, averaged over each paper's unwritten-author name tokens.",
+  "contrasts": {
+   "P1 recognition": "A - B (within citation bin, weights n1*n2/(n1+n2), bins with >= 30 papers in both groups).",
+   "P2 partial recall": "C - A on unwritten authors only (same weighting; bins with >= 10 papers in C).",
+   "P3 graded recognition": "slope of the signal on mc_team_a (0-4) within R0 papers (A + U0 + B), regression with citation-bin fixed effects."
+  },
+  "inference": "two-sided percentile p-values from the team-cluster bootstrap (2,000 draws; teams = stage13_cpu.group_folds team ids, archived); Holm correction over P1-P3.",
+  "confounders": "each primary contrast is also estimated by a paper-level regression: signal ~ group (or mc_team_a) + citation bin + field + year (centred) + n_authors + share of authors whose name starts with an initial; the regression version is reported beside the within-bin version; a sign disagreement is stated as 'not robust to confounders'."
+ },
+ "exploratory": "everything else: per-group means per readout x layer x token role; C - D, D - B, U0 - B, A - U0, R2s - C, R2s - A (reference); dose-response of the unwritten-author signal on the written proportion M / n_authors within recognised papers; signal curves against mc_team_a (0-4) and against binned mc_team_p_true; Stage 11 E1/E2/E4b, Stage 12 P1/P2/N1/N2/F2 and Stage 13 M2/M3/X1/X3/X4/X6/X7 split by A/B/C/D. No multiplicity correction; labelled exploratory.",
+ "sample-size rule": "every cell and contrast reports n (papers and authors) and the number of citation bins actually used; n < 30 papers: descriptive only (no interval-based statement).",
+ "interventions": "Stage 11-13 interventions exist only for the target/control sample (A/B/C/D). Running them for R2 and the uncertain groups needs new GPU runs; cost is estimated and the user decides with the advisor before any run.",
+ "summary table": "rows = groups (A, B, C, D, U0, U1, R2s); columns = output title-specific signal (unwritten authors; written-author reference), E1 recovery at L48 and L52, E2 knockout loss at L52, E4b probe signal, M2 recognised AUROC (descriptive), X3 behaviour recovery; each cell with n and 95% interval, or 'n < 30, descriptive' or 'not available'."
+}

@@ -1,0 +1,14 @@
+<section class="slide dk" aria-label="slide 38"><span class="tag">Stage 6 · Line D</span>
+<h2>From first token to the full name</h2>
+<p class="sub">50 papers, 227 authors, 972 name tokens; every listed author scored with teacher forcing</p>
+<div class="row">
+ <div style="width:620px"><figure class="card" style="transform:rotate(-0.6deg);"><img alt="Conditional full-author JMRR by group" src="DATA" style=""><figcaption>Conditional full-author JMRR by group</figcaption></figure></div>
+ <div class="col t">
+  <table class="tb"><tr><th>Group</th><th>Integrated JMRR</th></tr>
+  <tr><td class="a">A (20)</td><td>0.085 [0.075, 0.096]</td></tr>
+  <tr><td class="b">B (20)</td><td>0.068 [0.057, 0.080]</td></tr>
+  <tr><td>C (7)</td><td>0.106</td></tr><tr><td>D (3)</td><td>0.050</td></tr></table>
+  <p style="margin-top:14px">L62 A−B <span class="hl">+0.097</span> [0.028, 0.163]; Vanilla also +0.091</p>
+ </div>
+</div>
+<div class="note" style="position:absolute;right:80px;bottom:62px;width:480px">Positive, but each token after the first is given the correct prefix. Next: split first token from the rest (7.1).</div><span class="pg"></span></section>

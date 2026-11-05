@@ -1,0 +1,17 @@
+<section class="slide lt" aria-label="slide 45"><span class="tag ov">Overview</span>
+<h2>What the small samples taught us to watch for</h2>
+<div class="row" style="margin-top:14px;gap:22px">
+ <div class="col t"><ul>
+ <li><b>Single-paper leverage</b>: one paper = 71% of the Stage 4 L56 mean</li>
+ <li><b>Tail-driven contrasts</b>: Stage 8 A−B disappears after removing 10 of 100 pairs</li>
+ <li><b>Forking paths</b>: L56 inspected repeatedly, then made primary</li>
+ <li><b>Candidate artefacts</b>: 100 false names share ~46 first tokens; 3% tie with gold</li>
+ </ul></div>
+ <div class="col t"><ul>
+ <li><b>Label noise</b>: strict “pass” 25.5% in the 0–2 citation bin</li>
+ <li><b>Partial coverage</b>: first-listed author stands in for the team</li>
+ <li><b>Metric choice</b>: KL fidelity and author ranking disagree</li>
+ <li><b>Protocol drift</b>: primary endpoint changed between README and run</li>
+ </ul></div>
+</div>
+<div class="note" style="margin:30px auto 0;width:900px">Stage 10 answered each one by design: full cohort, every author and token, all layers reported, full-vocabulary ranks, within-bin comparison, frozen inputs with parity checks. What it cannot fix: groups still come from one labelling run of the same model.</div><span class="pg"></span></section>

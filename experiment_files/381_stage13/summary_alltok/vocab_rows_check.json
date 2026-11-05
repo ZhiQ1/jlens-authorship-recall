@@ -1,0 +1,11 @@
+{
+ "n_ids": 9137,
+ "n_probe_vocab": 4314,
+ "probe_vocab_subset": true,
+ "rows_equal_probe_vocab": true,
+ "max_abs_row_diff": 0.0,
+ "norm_equal": true,
+ "eps": 1e-06,
+ "eps_probe_vocab": 1e-06,
+ "status": "OK"
+}

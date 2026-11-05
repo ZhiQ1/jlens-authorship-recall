@@ -1,0 +1,4 @@
+recall_level,fail,strong,uncertain,source
+R0,2186,4110,2002,351_stage10/cohort/papers.parquet: recall_level x mc_team_outcome_tight
+R1,34,511,51,351_stage10/cohort/papers.parquet: recall_level x mc_team_outcome_tight
+R2,1,204,9,351_stage10/cohort/papers.parquet: recall_level x mc_team_outcome_tight

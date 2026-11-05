@@ -1,0 +1,34 @@
+{
+ "title": "Stage 13 pre-registration, addendum 6 (X2: subspace patching)",
+ "written": "2026-11-05 (see the sha256 file mtime and git for the exact time)",
+ "approved_by_user": "user message 2026-11-05: 'x2为啥不做，继续都做好呀' (X2 had been paused by the user on 2026-10-30, U48; prereg.json requires its own addendum before it runs)",
+ "status_at_writing": "No X2 data exist. Known before writing: M2 probes read year/citations/field at the title (≤L16); M3 identity index never above L4; X1 full title replacement is task-independent at L24-L48 (R about 1.00 at L24, 0.92 at L40, 0.42 at L48); X3 cannot separate meaning from paper identity; X4 first author decodable at L8.",
+ "question": "Is the paper information that carries the first author through the title positions (X1) contained in a low-dimensional 'paper attribute' subspace (H2), in a low-dimensional 'author' subspace (H3), or in neither?",
+ "pairs": "config/pairs.parquet (1,178 pairs, same as X1/X3/X4; tune/test by author team). Only pairs whose A and B titles have the same token length (as in X1) are used.",
+ "layers": [16, 24, 32, 40, 48],
+ "subspaces": {
+  "rule": "All directions are fitted on the M3 residual cache (summary_m3/resid_cache.f16; authors prompt without year; last title token) at the same layer, using ONLY papers outside the teams of the 1,178 pair papers (A, B and C), ridge with the alpha chosen by 5-fold group CV on those training papers. Directions are orthonormalised (QR). k = 10 for every subspace.",
+  "S_id (paper attributes, H2)": "ridge weight vectors for year, log citations and field (8 one-vs-rest) = 10 vectors.",
+  "S_auth (author, H3)": "ridge map from the residual to the unembedding vector of the paper's first-author first name token (W_U row); S_auth = the top-10 right singular vectors of the fitted 5120x5120 map.",
+  "S_rand (control)": "3 random 10-dim subspaces (seeds 61, 62, 63), results averaged.",
+  "S_full (ceiling)": "the identity map = X1 full replacement (recomputed in the same batch)."
+ },
+ "arms": {
+  "carry": "In B's authors prompt at layer l, every title position h_B is replaced by h_B + P_S (h_A - h_B), where h_A is A's authors-prompt state at the same position (as X1). Score = A's first-author teacher-forced score (as X1).",
+  "remove": "In A's own authors prompt at layer l, every title position h_A is replaced by h_A - P_S (h_A - mu), mu = mean title-last state of the training papers at that layer. Score = A's first-author score."
+ },
+ "measures": {
+  "carry": "R_S(l) = mean(patched_S - corrupt) / mean(clean - corrupt) (ratio of means, as X1); differences R_S - R_rand with team-cluster bootstrap (2,000 draws, pairs.parquet team).",
+  "remove": "L_S(l) = mean(clean - removed_S) / mean(clean - corrupt); L_S - L_rand likewise."
+ },
+ "decision": {
+  "found_on": "tune; confirmed on test (same layer). All layers reported.",
+  "S carries paper information at l": "R_S - R_rand interval > 0 on test at a layer selected on tune.",
+  "H2 support": "S_id carries (above) AND R_id >= 0.5 x R_full at that layer.",
+  "H3 support": "S_auth carries AND R_auth - R_id interval > 0.",
+  "neither": "neither S_id nor S_auth exceeds S_rand anywhere: the carried information is not in these 10-dim subspaces (distributed).",
+  "remove arm": "reported as converging evidence with the same intervals; it does not change the verdict."
+ },
+ "checks (WARN only)": ["S_full reproduces X1 authors@l within bf16 batch noise (|delta R| <= 0.05)", "P_S with S = 0 leaves corrupt unchanged (identity patch)", "the 3 random subspaces agree within their CIs"],
+ "wording": "teacher-forced preference for the correct first-author tokens, not generation (addendum 4)."
+}

@@ -1,0 +1,14 @@
+<section class="slide dk" aria-label="slide 13"><span class="tag">Stage 8D · Lines A, B</span>
+<h2>On 200 new papers the title effect replicates</h2>
+<div class="row" style="margin-top:8px">
+ <div style="width:560px"><figure class="card" style="transform:rotate(-0.6deg);"><img alt="Stage 8D frozen estimates, 95% CI (pp)" src="DATA" style=""><figcaption>Stage 8D frozen estimates, 95% CI (pp)</figcaption></figure></div>
+ <div class="col t">
+ <table class="tb"><tr><th></th><th>Estimate</th><th>95% CI</th></tr>
+ <tr><td class="a">RQ1 title</td><td>+5.18 pp</td><td>[+2.93, +7.48]</td></tr>
+ <tr><td class="a">RQ2 A−B</td><td>+4.98 pp</td><td>[+0.32, +9.91]</td></tr>
+ <tr><td class="a">RQ3 low−high</td><td>+2.45 pp</td><td>[−3.69, +8.60]</td></tr>
+ <tr><td class="b">J-Lens−Vanilla</td><td>−1.38 pp</td><td>[−3.48, +0.68]</td></tr></table>
+ <p style="margin-top:12px">Citation bands: low +6.8 [2.6, 11.6], mid +4.8, high +4.4 [−1.1, 10.0]</p>
+ </div>
+</div>
+<div class="note" style="position:absolute;left:90px;bottom:62px;width:640px">RQ1 is the first <b>independent</b> confirmation: correct titles help the gold author on new papers. J-Lens still adds nothing over Vanilla.</div><span class="pg"></span></section>

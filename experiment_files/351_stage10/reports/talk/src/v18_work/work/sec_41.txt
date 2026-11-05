@@ -1,0 +1,11 @@
+<section class="slide dk" aria-label="slide 30"><span class="tag">Stage 4</span>
+<h2>First readout: is any author signal there?</h2>
+<p class="sub">20 papers, 93 authors (A8 / B8 / C3 / D1); ~91 s per paper, ~29.5 GiB GPU</p>
+<div style="width:1000px;margin:6px auto 0"><figure class="card" style="transform:rotate(-0.5deg);"><img alt="Layer profiles: first-listed first-token RR (left) and conditional full-name JMRR (right)" src="DATA" style=""><figcaption>Layer profiles: first-listed first-token RR (left) and conditional full-name JMRR (right)</figcaption></figure></div>
+<div class="row" style="margin-top:22px">
+ <div class="col t"><ul>
+  <li>The pipeline works and J-Lens rises above Vanilla in middle layers</li>
+  <li>L56 first-author mean RR 0.0070, median only 0.0009</li>
+ </ul></div>
+ <div class="note col" style="transform:rotate(-1deg)"><span class="h">One paper = 71% of the L56 mean</span>Dropping it: 0.0070 → 0.0021. A layer peak can be a single easy paper, so every later stage adds controls.</div>
+</div><span class="pg"></span></section>
