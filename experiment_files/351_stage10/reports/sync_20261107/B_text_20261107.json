@@ -1,0 +1,5 @@
+{
+ "BZ": "按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代。",
+ "BE": "With per-donor exclusion and the mean of five false titles, target − control is positive from L16 for the given-name first token and from L24 for the surname (surname L40 +0.030 [0.013, 0.048]); the initial is not significant (L40 +0.014 [−0.002, +0.030]). With false_0 only (fewer papers) the surname is not significant before L56; the earlier statement is superseded.",
+ "TAGZ": "381_stage13/summary_b1_e4b5/perdonor_by_run_layer.csv，version=Vpd，列 tc / tc_lo / tc_hi（引用档内 target−control，团队聚类 bootstrap 2,000 次 95% CI）：given_first L16 +0.029 [+0.005, +0.052] 起各层都 > 0；surname_first L24 +0.019 [+0.001, +0.038] 起各层都 > 0；initial L40 +0.014 [−0.002, +0.030]；false_0 版本（V0，1,395 篇）姓 L16–L52 CI 含 0；b1_e4b5_report.md “Per-donor exclusion” 节 target − control 表"
+}

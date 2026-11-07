@@ -1,0 +1,35 @@
+{
+ "title": "Addendum 13: CPU items of the redo programme (C-1 to C-5), run now in parallel with the GPU batches",
+ "written": "2026-11-06 ~01:00 EST (exact time = sha256 file mtime and git)",
+ "approved_by_user": "user message 2026-11-06: 'CPU 项现在开始' (master queue items C-1 to C-6; C-6 is a document-only item).",
+ "status_at_writing": "None of C-1 to C-5 has been computed. Known: the audit (audit_20261105) facts; Stage 10 raw outputs store per-token ranks for every author and token under true, false_0..4 and delete titles at L24-L62 (public / logit lens, fitA, self100, final) for all 9,108 papers, which include the Pilot50 and Stage 8 papers.",
+ "general rules": "CPU only; tiny test on a small subset first; reproduction of a published number is a HARD check where the item extends one; team-cluster bootstrap 2,000 draws on archived team ids for all-paper means; paired bootstrap over pairs for Stage 8 pair contrasts (as Stage 8D); results to the user before any document change.",
+ "items": {
+  "C-1 Stage 4-7 with a title contrast": {
+   "papers": "Benchmark20 (Stage 4) and Pilot50 (Stages 5-7) paper lists from the archive.",
+   "measure": "Stage 10 title-specific signal (true minus mean of the 5 false titles, log10(1/rank)), all authors and all name tokens, and split first token / continuation tokens (as Stage 7.1), at the Stage 10 layers that overlap the Stage 4-7 layers (L24, L32, L40, L48, L56, L62; L16 not stored) for public J-lens, logit lens and final output.",
+   "contrasts": "A - B on the 20 matched pairs (Pilot50; as Stage 5-7), paired bootstrap; all-paper mean.",
+   "hard check": "the Stage 10 true-title score for these papers restricted to the first author's first token at the final output equals the Stage 10 stored value for the same rows (identity check of the join)."
+  },
+  "C-2 Stage 8 CPU proxy": {
+   "papers": "the 200 Stage 8 papers and their 100 frozen A/B pairs (archive).",
+   "measure": "as C-1 (Stage 10 title-specific rank signal), three versions: first author first token (closest to W), first author all tokens, all authors all tokens; layers L56 and the 7-layer-equivalent mean over the stored overlap layers (L24, L32, L40, L48, L56, L62).",
+   "contrasts": "RQ1 analogue: all-paper title-specific signal > 0; RQ2 analogue: A - B over the 100 pairs, paired bootstrap; leave-one-pair-out as Stage 8D supplement.",
+   "decision for batch 3 item 3-4": "GPU re-run of the true W is triggered if, in the all-authors all-tokens version, the RQ1 or RQ2 conclusion (sign or CI excluding 0) differs from the published Stage 8 conclusion.",
+   "hard check": "join identity check as C-1."
+  },
+  "C-3 E4b and all-token probe without the title-reuse exclusion": {
+   "measure": "the addendum-9 per-paper title-specific signal for all target + control papers (no exclusion), side by side with the false_0-exclusion version; same for the first-token E4b (parity run).",
+   "hard check": "the false_0-exclusion column reproduces the published addendum-9 numbers (L40 surname_first +0.071, initial +0.044)."
+  },
+  "C-3b same for the five-false-title version": "after addendum 10 item 4 finishes: the per-donor (deviation D1) and V5x0 versions without any exclusion.",
+  "C-4 M1 with false_1..false_4": {
+   "measure": "M1's 'top-1 token changes with the title' statistic using the stored top-1 tokens under false_1..false_4 (not only false_0), per layer and lens.",
+   "hard check": "the false_0 column reproduces the published M1 values (28-64% change)."
+  },
+  "C-5 Stage 10 extra analyses on all stored layers": {
+   "measure": "Stage 10 extras (X1-X3 in summary_extra, the name-format split and the conditional split) recomputed at every stored layer (public and logit lens: L24, L32, L40, L48, L50-L62; fitA and self100: their 6 layers) instead of the 6 main layers only.",
+   "hard check": "the 6 main layers reproduce the published extras."
+  }
+ }
+}

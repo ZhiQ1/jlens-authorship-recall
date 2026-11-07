@@ -1,9 +1,12 @@
 # README
-**newest experiment report**: [stage 1-13 experiment report](https://github.com/ZhiQ1/jlens-authorship-recall/blob/main/Stage1-13_report_v28_A4.pdf)
 
-> **Current documents (Stages 1–11, kept up to date; all new results go only into these two):**
-> - **Slides:** Stage 1–11 merged deck](---)
-> - **Report:** Stage 1–11 combined experiment report](---)
+**newest experiment report**: [stage 1-13 experiment report v29](https://github.com/ZhiQ1/jlens-authorship-recall/blob/main/Stage1-13_report_v29e_A4.pdf) (previous: [v28](https://github.com/ZhiQ1/jlens-authorship-recall/blob/main/Stage1-13_report_v28_A4.pdf)); number check of every conclusion: [docs/numcheck_claims_check_20261107.csv](docs/numcheck_claims_check_20261107.csv)
+
+> **Current documents (Stages 1–13 and the post-defence work, kept up to date):**
+> - **Report:** [Stage 1–13 experiment report](https://claude.ai/artifact/QB335qoaBWvSdFyfvc2bSe) (v29, 2026-11-07: batch-1 results, provenance per conclusion, numbers checked)
+> - **Slides:** [Stage 1–13 merged deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) (v20, 2026-11-07, 82 slides)
+> - **Methods handbook:** [Stage 1–13 methods handbook](https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo) (2026-11-07)
+> - **Downloads (PDF / pptx):** [download page](https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta)
 >
 > Both pages are private claude.ai artifacts; ask the owner for access.
 
@@ -17,7 +20,11 @@
 
 **Strongest result: On the 200 new Stage 8 papers, the mean Title Advantage at L56 is +5.18 percentage points; the mean A−B difference is +4.98 percentage points, but it is sensitive to a small number of strongly positive pairs.**
 
-**Stage 10 (all 9,108 papers, every author name token):** the paper-specific (true-title minus matched-false-title) signal is about zero from L24 to L48, builds up from about L50, rises fastest over L57–L61, and peaks at L61–L63. Target papers (recognised but not recalled) pull ahead of control papers only there: +0.21 to +0.23 log10(1/rank) within citation bins at L62/L63, with no middle-layer head start under any lens.
+**Stage 10 (all 9,108 papers, every author name token):** the paper-specific (true-title minus matched-false-title) signal is about zero from L24 to L48, builds up from about L50, rises fastest over L57–L61, and peaks at L61–L63. Target papers (recognised but not recalled) pull ahead of control papers only there: +0.207 to +0.231 log10(1/rank) within citation bins at L62/L63, with no middle-layer head start under any lens.
+
+**Stages 11–13 in one paragraph.** Patching the tokens after the title recovers 0.82 of the true − false-title gap at L48 and all of it from L52 <sub>(Stage 11 E1, 593 + 593 papers; 361_stage11/summary/E1_recovery.csv)</sub>; blocking attention to the title from L52 on costs nothing <sub>(Stage 11 E2)</sub>. With all five false titles the knockout claim holds in target, control and all papers (S(L52) +0.022 / +0.042 / +0.028) <sub>(addendum 10 item 2; 381_stage13/reports/b1_x7f_report.md)</sub>. A linear probe at the last title token reads paper-specific name information from L24; scored on every name token (addendum 9), the surname first token gives +0.071 [0.058, 0.085] at L40, above the initial (+0.044) <sub>(381_stage13/reports/e4b_alltok.md)</sub>. Stage 13 finds paper attributes readable at the title early (M2) and a task-independent replacement effect (X1), but no paper-identity level above the L4 text level (M3, X5 retrieval), and X2 subspace patching moves only about 4% of the full replacement <sub>(381_stage13/reports/x2_report.md)</sub>. Overall: **H2 (paper identity) partly supported but not established; H3 (hidden author knowledge) insufficient evidence.**
+
+**Post-defence (2026-11-05/06).** Group comparisons fixed before the results (addenda 7, 8): on unwritten authors, recognised R0 papers beat unrecognised ones by +0.200 [0.188, 0.213] at the output <sub>(391_groups/primary.csv, P1)</sub>; the signal rises by +0.059 per multiple-choice order right <sub>(P3)</sub>; partial recall adds +0.061 for co-authors <sub>(P2-other)</sub>. A redo programme (addenda 10–13) re-runs the weak points with five false titles, all authors and all name tokens; see the plan document `docs/plan_master_queue_20261106b.md`.
 
 This does not support claims of full author-identity recovery, causal Recall, or J-Lens outperforming Vanilla. For completeness and exclusions, see [ARCHIVE_NOTES.md](ARCHIVE_NOTES.md). This file references images in `docs/assets/`; the two must be kept together in the archive root.
 
@@ -160,7 +167,7 @@ The direction agrees across endpoints, but the integrated effect is about half t
 
 ### Stage 10 · Layer-wise readout of every author name, all 9,108 papers
 - Approach: each author scored alone after "Authors:", every name token (33,811 authors, 149,999 tokens) under teacher forcing; readouts Vanilla (logit lens), three J-Lenses (public, Self100, Fit A) and Final at L24/32/40/48/56/62 (+ L50–55, L57–61 for public and Vanilla); 7 title conditions (true, 5 matched false titles, title deleted); groups from `group_tight`.
-- Key numbers: title-specific signal ≤ 0.05 at L24–L48 in both groups; target − control (title-specific, within bin) Vanilla +0.007 [0.001, 0.014] at L50, +0.065 at L56, +0.229 at L62, Final +0.207 [0.196, 0.220]; the signal sits on the surname for initial-first names and equally on given name and surname for given-name-first names; it rises monotonically with citations (Spearman ρ = 0.45). J-Lenses read more name information than Vanilla in middle layers (+0.007 to +0.030 title-specific) but it is not larger for target papers.
+- Key numbers: title-specific signal ≤ 0.05 at L24–L48 in both groups; target − control (title-specific, within bin) Vanilla +0.007 [0.001, 0.014] at L50, +0.065 at L56, +0.229 at L62, Final +0.207 [0.195, 0.220]; the signal sits on the surname for initial-first names and equally on given name and surname for given-name-first names; it rises monotonically with citations (Spearman ρ = 0.451). J-Lenses read more name information than Vanilla in middle layers (+0.007 to +0.030 title-specific) but it is not larger for target papers.
 - Judgment: paper-specific author knowledge is assembled late and gradually; recognised-but-not-recalled papers have no middle-layer head start. Correlational only. The parity tolerance was raised from 0.25 to 0.5 max |Δlogit| after seeing bf16-level differences (recorded in `config/analysis_plan.json`).
 
 ### Stage 11 · Causal and context follow-ups (completed 2026-10-27)
@@ -173,6 +180,19 @@ The direction agrees across endpoints, but the integrated effect is about half t
   - At the last title token: lenses about 0.01–0.03; ridge probe +0.04 to +0.08, target − control +0.02 to +0.04.
   - Author chain: later authors +0.17 to +0.23 easier, while their title-specific signal shrinks.
 - Judgment: the paper information is read from the title and moved into the post-title tokens in L24–L50, about ten layers before it is lens-readable at the names. It does not sit on the title token in a lens-readable form. Target and control share the timing; target carries about 2× the signal. The GPU smoke WARN (batched bf16 rounding) does not affect this.
+
+### Stage 12 · Single positions, attention vs MLP, name priors, author-prompt lens
+- Key numbers: the colon alone carries at most 0.17 of the gap at L52, all name positions 0.85 <sub>(371_stage12/summary/P1_patch_pos.csv)</sub>; attention at L48 +0.23, MLP at L52–L56 +0.18 to +0.22 <sub>(P2_patch_comp.csv)</sub>; a pure name prior gives target − control +0.047 vs +0.247 with the true title <sub>(371_stage12/reports/stage12_report.md)</sub>.
+
+### Stage 13 · What do the middle layers hold?
+- M2: year, citations and field are readable at the last title token from L16 <sub>(381_stage13/reports/m2_teamci.md)</sub>. M3 / X5: no layer above the L4 text level. X1: replacement effect independent of the question (R 0.99 at L24, 0.92 at L40) <sub>(x1_report.md)</sub>. X3: paraphrase meaning beyond wording at L28–L40, not separable from paper identity. X4: first author decodable at L8 but possibly explained by the title text. X2: H3 passes by rule, H2 not supported, but the author subspace hardly decodes authors (held-out R² ≤ 0.003) <sub>(x2_report.md)</sub>.
+
+### Redo programme (addenda 10–13, 2026-11-05/06)
+- Done: X7 with five false titles; all-token probe (addendum 9); CPU items C-1 to C-5 (Stage 7.1 with a title contrast: holds at the output and L62, public J-lens 6-layer mean not significant <sub>(c13_C1.md)</sub>; Stage 8 CPU proxy: RQ1 +0.130, RQ2 +0.054 multi-layer, L56 RQ2 n.s. <sub>(c13_C2.md; not the W statistic)</sub>).
+- Batch 1 (addendum 10), done: X1–X4 re-scored on all authors and all name tokens — conclusions unchanged (X1 task-independent, small L48 author − year +0.024 [0.019, 0.030]; X3 keeps about 90%; X4 from L8; X2 with an all-author subspace moves 0.032, held-out R² ≤ 0.009, H3 still insufficient) <sub>(381_stage13/reports/b1_xall_report.md)</sub>. E4b minus five false titles (per-donor exclusion, 4,654 papers): surname first token at L40 +0.076 [0.068, 0.083], surname − initial +0.033 [0.023, 0.042]; target − control positive from L16 for the given-name first token and from L24 for the surname (L40 +0.030 [0.013, 0.048]); initial not significant (L40 +0.014 [−0.002, +0.030]); with false_0 only the surname is not significant before L56 (earlier statement superseded) <sub>(b1_e4b5_report.md)</sub>. C-3b (no title-reuse exclusion; includes leakage, sensitivity only) <sub>(c13_C3b.md)</sub>.
+- Batch 1, running: P1 / P2 with five false titles (116 / 194 units done).
+- Batch 2 (addenda 11–12): code, tiny tests and hard-check unit tests done; starts automatically after batch 1; deviations D12-1..D12-3 <sub>(381_stage13/config/prereg_addendum12_deviations.json)</sub>. Batch 3 (addendum 14: Stage 10 L41–L47, L49; L0–L23; Stage 7.1B fast path): code in progress. Not done: Stage 8 GPU re-run of W (user decision).
+- Cannot be redone: one model; teacher forcing; label pipeline not on the cluster; the 4097+ citation bin has no B / D papers.
 
 ## Directory Map: Where to Find the Evidence
 
@@ -192,16 +212,32 @@ For completeness and exclusions, see [ARCHIVE_NOTES.md](ARCHIVE_NOTES.md). In th
 | Stage 8A–D | 351_stage8.py, 351_stage8B/C/D.py | 351_stage8/; 8D is under its stage8D/ |
 | Stage 10 | 351_stage10.py (frozen) run through 351_stage10_fix1.py; stage10_extra*.py for §6.7–6.9 | 351_stage10/ (raw/ not included) |
 | Stage 11 | 361_stage11.py; stage11_analyze.py; stage11_keeper.py | 361_stage11/ (raw/ not included) |
+| Stage 12 | 371_stage12.py; stage12_*.py | 371_stage12/ (raw/ not included) |
+| Stage 13 | 381_stage13.py; 13_stage13/stage13_*.py (M1–M5, X1–X7, addenda 9–13) | 381_stage13/ (summaries, reports, config incl. prereg addenda; raw/ not included) |
+| Group comparisons | 14_groups/*.py (addenda 7, 8; re-runs) | 391_groups/ |
 
 Read each experiment in the order **config → cohort/matching/controls → raw → summary → figures/reports**; not every stage contains all of these subdirectories.
 
 ## Status
 
-| Status | Content |
-|---|---|
-| Executed, outputs exist, archived | Stage 4–8D; cohort, historical fitting/validation, and Split-half materials |
-| Execution identity must be verified run by run | Whether the currently collected source matches the historical executed version character for character; some historical environments/parameters |
-| Not executed | Stage 8E; draft numbers are not treated as verified evidence |
-| Executed, archived without raw per-token files | Stage 10 (config, cohort, summaries, figures, reports, talk deck; raw/ is 1.2 GB and regenerable) |
-| Executed, archived without raw files | Stage 11 (config, summary CSVs, report; raw/ excluded) |
-| Excluded from this package, archived separately | Stage 7.1B, Stage 9 (still running at archive time) |
+One line per item: what it is, the conclusion, the status, and the result file (paths relative to `experiment_files/`).
+
+| Item | What | Conclusion | Status | Source |
+|---|---|---|---|---|
+| Stages 4–8D, 8E | small-sample signal and replication | true title helps; Stage 8 frozen endpoint +2.41 pp | done (8E recomputed 2026-10-30) | 351_stage8/recompute_2026-10-30/ |
+| Stage 9 Fit A | Jacobian lens fit A (Stage 9 protocol) | used as the fitA lens in Stage 10 | done | 351_stage9/ |
+| Stages 10–12 | full-cohort readout, intervention, positions / components | read early (L44–L52), spoken late (L57–L61) | done | 351_stage10/, 361_stage11/, 371_stage12/ |
+| Stage 13 M1–M4, X1–X7 | what the middle layers hold | H2 partly supported, not established; H3 insufficient | done | 381_stage13/reports/ |
+| Group comparisons (addenda 7, 8) | A/B/C/D, re-runs | recognised R0 +0.200 [0.188, 0.213] at the output | done | 391_groups/primary.csv |
+| Addendum 9 | all-token title-position probe | surname first token L40 +0.071 [0.058, 0.085] | done | 381_stage13/reports/e4b_alltok.md |
+| Addendum 13 C-1..C-5 | CPU redo items | Stage 7.1 holds at output / L62; Stage 8 CPU proxy RQ1 +0.130, RQ2 +0.054 | done | 381_stage13/reports/c13_C1.md–c13_C5.md |
+| Addendum 13 C-3b | no-exclusion sensitivity, five false titles | includes leakage, not a conclusion | done (sensitivity only) | 381_stage13/reports/c13_C3b.md |
+| Batch 1 item 1 | X1–X4 for all authors | conclusions unchanged | done (hard check PASS) | 381_stage13/reports/b1_xall_report.md |
+| Batch 1 item 2 | X7 with five false titles | all three groups pass (S(L52) +0.022 / +0.042 / +0.028) | done | 381_stage13/reports/b1_x7f_report.md |
+| Batch 1 item 3 | P1 / P2 with five false titles | — | running (116 / 194 units) | 391_groups/reports/b1_p12f_report.md (when done) |
+| Batch 1 item 4 | E4b minus five false titles (per-donor exclusion) | surname L40 +0.076 [0.068, 0.083] | done (hard check PASS) | 381_stage13/reports/b1_e4b5_report.md |
+| Batch 2 (addenda 11, 12) | name-position probe; groups C / D for E1 / E2; Stage 9 Fit B + holdout; F1 split-half; X3 by role; E1 batch noise; name-position patchscope; E1t five titles; X4 roles; M3 all tokens; model-generated names | — | code ready, queued (starts automatically after batch 1) | 381_stage13/config/prereg_addendum11.json, prereg_addendum12.json |
+| Batch 3 (addendum 14) | 3-1 Stage 10 L41–L47, L49; 3-2 L0–L23; 3-3 Stage 7.1B fast path | — | code in progress | 381_stage13/config/prereg_addendum14.json |
+| Not done | Stage 7.1B (superseded by Stage 10); Stage 8 GPU re-run of W (3-4, 3-5; user decision 2026-11-06) | — | not done | — |
+
+Raw files not in the repo: Stage 10–13 raw/ (regenerable, > 20 MB).

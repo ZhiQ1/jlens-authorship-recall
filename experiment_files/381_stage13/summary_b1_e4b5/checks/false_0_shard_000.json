@@ -1,0 +1,19 @@
+{
+ "cond": "false_0",
+ "shard": 0,
+ "n_papers": 128,
+ "tiny": false,
+ "n_nonfinite": 0,
+ "max_abs_resid": 3568.0,
+ "R_match": 1.0,
+ "R_mean_abs_dlog10": 0.0,
+ "R_status": "OK",
+ "H_resid_title_rel_max": 0.0,
+ "H_resid_title_rel_mean": 0.0,
+ "H_resid_title_bitexact_share": 1.0,
+ "H_resid_colon_rel_max": 0.0,
+ "H_resid_colon_rel_mean": 0.0,
+ "H_resid_colon_bitexact_share": 1.0,
+ "H_rel_max": 0.0,
+ "H_status": "PASS"
+}

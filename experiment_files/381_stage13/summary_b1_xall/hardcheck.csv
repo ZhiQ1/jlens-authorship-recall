@@ -1,0 +1,35 @@
+item,against,value,n_cells,max_abs_diff,at,max_abs_diff_ci,tol,ok
+xpatch per-pair first-author scores,frozen raw,30 score columns,35340,0.0,pairs new 1178 / frozen 1178 / common 1178; exact share 1.000; mean |diff| 0.00e+00,,,True
+x2 per-pair first-author scores,frozen raw,72 score columns,84816,0.0,pairs new 1178 / frozen 1178 / common 1178; exact share 1.000; mean |diff| 0.00e+00,,,True
+pscope per-pair first-author scores,frozen raw,29 score columns,34162,0.0,pairs new 1178 / frozen 1178 / common 1178; exact share 1.000; mean |diff| 0.00e+00,,,True
+para per-pair first-author scores,frozen raw,4 score columns,4548,0.0,pairs new 1137 / frozen 1137 / common 1137; exact share 1.000; mean |diff| 0.00e+00,,,True
+"x1 (frozen raw, this code)",published,R_authors,21,1.1102230246251565e-16,"{'split': 'test', 'layer': 40}",2.220446049250313e-16,0.005,True
+"x1 (frozen raw, this code)",published,R_year,21,2.220446049250313e-16,"{'split': 'all', 'layer': 8}",2.220446049250313e-16,0.005,True
+"x1 (frozen raw, this code)",published,R_field,21,1.1102230246251565e-16,"{'split': 'test', 'layer': 24}",2.220446049250313e-16,0.005,True
+"x1 (frozen raw, this code)",published,R_random_c,21,9.540979117872439e-17,"{'split': 'all', 'layer': 40}",9.71445146547012e-17,0.005,True
+"x1 (frozen raw, this code)",published,a_minus_year,21,9.367506770274758e-17,"{'split': 'test', 'layer': 32}",9.8879238130678e-17,0.005,True
+"x1 (frozen raw, this code)",published,a_minus_field,21,9.8879238130678e-17,"{'split': 'test', 'layer': 16}",9.974659986866641e-17,0.005,True
+"x1 (frozen raw, this code)",published,a_minus_random_c,21,2.220446049250313e-16,"{'split': 'test', 'layer': 24}",2.220446049250313e-16,0.005,True
+"x2_curves_old (frozen raw, this code)",published,value,20,1.1102230246251565e-16,"{'split': 'test', 'arm': 'carry', 'S': 'full', 'layer': 40}",1.1102230246251565e-16,0.005,True
+"x3_recovery (frozen raw, this code)",published,ratio,96,1.2490009027033011e-15,"{'set': 'sensitivity', 'subset': 'd_matched', 'split': 'all', 'false': 'lexical_neighbour_D', 'group': 'target_minus_control'}",3.1086244689504383e-15,0.005,True
+"x3_behaviour (frozen raw, this code)",published,mean,90,8.673617379884035e-17,"{'set': 'primary', 'subset': 'd_unmatched', 'split': 'test', 'contrast': 'orig_minus_para'}",9.71445146547012e-17,0.005,True
+"x4_D (frozen raw, this code)",published,D,42,9.367506770274758e-17,"{'split': 'all', 'answer': 'author', 'pos': 'title', 'layer': 48}",9.475926987523309e-17,0.005,True
+"x4_recognition (frozen raw, this code)",published,target_minus_control,14,9.725293487194975e-17,"{'answer': 'author', 'pos': 'title', 'layer': 56}",9.93129189996722e-17,0.005,True
+x2 verdict,published,id_layer,1,0.0,new 40 vs published 40,,0.0,True
+x2 verdict,published,auth_layer,1,0.0,new 48 vs published 48,,0.0,True
+x2 verdict,published,H2,1,0.0,new False vs published False,,0.0,True
+x2 verdict,published,H3,1,0.0,new True vs published True,,0.0,True
+x4 earliest author layer,published,title,1,,new 8 / confirmed True vs published 8.0 / True,,0.0,True
+x4 earliest author layer,published,colon,1,,new 24 / confirmed False vs published 24.0 / False,,0.0,True
+x1,published,R_authors,21,1.1102230246251565e-16,"{'split': 'test', 'layer': 40}",2.220446049250313e-16,0.005,True
+x1,published,R_year,21,2.220446049250313e-16,"{'split': 'all', 'layer': 8}",2.220446049250313e-16,0.005,True
+x1,published,R_field,21,1.1102230246251565e-16,"{'split': 'test', 'layer': 24}",2.220446049250313e-16,0.005,True
+x1,published,R_random_c,21,9.540979117872439e-17,"{'split': 'all', 'layer': 40}",9.71445146547012e-17,0.005,True
+x1,published,a_minus_year,21,9.367506770274758e-17,"{'split': 'test', 'layer': 32}",9.8879238130678e-17,0.005,True
+x1,published,a_minus_field,21,9.8879238130678e-17,"{'split': 'test', 'layer': 16}",9.974659986866641e-17,0.005,True
+x1,published,a_minus_random_c,21,2.220446049250313e-16,"{'split': 'test', 'layer': 24}",2.220446049250313e-16,0.005,True
+x2_curves_old,published,value,20,1.1102230246251565e-16,"{'split': 'test', 'arm': 'carry', 'S': 'full', 'layer': 40}",1.1102230246251565e-16,0.005,True
+x3_recovery,published,ratio,96,1.2490009027033011e-15,"{'set': 'sensitivity', 'subset': 'd_matched', 'split': 'all', 'false': 'lexical_neighbour_D', 'group': 'target_minus_control'}",3.1086244689504383e-15,0.005,True
+x3_behaviour,published,mean,90,8.673617379884035e-17,"{'set': 'primary', 'subset': 'd_unmatched', 'split': 'test', 'contrast': 'orig_minus_para'}",9.71445146547012e-17,0.005,True
+x4_D,published,D,42,9.367506770274758e-17,"{'split': 'all', 'answer': 'author', 'pos': 'title', 'layer': 48}",9.475926987523309e-17,0.005,True
+x4_recognition,published,target_minus_control,14,9.725293487194975e-17,"{'answer': 'author', 'pos': 'title', 'layer': 56}",9.93129189996722e-17,0.005,True

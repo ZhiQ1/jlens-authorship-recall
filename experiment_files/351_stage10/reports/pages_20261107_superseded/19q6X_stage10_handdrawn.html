@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stage 10 汇报：大模型在哪一层记住论文作者</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=Patrick+Hand&display=swap">
+<style>
+:root{
+  --paper:#FCFCF7; --grid:#E3EAF3; --ink:#22304A; --pencil:#6A7385;
+  --target:#D9483B; --control:#2A7F86; --hl:#FFE45E; --outer:#E9ECE4;
+  --title:"Ma Shan Zheng","ZCOOL KuaiLe","STKaiti","KaiTi",cursive;
+  --hand:"ZCOOL KuaiLe","Patrick Hand","STKaiti","KaiTi",cursive;
+  --num:"Patrick Hand","ZCOOL KuaiLe","Comic Sans MS",cursive;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#1F2B27; --grid:#283631; --ink:#EEF0E6; --pencil:#A7B2A8;
+  --target:#FF8E7E; --control:#82D3D6; --hl:rgba(255,228,94,.38); --outer:#151D1A; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#1F2B27; --grid:#283631; --ink:#EEF0E6; --pencil:#A7B2A8;
+  --target:#FF8E7E; --control:#82D3D6; --hl:rgba(255,228,94,.38); --outer:#151D1A; color-scheme:dark }
+html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0; height:100%; background:var(--outer); color:var(--ink); font-family:var(--hand); overflow:hidden}
+.viewport{position:relative; width:100%; height:100%; overflow:hidden}
+.stage{position:absolute; left:50%; top:50%; width:1280px; height:720px; transform-origin:center;
+  transform:translate(-50%,-50%) scale(var(--s,1));
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:32px 32px; box-shadow:0 2px 0 rgba(0,0,0,.06)}
+.slide{position:absolute; inset:0; padding:54px 84px 70px; display:none}
+.slide.on{display:block}
+h1,h2{font-family:var(--title); font-weight:400; margin:0; line-height:1.2}
+h1{font-size:76px}
+h2{font-size:54px; margin-bottom:30px}
+p{margin:0}
+.lead{font-size:30px; line-height:1.55}
+.small{font-size:22px; color:var(--pencil); line-height:1.5}
+.box{border:3px solid var(--ink); border-radius:255px 18px 225px 18px/18px 225px 18px 255px; padding:22px 28px}
+.box.dash{border-style:dashed}
+.hl{background:linear-gradient(100deg,transparent 1%,var(--hl) 3%,var(--hl) 95%,transparent 98%) no-repeat 0 88%/100% 58%; padding:0 .12em}
+.num{font-family:var(--num); letter-spacing:.01em}
+.t{color:var(--target)} .c{color:var(--control)}
+.row{display:flex; gap:40px; align-items:flex-start}
+.col{flex:1; min-width:0}
+.tilt-l{transform:rotate(-1.2deg)} .tilt-r{transform:rotate(1deg)}
+.note{font-size:26px; line-height:1.55}
+.note li{margin-bottom:14px}
+ul{margin:0; padding-left:1.1em}
+.big{font-family:var(--num); font-size:92px; line-height:1}
+svg text{font-family:var(--num)}
+.s-ink{stroke:var(--ink)} .s-pen{stroke:var(--pencil)} .s-t{stroke:var(--target)} .s-c{stroke:var(--control)}
+.f-ink{fill:var(--ink)} .f-pen{fill:var(--pencil)} .f-t{fill:var(--target)} .f-c{fill:var(--control)} .f-paper{fill:var(--paper)} .f-hl{fill:var(--hl)}
+.zh{font-family:var(--hand)!important}
+.nav{position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:center; align-items:center; gap:18px;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px)); pointer-events:none}
+.nav button{pointer-events:auto; font-family:var(--hand); font-size:18px; color:var(--ink); background:var(--paper);
+  border:2px solid var(--ink); border-radius:20px 6px 18px 6px/6px 18px 6px 20px; padding:6px 16px; cursor:pointer}
+.nav button:focus-visible{outline:3px solid var(--target); outline-offset:2px}
+.nav .count{pointer-events:auto; font-family:var(--num); font-size:18px; color:var(--pencil); background:var(--paper); padding:4px 10px; border-radius:10px}
+.pg{position:absolute; right:40px; bottom:26px; font-family:var(--num); font-size:22px; color:var(--pencil)}
+.bar{height:26px; border:2.5px solid var(--ink); border-radius:12px 4px 10px 4px/4px 10px 4px 12px; margin:6px 0 2px}
+.tb{border-collapse:collapse; font-size:24px; line-height:1.4}
+.tb td{padding:7px 18px 7px 0; border-bottom:2px dashed var(--grid); vertical-align:top}
+ul.small li{margin-bottom:8px}
+.tb.wide{width:100%} .tb .th td{color:var(--pencil); font-size:21px; border-bottom:2.5px solid var(--ink)}
+.tb td:last-child{padding-right:0}
+@media (prefers-reduced-motion:no-preference){ .slide.on .draw{stroke-dasharray:1400; stroke-dashoffset:1400; animation:draw 1.4s ease-out .2s forwards} }
+@keyframes draw{to{stroke-dashoffset:0}}
+</style>
+</head>
+<body><div id="superseded-banner" style="position:relative;z-index:9999;margin:0;padding:12px max(16px,env(safe-area-inset-left,0px));background:#FFE9A8;color:#3A2A00;border-bottom:2px solid #B07A00;font:600 16px/1.5 system-ui,'Noto Sans SC',sans-serif">本页已过时，最新内容见 <a href="https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD" style="color:#7A3E00;text-decoration:underline">Stage 1–13 PPT</a>（https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD）。 This page is out of date; see the current version at <a href="https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD" style="color:#7A3E00;text-decoration:underline">https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD</a>. (2026-11-07)</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+    <pattern id="hatchT" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="9" class="s-t" stroke-width="3"/></pattern>
+    <pattern id="hatchC" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)"><line x1="0" y1="0" x2="0" y2="9" class="s-c" stroke-width="3"/></pattern>
+  </defs>
+</svg>
+
+<div class="viewport">
+<div class="stage" id="stage">
+
+<!-- 1 -->
+<section class="slide on" aria-label="封面">
+  <div class="row" style="align-items:center; height:100%">
+    <div class="col" style="flex:1.3">
+      <p class="small" style="font-size:26px; margin-bottom:18px">jlens 项目，Stage 10 汇报</p>
+      <h1>大模型在哪一层<br>“记住”了论文作者？</h1>
+      <p class="lead" style="margin-top:26px">Qwen3-32B 逐层读出实验</p>
+      <p class="small" style="margin-top:40px">2026 年 10 月 26 日</p>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 440 470" width="440" height="470" role="img" aria-label="模型层的示意图，作者信息出现在最上面几层">
+        <g filter="url(#rough)" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <g class="s-ink">
+            <rect x="60" y="390" width="250" height="40" rx="10" class="f-paper"/>
+            <rect x="60" y="330" width="250" height="40" rx="10" class="f-paper"/>
+            <rect x="60" y="270" width="250" height="40" rx="10" class="f-paper"/>
+            <rect x="60" y="210" width="250" height="40" rx="10" class="f-paper"/>
+            <rect x="60" y="150" width="250" height="40" rx="10" class="f-paper"/>
+          </g>
+          <rect x="60" y="90" width="250" height="40" rx="10" class="s-t" style="fill:url(#hatchT)"/>
+          <rect x="60" y="30" width="250" height="40" rx="10" class="s-t" style="fill:url(#hatchT)"/>
+          <path d="M395 60 C 380 110, 360 100, 325 75" class="s-ink"/>
+          <path d="M325 75 l16 -2 M325 75 l6 14" class="s-ink"/>
+        </g>
+        <g font-size="22" class="f-pen">
+          <text x="185" y="417" text-anchor="middle">L24</text>
+          <text x="185" y="357" text-anchor="middle">L32</text>
+          <text x="185" y="297" text-anchor="middle">L40</text>
+          <text x="185" y="237" text-anchor="middle">L48</text>
+          <text x="185" y="177" text-anchor="middle">L56</text>
+        </g>
+        <g font-size="22" class="f-ink">
+          <text x="185" y="117" text-anchor="middle">L62</text>
+          <text x="185" y="57" text-anchor="middle">输出</text>
+        </g>
+        <text x="420" y="40" text-anchor="end" font-size="26" class="f-t zh">在这里！</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" aria-label="研究问题">
+  <h2>模型“写不出，但认得出”</h2>
+  <div class="row">
+    <div class="col">
+      <div class="box tilt-l note">
+        <p>问：“这篇论文的作者是谁？”</p>
+        <p class="small" style="margin:4px 0 14px">→ 写不出来</p>
+        <p>给 4 个作者名单让它选，换 4 种顺序</p>
+        <p class="small" style="margin-top:4px">→ 4 次全选对</p>
+      </div>
+      <p class="note" style="margin-top:28px"><span class="t">目标组</span>：写不出、但认得出，<span class="num">4,621</span> 篇<br>
+      <span class="c">对照组</span>：写不出、也认不出，<span class="num">2,220</span> 篇</p>
+    </div>
+    <div class="col">
+      <p class="lead" style="margin-bottom:18px">这种“认得”在网络的哪一层形成？</p>
+      <div class="box dash note" style="margin-bottom:22px">
+        <p><b>假设 A</b>：中间层早就算出来了，只是没说出口</p>
+        <p class="small">→ 读中间层时，目标组应该更容易读出作者</p>
+      </div>
+      <div class="box dash note">
+        <p><b>假设 B</b>：最后几层才把作者拼出来</p>
+        <p class="small">→ 两组的差别只出现在输出附近</p>
+      </div>
+    </div>
+  </div>
+  <span class="pg"></span>
+</section>
+
+<!-- data -->
+<section class="slide" aria-label="数据来源">
+  <h2>数据来源</h2>
+  <div class="row">
+    <div class="col note">
+      <div class="box tilt-l" style="margin-bottom:24px">
+        <p>论文集合：Qwen3-32B 标注包（2026-10-15）</p>
+        <p class="small num">paper_labels_with_papers.csv</p>
+      </div>
+      <table class="tb">
+        <tr><td>论文</td><td class="num">9,108 篇</td></tr>
+        <tr><td>发表年份</td><td class="num">1817–2020，中位数 2006</td></tr>
+        <tr><td>引用数</td><td class="num">0–63,901，中位数 50.5</td></tr>
+        <tr><td>引用分档</td><td class="num">13 档：0-2, 3-4, 5-8 … 4097+</td></tr>
+        <tr><td>作者</td><td class="num">每篇 1–20 位，平均 3.7 位</td></tr>
+      </table>
+    </div>
+    <div class="col note">
+      <p class="lead" style="margin-bottom:10px">8 个领域</p>
+      <table class="tb">
+        <tr><td>医学</td><td class="num">1,230</td><td>心理学</td><td class="num">1,154</td></tr>
+        <tr><td>生物</td><td class="num">1,179</td><td>化学</td><td class="num">1,134</td></tr>
+        <tr><td>计算机</td><td class="num">1,174</td><td>数学</td><td class="num">1,088</td></tr>
+        <tr><td>物理</td><td class="num">1,082</td><td>材料</td><td class="num">1,067</td></tr>
+      </table>
+      <p class="lead" style="margin:26px 0 10px">打分单位</p>
+      <p><span class="num">33,811</span> 个作者上下文，<span class="num">149,999</span> 个名字 token</p>
+      <p class="small" style="margin-top:6px">每个 token 标了角色：姓的第一个 token <span class="num">33,810</span>，姓的后续 <span class="num">39,995</span>，首字母 <span class="num">28,382</span>，标点 <span class="num">28,701</span>，名的第一个 <span class="num">9,431</span>，名的后续 <span class="num">9,357</span>，姓氏前缀 <span class="num">323</span></p>
+    </div>
+  </div>
+  <span class="pg"></span>
+</section>
+
+<!-- groups -->
+<section class="slide" aria-label="分组方法">
+  <h2>分组怎么分</h2>
+  <div class="row note" style="gap:28px; margin-bottom:26px">
+    <div class="col box tilt-l">
+      <p class="lead"><span class="num">1</span>　开放回答</p>
+      <p style="margin-top:8px">“这篇论文的作者是谁？”</p>
+      <p class="small">回答基本正确（R2）就算“写得出”</p>
+    </div>
+    <div class="col box tilt-r" style="flex:1.4">
+      <p class="lead"><span class="num">2</span>　四选一多选题，换 4 种顺序</p>
+      <p style="margin-top:8px">真作者名单 + 3 个真实团队作干扰项</p>
+      <p class="small">干扰项来自同领域、年份相近、同引用档的其他论文</p>
+    </div>
+  </div>
+  <table class="tb wide note">
+    <tr class="th"><td>组</td><td>规则</td><td>论文数</td></tr>
+    <tr><td>guard 写得出</td><td>开放回答基本正确</td><td class="num">214</td></tr>
+    <tr><td class="t">target 目标组</td><td>写不出；4 次全对，且真选项平均概率 ≥ 0.5</td><td class="num">4,621</td></tr>
+    <tr><td class="c">control 对照组</td><td>写不出；4 次里最多对 1 次</td><td class="num">2,220</td></tr>
+    <tr><td>excluded 排除</td><td>介于两者之间，不参与比较</td><td class="num">2,053</td></tr>
+  </table>
+  <p class="small" style="margin-top:16px">分组规则沿用标注包的 group_tight。引用数和分组高度相关（0-2 档目标组占 25%，4097+ 档占 99%），所以两组只在同一引用档内比较。</p>
+  <span class="pg"></span>
+</section>
+
+<!-- 3 -->
+<section class="slide" aria-label="方法">
+  <h2>怎么测</h2>
+  <div class="box tilt-r" style="font-family:var(--num); font-size:27px; margin-bottom:34px">
+    Who are the authors of the paper titled “{title}” ({year})?<br>Authors: <span class="hl">Yan Zhao</span>
+  </div>
+  <div class="row note">
+    <div class="col">
+      <p class="lead"><span class="num">1</span>　逐层“偷看”</p>
+      <p class="small">在 L24、32、40、48、56、62 层，用 logit lens 和 3 种 Jacobian lens 读出，再加真实输出 L63</p>
+    </div>
+    <div class="col">
+      <p class="lead"><span class="num">2</span>　给每个 token 打分</p>
+      <p class="small">正确的那块排第几？<br>分数 = log10(1/名次)<br>第 1 名 = 0，第 10 名 = −1</p>
+    </div>
+    <div class="col">
+      <p class="lead"><span class="num">3</span>　换标题对比</p>
+      <p class="small">真标题、5 个假标题、删掉标题<br><span class="hl" style="color:var(--ink)">标题特异信号 = 真 − 假</span><br>抵消“名字本身好猜”</p>
+    </div>
+  </div>
+  <span class="pg"></span>
+</section>
+
+<!-- conditions -->
+<section class="slide" aria-label="七种标题条件">
+  <h2>每篇论文测 7 种提示</h2>
+  <div class="row">
+    <div class="col note">
+      <table class="tb">
+        <tr><td class="num">true</td><td>真标题</td></tr>
+        <tr><td class="num">false_0 – false_4</td><td>5 个假标题</td></tr>
+        <tr><td class="num">delete</td><td>删掉标题</td></tr>
+      </table>
+      <p class="small" style="margin-top:14px">删掉标题时提示为：<span class="num">Who are the authors of the paper ({year})?</span></p>
+      <p class="lead" style="margin:28px 0 8px">假标题怎么选</p>
+      <ul class="small" style="color:var(--ink)">
+        <li>借用同领域其他论文的标题，年份不变</li>
+        <li>按年份、作者数、标题长度、引用档的差距做最小代价匹配</li>
+        <li>排除和真作者共享姓氏、或标题太相似的论文</li>
+        <li>匹配等级：strict <span class="num">35,898</span>，medium <span class="num">1,638</span>，loose <span class="num">2,565</span>，nearest <span class="num">5,439</span></li>
+      </ul>
+    </div>
+    <div class="col note">
+      <p class="lead" style="margin-bottom:14px">同一批 token，配对得到三种对比</p>
+      <div class="box tilt-r" style="margin-bottom:18px">
+        <p><span class="hl">标题特异</span> = 真标题 − 5 个假标题平均</p>
+        <p class="small">衡量“认识这篇论文”，主要指标</p>
+      </div>
+      <div class="box dash" style="margin-bottom:18px">
+        <p>总效应 = 真标题 − 删掉标题</p>
+      </div>
+      <div class="box dash">
+        <p>主题效应 = 假标题平均 − 删掉标题</p>
+        <p class="small">任何相近标题都能带来的帮助</p>
+      </div>
+    </div>
+  </div>
+  <span class="pg"></span>
+</section>
+
+<!-- readout & stats -->
+<section class="slide" aria-label="读出方式与统计方法">
+  <h2>读出方式与统计</h2>
+  <div class="row">
+    <div class="col note">
+      <p class="small" style="margin-bottom:10px">模型 Qwen/Qwen3-32B（revision <span class="num">9216db57</span>），bf16，单张 A100-80GB，teacher forcing</p>
+      <table class="tb">
+        <tr><td class="num">logit</td><td>最终归一化 + 输出层，直接接</td></tr>
+        <tr><td class="num">jlens_public</td><td>Neuronpedia 公开 lens，557 条 wikitext 拟合</td></tr>
+        <tr><td class="num">jlens_self100</td><td>自己拟合，100 条提示词</td></tr>
+        <tr><td class="num">jlens_fitA</td><td>Stage 9 修复后的 Fit A，100 条</td></tr>
+        <tr><td class="num">final</td><td>模型真实输出（L63）</td></tr>
+      </table>
+      <p class="small" style="margin-top:10px">层：L24、32、40、48、56、62，共 25 组“读出 × 层”</p>
+    </div>
+    <div class="col note">
+      <p class="lead" style="margin-bottom:6px">指标</p>
+      <p>log10(1/名次)：第 1 名 = 0，第 10 名 = −1，最差约 −5.18</p>
+      <p class="small">先对一篇论文所有 token 取平均，再对组内论文取平均；只比平均值，不比总和</p>
+      <p class="lead" style="margin:22px 0 6px">统计</p>
+      <ul class="small" style="color:var(--ink)">
+        <li>两组只在同一引用档内比较（两组都 ≥ 30 篇的档），按 n<sub>t</sub>·n<sub>c</sub>/(n<sub>t</sub>+n<sub>c</sub>) 加权合并</li>
+        <li>95% 置信区间：档内、组内按论文重抽 bootstrap，<span class="num">2,000</span> 次</li>
+        <li>敏感性分析：去掉 0-4 两个最低引用档</li>
+        <li>相关：Spearman ρ（对 log10(引用数+1)）</li>
+      </ul>
+    </div>
+  </div>
+  <span class="pg"></span>
+</section>
+
+<!-- compute & QC -->
+<section class="slide" aria-label="计算与质量控制">
+  <h2>做了哪些检查</h2>
+  <div class="row note" style="gap:28px">
+    <div class="col box tilt-l">
+      <p class="lead">计算规模</p>
+      <p class="small" style="color:var(--ink); margin-top:8px">72 个 shard × 每个 128 篇<br>7 种条件 × 72 × 25 = <span class="num">12,600</span> 个文件，全部完成<br>约 7 GPU 小时，每个 shard 约 46 秒<br>所有输入运行前冻结，sha256 校验</p>
+    </div>
+    <div class="col box tilt-r">
+      <p class="lead">parity 一致性</p>
+      <p class="small" style="color:var(--ink); margin-top:8px">快速路径 vs 逐前缀参考路径<br>12 个样本、52 个位置<br>最大 |Δlogit| <span class="num">0.16–0.37</span>，前 41 名完全一致<br>容差 0.25 → 0.5（事后，已记录）</p>
+    </div>
+    <div class="col box tilt-l">
+      <p class="lead">交叉核对与对照</p>
+      <p class="small" style="color:var(--ink); margin-top:8px">与 Stage 6 重叠的 <span class="num">972</span> 个 token：id 100% 一致，对数概率差中位数 3×10<sup>−6</sup> 到 7×10<sup>−5</sup><br>阴性对照：标点 token 标题特异信号 ≤ <span class="num">0.014</span></p>
+    </div>
+  </div>
+  <span class="pg"></span>
+</section>
+
+<!-- 5 -->
+<section class="slide" aria-label="结果一">
+  <h2>“认识这篇论文”的信号出现得很晚</h2>
+  <div class="row">
+    <div class="col" style="flex:1.45">
+      <svg viewBox="0 0 640 400" width="700" height="438" role="img" aria-label="标题特异信号逐层变化：L48 之前接近 0，L56 开始上升，L62 目标组约 0.58，对照组约 0.25">
+        <g class="s-pen" stroke-width="1.5" stroke-dasharray="4 7" fill="none">
+          <line x1="60" y1="227" x2="600" y2="227"/><line x1="60" y1="133" x2="600" y2="133"/><line x1="60" y1="40" x2="600" y2="40"/>
+        </g>
+        <g filter="url(#rough)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M60 320 L600 320 M60 320 L60 25" class="s-ink" stroke-width="3"/>
+          <polyline class="s-c draw" stroke-width="4.5" points="70,308 166,306 263,301 359,298 456,258 528,205"/>
+          <polyline class="s-t draw" stroke-width="4.5" points="70,309 166,306 263,304 359,319 456,248 528,52"/>
+          <path d="M585 77 l12 12 l-12 12 l-12 -12z" class="s-t f-t"/>
+          <path d="M585 210 l12 12 l-12 12 l-12 -12z" class="s-c f-c"/>
+        </g>
+        <g font-size="20" class="f-pen">
+          <text x="50" y="326" text-anchor="end">0</text><text x="50" y="233" text-anchor="end">0.2</text>
+          <text x="50" y="139" text-anchor="end">0.4</text><text x="50" y="46" text-anchor="end">0.6</text>
+          <text x="70" y="350" text-anchor="middle">L24</text><text x="166" y="350" text-anchor="middle">L32</text>
+          <text x="263" y="350" text-anchor="middle">L40</text><text x="359" y="350" text-anchor="middle">L48</text>
+          <text x="456" y="350" text-anchor="middle">L56</text><text x="528" y="350" text-anchor="middle">L62</text>
+          <text x="590" y="350" text-anchor="middle" class="zh">输出</text>
+          <text x="330" y="385" text-anchor="middle" class="zh">层</text>
+        </g>
+        <text x="510" y="45" text-anchor="end" font-size="24" class="f-t zh">目标组</text>
+        <text x="510" y="190" text-anchor="end" font-size="24" class="f-c zh">对照组</text>
+      </svg>
+    </div>
+    <div class="col note" style="padding-top:30px">
+      <ul>
+        <li>L24 到 L48：两组都 <span class="num">≈ 0</span></li>
+        <li>L56：开始冒头</li>
+        <li>L62：最强，目标组 <span class="hl num">+0.48 到 +0.58</span></li>
+      </ul>
+      <p class="small" style="margin-top:22px">对照组也有一点信号：认不出名单，不等于完全不认识这篇论文</p>
+    </div>
+  </div>
+  <p class="small">标题特异信号 = 真标题 − 5 个假标题平均；线为 jlens_public，菱形为最终输出</p>
+  <span class="pg"></span>
+</section>
+
+<!-- 6 -->
+<section class="slide" aria-label="结果二">
+  <h2>目标组的优势只在最后两层</h2>
+  <div class="row">
+    <div class="col" style="flex:1.45">
+      <svg viewBox="0 0 640 400" width="700" height="438" role="img" aria-label="目标组减对照组的标题特异信号：L24 到 L56 接近 0，L48 为 -0.04，L62 为 +0.23，输出为 +0.21">
+        <g class="s-pen" stroke-width="1.5" stroke-dasharray="4 7" fill="none">
+          <line x1="40" y1="160" x2="610" y2="160"/><line x1="40" y1="60" x2="610" y2="60"/>
+        </g>
+        <g filter="url(#rough)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+          <path d="M40 260 L610 260" class="s-ink" fill="none"/>
+          <rect x="55" y="259" width="50" height="3" class="s-ink f-ink"/>
+          <rect x="135" y="258" width="50" height="2" class="s-ink f-ink"/>
+          <rect x="215" y="258" width="50" height="2" class="s-ink f-ink"/>
+          <rect x="295" y="260" width="50" height="35" class="s-ink" style="fill:url(#hatchC)"/>
+          <rect x="375" y="255" width="50" height="5" class="s-ink f-ink"/>
+          <rect x="455" y="76" width="50" height="184" class="s-ink" style="fill:url(#hatchT)"/>
+          <rect x="535" y="94" width="50" height="166" class="s-ink" style="fill:url(#hatchT)"/>
+          <g class="s-ink" fill="none"><path d="M480 88 L480 64 M472 88 L488 88 M472 64 L488 64"/><path d="M560 103 L560 84 M552 103 L568 103 M552 84 L568 84"/></g>
+        </g>
+        <g font-size="20" class="f-pen">
+          <text x="32" y="266" text-anchor="end">0</text><text x="32" y="166" text-anchor="end">0.1</text><text x="32" y="66" text-anchor="end">0.2</text>
+          <text x="80" y="330" text-anchor="middle">L24</text><text x="160" y="330" text-anchor="middle">L32</text>
+          <text x="240" y="330" text-anchor="middle">L40</text><text x="320" y="330" text-anchor="middle">L48</text>
+          <text x="400" y="330" text-anchor="middle">L56</text><text x="480" y="330" text-anchor="middle">L62</text>
+          <text x="560" y="330" text-anchor="middle" class="zh">输出</text>
+        </g>
+        <g font-size="24" class="f-ink">
+          <text x="480" y="52" text-anchor="middle">+0.23</text><text x="560" y="74" text-anchor="middle">+0.21</text>
+          <text x="320" y="318" text-anchor="middle" font-size="20">−0.04</text>
+        </g>
+      </svg>
+    </div>
+    <div class="col note" style="padding-top:30px">
+      <ul>
+        <li>输出处 <span class="hl num">+0.21 [0.20, 0.22]</span>，置信区间远离 0</li>
+        <li>在同一引用档内比较；去掉最低的引用档，结论不变</li>
+        <li>中间层没有“提前拿着作者”</li>
+      </ul>
+      <p class="lead" style="margin-top:26px">更支持<b>假设 B</b></p>
+    </div>
+  </div>
+  <p class="small">目标组 − 对照组的标题特异信号，jlens_public，竖线为 95% 置信区间</p>
+  <span class="pg"></span>
+</section>
+
+<!-- 7 -->
+<section class="slide" aria-label="可信度检查">
+  <h2>这个信号可信吗？</h2>
+  <div class="row note">
+    <div class="col box tilt-l">
+      <p class="lead">阴性对照</p>
+      <p style="margin-top:10px">名字里的点和空格，不该跟标题有关</p>
+      <p class="small" style="margin-top:10px">每一层都 <span class="num">≈ 0</span>（最大 <span class="num">0.014</span>），方法不会凭空造出信号</p>
+    </div>
+    <div class="col box tilt-r">
+      <p class="lead">剂量关系</p>
+      <p style="margin-top:10px">多选题答对 0 → 4 次，输出水平一路上升</p>
+      <p class="small" style="margin-top:10px">档内 Spearman ρ = <span class="num">0.27</span>，p &lt; 0.001</p>
+    </div>
+    <div class="col box tilt-l">
+      <p class="lead">计算核对</p>
+      <p style="margin-top:10px">和 Stage 6 交叉核对，token 100% 一致</p>
+      <p class="small" style="margin-top:10px">两条计算路径的差异来自 bf16 精度；容差看过结果后从 0.25 放宽到 0.5，已如实记录</p>
+    </div>
+  </div>
+  <span class="pg"></span>
+</section>
+
+<!-- 8 -->
+<section class="slide" aria-label="补充一：名字的哪一部分">
+  <h2>信号落在名字的哪一部分？</h2>
+  <div class="row">
+    <div class="col box tilt-l">
+      <p class="lead" style="font-family:var(--num)">“S. Bree”<span class="small zh">　首字母开头，73% 的作者</span></p>
+      <p class="note" style="margin-top:16px">首字母 <span class="num">+0.05</span></p>
+      <div class="bar" style="width:19%; background:var(--target); opacity:.75"></div>
+      <p class="note" style="margin-top:14px">后面（含姓） <span class="num">+0.25</span></p>
+      <div class="bar" style="width:100%; background:var(--target); opacity:.75"></div>
+      <p class="small" style="margin-top:16px">首字母猜对了，对猜姓没有帮助</p>
+    </div>
+    <div class="col box tilt-r">
+      <p class="lead" style="font-family:var(--num)">“Yan Zhao”<span class="small zh">　完整名开头，26% 的作者</span></p>
+      <p class="note" style="margin-top:16px">名 <span class="num">+0.17</span></p>
+      <div class="bar" style="width:69%; background:var(--target); opacity:.75"></div>
+      <p class="note" style="margin-top:14px">后面（含姓） <span class="num">+0.20</span></p>
+      <div class="bar" style="width:80%; background:var(--target); opacity:.75"></div>
+      <p class="small" style="margin-top:16px">名猜进前 10 时，姓明显更好猜（<span class="num">+0.22</span>）</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:26px">数值为目标组 − 对照组的标题特异信号（输出处）。首字母几乎不带“这篇论文”的信息，完整的名和姓一样带。</p>
+  <span class="pg"></span>
+</section>
+
+<!-- 9 -->
+<section class="slide" aria-label="补充二：引用数">
+  <h2>论文越有名，模型越认识</h2>
+  <div class="row">
+    <div class="col" style="flex:1.45">
+      <svg viewBox="0 0 640 400" width="700" height="438" role="img" aria-label="按引用档的标题特异信号：目标组从 0.35 升到 0.64，对照组从 0.16 升到约 0.25">
+        <g class="s-pen" stroke-width="1.5" stroke-dasharray="4 7" fill="none">
+          <line x1="50" y1="244" x2="600" y2="244"/><line x1="50" y1="159" x2="600" y2="159"/><line x1="50" y1="73" x2="600" y2="73"/>
+        </g>
+        <g filter="url(#rough)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M50 330 L600 330 M50 330 L50 30" class="s-ink" stroke-width="3"/>
+          <polyline class="s-t draw" stroke-width="4.5" points="60,181 103,176 147,173 190,168 233,154 277,141 320,135 363,120 407,111 450,95 493,86 537,65 580,54"/>
+          <polyline class="s-c draw" stroke-width="4.5" points="60,262 103,258 147,253 190,243 233,234 277,245 320,223 363,224 407,213 450,223 493,234"/>
+        </g>
+        <g font-size="20" class="f-pen">
+          <text x="40" y="336" text-anchor="end">0</text><text x="40" y="250" text-anchor="end">0.2</text>
+          <text x="40" y="165" text-anchor="end">0.4</text><text x="40" y="79" text-anchor="end">0.6</text>
+          <text x="60" y="358" text-anchor="middle">0-2</text><text x="233" y="358" text-anchor="middle">17-32</text>
+          <text x="407" y="358" text-anchor="middle">257-512</text><text x="580" y="358" text-anchor="middle">4097+</text>
+          <text x="320" y="390" text-anchor="middle" class="zh">引用数</text>
+        </g>
+        <text x="600" y="40" text-anchor="end" font-size="24" class="f-t zh">目标组</text>
+        <text x="520" y="268" font-size="24" class="f-c zh">对照组</text>
+      </svg>
+    </div>
+    <div class="col note" style="padding-top:30px">
+      <ul>
+        <li>目标组从 <span class="num">+0.35</span> 一路升到 <span class="hl num">+0.64</span></li>
+        <li>每一个引用档里，目标组都高于对照组</li>
+        <li>和引用数的相关 ρ = <span class="num">0.45</span>，两组内部也成立</li>
+        <li>名字本身好不好猜，几乎不随引用数变化</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small">最终输出的标题特异信号，按 13 个引用档；高引用档对照组论文太少，不画</p>
+  <span class="pg"></span>
+</section>
+
+<!-- 10 -->
+<section class="slide" aria-label="补充三：lens 比较">
+  <h2>Jacobian lens 能读出更多吗？</h2>
+  <div class="row">
+    <div class="col box tilt-l note">
+      <p class="lead">读得更像名字 <span class="num" style="font-size:40px">✓</span></p>
+      <p style="margin-top:12px">L48 正确 token 进前 10 的比例</p>
+      <p style="margin-top:8px">fitA <span class="num">18.3%</span>，public <span class="num">16.2%</span>，self100 <span class="num">14.7%</span></p>
+      <p style="margin-top:4px">logit lens 只有 <span class="num">1.1%</span></p>
+    </div>
+    <div class="col box tilt-r note">
+      <p class="lead">读出是哪篇论文 <span class="num" style="font-size:40px">✗</span></p>
+      <p style="margin-top:12px">中间层多出的标题特异信号只有 <span class="num">+0.01 到 +0.03</span></p>
+      <p style="margin-top:8px">比 L62 的 <span class="num">≈ 0.44</span> 小一个数量级以上</p>
+      <p style="margin-top:4px">而且不偏向目标组</p>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:36px">中间层有“名字长什么样”的信息，但没有“这篇论文是谁写的”</p>
+  <p class="small" style="margin-top:10px">到 L62 反而是 logit lens 读得最好；三种 Jacobian lens 结论一致</p>
+  <span class="pg"></span>
+</section>
+
+<!-- 11 -->
+<section class="slide" aria-label="结论">
+  <h2>结论</h2>
+  <ol class="note" style="font-size:30px; line-height:1.6; padding-left:1.2em; margin:0">
+    <li>对具体论文作者的知识形成得很晚：<span class="hl">L56 开始出现，L62 和输出最强</span></li>
+    <li>“写不出但认得出”的论文，并没有在中间层提前拿着作者</li>
+    <li>目标组的优势几乎全部来自“认识这篇论文”，不是名字好猜，也不是引用数差异</li>
+    <li>论文引用越多，信号越强；信号主要落在姓和完整的名上</li>
+    <li>Jacobian lens 让中间层读得更好，但读不出论文特异的信息</li>
+  </ol>
+  <span class="pg"></span>
+</section>
+
+<!-- 12 -->
+<section class="slide" aria-label="局限与下一步">
+  <h2>局限与下一步</h2>
+  <div class="row">
+    <div class="col note">
+      <p class="lead" style="margin-bottom:12px">要说明的</p>
+      <ul>
+        <li>parity 容差是事后放宽的（0.25 → 0.5）</li>
+        <li>目前结论都是相关性，不是因果</li>
+        <li>分组来自同一个模型，只对 Qwen3-32B 成立</li>
+        <li>每位作者单独测，没测作者顺序和合作者</li>
+      </ul>
+    </div>
+    <div class="col note">
+      <p class="lead" style="margin-bottom:12px">接下来</p>
+      <ul>
+        <li>扩展层 L50–61（正在跑），把转折点定位得更细</li>
+        <li>接着前一位作者测下一位，看合作者是否更好猜</li>
+        <li>activation patching：把真标题在 L56 的状态换进假标题，看作者能不能“救回来”</li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-family:var(--title); font-size:64px; text-align:center; margin-top:34px" class="tilt-l">谢谢！欢迎提问</p>
+  <span class="pg"></span>
+</section>
+
+</div>
+<nav class="nav" aria-label="翻页">
+  <button id="prev" type="button">上一页</button>
+  <span class="count" id="count">1</span>
+  <button id="next" type="button">下一页</button>
+</nav>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var stage=document.getElementById('stage');
+  var count=document.getElementById('count');
+  var i=0;
+  slides.forEach(function(el,k){var p=el.querySelector('.pg'); if(p)p.textContent=k+1;});
+  function fit(){
+    var s=Math.min(window.innerWidth/1280,(window.innerHeight-56)/720);
+    stage.style.setProperty('--s',Math.max(s,0.1));
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(el,k){el.classList.toggle('on',k===i)});
+    count.textContent=(i+1)+' / '+slides.length;
+    try{history.replaceState(null,'','#s'+(i+1))}catch(e){}
+  }
+  document.getElementById('prev').onclick=function(){show(i-1)};
+  document.getElementById('next').onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1)}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    if(e.key==='Home')show(0); if(e.key==='End')show(slides.length-1);
+  });
+  var x0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50)show(dx<0?i+1:i-1); x0=null;
+  });
+  window.addEventListener('resize',fit);
+  fit();
+  var m=/^#s(\d+)$/.exec(location.hash||'');
+  show(m?parseInt(m[1],10)-1:0);
+})();
+</script>
+</body>
+</html>

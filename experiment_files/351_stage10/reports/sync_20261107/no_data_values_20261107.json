@@ -1,0 +1,13 @@
+{
+ "F2": "Stage 8D，J-Lens L56 匹配 A − B +4.98 pp [+0.32, +9.91]，100 对，55 正 / 45 负，配对 bootstrap 95% CI；去掉差最大的 10 对后 −0.39 pp（事后诊断，90 对）；351_stage8/stage8D/summary/primary_questions.csv 行 RQ2_matched_A_minus_B、matched_pair_differences.csv mode=jlens_L56",
+ "F3": "Stage 7.4 J-Lens − Vanilla 标题优势之差，7 层积分 +0.0022 [−0.0075, +0.0124]，Pilot50 50 篇，论文 bootstrap；351_stage7_4/summary/jlens_increment_bootstrap.csv 行 layer=integrated；Stage 8 L56 J-Lens − Vanilla −1.38 pp [−3.48, +0.68]，200 篇；351_stage8/stage8D/summary/jlens_minus_vanilla.csv",
+ "F4a": "Stage 10 X3，三种 Jacobian lens − logit lens，L24–L48，全部 9,108 篇：名字名次水平（level）高 +0.176 到 +1.728，标题特异信号只多 +0.007 到 +0.030，论文 bootstrap 95% CI；351_stage10/summary_extra/X3_pairwise.csv metric=level / spec，b=logit",
+ "F4b": "Stage 10 X3，(Jacobian lens − logit lens) 标题特异信号的引用档内目标−对照，L24–L56：−0.062 到 +0.006；L24、L48、L56 三种 lens 的区间都在 0 以下，L32–L40 含 0；论文 bootstrap 95% CI；351_stage10/summary_extra/X3_tc_spec_vs_logit.csv",
+ "F5": "Stage 10 补充 X1，最终输出 L63，引用档内目标−对照：首字母开头的名字，首字母 +0.048 [+0.028, +0.069]、后续 token +0.253 [+0.237, +0.269]（8,275 篇）；完整名开头，名 +0.174 [+0.136, +0.213]、后续 token +0.202 [+0.173, +0.232]（4,157 篇）；论文 bootstrap 95% CI；351_stage10/summary_extra/X1_by_format.csv readout=final",
+ "F9": "Stage 12 CPU 名字先验拆解，最终输出 L63，全部名字 token，引用档内目标−对照：真标题下 +0.247 = 标题特异 +0.207 + 名字先验 +0.087 + 主题 −0.047；标题特异部分约占 84%；9,108 篇（目标 4,621 / 对照 2,220）；371_stage12/summary_cpu/A_prior_decomposition.csv group=tc_true/tc_spec/tc_prior/tc_topic",
+ "F14a": "Stage 10，真标题 − 5 个假标题平均，引用档内目标−对照，L24–L48，logit 与三种 Jacobian lens：−0.054 到 +0.009；logit lens L24 +0.007 [+0.003, +0.010]、L32 +0.005 [+0.000, +0.011]；论文 bootstrap 95% CI；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv",
+ "F15a": "Stage 10 R1 目标 vs R0 对照，真标题 − 5 个假标题平均，引用档内目标−对照：public J-lens 从 L59 起持续为正（L59 +0.129），L48 −0.162；logit lens 从 L51 起持续为正；最终输出 +0.372 [+0.342, +0.405]；C 391 / B 885 篇，7 档；论文 bootstrap 95% CI；351_stage10/summary_r0r1/tc_R1target_vs_R0control.csv",
+ "F15b": "Stage 10 R1 论文内，写对 − 未写对的作者（论文内配对），标题特异信号：public J-lens 从 L54 起持续为正（L54 +0.038 [+0.015, +0.060]，L62 +0.258），logit lens 从 L52 起；最终输出 +0.199 [+0.168, +0.232]；495 篇，论文 bootstrap 95% CI；351_stage10/summary_r0r1/R1_author_written_minus_missed.csv excl_first_author=False",
+ "F16": "分组对比，未写出作者的最终输出 L63 信号：U0（R0 × 识别不确定）+0.287 [+0.277, +0.297]; n = 2001 (7298 authors)，介于 A +0.463 [+0.454, +0.472] 与 B +0.198 [+0.190, +0.207] 之间；团队聚类 95% CI；391_groups/summary_table.md 第 2 列",
+ "F17": "分组对比 C 组：已写出作者 +0.771 [+0.743, +0.800]; n = 507 (660 authors)，未写出作者 +0.550 [+0.526, +0.576]; n = 462 (2103 authors)；最终输出 L63，团队聚类 95% CI；391_groups/summary_table.md C 行第 2、3 列"
+}

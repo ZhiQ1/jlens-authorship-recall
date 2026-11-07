@@ -1,0 +1,23 @@
+{
+ "title": "Addendum 12 deviation record (D12-1 .. D12-3): user decisions 2026-11-06 ~21:00 EST, written before any batch-2 GPU result",
+ "applies_to": "prereg_addendum12.json (sha256 in prereg_addendum12.json.sha256; that file is unchanged)",
+ "approved_by_user": "user message 2026-11-06 ~21:00 EST (items 1 and 2 of that message)",
+ "D12-1 item 2-1 Fit B hard check": {
+  "planned": "the resumed run reproduces the stored checkpoint state (refit of the 66 accumulated prompts, rel diff <= 1e-3; about 6.2 A100-h)",
+  "replaced_by": "cheaper check that MUST include a refit on a few original prompts: (a) re-run k >= 3 original Fit A prompts through the same accumulation code and require the result to be bitwise identical to the stored Fit A quantities for those prompts (per-prompt contributions or the corresponding stored partial state); (b) recompute prompt 66 of Fit B and compare with the original log. Any non-identical result = HARD FAIL (item stops).",
+  "reason": "saves about 6 A100-h; still a bit-exact reproduction on original prompts"
+ },
+ "D12-2 item 2-2 F1 split-half hard check": {
+  "planned": "refit on all 40 papers reproduces the stored F1 lens (rel Frobenius <= 1e-3; about 3 A100-h)",
+  "replaced_by": "cheaper check that MUST include a refit on a few original prompts: (a) re-run k >= 3 original F1 fit prompts and require bitwise identity with the stored F1 per-prompt quantities (or stored partial state); (b) (S_A + S_B)/40 from the two half-fits vs the stored F1 lens (rel Frobenius <= 1e-3). Any miss = HARD FAIL.",
+  "reason": "saves about 3 A100-h"
+ },
+ "D12-3 item 2-11 model-generated names": {
+  "labels": "per-name M/H labels rebuilt with the Stage 10 name matcher (the label package has no per-name labels).",
+  "a hard check": "per paper, the rebuilt counts of M, H and U names must equal the label package's per-paper M, H, U counts; papers that differ are excluded and their number reported (job does not stop on exclusions; it stops only if the comparison code itself fails).",
+  "b primary analysis": "only papers that have at least one M and at least one H name; within-paper comparison of true vs fabricated names; AUROC stratified by paper (pairs within paper), CI by author-team cluster bootstrap (2,000 draws, archived group_folds team ids). The pooled all-names AUROC is a reference only.",
+  "c baselines": "(1) the name's position in the generated list; (2) name-string features (length, frequency of the name among all cohort authors). The probe counts as signal only if its within-paper AUROC exceeds both baselines (team-bootstrap CI of the difference > 0).",
+  "d control papers": "control papers have about 40 M names: descriptive only, no inference.",
+  "unchanged": "positions, layers, probe type, folds, shuffled-label control, greedy-reproduction hard check and the chat-template limitation of addendum 12."
+ }
+}

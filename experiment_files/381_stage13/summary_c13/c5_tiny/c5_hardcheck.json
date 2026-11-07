@@ -1,0 +1,145 @@
+{
+ "status": "TINY (FAIL vs published; a shard subset is not expected to equal the full cohort)",
+ "files": {
+  "X1_levels": {
+   "shape_pub": [
+    300,
+    11
+   ],
+   "shape_new": [
+    300,
+    11
+   ],
+   "ok": false,
+   "max_abs_diff": 8084.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X1_tc": {
+   "shape_pub": [
+    100,
+    9
+   ],
+   "shape_new": [
+    100,
+    9
+   ],
+   "ok": false,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": false
+  },
+  "X1_cond": {
+   "shape_pub": [
+    150,
+    18
+   ],
+   "shape_new": [
+    150,
+    18
+   ],
+   "ok": false,
+   "max_abs_diff": 29927.0,
+   "labels_identical": true,
+   "nan_pattern_identical": false
+  },
+  "X2_by_bin": {
+   "shape_pub": [
+    975,
+    11
+   ],
+   "shape_new": [
+    975,
+    11
+   ],
+   "ok": false,
+   "max_abs_diff": 731.0,
+   "labels_identical": true,
+   "nan_pattern_identical": false
+  },
+  "X2_spearman": {
+   "shape_pub": [
+    150,
+    8
+   ],
+   "shape_new": [
+    150,
+    8
+   ],
+   "ok": false,
+   "max_abs_diff": 8084.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X3_means": {
+   "shape_pub": [
+    72,
+    7
+   ],
+   "shape_new": [
+    72,
+    7
+   ],
+   "ok": false,
+   "max_abs_diff": 8084.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X3_pairwise": {
+   "shape_pub": [
+    108,
+    8
+   ],
+   "shape_new": [
+    108,
+    8
+   ],
+   "ok": false,
+   "max_abs_diff": 8084.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X3_tc_spec_vs_logit": {
+   "shape_pub": [
+    18,
+    5
+   ],
+   "shape_new": [
+    18,
+    5
+   ],
+   "ok": false,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": false
+  },
+  "X1_by_format": {
+   "shape_pub": [
+    20,
+    15
+   ],
+   "shape_new": [
+    20,
+    15
+   ],
+   "ok": false,
+   "max_abs_diff": 76836.0,
+   "labels_identical": true,
+   "nan_pattern_identical": false
+  },
+  "X1_cond_by_first_role": {
+   "shape_pub": [
+    6,
+    12
+   ],
+   "shape_new": [
+    6,
+    12
+   ],
+   "ok": false,
+   "max_abs_diff": 21839.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  }
+ }
+}

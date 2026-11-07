@@ -1,0 +1,52 @@
+[
+ [
+  "stage1_11_report.html",
+  "<td>见上文 M3、X1 结果</td>",
+  "<td>在 “:” 和名字位置成立；在 L4–L40，“:” 位置换问法时的移动是换论文时的 3–5 倍（L48 为 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class=\"src\">（Stage 13 X1 相似度检查，“:” 位置，同篇换问法与换论文的相对距离之比，9,108 篇、3 个问法对平均：L4–L40 为 3.0–4.9，L48 2.2，L56–L63 1.3–1.5；381_stage13/reports/x1_similarity.md colon 表；summary_m3/x1_similarity.csv question_share）</span></td>"
+ ],
+ [
+  "stage1_11_report.html",
+  "换问法的移动距离在 L4–L40 是换论文的 3–5 倍（L48 约 2.2 倍）",
+  "换问法的移动距离在 L4–L40 是换论文的 3–5 倍（L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）"
+ ],
+ [
+  "stage1_11_report.html",
+  "n = 2001 (7298 authors)",
+  "n = 2,001 (7298 authors)"
+ ],
+ [
+  "experiment_walkthrough_methods_zh.html",
+  "“:” 位置 3–5 倍。",
+  "“:” 位置 3–5 倍（L4–L40；L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class=\"src\">（x1_similarity.md colon 表）</span>。"
+ ],
+ [
+  "experiment_walkthrough_zh.html",
+  "冒号位置相反，换问法时变化是换论文的 3–5 倍。",
+  "冒号位置相反，换问法时变化是换论文的 3–5 倍（L4–L40；L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class=\"src\">（x1_similarity.md colon 表）</span>。"
+ ],
+ [
+  "keys_and_shelves_script_zh_en.html",
+  "换问法时冒号位置的状态移动是换论文的 3 到 5 倍。",
+  "换问法时冒号位置的状态移动是换论文的 3 到 5 倍（L4–L40；L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class=\"src\">（x1_similarity.md colon 表）</span>。"
+ ],
+ [
+  "keys_and_shelves_script_zh_en.html",
+  "the colon's state moves three to five times more when the question changes than when the paper changes.",
+  "the colon's state moves three to five times more when the question changes than when the paper changes (L4–L40; 2.2× at L48, 1.3–1.5× at L56–L63)<span class=\"src\">(x1_similarity.md, colon table)</span>."
+ ],
+ [
+  "progress_report_for_advisor_zh.html",
+  "换问法时冒号位置的变化是换论文的 3–5 倍",
+  "换问法时冒号位置的变化是换论文的 3–5 倍（L4–L40；L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class=\"src\">（x1_similarity.md colon 表）</span>"
+ ],
+ [
+  "stage13_script_zh_en.html",
+  "换问法时它的变化是换论文的 3 到 5 倍，存的是任务。",
+  "换问法时它的变化是换论文的 3 到 5 倍（L4–L40；L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class=\"src\">（x1_similarity.md colon 表）</span>，存的是任务。"
+ ],
+ [
+  "stage13_script_zh_en.html",
+  "it moves three to five times more when the question changes than when the paper changes,",
+  "it moves three to five times more when the question changes than when the paper changes (L4–L40; 2.2× at L48, 1.3–1.5× at L56–L63)<span class=\"src\">(x1_similarity.md, colon table)</span>,"
+ ]
+]

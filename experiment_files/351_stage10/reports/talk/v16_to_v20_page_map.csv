@@ -1,0 +1,85 @@
+v16,v20,title (v20)
+1,1,"Small samples: find a signal, try to break it"
+2,2,"Overview — One question, four lines of argument"
+3,3,Overview · design — Pilot design
+4,4,"Overview · groups — Same papers, two ways of grouping"
+5,7,Stage 1 — Cohort and behavioural labels
+6,8,"Stage 2 — One fixed model, prompt and score"
+7,9,How groups and contrasts are built
+8,10,How we read the model
+9,11,Can we trust the numbers?
+10,12,Overview · Line A — Is it about this paper?
+11,13,Stage 5 · Line A — Crossed title–author control
+12,14,Stage 7.3 · Line A — Shuffled titles: the true title helps
+13,15,Stage 7.3 · robustness — Does the title effect survive the obvious objections?
+14,17,"Stage 8D · Lines A, B — On 200 new papers the title effect replicates"
+15,18,Stage 8D–8E · Line A — But the A−B gap rests on a few pairs
+16,22,Knowing the paper shows up only at the end
+17,23,How much is just the name prior?
+18,25,The probe signal is paper-specific
+19,26,"More citations, more paper knowledge"
+20,28,Is it just the R1 papers? No.
+21,29,Authors it wrote vs authors it missed
+22,30,Overview · Line A — What we saw
+23,31,Overview · Line B — What can each readout see?
+24,32,Stage 3 · Exp 1–4 — Two lenses: Public-557 vs Self-100
+25,33,Stage 7.4 · Line B — Cross-stage audit: does J-Lens add value?
+26,34,Stage 9 · Line B — Stage 9: is the lens stable across fitting data?
+27,36,Names become readable late
+28,37,Which lens reads best?
+29,38,Do lenses reveal hidden paper knowledge?
+30,39,Read early: a probe finds it at the title
+31,40,Overview · Line B — What we saw
+32,41,"Overview · Line C — When does it appear, and when is it used?"
+33,42,Stage 4 — First readout: is any author signal there?
+34,43,Stage 7.2 · Line A — Gold vs 100 real false authors
+35,44,Target pulls ahead only in the last layers
+36,45,It builds up over the last dozen layers
+37,48,"Stage 11: intervene, do not just read"
+38,49,"The title is read in L24-L50, early"
+39,50,Overview · Line C — What we saw
+40,51,Overview · Line D — Which token carries it?
+41,52,Stage 6 · Line D — From first token to the full name
+42,53,Stage 7.1 · Line D — The A−B gap sits on the rest of the name
+43,54,First token or the rest of the name?
+44,55,Knowing the given name helps with the surname
+45,56,"Where the signal sits, and a dose-response"
+46,57,"Co-authors help, and partly replace the title"
+47,58,Overview · Line D — What we saw
+48,59,Overview · Lines A–D — Keys and shelves
+49,60,Overview — What the small samples taught us to watch for
+50,61,"Overview — Small vs large, in one table"
+51,65,Stage 12–13 — Stage 12–13: what the middle layers hold
+52,66,Stage 13 · X5 — Layer order (X5)
+53,73,"What we learned: read early, spoken late"
+54,74,Limits
+
+v20,status,title
+5,new in v17 (method page legend),Method · Legend for the method figures — method: Legend for the method figures
+6,new in v17 (method page groups),Method · Groups and samples — method: Groups and samples
+16,new in v17 (method page replication),Method · Independent replication (Stage 8) — method: Independent replication (Stage 8)
+19,new in v20,"Stage 8 frozen endpoint, re-scored on CPU"
+20,new in v17 (method page scoring),"Method · Scoring: rank, log, spec — method: Scoring: rank, log, spec"
+21,new in v17 (method page stats),Method · Statistical conventions — method: Statistical conventions
+24,new in v17 (method page probe),Method · Probe — method: Probe
+27,new in v17 (method page compare),Method · Group comparisons — method: Group comparisons
+35,new in v17 (method page readout),Method · Layer-by-layer readout — method: Layer-by-layer readout
+46,new in v17 (method page patch),Method · Replacement (patching) — method: Replacement (patching)
+47,new in v17 (method page knockout),Method · Knockout (block) — method: Knockout (block)
+62,new in v17 (method page question),Method · Changing the question — method: Changing the question
+63,new in v17 (method page paraphrase),Method · Paraphrased title — method: Paraphrased title
+64,new in v17 (method page patchscope),Method · Patchscope — method: Patchscope
+67,new in v18,Stage 12: where the paper information travels
+68,new in v18,The Stage 11 timing holds for all 5 false titles
+69,new in v18,"Same title, different question"
+70,new in v18,Patchscope and paraphrases
+71,new in v19,X2: swap only a subspace
+72,new in v20,The probe on every name token
+75,"new in v18, text updated in v19",Added after the defence (2026-11-05)
+76,"new in v19 (replaces v18 ""plan and status"")",Group comparisons: three findings
+77,new in v19,Re-runs: numerator and denominator
+78,new in v19,"Recognition changes the size, not the timing"
+79,new in v19,P1 / P2: the same small-denominator effect
+80,new in v18,CPU leftovers on existing data (post-hoc)
+81,"new in v18, rewritten in v20 (redo programme)",Redo programme (addenda 10–13)
+82,new in v20,Limits that cannot be redone

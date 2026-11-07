@@ -1,0 +1,17 @@
+item,against,value,n_cells,max_abs_diff,at,max_abs_diff_ci,tol,ok
+xpatch per-pair first-author scores,frozen raw,30 score columns,1500,0.0,pairs new 50 / frozen 50 / common 50; exact share 1.000; mean |diff| 0.00e+00,,,True
+x2 per-pair first-author scores,frozen raw,72 score columns,3600,0.0,pairs new 50 / frozen 50 / common 50; exact share 1.000; mean |diff| 0.00e+00,,,True
+pscope per-pair first-author scores,frozen raw,29 score columns,1450,0.0,pairs new 50 / frozen 50 / common 50; exact share 1.000; mean |diff| 0.00e+00,,,True
+para per-pair first-author scores,frozen raw,4 score columns,196,0.0,pairs new 49 / frozen 49 / common 49; exact share 1.000; mean |diff| 0.00e+00,,,True
+x1,"frozen raw, same shards, same code",R_authors,21,0.0,"{'split': 'test', 'layer': 4}",0.0,0.005,True
+x1,"frozen raw, same shards, same code",R_year,21,0.0,"{'split': 'test', 'layer': 4}",0.0,0.005,True
+x1,"frozen raw, same shards, same code",R_field,21,0.0,"{'split': 'test', 'layer': 4}",0.0,0.005,True
+x1,"frozen raw, same shards, same code",R_random_c,21,0.0,"{'split': 'test', 'layer': 4}",0.0,0.005,True
+x1,"frozen raw, same shards, same code",a_minus_year,21,0.0,"{'split': 'test', 'layer': 4}",0.0,0.005,True
+x1,"frozen raw, same shards, same code",a_minus_field,21,0.0,"{'split': 'test', 'layer': 4}",0.0,0.005,True
+x1,"frozen raw, same shards, same code",a_minus_random_c,21,0.0,"{'split': 'test', 'layer': 4}",0.0,0.005,True
+x2_curves_old,"frozen raw, same shards, same code",value,240,0.0,"{'split': 'test', 'arm': 'carry', 'S': 'id', 'layer': 16}",0.0,0.005,True
+x3_recovery,"frozen raw, same shards, same code",ratio,40,0.0,"{'set': 'primary', 'subset': 'all', 'split': 'tune', 'false': 'lexical_neighbour_D', 'group': 'control'}",0.0,0.005,True
+x3_behaviour,"frozen raw, same shards, same code",mean,80,0.0,"{'set': 'primary', 'subset': 'all', 'split': 'tune', 'contrast': 'para_minus_lex'}",0.0,0.005,True
+x4_D,"frozen raw, same shards, same code",D,42,0.0,"{'split': 'tune', 'answer': 'author', 'pos': 'title', 'layer': 8}",0.0,0.005,True
+x4_recognition,"frozen raw, same shards, same code",target_minus_control,14,0.0,"{'answer': 'author', 'pos': 'title', 'layer': 8}",,0.005,True

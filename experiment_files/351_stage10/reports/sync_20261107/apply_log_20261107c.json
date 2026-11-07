@@ -1,0 +1,170 @@
+[
+ [
+  "D report §1 en",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+  "recovers 0.825 at L48 and 100% from L52",
+  "recovers 0.825 at L48 and 99.6% from L52",
+  1
+ ],
+ [
+  "D deck slide 50",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+  "80–87% at L48, 100% from L52",
+  "80–87% at L48, 99.6% from L52",
+  1
+ ],
+ [
+  "D keys & shelves zh",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/keys_and_shelves_script_zh_en.html",
+  "L48 恢复 0.83，",
+  "L48 恢复 0.82，",
+  1
+ ],
+ [
+  "D keys & shelves en",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/keys_and_shelves_script_zh_en.html",
+  "recovers 0.83 at L48",
+  "recovers 0.82 at L48",
+  1
+ ],
+ [
+  "B delete 主要来自首字母和名 (report)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+  "这一差别主要来自首字母和名（L24–L32 起为正，\\+0\\.02 到 \\+0\\.09(?:<span class=\"src\">(?:(?!</span>).)",
+  "(regex)",
+  1
+ ],
+ [
+  "B delete (handbook F)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/F_stage13.html",
+  "这一差别主要来自首字母和名（L24–L32 起为正，\\+0\\.02 到 \\+0\\.09）；",
+  "(regex)",
+  1
+ ],
+ [
+  "B delete (notes 72)",
+  "NOTES",
+  "这一差别主要来自首字母和名（L24–L32 起为正，\\+0\\.02 到 \\+0\\.09(?:<span class=\"src\">(?:(?!</span>).)",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (report ×3: #alltok-results text, box, #pd-b1-e4b5)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  3
+ ],
+ [
+  "B new sentence (handbook F)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/F_stage13.html",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (notes)",
+  "NOTES",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (update box)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/advisor/index.html",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (update box)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/pages_20261106b/methods_addendum/index.html",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (update box)",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (process report)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/process_report/draft_zh.md",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (talk doc)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/progress_report_for_advisor_zh.html",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B new sentence (talk doc)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/stage13_script_zh_en.html",
+  "按逐个假标题排除、5 个假标题平均，姓的第一个 token 的 target − control 从 L24 起为正.*?前不显著(?P<p1>。?)(?P<t",
+  "(regex)",
+  1
+ ],
+ [
+  "B en (Stage 13 script)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/stage13_script_zh_en.html",
+  "surname target − control positive from L24 (L40 +0.030, L56 +0.058)",
+  "target − control positive from L16 for the given-name first token and from L24 for the surname (L40 +0.030 [0.013, 0.048]); initial not significant (L40 +0.014 ",
+  1
+ ],
+ [
+  "B en (README b)",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/github/README_draft_20261106b.md",
+  "surname target − control positive from L24 (L40 +0.030, L56 +0.058)",
+  "target − control positive from L16 for the given-name first token and from L24 for the surname (L40 +0.030 [0.013, 0.048]); initial not significant (L40 +0.014 ",
+  1
+ ],
+ [
+  "B deck slide 72",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+  "<li><b>Target − control: </b>mainly initials and given names (positive from L24–L32); surname first token, five false ti",
+  "<li><b>Target − control (five false titles, per-donor exclusion): </b>given-name first token positive from L16, surname from L24 (L40 +0.030 [0.013, 0.048]); in",
+  1
+ ],
+ [
+  "F2/F3 report table H3 cell",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+  "X2 按规则通过但子空间无解码能力，证据仍不足",
+  "X2 按规则通过，但作者子空间几乎解码不出作者（留出 R² ≤ 0.009；用全部作者重新拟合后搬动 0.032，约为完整替换的 7%），证据仍不足",
+  1
+ ],
+ [
+  "F2/F3 handbook F H3 summary",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/F_stage13.html",
+  "X2 按规则通过但子空间无解码能力，证据仍不足",
+  "X2 按规则通过，但作者子空间几乎解码不出作者（留出 R² ≤ 0.009；用全部作者重新拟合后搬动 0.032，约为完整替换的 7%），证据仍不足",
+  1
+ ],
+ [
+  "F4 report table date",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+  "<th>目前结果（2026-11-05）</th>",
+  "<th>目前结果（第 29 版，2026-11-07）</th>",
+  1
+ ],
+ [
+  "F2 deck slide 65 subtitle",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+  "H3 passes by rule but the author subspace decodes nothing → still insufficient",
+  "H3 passes by rule but the author subspace can hardly decode authors (held-out R² ≤ 0.009) → still insufficient",
+  1
+ ],
+ [
+  "F4 deck slide 65 caption",
+  "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+  "Hypotheses H1–H3 × readouts M1–M3 and current results (report v28, 2026-11-05)",
+  "Hypotheses H1–H3 × readouts M1–M3 and current results (report v29, 2026-11-07)",
+  1
+ ]
+]

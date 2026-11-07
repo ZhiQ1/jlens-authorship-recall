@@ -1,0 +1,39 @@
+{
+ "title": "Addendum 10: batch 1 of the redo programme (2026-11-05 audit follow-up) - all-author X1-X4, X7 and P1/P2 with five false titles, E4b / all-token probe minus the mean of five false titles",
+ "written": "2026-11-05 ~22:20 EST (exact time = sha256 file mtime and git)",
+ "approved_by_user": "user messages 2026-11-05 evening: 'cells written as limitations that can be redone are all redone'; batch 1 items 1-4 approved as tabled; for item 4, if the five-donor title-reuse exclusion leaves fewer than 1,000 papers, also report a version that excludes only false_0 reuse, side by side.",
+ "status_at_writing": "Audit (audit_20261105/part_A-C) found: X1-X4 score the first author only (all of that author's name tokens), X2's S_auth was fitted on the first author's first token; X7, P1, P2, E4b and the all-token probe use false_0 only. Published values that must be reproduced are listed per item. No batch-1 data exist.",
+ "general rules": {
+  "order": "each new script: tiny-model whole-pipeline test, then one real shard, then the rest",
+  "hard check (user rule for this programme; overrides the usual WARN-only rule)": "the new code must reproduce the published number it extends (listed per item) before any further job is submitted. Tolerance: absolute difference <= 0.005 on the reported statistic, or <= 4 bf16 units of the underlying logit where ranks are compared (|logit| 32-64 -> 1.0). A miss stops that item and is reported to the user; other items continue.",
+  "statistics": "unchanged from the original item (team-cluster bootstrap 2,000 draws on archived group_folds team ids; same folds, same tune/test split, same layer grids, same prompts and batch sizes)",
+  "helpers": "at most 3 helpers at once; results go to the user before any document is changed"
+ },
+ "items": {
+  "1 X1-X4 all authors": {
+   "change": "score EVERY author context of the A paper of each of the 1,178 pairs (tune 596 / test 582), all name tokens (mean log10(1/rank) per author, as score_tf), at the same layers, readouts, partner B and lexical neighbour D as published. Pair-level value = mean over the paper's authors.",
+   "primary": "the all-author pair-level version of each published X1-X4 statistic, with the same decision rules as the original (X2: addendum 6 H2/H3 rule).",
+   "stratification": "report every statistic also by author position: first author; other authors (position >= 2); and last author when n_authors >= 3.",
+   "X2 subspace": "S_auth is refitted on the M3 residual cache with targets built from ALL authors' name tokens (all roles), same k = 10, same training-paper rule and ridge CV as addendum 6; S_id, S_rand (seeds 61-63) and S_full unchanged. Both the old (first-author first-token) and new S_auth are run in the all-author scoring, so the change of subspace and the change of scoring are separable.",
+   "hard check": "the first-author subset of the new run reproduces the published X1 R curve, X2 table X2.1 (test R_S, R_rand, R_full), X3 behaviour recovery and X4 published values."
+  },
+  "2 X7 five false titles": {
+   "change": "knockout runs with false_1..false_4 in addition to false_0 on the same papers, layers and shards.",
+   "decision": "the published X7 thresholds are applied to the MEAN over the five false titles (primary); per-title values are reported beside it. The false_0-only published verdict is kept as a reference.",
+   "hard check": "the false_0 arm reproduces the published X7 values (control S(L52) = 0.051)."
+  },
+  "3 P1/P2 five false titles": {
+   "change": "Stage 12 P1 (single-position patching) and P2 (attention vs MLP component patching) on the original Stage 12 sample with donors false_1..false_4 (driver: 14_groups/rerun_gpu.py, which reproduced the originals bit for bit), plus the false_0 baseline runs already stored.",
+   "report": "recovery averaged over the five false titles (primary), per-title spread, and the numerator / denominator split by group (as 391_groups/reports/e1_num_den.md).",
+   "hard check": "the false_0 arm reproduces the published P1/P2 recovery values."
+  },
+  "4 E4b and all-token probe minus five false titles": {
+   "GPU step": "prompt-only forward for all 9,108 papers with false_1..false_4 titles, storing the title-last residual (and ':' residual) at the E4b layers (16, 24, 32, 40, 44, 48, 52, 56, 60), exactly as Stage 11 titlepos stored true / false_0.",
+   "probe": "unchanged fit (trained on true-title residuals as E4b and addendum 9); spec = probe(true) - mean over k of probe(false_k).",
+   "title-reuse exclusion": "primary: a paper is dropped when ANY of its five donor titles is a training-fold paper (5-donor rule). If fewer than 1,000 target + control papers remain, a second version that applies the exclusion to false_0 only is reported side by side (user rule).",
+   "report": "E4b first token and all addendum-9 roles, all layers; the addendum-9 primary contrasts (surname_first > 0 and surname_first - initial at L40); target - control within bin; the two permutation controls.",
+   "hard check": "the false_0 arm of the new residuals reproduces the stored Stage 11 titlepos false_0 residuals (relative norm difference <= 0.05) and the published E4b L40 +0.061 in the false_0-only version."
+  }
+ },
+ "not changed": "Stage 1-12 frozen scripts are not edited; new code lives in new files (13_stage13/stage13_b1_*.py, 14_groups/*)."
+}

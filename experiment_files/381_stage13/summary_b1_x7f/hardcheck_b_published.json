@@ -1,0 +1,9 @@
+{
+ "cells": 36,
+ "expected_cells": 36,
+ "max_abs_diff": 2.220446049250313e-16,
+ "tolerance": 0.005,
+ "control_S_L52_new": 0.05068126277376056,
+ "control_S_L52_published": 0.0506812627737605,
+ "status": "PASS"
+}

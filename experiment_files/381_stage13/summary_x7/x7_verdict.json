@@ -1,0 +1,10 @@
+{
+ "verdict": {
+  "target": true,
+  "control": false,
+  "all": true
+ },
+ "warn": [
+  "kF64 equals the Stage 11 false run on 0.5963 of rows (expected 1; batching may round differently)"
+ ]
+}

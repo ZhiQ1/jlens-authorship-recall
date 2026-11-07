@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>论证数字核对表（PPT v19 → v20）</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@700&display=swap">
+<style>
+:root{--bg:#F6F7F9;--sf:#fff;--ink:#1B2433;--mu:#5A6577;--ru:#D9DEE6;--ac:#1F5FA8;--ok:#2E7D4F;--wn:#A35A00;--bd:#B3261E;--cd:#EEF1F5;
+--sans:"Noto Sans SC","Noto Sans CJK SC","PingFang SC",system-ui,sans-serif;--serif:"Noto Serif SC","Noto Serif CJK SC",serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161D;--sf:#1A2029;--ink:#E6EAF0;--mu:#A2ACBB;--ru:#2E3642;--ac:#7FB2EE;--ok:#86CFA0;--wn:#F0B36A;--bd:#FF8A80;--cd:#232A35;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12161D;--sf:#1A2029;--ink:#E6EAF0;--mu:#A2ACBB;--ru:#2E3642;--ac:#7FB2EE;--ok:#86CFA0;--wn:#F0B36A;--bd:#FF8A80;--cd:#232A35;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 var(--sans)}
+main{max-width:1080px;margin:0 auto;padding:36px 18px 70px}
+h1{font-family:var(--serif);font-size:clamp(24px,4vw,32px);margin:0 0 8px}
+h2{font-family:var(--serif);font-size:21px;margin:40px 0 10px;padding-top:12px;border-top:2px solid var(--ink)}
+.lead{color:var(--mu);max-width:72ch}
+code{font-size:.86em;background:var(--cd);padding:1px 4px;border-radius:3px;overflow-wrap:anywhere}
+.tw{overflow-x:auto;border:1px solid var(--ru);border-radius:6px;background:var(--sf);margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}
+th,td{border-bottom:1px solid var(--ru);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--cd);white-space:nowrap}tr:last-child td{border-bottom:0}
+.ok{color:var(--ok);font-weight:700}.fx{color:var(--ac);font-weight:700}.wn{color:var(--wn);font-weight:700}.bd{color:var(--bd);font-weight:700}
+.box{background:var(--sf);border:1px solid var(--ru);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0}
+</style></head><body><div id="superseded-banner" style="position:relative;z-index:9999;margin:0;padding:12px max(16px,env(safe-area-inset-left,0px));background:#FFE9A8;color:#3A2A00;border-bottom:2px solid #B07A00;font:600 16px/1.5 system-ui,'Noto Sans SC',sans-serif">本页已过时，最新内容见 <a href="https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta" style="color:#7A3E00;text-decoration:underline">下载页上的严格数字核对表（2026-11-07）</a>（https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta）。 This page is out of date; see the current version at <a href="https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta" style="color:#7A3E00;text-decoration:underline">https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta</a>. (2026-11-07)</div><main>
+<h1>论证数字核对表：PPT v19 → v20</h1>
+<p class="lead">对象：PPT v19 中承担论证的页（各线小结 29、39、49、57，钥匙和书架 58，大小样本对照 60，总结 71，局限 72，以及 X2 70 与分组 74）。每个数字列出它是怎么算的、出自哪个文件，并对照方法手册 v20261105c 核对。2026-11-06。</p>
+<div class="box"><b>状态说明。</b><span class="ok">一致</span> = 数字、算法、出处与手册相符；<span class="fx">已改</span> = v20 已修正；<span class="wn">待查</span> = 手册没有摘录这个数，只能回原文件核对；<span class="bd">待改</span> = 不在 PPT 里、需在其他文件修改。出处照抄手册和 PPT 备注，没有登录集群核对。</div>
+
+<h2>一、钥匙和书架（第 58 页）</h2>
+<div class="tw"><table>
+<tr><th>论点</th><th>数字</th><th>怎么得出</th><th>出处</th><th>状态</th></tr>
+<tr><td>① 书在架上</td><td>≈ 0.44（L62）</td><td>标题特异信号 = 真标题 − 5 个假标题平均，log10(1/名次)，名字 token 平均；L62，全部 9,108 篇简单平均；三种 Jacobian lens 0.436–0.444（public 0.442）</td><td><code>351_stage10/summary_extra/X3_means.csv</code>；报告 §6.9</td><td><span class="wn">待查</span>：手册只给分组均值（public L62 target 0.560、control 0.235），全部论文均值未摘录</td></tr>
+<tr><td>① 书在架上</td><td>probe 从 L24 读出</td><td>标题最后一个 token、第 l 层残差 → ridge → “:” 处 L63 状态；只打分每位作者第一个名字 token；真标题 − false_0；团队分折 + 剔除标题复用 + 训练折标准化；L24 +0.050，1,863 篇</td><td><code>381_stage13/reports/e4b_trainstd_compare.md</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>② 钥匙 = 标题</td><td>0.82（L48）、≈ 1.0（L52）</td><td>E1：真标题运行标题之后全部位置的 block 输出换进 false_0 运行；R = mean(替换 − 假) ÷ mean(真 − 假)；1,186 篇；0.825 [0.807, 0.842]、0.996 [0.989, 1.003]</td><td><code>361_stage11/summary/E1_recovery.csv</code>（group = all）</td><td><span class="ok">一致</span></td></tr>
+<tr><td>②</td><td>名字位置 0.61 → 0.85；“:” ≤ 0.17</td><td>P1 单位置替换，同一估计量；names L48 0.612、L52 0.847；p1 “:” L52 0.172 [0.156, 0.187]</td><td><code>371_stage12/summary/P1_patch_pos.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>②</td><td>L52 后阻断几乎无损失</td><td>E2：从 l 层起禁止标题之后位置注意标题；损失 = mean(l=64 基线 − 阻断) ÷ mean(真 − 假)；L52 0.007</td><td><code>361_stage11/summary/E2_knockout.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>③ 不是“取不出”</td><td>L24–L40 ≈ 0</td><td>标题特异信号的档内 target − control（10 档，target 3,734 / control 2,182，w = n<sub>t</sub>n<sub>c</sub>/(n<sub>t</sub>+n<sub>c</sub>)）；四种读出 L24–L40 都在 −0.004 到 +0.009</td><td><code>351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>③</td><td>L48 −0.04 到 −0.05</td><td>同上，L48：public −0.044、self100 −0.054、fitA −0.037，区间不含 0；<b>logit lens +0.004</b></td><td>同上</td><td><span class="fx">已改</span>：v19 未说明只限 Jacobian lens，v20 写为 “J-lens −0.04 to −0.05 at L48”，备注补“logit lens 约为 0”</td></tr>
+<tr><td>③</td><td>上升起点与最陡段</td><td>同上，logit lens 细层：L50 +0.007 [0.001, 0.014]、L52 +0.018、L54 +0.030、L56 +0.065、L58 +0.114、L60 +0.178、L62 +0.229；public 到 L57 转正 +0.029 [0.009, 0.048]</td><td>同上（扩展轮 11378377）</td><td><span class="fx">已改</span>：v19 写 “grows only at L57–61”，v20 改为 “rises from ~L50, steepest L57–61”，备注同步</td></tr>
+<tr><td>③</td><td>输出处 +0.21</td><td>同上，final L63：0.20743 [0.19535, 0.21976]，论文 bootstrap B = 2,000，种子 3511</td><td>同上；手册附录 F 逐位核对</td><td><span class="fx">已改</span>：备注区间 [0.196, 0.220] → [0.195, 0.220]</td></tr>
+<tr><td>④ 哪个书架</td><td>注意力 0.23（L48）；MLP 0.18、0.22（L52、L56）</td><td>P2：只替换单层 attention（o_proj 后）或 MLP（down_proj 后）输出，范围为整段对齐尾部 + 名字位置；同一 R</td><td><code>371_stage12/summary/P2_patch_comp.csv</code></td><td><span class="ok">一致</span></td></tr>
+</table></div>
+
+<h2>二、各线小结与总表（第 29、39、49、57、60、71 页）</h2>
+<div class="tw"><table>
+<tr><th>页</th><th>数字</th><th>怎么得出</th><th>出处</th><th>状态</th></tr>
+<tr><td>29、60</td><td>Pilot L56 +9.3 pp</td><td>7.3：W(真标题) − 20 个错误标题 W 平均，J-Lens L56，合并池，50 篇；区间为 2026-10-30 重算，B = 20,000，种子 20261046：+9.34 [+4.77, +14.00]</td><td><code>351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv</code></td><td><span class="fx">已改</span>：第 14、29、60 页备注把原报告查无来源的 [4.7, 13.9] / [0.047, 0.139] 标成“重算”，v20 改为 [4.8, 14.0] / [0.048, 0.140]</td></tr>
+<tr><td>29、60</td><td>200 篇 +5.2 pp</td><td>8D RQ1，J-Lens L56，200 篇，+5.18 [2.93, 7.48]，种子 3518402</td><td><code>351_stage8/stage8D/summary/primary_questions.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>29</td><td>A − B +5.0 pp，去 10 对消失</td><td>8D RQ2 <b>L56</b>，100 对，+4.98 [0.32, 9.91]；去掉最大 10 对后 −0.39（事后诊断）。冻结主终点（7 层积分）为 +2.41 [0.91, 4.00]，逐对剔除 100/100 不含 0</td><td><code>primary_questions.csv</code>；<code>matched_pair_differences.csv</code>；<code>recompute_2026-10-30/s8_endpoints.csv</code></td><td><span class="fx">已改</span>：正文补 “at L56”，避免与冻结主终点混淆（第 17 页已列 +2.41）</td></tr>
+<tr><td>29、60、71</td><td>输出处 +0.21 [0.20, 0.22]</td><td>见第一部分</td><td>同上</td><td><span class="fx">已改</span>（备注区间）</td></tr>
+<tr><td>29、71</td><td>名字先验约 1/3；姓上约 0</td><td>Stage 12 CPU 拆解：真标题差 = 先验 + 主题 + 论文特有；target − control 先验 +0.087 [0.070, 0.103] ÷ 真标题 +0.247 = 0.35；姓首 token 先验 +0.022 [−0.019, 0.063]</td><td><code>371_stage12/summary_cpu/A_prior_decomposition.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>29、60</td><td>ρ = 0.45</td><td>final L63 标题特异信号对 log10(引用 + 1) 的 Spearman，9,108 篇，0.451 [0.433, 0.467]</td><td><code>351_stage10/summary_extra/X2_spearman.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>29、60</td><td>R0 only +0.20 [0.19, 0.21]</td><td>只用 A 对 B，final L63 档内差，3,423 / 2,151 篇，+0.199 [0.188, 0.212]</td><td><code>351_stage10/summary_r0/B_spec_target_vs_control_within_bin_R0.csv</code></td><td><span class="ok">一致</span>（手册新版已是 0.188）</td></tr>
+<tr><td>29</td><td>C 比 A 多 +0.11</td><td>target 内 R1 − R0，final L63，每格 ≥ 10，485 / 3,204 篇，+0.110 [0.086, 0.135]。另一脚本 <code>stage10_extra_r0r1.py</code> 得 [0.086, 0.133]（随机序列不同）。用全部作者算，含已写出的作者；分组对比只用未写出作者时 P2-other 为 +0.061</td><td><code>351_stage10/summary_r0/target_R1_minus_R0_within_bin.csv</code></td><td><span class="ok">一致</span>；论证时应同时引第 74 页的 +0.061，说明 +0.11 含循环部分</td></tr>
+<tr><td>39</td><td>L48 前 10 命中 15–18% 对 1%</td><td>Stage 10 X3，真标题，9,108 篇；备注写 14.7%–18% 与 1.1%</td><td><code>351_stage10/summary_extra/X3_means.csv</code></td><td><span class="wn">待查</span>：手册未摘录；计数单位（token 或论文）手册也没写</td></tr>
+<tr><td>39</td><td>J-Lens − Vanilla +0.002；−1.4 pp</td><td>7.4 积分增量 +0.00221 [−0.00753, +0.01241]；8D L56 −1.38 [−3.48, +0.68]</td><td><code>351_stage7_4/summary/jlens_increment_bootstrap.csv</code>；<code>stage8D/summary/jlens_minus_vanilla.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>39</td><td>多出的信号 +0.01–0.03</td><td>Jacobian lens − logit lens 的标题特异信号，L24–L48，+0.007 到 +0.030</td><td><code>351_stage10/summary_extra/X3_pairwise.csv</code></td><td><span class="wn">待查</span>：手册只给这部分的 target − control，没给水平值</td></tr>
+<tr><td>39</td><td>probe +0.05 → +0.08</td><td>E4b 确认版（训练折标准化）全部论文：L24 0.050、L40 0.061、L56 0.075，L24–L60 0.047–0.080</td><td><code>e4b_trainstd_compare.md</code> 第一张表</td><td><span class="fx">已改</span>：备注原写“页面上 +0.04 到 +0.08 是复核前的数字”，与页面已不符，改为原始版 / 复核版分开写</td></tr>
+<tr><td>49</td><td>71%</td><td>Stage 4，J-Lens L56 第一作者首 token RR，最大单篇占总和 71.03%</td><td><code>351_stage4_artifacts/audit/audit_report.md</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>49</td><td>L48 恢复 80–87%</td><td>E1，target 0.803、control 0.866</td><td><code>361_stage11/summary/E1_recovery.csv</code></td><td><span class="fx">已改</span>：正文出处原写 x6_report.md</td></tr>
+<tr><td>49、60</td><td>“起点”</td><td>见第一部分 ③：target − control 由 logit lens 约 L50 起上升，public lens L57 转正；单组曲线（第 21 页）在 L56 明显上升</td><td>同上</td><td><span class="fx">已改</span>：v19 “L56 is where it starts / starts L56” 与第 44、71 页 “~L50” 矛盾，统一为 “starts ~L50; steepest L57–61”</td></tr>
+<tr><td>57</td><td>73% 以首字母开头</td><td>24,739 / 33,780 个作者上下文</td><td><code>351_stage10/summary_extra/X1_cond_by_first_role.csv</code></td><td><span class="wn">待查</span>：手册有 24,739，但分母 33,780 未摘录（全队列 33,811 个上下文，差 31 个，可能是第一个 token 为标点等的上下文）</td></tr>
+<tr><td>57</td><td>+0.021 / +0.001；+0.22</td><td>7.1 JMRR 7 层积分 A − B，20 对；X1_cond 完整名开头 8,876 位作者，名进前 10 − 未进，姓 +0.222 [0.165, 0.275]</td><td><code>351_stage7_1/summary/layer_and_integrated_effects.csv</code>；<code>X1_cond_by_first_role.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>71</td><td>probe target − control +0.03–0.08</td><td>E4b 确认版（训练折标准化），档内 896 / 499 篇，L24–L60 为 +0.0345（L44）到 +0.078</td><td><code>e4b_trainstd_compare.md</code> 第二张表</td><td><span class="fx">已改</span>：正文原写 +0.04–0.08，与备注不一致</td></tr>
+<tr><td>44</td><td>细层范围</td><td>主轮 L24/32/40/48/56/62 + 扩展 L50–55、L57–61（只 logit、public）；L41–47、L49 未算</td><td><code>351_stage10.py:43</code>；作业 11363851、11378377</td><td><span class="fx">已改</span>：副标题 “fine layers L40-L62” → “layers L40, L48, L50–L62”</td></tr>
+</table></div>
+
+<h2>三、X2 与分组对比（第 64、70、72、74–77 页）</h2>
+<div class="tw"><table>
+<tr><th>页</th><th>数字</th><th>怎么得出</th><th>出处</th><th>状态</th></tr>
+<tr><td>70</td><td>R_id +0.005、R_auth +0.018、R_full 0.920 / 0.428；差 +0.014 [0.008, 0.020]；约 4%</td><td>只替换子空间分量 h<sub>B</sub> + P<sub>S</sub>(h<sub>A</sub> − h<sub>B</sub>)，R 同 X1；调参集选层、测试集 582 对确认；0.018 ÷ 0.428 = 4.2%</td><td><code>381_stage13/reports/x2_report.md</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>74</td><td>P1 +0.200 [0.188, 0.213]</td><td>A − B，未写出作者（R0 即全部作者），final L63 标题特异，档内，团队 bootstrap 2,000；A 3,417 = 3,423 − 6、B 2,148 = 2,151 − 3（重建不一致剔除）</td><td><code>391_groups/primary.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>74</td><td>P3 +0.059；0.17 → 0.46</td><td>R0 论文 A + U0 + B = 4,104 + 2,001 + 2,183 = 8,288 篇，信号对 mc_team_a 斜率；0 种对 927 篇 0.170，4 种对 4,105 篇 0.463</td><td><code>primary.csv</code>；<code>stage10_curves.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>74</td><td>P2-other +0.061；约 1/3</td><td>C − A，第 2 位起未写出作者，390 / 2,826 篇；0.061 ÷ 0.200 = 0.31</td><td><code>primary.csv</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>75</td><td>分母 0.407 / 0.214；R(L48) 0.811 / 0.869</td><td>E1 未写出作者：0.330 ÷ 0.407 = 0.811，0.186 ÷ 0.214 = 0.869，B/A 分母 0.53</td><td><code>391_groups/reports/e1_num_den.md</code></td><td><span class="ok">一致</span></td></tr>
+<tr><td>77</td><td>“:” 分子 B/A 0.78–0.99（L44–L48）</td><td>正文写 L44 0.78、L48 0.99；表中只有 L48 0.99 与 L52 0.79</td><td><code>391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv</code></td><td><span class="wn">待查</span>：L44 0.78 还是 L52 0.79，需看文件；手册第十一部分同句，一并改</td></tr>
+<tr><td>72</td><td>局限页</td><td>Stage 13 已完成列表未提 X2、分组对比</td><td>—</td><td><span class="wn">未改</span>：便签空间不够（试加后溢出），X2 结论已在第 64、70 页</td></tr>
+</table></div>
+
+<h2>四、PPT 之外需要改的</h2>
+<div class="tw"><table>
+<tr><th>文件</th><th>位置</th><th>问题</th><th>状态</th></tr>
+<tr><td>实验报告</td><td>§6.4 表 final 行</td><td>+0.207 [0.196, 0.220] 应为 [0.195, 0.220]（csv 0.20743 [0.19535, 0.21976]）</td><td><span class="bd">待改</span></td></tr>
+<tr><td>方法手册 v20261105c</td><td>术语表 X2（p156）、V32（p169）、U48（p166）</td><td>仍写 X2 “未运行 / 暂停”；X2 已于 2026-11-05 按补充 6 完成</td><td><span class="bd">待改</span></td></tr>
+<tr><td>方法手册</td><td>X5 节局限与状态（p149–150）、术语表 X5（p157）、V56（p171）</td><td>仍写 top-1 检索 “从未计算”；第十一部分已补算（x5_retrieval.md，无一层高于 L4）</td><td><span class="bd">待改</span></td></tr>
+<tr><td>方法手册</td><td>附录 G4 开头（p167）</td><td>“现只剩 V42 待复核”；V42、V21、V29 已在第十一部分补算</td><td><span class="bd">待改</span></td></tr>
+<tr><td>方法手册</td><td>封面</td><td>“未知/需确认全文共 15 处”，PDF 正文只数到 13 处</td><td><span class="wn">待查</span></td></tr>
+<tr><td>方法手册</td><td>B3 表 M1/M2 行</td><td>bootstrap 1,000 次，与 M2 节 200 次不一致</td><td><span class="wn">待查</span>（<code>stage13_cpu.py</code> 第 26 行与第 142–146 行）</td></tr>
+</table></div>
+
+<h2>五、v20 修改清单</h2>
+<ol>
+<li>备注区间 [0.196, 0.220] → [0.195, 0.220]：第 4、27、29、43（2 处）、58、60 页。</li>
+<li>第 14 页备注 [4.7, 13.9] → [4.8, 14.0]；第 14、29、60 页备注 [0.047, 0.139] → [0.048, 0.140]。</li>
+<li>第 42 页备注 +0.228 → +0.229。</li>
+<li>第 29、58、60 页正文 L48 的负值注明只限 Jacobian lens；第 29、58、60 页备注同步补“logit lens 约为 0”。</li>
+<li>第 58 页正文与备注：上升起点改为约 L50（logit lens），最陡 L57–61。</li>
+<li>第 49、60 页正文与第 49 页备注：起点统一为 ~L50；第 49 页出处改为 E1_recovery.csv。</li>
+<li>第 71 页正文 probe 组间差 +0.04–0.08 → +0.03–0.08。</li>
+<li>第 39 页备注：原始版与复核版的 probe 数字分开写。</li>
+<li>第 44 页副标题写明实际层。</li>
+<li>第 29 页正文 RQ2 注明是 L56。</li>
+</ol>
+<p class="lead">v20 用 PPT 自带的校验脚本检查通过；改动页的版面与 v19 对照渲染过，没有新增溢出。</p>
+</main></body></html>

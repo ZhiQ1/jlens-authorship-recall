@@ -1,0 +1,30 @@
+{
+ "joins": {
+  "shards": 24,
+  "rows": 1137,
+  "missing_in_table": 0,
+  "missing_in_pairs": 0,
+  "primary": 1110,
+  "sensitive": 1012,
+  "primary_d_matched": 66,
+  "sensitive_d_matched": 55,
+  "rows_not_primary": 27,
+  "table_primary_in_pairs": 1110,
+  "table_sensitive_in_pairs": 1012,
+  "d_mismatch": 0,
+  "partner_mismatch": 0
+ },
+ "warn": [
+  "all shards present but primary n = 1110 (addendum 5: 1,115; table rows in pairs: 1110)",
+  "all shards present but sensitivity n = 1012 (addendum 5: 1,015)"
+ ],
+ "robust": false,
+ "not_robust": [
+  [
+   "primary",
+   "all",
+   "lex",
+   "title_last"
+  ]
+ ]
+}

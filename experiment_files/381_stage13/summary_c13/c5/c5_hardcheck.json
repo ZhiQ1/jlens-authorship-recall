@@ -1,0 +1,145 @@
+{
+ "status": "PASS",
+ "files": {
+  "X1_levels": {
+   "shape_pub": [
+    300,
+    11
+   ],
+   "shape_new": [
+    300,
+    11
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X1_tc": {
+   "shape_pub": [
+    100,
+    9
+   ],
+   "shape_new": [
+    100,
+    9
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X1_cond": {
+   "shape_pub": [
+    150,
+    18
+   ],
+   "shape_new": [
+    150,
+    18
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X2_by_bin": {
+   "shape_pub": [
+    975,
+    11
+   ],
+   "shape_new": [
+    975,
+    11
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X2_spearman": {
+   "shape_pub": [
+    150,
+    8
+   ],
+   "shape_new": [
+    150,
+    8
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X3_means": {
+   "shape_pub": [
+    72,
+    7
+   ],
+   "shape_new": [
+    72,
+    7
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X3_pairwise": {
+   "shape_pub": [
+    108,
+    8
+   ],
+   "shape_new": [
+    108,
+    8
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X3_tc_spec_vs_logit": {
+   "shape_pub": [
+    18,
+    5
+   ],
+   "shape_new": [
+    18,
+    5
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X1_by_format": {
+   "shape_pub": [
+    20,
+    15
+   ],
+   "shape_new": [
+    20,
+    15
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  },
+  "X1_cond_by_first_role": {
+   "shape_pub": [
+    6,
+    12
+   ],
+   "shape_new": [
+    6,
+    12
+   ],
+   "ok": true,
+   "max_abs_diff": 0.0,
+   "labels_identical": true,
+   "nan_pattern_identical": true
+  }
+ }
+}

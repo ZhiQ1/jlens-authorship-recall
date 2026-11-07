@@ -1,0 +1,1 @@
+{"run": "e4b_parity", "layer": 44, "alpha": 1.0, "alpha_errs_fold0": [522.9094078666179, 397.56580526457833, 436.66016339685876], "n_papers": 9108, "heldout_r2_true": 0.42049163579940796, "n_drop0": 7245, "n_drop5": 9107, "tiny": false}

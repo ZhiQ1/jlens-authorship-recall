@@ -1,0 +1,397 @@
+path,note
+351_stage10/cohort/contexts.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/cohort/name_tokens.parquet,cells skipped: 149999 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/cohort/papers.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/cohort/conditions/false_titles.parquet,cells skipped: 45540 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/cohort/conditions/prompts.parquet,cells skipped: 63756 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/raw,dir excluded (document/tiny/test/backup)
+351_stage10/reports/advisor,dir excluded (document/tiny/test/backup)
+351_stage10/reports/downloads,dir excluded (document/tiny/test/backup)
+351_stage10/reports/github,dir excluded (document/tiny/test/backup)
+351_stage10/reports/merged_deck,dir excluded (document/tiny/test/backup)
+351_stage10/reports/method_figs,dir excluded (document/tiny/test/backup)
+351_stage10/reports/methods,dir excluded (document/tiny/test/backup)
+351_stage10/reports/numcheck,dir excluded (document/tiny/test/backup)
+351_stage10/reports/pages_20261106b,dir excluded (document/tiny/test/backup)
+351_stage10/reports/plan,dir excluded (document/tiny/test/backup)
+351_stage10/reports/process_report,dir excluded (document/tiny/test/backup)
+351_stage10/reports/stage1_11,dir excluded (document/tiny/test/backup)
+351_stage10/reports/talk,dir excluded (document/tiny/test/backup)
+351_stage10/reports/talk_docs,dir excluded (document/tiny/test/backup)
+351_stage10/reports/tools,dir excluded (document/tiny/test/backup)
+351_stage10/snapshot_main_round/reports/talk,dir excluded (document/tiny/test/backup)
+351_stage10/snapshot_main_round/summary/paper_scores.parquet,cells skipped: 227700 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/summary/paper_scores.parquet,cells skipped: 428076 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/summary_r0r1/R1_author_scores.parquet,cells skipped: 136018 rows (per-paper/per-token/raw table); only row/value counts
+351_stage10/summary_title/paper_title_contrasts.parquet,cells skipped: 428076 rows (per-paper/per-token/raw table); only row/value counts
+361_stage11/config/sample.parquet,cells skipped: 1186 rows (per-paper/per-token/raw table); only row/value counts
+361_stage11/logs/smoke.lock,dir excluded (document/tiny/test/backup)
+361_stage11/raw,dir excluded (document/tiny/test/backup)
+361_stage11/reports/smoke.json,file excluded (tiny/test/backup/SUPERSEDED)
+361_stage11/smoke,dir excluded (document/tiny/test/backup)
+361_stage11/test_e1noise,dir excluded (document/tiny/test/backup)
+371_stage12/hookcheck_2026-10-30/tiny,dir excluded (document/tiny/test/backup)
+371_stage12/raw,dir excluded (document/tiny/test/backup)
+371_stage12/reports/n2_layers.SUPERSEDED_wording.md,file excluded (tiny/test/backup/SUPERSEDED)
+371_stage12/summary/N2_prior_pure_layers.SUPERSEDED_wording.csv,file excluded (tiny/test/backup/SUPERSEDED)
+371_stage12/test_b2_f1team_11682581,dir excluded (document/tiny/test/backup)
+371_stage12/test_b2_f1team_11682708,dir excluded (document/tiny/test/backup)
+371_stage12/test_b2_f1team_11689897,dir excluded (document/tiny/test/backup)
+371_stage12/test_b2_f1team_v2_11691148,dir excluded (document/tiny/test/backup)
+371_stage12/test_f1split,dir excluded (document/tiny/test/backup)
+381_stage13/alltok_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/b1_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/b1_x7f_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/b1_xall_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/b2_fitb_tiny_11689919,dir excluded (document/tiny/test/backup)
+381_stage13/b2_fitb_v2tiny_11691147,dir excluded (document/tiny/test/backup)
+381_stage13/b2_gennames/names.parquet,cells skipped: 35027 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/b2_gennames/papers.parquet,cells skipped: 6717 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/b2_gennames_tiny_11689969,dir excluded (document/tiny/test/backup)
+381_stage13/b2_gennames_tiny_11690954,dir excluded (document/tiny/test/backup)
+381_stage13/b2_gennames_v2/names.parquet,cells skipped: 35027 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/b2_gennames_v2/papers.parquet,cells skipped: 6717 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/b2_gennames_v2/summary/label_counts.csv,cells skipped: 6841 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/b2_gennames_v2tiny_11691149,dir excluded (document/tiny/test/backup)
+381_stage13/config/pairs.parquet,cells skipped: 1178 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/followup_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/raw,dir excluded (document/tiny/test/backup)
+381_stage13/reports/e4b_trainstd_compare_tiny.md,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/reports/m2_teamci_tiny.BAD_fold_order_differs_d0026_keep.md,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/reports/m2_teamci_tiny2.md,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/reports/m3_report.before_verdict2_2026-10-31.md,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/reports/m3_report_test.md,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/reports/m3_scores.SUPERSEDED_loose_group_col.md,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_e4b_parity_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_first_alltok_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L16.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L24.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L32.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L40.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L44.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L48.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L52.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L56.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_cont_L60.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L16.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L24.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L32.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L40.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L44.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L48.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L52.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L56.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_given_first_L60.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L16.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L24.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L32.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L40.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L44.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L48.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L52.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L56.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_initial_L60.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L16.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L24.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L32.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L40.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L44.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L48.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L52.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L56.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_cont_L60.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/controls/perpaper_surname_first_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_e4b_parity_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_first_alltok_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L16.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L24.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L32.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L40.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L44.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L48.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L52.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L56.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_cont_L60.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L16.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L24.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L32.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L40.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L44.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L48.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L52.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L56.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_given_first_L60.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L16.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L24.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L32.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L40.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L44.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L48.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L52.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L56.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_initial_L60.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L16.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L24.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L32.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L40.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L44.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L48.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L52.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L56.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_cont_L60.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/perpaper_surname_first_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L16.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L24.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L32.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L40.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L44.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L48.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L52.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L56.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_first_alltok_L60.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L16.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L24.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L32.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L40.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L44.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L48.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L52.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L56.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_cont_L60.parquet,cells skipped: 9357 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L16.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L24.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L32.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L40.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L44.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L48.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L52.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L56.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_given_first_L60.parquet,cells skipped: 9431 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L16.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L24.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L32.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L40.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L44.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L48.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L52.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L56.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_initial_L60.parquet,cells skipped: 28382 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L16.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L24.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L32.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L40.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L44.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L48.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L52.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L56.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_cont_L60.parquet,cells skipped: 39995 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L16.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L24.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L32.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L40.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L44.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L48.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L52.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L56.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_alltok/probe/pertoken_surname_first_L60.parquet,cells skipped: 33810 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_e4b_parity_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_first_alltok_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L16.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L24.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L32.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L40.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L44.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L48.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L52.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L56.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_cont_L60.parquet,cells skipped: 2978 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L16.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L24.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L32.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L40.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L44.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L48.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L52.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L56.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_given_first_L60.parquet,cells skipped: 4202 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L16.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L24.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L32.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L40.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L44.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L48.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L52.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L56.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_initial_L60.parquet,cells skipped: 8464 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L16.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L24.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L32.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L40.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L44.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L48.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L52.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L56.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_cont_L60.parquet,cells skipped: 8109 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L16.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L24.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L32.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L40.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L44.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L48.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L52.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L56.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_e4b5/probe/perpaper_surname_first_L60.parquet,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b1_xall/partial,dir excluded (document/tiny/test/backup)
+381_stage13/summary_b2B/unittest,dir excluded (document/tiny/test/backup)
+381_stage13/summary_b2_np/lens_perpaper.parquet,cells skipped: 510770 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_b3_unittest,dir excluded (document/tiny/test/backup)
+381_stage13/summary_c13/c1/c1_paper_values.csv,cells skipped: 3750 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_c13/c1_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/summary_c13/c2/c2_paper_values.csv,cells skipped: 15000 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_c13/c2_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/summary_c13/c3_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/summary_c13/c3b_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/summary_c13/c4_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/summary_c13/c5_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/summary_cpu_group/perpaper_probe_spec.parquet,cells skipped: 683460 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_cpu_teamci_tiny.BAD_fold_order_differs_d0026_keep,dir excluded (document/tiny/test/backup)
+381_stage13/summary_cpu_teamci_tiny2,dir excluded (document/tiny/test/backup)
+381_stage13/summary_cpu_test,dir excluded (document/tiny/test/backup)
+381_stage13/summary_cpu_trainstd/perpaper_probe_spec.parquet,cells skipped: 683460 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_cpu_trainstd_tiny,dir excluded (document/tiny/test/backup)
+381_stage13/summary_m3/m3_scores_perpaper.SUPERSEDED_loose_group_col.csv,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/summary_m3/m3_scores_perpaper.csv,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_m3/m3_scores_summary.SUPERSEDED_loose_group_col.csv,file excluded (tiny/test/backup/SUPERSEDED)
+381_stage13/summary_m3_test,dir excluded (document/tiny/test/backup)
+381_stage13/summary_m5_test,dir excluded (document/tiny/test/backup)
+381_stage13/summary_v42_test,dir excluded (document/tiny/test/backup)
+381_stage13/summary_x1x4/x4_textbase2_perpaper.csv,cells skipped: 1178 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_x1x4/x4_textbase_perpaper.csv,cells skipped: 1178 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_x1x4/x4_textbase_perpaper_posctrl.csv,cells skipped: 1178 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_x3/x3_pairs.csv,cells skipped: 1137 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_x3/x3_textbase_gap.csv,cells skipped: 3384 rows (per-paper/per-token/raw table); only row/value counts
+381_stage13/summary_x3_test,dir excluded (document/tiny/test/backup)
+381_stage13/summary_x5_test,dir excluded (document/tiny/test/backup)
+381_stage13/test_x3tok,dir excluded (document/tiny/test/backup)
+381_stage13/test_x6,dir excluded (document/tiny/test/backup)
+381_stage13/x2_tiny,dir excluded (document/tiny/test/backup)
+391_groups/papers_used.csv,cells skipped: 9080 rows (per-paper/per-token/raw table); only row/value counts
+391_groups/stage10_group_means.csv,cells skipped: 10716 rows (per-paper/per-token/raw table); only row/value counts
+391_groups/config/b2_cd_C.parquet,cells skipped: 475 rows (per-paper/per-token/raw table); only row/value counts
+391_groups/config/rerun_U0_600.parquet,cells skipped: 600 rows (per-paper/per-token/raw table); only row/value counts
+391_groups/data/author_flags.parquet,cells skipped: 33811 rows (per-paper/per-token/raw table); only row/value counts
+391_groups/data/author_signal.parquet,cells skipped: 1589117 rows (per-paper/per-token/raw table); only row/value counts
+391_groups/data/paper_signal.parquet,cells skipped: 8872378 rows (per-paper/per-token/raw table); only row/value counts
+391_groups/raw,dir excluded (document/tiny/test/backup)
+391_groups/test_b1_p12f_tiny,dir excluded (document/tiny/test/backup)
+391_groups/test_rerun_tiny,dir excluded (document/tiny/test/backup)
+391_groups/test_rerun_tiny2,dir excluded (document/tiny/test/backup)
+391_groups/test_tiny,dir excluded (document/tiny/test/backup)
+391_groups/test_tiny3,dir excluded (document/tiny/test/backup)
+351_all/351_all_papers.csv,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts
+351_all/351_four_groups.csv,cells skipped: 6841 rows (per-paper/per-token/raw table); only row/value counts
+351_all/351_stage4_artifacts/raw,dir excluded (document/tiny/test/backup)
+351_stage4_artifacts,source dir missing
+351_stage5_crossed_v2/cohort/full_6841_manifest.csv,cells skipped: 6841 rows (per-paper/per-token/raw table); only row/value counts
+351_stage5_crossed_v2/matching/pilot50_ab_pairs.csv,cells skipped: 20 rows (per-paper/per-token/raw table); only row/value counts
+351_stage5_crossed_v2/raw,dir excluded (document/tiny/test/backup)
+351_stage5_crossed_v2/summary/paper_layer_contrasts.csv,cells skipped: 750 rows (per-paper/per-token/raw table); only row/value counts
+351_stage6/raw,dir excluded (document/tiny/test/backup)
+351_stage6/summary/paper_layer_trajectories.csv,cells skipped: 750 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_1/raw,dir excluded (document/tiny/test/backup)
+351_stage7_1/summary/paper_layer_decomposition.csv,cells skipped: 750 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_1B_terminal/smoke_check.json,file excluded (tiny/test/backup/SUPERSEDED)
+351_stage7_1B_terminal/smoke_true_parity.csv,file excluded (tiny/test/backup/SUPERSEDED)
+351_stage7_1B_terminal/tasks.json,json too large: skipped
+351_stage7_1B_terminal/raw,dir excluded (document/tiny/test/backup)
+351_stage7_2/candidates/pilot50_author_candidates.csv,cells skipped: 5050 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_2/raw,dir excluded (document/tiny/test/backup)
+351_stage7_2/summary/candidate_pairwise_scores.csv,cells skipped: 75000 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_2/summary/paper_layer_pool.csv,cells skipped: 2250 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_3/raw,dir excluded (document/tiny/test/backup)
+351_stage7_3/summary/paper_null_distribution.csv,cells skipped: 2250 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_3/summary/shuffle_context_pool.csv,cells skipped: 45000 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_3/titles/pilot50_shuffled_titles.csv,cells skipped: 1000 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_4/summary/cross_stage_paper_layer.csv,cells skipped: 750 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_4/summary/jlens_vs_vanilla_paper_layer.csv,cells skipped: 400 rows (per-paper/per-token/raw table); only row/value counts
+351_stage7_4/summary/matched_lens_increment_pairs.csv,cells skipped: 20 rows (per-paper/per-token/raw table); only row/value counts
+351_stage8/controls/stage8_author_candidates.csv,cells skipped: 20200 rows (per-paper/per-token/raw table); only row/value counts
+351_stage8/controls/stage8_shuffled_titles.csv,cells skipped: 4000 rows (per-paper/per-token/raw table); only row/value counts
+351_stage8/matching/stage8_ab_pairs.csv,cells skipped: 100 rows (per-paper/per-token/raw table); only row/value counts
+351_stage8/raw,dir excluded (document/tiny/test/backup)
+351_stage8/stage8D/summary/context_level_scores.csv,cells skipped: 60000 rows (per-paper/per-token/raw table); only row/value counts
+351_stage8/stage8D/summary/paper_layer_advantage.csv,cells skipped: 3000 rows (per-paper/per-token/raw table); only row/value counts
+351_provenance_audit/raw,dir excluded (document/tiny/test/backup)
+351_self100_split_half/readout/A/raw,dir excluded (document/tiny/test/backup)
+351_self100_split_half/readout/B/raw,dir excluded (document/tiny/test/backup)
+351_self100_validation/raw,dir excluded (document/tiny/test/backup)
+351_self100_gold_false/archive/raw,dir excluded (document/tiny/test/backup)
+351_self100_gold_false/archive/summary/per_paper_pair.csv,cells skipped: 480 rows (per-paper/per-token/raw table); only row/value counts
+361_stage11_realcheck/config/sample.parquet,cells skipped: 1186 rows (per-paper/per-token/raw table); only row/value counts
+labels_20261015/__MACOSX/zhiqi_qwen3-32b_labels_2026-10-15/._bin_table.csv,"WARN read error: UnicodeDecodeError('utf-8', b'\x00\x05\x16\x07\x00\x02\x00\x00Mac OS X        \x00\x02\x00\x00\x00\t\x00\x00\x002\x00\x00\x00q\x00\x00\x00\x02\x00\x00\x00\xa3\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00ATTR\x00\x00\x00\x00\x00\x00\x00\xa3\x00\x00\x00\x98\x00\x00\x00\x0b\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x98\x00\x00\x00\x0b\x00\x00\x15com.apple.provenance\x00\x01\x02\x00\xce3Ci\x8f\x89\xe7_', 45, 46, 'invalid start byte')"
+labels_20261015/__MACOSX/zhiqi_qwen3-32b_labels_2026-10-15/._paper_labels_with_papers.csv,"WARN read error: UnicodeDecodeError('utf-8', b'\x00\x05\x16\x07\x00\x02\x00\x00Mac OS X        \x00\x02\x00\x00\x00\t\x00\x00\x002\x00\x00\x00q\x00\x00\x00\x02\x00\x00\x00\xa3\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00ATTR\x00\x00\x00\x00\x00\x00\x00\xa3\x00\x00\x00\x98\x00\x00\x00\x0b\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x98\x00\x00\x00\x0b\x00\x00\x15com.apple.provenance\x00\x01\x02\x00\xce3Ci\x8f\x89\xe7_', 45, 46, 'invalid start byte')"
+labels_20261015/zhiqi_qwen3-32b_labels_2026-10-15/paper_labels_with_papers.csv,cells skipped: 9108 rows (per-paper/per-token/raw table); only row/value counts

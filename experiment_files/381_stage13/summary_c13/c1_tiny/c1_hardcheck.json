@@ -1,0 +1,30 @@
+{
+ "fa_first_final_true": {
+  "n_papers": 15,
+  "n_expected": 15,
+  "n_missing": 0,
+  "max_abs_diff": 0.0,
+  "equal": true
+ },
+ "aa_all_final_63": {
+  "n": 15,
+  "max_abs_diff_true": 0.0,
+  "max_abs_diff_spec": 0.0
+ },
+ "aa_all_jlens_public_56": {
+  "n": 15,
+  "max_abs_diff_true": 0.0,
+  "max_abs_diff_spec": 0.0
+ },
+ "warn_gold_first_token_match": {
+  "n": 15,
+  "match": 15,
+  "mismatch_papers": []
+ },
+ "warn_gold_all_tokens_match": {
+  "n": 15,
+  "match": 15,
+  "mismatch_papers": []
+ },
+ "status": "PASS"
+}

@@ -10,7 +10,7 @@
 <ul>
 <li><b>H1</b>：M3 ":" 位置的状态是任务特定的（L16–L40 的迁移比 T 都 &lt; 0.5），H1 判读不变（<a href="#s13-m3">s13-m3</a>）。</li>
 <li><b>H2</b>：M3 不支持；X3 显示中间层超出用词的语义表示，但不能与论文身份区分；H2 目前依据 M2 和 X1，其中 M2 的 Qwen 胜过 BERT 按补充 2 只作参考（M3 见 <a href="#s13-m3">s13-m3</a>，X3 见 <a href="#s13-x3">s13-x3</a>）。另外，X4 最早可解码顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反（<a href="#s13-x4">s13-x4</a>）。X2 不支持 H2（<a href="#s13-x2">s13-x2</a>）。<b>X5 层序（2026-11-02 已完成，CPU，只用已有结果）</b>：M3 身份指数从不高于 L4，预注册的跨问法 top-1 检索没有计算，所以 X5 没有"身份层"；作者首 token 由 probe 在 ≤ L16（E4b）读出；名字位置 lens 读出按 0.05 界在 L53–L58，F2 在 L62（<a href="#s13-x5">s13-x5</a>）。</li>
-<li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足；X2 按规则通过但子空间无解码能力，证据仍不足（<a href="#s13-x2">s13-x2</a>）。</li>
+<li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足；X2 按规则通过，但作者子空间几乎解码不出作者（留出 R² ≤ 0.009；用全部作者重新拟合后搬动 0.032，约为完整替换的 7%），证据仍不足（<a href="#s13-x2">s13-x2</a>）。</li>
 </ul>
 <p><b>总体判断（2026-11-03，与报告、PPT 统一）：H2 部分支持但未确立，H3 证据不足。</b></p>
 <p><span class="src">R13/reports/m3_report.md 末节 "Reading under prereg addendum 2" · R13/summary_m3/m3_verdict_addendum2.csv · R13/reports/x4_report.md · R13/summary_x1x4/x4_rolesplit.csv · PROG 2026-10-31 01:00 条 · R13/reports/x3_report.md、x3_textbase_recovery.md、x3_groupsplit.md · stage1_11_report.html 假设表"目前结果（2026-11-01）"列（v23）· PROG 2026-11-01 条</span> <span class="st st-rechecked">复核过</span></p>
@@ -50,6 +50,7 @@
 
 <!-- ====================================================== M1 -->
 <h3 id="s13-m1">M1　lens 在名字位置排第一的是什么 token</h3>
+<div class="fix"><b>2026-11-06 补（补充 13 C-4）：</b>换成另外 4 个假标题，各读出、各层排第一的词改变的比例与 false_0 平均只差 +0.26 个百分点（范围 −0.08 到 +0.64），结论不变。<span class="src">381_stage13/reports/c13_C4.md（149,999 个名字 token，47 个读出 × 层；false_0 列逐位复现 M1_title_sensitivity.csv）</span></div>
 <h4>1 问题与作用</h4>
 <p>Stage 10 的 lens 在中间层读不出正确名字。M1 问：那它读出的是什么？如果是"格式/句末"之类，支持 H1 或说明 lens 在中间层没在读内容；并看读出是否随标题而变（即使读错）。</p>
 <h4>2 材料</h4>
@@ -258,7 +259,7 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 <p><span class="st st-done">已完成</span>（作为 Stage 12 F1/F2 完成，2026-10-28 20:35）。无 Stage 13 预注册条款，故无偏离可言。</p>
 
 <!-- ====================================================== M5 -->
-<h3 id="s13-m5">M5　逐位置 probe / patchscope / 名字位置上的真假判别（提议）</h3>
+<h3 id="s13-m5">M5　逐位置 probe / patchscope / 名字位置上的真假判别</h3>
 <div class="fix"><b>2026-11-05 补（事后分析）：</b>M5 中能用已有数据回答的部分已做（名字位置上的真假标题判别，lens 读出；标题 / “:” 位置用 probe 区分真标题与 false_0 运行），在名字位置做 probe / patchscope 需要新的 GPU 运行，未提交。结果见 <a href="#k-cpu">十一 · CPU 补充</a>。<span class="src">381_stage13/reports/m5_report.md</span></div>
 <h4>1 问题与作用</h4>
 <p>PROG 原文："M5 (per-position probes, patchscope, true/false at name positions) is proposed and will be decided after M1–M3."报告 Part IV 提到"真/假判别要在上下文里已经出现作者名字的位置上做（M5③）"，因为在标题和 ":" 位置真假标题都是真实论文、设计上不可区分。<span class="src">PROG 第 491 行 · stage1_11_report.html Part IV "关于区分真标题和假标题"</span></p>
@@ -271,10 +272,11 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 <h4>8 局限与质疑</h4>
 <p>M5 的 patchscope 部分后来在一定程度上由 X4 覆盖（X4 在标题/":" 位置，不在名字位置）。M5①②③ 的完整定义只在报告里以"M5③"被引用，没有全文。<b>处置（用户 2026-10-30 决定，U47）</b>：如果 M5 问的是与 X4 同一个问题，就并入 X4；否则放弃并写明理由。截至 2026-10-30 还没有逐项判断哪些部分与 X4 相同，所以目前没有任何 M5 计算。<span class="src">PROG 2026-10-30 14:00 条 U47</span></p>
 <h4>9 状态</h4>
-<p><span class="st st-plan">计划未做</span>（与 X4 重合则并入 X4，否则放弃）。无预注册条款。</p>
+<p><span class="st st-done">CPU 部分已完成（2026-11-05，事后）</span>：名字位置上的真假判别与标题位置 probe 区分真假运行，见十一 · CPU 补充；名字位置的 probe / patchscope 列入补充 11 A 与补充 12 第 2-7 项（批次 2）。原 2026-10-30 决定：与 X4 重合则并入 X4，否则放弃。</p>
 
 <!-- ====================================================== X1 -->
 <h3 id="s13-x1">X1　跨问法标题 patching（因果）</h3>
+<div class="fix" id="s13-xall"><b>2026-11-06 补做（补充 10 第 1 项：X1–X4 改为全部作者）：</b>X1–X4 改为给全部作者打分（全部名字 token），并按作者排位分层。结论都不变：X1 仍与任务无关，L48 有一点小而确实的任务依赖（作者 − 年份 +0.024 [0.019, 0.030]<span class="src">381_stage13/reports/b1_xall_report.md “X1” 节：测试集，全部作者分层，作者 − 年份，团队聚类 bootstrap 2,000 次 95% CI</span>）；X3 改写标题保留约 90% 的作者偏好<span class="src">381_stage13/reports/b1_xall_report.md “X3 behaviour” 表：主分析测试集 552 篇，恢复比 (改写 − D)/(原标题 − D) = 0.897 [0.868, 0.926]</span>，target 与 control 一样<span class="src">同表 target − control −0.007 [−0.075, +0.059]</span>；X4 从 L8 起可解码出作者，各作者排位相同<span class="src">381_stage13/reports/b1_xall_report.md “X4” 节：D = self − partner，tune 上选最早层、test 上确认；全部作者 L8 +0.048 [0.039, 0.058]，first / others / last 都是 L8</span>，认得出的论文在 L8–L40 更高<span class="src">同节 Recognition 表：引用档内 target − control，全部作者 L8 +0.031 [0.017, 0.045] 到 L40 +0.052 [0.038, 0.067]</span>；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释。X2 用全部作者重新拟合作者子空间后，搬动量从 0.016 升到 0.032（完整替换的约 7%<span class="src">381_stage13/reports/b1_xall_report.md “X2: verdict” 表：测试集，L48，R_auth 旧 / 新 S_auth；R_full 0.457</span>），但子空间本身仍几乎解码不出作者（留出 R² ≤ 0.009<span class="src">381_stage13/reports/b1_xall_report.md “New S_auth” 表：5,041 篇训练论文，L16–L48 authall_r2 0.004–0.009</span>），H3 仍证据不足。<span class="src">硬检查 PASS：冻结的第一作者分数逐位复现（35,340 / 84,816 / 34,162 / 4,548 格，差 0），X1–X4 已发表点估计最大差 1.2e-15；381_stage13/reports/b1_xall_report.md “Hard check”</span></div>
 <h4>1 问题与作用</h4>
 <p>M3 是相关性。X1 做因果检验：把 A 的标题状态（分别来自作者、年份、领域问法）塞进"作者问法 + B 的标题"的运行里，看能否把 A 的第一作者带回来。如果来自年份/领域问法的状态和来自作者问法的状态恢复得一样好，那么第 l 层标题位置上的状态是与任务无关的论文身份。</p>
 <h4>2 材料</h4>
@@ -320,6 +322,7 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 
 <!-- ====================================================== X2 -->
 <h3 id="s13-x2">X2　只替换子空间（因果）</h3>
+<div class="fix"><b>2026-11-06：</b>全部作者版本（补充 10 第 1 项）见 <a href="#s13-xall">X1 节开头</a>，结论不变。</div>
 <div class="fix"><b>2026-11-05 完成。</b>按预注册判据，H3 通过、H2 不支持。但作者子空间本身几乎解码不出作者（留出 R² ≤ 0.003，第一作者名字 token 猜中率 0.078–0.079，低于常数基线 0.080），它搬动的量只有完整替换的约 4%，因此不能作为 H3 的有力证据。从标题传到作者名字的信息，几乎全部分散在这两个子空间之外。<span class="src">381_stage13/reports/x2_report.md “Verdict”“Subspace fits” · summary_x2/x2_verdict.csv、fit_sanity.csv</span></div>
 <h4>1 问题与作用</h4><p>从标题带到作者名字的信息，是在“论文属性”的低维方向里（H2），还是在“作者”的低维方向里（H3），还是都不是？做法是只替换或抹掉这些方向，看第一作者的分数是否跟着走。<span class="src">381_stage13/config/prereg_addendum6.json “question”</span></p>
 <p>注意：Stage 10 也有一个叫“X2”的分析（引用数分箱，<code>stage10_extra.py</code>），与此无关。</p>
@@ -332,8 +335,24 @@ field  : In what research field is the paper titled "{t}"?\nField:</pre>
 <h4>8 局限与质疑</h4><ul><li>H3 按规则通过，但作者子空间本身几乎没有解码能力，搬动量只有完整替换的约 4%，降级为“证据仍不足”（与 X3 的处理方式相同；附录 V57）。</li><li>S_id 只有 9 维（同一 alpha 下 8 个领域方向之和为 0），与 10 维随机子空间比较对 S_id 略偏保守。</li><li>“调参集选层”取 R_S − R_rand 最大的层（沿用 X1 规则）；移除臂的 S_full 只作参照（补充 6 只为搬运臂定义 S_full）。</li><li>自检 WARN：S = 0 在 GPU 上不逐位相同（最大差 0.103，bf16 批量舍入）；3 个随机子空间之间只有搬运臂 L24 一处差 +0.003 [+0.001, +0.006]。</li></ul><span class="src">x2_report.md “Checks”“Deviations from addendum 6”</span>
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>（2026-11-05） <span class="st st-review">偏离</span>（H3 降级；见附录 V57）</p>
 
+<h3 id="s13-alltok">补充 9　全部名字 token 的标题位置 probe（按首字母 / 名 / 姓）</h3>
+<div class="fix"><b>2026-11-05 完成。</b>补充 9（答辩后新增，分析计划在看结果前写定）：把标题位置 probe 扩展到每位作者的全部名字 token，并按角色分开。在 L40，姓的第一个 token 的标题特异信号为 +0.071 [0.058, 0.085]，高于首字母的 +0.044 [0.030, 0.057]，差为 +0.028 [0.011, 0.045]，两项预注册判据都通过。名的第一个 token 最强（L40 +0.124，L56 +0.163）。原 E4b 只给每位作者的第一个 token 打分，而这个 token 多半是首字母，所以它低估了标题位置携带的名字信息。两种置换对照在姓、名的其余 token 上约为 0；在首字母上约为 +0.02，说明首字母的信号约一半不针对具体论文。<span class="src">381_stage13/reports/e4b_alltok.md 第 3、5、7 节；summary_alltok/</span></div>
+<h4>1 问题与作用</h4><p>E4b 只打分每位作者的第一个名字 token（多半是首字母）。补充 9 问：标题位置携带的名字信息是否主要在姓上？预注册的主要比较：L40 姓的第一个 token 的标题特异信号 &gt; 0，以及姓 − 首字母。<span class="src">381_stage13/config/prereg_addendum9.json（sha256 a9896357…）</span></p>
+<h4>2 材料</h4><p>全部 9,108 篇论文的 GPU 数据步骤（72 个分片，149,999 个名字 token 行）：记录模型在 L63、在预测每个名字 token 的位置上的状态；输入用 Stage 11 titlepos 的标题最后一个 token 残差（真标题与 false_0 运行）。<span class="src">381_stage13/reports/e4b_alltok.md 第 1 节</span></p>
+<h4>3 工具</h4><p><code>~/jlens_work/13_stage13/stage13_alltok_probe.py</code>、<code>stage13_alltok_controls.py</code>；作业 11655112、11655130、11655136（GPU）、11655139（probe）、11655152（报告）、11657421（置换对照）。</p>
+<h4>4 步骤</h4><ol><li>每个角色（首字母、名的第一个 / 其余 token、姓的第一个 / 其余 token），目标 = 该论文该角色各位置 L63 状态的平均。</li><li>ridge，按存档的作者团队分折，只在训练折上标准化，alpha 在第 0 折上选，剔除标题复用的论文。</li><li>预测的状态经 final norm 与反嵌入，在 9,137 个名字 token 的词表里给每个金标准 token 求名次，取 log10(1/名次) 平均。</li><li>标题特异信号 = probe(真标题) − probe(false_0)；目标 − 对照在引用档内比较。</li></ol>
+<h4>5 公式</h4><p>spec_r(p) = mean_{t ∈ role r} log10(1/rank_t | ŷ(h_true)) − mean_{t} log10(1/rank_t | ŷ(h_false_0))。</p>
+<h4>6 对照</h4><p>两种置换对照：金标准换成随机另一篇 / 同领域另一篇论文的作者（rng 3712）。</p>
+<h4>7 结果</h4><p>见上框。目标 − 对照：认得出的论文在标题位置携带更多名字信息，按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代。<span class="src">381_stage13/summary_b1_e4b5/perdonor_by_run_layer.csv，version=Vpd，列 tc / tc_lo / tc_hi（引用档内 target−control，团队聚类 bootstrap 2,000 次 95% CI）：given_first L16 +0.029 [+0.005, +0.052] 起各层都 > 0；surname_first L24 +0.019 [+0.001, +0.038] 起各层都 > 0；initial L40 +0.014 [−0.002, +0.030]；false_0 版本（V0，1,395 篇）姓 L16–L52 CI 含 0；b1_e4b5_report.md “Per-donor exclusion” 节 target − control 表</span><span class="src">381_stage13/reports/e4b_alltok.md 第 3 节 “Target - control” 矩阵</span></p>
+<p><b>敏感性分析（补充 13 C-3）：</b>不剔除标题复用的版本<b>包含标题复用造成的泄漏</b>，只作敏感性分析：全部论文的信号不变（L40 姓的第一个 token +0.077 [0.070, 0.085]，6,841 篇）；其中“姓的第一个 token 目标 − 对照在 L16–L52 显著”不是结论，目标 − 对照以逐个假标题排除的版本为准（补充 10 偏离 D1，已完成，见下）。<span class="src">381_stage13/reports/c13_C3.md · 381_stage13/config/prereg_addendum10_deviations.md</span></p>
+<p><b>2026-11-06 补做（补充 10 第 4 项）：</b>E4b 5 个假标题（偏离 D1 逐个假标题排除，保留 4,654 篇，平均 1.5 个假标题）：L40 姓首 token +0.076 [0.068, 0.083]，姓 − 首字母 +0.033 [0.023, 0.042]，原 E4b 第一个 token +0.066；置换对照首字母仍 +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS。<span class="src">381_stage13/reports/b1_e4b5_report.md “Per-donor exclusion” 节（Vpd = 真标题 − 供体不在训练折的假标题的平均，至少 1 个可用；目标 + 对照；团队聚类 bootstrap 2,000 次 95% CI）：kept 表、Vpd 表 surname_first / e4b_parity 行 L40、“primary contrasts under Vpd”、置换对照 any 行；第 2 节硬检查（V0 e4b_parity L40 +0.0609，1,395 篇，容差 ±0.005）</span></p>
+<p>C-3b（补充 13，不剔除标题复用，<b>含泄漏，只作敏感性分析，不作结论</b>，与 C-3 相同）：硬检查 PASS；L40 姓的第一个 token +0.077 [0.071, 0.084]，首字母 +0.034 [0.029, 0.039]，姓 − 首字母 +0.043 [0.035, 0.051]（6,841 篇）；target − control 的区间几乎处处在 0 以上，与 C-3 一样。<span class="src">381_stage13/reports/c13_C3b.md：“Hard check”（三个已发表版本重算，189 行 × 14 列最大差 1.0e-16）；“Primary contrasts at L40” 表 V5x0_noexcl 列；团队聚类 bootstrap 2,000 次</span></p>
+<h4>8 局限与质疑</h4><ul><li>置换对照的真金标准列与 probe 逐篇值有一处 0.036 的 WARN：浮点求和顺序使个别 token 名次差 1；两次拟合在全部 63 个格子选到的正则强度相同，报告精度下的数字不受影响。<span class="src">381_stage13/reports/alltok_deviations.md</span></li><li>5 个假标题版本按 5 个一起排除时剩 0 篇，所以改为逐个假标题排除（偏离 D1，结果出来前写定），每篇平均只用 1.5 个假标题。</li></ul>
+<h4>9 状态</h4><p><span class="st st-done">已完成</span>（2026-11-05）；5 个假标题版本 <span class="st st-done">已完成</span>（2026-11-06）；C-3b <span class="st st-done">已完成（只作敏感性分析）</span></p>
+
 <!-- ====================================================== X3 -->
 <h3 id="s13-x3">X3　同义改写标题 vs 词重合近邻</h3>
+<div class="fix"><b>2026-11-06：</b>全部作者版本（补充 10 第 1 项）见 <a href="#s13-xall">X1 节开头</a>，结论不变。</div>
 <h4>1 问题与作用</h4>
 <p>把标题换成意思相同、用词不同的改写，如果模型内部状态和作者得分仍接近原标题、而不如一个词重合同样多的别篇论文标题接近，说明它认的是"这篇论文"而不是字面。Stage 13 里被视为最关键的实验。</p>
 <h4>2 材料</h4>
@@ -465,6 +484,7 @@ Answer with Yes or No.</pre>
 
 <!-- ====================================================== X4 -->
 <h3 id="s13-x4">X4　Patchscope：从论文自己的状态解码年份、第一作者、领域</h3>
+<div class="fix"><b>2026-11-06：</b>全部作者版本（补充 10 第 1 项）见 <a href="#s13-xall">X1 节开头</a>，结论不变。</div>
 <h4>1 问题与作用</h4>
 <p>把 A 在作者问法（不含年份）下某层的状态注入一个只有占位符 X 的提示，看模型能否据此说出 A 的年份、第一作者、领域。年份从不出现在源提示里，所以 D(年份) &gt; 0 只能来自认出这篇论文。H2 预测年份/领域最早可解码的层 ≤ 第一作者。</p>
 <h4>2 材料</h4>
@@ -689,6 +709,7 @@ H2_predicts: identity earliest, then author-by-probe, then name-by-lens (L57-61)
 
 <!-- ====================================================== X7 -->
 <h3 id="s13-x7">X7　在假标题运行上做同样的注意力阻断</h3>
+<div class="fix"><b>2026-11-06 补做（补充 10 第 2 项）：</b>X7 补做了另外 4 个假标题，按 5 个平均判定，target、control 和全部论文都满足预注册判据（S(L52) 分别为 +0.022、+0.042、+0.028，均 ≤ 0.05）；原来对照组只用 false_0 时为 0.051，属于单个假标题的波动。<span class="src">381_stage13/reports/b1_x7f_report.md（target 593 / control 593 / 全部 1,186 篇，团队聚类 95% CI；false_0 臂逐位复现 summary_x7/x7_knockout.csv）</span></div>
 <h4>1 问题与作用</h4>
 <p>Stage 11 E2：从第 l 层起禁止注意到标题，真作者得分掉多少。阻断本身是"离开分布"的破坏，可能不论标题真假都会伤害得分。X7 在 false_0 运行上做同样的阻断，把"破坏"减掉，剩下的才是论文特有的损失。</p>
 <h4>2 材料</h4>
@@ -738,7 +759,7 @@ s13-m3 | M3 按补充 2 重判（V28 已处理）；s13-x1 V31 已处理；s13-x
 s13-overview | U18 prereg 实际写入时间 10:39/10:50/11:05/11:41/11:55；U44 613eb813 = 转交时记录的 Stage 11 脚本哈希（文件现存）
 s13-m2 | U45 团队整群区间已补算（作业 11503585，0 翻转）
 s13-m3 | U46 数据存在但未使用
-s13-m5 | U47 与 X4 同一问题则并入 X4，否则放弃
+s13-m5 | U47 与 X4 同一问题则并入 X4，否则放弃 → 2026-11-05：能用已有数据回答的部分已在 CPU 上做完（十一 · CPU 补充）；名字位置的 patchscope 列入补充 12 第 2-7 项
 s13-x2 | U48 暂停
 s13-x3 | U49 37 条维持拒绝；U50 A 组标签存档 logs/para_review_sample20_labels.csv；B 组标签 logs/para_review_sample20_b_labels.csv；判断器 v2 不用
 s13-x4 | U52 总编按实际角色重算；U53 标记已改名，全量 11500437 PASS

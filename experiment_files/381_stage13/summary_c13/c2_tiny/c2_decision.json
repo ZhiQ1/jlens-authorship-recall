@@ -1,0 +1,59 @@
+{
+ "gpu_rerun_triggered": false,
+ "rule": "aa_all, jlens_public, L56 and int6: RQ1 (team CI) or RQ2 (pair bootstrap) class differs from published (pos)",
+ "cells": [
+  {
+   "version": "aa_all",
+   "layer": "56",
+   "question": "RQ1",
+   "est": 0.12855195891505497,
+   "lo": 0.010825355395030326,
+   "hi": 0.25100607057478835,
+   "cls": "pos",
+   "cls_iid_paper": "pos",
+   "published": "pos",
+   "published_value": "+5.178 pp [+2.926, +7.476]",
+   "same": true
+  },
+  {
+   "version": "aa_all",
+   "layer": "56",
+   "question": "RQ2",
+   "est": 0.2797953661299422,
+   "lo": 0.03376365530630872,
+   "hi": 0.5269028771450638,
+   "cls": "pos",
+   "cls_iid_paper": null,
+   "published": "pos",
+   "published_value": "+4.981 pp [+0.322, +9.915]",
+   "same": true
+  },
+  {
+   "version": "aa_all",
+   "layer": "int6",
+   "question": "RQ1",
+   "est": 0.10214758320477264,
+   "lo": 0.043514042250751395,
+   "hi": 0.16132435036666876,
+   "cls": "pos",
+   "cls_iid_paper": "pos",
+   "published": "pos",
+   "published_value": "+2.326 pp [+1.496, +3.192] (7-layer integrated)",
+   "same": true
+  },
+  {
+   "version": "aa_all",
+   "layer": "int6",
+   "question": "RQ2",
+   "est": 0.20643574062078943,
+   "lo": 0.10576014084280573,
+   "hi": 0.3183036735819621,
+   "cls": "pos",
+   "cls_iid_paper": null,
+   "published": "pos",
+   "published_value": "+2.409 pp [+0.909, +4.003] (7-layer integrated)",
+   "same": true
+  }
+ ],
+ "tiny": true
+}

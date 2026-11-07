@@ -1,0 +1,1395 @@
+{
+ "log": [
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#p2-6 | §6结果 Results > 6.4 目标组 − 对照组的标题特异差异 Target − control difference in the title-specific",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#p2-6 | §6结果 Results > 6.4 目标组 − 对照组的标题特异差异 Target − control difference in the title-specific",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#p4-plan | Stage 13B 读出工具C 哪一层 计划：中间层到底表示什么 > 预注册（先写预测，再看数据）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "NOTES #44",
+   "+0.21",
+   "+0.207",
+   "第44页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/github/README_draft_20261106b.md",
+   "+0.21",
+   "+0.207",
+   "README > One-Page Summary | 第21行",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#ov | 总览：一个问题，四条论证线 > 小样本与全量对照 | 表2 行3 列3 [表头: Stage 10–11（9,108 篇）; 行首: 认得出 > 认不出]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.21",
+   "+0.207",
+   "#p3-bridge | 两阶段对照（Stage 1–9 与 Stage 10–11） > 结论上变了什么 | 表56 行3 列3 [表头: Stage 10–11; 行首: 认得出 > 认不出]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "NOTES #30",
+   "+0.21",
+   "+0.207",
+   "第30页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/progress_report_for_advisor_zh.html",
+   "+0.21",
+   "+0.207",
+   "项目进度汇报：Qwen3-32B 在哪一层“记住”论文作者 > 五、主要发现 > 发现 1：认得出的论文，模型确实带有论文特有的作者信息（A 线）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.196",
+   "0.195",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.196",
+   "0.195",
+   "#p2-6 | §6结果 Results > 6.4 目标组 − 对照组的标题特异差异 Target − control difference in the title-specific",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.196",
+   "0.195",
+   "#p2-6 | §6结果 Results > 6.4 目标组 − 对照组的标题特异差异 Target − control difference in the title-specific",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.196",
+   "0.195",
+   "#p2-6 | §6结果 Results > 6.4 目标组 − 对照组的标题特异差异 Target − control difference in the title-specific | 表30 行6 列8 [表头: L63; 行首: final]",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "NOTES #4",
+   "0.196",
+   "0.195",
+   "第4页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "NOTES #28",
+   "0.196",
+   "0.195",
+   "第4页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "NOTES #30",
+   "0.196",
+   "0.195",
+   "第4页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "NOTES #44",
+   "0.196",
+   "0.195",
+   "第4页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "NOTES #59",
+   "0.196",
+   "0.195",
+   "第4页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "NOTES #61",
+   "0.196",
+   "0.195",
+   "第4页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "NOTES #44",
+   "0.196",
+   "0.195",
+   "第44页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/process_report/draft_zh.md",
+   "0.196",
+   "0.195",
+   "#s3 | 实验全过程汇总：数据、步骤、HPC 实操、问题与调整 > 2. 实验过程（按阶段） > Stage 10 · 全量逐层读出（10-23 冻结 → 10-26 完成）",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/github/README_draft_20261106b.md",
+   "0.196",
+   "0.195",
+   "README > Research Thread > Stage 10 · Layer-wise readout of every author name, all 9,108 papers | 第168行",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-na",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "4,621",
+   "3,734",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L63-nb",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "2,220",
+   "2,182",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "不一致"
+  ],
+  [
+   "num",
+   "S10-L62-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.23",
+   "+0.231",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L62-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.23",
+   "+0.231",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L62-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.23",
+   "+0.231",
+   "#p2-6 | §6结果 Results > 6.4 目标组 − 对照组的标题特异差异 Target − control difference in the title-specific",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L62-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.23",
+   "+0.231",
+   "#p2-6 | §6结果 Results > 6.4 目标组 − 对照组的标题特异差异 Target − control difference in the title-specific",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L62-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.23",
+   "+0.231",
+   "#p4-plan | Stage 13B 读出工具C 哪一层 计划：中间层到底表示什么 > 预注册（先写预测，再看数据）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L62-max",
+   "NOTES #44",
+   "+0.23",
+   "+0.231",
+   "第44页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L62-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/github/README_draft_20261106b.md",
+   "+0.23",
+   "+0.231",
+   "README > One-Page Summary | 第21行",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmax",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "−0.04",
+   "−0.037",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmax",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "−0.04",
+   "−0.037",
+   "#ov | 总览：一个问题，四条论证线 > 小样本与全量对照 | 表2 行3 列3 [表头: Stage 10–11（9,108 篇）; 行首: 认得出 > 认不出]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmax",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "−0.04",
+   "−0.037",
+   "#p3-bridge | 两阶段对照（Stage 1–9 与 Stage 10–11） > 结论上变了什么 | 表56 行3 列3 [表头: Stage 10–11; 行首: 认得出 > 认不出]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmax",
+   "NOTES #30",
+   "−0.04",
+   "−0.037",
+   "第30页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmax",
+   "NOTES #59",
+   "−0.04",
+   "−0.037",
+   "第59页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmax",
+   "NOTES #61",
+   "−0.04",
+   "−0.037",
+   "第61页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmin",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "−0.05",
+   "−0.054",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmin",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "−0.05",
+   "−0.054",
+   "#ov | 总览：一个问题，四条论证线 > 小样本与全量对照 | 表2 行3 列3 [表头: Stage 10–11（9,108 篇）; 行首: 认得出 > 认不出]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmin",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "−0.05",
+   "−0.054",
+   "#p3-bridge | 两阶段对照（Stage 1–9 与 Stage 10–11） > 结论上变了什么 | 表56 行3 列3 [表头: Stage 10–11; 行首: 认得出 > 认不出]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmin",
+   "NOTES #30",
+   "−0.05",
+   "−0.054",
+   "第30页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmin",
+   "NOTES #59",
+   "−0.05",
+   "−0.054",
+   "第59页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-L48-jmin",
+   "NOTES #61",
+   "−0.05",
+   "−0.054",
+   "第61页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-R0",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.20",
+   "+0.199",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-R0-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/advisor/index.html",
+   "0.187",
+   "0.188",
+   "模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-R0-lo",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/process_report/draft_zh.md",
+   "0.187",
+   "0.188",
+   "#s3 | 实验全过程汇总：数据、步骤、HPC 实操、问题与调整 > 2. 实验过程（按阶段） > Stage 10 · 全量逐层读出（10-23 冻结 → 10-26 完成）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-CA",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.11",
+   "+0.110",
+   "#p1-s1 | Stage 1 队列与行为标签 > 分组",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S10-CA",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.11",
+   "+0.110",
+   "#pd-groups | 分组对比A 这篇论文？ 认得出、写对一部分作者、识别程度：A/B/C/D 等分组的比较 > 三个主要发现（用户 2026-11-05 确认的措辞；发现 3 的分层表述按用户 2026-11-05 17:20 的修改）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X3-L62-pub",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.44",
+   "0.442",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.45",
+   "0.451",
+   "#ov | 总览：一个问题，四条论证线 > 小样本与全量对照 | 表2 行8 列3 [表头: Stage 10–11（9,108 篇）; 行首: 引用数]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.45",
+   "0.451",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.45",
+   "0.451",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.45",
+   "0.451",
+   "#p3-bridge | 两阶段对照（Stage 1–9 与 Stage 10–11） > 结论上变了什么 | 表56 行7 列3 [表头: Stage 10–11; 行首: 引用数]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+   "0.45",
+   "0.451",
+   "第30页 正文",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "NOTES #30",
+   "0.45",
+   "0.451",
+   "第30页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+   "0.45",
+   "0.451",
+   "第61页 正文",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "NOTES #61",
+   "0.45",
+   "0.451",
+   "第61页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/progress_report_for_advisor_zh.html",
+   "0.45",
+   "0.451",
+   "项目进度汇报：Qwen3-32B 在哪一层“记住”论文作者 > 五、主要发现 > 发现 1：认得出的论文，模型确实带有论文特有的作者信息（A 线）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/advisor/index.html",
+   "0.45",
+   "0.451",
+   "模型在哪一层“知道”一篇论文的作者 > 主要发现",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/process_report/draft_zh.md",
+   "0.45",
+   "0.451",
+   "#s6 | 实验全过程汇总：数据、步骤、HPC 实操、问题与调整 > 5. 主要发现汇总（STATUS §0 / report v26 / 进度汇报页）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X2-rho",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/github/README_draft_20261106b.md",
+   "0.45",
+   "0.451",
+   "README > Research Thread > Stage 10 · Layer-wise readout of every author name, all 9,108 papers | 第168行",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X1c-all",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.04",
+   "+0.041",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X1c-all",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.04",
+   "+0.041",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X1c-given",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.22",
+   "+0.222",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X1c-given",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.22",
+   "+0.222",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "A-bin-low",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.35",
+   "+0.347",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "A-bin-low",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.35",
+   "+0.347",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "A-bin-high",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.64",
+   "+0.644",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "A-bin-high",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.64",
+   "+0.644",
+   "#p2-7 | §7结论 Conclusions",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "82%",
+   "0.825",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "82%",
+   "0.825",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "82%",
+   "0.825",
+   "#p4-plan | Stage 13B 读出工具C 哪一层 计划：中间层到底表示什么 > 出发点",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "82%",
+   "0.825",
+   "#p4-plan | Stage 13B 读出工具C 哪一层 计划：中间层到底表示什么 > 实验（2026-10-28 用户同意：全部写入并排队）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "NOTES #49",
+   "82%",
+   "0.825",
+   "第49页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/D_stage10_11.html",
+   "82%",
+   "0.825",
+   "#s1011-s11-e1 | Stage 11：干预实验（替换、阻断、标题位置读出与 probe、作者连写） > 11-1 E1 替换（activation patching）：标题之后的整段尾部，true → false_0，逐层 > 7 结果",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/G_appendix.html",
+   "82%",
+   "0.825",
+   "#ap-qa-9 | 附录 G2 导师可能追问的 20 个问题与标准答案 > Q8 E2 注意力阻断具体怎么做？为什么被挡的格子是 bf16 最小值？",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L48",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "82%",
+   "0.825",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L52",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "100%",
+   "0.996",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L52",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "100%",
+   "0.996",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L52",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "100%",
+   "0.996",
+   "#x6-results | Stage 13 · X6C 哪一层 Stage 11 的替换结果换成其他 4 个假标题后仍然成立",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L52",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "100%",
+   "0.996",
+   "#p4-plan | Stage 13B 读出工具C 哪一层 计划：中间层到底表示什么 > 出发点",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L52",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "100%",
+   "0.996",
+   "#p4-plan | Stage 13B 读出工具C 哪一层 计划：中间层到底表示什么 > 实验（2026-10-28 用户同意：全部写入并排队）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L52",
+   "NOTES #50",
+   "100%",
+   "0.996",
+   "第50页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E1-L52",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/D_stage10_11.html",
+   "100%",
+   "0.996",
+   "#s1011-s11-e1 | Stage 11：干预实验（替换、阻断、标题位置读出与 probe、作者连写） > 11-1 E1 替换（activation patching）：标题之后的整段尾部，true → false_0，逐层 > 7 结果",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-names",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/process_report/draft_zh.md",
+   "+0.85",
+   "+0.847",
+   "#s3 | 实验全过程汇总：数据、步骤、HPC 实操、问题与调整 > 2. 实验过程（按阶段） > Stage 12 · 位置/组件 patching、名字先验、作者提示 lens（10-27 15:10 → 10-28 ~20:00）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-names",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.85",
+   "0.847",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-names",
+   "NOTES #49",
+   "0.85",
+   "0.847",
+   "第49页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-names",
+   "NOTES #58",
+   "0.85",
+   "0.847",
+   "第58页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-names",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.85",
+   "0.847",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-colon",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/experiment_walkthrough_methods_zh.html",
+   "0.17",
+   "0.172",
+   "逐个实验讲解稿（方法详解版）：设计、数据处理、公式、结果、说明什么 > 第二部分：什么时候知道？ > 实验 10：哪个位置（Stage 12 P1）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-colon",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.17",
+   "0.172",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "P1-colon",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.17",
+   "0.172",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X6-min",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.98",
+   "0.984",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X6-min",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.98",
+   "0.984",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X6-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "1.02",
+   "1.017",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "X6-max",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "1.02",
+   "1.017",
+   "#p2-1 | §1摘要 Summary",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "E4b-ts-rmax",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.080",
+   "+0.075",
+   "#p4-plan | Stage 13B 读出工具C 哪一层 计划：中间层到底表示什么 > 预注册（先写预测，再看数据）",
+   "不一致"
+  ],
+  [
+   "num",
+   "E4b-ts-rmax",
+   "NOTES #39",
+   "+0.080",
+   "+0.075",
+   "第39页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "E4b-ts-rmax",
+   "NOTES #40",
+   "+0.080",
+   "+0.075",
+   "第39页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "E4b-ts-rmax",
+   "NOTES #73",
+   "+0.080",
+   "+0.075",
+   "第39页 备注",
+   "不一致"
+  ],
+  [
+   "num",
+   "G-curve0",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.17",
+   "0.170",
+   "#pd-groups | 分组对比A 这篇论文？ 认得出、写对一部分作者、识别程度：A/B/C/D 等分组的比较 > 三个主要发现（用户 2026-11-05 确认的措辞；发现 3 的分层表述按用户 2026-11-05 17:20 的修改）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "G-curve0",
+   "NOTES #76",
+   "0.17",
+   "0.170",
+   "第76页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "G-curve4",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "0.46",
+   "0.463",
+   "#pd-groups | 分组对比A 这篇论文？ 认得出、写对一部分作者、识别程度：A/B/C/D 等分组的比较 > 三个主要发现（用户 2026-11-05 确认的措辞；发现 3 的分层表述按用户 2026-11-05 17:20 的修改）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "G-curve4",
+   "NOTES #76",
+   "0.46",
+   "0.463",
+   "第76页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S73",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+9.34",
+   "+9.3",
+   "#p1-s7 | Stage 7 排除替代解释（7.1–7.4） > 7.3A 这篇论文？ 打乱标题参照",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S73",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+9.34",
+   "+9.3",
+   "#p1-s8 | Stage 8A 这篇论文？ 独立验证：200 篇新论文",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S73",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/C_stage1_9.html",
+   "+9.34",
+   "+9.3",
+   "#s19-s73 | Stage 7 · 排除替代解释（7.1–7.4） > 7.3 打乱标题参照（20 个错误标题） > 7 结果",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S73",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/C_stage1_9.html",
+   "+9.34",
+   "+9.3",
+   "#s19-s73 | Stage 7 · 排除替代解释（7.1–7.4） > 7.3 打乱标题参照（20 个错误标题） > 7 结果",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S73",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/process_report/draft_zh.md",
+   "+9.34",
+   "+9.3",
+   "#s2 | 实验全过程汇总：数据、步骤、HPC 实操、问题与调整 > 1. 数据与论证链 > 1.5 结论如何被修订（主线）",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S73",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/process_report/draft_zh.md",
+   "+9.34",
+   "+9.3",
+   "#s3 | 实验全过程汇总：数据、步骤、HPC 实操、问题与调整 > 2. 实验过程（按阶段） > Stage 7 · 排除替代解释",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S8-RQ1",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+5.2",
+   "+5.18",
+   "#ov | 总览：一个问题，四条论证线 > 主要结论",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S8-RQ1",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+5.2",
+   "+5.18",
+   "#p1-syn | 综合：四条线各走到了哪里 | 表23 行2 列2 [表头: 已支持; 行首: A 这篇论文？]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S8-RQ1",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+5.2",
+   "+5.18",
+   "#ov | 总览：一个问题，四条论证线 > 小样本与全量对照 | 表2 行2 列2 [表头: Stage 1–9（20–200 篇）; 行首: 真标题有帮助]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S8-RQ1",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+5.2",
+   "+5.18",
+   "#p3-bridge | 两阶段对照（Stage 1–9 与 Stage 10–11） > 结论上变了什么 | 表56 行2 列2 [表头: Stage 1–9; 行首: 真标题有帮助]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S8-RQ1",
+   "NOTES #61",
+   "+5.2",
+   "+5.18",
+   "第61页 备注",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S71-cont",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.020644",
+   "+0.0206",
+   "#p1-s7 | Stage 7 排除替代解释（7.1–7.4） > 7.1D 哪个 token 第一个 token vs 后续 token | 表12 行3 列2 [表头: A−B（7 层积分）; 行首: 后续 token]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S71-cont",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/C_stage1_9.html",
+   "+0.020644",
+   "+0.0206",
+   "#s19-s71 | Stage 7 · 排除替代解释（7.1–7.4） > 7.1 第一个 token vs 后续 token（CPU 重分解） > 7 结果 | 表44 行3 列2 [表头: 7 层积分 A−B [95% CI]; 行首: 后续 token]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S71-cont",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.021",
+   "+0.0206",
+   "#p1-sum | 摘要",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S71-first",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "+0.001366",
+   "+0.0014",
+   "#p1-s7 | Stage 7 排除替代解释（7.1–7.4） > 7.1D 哪个 token 第一个 token vs 后续 token | 表12 行2 列2 [表头: A−B（7 层积分）; 行首: 第一个 token]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "S71-first",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/C_stage1_9.html",
+   "+0.001366",
+   "+0.0014",
+   "#s19-s71 | Stage 7 · 排除替代解释（7.1–7.4） > 7.1 第一个 token vs 后续 token（CPU 重分解） > 7 结果 | 表44 行2 列2 [表头: 7 层积分 A−B [95% CI]; 行首: 第一个 token]",
+   "写法不统一"
+  ],
+  [
+   "num",
+   "N-all",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/parts/H_selfcheck.html",
+   "9108",
+   "9,108",
+   "#ck-selfcheck | 附录 F · 自查：随机抽取 15 个数字，回到原始结果文件核对 | 表132 行11 列4 [表头: 文件中的实际值; 行首: 10]",
+   "写法不统一"
+  ],
+  [
+   "text",
+   "1 §1 E4b old values",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "全部论文标题特异信号 L24 0.050、L40 0.066、L56 0.080；381_stage13/reports/e4b_split_compare.md（group / title-reuse dropped）",
+   "全部论文标题特异信号 L24 0.050、L40 0.061、L56 0.075，标准化只在训练折内拟合（作业 11500917）；381_stage13/reports/e4b_trainstd_compare.md Confirmatory configuration 表 new 列",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "1 §1 E4b old values (en)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "all papers L24 0.050, L40 0.066, L56 0.080; 381_stage13/reports/e4b_split_compare.md",
+   "all papers L24 0.050, L40 0.061, L56 0.075, standardisation fitted on training folds only (job 11500917); 381_stage13/reports/e4b_trainstd_compare.md, confirmatory table, new column",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "当天 21:14 的 PROTOCOL.md 改成以 L56 为主终点；这份文件是从聊天窗口粘贴生成的，改动由谁、依据什么做出，尚待确认。",
+   "同日 21:14 的 PROTOCOL（PROTOCOL.md，从聊天窗口粘贴生成）改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/advisor/index.html",
+   "Stage 8 主终点在冻结前从 7 层积分改为 L56，git 中没有改动记录，决定依据待确认（见下）。",
+   "Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）；git 中没有改动记录。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint (merged table)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/advisor/index.html",
+   "Stage 8 主终点在冻结后被改成 L56",
+   "Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/progress_report_for_advisor_zh.html",
+   "Stage 8 主终点在冻结后被改成 L56",
+   "Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/experiment_walkthrough_methods_zh.html",
+   "当时一份文件把主终点改成 L56，我们两种都报告。",
+   "分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）；两种都报告。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/experiment_walkthrough_zh.html",
+   "要主动说明：当时有一份文件把主终点改成了 L56，我们把原定主终点和 L56 都报告了。",
+   "要主动说明：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）；我们把原定主终点和 L56 都报告了。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk_docs/methods_handbook_guide_plain_zh.html",
+   "冻结计划写 7 层积分，当晚 PROTOCOL 改成 L56；谁改的待查",
+   "分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint (deck)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+   "Protocol drift</b>: primary endpoint changed between README and run",
+   "Protocol drift</b>: plan locked 10-18 14:29 (7-layer integral primary); the 21:14 PROTOCOL switched to L56, both before 8C scoring; who and why open (U28)",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "A Stage 8 endpoint (notes)",
+   "NOTES",
+   "协议漂移，主终点在 README 和实际运行之间改过。",
+   "协议漂移：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F2",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "小样本的 A−B 不确定（依赖少数几对）。",
+   "小样本的 A−B 不确定（依赖少数几对）<span class=\"src\">（Stage 8D，J-Lens L56 匹配 A − B +4.98 pp [+0.32, +9.91]，100 对，55 正 / 45 负，配对 bootstrap 95% CI；去掉差最大的 10 对后 −0.39 pp（事后诊断，90 对）；351_stage8/stage8D/summary/primary_questions.csv 行 RQ2_matched_A_minus_B、matched_pair_differences.csv mode=jlens_L56）</span>。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F3/F4",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "<li><b>Jacobian lens 没有显示额外的论文信息。</b>小样本中 J-Lens 相对 Vanilla 没有增量；全量中它在中间层多读出的是“名字形状”，不区分论文，也不偏向目标组。</li>",
+   "<li><b>Jacobian lens 没有显示额外的论文信息。</b>小样本中 J-Lens 相对 Vanilla 没有增量<span class=\"src\">（Stage 7.4 J-Lens − Vanilla 标题优势之差，7 层积分 +0.0022 [−0.0075, +0.0124]，Pilot50 50 篇，论文 bootstrap；351_stage7_4/summary/jlens_increment_bootstrap.csv 行 layer=integrated；Stage 8 L56 J-Lens − Vanilla −1.38 pp [−3.48, +0.68]，200 篇；351_stage8/stage8D/summary/jlens_minus_vanilla.csv）</span>；全量中它在中间层多读出的是“名字形状”（名字名次整体更高，但标题特异信号只多一点）<span class=\"src\">（Stage 10 X3，三种 Jacobian lens − logit lens，L24–L48，全部 9,108 篇：名字名次水平（level）高 +0.176 到 +1.728，标题特异信号只多 +0.007 到 +0.030，论文 bootstrap 95% CI；351_stage10/summary_extra/X3_pairwise.csv metric=level / spec，b=logit）</span>，不区分论文，也不偏向目标组<span class=\"src\">（Stage 10 X3，(Jacobian lens − logit lens) 标题特异信号的引用档内目标−对照，L24–L56：−0.062 到 +0.006；L24、L48、L56 三种 lens 的区间都在 0 以下，L32–L40 含 0；论文 bootstrap 95% CI；351_stage10/summary_extra/X3_tc_spec_vs_logit.csv）</span>。</li>",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F5",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "<b>第一个 token 与名字其余部分的差别由名字格式解释</b>：首字母开头时，姓落在后续 token 上；完整名开头时名本身就带信号。</li>",
+   "<b>第一个 token 与名字其余部分的差别由名字格式解释</b>：首字母开头时，姓落在后续 token 上；完整名开头时名本身就带信号<span class=\"src\">（Stage 10 补充 X1，最终输出 L63，引用档内目标−对照：首字母开头的名字，首字母 +0.048 [+0.028, +0.069]、后续 token +0.253 [+0.237, +0.269]（8,275 篇）；完整名开头，名 +0.174 [+0.136, +0.213]、后续 token +0.202 [+0.173, +0.232]（4,157 篇）；论文 bootstrap 95% CI；351_stage10/summary_extra/X1_by_format.csv readout=final）</span>。</li>",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F9 weakened (几乎全部 -> 主要)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "），而且几乎全部是标题特异的，不能用名字好猜来解释。",
+   "），而且主要是标题特异的，不能用名字好猜来解释<span class=\"src\">（Stage 12 CPU 名字先验拆解，最终输出 L63，全部名字 token，引用档内目标−对照：真标题下 +0.247 = 标题特异 +0.207 + 名字先验 +0.087 + 主题 −0.047；标题特异部分约占 84%；9,108 篇（目标 4,621 / 对照 2,220）；371_stage12/summary_cpu/A_prior_decomposition.csv group=tc_true/tc_spec/tc_prior/tc_topic）</span>。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F9 same claim (R0/R1 box)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "目标组的优势真实存在、几乎全部是标题特异的",
+   "目标组的优势真实存在、主要是标题特异的",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F9 same claim (en)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   ") and is almost entirely title-specific, so",
+   ") and is mostly title-specific, so",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F9 same claim (en)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "is therefore almost entirely title-specific.",
+   "is therefore mostly title-specific.",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F9 same claim (en)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "That advantage is almost entirely title-specific and",
+   "That advantage is mostly title-specific and",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F10",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "），而且这部分信息不偏向目标组。</p>",
+   "），而且这部分信息不偏向目标组<span class=\"src\">（Stage 10 X3，(Jacobian lens − logit lens) 标题特异信号的引用档内目标−对照，L24–L56：−0.062 到 +0.006；L24、L48、L56 三种 lens 的区间都在 0 以下，L32–L40 含 0；论文 bootstrap 95% CI；351_stage10/summary_extra/X3_tc_spec_vs_logit.csv）</span>。</p>",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F12",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "Jacobian lens 能让中间层读出更多与名字相关的信息，但这部分信息不区分论文；三种 Jacobian lens 的结论一致。<span class=\"src\">（Stage 10 X3：",
+   "Jacobian lens 能让中间层读出更多与名字相关的信息，但这部分信息不区分论文；三种 Jacobian lens 的结论一致。<span class=\"src\">（Stage 10 X3，三种 Jacobian lens − logit lens，L24–L48，全部 9,108 篇：名字名次水平（level）高 +0.176 到 +1.728，标题特异信号只多 +0.007 到 +0.030，论文 bootstrap 95% CI；351_stage10/summary_extra/X3_pairwise.csv metric=level / spec，b=logit）</span><span class=\"src\">（Stage 10 X3：",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F13",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "标题特异信号在名字里的分布取决于格式：首字母几乎不带信号，信号集中在后面的姓上；完整的名本身就带有和姓相当的信号。",
+   "标题特异信号在名字里的分布取决于格式：首字母几乎不带信号，信号集中在后面的姓上；完整的名本身就带有和姓相当的信号<span class=\"src\">（Stage 10 补充 X1，最终输出 L63，引用档内目标−对照：首字母开头的名字，首字母 +0.048 [+0.028, +0.069]、后续 token +0.253 [+0.237, +0.269]（8,275 篇）；完整名开头，名 +0.174 [+0.136, +0.213]、后续 token +0.202 [+0.173, +0.232]（4,157 篇）；论文 bootstrap 95% CI；351_stage10/summary_extra/X1_by_format.csv readout=final）</span>。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F14 weakened (\"没有哪种 lens\" -> small / logit tiny positive)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "<span>没有哪种 lens 能在中间层读出偏向目标组的论文信息；Jacobian lens 在中间层多出的那点标题特异信号很小，对照组反而略多。</span>",
+   "<span>中间层（L24–L48）各种 lens 的目标−对照都很小或为负，没有看到明显偏向目标组的论文信息（logit lens 在 L24–L32 有很小的正值）<span class=\"src\">（Stage 10，真标题 − 5 个假标题平均，引用档内目标−对照，L24–L48，logit 与三种 Jacobian lens：−0.054 到 +0.009；logit lens L24 +0.007 [+0.003, +0.010]、L32 +0.005 [+0.000, +0.011]；论文 bootstrap 95% CI；351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv）</span>；Jacobian lens 在中间层多出的那点标题特异信号很小，对照组反而略多<span class=\"src\">（Stage 10 X3，(Jacobian lens − logit lens) 标题特异信号的引用档内目标−对照，L24–L56：−0.062 到 +0.006；L24、L48、L56 三种 lens 的区间都在 0 以下，L32–L40 含 0；论文 bootstrap 95% CI；351_stage10/summary_extra/X3_tc_spec_vs_logit.csv）</span>。</span>",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F14 weakened (en)",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "<span class=\"en\">No lens reads target-favouring paper information in middle layers; the small extra title-specific signal of the Jacobian lenses there is, if anything, larger for control papers.</span>",
+   "<span class=\"en\">In middle layers (L24–L48) every lens shows a small or negative target − control, so no clear target-favouring paper information (the logit lens has a tiny positive value at L24–L32); the small extra title-specific signal of the Jacobian lenses there is, if anything, larger for control papers.</span>",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F15",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "R1 论文让优势更大，但不改变时间点；在 R1 论文内部，模型写对的作者也是在最后几层才领先。",
+   "R1 论文让优势更大，但不改变时间点<span class=\"src\">（Stage 10 R1 目标 vs R0 对照，真标题 − 5 个假标题平均，引用档内目标−对照：public J-lens 从 L59 起持续为正（L59 +0.129），L48 −0.162；logit lens 从 L51 起持续为正；最终输出 +0.372 [+0.342, +0.405]；C 391 / B 885 篇，7 档；论文 bootstrap 95% CI；351_stage10/summary_r0r1/tc_R1target_vs_R0control.csv）</span>；在 R1 论文内部，模型写对的作者也是在最后几层才领先<span class=\"src\">（Stage 10 R1 论文内，写对 − 未写对的作者（论文内配对），标题特异信号：public J-lens 从 L54 起持续为正（L54 +0.038 [+0.015, +0.060]，L62 +0.258），logit lens 从 L52 起；最终输出 +0.199 [+0.168, +0.232]；495 篇，论文 bootstrap 95% CI；351_stage10/summary_r0r1/R1_author_written_minus_missed.csv excl_first_author=False）</span>。",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F16",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "；识别不确定的论文落在两组之间。</p>",
+   "；识别不确定的论文落在两组之间<span class=\"src\">（分组对比，未写出作者的最终输出 L63 信号：U0（R0 × 识别不确定）+0.287 [+0.277, +0.297]; n = 2001 (7298 authors)，介于 A +0.463 [+0.454, +0.472] 与 B +0.198 [+0.190, +0.207] 之间；团队聚类 95% CI；391_groups/summary_table.md 第 2 列）</span>。</p>",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "3 F17",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/stage1_11/stage1_11_report.html",
+   "，主要是因为模型已经写出的作者分数本来就高（循环论证）。</p>",
+   "，主要是因为模型已经写出的作者分数本来就高（循环论证）<span class=\"src\">（分组对比 C 组：已写出作者 +0.771 [+0.743, +0.800]; n = 507 (660 authors)，未写出作者 +0.550 [+0.526, +0.576]; n = 462 (2103 authors)；最终输出 L63，团队聚类 95% CI；391_groups/summary_table.md C 行第 2、3 列）</span>。</p>",
+   "",
+   ""
+  ],
+  [
+   "text",
+   "C slide 64 image",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+   "Stage13_hypotheses_table_v28_tableonly.png (zh)",
+   "Stage13_hypotheses_table_v28_en_tableonly.png",
+   "slide 64",
+   ""
+  ]
+ ],
+ "unresolved": [
+  [
+   "S10-CA",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/methods_handbook.html",
+   "+0.11",
+   "+0.110",
+   "L57 −0.107、L59 −0.077，团队聚类 95% CI 都在 0 以下；L60 −0.038（CI 含 0）、L62 +0.038；同一文件）。以前用全部作者算出的约 +0.11（Stage 10 R0/R1 分析 C − A，全部作者，最终输出 L63，引用档内差，C 485 / A 3,204"
+  ],
+  [
+   "G-curve0",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/methods_handbook.html",
+   "0.17",
+   "0.170",
+   "60 位作者，团队聚类 95% CI；primary.csv “author-level + confounders + first/other (add. 8)”））。全错时约 0.17，全对时约 0.46（R0 论文未写出作者的最终输出 L63 平均信号，mc_team_a = 0：0.170，927 "
+  ],
+  [
+   "G-curve4",
+   "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/methods/methods_handbook.html",
+   "0.46",
+   "0.463",
+   "类 95% CI；primary.csv “author-level + confounders + first/other (add. 8)”））。全错时约 0.17，全对时约 0.46（R0 论文未写出作者的最终输出 L63 平均信号，mc_team_a = 0：0.170，927 篇；= 4：0.46"
+  ]
+ ]
+}

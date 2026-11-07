@@ -1,0 +1,26 @@
+{
+ "title": "Addendum 14: batch 3 of the redo programme (items 3-1 to 3-3); items 3-4 and 3-5 are not run",
+ "written": "2026-11-06 ~04:30 EST (exact time = sha256 file mtime and git)",
+ "approved_by_user": "user messages 2026-11-05/06: item 10 runs on target + control (6,841 papers) with logit lens and public J-lens only, L41-L47 and L49 first, L0-L23 after, L24 and L48 reproduction as hard checks; Stage 8 W GPU re-run NOT done (decision (b) after the CPU proxy C-2), so 3-4 and the dependent 3-5 are not run; 7.1B completion on the fast path is in the master queue.",
+ "status_at_writing": "No batch-3 data exist. Known: Stage 10 stored public / logit readouts at L24, L32, L40, L48, L50-L62 for all 9,108 papers; C-5 recomputed the extras at all stored layers.",
+ "general rules": "as addendum 10 (tiny test, one real shard, rest; HARD reproduction checks; jobs <= 45 min; team-cluster bootstrap; results to the user first). Batch 3 starts after batch 2 (afterany between batches, afterok within an item).",
+ "items": {
+  "3-1 Stage 10 L41-L47 and L49": {
+   "papers": "target + control, 6,841 papers; all authors, all name tokens; conditions true, false_0..false_4, delete, exactly as Stage 10.",
+   "readouts": "logit lens and public J-lens (Neuronpedia 557) at L41, L42, L43, L44, L45, L46, L47, L49, plus L24 and L48 recomputed in the same run for the hard check.",
+   "driver": "Stage 10 fast path (351_stage10_fix1 load_model + 351_stage10 readout functions) through a new wrapper with a layer-list argument; frozen scripts not edited.",
+   "hard check": "L24 and L48 per-token ranks reproduce the stored Stage 10 ranks (exact match on >= 99% of tokens, rest within 4 bf16 units of logit), and the paper-level title-specific signal at L48 reproduces the published value (|diff| <= 0.005).",
+   "report": "title-specific signal and target - control within citation bin at every layer L24-L62 (new + stored), by token position (first / later) and role; onset layer = first layer whose team CI excludes 0, stated with the layer grid."
+  },
+  "3-2 Stage 10 L0-L23": {
+   "after": "3-1",
+   "as 3-1": "same papers, conditions, readouts and checks, layers L0-L23."
+  },
+  "3-3 Stage 7.1B completion on the fast path": {
+   "change": "the 7.1B terminal readout (Pilot50 contexts, all authors, all tokens) computed with the Stage 10 fast path instead of the old per-prefix path; only 7.5% of 7.1B was ever run.",
+   "hard check": "the 1,166 contexts already computed by 7.1B are reproduced (rank match >= 99%).",
+   "report": "the 7.1B estimands as planned in 07_1_stage7_1, labelled post hoc relative to the original Stage 7 analysis."
+  },
+  "not run": "3-4 Stage 8 W full-name GPU re-run and 3-5 Stage 5 / 7.2 / 7.3 full-name versions: not run (user decision (b) after C-2; the CPU proxy is reported instead)."
+ }
+}

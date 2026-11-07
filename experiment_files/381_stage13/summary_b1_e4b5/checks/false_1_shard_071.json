@@ -1,0 +1,11 @@
+{
+ "cond": "false_1",
+ "shard": 71,
+ "n_papers": 20,
+ "tiny": false,
+ "n_nonfinite": 0,
+ "max_abs_resid": 3328.0,
+ "R_match": 1.0,
+ "R_mean_abs_dlog10": 0.0,
+ "R_status": "OK"
+}

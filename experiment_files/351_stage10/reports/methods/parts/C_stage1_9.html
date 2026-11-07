@@ -377,6 +377,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h2>Stage 7 · 排除替代解释（7.1–7.4）</h2>
 
 <h3 id="s19-s71">7.1 第一个 token vs 后续 token（CPU 重分解）</h3>
+<div class="fix"><b>2026-11-06 补（补充 13 C-1，事后）：</b>加上标题对照（真标题 − Stage 10 的 5 个匹配假标题）后，A−B 的差别在模型输出和 L62 上成立，public J-lens 多层平均不显著：名字其余 token 上输出 +0.244 [0.087, 0.398]、logit L62 +0.278 [0.088, 0.483]、public J-lens L62 +0.317 [0.145, 0.506]，public J-lens 6 层平均 +0.077 [−0.021, +0.180]。原结论（无标题对照的 JMRR）“A−B 的差别在名字其余 token 上”由此改写。<span class="src">381_stage13/reports/c13_C1.md Pilot50 表 aa_cont 行（20 对，配对 bootstrap 95% CI）</span></div>
 <h4>1 问题与作用</h4><p>Stage 6 的 A−B 差来自名字开头，还是给出正确前缀之后的后续 token。</p>
 <h4>2 材料</h4><p>Stage 6 原始输出 <code>pilot50_full_author.jsonl</code>（sha256 <code>89551cf9…215a</code>）、Pilot50 配对表（sha256 <code>9ebfc7e2…1537</code>）<span class="src">351_stage7_1/reports/experiment_report.md</span>。不重跑模型。</p>
 <h4>3 工具</h4><p><code>07_1_stage7_1/351_stage7.py</code>（CPU）。</p>
@@ -389,8 +390,8 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>7 结果</h4>
 <table class="t">
 <tr><th>终点（J-Lens）</th><th>7 层积分 A−B [95% CI]</th><th>积分正向对</th><th>L62 A−B [95% CI]</th><th>L62 正向对</th></tr>
-<tr><td>第一个 token</td><td>+0.001366 [−0.011430, +0.014861]</td><td>12/20</td><td>+0.014112 [−0.071572, +0.109842]</td><td>12/20</td></tr>
-<tr><td>后续 token</td><td>+0.020644 [+0.002232, +0.038503]</td><td>17/20</td><td>+0.121454 [+0.043441, +0.197383]</td><td>15/20</td></tr>
+<tr><td>第一个 token</td><td>+0.0014 [−0.011430, +0.014861]</td><td>12/20</td><td>+0.014112 [−0.071572, +0.109842]</td><td>12/20</td></tr>
+<tr><td>后续 token</td><td>+0.0206 [+0.002232, +0.038503]</td><td>17/20</td><td>+0.121454 [+0.043441, +0.197383]</td><td>15/20</td></tr>
 <tr><td>全部 token</td><td>+0.016620 [+0.002640, +0.029887]</td><td>15/20</td><td>+0.096579 [+0.028582, +0.161619]</td><td>17/20</td></tr>
 </table>
 <p><span class="src">351_stage7_1/reports/experiment_report.md 两张表 · summary/layer_and_integrated_effects.csv</span>。Vanilla 积分：首 +0.014693 [−0.002449, +0.033563]，后续 +0.016844 [−0.002067, +0.033707]。</p>
@@ -455,7 +456,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 </table>
 <p><span class="src">summary/paper_null_distribution.csv（pool=combined；本手册按 mode 求均值）</span>。Vanilla L56 +0.106（33/50），Final +0.072（30/50）。</p>
 <ul>
-<li>L56 标题优势 +9.34 pp。报告区间 [+4.75, +13.95] 在 7.3 输出中没有，改用重算值：50 篇论文 bootstrap，百分位 95%，B = 20,000，种子 20261046：<b>+9.34 pp [+4.77, +14.00]</b>（B = 10,000、种子 20261045 为 [+4.91, +14.01]；Monte-Carlo 种子 1–200 的下端范围 +4.62 到 +4.88）；留一法均值 +8.64 到 +9.99（与报告"8.6 到 10.0"一致）。<span class="src">351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 "7.3 L56 J-Lens title advantage" · 351_stage7_3/recompute_2026-10-30/stage7_l56_loo.csv · ~/jlens_work/07_3_stage7_3/recompute_2026-10-30/stage7_recompute_intervals.py</span> <span class="st st-rechecked">复核过</span>（U26 已解决）</li>
+<li>L56 标题优势 +9.3 pp。报告区间 [+4.75, +13.95] 在 7.3 输出中没有，改用重算值：50 篇论文 bootstrap，百分位 95%，B = 20,000，种子 20261046：<b>+9.3 pp [+4.77, +14.00]</b>（B = 10,000、种子 20261045 为 [+4.91, +14.01]；Monte-Carlo 种子 1–200 的下端范围 +4.62 到 +4.88）；留一法均值 +8.64 到 +9.99（与报告"8.6 到 10.0"一致）。<span class="src">351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv 行 "7.3 L56 J-Lens title advantage" · 351_stage7_3/recompute_2026-10-30/stage7_l56_loo.csv · ~/jlens_work/07_3_stage7_3/recompute_2026-10-30/stage7_recompute_intervals.py</span> <span class="st st-rechecked">复核过</span>（U26 已解决）</li>
 <li>匹配 A−B 7 层积分：J-Lens +0.0177 [−0.0211, +0.0626]，Vanilla +0.0315 [−0.0090, +0.0757]，均跨 0 <span class="src">summary/integrated_ab_bootstrap.csv 行 pool=combined</span>。报告的"L56 +0.113（跨 0）、L32 −0.032 [−0.058, −0.006]"在 <code>matched_ab_bootstrap.csv</code> 中，未逐行核对。</li>
 <li>去掉来源作者重叠：J-Lens 7 层积分标题优势 +0.0262 → +0.0283（本手册重算，列 advantage_no_source_false_overlap）。</li>
 <li>0-2 引用档 6 篇（A2/B2/C1/D1）L56 平均 +0.224，5/6 为正，0/6 的经验尾部 ≤ 0.05（K=20 时最小可能值 1/21 ≈ 0.048）<span class="src">351_stage7_4/summary/floor_L56_low_six.csv · overview.json "floor_low_six_L56"</span>。</li>
@@ -561,6 +562,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>（runtime 写于 2026-10-18 21:47，<code>raw/stage8C_context_scores.jsonl</code> 最后写入 2026-10-20 09:05，按 mtime）。Git <code>e2c7156</code>。</p>
 
 <h3 id="s19-s8d">8D 冻结统计分析（RQ1–RQ3、J−V）</h3>
+<div class="fix"><b>2026-11-06 补：CPU 代理（补充 13 C-2，事后）。</b>用 Stage 10 的原始分数在 200 篇论文上重算冻结的多层终点：全部作者、全部 token 的版本中 RQ1 和 RQ2 都成立（public J-lens 6 层平均 RQ1 +0.130 [0.109, 0.153]，RQ2 +0.054 [0.008, 0.102]）；只看 L56 时 RQ2 +0.064 [−0.032, +0.163]，不显著。这是 CPU 代理：public J-lens 的名次指标、Stage 10 的 5 个假标题，不是 W 统计量；按原 W 的 GPU 重算没有做（用户 2026-11-06 决定）。<span class="src">381_stage13/reports/c13_C2.md aa_all 行</span></div>
 <h4>1 问题与作用</h4><p>按 PROTOCOL 检验三个预设问题。</p>
 <h4>2 材料</h4><p>8C 原始分数；8A 配对；8B 候选与错误标题。</p>
 <h4>3 工具</h4><p><code>351_stage8D.py audit → analyze</code>（CPU），bootstrap 10,000 次，SEED = 3518401（RQ1 用 +1、RQ2 +2、RQ3 +3）<span class="src">351_stage8D.py:9, :34-49, :242-270</span>。</p>
@@ -683,6 +685,7 @@ Authors:</pre>不套 chat template；读出位置是最后一个 token（":" 之
 <h4>9 状态</h4><p><span class="st st-done">已完成</span>。只读复核 <code>351_stage9.py audit</code>：STAGE 9 AUDIT PASS <span class="st st-rechecked">复核过</span>。不在 git 里。</p>
 
 <h3 id="s19-s9-fitB">9A.3 Fit B</h3>
+<div class="fix"><b>2026-11-06 状态：</b>Fit B 从 66/100 续跑并做 holdout 对比已列入重做计划（补充 12 第 2-1 项，批次 2，规则已写定；代码、tiny 测试和硬检查单元测试已完成，批次 1 结束后由编排作业自动开始），尚未运行。<span class="src">381_stage13/config/prereg_addendum12.json “2-1 Stage 9 Fit B and holdout”</span></div>
 <h4>1 问题与作用</h4><p>在不重叠的 fit_B 上用同一配方拟合，与 Fit A 比较。</p>
 <h4>2 材料</h4><p>fit_B 100 条。</p>
 <h4>3 工具</h4><p>同 Fit A（<code>stage9_fullfit.py run --half B</code>）。</p>

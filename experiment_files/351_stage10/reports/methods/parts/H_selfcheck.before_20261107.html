@@ -1,0 +1,24 @@
+<section id="ck-selfcheck">
+<h2>附录 F · 自查：随机抽取 15 个数字，回到原始结果文件核对</h2>
+<p>抽样方法：从 6 个正文部分各自列出的"关键数字及出处"（共 31 条）中，用 <code>random.seed(20261030)</code> 随机抽 10 条；再从正文中所有"数字 + 出处"的段落（164 处）中用 <code>random.seed(7)</code> 随机抽 5 条。每条都由总编重新打开原始文件读数，不使用起草者给的数值。核对时间 2026-10-30。</p>
+<table class="t">
+<tr><th>#</th><th>手册中的说法</th><th>原始文件（读取方式）</th><th>文件中的实际值</th><th>结论</th></tr>
+<tr><td>1</td><td>Stage 10 输出处（final L63）标题特异 target − control = +0.207 [0.195, 0.220]</td><td><code>351_stage10/summary_title/B_spec_target_vs_control_within_bin.csv</code>，readout=final, layer=63</td><td>0.20743 [0.19535, 0.21976]，n_a 3,734，n_b 2,182</td><td>一致</td></tr>
+<tr><td>2</td><td>M2 false_0 L48 借出论文的年份 R² 0.623 → 0.535，log 引用 0.588 → 0.488（按论文切 → 按团队切）</td><td><code>381_stage13/reports/split_compare.md</code> 第 127–128 行</td><td>year 0.623 / 0.535（−0.087）；log citations 0.588 / 0.488（−0.100）</td><td>一致</td></tr>
+<tr><td>3</td><td>X7 control S(L52) = +0.051 [0.033, 0.068]；不阻断元素与 Stage 11 假标题运行相同的比例 0.5963</td><td><code>381_stage13/summary_x7/x7_knockout.csv</code>（group=control, start_layer=52）；<code>summary_x7/x7_verdict.json</code></td><td>0.0507 [0.0326, 0.0683]；warn 中为 0.5963</td><td>一致</td></tr>
+<tr><td>4</td><td>Stage 8 RQ1 L56 +5.18 pp [2.93, 7.48]，N = 200</td><td><code>351_stage8/stage8D/summary/primary_questions.csv</code>，RQ1_L56_replication 行</td><td>mean 0.051785 [0.02926, 0.07476]</td><td>一致</td></tr>
+<tr><td>5</td><td>冻结主终点（7 层积分）+2.33 pp [1.50, 3.19]</td><td><code>/scratch/zhang.zhiqi2/jlens_github_publish/experiment_files/351_stage8/stage8D_supplement/frozen_plan_endpoints.csv</code>，jlens_integrated7_RQ1_paper_mean</td><td>0.023257 [0.014964, 0.031921]，n 200，122 正 / 78 负</td><td>一致</td></tr>
+<tr><td>6</td><td>组长标注包 zip 的 sha256 = 58c1b5bc…ee619</td><td><code>sha256sum ~/jlens_work/00_cohort/zhiqi_qwen3-32b_labels_2026-10-15.zip</code>（重新计算）</td><td>58c1b5bc2cc61e6e5f5d276960c9340c770a9cf3bfa614d94873251dee9ee619</td><td>一致</td></tr>
+<tr><td>7</td><td>N2 纯名字先验 target − control +0.047 [0.031, 0.062]，真标题 +0.247</td><td><code>371_stage12/summary/N2_prior_pure.csv</code>，tc_pure / tc_true 行</td><td>0.047086 [0.031363, 0.061640]；0.247295 [0.229445, 0.265803]</td><td>一致</td></tr>
+<tr><td>8</td><td>E2 从 L0 阻断损失 0.831 [0.801, 0.862]</td><td><code>361_stage11/summary/E2_knockout.csv</code>，group=all, start_layer=0</td><td>0.8309 [0.8006, 0.8620]</td><td>一致</td></tr>
+<tr><td>9</td><td>E4b 复核版保留 1,863 篇（target 896、control 499）</td><td><code>381_stage13/summary_cpu_group/perpaper_probe_spec.parquet</code>，split=group, excl=title-reuse, layer=24, dropped=False；分组取自 <code>351_stage10/cohort/papers.parquet</code> group_tight</td><td>1,863 篇：target 896、control 499、excluded 433、guard 35。"probe (as in Stage 11)" 那一版每篇有 2 或 4 行，按行数是 3,258，按论文数也是 1,863</td><td>一致（注意按论文计数，不按行计数）</td></tr>
+<tr><td>10</td><td>作者团队 7,247 个，5 折大小 1,821–1,822</td><td><code>381_stage13/reports/cluster_ci.md</code> 第 3 行</td><td>"Teams: 7247 groups over 9108 papers"</td><td>一致（折大小见 h-stats 出处）</td></tr>
+<tr><td>11</td><td>真实输出 L63 的论文均值：target −0.708 [−0.717, −0.700]，control −1.004 [−1.018, −0.989]，guard −0.329，excluded −0.887</td><td><code>351_stage10/summary/A_group_layer.csv</code>，readout=final, layer=63，列 mean_nlr_mean/lo/hi</td><td>target −0.70817 [−0.71668, −0.70020]；control −1.00355 [−1.01804, −0.98889]；guard −0.32927；excluded −0.88705</td><td>一致</td></tr>
+<tr><td>12</td><td>parity：final@L63 最大 |logit 差| 0.367；容差由 0.25 放宽到 0.5（事后修订）</td><td><code>351_stage10/reports/parity.json</code></td><td>"final@L63": 0.3671875；文件中有 tolerance_amendment 字段</td><td>一致</td></tr>
+<tr><td>13</td><td>X6 target 各假标题 L48 恢复率 0.788–0.803，L52 0.984–0.990</td><td><code>381_stage13/summary_x6/x6_recovery.csv</code>，group=target，false_0…false_4</td><td>L48 0.788–0.803；L52 0.984–0.990</td><td>一致</td></tr>
+<tr><td>14</td><td>假标题"严格档"：同领域、年份差 ≤5、作者数差 ≤ max(1, 0)=1、标题 token 数差 ≤ max(1, 20%)、引用档差 ≤1</td><td><code>~/jlens_work/10_stage10/351_stage10.py</code> 第 245–247 行 TIERS</td><td><code>('strict', 5, 0.0, .20, 1, K_FALSE)</code>，注释说明各项含义</td><td>一致（同领域约束在代码别处，见 h-false）</td></tr>
+<tr><td>15</td><td>团队整群区间：380 行中 4 行"区间是否含 0"发生翻转</td><td><code>381_stage13/reports/cluster_ci.md</code></td><td>"Rows where "interval excludes 0" changes: 4 of 380"</td><td>一致</td></tr>
+</table>
+<p><b>结论：15 / 15 一致。</b>第 9 条需要注意计数口径：1,863 是论文数，不是 parquet 的行数。</p>
+<p class="note">另外，起草过程中发现并在正文中如实标注、但不属于这 15 条抽样的问题，包括：X4 文本基线 textbase2 的 OOV 计算错误（见 s13 X4 节，修正后的数字已在节内给出）；STATUS.md §2 的假标题代价公式漏写两项相对分母（见 h-false，以代码为准）；已发布报告里"去掉 ≥20 位作者的论文"与代码"保留 1–20 位"不一致（见 g-data）；若干 Stage 7–8 区间在结果文件中找不到出处（见 s19 各节）。</p>
+</section>

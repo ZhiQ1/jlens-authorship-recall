@@ -1,0 +1,52 @@
+{
+ "title": "Addendum 12: batch 2 of the redo programme (items 2-1 to 2-4 and 2-7 to 2-11; items 2-5 and 2-6 are in addendum 11)",
+ "written": "2026-11-05 ~23:50 EST (exact time = sha256 file mtime and git)",
+ "approved_by_user": "user messages 2026-11-05 evening: every limitation that can be redone is redone; batch 2 after batch 1; item 2-11 (model-generated names) added by the user and to be written here.",
+ "status_at_writing": "None of these items has data. Batch 1 (addendum 10) is running; its results are not known. Addendum 11 (name-position probe, C/D completion) is locked.",
+ "general rules": "as addendum 10: tiny-model whole-pipeline test, one real shard, then the rest; reproduction of the published number each item extends is a HARD check (job exits non-zero, chain stops at that item); team-cluster bootstrap 2,000 draws on archived group_folds team ids unless the original item used another scheme; frozen scripts are not edited (new files only); at most 3 helpers; jobs <= 45 min; results to the user before any document change.",
+ "items": {
+  "2-1 Stage 9 Fit B and holdout": {
+   "change": "resume Fit B from its checkpoint (66/100 prompts) to 100/100 with the frozen 09_stage9 code path and settings; then the holdout comparison planned as 9B: Fit A vs Fit B lenses compared per layer (cosine of the lens matrices, top-10 agreement and KL to the final distribution on held-out WikiText prompts not used by either fit) and the Stage 10 title-specific signal recomputed with Fit B on the Stage 11 sample (1,186 papers) at the fitA layers.",
+   "hard check": "the resumed run reproduces the stored checkpoint state (the 66 accumulated prompts give the same partial matrix, relative diff <= 1e-3).",
+   "report": "whether Fit A and Fit B agree (descriptive), and whether any Stage 10 conclusion read with fitA changes with Fit B."
+  },
+  "2-2 F1 author-lens split-half": {
+   "change": "refit the Stage 12 F1 author lens separately on two halves of its 40 fit papers (20 + 20, split by author team, seed 1206), then repeat F2 with each half-lens.",
+   "report": "cosine and top-10 agreement between the half-lenses and with the full F1 lens per layer; F2 title-specific signal with each half-lens; whether the F2 null result holds with both.",
+   "hard check": "refitting on all 40 papers with the new wrapper reproduces the stored F1 lens (relative Frobenius diff <= 1e-3)."
+  },
+  "2-3 X3 by token role": {
+   "change": "X3 behaviour (para - D, recovery) recomputed per token role (initial, given_first, given_cont, surname_first, surname_cont) and for all authors, reusing the batch-1 all-author scoring code.",
+   "hard check": "the first-author all-token mean reproduces the published X3 behaviour numbers."
+  },
+  "2-4 E1 batch rounding noise": {
+   "change": "two original Stage 11 shards (one target-heavy, one control-heavy) re-run with batch size 1 and with the original batch size, unpatched true / false_0 and patched at L40, L48, L52.",
+   "report": "distribution of per-token |delta log10 rank| and of the paper-level E1 recovery between batch sizes; this sets the measured noise floor quoted in tolerances."
+  },
+  "2-7 Patchscope at the name positions (M5 GPU part)": {
+   "change": "X4-style patchscope with the SOURCE state taken at the ':' position and at each name-predicting position (as addendum 11) at L16, L24, L32, L40, L48, L56, injected into the X4 target prompts (year, first author, field); partner-B control as X4; Stage 11 sample papers; text baseline as X4 v2.",
+   "hard check": "with the source at the title-last token (the published X4 configuration) the new code reproduces the published X4 values (first author L8 +0.046)."
+  },
+  "2-8 E1t with five false titles": {
+   "change": "E1t (patch only the title-last token) with donors false_1..false_4; recovery averaged over the five titles.",
+   "hard check": "the false_0 arm reproduces the published E1t recovery."
+  },
+  "2-9 X4 role split, remaining layers": {
+   "change": "x4tok (first author decoded per token role) at the remaining X4 layers (16, 24, 32, 48, 56) and at the ':' source position, in addition to the published L8 and L40.",
+   "hard check": "L8 and L40 reproduce the published x4tok values."
+  },
+  "2-10 M3 all-token score": {
+   "change": "the M3 task runs scored on all name tokens of all authors (author prompt) instead of the first author's first token.",
+   "hard check": "the first-author first-token subset reproduces the published M3 score."
+  },
+  "2-11 model-generated names (user item)": {
+   "data": "the label package's open answers (open_results.jsonl generated_text and the parsed names with their match status M / H per name), for all target and control papers.",
+   "GPU step": "teacher-force each paper's stored generated text after the SAME chat prompt the labeller used (system + user message, Qwen3 chat template, thinking disabled, as G1.4 of the handbook), one forward pass per paper, and store the residual at L16, L24, L32, L40, L48, L52, L56 at the position that predicts the first token of each written name and at that name's last token.",
+   "labels": "per written name: true author (matched, M) vs fabricated (H), from the label package matching (NameMatcher L4 behaviour).",
+   "probe": "logistic regression (L2, C by CV on fold 0), author-team folds (archived), training-fold standardisation; AUROC per layer and position, reported separately for target and control papers and pooled; shuffled-label control; a name-only baseline (features from the name string alone, e.g. surname frequency in the cohort) to separate 'this name is common' from 'the model knows it is right'.",
+   "hard check": "the teacher-forced greedy continuation reproduces the stored generated text for >= 90% of a 50-paper check sample at the first written name (batch noise is known to change text in 45.5% of full answers, so the check is on the first name only).",
+   "limitation stated in advance": "the open answers were produced inside the chat template while every other experiment uses the raw prompt; the contexts differ and results are not directly comparable to the raw-prompt experiments.",
+   "cost estimate": "about 1 A100-80GB hour (one forward per paper, 6,841 papers)."
+  }
+ }
+}
