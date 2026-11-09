@@ -1,3 +1,5 @@
+> **更正说明（2026-11-08，按用户要求加在文件开头；下面的原数未改）**：本文件的 orig 列在 L24 / L40 / L56 混入了 X1 对照流程的行（stage13_e4b_trainstd.py 第 109–110 行按 cumcount==0 标注行，被排除 / guard 的 X1-only 行进入了 "orig"）。因此下文"E4b all-paper signal 0.0075"等 orig vs new 的差是标注错误造成的，不是标准化的影响。按正确标注，两种标准化之间的差最大为 0.0007（E4b，1,395 篇 target + control；L24/L40/L56 更正后的 orig = 0.0508 / 0.0613 / 0.0755）。出处：381_stage13/e4b_standardisation_check/trainstd_orig_corrected_fix.py 与 paperset_vs_standardisation_b.py；PROGRESS 2026-11-07 ~20:30 条。tc_pooled 和 X1 各表不受影响。
+
 # E4b with training-fold standardisation vs the original (full-sample standardisation)
 
 

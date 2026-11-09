@@ -1,0 +1,35 @@
+{
+ "title": "Addendum 14 deviation record D14-1: item 3-3 (Stage 7.1B completion on the fast path) STOPPED",
+ "applies_to": "prereg_addendum14.json item 3-3 (that file is unchanged)",
+ "history": [
+  "1. Planned hard check (>= 99% exact rank match on the 1,166 contexts already computed by 7.1B): FAILED, 79.8% (gate job 11695450).",
+  "2. Investigation (CPU only, 381_stage13/b3_33_investigation/report.md): no code bug in either path; difference = bf16 rounding that changes with forward length (length classes <= 32 / 33-34 / >= 35 tokens).",
+  "3. User option (ii) with a post-hoc rule (diff-of-diffs CI includes 0 AND main numbers change < 10% of CI half-width): not met (381_stage13/b3_33_option2/report.md).",
+  "4. The user pointed out two design flaws in that rule (CI-includes-0 is the wrong test for paired data; CIs must be clustered by paper). Revised equivalence criterion locked BEFORE the paper-clustered results (381_stage13/b3_33_option2/criterion_v2_LOCKED.json, sha256 56f6c654..., 2026-11-07 17:08:06 EST).",
+  "5. Under the revised criterion with the Welch interval on per-paper means (chosen by the user because a percentile bootstrap over 3-4 papers per group is systematically too narrow; the 'or' ambiguity in the record was the user's, and the interval was not chosen by which one passes): C1 NOT met -> 3-3 stopped (option a)."
+ ],
+ "statement_zh": "3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者在 ±0.02 内等效（输出层 target−control 差值之差 +0.0059，按论文 Welch 95% CI [−0.0207, +0.0324]；论文级 bootstrap [−0.0005, +0.0181]，因每组仅 3–4 篇偏窄，不作判据）。差异来源为 bf16 舍入随前向长度变化；长度跨档比例 target 28%、control 15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。",
+ "decision_chain_zh": "原判据（≥ 99% 名次完全一致）未通过（79.8%）→ 用户指出事后判据的设计缺陷 → 在看到论文级结果之前写定并锁定修正判据 → 按修正判据（Welch 区间）仍未通过 → 停止。",
+ "limitation_zh": "Stage 7.1B 的终端读出只完成 1,166 / 15,519 个上下文（7.5%）；用 Stage 10 快路径补完的尝试（补充 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停止，7.1B 的估计量不报告。",
+ "fp32_note": "fp32 reference jobs 11714970 / 11715023 continue; results go only into the limitation note (which GPU path is closer to fp32) and do not change the stop decision.",
+ "evidence": [
+  "381_stage13/summary_b3_71b/gate.json",
+  "381_stage13/b3_33_investigation/report.md",
+  "381_stage13/b3_33_option2/report.md",
+  "381_stage13/b3_33_v2/v2_C1_summary.json",
+  "381_stage13/b3_33_v2/v2_per_paper.csv",
+  "381_stage13/b3_33_option2/G_target_minus_control_DiD.csv",
+  "381_stage13/b3_33_option2/G_cross_class_share.csv",
+  "381_stage13/b3_33_option2/E_estimands_overlap_old_vs_new.csv"
+ ],
+ "additional_notes_zh": [
+  "(a) 按标题效应算的 target−control 差值之差，区间不含 0（nlr −0.00021 [−0.00062, −0.00004]；log 概率 −0.0019 [−0.0052, −0.0005]），但量级为 nlr −0.0002，约为主效应（Stage 10 L63 target−control +0.207）的 0.1%，不作解释。（381_stage13/b3_33_option2/G_target_minus_control_DiD.csv）",
+  "(b) 长度跨档行占比 target 28%、control 15%，两组不平衡，如实写出。（381_stage13/b3_33_option2/G_cross_class_share.csv）",
+  "(c) 重叠行上新旧路径的 7.1B 主要汇总：final L63 control 0.0171 → 0.0110（变化为 CI 半宽的 19.8%），target−control 0.2446 → 0.2505；结论不变。（381_stage13/b3_33_option2/E_estimands_overlap_old_vs_new.csv；report.md 第 3 节）"
+ ],
+ "locked": {
+  "approved_by": "user (Zhiqi Zhang), message 2026-11-08 ~13:50 EST: \"D14-1：批准锁定。加三句说明\"",
+  "locked_at": "2026-11-08T13:54:30-05:00",
+  "draft_source": "b3_33_v2/prereg_addendum14_deviations_DRAFT.json"
+ }
+}

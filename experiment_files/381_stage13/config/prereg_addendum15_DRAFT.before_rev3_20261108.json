@@ -1,0 +1,110 @@
+{
+ "title": "补充 15（草稿 rev2，未锁定，无 sha256）：2-11b 模型生成人名——本次运行现场生成 + 现场匹配打标签",
+ "written": "2026-11-08 初稿；2026-11-08 rev2 按用户 6 条修改（用户批准后另存为 prereg_addendum15.json 并写 sha256）。旧稿备份 prereg_addendum15_DRAFT.before_rev2_20261108.json。",
+ "approved_by_user": "尚未批准（草稿）。",
+ "placement after locking": "锁定后排在当前 batch-2 各项之后、batch 3 之前运行。",
+ "status_at_writing": "2-11 没有任何结果被看过：没有残差、没有探针、没有 AUROC。已知的只有失败的门槛数字：作业 11720105 的首名 greedy 复现率 0.880（50 篇，阈值 0.90），因此 HARD_CHECK_FAILED，链条停止。repro_check.csv 的逐篇内容未读。已知的 build.json 计数（6,717 篇、M 686 / H 34,341 名）来自存储文本，不属于本设计的数据。",
+ "relation_to_addendum12": "原 2-11 仍为 '按预注册停止'，在报告中如实列出。本补充是新条目（编号 2-11b），结果单独报告，不与原 2-11 合并，也不称为原 2-11 的结果。",
+ "rev2 changes (user 2026-11-08)": [
+  "1 同一 50 篇生成两遍的 token 一致性检查改为 WARN（可复现性，描述性），不再是 HARD。",
+  "2 新 HARD 自洽检查 H2：残差在生成过程中保存（HF generate 的 output_hidden_states，不做第二次前向）；在每个分析位置，用保存的最终层状态重算 logits，argmax 必须等于下一步实际生成的 token；一致率 < 0.99 停止。",
+  "3 人名匹配规则成文（大小写、变音符、首字母/缩写、连字符、姓氏前缀、et al. 截断、词序），附 20 个边界例子，M/H 由实际匹配代码算出。",
+  "4 位置分开报告：(ii) 人名 token（主分析）与 (i) 人名前一位置（次要），两者都报告。",
+  "5 新增描述性拆分：编造人名（H）在数据集全部作者池中存在（'真人但不是本文作者'）vs 不存在。",
+  "6 tiny 模型全流程试跑并测成本；对 32B 的外推写明假设，并把 1 个真实分片的实测作为第一步门槛。"
+ ],
+ "design": {
+  "papers": "与 2-11 相同的 target + control 论文（group_tight ∈ {target, control}，6,841 篇），同一 cohort 作者列表。",
+  "generate now": "Qwen3-32B bf16（revision 9216db57），单张 A100-80GB；chat 模板（system + user 原文与 G1.4/标签包相同），add_generation_prompt=True，enable_thinking=False；HF generate greedy（do_sample=False，temperature/top_p/top_k=None），max_new_tokens=96，batch 1，KV cache，eos = <|im_end|>/<|endoftext|>；output_hidden_states=True、output_logits=True、return_dict_in_generate=True。每篇保存生成 token id、文本、是否以 EOS 结束；分片保存、已完成跳过。",
+  "residual source (rev2)": "残差直接取自同一次 generate 返回的 hidden_states（不做 teacher-forced 第二次前向）：step 0 给出 prompt 各位置，step t≥1 给出生成 token t-1 的位置；hidden_states[l+1] = 第 l 个 decoder block 的输出（tiny 中与 jlens ActivationRecorder 逐位比对，最大差 2.2e-8）。取 L16、L24、L32、L40、L48、L52、L56。每篇解析完立刻只保留需要的位置与层（float16），其余释放。",
+  "parse (rule P1-P7)": {
+   "P1": "生成文本（去掉结尾 EOS）按 ';' 切分；不按 ',' 或 'and' 切。",
+   "P2": "去首尾空白及末尾的 '.', ',', ':'。",
+   "P3 et al.": "去掉末尾的 'et al.' / 'et al' / 'and others' / 'and colleagues'（记 etal 标志，名字本身照常匹配）；整项只有 'et al.' 则为空项→U。",
+   "P4": "按匹配器的 words() 规范化后少于 2 个词→U_short（含空项、单个姓或名、非拉丁文字，因 ASCII 化后为空）。",
+   "P5": "多于 7 个词→U_prose（句子、拒答）。",
+   "P6": "与前面已保留的名字 words() 完全相同→U_dup（保留首次）。",
+   "P7": "因 96 token 截断（无 EOS）的最后一项→U_trunc。",
+   "U": "U 项不进入分析，按原因计数报告。",
+   "stored-text parser check (descriptive, tiny job)": "在标签包存储文本上：6,841 篇中 5765 篇解析结果与包内 names 完全一致；包内 35490 名，本解析器保留 31368，U 原因 {'U_dup': 3690, 'U_trunc': 488, 'U_prose': 84, 'U_short': 257}（主要差别是重复名 U_dup）。"
+  },
+  "labels: matching rule (written, rev2)": {
+   "code": "Stage 10 stage10_extra_r0r1.py 的 words/same/match，原样（v1 stage13_b2_gennames.py match_gen，按生成名一侧返回是否被用上）；不改代码，以便与 D12-3 / Stage 10 一致。",
+   "M1 规范化": "words(s)：'-' 两侧加空格 → Unicode NFKD → 丢弃非 ASCII（变音符被去掉，ß、ø、非拉丁文字整体丢失）→ 小写 → 非 [a-z 空格 -] 字符替换为空格（'.' ''' ',' 等）→ 按空格切词，去掉单独的 '-'。",
+   "M2 大小写": "不区分（全部小写）。",
+   "M3 变音符": "去掉变音符后比较（José=Jose）；不做转写（Müller≠Mueller，Strauß→'strau'≠Strauss）。",
+   "M4 姓": "真实作者的姓 = 规范化后最后一个词；生成名的姓 = 最后一个词（第 1 轮）或第一个词（第 2 轮，姓在前）。",
+   "M5 首字母/缩写": "只比姓 + 名的第一个字母：真实作者名的首字母 = 第一个词的首字母（真实作者只有一个词时不比首字母）；生成名取对应位置词的首字母。所以 'J. Smith'、'James Smith' 与 'John Smith' 都相配；昵称（Bob/Robert）不相配；中间名不比。",
+   "M6 连字符": "连字符拆成两个词：复姓只认最后一部分（García-López 的姓 = lopez）；连字符名的首字母 = 第一部分首字母。",
+   "M7 姓氏前缀": "不特殊处理：因为姓 = 最后一个词，'van der Berg' 的姓是 berg，前缀省略也相配；前缀连写（Vanderberg）不相配。后缀 Jr./Sr./II 在真实作者末尾时会被当成姓（存储文本中 25,776 个真实作者里只有 3 个）。",
+   "M8 词序": "两轮：第 1 轮全部按名在前，第 2 轮对未匹配的再按姓在前（'Sakaguchi Shimon'、'Sakaguchi, S.'）；一对一，按真实作者顺序取第一个可用的生成名。",
+   "M9 et al.": "由解析器 P3 去掉后再匹配；匹配器本身不处理（若不去掉，'al' 会被当成姓）。",
+   "M10 一项多名": "一项里用逗号写了两个名字时按一个名字处理：姓 = 最后一个词，首字母 = 第一个词首字母，可能误判为 M（存储文本保留项中含逗号且 ≥4 词的只有 7 个）。",
+   "M = 被一对一匹配用上的生成名；H = 保留（P1–P7 后）但未用上的生成名。": "",
+   "20 boundary examples (computed by the code, job 11734448, b2_gennames_b_tiny/run_11734448/matcher_examples.csv)": [
+    "1. [case] true 'John Smith' / generated 'JOHN SMITH' -> item 'JOHN SMITH' -> M",
+    "2. [diacritics stripped] true 'José Muñoz' / generated 'Jose Munoz' -> item 'Jose Munoz' -> M",
+    "3. [diacritics transliterated] true 'Jürgen Müller' / generated 'Juergen Mueller' -> item 'Juergen Mueller' -> H",
+    "4. [eszett] true 'Hans Strauß' / generated 'Hans Strauss' -> item 'Hans Strauss' -> H",
+    "5. [initial vs full given name] true 'John R. Smith' / generated 'J. Smith' -> item 'J. Smith' -> M",
+    "6. [full given vs initial in truth] true 'J. Smith' / generated 'James Smith' -> item 'James Smith' -> M",
+    "7. [wrong initial] true 'John Smith' / generated 'K. Smith' -> item 'K. Smith' -> H",
+    "8. [nickname] true 'Robert Jones' / generated 'Bob Jones' -> item 'Bob Jones' -> H",
+    "9. [hyphenated surname, first part only] true 'María García-López' / generated 'María García' -> item 'María García' -> H",
+    "10. [hyphenated surname, second part only] true 'María García-López' / generated 'Maria Lopez' -> item 'Maria Lopez' -> M",
+    "11. [hyphenated given name as initials] true 'Jean-Pierre Dupont' / generated 'J.-P. Dupont' -> item 'J.-P. Dupont' -> M",
+    "12. [particle dropped] true 'Hans van der Berg' / generated 'Hans Berg' -> item 'Hans Berg' -> M",
+    "13. [particle fused] true 'Hans van der Berg' / generated 'Hans Vanderberg' -> item 'Hans Vanderberg' -> H",
+    "14. [apostrophe surname] true 'Seán O'Brien' / generated 'Sean OBrien' -> item 'Sean OBrien' -> H",
+    "15. [suffix Jr. in truth] true 'Martin Luther King Jr.' / generated 'Martin Luther King' -> item 'Martin Luther King' -> H",
+    "16. [et al. truncation] true 'John Smith; Jane Doe' / generated 'John Smith et al.' -> item 'John Smith' (et al. stripped) -> M",
+    "17. [surname-first order] true 'Shimon Sakaguchi' / generated 'Sakaguchi Shimon' -> item 'Sakaguchi Shimon' -> M",
+    "18. [surname, initial with comma] true 'Shimon Sakaguchi' / generated 'Sakaguchi, S.' -> item 'Sakaguchi, S' -> M",
+    "19. [two names in one item (comma)] true 'Jane Doe; Bob Brown' / generated 'John Smith, Jane Doe' -> item 'John Smith, Jane Doe' -> M",
+    "20. [one-to-one: second variant of same author] true 'John Smith' / generated 'John Smith; J. Smith' -> item 'John Smith' -> M",
+    "20. [one-to-one: second variant of same author] true 'John Smith' / generated 'John Smith; J. Smith' -> item 'J. Smith' -> H"
+   ]
+  },
+  "positions (rev2)": {
+   "(ii) name tokens = PRIMARY": "该人名所有 token 位置上残差的平均（name_mean）。",
+   "(i) position before the name = SECONDARY": "第一个人名 token 的前一位置（pred_first），其输出预测第一个人名 token。",
+   "descriptive": "人名最后一个 token（last），与原 2-11 可对照，不作结论。",
+   "rule": "(ii) 与 (i) 两者都完整报告；结论以 (ii) 为准，(i) 只作次要证据。"
+  },
+  "primary analysis": "只用至少有 1 个 M 和 1 个 H 的论文；论文内比较 M 与 H。探针：L2 logistic，C 在 fold 0 上选，存档的 author-team folds，训练折标准化；按论文分层的论文内 AUROC（论文内的 M–H 对），CI 用 author-team cluster bootstrap（2,000 次，存档 group_folds team id）。全体人名合并 AUROC 只作参考。打乱标签对照照做。（对 (ii) 主分析；(i) 同法次要报告）",
+  "baselines": "(1) 人名在生成列表中的位置（序号、相对序号）；(2) 人名字符串特征：字符长度、该全名在 cohort 作者中出现频率的 log。探针只有在论文内 AUROC 同时高于两个基线（差值的 team-bootstrap CI 下限 > 0）时才算信号。",
+  "split: real-but-mismatched (rev2, descriptive)": "对每个 H 名：'在作者池中' = 规范化全名（words() 串，2 词名也接受反序）等于 cohort 9,108 篇中【其他】论文的某位作者（主定义，exact）；次定义（rule）= 用同一匹配规则（姓 + 首字母，任一词序）能与其他论文某作者相配。报告两组的数量，以及 (ii)/(i) 探针分数在论文内 M vs H-在池 / M vs H-不在池 的 AUROC 点估计。仅描述，不做推断。tiny 中 20 篇 66 个 H：exact 在池 3，rule 在池 32（rule 太宽，因此主定义用 exact）。",
+  "control papers": "control 论文 M 很少：只做描述，不做推断。",
+  "minimum size (stated in advance)": "若合格的 target 论文 < 100 篇或 M 名 < 200，主分析只作描述性报告，不下结论。",
+  "stored-text reproduction": "本次 greedy 文本与标签包存储文本的复现率（首名、全文）只作描述性报告，不是门槛，不影响主分析。",
+  "limitation stated in advance": "同补充 12：chat 模板语境，与 raw-prompt 实验不能直接比较；标签来自规则匹配而非人工判定。 匹配规则的已知怪点见 M3/M6/M7/M10，按原样保留。"
+ },
+ "hard checks": {
+  "H1 determinism (rev2: WARN only)": "在 50 篇（rng 1211 抽样）上同一作业内生成两遍，报告 token 序列完全相同的篇数；有不同只记 WARN（数值保留），不停，作为可复现性的描述。",
+  "H2 self-consistency (rev2: HARD)": "方法：残差在生成时保存（见 residual source）。在每个分析位置 p（pred_first 与人名每个 token），用同一次 generate 保存的最终层状态（hidden_states[-1]，HF 已做 final norm；tiny 中与 step logits 差 0.0）经 lm_head（形状与 decode 步相同 [1,1,d]）重算 logits，其 argmax 必须等于 p+1 处实际生成的 token；同时记录该步原始 logits（output_logits）的 argmax。按分片计算一致率，< 0.99 → HARD FAIL，停止该条目。",
+  "H2 why this method": "可行：每篇 hidden_states 全部层约 110–130 MB（65 层 × ≤196 位置 × 5120 × bf16），KV cache 约 50 MB，加 65.5 GB 权重在 80 GB 内；不需第二次前向。生成时保存的残差就是产生这些 token 的那些状态，因此不受 bf16 下 teacher-forced 重算（不同张量形状/核函数）带来的 argmax 翻转影响——原 2-11 的失败正是这种不一致（存储文本 batch 噪声）。该检查验证的是位置记账正确、保存的向量确实对应生成的 token。teacher-forced 方案保留为后备，不采用。",
+  "H2 tiny evidence (job 11734448)": "随机 4 层模型、fp32、CPU：自由 greedy 20 篇 1,920 个生成位置一致率 1.000；强制回放标签包文本时保存的最终状态重算 = 该步 logits 1.000；teacher-forced 对照：残差最大差 2.2e-8，argmax 一致 1.000（fp32，不能代表 32B bf16）。",
+  "H3 matcher parity": "匹配代码在存储文本上重建每篇 M/H/U 计数与标签包一致；tiny 作业中复现 6,828/6,841（= D12-3）。不一致只记 WARN；比对代码本身崩溃才停。",
+  "token-span check (WARN)": "每个保留名的 token 片段解码后须包含该名（tiny 91/91）；不含的记 U_tokmap 并计数。",
+  "rule": "按 CLAUDE.md：除 H2 外的数值核对未达标一律 WARN 继续；只有代码崩溃或 H2 < 0.99 才停。"
+ },
+ "tiny run (rev2)": {
+  "job": "11734448（short，CPU，1 分 31 秒，PASS）；首次 11734407 同样 PASS（报告文件因缺 tabulate 未写，已修）。",
+  "code": "~/jlens_work/13_stage13/stage13_b2_gennames_b_pipeline.py + stage13_b2_gennames_b_tiny.sbatch（新文件；v1/v2 只按路径导入）",
+  "outputs": "/scratch/zhang.zhiqi2/jlens/381_stage13/b2_gennames_b_tiny/run_11734448/（tiny_result.json, tiny_report.md, matcher_examples.csv/md, parity.json, names_replay.parquet, resid_replay.npz, probe_within_tiny.csv）",
+  "what it covers": "生成（真 HF generate + hidden states）→ 解析 → 打标签 → 残差 → 探针（论文内 AUROC、team bootstrap、两个基线、打乱标签、在池拆分）→ 报告。随机模型生成的是乱码（20 篇只解析出 1 个名字），所以另用强制回放（LogitsProcessor 强制标签包存储文本 + EOS，走同一 generate 路径）让真实人名流过后半段：20 篇 95 项，M 25 / H 66 / U_dup 4。探针数值无意义。",
+  "measured (tiny, not predictive of 32B)": "CPU 4 线程：自由生成 0.46 秒/篇（96 token，4.8 ms/token）；解析+打标签+切残差 0.004–0.036 秒/篇；进程峰值 RSS 5.7 GB（主要是 tokenizer/pandas/作者池）；hidden_states 每篇 ≤ 0.23 MB，按层数与宽度换算到 32B 约 112 MB。"
+ },
+ "cost estimate (rev2)": {
+  "caveat": "tiny 模型（4 层、宽 64、CPU）的耗时不能预测 32B 在 A100 上的耗时；下面是按已知数和带宽假设的估计，不是测量。",
+  "assumptions": [
+   "prompt 约 100 token；生成长度按标签包存储文本：平均 32 token（+EOS），8% 达到 96 上限。",
+   "decode 每步（batch 1，KV cache，bf16，HF eager）受显存带宽限制：65.5 GB 权重 / A100 约 1.5–2 TB/s ⇒ 下限约 35 ms；加 HF/python 和 output_hidden_states 开销假设 45–70 ms/步。",
+   "prefill 约 0.1–0.15 秒/篇（作业 11720105：50 篇共 288 次无 cache 的约 100-token 前向 + 载入模型共 56 秒，为上界）。",
+   "CPU 后处理约 0.04 秒/篇（tiny 实测）；每个作业载入模型约 1 分钟。"
+  ],
+  "estimate": "每篇约 0.15 + 33 × (0.045–0.07) ≈ 1.6–2.5 秒；6,841 篇 ≈ 3.0–4.8 A100-80GB 小时；H1 两遍 50 篇约 0.05 h；载入开销约 0.3 h。合计约 3.5–5.5 A100-h（初稿估 8–11 h 偏高）。探针与 bootstrap 在 CPU。显存：权重 65.5 GB + 每篇 hidden_states ≤ 约 130 MB + KV cache 约 50 MB。",
+  "first gate step": "锁定后第一步只跑 1 个真实分片（约 143 篇，48 分片之一）：实测秒/篇、torch.cuda.max_memory_allocated、H2 一致率、H1（50 篇两遍）；按实测秒/篇重定其余分片的大小与作业数，然后放出其余。"
+ },
+ "flow": "锁定 → CPU 预检（tiny 已做）→ 1 个真实分片（门槛：H2 ≥ 0.99，代码不崩溃）→ 其余分片 → CPU 探针与报告。"
+}

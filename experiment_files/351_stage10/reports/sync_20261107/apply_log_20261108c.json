@@ -1,0 +1,1010 @@
+[
+ [
+  "a D13-1 back (held json)",
+  "stage1_11/stage1_11_report.html",
+  "（用户 2026-11-06 决定）",
+  "（用户 2026-11-06 决定，偏离 D13-1，见下框）",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "stage1_11/stage1_11_report.html",
+  "(anchor: 有做（用户 2026-11-06 决定，偏离 D13-1，见下框）。</div>)",
+  "\n<div class=\"bx warn\"><b>偏离 D13-1（补充 13 C-2 的规则触发）</b>按补充 13 C-2 的判定规则（prereg_addendum13.json 第 18 行），全部作者 CPU 代理（public J-lens 名次、Stage 10 的 5 个假标题——每篇都是整 5 个，351_stage10.py 第 302、863 行；不是原 W）只在 L56 的 RQ2 上与已发表结论不一致：+0.064 [−0.032, +0.163]，区间含 0<span class=\"src\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2），endpoint=L56）</span>。因此触发按原 W 在 GPU 上重算；用户 2026-11-06 决定不做，列为偏离。报告 v29 和 PPT v20 都以锁定计划的 7 层积分为冻结主终点（本节“Stage 8 结论”；PPT 第 17 页“7-layer (frozen primary)”）；L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清（U28）。在 10-18 14:29 锁定计划的 7 层积分终点上（Stage 10 没有 L16，按 L16 = 0 或 L16 = L24 近似），代理 RQ2 为 +0.046 [+0.007, +0.088] 或 +0.049 [+0.005, +0.094]，RQ1 为 +0.111 [+0.093, +0.131] 或 +0.117 [+0.095, +0.138]，都与已发表结论同向、区间不含 0<span class=\"src\">（同上，endpoint=int7_L16zero / int7_L16eqL24）</span>。6 层 int6 的 RQ2 为 +0.054 [+0.008, +0.102]<span class=\"src\">（同上，endpoint=int6；int6 = public J-lens 在 L24、L32、L40、L48、L56、L62 的等权平均，少了 L16，与锁定的 7 层积分不是同一终点（13_stage13/stage13_c13_s10lib.py 第 17、70 行；351_stage8/config/analysis_plan.json 第 14、27、29 行））</span>。补充 13 的规则是 RQ1 或 RQ2 任一结论改变即触发；本次触发只来自 L56。7 层积分的代理结果是近似值（Stage 10 没有 L16 的读出）。Stage 8 RQ2 在 L56 的结论没有用原统计量复核。已发表的原 W（按原种子复现）：7 层积分 RQ1 +2.326 [+1.496, +3.192] pp、RQ2 +2.409 [+0.909, +4.003] pp；L56 RQ1 +5.178 [+2.926, +7.476] pp、RQ2 +4.981 [+0.322, +9.915] pp<span class=\"src\">（351_stage8/recompute_2026-10-30/s8_endpoints.csv 第 2–7 行）</span></div>",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "stage1_11/stage1_11_report.html",
+  "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做；CPU 代理见 Stage 8 节）。</li>",
+  "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做，列为偏离 D13-1：规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56（PROTOCOL.md 后改的终点，U28）的 RQ2；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）同向且区间不含 0，RQ2 +0.046 [+0.007, +0.088]；见 Stage 8 节）。</li>",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "stage1_11/stage1_11_report.html",
+  "(anchor: 3_33_v2/v2_C1_summary.json）</span></li>\n)",
+  "<li><b>Stage 8 L56 的 RQ2 没有用原统计量复核。</b>CPU 代理只在后改的 L56 上区间含 0，按补充 13 触发了 W 的 GPU 重算；用户决定不做（偏离 D13-1，见 Stage 8 节）。</li>\n",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "talk/src/export/notes_zh.json",
+  "(anchor: 81_stage13/b3_33_v2/v2_C1_summary.json〕）)",
+  "Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1〔381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv〕）。",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "talk/src/export/with_notes.html",
+  "(anchor: e13/b3_33_v2/v2_C1_summary.json）</span>）)",
+  "Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1<span class=\"src\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>）。",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "methods/parts/B_global2.html",
+  "(anchor: ports/b1_x7f_report.md</span></td></tr>\n)",
+  "<tr><td>D13-1（补充 13 C-2）</td><td>代理与已发表结论不一致时按原 W 在 GPU 上重算</td><td>只在后改的 L56 上 RQ2 区间含 0（+0.064 [−0.032, +0.163]）；用户决定不做；规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56（PROTOCOL.md 后改的终点，U28）；锁定的 7 层积分终点上（近似，Stage 10 没有 L16）同向、区间不含 0</td><td><span class=\"st st-review\">偏离</span></td><td><span class=\"src\">381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2）</span></td></tr>\n",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "methods/parts/G_appendix.html",
+  "<tr><td>V59</td><td>Stage 8 按原 W 统计量的 GPU 重算（补充 13 C-2 的规则触发）</td><td><span class=\"st st-plan\">不做</span></td><td>用户 2026-11-06 决定不做；只报 CPU 代理（public J-lens 名次指标，不是 W）。<span class=\"src\">381_stage13/reports/c13_C2.md “Decision for batch 3 item 3-4”</span></td><td><a href=\"#s19-s8d\">s19-s8d</a></td></tr>",
+  "<tr><td>V59</td><td>Stage 8 按原 W 统计量的 GPU 重算（补充 13 C-2 的规则触发）= 偏离 D13-1</td><td><span class=\"st st-plan\">不做</span>（偏离 D13-1）</td><td>用户 2026-11-06 决定不做。D13-1：CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0）；在 10-18 14:29 锁定的 7 层积分终点上（L16 = 0 或 = L24 近似）RQ2 +0.046 [+0.007, +0.088] / +0.049 [+0.005, +0.094]，RQ1 +0.111 [+0.093, +0.131] / +0.117 [+0.095, +0.138]，同向且区间不含 0；int6 RQ2 +0.054 [+0.008, +0.102]。规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56；L56 在锁定计划里是探索性次终点，21:14 由 PROTOCOL.md 改为主终点（U28）；7 层积分的代理是近似值（Stage 10 没有 L16）；代理用 Stage 10 的 5 个假标题，每篇整 5 个（351_stage10.py 第 302、863 行）。Stage 8 RQ2 在 L56 的结论没有用原统计量复核。<span class=\"src\">381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2）</span>；只报 CPU 代理（public J-lens 名次指标，不是 W）。<span class=\"src\">381_stage13/reports/c13_C2.md “Decision for batch 3 item 3-4”</span></td><td><a href=\"#s19-s8d\">s19-s8d</a></td></tr>",
+  1
+ ],
+ [
+  "a D13-1 back (held json)",
+  "methods/parts/C_stage1_9.html",
+  "（用户 2026-11-06 决定）",
+  "（用户 2026-11-06 决定，偏离 D13-1，见附录 V59）",
+  1
+ ],
+ [
+  "version header v30",
+  "stage1_11/stage1_11_report.html",
+  "更新于 2026-11-06（第 29 版：Stage 1–13；答辩后新增见第五部分；补充 9–13 的重做结果已写入各节，批次 1 只剩 P1 / P2 五个假标题在运行；正文数字后的灰色小字是出处）",
+  "更新于 2026-11-08（第 30 版：Stage 1–13；答辩后新增见第五部分；补充 9–13 的重做结果已写入各节；批次 1 全部完成，批次 2 的 C / D 组补全已完成、其余各项进行中，批次 3 等批次 2 结束后开始；本版放回偏离 D13-1，写明 Stage 8 结论的三个前提，X4 不再作为 H2 的证据，补充局限；正文数字后的灰色小字是出处）",
+  1
+ ],
+ [
+  "b status (intro box)",
+  "stage1_11/stage1_11_report.html",
+  "X1–X4 改为全部作者、E4b 逐个假标题排除版（补充 10 第 4 项）也已完成，结论不变；P1 / P2 用 5 个假标题还在运行（第五部分）。",
+  "X1–X4 改为全部作者、E4b 逐个假标题排除版（补充 10 第 4 项）、P1 / P2 用 5 个假标题（补充 10 第 3 项）也已完成，结论不变；批次 2 中 C / D 组补全已完成：C 的信号更大，但时间点与 A 相同（第五部分）。",
+  1
+ ],
+ [
+  "version label (hypotheses table)",
+  "stage1_11/stage1_11_report.html",
+  "目前结果（第 29 版，2026-11-07）",
+  "目前结果（第 30 版，2026-11-08）",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (table)",
+  "stage1_11/stage1_11_report.html",
+  "另外，X4 最早可解码的顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反。<b>X2 不支持。</b></td>",
+  "另外，X4 最早可解码的顺序是第一作者（L8）早于年份（L40），与 H2 预测的方向相反；X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。<b>X2 不支持。</b></td>",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (overall judgement)",
+  "stage1_11/stage1_11_report.html",
+  "X4 的顺序与 H2 预测相反，X2 不支持（2026-11-05）。H3：",
+  "X4 的顺序与 H2 预测相反，X2 不支持（2026-11-05）。第 30 版补：X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。H3：",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (X4 section)",
+  "stage1_11/stage1_11_report.html",
+  "但这些层是事后选的，只作探索。全部作者版本（+0.031 到 +0.052）没有做调参/测试拆分。年份没有这种差别。",
+  "但这些层是事后选的，只作探索。全部作者版本（+0.031 到 +0.052）没有做调参/测试拆分。年份没有这种差别。这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。",
+  1
+ ],
+ [
+  "e L01 qualifier (X4 year L40)",
+  "stage1_11/stage1_11_report.html",
+  "年份要到 L40 才能读出，而且很弱。",
+  "年份要到 L40 才能读出（前一个测量层是 L32，真实起点在 L33–L40 之间；作者早于年份的顺序不受影响），而且很弱。",
+  1
+ ],
+ [
+  "e L01 qualifier (X4 peak L40)",
+  "stage1_11/stage1_11_report.html",
+  "+0.046 [0.035, 0.059]，L40 最高 +0.068</td>",
+  "+0.046 [0.035, 0.059]，L40 最高 +0.068（两侧测量层为 L32、L48，真实峰值可能在 L33–L47）</td>",
+  1
+ ],
+ [
+  "e L01 qualifier (Jacobian vs logit from L40)",
+  "stage1_11/stage1_11_report.html",
+  "Jacobian lens 从 L40 起明显好于 logit lens（约 −3.0）",
+  "Jacobian lens 从 L40 起（前一个测量层是 L32，跳变在 L33–L40 的哪一层不知道）明显好于 logit lens（约 −3.0）",
+  1
+ ],
+ [
+  "e L01 qualifier (en)",
+  "stage1_11/stage1_11_report.html",
+  "The Jacobian lenses beat the logit lens from L40 on (about −3.0)",
+  "The Jacobian lenses beat the logit lens from L40 on (the previous measured layer is L32, so the jump lies somewhere in L33–L40; about −3.0)",
+  1
+ ],
+ [
+  "a/C07 Stage 8 box: int6 is not the frozen endpoint",
+  "stage1_11/stage1_11_report.html",
+  "用 Stage 10 已有的原始分数，在 Stage 8 的 200 篇论文上重算冻结的多层终点：全部作者、全部名字 token 的版本中 RQ1 和 RQ2 都成立——public J-lens 6 层平均 RQ1 +0.130 [0.108, 0.153]",
+  "用 Stage 10 已有的原始分数，在 Stage 8 的 200 篇论文上重算：全部作者、全部名字 token 的版本中，public J-lens 6 层平均（int6，L24–L62 每 8 层，少了 L16，与 10-18 14:29 锁定的 7 层积分终点不是同一终点）RQ1 和 RQ2 都为正——RQ1 +0.130 [0.108, 0.153]",
+  1
+ ],
+ [
+  "a/C07 Stage 8: three premises",
+  "stage1_11/stage1_11_report.html",
+  "（用户 2026-11-06 决定，偏离 D13-1，见下框）。</div>",
+  "（用户 2026-11-06 决定，偏离 D13-1，见下框）。Stage 8 的结论（RQ1、RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span class=\"src\">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1（见下框）；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。</div>",
+  1
+ ],
+ [
+  "c C08 (Stage 10 R1 section)",
+  "stage1_11/stage1_11_report.html",
+  "C 只有 36 篇，这一点只作描述<span class=\"src\">（Stage 11 样本 target R1；351_stage10/reports/r0_r1_analysis.md §5）</span>。</p>",
+  "这 36 篇只作描述<span class=\"src\">（Stage 11 样本 target R1；351_stage10/reports/r0_r1_analysis.md §5）</span>。<b>2026-11-08 补（补充 11 B，C / D 组补全）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span class=\"src\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。“略晚”在补全后的同一引用档比较中没有得到确认（见第五部分 C / D 组补全）。</p>",
+  1
+ ],
+ [
+  "c C08 (three-scope table)",
+  "stage1_11/stage1_11_report.html",
+  "<td>同样 L52 完成，L40–48 略慢（n = 36）</td>",
+  "<td>同样 L52 完成；36 篇中 L40–48 略慢，补全到 462 篇后同一引用档内时间点与 A 相同（补充 11 B）</td>",
+  1
+ ],
+ [
+  "c table P5.1 C row (R4)",
+  "stage1_11/stage1_11_report.html",
+  "<td>+0.721 [+0.650, +0.806]; n = 32 (166 authors)</td><td>+0.996 [+0.968, +1.026]; n = 32 (166 authors)</td><td>+0.016 [-0.023, +0.048]; n = 32 (166 authors)</td>",
+  "<td>+0.731 [+0.705, +0.757]; n = 462 (2103 authors)</td><td>+0.985 [+0.977, +0.994]; n = 462 (2103 authors)</td><td>+0.014 [+0.005, +0.023]; n = 462 (2103 authors)</td>",
+  1
+ ],
+ [
+  "c table P5.1 D row (R4)",
+  "stage1_11/stage1_11_report.html",
+  "<td>+0.745; n = 5 (16 authors); n &lt; 30, descriptive</td><td>+0.979; n = 5 (16 authors); n &lt; 30, descriptive</td><td>+0.023; n = 5 (16 authors); n &lt; 30, descriptive</td>",
+  "<td>+0.786 [+0.674, +0.952]; n = 33 (141 authors); descriptive (addendum 11)</td><td>+0.968 [+0.917, +1.041]; n = 33 (141 authors); descriptive (addendum 11)</td><td>+0.040 [-0.001, +0.078]; n = 33 (141 authors); descriptive (addendum 11)</td>",
+  1
+ ],
+ [
+  "c table P5.1 source note (R4)",
+  "stage1_11/stage1_11_report.html",
+  "U0 和 R2s 的 E1 / E2 格来自补充 8 的重跑（391_groups/summary_rerun/rerun_group_values.csv）；R2s 只作参照，不给区间。</p>",
+  "U0 和 R2s 的 E1 / E2 格来自补充 8 的重跑（391_groups/summary_rerun/rerun_group_values.csv）；R2s 只作参照，不给区间。C、D 的 E1 / E2 格来自补充 11 B 的补全（C 462 篇、D 33 篇有未写出作者；391_groups/reports/b2_cd_report.md Numerator / denominator 表），原 Stage 11 样本只有 C 32 篇、D 5 篇；D 按补充 11 只作描述。</p>",
+  1
+ ],
+ [
+  "c C denominator 0.464 -> 0.559",
+  "stage1_11/stage1_11_report.html",
+  "A 0.407、B 0.214、U0 0.293、C 0.464<span class=\"src\">（补充 8 / Stage 11，E1，未写出作者，最终输出，mean(真 − false_0)；A 557、B 586、U0 599、C 32 篇；391_groups/reports/e1_num_den.md E1 表 denominator 列）</span>",
+  "A 0.407、B 0.214、U0 0.293、C 0.559<span class=\"src\">（补充 8 / Stage 11，E1，未写出作者，最终输出，mean(真 − false_0)；A 557、B 586、U0 599 篇；391_groups/reports/e1_num_den.md E1 表 denominator 列；C 为补充 11 B 补全后的 462 篇，[0.529, 0.590]，391_groups/reports/b2_cd_report.md；原 Stage 11 样本 32 篇时为 0.464）</span>",
+  1
+ ],
+ [
+  "c C/D completion (groups list)",
+  "stage1_11/stage1_11_report.html",
+  "C 只有 32 篇、D 5 篇、R2 中有未写出作者的论文 28 篇<span class=\"src\">（rerun_report.md Counts 表，papers_unwritten 列）</span>，都只作描述，不下结论。</li>",
+  "C 组已按补充 11 B 补全到 462 篇（未写出作者），可以下结论，见下文 C / D 组补全；D 33 篇按补充 11 只作描述；R2 中有未写出作者的论文 28 篇<span class=\"src\">（rerun_report.md Counts 表，papers_unwritten 列；391_groups/reports/b2_cd_report.md Counts 表）</span>，只作描述，不下结论。</li>\n<li id=\"pd-b2-cd\"><b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span class=\"src\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。</li>",
+  1
+ ],
+ [
+  "c table P5.2 C row",
+  "stage1_11/stage1_11_report.html",
+  "<tr><td>C（R1 × 认得出，描述）</td><td>32</td><td>+0.464 [0.388, 0.538]</td><td>+0.335</td><td>+0.721 [0.650, 0.806]</td><td>+0.462</td><td>+0.996 [0.968, 1.026]</td></tr>",
+  "<tr><td>C（R1 × 认得出；补充 11 B 补全）</td><td>462</td><td>+0.559 [0.529, 0.590]</td><td>+0.408</td><td>+0.731 [0.705, 0.757]</td><td>+0.551</td><td>+0.985 [0.977, 0.994]</td></tr>",
+  1
+ ],
+ [
+  "c table P5.2 note",
+  "stage1_11/stage1_11_report.html",
+  "；D（5 篇）和 R2 中未写出的作者（28 篇）见原表，只作描述。</p>",
+  "；C 行为补充 11 B 补全后的 462 篇（391_groups/reports/b2_cd_report.md；原 Stage 11 样本 32 篇时分母 0.464、R(L48) 0.721）；D（33 篇，补充 11 B）和 R2 中未写出的作者（28 篇）只作描述。</p>",
+  1
+ ],
+ [
+  "b R1 colon B/A",
+  "stage1_11/stage1_11_report.html",
+  "':' token 在 L44–L48 两组分子相近（B/A 0.78–0.99<span class=\"src\">（P1 只替换 “:”，分子 B/A：L44 0.78、L48 0.99；同一文件 B_over_A_numerator 列）</span>）",
+  "':' token 在 L44–L48 两组分子相近（B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99<span class=\"src\">（P1 只替换 “:”，分子 B/A：5 个假标题版 L44 0.72、L48 0.87，391_groups/reports/b1_p12f_report.md “B - A” 表；false_0 版 L44 0.78、L48 0.99，同一文件 B_over_A_numerator 列）</span>）",
+  1
+ ],
+ [
+  "b batch-1 status",
+  "stage1_11/stage1_11_report.html",
+  "<li><b>批次 1（补充 10）：</b>第 1、2、4 项已完成；第 3 项还在运行。",
+  "<li><b>批次 1（补充 10）：</b>第 1–4 项都已完成。",
+  1
+ ],
+ [
+  "b R1 P1/P2 result (report)",
+  "stage1_11/stage1_11_report.html",
+  "<li id=\"pd-b1-p12f\"><b>P1 / P2 用 5 个假标题（补充 10 第 3 项）：还在运行。</b>结果经用户确认后补入。</li>",
+  "<li id=\"pd-b1-p12f\"><b>P1 / P2 用 5 个假标题（补充 10 第 3 项，已完成）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span class=\"src\">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span class=\"src\">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span class=\"src\">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。<div class=\"tw\"><table><thead><tr><th>项目</th><th>层</th><th>5 个假标题平均 [95% CI]（主结果）</th><th>false_0（已发表）</th><th>篇数</th></tr></thead><tbody><tr><td>P1 全部位置</td><td>L48</td><td>+0.821 [0.807, 0.835]</td><td>+0.825</td><td>1,186</td></tr><tr><td>P1 全部位置</td><td>L52</td><td>+0.995 [0.990, 1.001]</td><td>+0.996</td><td>1,186</td></tr><tr><td>P1 只换名字位置</td><td>L52</td><td>+0.841 [0.827, 0.856]</td><td>+0.847</td><td>1,186</td></tr><tr><td>P1 只换 p9（标题的右引号）</td><td>L44</td><td>+0.027 [0.024, 0.030]</td><td>+0.027</td><td>各假标题 694–711 篇，集合不同，未加权</td></tr><tr><td>P2 注意力</td><td>L48</td><td>+0.237 [0.229, 0.246]</td><td>+0.231</td><td>1,186</td></tr><tr><td>P2 MLP</td><td>L52</td><td>+0.181 [0.174, 0.188]</td><td>+0.178</td><td>1,186</td></tr><tr><td>P2 MLP</td><td>L56</td><td>+0.226 [0.217, 0.236]</td><td>+0.224</td><td>1,186</td></tr></tbody></table></div></li>",
+  1
+ ],
+ [
+  "b R1 note at Stage 12 P1 table",
+  "stage1_11/stage1_11_report.html",
+  "(regex) (<tr><td>标题的右引号（p9）</td>.*?</table></div>)",
+  "(computed)",
+  1
+ ],
+ [
+  "f batch-2 status",
+  "stage1_11/stage1_11_report.html",
+  "代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始",
+  "批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果",
+  1
+ ],
+ [
+  "f batch-2 status",
+  "advisor/index.html",
+  "代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始",
+  "批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果",
+  1
+ ],
+ [
+  "f batch-2 status",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始",
+  "批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果",
+  1
+ ],
+ [
+  "f batch-2 status",
+  "pages_20261106b/methods_addendum/index.html",
+  "代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始",
+  "批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果",
+  1
+ ],
+ [
+  "f batch-2 status",
+  "process_report/draft_zh.md",
+  "代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始",
+  "批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果",
+  1
+ ],
+ [
+  "f batch-2 status",
+  "notes_zh.json #81",
+  "代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始",
+  "批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果",
+  1
+ ],
+ [
+  "f batch-3 status",
+  "stage1_11/stage1_11_report.html",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：代码已就绪，第二批之后开始",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）",
+  1
+ ],
+ [
+  "f batch-3 status",
+  "advisor/index.html",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：代码已就绪，第二批之后开始",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）",
+  1
+ ],
+ [
+  "f batch-3 status",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：代码已就绪，第二批之后开始",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）",
+  1
+ ],
+ [
+  "f batch-3 status",
+  "pages_20261106b/methods_addendum/index.html",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：代码已就绪，第二批之后开始",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）",
+  1
+ ],
+ [
+  "f batch-3 status",
+  "process_report/draft_zh.md",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：代码已就绪，第二批之后开始",
+  "3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）",
+  1
+ ],
+ [
+  "f batch-3 status (short form)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "3-1、3-2 代码已就绪，第二批之后开始",
+  "3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）",
+  1
+ ],
+ [
+  "f batch-3 status (short form)",
+  "notes_zh.json #81",
+  "3-1、3-2 代码已就绪，第二批之后开始",
+  "3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）",
+  1
+ ],
+ [
+  "e limitations L01-L05, L09 (report)",
+  "stage1_11/stage1_11_report.html",
+  "<li><b>高引用档缺对照。</b>4097+ 档没有 B / D 论文<span class=\"src\">（Stage 10 队列 4097+ 档：目标 84 篇、对照 0 篇；381_stage13/reports/m3_scores.md 第 2 节）</span>，引用档内比较用不到这一档的论文。</li>\n</ul>",
+  "<li><b>高引用档缺对照。</b>4097+ 档没有 B / D 论文<span class=\"src\">（Stage 10 队列 4097+ 档：目标 84 篇、对照 0 篇；381_stage13/reports/m3_scores.md 第 2 节）</span>，引用档内比较用不到这一档的论文。</li>\n<li><b>层不完整（第 30 版补）。</b>Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span class=\"src\">（~/jlens_work/conclusions_v30_checks.md A1）</span>。</li>\n<li><b>一致性容差事后放宽，而且用到了（第 30 版补）。</b>Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span class=\"src\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>。</li>\n<li><b>干预只用了 1,186 篇（第 30 版补）。</b>E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span class=\"src\">（361_stage11/summary/E1_recovery.csv n_papers）</span>。</li>\n<li><b>分母效应（第 30 版补）。</b>恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提。</li>\n<li><b>只用 false_0、没有补做计划（第 30 版补）。</b>M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span class=\"src\">（conclusions_v30_checks.md A3）</span>。</li>\n<li><b>数字核对只覆盖已登记的部分（第 30 版补）。</b>已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span class=\"src\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</li>\n</ul>",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "stage1_11/stage1_11_report.html",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  2
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "advisor/index.html",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "pages_20261106b/methods_addendum/index.html",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "process_report/draft_zh.md",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "talk_docs/stage13_script_zh_en.html",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "notes_zh.json #70",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "d X4 not H2 evidence (batch-1 sentence)",
+  "notes_zh.json #81",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释",
+  "；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "f box title",
+  "advisor/index.html",
+  "<b>2026-11-06 更新：答辩后的重做计划（批次 1 结果，用户已确认措辞）</b>",
+  "<b>2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组补全、报告第 30 版的前提和局限，用户已确认措辞）</b>",
+  1
+ ],
+ [
+  "f box title",
+  "pages_20261106b/methods_addendum/index.html",
+  "<b>2026-11-06 更新：答辩后的重做计划（批次 1 结果，用户已确认措辞）</b>",
+  "<b>2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组补全、报告第 30 版的前提和局限，用户已确认措辞）</b>",
+  1
+ ],
+ [
+  "f box title (audit)",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "<b>2026-11-06 更新：本审计指出的打分单位问题，答辩后已重做的部分</b>",
+  "<b>2026-11-06 / 11-08 更新：本审计指出的打分单位问题，答辩后已重做的部分（含报告第 30 版的前提和局限）</b>",
+  1
+ ],
+ [
+  "b/c/a/e update box (advisor, audit, addendum)",
+  "advisor/index.html",
+  "<li><b>P1 / P2 用 5 个假标题（批次 1 第 3 项）：还在运行</b>，结果经用户确认后补入。<span style=\"color:#8a8f98;font-size:.8em\">（g391_b1p12f 作业链（14_groups/b1_p12f_gpu_v2.sbatch））</span></li>",
+  "<li><b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span style=\"color:#8a8f98;font-size:.8em\">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span style=\"color:#8a8f98;font-size:.8em\">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span style=\"color:#8a8f98;font-size:.8em\">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。</li><li><b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span style=\"color:#8a8f98;font-size:.8em\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。</li><li><b>2026-11-08（报告第 30 版）补充的前提：</b>Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span style=\"color:#8a8f98;font-size:.8em\">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0<span style=\"color:#8a8f98;font-size:.8em\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。</li><li><b>2026-11-08（报告第 30 版）补充的局限：</b>层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span style=\"color:#8a8f98;font-size:.8em\">（~/jlens_work/conclusions_v30_checks.md A1）</span>；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>；干预只用了 1,186 篇：E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span style=\"color:#8a8f98;font-size:.8em\">（361_stage11/summary/E1_recovery.csv n_papers）</span>；分母效应：恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提；只用 false_0、没有补做计划：M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span style=\"color:#8a8f98;font-size:.8em\">（conclusions_v30_checks.md A3）</span>；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</li>",
+  1
+ ],
+ [
+  "b/c/a/e update box (advisor, audit, addendum)",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "<li><b>P1 / P2 用 5 个假标题（批次 1 第 3 项）：还在运行</b>，结果经用户确认后补入。<span style=\"color:#8a8f98;font-size:.8em\">（g391_b1p12f 作业链（14_groups/b1_p12f_gpu_v2.sbatch））</span></li>",
+  "<li><b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span style=\"color:#8a8f98;font-size:.8em\">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span style=\"color:#8a8f98;font-size:.8em\">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span style=\"color:#8a8f98;font-size:.8em\">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。</li><li><b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span style=\"color:#8a8f98;font-size:.8em\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。</li><li><b>2026-11-08（报告第 30 版）补充的前提：</b>Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span style=\"color:#8a8f98;font-size:.8em\">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0<span style=\"color:#8a8f98;font-size:.8em\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。</li><li><b>2026-11-08（报告第 30 版）补充的局限：</b>层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span style=\"color:#8a8f98;font-size:.8em\">（~/jlens_work/conclusions_v30_checks.md A1）</span>；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>；干预只用了 1,186 篇：E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span style=\"color:#8a8f98;font-size:.8em\">（361_stage11/summary/E1_recovery.csv n_papers）</span>；分母效应：恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提；只用 false_0、没有补做计划：M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span style=\"color:#8a8f98;font-size:.8em\">（conclusions_v30_checks.md A3）</span>；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</li>",
+  1
+ ],
+ [
+  "b/c/a/e update box (advisor, audit, addendum)",
+  "pages_20261106b/methods_addendum/index.html",
+  "<li><b>P1 / P2 用 5 个假标题（批次 1 第 3 项）：还在运行</b>，结果经用户确认后补入。<span style=\"color:#8a8f98;font-size:.8em\">（g391_b1p12f 作业链（14_groups/b1_p12f_gpu_v2.sbatch））</span></li>",
+  "<li><b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span style=\"color:#8a8f98;font-size:.8em\">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span style=\"color:#8a8f98;font-size:.8em\">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span style=\"color:#8a8f98;font-size:.8em\">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。</li><li><b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span style=\"color:#8a8f98;font-size:.8em\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。</li><li><b>2026-11-08（报告第 30 版）补充的前提：</b>Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span style=\"color:#8a8f98;font-size:.8em\">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0<span style=\"color:#8a8f98;font-size:.8em\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。</li><li><b>2026-11-08（报告第 30 版）补充的局限：</b>层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span style=\"color:#8a8f98;font-size:.8em\">（~/jlens_work/conclusions_v30_checks.md A1）</span>；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>；干预只用了 1,186 篇：E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span style=\"color:#8a8f98;font-size:.8em\">（361_stage11/summary/E1_recovery.csv n_papers）</span>；分母效应：恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提；只用 false_0、没有补做计划：M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span style=\"color:#8a8f98;font-size:.8em\">（conclusions_v30_checks.md A3）</span>；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</li>",
+  1
+ ],
+ [
+  "f process §0 title",
+  "process_report/draft_zh.md",
+  "## 0. 2026-11-06 更新：答辩后的重做计划（批次 1 结果，用户已确认措辞）",
+  "## 0. 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组补全、报告第 30 版的前提和局限，用户已确认措辞）",
+  1
+ ],
+ [
+  "b/c/a/e process §0",
+  "process_report/draft_zh.md",
+  "- **P1 / P2 用 5 个假标题（批次 1 第 3 项）：还在运行**，结果经用户确认后补入。【g391_b1p12f 作业链（14_groups/b1_p12f_gpu_v2.sbatch）】",
+  "- **P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：**按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）【补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv】。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权【summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇】。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半【P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv）】。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。\n- **C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：**C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述【补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS】。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。\n- **2026-11-08（报告第 30 版）补充的前提：**Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母【audit_20261105/part_A_stage4_9.md 第 10 行】；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0【381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv】；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。\n- **2026-11-08（报告第 30 版）补充的局限：**层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过【~/jlens_work/conclusions_v30_checks.md A1】；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里【351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2】；干预只用了 1,186 篇：E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做【361_stage11/summary/E1_recovery.csv n_papers】；分母效应：恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提；只用 false_0、没有补做计划：M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定【conclusions_v30_checks.md A3】；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记【351_stage10/reports/numcheck/claims/out_20261108_140102/】。",
+  1
+ ],
+ [
+  "version label (advisor)",
+  "advisor/index.html",
+  "〔2026-11-06 已更新：当前为第 29 版（本地已备，待发布）；见页首更新框〕",
+  "〔2026-11-08 已更新：当前为第 30 版；见页首更新框〕",
+  1
+ ],
+ [
+  "d X4 (advisor H2 row)",
+  "advisor/index.html",
+  "不支持或分不开：M3 不高于 L4；X3 分不开语义与论文身份；X4 顺序与预测相反",
+  "不支持或分不开：M3 不高于 L4；X3 分不开语义与论文身份；X4 顺序与预测相反；X4 中认得出的论文更高这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  1
+ ],
+ [
+  "e limitations (advisor)",
+  "advisor/index.html",
+  "<li>Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1）。</li>",
+  "<li>Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1）。Stage 8 的结论有三个前提：W 只给第一作者的第一个 token 打分（64.5% 是首字母）；D13-1；U28（L56 是后改的终点，原因待查）。</li>\n<li><b>层不完整（第 30 版补）。</b>Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span style=\"color:#8a8f98;font-size:.8em\">（~/jlens_work/conclusions_v30_checks.md A1）</span>。</li>\n<li><b>一致性容差事后放宽，而且用到了（第 30 版补）。</b>Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>。</li>\n<li><b>干预只用了 1,186 篇（第 30 版补）。</b>E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span style=\"color:#8a8f98;font-size:.8em\">（361_stage11/summary/E1_recovery.csv n_papers）</span>。</li>\n<li><b>分母效应（第 30 版补）。</b>恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提。</li>\n<li><b>只用 false_0、没有补做计划（第 30 版补）。</b>M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span style=\"color:#8a8f98;font-size:.8em\">（conclusions_v30_checks.md A3）</span>。</li>\n<li><b>数字核对只覆盖已登记的部分（第 30 版补）。</b>已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span style=\"color:#8a8f98;font-size:.8em\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</li>\n",
+  1
+ ],
+ [
+  "e limitations pointer (process)",
+  "process_report/draft_zh.md",
+  "- 已知局限（不再补做）：单模型；teacher forcing；Fit B 未完成，lens 稳定性只有 Fit A 一份证据；F1 未做对半拟合；X2 未做。〔2026-11-06 已更新：X2 已完成；Fit B、F1 对半列入批次 2；见第 0 节〕",
+  "- 已知局限（不再补做）：单模型；teacher forcing；Fit B 未完成，lens 稳定性只有 Fit A 一份证据；F1 未做对半拟合；X2 未做。〔2026-11-06 已更新：X2 已完成；Fit B、F1 对半列入批次 2；见第 0 节〕〔2026-11-08 已更新：第 30 版补充的局限（层不完整、容差已用到、干预只用 1,186 篇、分母效应、只用 false_0、数字核对覆盖）和 Stage 8 的三个前提见第 0 节〕",
+  1
+ ],
+ [
+  "version label (walkthrough)",
+  "talk_docs/experiment_walkthrough_zh.html",
+  "2026-11-06 起与报告 v29 一致，重做计划的新结果用绿色框标出。",
+  "2026-11-06 起与报告 v29 一致，2026-11-08 起与报告第 30 版一致，重做计划的新结果用绿色框标出。",
+  1
+ ],
+ [
+  "version label (walkthrough methods)",
+  "talk_docs/experiment_walkthrough_methods_zh.html",
+  "配合 PPT v20 和报告 v29 使用（2026-11-06 更新：补充 9、X7 五个假标题等重做结果已加入）。",
+  "配合 PPT v21 和报告第 30 版使用（2026-11-08 更新：P1 / P2 五个假标题、C / D 组补全、Stage 8 的三个前提和新增局限已加入；2026-11-06 更新：补充 9、X7 五个假标题等重做结果已加入）。",
+  1
+ ],
+ [
+  "a/C07 premises (walkthrough)",
+  "talk_docs/experiment_walkthrough_zh.html",
+  "改动人和理由待查（U28）；我们把原定主终点和 L56 都报告了。</p>",
+  "改动人和理由待查（U28）；我们把原定主终点和 L56 都报告了。</p>\n<p class=\"upd\">2026-11-08（报告第 30 版）：Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span class=\"src\">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0<span class=\"src\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。</p>",
+  1
+ ],
+ [
+  "a/C07 premises (walkthrough methods)",
+  "talk_docs/experiment_walkthrough_methods_zh.html",
+  "改动人和理由待查（U28）；两种都报告。）</p>",
+  "改动人和理由待查（U28）；两种都报告。）</p>\n<p class=\"upd\">2026-11-08（报告第 30 版）：Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span class=\"src\">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0<span class=\"src\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。</p>",
+  1
+ ],
+ [
+  "b/c/d/e update (walkthrough end)",
+  "talk_docs/experiment_walkthrough_zh.html",
+  "<p><strong>局限</strong>：“只用了一个模型；测的是把正确名字放进去打分的偏好，不是真实生成；读出工具的稳定性只有一份拟合证据。”</p>",
+  "<p><strong>局限</strong>：“只用了一个模型；测的是把正确名字放进去打分的偏好，不是真实生成；读出工具的稳定性只有一份拟合证据。”</p>\n<p class=\"upd\">2026-11-08（报告第 30 版）：<b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span class=\"src\">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span class=\"src\">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span class=\"src\">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。<b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span class=\"src\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。<b>2026-11-08（报告第 30 版）补充的局限：</b>层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span class=\"src\">（~/jlens_work/conclusions_v30_checks.md A1）</span>；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span class=\"src\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>；干预只用了 1,186 篇：E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span class=\"src\">（361_stage11/summary/E1_recovery.csv n_papers）</span>；分母效应：恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提；只用 false_0、没有补做计划：M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span class=\"src\">（conclusions_v30_checks.md A3）</span>；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span class=\"src\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</p>",
+  1
+ ],
+ [
+  "b/c/d/e update (walkthrough methods end)",
+  "talk_docs/experiment_walkthrough_methods_zh.html",
+  "<p><strong>局限</strong>：一个模型；teacher forcing 下的偏好不是生成；lens 拟合稳定性只有 Fit A；高引用档几乎没有 control。</p>",
+  "<p><strong>局限</strong>：一个模型；teacher forcing 下的偏好不是生成；lens 拟合稳定性只有 Fit A；高引用档几乎没有 control。</p>\n<p class=\"upd\">2026-11-08（报告第 30 版）：<b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span class=\"src\">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span class=\"src\">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span class=\"src\">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。<b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span class=\"src\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。<b>2026-11-08（报告第 30 版）补充的局限：</b>层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span class=\"src\">（~/jlens_work/conclusions_v30_checks.md A1）</span>；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span class=\"src\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>；干预只用了 1,186 篇：E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span class=\"src\">（361_stage11/summary/E1_recovery.csv n_papers）</span>；分母效应：恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提；只用 false_0、没有补做计划：M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span class=\"src\">（conclusions_v30_checks.md A3）</span>；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span class=\"src\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</p>",
+  1
+ ],
+ [
+  "b/c R1 + C/D (Stage 13 script zh)",
+  "talk_docs/stage13_script_zh_en.html",
+  "381_stage13/reports/e4b_alltok.md；b1_e4b5_report.md）</span>。P1/P2 五个假标题还在运行。</p>",
+  "381_stage13/reports/e4b_alltok.md；b1_e4b5_report.md）</span>。<b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span class=\"src\">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span class=\"src\">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span class=\"src\">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。<b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span class=\"src\">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。</p>",
+  1
+ ],
+ [
+  "b/c R1 + C/D (Stage 13 script en)",
+  "talk_docs/stage13_script_zh_en.html",
+  "<span class=\"src\">(b1_e4b5_report.md)</span>. P1 / P2 with five false titles still running.</p>",
+  "<span class=\"src\">(b1_e4b5_report.md)</span>. P1 / P2 with five false titles, done: Addendum 10 line 27 makes the five-title mean primary; the published false_0 numbers stand beside it. Every mean5 − false_0 interval includes 0, so the published conclusions stand: P1 all positions L48 +0.821 [0.807, 0.835] (false_0 0.825), L52 +0.995 [0.990, 1.001] (0.996); name positions only L52 +0.841 [0.827, 0.856] (0.847); attention L48 +0.237 [0.229, 0.246] (0.231); MLP L52 +0.181 [0.174, 0.188] (0.178), L56 +0.226 [0.217, 0.236] (0.224); p9: 694–711 papers per false title, different sets, unweighted; ':' numerator B/A 0.72–0.87 with five titles (false_0 0.78–0.99)<span class=\"src\">(b1_p12f_report.md)</span>. Groups C / D completed (addendum 11 B): C has 462 papers with unwritten authors; within citation bins against A (6 bins, C 258 / A 323 papers) E1 recovery L48 −0.037 [−0.080, +0.009], L52 +0.007 [−0.009, +0.024] (L56 −0.007 [−0.014, −0.001], a tiny single-layer difference, not interpreted); E2 knockout CIs at L32–L52 all include 0; C has the larger true − false gap (denominator C 0.559, A 0.407; within bin C − A +0.075 [+0.024, +0.130]) → larger signal, same timing as A. D (33 papers) descriptive only<span class=\"src\">(b2_cd_report.md)</span>.</p>",
+  1
+ ],
+ [
+  "d X4 (Stage 13 script)",
+  "talk_docs/stage13_script_zh_en.html",
+  "另外 X4 最早解码出的是第一作者（L8），年份要到 L40，和 H2 预测的顺序相反。",
+  "另外 X4 最早解码出的是第一作者（L8），年份要到 L40，和 H2 预测的顺序相反；X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。",
+  1
+ ],
+ [
+  "d X4 (handbook guide)",
+  "talk_docs/methods_handbook_guide_plain_zh.html",
+  "和 H2 预测的“先年份后作者”顺序相反</strong>。</p>",
+  "和 H2 预测的“先年份后作者”顺序相反</strong>。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。</p>",
+  1
+ ],
+ [
+  "a/b/c/d/e update (handbook guide)",
+  "talk_docs/methods_handbook_guide_plain_zh.html",
+  "(regex) (<p>配合《Stage 1–13 方法手册》（259 页，2026-10-30 版）使用。.*?</p>)",
+  "(computed)",
+  1
+ ],
+ [
+  "e L02 (keys and shelves zh)",
+  "talk_docs/keys_and_shelves_script_zh_en.html",
+  "需要坦白的一点是：一致性容差是在看到差距之后才从 0.25 放宽到 0.5 的，这一点写在局限里。</p>",
+  "需要坦白的一点是：一致性容差是在看到差距之后才从 0.25 放宽到 0.5 的，这一点写在局限里；而且这次放宽确实用到了：Stage 10 主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过。</p>",
+  1
+ ],
+ [
+  "e L02 (keys and shelves en)",
+  "talk_docs/keys_and_shelves_script_zh_en.html",
+  "the parity tolerance was relaxed from 0.25 to 0.5 after we saw the gaps, and this is listed as a limitation.</p>",
+  "the parity tolerance was relaxed from 0.25 to 0.5 after we saw the gaps, and this is listed as a limitation; the relaxation was actually used: the Stage 10 main round (25 readout × layer pairs, max difference 0.367) passes only at 0.5.</p>",
+  1
+ ],
+ [
+  "d X4 (talk-doc progress report)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "X4 先解码出第一作者（L8）再解码年份（L40），和 H2 预测的顺序相反；X3 见下",
+  "X4 先解码出第一作者（L8）再解码年份（L40），和 H2 预测的顺序相反；X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。X3 见下",
+  1
+ ],
+ [
+  "b/c/f status (talk-doc progress report)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "；P1/P2 五个假标题还在运行。批次 2（补充 11、12，含 Stage 9 Fit B 与 holdout）代码和测试已完成，批次 1 结束后自动开始；",
+  "；P1/P2 五个假标题也已完成（5 个假标题平均为主结果，与 false_0 版的差别区间都含 0，结论不变）<span class=\"src\">（b1_p12f_report.md）</span>。批次 2（补充 11、12，含 Stage 9 Fit B 与 holdout）已开始：C / D 组补全已完成（C 的信号更大，但时间点与 A 相同）<span class=\"src\">（b2_cd_report.md）</span>；2-11 按预注册停止，改为 2-11b（补充 15），只跑第 0 个分片；其余各项进行中；",
+  1
+ ],
+ [
+  "e/a limitations (talk-doc progress report)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "<li>高引用档几乎没有 control 论文，结论主要来自中低引用论文。</li>",
+  "<li>高引用档几乎没有 control 论文，结论主要来自中低引用论文。</li>\n<li><b>层不完整（第 30 版补）。</b>Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span class=\"src\">（~/jlens_work/conclusions_v30_checks.md A1）</span>。</li>\n<li><b>一致性容差事后放宽，而且用到了（第 30 版补）。</b>Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。保留在事后改动清单里<span class=\"src\">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>。</li>\n<li><b>干预只用了 1,186 篇（第 30 版补）。</b>E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span class=\"src\">（361_stage11/summary/E1_recovery.csv n_papers）</span>。</li>\n<li><b>分母效应（第 30 版补）。</b>恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提。</li>\n<li><b>只用 false_0、没有补做计划（第 30 版补）。</b>M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 的假标题运行也只用 false_0，改用 5 个假标题只需 CPU（残差已在盘上，约 3 小时），是否做待定<span class=\"src\">（conclusions_v30_checks.md A3）</span>。</li>\n<li><b>数字核对只覆盖已登记的部分（第 30 版补）。</b>已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记<span class=\"src\">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</li>\n<li><b>Stage 8 的三个前提（第 30 版补）。</b>Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span class=\"src\">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0<span class=\"src\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。</li>\n",
+  1
+ ],
+ [
+  "version label (talk-doc progress report)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "<td>实验报告（主报告；当前 v29，2026-11-06）</td>",
+  "<td>实验报告（主报告；当前第 30 版，2026-11-08）</td>",
+  1
+ ],
+ [
+  "version label (talk-doc progress report)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "<td>汇报 PPT（当前 v20，82 页）</td>",
+  "<td>汇报 PPT（当前 v21，82 页）</td>",
+  1
+ ],
+ [
+  "a/C07 handbook s19-s8d",
+  "methods/parts/C_stage1_9.html",
+  "用 Stage 10 的原始分数在 200 篇论文上重算冻结的多层终点：全部作者、全部 token 的版本中 RQ1 和 RQ2 都成立（public J-lens 6 层平均 RQ1 +0.130 [0.108, 0.153]，RQ2 +0.054 [0.008, 0.102]）",
+  "用 Stage 10 的原始分数在 200 篇论文上重算：全部作者、全部 token 的版本中，public J-lens 6 层平均（int6，少了 L16，与锁定的 7 层积分终点不是同一终点）RQ1 和 RQ2 都为正（RQ1 +0.130 [0.108, 0.153]，RQ2 +0.054 [0.008, 0.102]）",
+  1
+ ],
+ [
+  "a/C07 handbook s19-s8d premises",
+  "methods/parts/C_stage1_9.html",
+  "(regex) (<h3 id=\"s19-s8d\">8D 冻结统计分析（RQ1–RQ3、J−V）</h3>\\n<div class=\"fix\">.*?)</div>",
+  "(computed)",
+  1
+ ],
+ [
+  "b R1 handbook E (P1)",
+  "methods/parts/E_stage12.html",
+  "(regex) (<tr><td>p9 右引号</td>.*?</table>\\n<p>p2、p3、p4、p6、p7、p8 在所有层都 ≤ 0.008。.*?</p>)",
+  "(computed)",
+  1
+ ],
+ [
+  "d X4 handbook F",
+  "methods/parts/F_stage13.html",
+  "只作探索（v42_paper_vs_team.md §3）；year 都含 0。",
+  "只作探索（v42_paper_vs_team.md §3）；这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）；year 都含 0。",
+  1
+ ],
+ [
+  "e L01 qualifier handbook F",
+  "methods/parts/F_stage13.html",
+  "patchscope 年份到 L40 才出现，",
+  "patchscope 年份到 L40 才出现（前一个测量层是 L32，真实起点在 L33–L40 之间），",
+  1
+ ],
+ [
+  "d X4 handbook F (batch-1 sentence)",
+  "methods/parts/F_stage13.html",
+  "(regex) (认得出的论文方向上更高，但按预注册在测试集上不显著<span class=\"src\">第一作者，调参集选层 L8，测试集 target − control \\+0\\.023 \\[−0\\.001, \\+0\\.048\\].*?</span>)",
+  "(computed)",
+  1
+ ],
+ [
+  "a/C07 slide 19 title",
+  "merged_deck/stage1_11_deck.html",
+  "<section class=\"slide lt\" aria-label=\"Stage 8 frozen endpoint, re-scored on CPU\"><span class=\"tag\">Stage 8 · CPU proxy</span><h2 style=\"font-size:52px\">Stage 8 frozen endpoint, re-scored on CPU</h2>",
+  "<section class=\"slide lt\" aria-label=\"Stage 8 re-scored on CPU: three premises\"><span class=\"tag\">Stage 8 · CPU proxy</span><h2 style=\"font-size:52px\">Stage 8 re-scored on CPU: three premises</h2>",
+  1
+ ],
+ [
+  "a/C07 slide 19",
+  "merged_deck/stage1_11_deck.html",
+  "<li><b>Multi-layer endpoint: </b>RQ1 +0.130 [0.108, 0.153], RQ2 +0.054 [0.008, 0.102] → both hold<span class=\"src\">(public J-lens 6-layer mean; c13_C2.md aa_all)</span></li>",
+  "<li><b>6-layer mean (int6, no L16): </b>RQ1 +0.130 [0.108, 0.153], RQ2 +0.054 [0.008, 0.102] → both positive, but not the locked 7-layer endpoint<span class=\"src\">(public J-lens 6-layer mean; c13_C2.md aa_all)</span></li>",
+  1
+ ],
+ [
+  "a/C07 slide 19",
+  "merged_deck/stage1_11_deck.html",
+  "<li><b>L56 alone: </b>RQ2 +0.064 [−0.032, +0.163], not significant<span class=\"src\">(same, L56)</span></li>",
+  "<li><b>L56 alone: </b>RQ2 +0.064 [−0.032, +0.163], CI includes 0 → addendum-13 rule triggered the W re-run; not done = deviation D13-1<span class=\"src\">(same, L56)</span></li>",
+  1
+ ],
+ [
+  "a/C07 slide 19",
+  "merged_deck/stage1_11_deck.html",
+  "<li><b>What it is not: </b>a CPU proxy with Stage 10’s 5 false titles and the rank metric; the GPU re-run of the original W was not done (user decision 2026-11-06)</li>",
+  "<li><b>What it is not: </b>a CPU proxy with Stage 10’s 5 false titles and the rank metric, not W; locked 7-layer endpoint (approx., no L16): RQ2 +0.046 [+0.007, +0.088] / +0.049 [+0.005, +0.094], same direction<span class=\"src\">(c2_followup_proxy.csv)</span></li>",
+  1
+ ],
+ [
+  "a/C07 slide 19 note box",
+  "merged_deck/stage1_11_deck.html",
+  "<span class=\"h\">Reading</span>The frozen multi-layer conclusion survives an all-author, all-token re-scoring; the single-layer L56 A − B gap does not.",
+  "<span class=\"h\">Three premises</span>W scores only the first author’s first token (64.5% are initials); D13-1 (rule triggered at L56 only); U28 (L56 made primary at 21:14, by whom and why unknown).",
+  1
+ ],
+ [
+  "version label slide 65",
+  "merged_deck/stage1_11_deck.html",
+  "Hypotheses H1–H3 × readouts M1–M3 and current results (report v29, 2026-11-07)",
+  "Hypotheses H1–H3 × readouts M1–M3 and current results (report v30, 2026-11-08)",
+  1
+ ],
+ [
+  "d X4 slide 70",
+  "merged_deck/stage1_11_deck.html",
+  "H2 partly supported but not established (rests on M2 and X1); H3: insufficient evidence (text baseline not weaker than Qwen).",
+  "H2 partly supported but not established (rests on M2 and X1; X4 recognition gap no longer counted); H3: insufficient evidence (text baseline not weaker than Qwen).",
+  1
+ ],
+ [
+  "c slide 77 C row",
+  "merged_deck/stage1_11_deck.html",
+  "<tr><td>C  R1 × recognised (descriptive)</td><td>32</td><td>+0.464 [0.388, 0.538]</td><td>+0.335</td><td>+0.721 [0.650, 0.806]</td><td>+0.996 [0.968, 1.026]</td></tr>",
+  "<tr><td>C  R1 × recognised (addendum 11 B)</td><td>462</td><td>+0.559 [0.529, 0.590]</td><td>+0.408</td><td>+0.731 [0.705, 0.757]</td><td>+0.985 [0.977, 0.994]</td></tr>",
+  1
+ ],
+ [
+  "c slide 77 footer",
+  "merged_deck/stage1_11_deck.html",
+  "<b>U0 timing as A and B (descriptive); R2 upper reference only; </b>C 32 / D 5 / R2-unwritten 28 papers → descriptive<span class=\"src\">(rerun_report.md Counts)</span>",
+  "<b>U0 timing as A and B (descriptive); R2 upper reference only; </b>C completed to 462 papers: within bin same timing as A, larger gap (C − A +0.075 [+0.024, +0.130]); D 33 / R2-unwritten 28 papers → descriptive<span class=\"src\">(rerun_report.md Counts; b2_cd_report.md)</span>",
+  1
+ ],
+ [
+  "b slide 79 colon B/A",
+  "merged_deck/stage1_11_deck.html",
+  "(B/A 0.78–0.99)",
+  "(B/A 0.72–0.87 with five false titles; false_0 0.78–0.99)",
+  1
+ ],
+ [
+  "f slide 81 date",
+  "merged_deck/stage1_11_deck.html",
+  "status 2026-11-06 evening",
+  "status 2026-11-08",
+  1
+ ],
+ [
+  "b slide 81 P1/P2",
+  "merged_deck/stage1_11_deck.html",
+  "<li><b>Batch 1, running: </b>P1 / P2 with five false titles — result after approval</li>",
+  "<li><b>Batch 1, done: </b>P1 / P2 with five false titles (five-title mean primary, false_0 beside): every mean5 − false_0 CI includes 0 → conclusions unchanged; colon numerator B/A 0.72–0.87<span class=\"src\">(b1_p12f_report.md)</span></li>",
+  1
+ ],
+ [
+  "f slide 81 batch 2",
+  "merged_deck/stage1_11_deck.html",
+  "<li><b>Batch 2 (addenda 11, 12): </b>code, tiny tests and hard-check unit tests done; starts automatically after batch 1;",
+  "<li><b>Batch 2 (addenda 11, 12): </b>running; C / D completion done (C 462 papers: same timing as A); 2-11 stopped by its hard check → 2-11b (addendum 15), shard 0 only, queued; other items in progress;",
+  1
+ ],
+ [
+  "f slide 81 batch 3",
+  "merged_deck/stage1_11_deck.html",
+  "3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: code ready, after batch 2",
+  "3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: queued, start after batch 2",
+  1
+ ],
+ [
+  "e slide 82 subtitle",
+  "merged_deck/stage1_11_deck.html",
+  "<p class=\"sub\" style=\"font-size:19px;margin-bottom:12px\">Written 2026-11-06</p>",
+  "<p class=\"sub\" style=\"font-size:19px;margin-bottom:12px\">Written 2026-11-06; last two items added 2026-11-08 (v30)</p>",
+  1
+ ],
+ [
+  "e slide 82 items",
+  "merged_deck/stage1_11_deck.html",
+  "<span class=\"src\">(84 target, 0 control; m3_scores.md §2)</span>, so within-bin comparisons cannot use it</li></ul>",
+  "<span class=\"src\">(84 target, 0 control; m3_scores.md §2)</span>, so within-bin comparisons cannot use it</li><li><b>Layers and samples: </b>Stage 10 samples L24–L40 every 8th layer (no L25–L31, L33–L39; no plan to fill); interventions use 1,186 of 9,108 papers; denominator effects (C 0.559 vs A 0.407)</li><li><b>Post hoc and single title: </b>parity tolerance 0.25 → 0.5 was used (Stage 10 main round, max 0.367); M5 part B and the E4b X1-controls pipeline use false_0 only, no plan</li></ul>",
+  1
+ ],
+ [
+  "a/C07 note 19",
+  "notes_zh.json #19",
+  "Stage 8 的 CPU 代理（补充 13 C-2，事后）：用 Stage 10 已有的原始分数，在 Stage 8 的 200 篇论文上重算冻结的多层终点。全部作者、全部名字 token 的版本中 RQ1 和 RQ2 都成立：public J-lens 6 层平均 RQ1",
+  "Stage 8 的 CPU 代理（补充 13 C-2，事后）：用 Stage 10 已有的原始分数，在 Stage 8 的 200 篇论文上重算。全部作者、全部名字 token 的版本中，public J-lens 6 层平均（int6，少了 L16，与锁定的 7 层积分终点不是同一终点）RQ1 和 RQ2 都为正：RQ1",
+  1
+ ],
+ [
+  "a/C07 note 19 premises",
+  "notes_zh.json #19",
+  "按原 W 的 GPU 重算没有做（用户 2026-11-06 决定）。",
+  "按原 W 的 GPU 重算没有做（用户 2026-11-06 决定）。Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母〔audit_20261105/part_A_stage4_9.md 第 10 行〕；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0〔381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv〕；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。",
+  1
+ ],
+ [
+  "d X4 note 65",
+  "notes_zh.json #65",
+  "所以 H2 部分支持但未确立，H3 证据不足。",
+  "所以 H2 部分支持但未确立，H3 证据不足；X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。",
+  1
+ ],
+ [
+  "c note 77 denominator",
+  "notes_zh.json #77",
+  "A 0.407、B 0.214、U0 0.293、C 0.464〔E1，未写出作者，最终输出；A 557、B 586、U0 599、C 32 篇；391_groups/reports/e1_num_den.md〕",
+  "A 0.407、B 0.214、U0 0.293、C 0.559〔E1，未写出作者，最终输出；A 557、B 586、U0 599 篇；391_groups/reports/e1_num_den.md；C 为补充 11 B 补全后的 462 篇，[0.529, 0.590]，391_groups/reports/b2_cd_report.md；原 32 篇时为 0.464〕",
+  1
+ ],
+ [
+  "c note 77 C/D",
+  "notes_zh.json #77",
+  "；C 32 篇、D 5 篇、R2 未写出作者 28 篇〔rerun_report.md Counts 表〕只作描述。",
+  "；D 33 篇、R2 未写出作者 28 篇〔rerun_report.md Counts 表；b2_cd_report.md〕只作描述。C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述〔补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS〕。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。",
+  1
+ ],
+ [
+  "b note 79 colon B/A",
+  "notes_zh.json #79",
+  "':' token 在 L44–L48 两组分子相近（B/A 0.78–0.99〔只替换 “:”，分子 B/A：L44 0.78、L48 0.99；同一文件〕）",
+  "':' token 在 L44–L48 两组分子相近（B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99〔只替换 “:”，分子 B/A：5 个假标题版 L44 0.72、L48 0.87，391_groups/reports/b1_p12f_report.md；false_0 版 L44 0.78、L48 0.99，同一文件〕）",
+  1
+ ],
+ [
+  "b/c note 81",
+  "notes_zh.json #81",
+  "批次 1 还在运行：P1/P2 用 5 个假标题，结果经用户确认后补入。",
+  "P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）〔补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv〕。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权〔summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇〕。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半〔P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv）〕。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述〔补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS〕。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。",
+  1
+ ],
+ [
+  "e note 82 title",
+  "notes_zh.json #82",
+  "不能补做的局限（2026-11-06 写定）：",
+  "不能补做的局限（2026-11-06 写定；2026-11-08 第 30 版补充后两项）：",
+  1
+ ],
+ [
+  "e note 82 limitations",
+  "notes_zh.json #82",
+  "(append)",
+  "2026-11-08（报告第 30 版）补充的局限：…",
+  1
+ ],
+ [
+  "c note C/D (R1 figure note)",
+  "notes_zh.json #28",
+  "(append)",
+  "C / D 组补全…",
+  1
+ ],
+ [
+  "README links v30",
+  "github/README_draft_20261106b.md",
+  "(v29 prepared 2026-11-06, batch-1 results added)",
+  "(v30, 2026-11-08: batch 1 complete, groups C / D completed, Stage 8 premises and new limitations)",
+  1
+ ],
+ [
+  "README links v21",
+  "github/README_draft_20261106b.md",
+  "(v20 prepared 2026-11-06, 82 slides)",
+  "(v21, 2026-11-08, 82 slides)",
+  1
+ ],
+ [
+  "README links handbook",
+  "github/README_draft_20261106b.md",
+  "[Stage 1–13 methods handbook](https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo) (2026-11-06)",
+  "[Stage 1–13 methods handbook](https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo) (2026-11-08 c)",
+  1
+ ],
+ [
+  "README latest conclusions",
+  "github/README_draft_20261106b.md",
+  "see the plan document `docs/plan_master_queue_20261106.md` (to be copied in at the next sync).",
+  "see the plan document `docs/plan_master_queue_20261106.md` (to be copied in at the next sync).\n\n**Latest (2026-11-08, report v30).** P1 / P2 with five false titles: Addendum 10 line 27 makes the five-title mean primary; the published false_0 numbers stand beside it. Every mean5 − false_0 interval includes 0, so the published conclusions stand: P1 all positions L48 +0.821 [0.807, 0.835] (false_0 0.825), L52 +0.995 [0.990, 1.001] (0.996); name positions only L52 +0.841 [0.827, 0.856] (0.847); attention L48 +0.237 [0.229, 0.246] (0.231); MLP L52 +0.181 [0.174, 0.188] (0.178), L56 +0.226 [0.217, 0.236] (0.224); p9: 694–711 papers per false title, different sets, unweighted; ':' numerator B/A 0.72–0.87 with five titles (false_0 0.78–0.99) <sub>(b1_p12f_report.md)</sub>. Groups C / D completed: C has 462 papers with unwritten authors; within citation bins against A (6 bins, C 258 / A 323 papers) E1 recovery L48 −0.037 [−0.080, +0.009], L52 +0.007 [−0.009, +0.024] (L56 −0.007 [−0.014, −0.001], a tiny single-layer difference, not interpreted); E2 knockout CIs at L32–L52 all include 0; C has the larger true − false gap (denominator C 0.559, A 0.407; within bin C − A +0.075 [+0.024, +0.130]) → larger signal, same timing as A. D (33 papers) descriptive only <sub>(b2_cd_report.md)</sub>. Stage 8 holds with three premises: W scores only the first author’s first token (129 of 200 papers, 64.5%, are initials); deviation D13-1 (the addendum-13 rule triggered at L56 only, RQ2 +0.064 [−0.032, +0.163]; the GPU re-run of W was not done; on the locked 7-layer endpoint, approximated without L16, RQ2 +0.046 [+0.007, +0.088]); U28 (L56 became the primary endpoint at 21:14 on 10-18; by whom and why is unknown). In X4, the X4 recognised − control difference is no longer counted as H2 evidence (text-only BERT baseline +0.088 not weaker than Qwen L8 +0.018). Added 2026-11-08 (v30): Stage 10 samples L24–L40 every 8th layer (no L25–L31, L33–L39) with no plan to fill them — three descriptive claims fall in the gap (X4 year first readable at L40, true onset in L33–L40; Jacobian lens ahead of logit from L40; X4 first-author peak at L40); the parity tolerance 0.25 → 0.5 was used (the Stage 10 main round, max 0.367, passes only at 0.5; post-hoc change, kept listed); interventions use 1,186 of 9,108 papers; denominator effects (C 0.559 vs A 0.407; colon numerator B/A 0.72–0.87 vs 0.78–0.99); M5 part B and the E4b X1-controls pipeline use false_0 only, no plan (M2 with five titles needs CPU only, decision pending); number checker: 680 registered claims / 4,307 occurrences all consistent, about 1,024 conclusion-like numbers not registered (count from 2026-11-07).",
+  1
+ ],
+ [
+  "README C07",
+  "github/README_draft_20261106b.md",
+  "Stage 8 CPU proxy: RQ1 +0.130, RQ2 +0.054 multi-layer, L56 RQ2 n.s. <sub>(c13_C2.md; not the W statistic)</sub>",
+  "Stage 8 CPU proxy: RQ1 +0.130, RQ2 +0.054 on the 6-layer mean (int6, not the locked 7-layer endpoint), L56 RQ2 n.s. → addendum-13 rule triggered, W re-run not done (deviation D13-1) <sub>(c13_C2.md; not the W statistic)</sub>",
+  1
+ ],
+ [
+  "README redo list",
+  "github/README_draft_20261106b.md",
+  "- Batch 1, running: P1 / P2 with five false titles.",
+  "- Batch 1, done: P1 / P2 with five false titles — Addendum 10 line 27 makes the five-title mean primary; the published false_0 numbers stand beside it. Every mean5 − false_0 interval includes 0, so the published conclusions stand: P1 all positions L48 +0.821 [0.807, 0.835] (false_0 0.825), L52 +0.995 [0.990, 1.001] (0.996); name positions only L52 +0.841 [0.827, 0.856] (0.847); attention L48 +0.237 [0.229, 0.246] (0.231); MLP L52 +0.181 [0.174, 0.188] (0.178), L56 +0.226 [0.217, 0.236] (0.224); p9: 694–711 papers per false title, different sets, unweighted; ':' numerator B/A 0.72–0.87 with five titles (false_0 0.78–0.99) <sub>(b1_p12f_report.md)</sub>.\n- Batch 2, groups C / D (addendum 11 B), done: C has 462 papers with unwritten authors; within citation bins against A (6 bins, C 258 / A 323 papers) E1 recovery L48 −0.037 [−0.080, +0.009], L52 +0.007 [−0.009, +0.024] (L56 −0.007 [−0.014, −0.001], a tiny single-layer difference, not interpreted); E2 knockout CIs at L32–L52 all include 0; C has the larger true − false gap (denominator C 0.559, A 0.407; within bin C − A +0.075 [+0.024, +0.130]) → larger signal, same timing as A. D (33 papers) descriptive only <sub>(b2_cd_report.md)</sub>.",
+  1
+ ],
+ [
+  "README batch 2",
+  "github/README_draft_20261106b.md",
+  "- Batch 2 (addenda 11–12): code, tiny tests and hard-check unit tests done; starts automatically after batch 1;",
+  "- Batch 2 (addenda 11–12): running since batch 1 ended; C / D completion done; 2-11 stopped by its hard check (0.880 < 0.90) → 2-11b (addendum 15), shard 0 only, queued; other items in progress;",
+  1
+ ],
+ [
+  "README batch 3",
+  "github/README_draft_20261106b.md",
+  "Stage 10 L41–L47, L49 and L0–L23 code ready, after batch 2;",
+  "Stage 10 L41–L47, L49 and L0–L23 queued, start after batch 2;",
+  1
+ ],
+ [
+  "README limits",
+  "github/README_draft_20261106b.md",
+  "- Cannot be redone: one model; teacher forcing; label pipeline not on the cluster; the 4097+ citation bin has no B / D papers.",
+  "- Cannot be redone: one model; teacher forcing; label pipeline not on the cluster; the 4097+ citation bin has no B / D papers. Added 2026-11-08 (v30): Stage 10 samples L24–L40 every 8th layer (no L25–L31, L33–L39) with no plan to fill them — three descriptive claims fall in the gap (X4 year first readable at L40, true onset in L33–L40; Jacobian lens ahead of logit from L40; X4 first-author peak at L40); the parity tolerance 0.25 → 0.5 was used (the Stage 10 main round, max 0.367, passes only at 0.5; post-hoc change, kept listed); interventions use 1,186 of 9,108 papers; denominator effects (C 0.559 vs A 0.407; colon numerator B/A 0.72–0.87 vs 0.78–0.99); M5 part B and the E4b X1-controls pipeline use false_0 only, no plan (M2 with five titles needs CPU only, decision pending); number checker: 680 registered claims / 4,307 occurrences all consistent, about 1,024 conclusion-like numbers not registered (count from 2026-11-07).",
+  1
+ ],
+ [
+  "README status C07",
+  "github/README_draft_20261106b.md",
+  "; Stage 8 CPU proxy RQ1 +0.130, RQ2 +0.054 | done |",
+  "; Stage 8 CPU proxy RQ1 +0.130, RQ2 +0.054 (int6, not the locked endpoint; D13-1) | done |",
+  1
+ ],
+ [
+  "README status rows",
+  "github/README_draft_20261106b.md",
+  "| Batch 1 item 3 | P1 / P2 with five false titles | — | running | 391_groups/reports/b1_p12f_report.md (when done) |",
+  "| Batch 1 item 3 | P1 / P2 with five false titles | five-title mean primary; every mean5 − false_0 CI includes 0, conclusions unchanged | done (hard check PASS) | 391_groups/reports/b1_p12f_report.md |\n| Batch 2 item 2-6 | groups C / D for E1 / E2 | C (462): larger signal, same timing as A; D (33) descriptive | done (hard check PASS) | 391_groups/reports/b2_cd_report.md |",
+  1
+ ],
+ [
+  "README status batch 2",
+  "github/README_draft_20261106b.md",
+  "| — | code ready, queued (starts automatically after batch 1) |",
+  "| — | running (C / D done; 2-11 stopped → 2-11b shard 0 queued; other items in progress) |",
+  1
+ ],
+ [
+  "README status batch 3",
+  "github/README_draft_20261106b.md",
+  "| 3-1, 3-2 code ready (after batch 2);",
+  "| 3-1, 3-2 queued (after batch 2);",
+  1
+ ],
+ [
+  "K regenerated from the report (v30)",
+  "methods/parts/K_post_defence.html",
+  "与《Stage 1–13 实验报告》第 29 版第五部分内容相同（图号、表号沿用报告）。</p>",
+  "第 30 版 …",
+  1
+ ],
+ [
+  "handbook header 2026-11-08 c",
+  "methods/build_methods.py",
+  "2026-11-03 定稿，2026-11-06 补充（第十一部分：答辩后新增与重做计划；X2、补充 9 全部名字 to…",
+  "… + 2026-11-08 c 版",
+  1
+ ],
+ [
+  "f slide 75 agenda status",
+  "merged_deck/stage1_11_deck.html",
+  "done, batch 1 (only P1 / P2 with five false titles still running), batches 2 and 3; limits that cannot be redone",
+  "done, batch 1 (complete), batches 2 and 3 (in progress); limits that cannot be redone",
+  1
+ ],
+ [
+  "f Fit B status note",
+  "advisor/index.html",
+  "Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；",
+  "Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；",
+  1
+ ],
+ [
+  "f Fit B status note",
+  "process_report/draft_zh.md",
+  "Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；",
+  "Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；",
+  1
+ ],
+ [
+  "f Fit B status note (next steps)",
+  "advisor/index.html",
+  "Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），代码已就绪，批次 1 结束后自动开始；",
+  "Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；",
+  1
+ ],
+ [
+  "f Fit B status note (addendum)",
+  "pages_20261106b/methods_addendum/index.html",
+  "Fit B 续跑与 holdout 列入批次 2（补充 12 第 2-1 项），代码已就绪；",
+  "Fit B 续跑与 holdout 列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；",
+  1
+ ],
+ [
+  "f batch-3 status note (addendum)",
+  "pages_20261106b/methods_addendum/index.html",
+  "批次 3 第 3-1 项补算 L41–L47、L49（6,841 篇，logit 与 public），代码已就绪，第二批之后开始；",
+  "批次 3 第 3-1 项补算 L41–L47、L49（6,841 篇，logit 与 public），编排作业已提交，第二批全部结束后自动开始；",
+  1
+ ],
+ [
+  "notes 81 shortened (overflow)",
+  "notes_zh.json #81",
+  "P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 ",
+  "P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成）：5 个假标题平均为主结果，false_0 并列；两版之差的区间都含 0，结论不变（P1 全部位置 L48 +0.821，false_0 0.825；P2 注意力 L48 +0.237，MLP L56 +0.226）；p9 各假标题 694–711 篇，集合不同，未加权；“:” 分子 B/A 0.72–0.87（false_0 0.78–0.99）〔391_groups/reports/b1_p12f_report.md〕。C / D 组补全（2-6，已完成）：C 462 篇，同一引用档内与 A 时间点相同，真假标题差距更大（C − A +0.075 [+0.024, +0.130]）；D 33 篇只作描述〔391_groups/reports/b2_cd_report.md〕。",
+  1
+ ],
+ [
+  "notes 82 shortened (overflow)",
+  "notes_zh.json #82",
+  " 2026-11-08（报告第 30 版）补充的局限：层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述",
+  " 2026-11-08（第 30 版）补充的局限：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划；容差 0.25 → 0.5 已用于 Stage 10 主轮（最大差 0.367）；干预只用 1,186 / 9,108 篇；分母效应（C 0.559 对 A 0.407）；M5 B 部分和 E4b 的 X1 对照流程只用 false_0；数字核对已登记 680 个、4,307 处全部一致，约 1,024 个未登记〔conclusions_v30_checks.md A1–A3〕。Stage 8 的三个前提：首 token 64.5% 是首字母；偏离 D13-1；U28。",
+  1
+ ],
+ [
+  "notes 81 shortened again (overflow)",
+  "notes_zh.json #81",
+  "P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成）：5 个假标题平均为主结果，false_0 并列；两版之差的区间都含 0，结论不变（P1 全部位置 L48 +0.821，false_0 0.825；P2 注意力 L48 +0.237，MLP L56 +0.226）；p9 各假标题 6",
+  "P1 / P2 用 5 个假标题（已完成）：5 个假标题平均为主结果，与 false_0 之差的区间都含 0，结论不变；p9 各假标题 694–711 篇，集合不同，未加权；“:” 分子 B/A 0.72–0.87（false_0 0.78–0.99）。C / D 组补全（已完成）：C 462 篇，同一引用档内与 A 时间点相同；D 33 篇只作描述〔b1_p12f_report.md；b2_cd_report.md〕。",
+  1
+ ],
+ [
+  "notes 81 X4 sentence shortened (overflow)",
+  "notes_zh.json #81",
+  "，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）",
+  "，不再作为 H2 的证据",
+  1
+ ],
+ [
+  "notes 28 shortened (overflow)",
+  "notes_zh.json #28",
+  " 2026-11-08 补（补充 11 B，C / D 组补全）：C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L",
+  " 2026-11-08 补（补充 11 B）：C 补全到 462 篇后，同一引用档内与 A 时间点相同（E1 L48 −0.037 [−0.080, +0.009]），真假标题差距更大（C − A +0.075 [+0.024, +0.130]）；D 33 篇只作描述〔391_groups/reports/b2_cd_report.md〕。",
+  1
+ ]
+]

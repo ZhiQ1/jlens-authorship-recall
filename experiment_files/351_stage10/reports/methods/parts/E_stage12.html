@@ -120,6 +120,7 @@ recovery(l, i) = mean_p(num_p) / mean_p(den_p)       （比值的均值，不是
 <tr><td>all</td><td>+0.143</td><td>+0.292</td><td>+0.429</td><td>+0.825</td><td>+0.933</td><td>+0.996</td><td>+0.999</td></tr>
 </table>
 <p>p2、p3、p4、p6、p7、p8 在所有层都 ≤ 0.008。target / control 分组在 CSV 的 group 列。<span class="src">371_stage12/reports/stage12_report.md §P1 · summary/P1_patch_pos.csv · 作业：P1 24/24 由 11413557、11413569（d1029）等在 2026-10-27 完成（PROGRESS "2026-10-27 17:28"）</span></p>
+<div class="fix"><b>2026-11-08 补（补充 10 第 3 项）：</b>P1 / P2 用 5 个假标题重算，5 个假标题平均为主结果、false_0 并列；所有“5 个假标题平均 − false_0”的区间都含 0，本节 false_0 数字和结论不变。P1 全部位置 L48 +0.821 [0.807, 0.835]（false_0 0.825）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231），MLP L56 +0.226 [0.217, 0.236]（0.224）；p9 各假标题 694–711 篇，集合不同，未加权。<span class="src">391_groups/reports/b1_p12f_report.md · summary_b1_p12f/p12f_mean5.csv、p12f_per_title.csv · 见第十一部分 k-b1-p12f</span></div>
 <p><b>按 token 角色拆分（2026-10-30 用原始数据重算，U38 已解决）</b>：用 <code>371_stage12/raw/patch_pos/shard_*.npz</code>（19,077 行）与 <code>351_stage10/cohort/name_tokens.parquet</code> 的 role 列，按 stage12_analyze.py:46–58 的同一估计量（先按论文平均，再算 Σnum/Σden，recovery = (nlr_patch − nlr_none)/(nlr_true − nlr_none)）重算，CPU 秒级。本手册编辑于 2026-10-30 下午重新运行脚本，数字一致。<span class="src">351_stage10/reports/methods/research_scripts/u38_u40_recompute.py · <a href="#iu-research">附录 I</a> U38</span> <span class="st st-rechecked">复核过</span></p>
 <table class="t">
 <tr><th>token 角色</th><th>行数</th><th>":"（p1）单独替换 L48 / L52</th><th>names 替换 L48 / L52</th><th>true − false 差距 gap</th></tr>

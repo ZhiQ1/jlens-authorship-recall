@@ -5,7 +5,7 @@ from pathlib import Path
 D = Path(__file__).parent; P = D / 'parts'
 ORDER = [('A_global1.html', '一 全局（上）：模型、数据、标签、提示词、打分'), ('B_global2.html', '二 全局（下）：假标题、读出工具、统计、泄漏审计、预注册、算力'),
          ('C_stage1_9.html', '三 Stage 1–9'), ('D_stage10_11.html', '四 Stage 10–11'), ('E_stage12.html', '五 Stage 12'), ('F_stage13.html', '六 Stage 13'),
-         ('G_appendix.html', '七 附录'), ('H_selfcheck.html', '八 自查'), ('I_unknown_research.html', '九 附表：未知项查证'), ('J_dua_package.html', '十 附表：Dreaming Up Authors 代码包核对'), ('K_post_defence.html', '十一 答辩后新增（2026-11-05 / 06）')]
+         ('G_appendix.html', '七 附录'), ('H_selfcheck.html', '八 自查'), ('I_unknown_research.html', '九 附表：未知项查证'), ('J_dua_package.html', '十 附表：Dreaming Up Authors 代码包核对'), ('K_post_defence.html', '十一 答辩后新增（2026-11-05 / 06 / 08）')]
 CSS = r"""
 :root{--bg:#F7F7F4;--ink:#1F2937;--pen:#5B6474;--line:#E3E6EA;--card:#FFFFFF;--acc:#C2410C;--link:#1D6FB8;--code:#F2F3F5;--unk:#FFF1E6;--unk-ink:#9A3412;--fix:#EAF4EC;
  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--zh:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;--serif:"Noto Serif SC","Songti SC",serif}
@@ -65,7 +65,7 @@ def main():
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif+SC:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>{CSS}</style>
 <div class="wrap">
-<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-11-03 定稿，2026-11-06 补充（第十一部分：答辩后新增与重做计划；X2、补充 9 全部名字 token 的 probe、X7 五个假标题、补充 13 CPU 项；晚间 b 版：批次 1 的 X1–X4 全部作者、E4b 减 5 个假标题、C-3b）</p>
+<header><p class="lead">jlens 项目 · Qwen3-32B 作者记忆 · 方法答辩用 · 2026-11-03 定稿，2026-11-06 补充（第十一部分：答辩后新增与重做计划；X2、补充 9 全部名字 token 的 probe、X7 五个假标题、补充 13 CPU 项；晚间 b 版：批次 1 的 X1–X4 全部作者、E4b 减 5 个假标题、C-3b）；2026-11-08 c 版（与报告第 30 版同步）：P1 / P2 五个假标题、C / D 组补全、偏离 D13-1 与 Stage 8 的三个前提、X4 不再作为 H2 的证据、新增局限</p>
 <h1>Stage 1–13 方法手册</h1>
 <p>本手册记录<b>实际做了什么</b>，不是计划。每个数字、参数和样本量后面都给了出处（脚本路径和行号或函数名、结果文件、作业号、git commit），出处标为 <span class="src">示例</span>。查不到的地方写成 <span class="unk">未知/需确认：向谁确认</span>，全文共 {n_unk} 处，汇总表见附录。</p>
 <p class="legend">状态标签：<span class="st st-done">已完成</span><span class="st st-rechecked">复核过</span><span class="st st-review">待复核</span><span class="st st-void">作废</span><span class="st st-plan">计划未做</span>。每个实验节固定用 9 个小标题：1 问题与作用 · 2 材料 · 3 工具 · 4 步骤 · 5 公式 · 6 对照 · 7 结果 · 8 局限与质疑 · 9 状态。</p>

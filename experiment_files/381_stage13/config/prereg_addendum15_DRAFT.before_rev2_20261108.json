@@ -1,0 +1,27 @@
+{
+ "title": "补充 15（草稿，未锁定，无 sha256）：2-11 模型生成人名的替代设计——本次运行现场生成 + 现场匹配打标签",
+ "written": "2026-11-08（草稿；用户批准后另存为 prereg_addendum15.json 并写 sha256）",
+ "approved_by_user": "尚未批准。用户 2026-11-08 决定：补充 12 的 2-11 按预注册停止，不改不重跑；本草稿是一个新的、独立的条目，不替代也不挽救原 2-11。",
+ "status_at_writing": "2-11 没有任何结果被看过：没有残差、没有探针、没有 AUROC。已知的只有失败的门槛数字：作业 11720105 的首名 greedy 复现率 0.880（50 篇，阈值 0.90），因此 HARD_CHECK_FAILED，链条停止。repro_check.csv 的逐篇内容未读。已知的 build.json 计数（6,717 篇、M 686 / H 34,341 名）来自存储文本，不属于本设计的数据。",
+ "relation_to_addendum12": "原 2-11 仍为 '按预注册停止'，在报告中如实列出。本补充是新条目（编号 2-11b），结果单独报告，不与原 2-11 合并，也不称为原 2-11 的结果。",
+ "design": {
+  "papers": "与 2-11 相同的 target + control 论文（group_tight ∈ {target, control}，6,841 篇），同一 cohort 作者列表。",
+  "generate now": "Qwen3-32B bf16，单张 A100-80GB；chat 模板（system + user 原文与 G1.4/标签包相同），add_generation_prompt=True，enable_thinking=False；greedy（do_sample=False），max_new_tokens=96（同 G1.4）；batch 1，KV cache；每篇保存生成的 token id 与文本、是否以 EOS 结束。按分片保存、已完成跳过。",
+  "parse": "生成文本按 ';' 切分，去首尾空白和句末标点；少于 2 个词的项、重复项（保留首次）以及因 96 token 截断而无 EOS 的最后一项记为 U，不进入分析。解析器先在存储文本上跑一遍，与标签包 names 比对一致率（描述性报告）。",
+  "labels": "每个生成人名用 Stage 10 NameMatcher 等价规则（10_stage10/stage10_extra_r0r1.py 的 words/same/match，原样复制，即 v1 的 match_gen）对真实作者列表匹配：用上 = M（真作者），未用上 = H（编造）。",
+  "residual": "把本次生成的 token 序列接在 chat prompt 后做一次 teacher-forced 前向；在 L16、L24、L32、L40、L48、L52、L56 取两个位置：预测该人名第一个 token 的位置（pred_first）和人名最后一个 token（last），与 2-11 相同。",
+  "primary analysis": "只用至少有 1 个 M 和 1 个 H 的论文；论文内比较 M 与 H。探针：L2 logistic，C 在 fold 0 上 CV，存档的 author-team folds，训练折标准化；按论文分层的论文内 AUROC（论文内的 M–H 对），CI 用 author-team cluster bootstrap（2,000 次，存档 group_folds team id）。全体人名合并 AUROC 只作参考。打乱标签对照照做。",
+  "baselines": "(1) 人名在生成列表中的位置；(2) 人名字符串特征：长度（字符、词数）、姓在 cohort 作者中的频率。探针只有在论文内 AUROC 同时高于两个基线（差值的 team-bootstrap CI > 0）时才算信号。",
+  "control papers": "control 论文 M 很少：只做描述，不做推断。",
+  "minimum size (stated in advance)": "若合格的 target 论文 < 100 篇或 M 名 < 200，主分析只作描述性报告，不下结论。",
+  "stored-text reproduction": "本次 greedy 文本与标签包存储文本的复现率（首名、全文）只作描述性报告，不是门槛，不影响主分析。",
+  "limitation stated in advance": "同补充 12：chat 模板语境，与 raw-prompt 实验不能直接比较；标签来自规则匹配而非人工判定。"
+ },
+ "hard checks": {
+  "H1 determinism": "在 50 篇（rng 1211 抽样）上同一作业内生成两遍：token 序列须完全相同。有不同的 = HARD FAIL（标签不可复现），在全量生成之前执行，失败只浪费约 10 分钟。",
+  "H2 teacher-forcing consistency": "teacher-forced 前向在每个生成位置的 argmax 与生成 token 的一致率；< 99% 记 WARN（数值保留，继续），不停。",
+  "H3 matcher parity": "匹配代码在存储文本上重建的每篇 M/H 计数与标签包一致（应复现 D12-3 的 6,828/6,841）；比对代码本身崩溃才停。",
+  "rule": "按 CLAUDE.md：除 H1 外的数值核对未达标一律 WARN 继续；只有代码崩溃才停队列。流程：tiny 模型全流程试跑 → 1 个分片 → 其余。"
+ },
+ "cost estimate": "生成：6,841 篇 × ≤96 token，batch 1 约 3–5 秒/篇 ≈ 6–9 A100-80GB 小时（48 分片，每片 ≤45 分钟）；teacher-forced 前向约 1 A100-h；H1 约 0.2 A100-h。合计约 8–11 A100-h。探针与 bootstrap 在 CPU。"
+}

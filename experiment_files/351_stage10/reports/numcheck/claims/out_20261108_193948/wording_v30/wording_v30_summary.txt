@@ -1,0 +1,18 @@
+报告 | stated 36, consistent 36 | local-missing 0 | stale 0 | missing: —
+PPT | stated 23, consistent 23 | local-missing 0 | stale 0 | missing: —
+PPT 备注 notes_zh.json | stated 34, consistent 34 | local-missing 0 | stale 0 | missing: —
+方法手册 | stated 34, consistent 34 | local-missing 0 | stale 0 | missing: —
+讲稿 experiment_walkthrough_methods_zh | stated 20, consistent 20 | local-missing 0 | stale 0 | missing: —
+讲稿 experiment_walkthrough_zh | stated 19, consistent 19 | local-missing 0 | stale 0 | missing: —
+讲稿 keys_and_shelves_script_zh_en | stated 5, consistent 5 | local-missing 0 | stale 0 | missing: —
+讲稿 methods_handbook_guide_plain_zh | stated 22, consistent 22 | local-missing 0 | stale 0 | missing: —
+讲稿 progress_report_for_advisor_zh | stated 27, consistent 26 | local-missing 0 | stale 0 | missing: C04: mean5 L48 +0.821
+讲稿 stage13_script_zh_en | stated 16, consistent 16 | local-missing 0 | stale 0 | missing: —
+导师页 advisor | stated 29, consistent 29 | local-missing 0 | stale 0 | missing: —
+过程报告 process_report | stated 32, consistent 32 | local-missing 0 | stale 0 | missing: —
+打分审计 scoring_audit | stated 27, consistent 27 | local-missing 0 | stale 0 | missing: —
+方法补遗 methods_addendum | stated 27, consistent 27 | local-missing 0 | stale 0 | missing: —
+README 草稿 b | stated 28, consistent 28 | local-missing 0 | stale 0 | missing: —
+过程报告草稿 draft_zh.md | stated 32, consistent 32 | local-missing 0 | stale 0 | missing: —
+
+findings:

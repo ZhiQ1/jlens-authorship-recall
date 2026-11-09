@@ -1,0 +1,112 @@
+<title>Stage 1–13 答辩文件</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow column; each file is a row with name, size, contents and one Save button. */
+:root {
+  --paper: #F7F7F3; --ink: #22304A; --pen: #5B6474; --rule: #DDE2E8; --card: #FFFFFF; --accent: #D9772B; --ok: #2F7D3B; --err: #B42318;
+  --display: "Caveat", "Patrick Hand", cursive; --body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #161B23; --ink: #E8EBF0; --pen: #A3ADBD; --rule: #2D3645; --card: #1D2430; --accent: #F2A15F; --ok: #8FD49A; --err: #FF8A80; color-scheme: dark } }
+:root[data-theme="dark"] { --paper: #161B23; --ink: #E8EBF0; --pen: #A3ADBD; --rule: #2D3645; --card: #1D2430; --accent: #F2A15F; --ok: #8FD49A; --err: #FF8A80; color-scheme: dark }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--body); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 36px 56px; }
+main { max-width: 760px; margin: 0 auto; display: grid; gap: 22px; }
+h1 { font-family: var(--display); font-size: clamp(38px, 7vw, 54px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.lead { color: var(--pen); margin: 0; }
+ul.files { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.files li { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; align-items: center; }
+.name { font-weight: 700; overflow-wrap: anywhere; }
+.meta { color: var(--pen); font-size: 14px; grid-column: 1; }
+.size { font-variant-numeric: tabular-nums; }
+button { grid-column: 2; grid-row: 1 / span 2; font: 600 15px var(--body); color: var(--card); background: var(--ink); border: 0; border-radius: 8px; padding: 9px 16px; cursor: pointer; white-space: nowrap; }
+button:hover { background: var(--accent); }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .55; cursor: wait; }
+.status { grid-column: 1 / -1; font-size: 14px; min-height: 0; }
+.status.ok { color: var(--ok); } .old { color: var(--pen); font-weight: 600; border: 1px solid var(--rule); border-radius: 6px; padding: 0 6px; } .status.err { color: var(--err); }
+.note { color: var(--pen); font-size: 14px; border-top: 1px solid var(--rule); padding-top: 14px; margin: 0; }
+@media (max-width: 480px) { .files li { grid-template-columns: 1fr; } button { grid-column: 1; grid-row: auto; justify-self: start; } }
+</style>
+<main>
+  <header>
+    <h1>Stage 1–13 答辩文件</h1>
+    <p class="lead">2026-11-08 更新。每类文件只保留最新版和上一版：最上面是实验报告 v30、PPT v21（带讲稿、无讲稿各分三份，以及可编辑 pptx）、方法手册、证据页、三个假设表和严格数字核对表，其后是其他现行文档和讲稿，最后是各自的上一版。更早的版本保存在集群上（/scratch/zhang.zhiqi2/jlens/351_stage10/reports/downloads/）。点"保存"，浏览器会先弹出确认框，确认后开始下载。</p>
+  </header>
+  <ul class="files">
+    <li><div class="name">Stage1-13_report_v30_A4.pdf</div><div class="meta"><b>新</b> · 实验报告 v30（2026-11-08）：结论分为定论 / 较稳但有前提 / 未定 / 局限四档；补入 P1/P2 五个假标题（主结果）、C/D 组补全、D13-1、X4 不再作为 H2 证据、Stage 8 的三个前提和新增局限；数字已逐一核对，见下面的核对表；119 页 · <span class="size">11.9 MB</span></div><button type="button" id="b1" data-f="Stage1-13_report_v30_A4.pdf">保存</button><div class="status" id="s1" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v21_with_notes_zh_part1of3_p1-27.pdf</div><div class="meta"><b>新</b> · PPT v21 带中文讲稿，第 1–27 页（共 82 页，分三份；无损 PNG 画质） · <span class="size">10.4 MB</span></div><button type="button" id="b2" data-f="Stage1-13_deck_v21_with_notes_zh_part1of3_p1-27.pdf">保存</button><div class="status" id="s2" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v21_with_notes_zh_part2of3_p28-55.pdf</div><div class="meta"><b>新</b> · PPT v21 带中文讲稿，第 28–55 页 · <span class="size">13.1 MB</span></div><button type="button" id="b3" data-f="Stage1-13_deck_v21_with_notes_zh_part2of3_p28-55.pdf">保存</button><div class="status" id="s3" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v21_with_notes_zh_part3of3_p56-82.pdf</div><div class="meta"><b>新</b> · PPT v21 带中文讲稿，第 56–82 页 · <span class="size">9.3 MB</span></div><button type="button" id="b4" data-f="Stage1-13_deck_v21_with_notes_zh_part3of3_p56-82.pdf">保存</button><div class="status" id="s4" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v21_slides_part1of3_p1-27.pdf</div><div class="meta"><b>新</b> · PPT v21 无讲稿，第 1–27 页 · <span class="size">9.1 MB</span></div><button type="button" id="b5" data-f="Stage1-13_deck_v21_slides_part1of3_p1-27.pdf">保存</button><div class="status" id="s5" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v21_slides_part2of3_p28-55.pdf</div><div class="meta"><b>新</b> · PPT v21 无讲稿，第 28–55 页 · <span class="size">11.8 MB</span></div><button type="button" id="b6" data-f="Stage1-13_deck_v21_slides_part2of3_p28-55.pdf">保存</button><div class="status" id="s6" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v21_slides_part3of3_p56-82.pdf</div><div class="meta"><b>新</b> · PPT v21 无讲稿，第 56–82 页 · <span class="size">7.8 MB</span></div><button type="button" id="b7" data-f="Stage1-13_deck_v21_slides_part3of3_p56-82.pdf">保存</button><div class="status" id="s7" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v21_editable.pptx</div><div class="meta"><b>新</b> · PPT v21 可编辑版 pptx，82 页，讲稿在备注栏；需安装字体 Caveat、Patrick Hand、Noto Sans SC · <span class="size">4.8 MB</span></div><button type="button" id="b8" data-f="Stage1-13_deck_v21_editable.pptx" data-b64="Stage1-13_deck_v21_editable.pptx.b64.txt">保存</button><div class="status" id="s8" role="status"></div></li>
+    <li><div class="name">Stage1-13_methods_handbook_A4.v20261108c.pdf</div><div class="meta"><b>新</b> · 方法手册（2026-11-08 c，与报告 v30 同一口径）；220 页 · <span class="size">7.2 MB</span></div><button type="button" id="b9" data-f="Stage1-13_methods_handbook_A4.v20261108c.pdf">保存</button><div class="status" id="s9" role="status"></div></li>
+    <li><div class="name">keys_and_shelves_evidence_v20e.pdf</div><div class="meta"><b>新</b> · Keys and shelves 证据页（汇报用精简版）：PPT v20 中对应 v16 第 48、8、4、7、9、16、30、18、37、38、35、36、27、28、29 页的 15 页，加三个假设表英文版图；18 页 · <span class="size">11.3 MB</span></div><button type="button" id="b10" data-f="keys_and_shelves_evidence_v20e.pdf">保存</button><div class="status" id="s10" role="status"></div></li>
+    <li><div class="name">Stage13_hypotheses_table_v30_tableonly.png</div><div class="meta"><b>新</b> · 三个假设表（报告 v30），中文，只有表格 · <span class="size">343 KB</span></div><button type="button" id="b11" data-f="Stage13_hypotheses_table_v30_tableonly.png">保存</button><div class="status" id="s11" role="status"></div></li>
+    <li><div class="name">Stage13_hypotheses_table_v30_en_tableonly.png</div><div class="meta"><b>新</b> · 三个假设表（v30），英文版，只有表格 · <span class="size">299 KB</span></div><button type="button" id="b12" data-f="Stage13_hypotheses_table_v30_en_tableonly.png">保存</button><div class="status" id="s12" role="status"></div></li>
+    <li><div class="name">Stage13_hypotheses_table_v30_en_slide.png</div><div class="meta"><b>新</b> · 三个假设表（v30），英文版，幻灯片版式 · <span class="size">395 KB</span></div><button type="button" id="b13" data-f="Stage13_hypotheses_table_v30_en_slide.png">保存</button><div class="status" id="s13" role="status"></div></li>
+    <li><div class="name">Stage13_hypotheses_table_v30_en_wide.png</div><div class="meta"><b>新</b> · 三个假设表（v30），英文版，宽版 · <span class="size">330 KB</span></div><button type="button" id="b14" data-f="Stage13_hypotheses_table_v30_en_wide.png">保存</button><div class="status" id="s14" role="status"></div></li>
+    <li><div class="name">numcheck_claims_check_20261108c.html</div><div class="meta">核对 · 严格数字核对表（2026-11-08 c）：812 个结论数字在各份文档里出现的 6,529 处，按源文件、列/行、计算方法逐一重读，全部一致；网页表格 · <span class="size">3.6 MB</span></div><button type="button" id="b15" data-f="numcheck_claims_check_20261108c.html">保存</button><div class="status" id="s15" role="status"></div></li>
+    <li><div class="name">numcheck_claims_check_20261108c.csv</div><div class="meta">核对 · 同一张核对表的 CSV · <span class="size">5.0 MB</span></div><button type="button" id="b16" data-f="numcheck_claims_check_20261108c.csv">保存</button><div class="status" id="s16" role="status"></div></li>
+    <li><div class="name">numcheck_summary_by_doc_20261108c.csv</div><div class="meta">核对 · 核对结果按文档汇总 · <span class="size">1 KB</span></div><button type="button" id="b17" data-f="numcheck_summary_by_doc_20261108c.csv">保存</button><div class="status" id="s17" role="status"></div></li>
+    <li><div class="name">jlens_progress_report_2026-11-08c_A4.pdf</div><div class="meta"><b>新</b> · 给老师的进度汇报（合并版，2026-11-08 c，与报告 v30 同一口径）；14 页 · <span class="size">1.5 MB</span></div><button type="button" id="b18" data-f="jlens_progress_report_2026-11-08c_A4.pdf">保存</button><div class="status" id="s18" role="status"></div></li>
+    <li><div class="name">jlens_process_report_2026-11-08c_A4.pdf</div><div class="meta"><b>新</b> · 实验全过程汇总（2026-11-08 c）；30 页 · <span class="size">1.9 MB</span></div><button type="button" id="b19" data-f="jlens_process_report_2026-11-08c_A4.pdf">保存</button><div class="status" id="s19" role="status"></div></li>
+    <li><div class="name">methods_addendum_2026-11-08c_A4.pdf</div><div class="meta"><b>新</b> · 方法补遗（2026-11-08 c，网页版 https://claude.ai/artifact/VkyyqsvE43k2BkU6VSZ2kg）；23 页 · <span class="size">1.5 MB</span></div><button type="button" id="b20" data-f="methods_addendum_2026-11-08c_A4.pdf">保存</button><div class="status" id="s20" role="status"></div></li>
+    <li><div class="name">scoring_audit_2026-11-08c_A4.pdf</div><div class="meta"><b>新</b> · 打分单位审计（2026-11-08 c）；36 页 · <span class="size">1.7 MB</span></div><button type="button" id="b21" data-f="scoring_audit_2026-11-08c_A4.pdf">保存</button><div class="status" id="s21" role="status"></div></li>
+    <li><div class="name">plan_master_queue_20261106b_A4.pdf</div><div class="meta"><b>新</b> · 实验安排表（总队列）：每项的批次、状态和补充编号 · <span class="size">119 KB</span></div><button type="button" id="b22" data-f="plan_master_queue_20261106b_A4.pdf">保存</button><div class="status" id="s22" role="status"></div></li>
+    <li><div class="name">talkdoc_experiment_walkthrough_zh_20261108c_A4.pdf</div><div class="meta"><b>新</b> · 讲稿：逐个实验讲解稿（2026-11-08 c） · <span class="size">515 KB</span></div><button type="button" id="b23" data-f="talkdoc_experiment_walkthrough_zh_20261108c_A4.pdf">保存</button><div class="status" id="s23" role="status"></div></li>
+    <li><div class="name">talkdoc_experiment_walkthrough_methods_zh_20261108c_A4.pdf</div><div class="meta"><b>新</b> · 讲稿：逐个实验讲解稿（方法详解版）（2026-11-08 c） · <span class="size">817 KB</span></div><button type="button" id="b24" data-f="talkdoc_experiment_walkthrough_methods_zh_20261108c_A4.pdf">保存</button><div class="status" id="s24" role="status"></div></li>
+    <li><div class="name">talkdoc_keys_and_shelves_script_zh_en_20261108c_A4.pdf</div><div class="meta"><b>新</b> · 讲稿：Keys and shelves（中英）（2026-11-08 c） · <span class="size">381 KB</span></div><button type="button" id="b25" data-f="talkdoc_keys_and_shelves_script_zh_en_20261108c_A4.pdf">保存</button><div class="status" id="s25" role="status"></div></li>
+    <li><div class="name">talkdoc_stage13_script_zh_en_20261108c_A4.pdf</div><div class="meta"><b>新</b> · 讲稿：Stage 13（中英）（2026-11-08 c） · <span class="size">362 KB</span></div><button type="button" id="b26" data-f="talkdoc_stage13_script_zh_en_20261108c_A4.pdf">保存</button><div class="status" id="s26" role="status"></div></li>
+    <li><div class="name">talkdoc_methods_handbook_guide_plain_zh_20261108c_A4.pdf</div><div class="meta"><b>新</b> · 讲稿：方法手册导读（白话版）（2026-11-08 c） · <span class="size">841 KB</span></div><button type="button" id="b27" data-f="talkdoc_methods_handbook_guide_plain_zh_20261108c_A4.pdf">保存</button><div class="status" id="s27" role="status"></div></li>
+    <li><div class="name">talkdoc_progress_report_for_advisor_zh_20261108c_A4.pdf</div><div class="meta">已过时 · 讲稿版进度汇报（已被上面的合并版取代，仅存档） · <span class="size">823 KB</span></div><button type="button" id="b28" data-f="talkdoc_progress_report_for_advisor_zh_20261108c_A4.pdf">保存</button><div class="status" id="s28" role="status"></div></li>
+    <li><div class="name">Stage1-13_report_v29h_A4.pdf</div><div class="meta"><b class="old">上一版</b> · 实验报告 v29h（2026-11-08） · <span class="size">11.8 MB</span></div><button type="button" id="b29" data-f="Stage1-13_report_v29h_A4.pdf">保存</button><div class="status" id="s29" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v20h_with_notes_zh_part1of3_p1-27.pdf</div><div class="meta"><b class="old">上一版</b> · PPT v20h 带中文讲稿，第 1–27 页 · <span class="size">10.4 MB</span></div><button type="button" id="b30" data-f="Stage1-13_deck_v20h_with_notes_zh_part1of3_p1-27.pdf">保存</button><div class="status" id="s30" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v20h_with_notes_zh_part2of3_p28-55.pdf</div><div class="meta"><b class="old">上一版</b> · PPT v20h 带中文讲稿，第 28–55 页 · <span class="size">13.1 MB</span></div><button type="button" id="b31" data-f="Stage1-13_deck_v20h_with_notes_zh_part2of3_p28-55.pdf">保存</button><div class="status" id="s31" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v20h_with_notes_zh_part3of3_p56-82.pdf</div><div class="meta"><b class="old">上一版</b> · PPT v20h 带中文讲稿，第 56–82 页 · <span class="size">9.2 MB</span></div><button type="button" id="b32" data-f="Stage1-13_deck_v20h_with_notes_zh_part3of3_p56-82.pdf">保存</button><div class="status" id="s32" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v20h_slides_part1of3_p1-27.pdf</div><div class="meta"><b class="old">上一版</b> · PPT v20h 无讲稿，第 1–27 页 · <span class="size">9.1 MB</span></div><button type="button" id="b33" data-f="Stage1-13_deck_v20h_slides_part1of3_p1-27.pdf">保存</button><div class="status" id="s33" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v20h_slides_part2of3_p28-55.pdf</div><div class="meta"><b class="old">上一版</b> · PPT v20h 无讲稿，第 28–55 页 · <span class="size">11.8 MB</span></div><button type="button" id="b34" data-f="Stage1-13_deck_v20h_slides_part2of3_p28-55.pdf">保存</button><div class="status" id="s34" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v20h_slides_part3of3_p56-82.pdf</div><div class="meta"><b class="old">上一版</b> · PPT v20h 无讲稿，第 56–82 页 · <span class="size">7.7 MB</span></div><button type="button" id="b35" data-f="Stage1-13_deck_v20h_slides_part3of3_p56-82.pdf">保存</button><div class="status" id="s35" role="status"></div></li>
+    <li><div class="name">Stage1-13_deck_v20h_editable.pptx</div><div class="meta"><b class="old">上一版</b> · PPT v20h 可编辑版 pptx · <span class="size">4.8 MB</span></div><button type="button" id="b36" data-f="Stage1-13_deck_v20h_editable.pptx" data-b64="Stage1-13_deck_v20h_editable.pptx.b64.txt">保存</button><div class="status" id="s36" role="status"></div></li>
+    <li><div class="name">Stage1-13_methods_handbook_A4.v20261108b.pdf</div><div class="meta"><b class="old">上一版</b> · 方法手册（2026-11-08 b） · <span class="size">10.4 MB</span></div><button type="button" id="b37" data-f="Stage1-13_methods_handbook_A4.v20261108b.pdf">保存</button><div class="status" id="s37" role="status"></div></li>
+    <li><div class="name">Stage13_hypotheses_table_v29_tableonly.png</div><div class="meta"><b class="old">上一版</b> · 三个假设表（报告 v29），只有表格 · <span class="size">316 KB</span></div><button type="button" id="b38" data-f="Stage13_hypotheses_table_v29_tableonly.png">保存</button><div class="status" id="s38" role="status"></div></li>
+    <li><div class="name">jlens_progress_report_2026-11-08b_A4.pdf</div><div class="meta"><b class="old">上一版</b> · 给老师的进度汇报（2026-11-08 b） · <span class="size">3.0 MB</span></div><button type="button" id="b39" data-f="jlens_progress_report_2026-11-08b_A4.pdf">保存</button><div class="status" id="s39" role="status"></div></li>
+    <li><div class="name">jlens_process_report_2026-11-08b_A4.pdf</div><div class="meta"><b class="old">上一版</b> · 实验全过程汇总（2026-11-08 b） · <span class="size">2.9 MB</span></div><button type="button" id="b40" data-f="jlens_process_report_2026-11-08b_A4.pdf">保存</button><div class="status" id="s40" role="status"></div></li>
+    <li><div class="name">methods_addendum_2026-11-08b_A4.pdf</div><div class="meta"><b class="old">上一版</b> · 方法补遗（2026-11-08 b） · <span class="size">3.3 MB</span></div><button type="button" id="b41" data-f="methods_addendum_2026-11-08b_A4.pdf">保存</button><div class="status" id="s41" role="status"></div></li>
+    <li><div class="name">scoring_audit_2026-11-08b_A4.pdf</div><div class="meta"><b class="old">上一版</b> · 打分单位审计（2026-11-08 b） · <span class="size">951 KB</span></div><button type="button" id="b42" data-f="scoring_audit_2026-11-08b_A4.pdf">保存</button><div class="status" id="s42" role="status"></div></li>
+    <li><div class="name">method_slides_preview_v2.pptx</div><div class="meta"><b>预览</b> · 方法图样张（图例页 + 替换方法页），可编辑 pptx；需要安装字体 Caveat、Patrick Hand · <span class="size">41 KB</span></div><button type="button" id="b43" data-f="method_slides_preview_v2.pptx" data-b64="method_slides_preview_v2.pptx.b64.txt">保存</button><div class="status" id="s43" role="status"></div></li>
+  </ul>
+  <p class="note">PPT v20 的 PDF 用无损 PNG 图片，为符合单个文件 15 MB 的上限分成三份；v19 的 PDF 是 JPEG 压缩版。可编辑版 pptx 需要先安装字体 Caveat、Patrick Hand、Noto Sans SC（Google Fonts 免费下载），否则 PowerPoint 会换成别的字体，排版会走样。核对表里的每个数字都由代码从结果文件读出，重跑命令：bash /scratch/zhang.zhiqi2/jlens/351_stage10/reports/numcheck/claims/claims_run.sh（CLAIMS_DEFS=claims_defs_v10）。</p>
+</main>
+<script>
+(function () {
+  var dl = null, ready = false;
+  if (window.claude && window.claude.use) window.claude.use('downloads').then(function (d) { dl = d; ready = true; }).catch(function () { ready = true; });
+  document.querySelectorAll('button[data-f]').forEach(function (b, i) {
+    var st = document.getElementById(b.id.replace('b','s'));
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f');
+      if (!dl) { st.className = 'status err'; st.textContent = ready ? '这个查看界面不支持保存文件。请在 claude.ai 网页版里打开这一页再试。' : '还在准备，请过几秒再点。'; return; }
+      b.disabled = true; st.className = 'status'; st.textContent = '正在读取文件…';
+      var b64 = b.getAttribute('data-b64'), inl = b.getAttribute('data-inline');
+      (inl ? Promise.resolve(document.getElementById(inl).textContent) : fetch(b64 || f).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return (b64 ? r.text() : r.blob()); }))
+        .then(function (x) {
+          if (!b64 && !inl) return x;
+          var bin = atob(x.trim()), u = new Uint8Array(bin.length);
+          for (var j = 0; j < bin.length; j++) u[j] = bin.charCodeAt(j);
+          return new Blob([u]);
+        })
+        .then(function (blob) { st.textContent = '请在弹出的确认框里点确认。'; return dl.save({ filename: f, data: blob }); })
+        .then(function () { st.className = 'status ok'; st.textContent = '已交给浏览器下载。'; })
+        .catch(function (e) {
+          st.className = 'status err';
+          var c = e && e.code;
+          st.textContent = c === 'declined' ? '已取消。需要时再点一次“保存”。' : c === 'rate_limited' ? '已经有一个确认框打开着，请先处理它。' : '没有保存成功（' + (c || e.message || e) + '）。';
+        })
+        .then(function () { b.disabled = false; });
+    });
+  });
+})();
+</script>
+

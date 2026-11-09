@@ -1,0 +1,10 @@
+﻿bound_id,statement,source_value,rule,holds,n_occurrences,where
+B-X7f-all<=0.05,X7 五个假标题平均 S(L52) 三组都 ≤ 0.05,0.0415209,<= 0.05,是,10,PPT 备注 notes_zh.json 第68页 备注 | PPT 第68页 正文 | 导师页 advisor  | 打分审计 scoring_audit  | 报告  | 方法手册  | 方法补遗 methods_addendum  | 讲稿 experiment_walkthrough_methods_zh  | 讲稿 stage13_script_zh_en  | 过程报告 process_report 
+B-X6-spread<=0.02,X6 各假标题与 false_0 相差不超过 0.02,0.0189911,<= 0.02,是,3,PPT 备注 notes_zh.json 第68页 备注 | PPT 第68页 正文 | 导师页 advisor 
+B-X6roles52>=0.96,X6 L52 各可报告角色都 ≥ 0.96（按两位四舍五入比较）,0.971457,>= 0.955,是,3,PPT 备注 notes_zh.json 第68页 备注 | PPT 第68页 正文 | 报告 
+B-F2<=0,F2 名字位置 L24–L56 target − control 都 ≤ 0（按三位四舍五入）,-0.00106073,<= 0.0005,是,3,PPT 备注 notes_zh.json 第67页 备注 | PPT 第67页 正文 | 报告 
+B-X1amy<=0.02,X1 作者 − 年份 L4–L40 在 ±0.02 以内（最大值）,0.00562402,<= 0.02,是,4,PPT 备注 notes_zh.json 第69页 备注 | PPT 第69页 正文 | 报告 
+B-X1amy>=-0.02,同上（最小值）,-0.000338087,>= -0.02,是,4,PPT 备注 notes_zh.json 第69页 备注 | PPT 第69页 正文 | 报告 
+B-M3colon<0.5,M3 “:” 位置 T < 0.5（L16–L40 三个目标取最大）,0.358,< 0.5,是,3,PPT 备注 notes_zh.json 第69页 备注 | PPT 第69页 正文 | 报告 
+B-X2remove<=rand,X2 移除臂不比随机子空间多（L_S − L_rand ≈ +0.001）,0.000869527,<= 0.0015,是,1,PPT 第71页 正文
+B-X4rec-test,X4 识别在测试集确认（tune 选 L8；预注册规则）：测试集团队 CI 下限 > 0,-0.000567887,> 0.0,否,12,PPT 备注 notes_zh.json 第70页 备注 | PPT 备注 notes_zh.json 第81页 备注 | 导师页 advisor  | 打分审计 scoring_audit  | 报告  | 方法手册  | 方法补遗 methods_addendum  | 讲稿 stage13_script_zh_en  | 过程报告 process_report 

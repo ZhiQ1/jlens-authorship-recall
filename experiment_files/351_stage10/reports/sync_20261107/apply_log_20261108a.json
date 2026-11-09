@@ -1,0 +1,226 @@
+[
+ [
+  "1 wording B v3 (report ×3)",
+  "stage1_11/stage1_11_report.html",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代<span class=\"src\">（[^<]*）</span>。?",
+  "(computed)",
+  3
+ ],
+ [
+  "1 wording B v3 (talk docs)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代<span class=\"src\">（[^<]*）</span>。?",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (talk docs)",
+  "talk_docs/stage13_script_zh_en.html",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代<span class=\"src\">（[^<]*）</span>。?",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (handbook F)",
+  "methods/parts/F_stage13.html",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代。<span class=\"src\">[^<]*</span>",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (update boxes)",
+  "advisor/index.html",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代<span style=\"[^\"]*\">（[^<]*）</span>。?",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (update boxes)",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代<span style=\"[^\"]*\">（[^<]*）</span>。?",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (update boxes)",
+  "pages_20261106b/methods_addendum/index.html",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代<span style=\"[^\"]*\">（[^<]*）</span>。?",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (process report)",
+  "process_report/draft_zh.md",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代【[^】]*】。?",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (deck note 72)",
+  "notes_zh.json #72",
+  "(regex) (?:认得出的论文在标题位置携带更多名字信息，)?按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 \\+0\\.030 \\[0\\.013, 0\\.048\\]）；首字母不显著（L40 \\+0\\.014 \\[−0\\.002, \\+0\\.030\\]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代〔[^〕]*〕。?",
+  "(computed)",
+  1
+ ],
+ [
+  "1 wording B v3 (en: README b, Stage 13 script)",
+  "github/README_draft_20261106b.md",
+  "target − control positive from L16 for the given-name first token and from L24 for the surname (L40 +0.030 [0.013, 0.048]); initial not significant (L40 +0.014 [−0.002, +0.030]); with false_0 only the surname is not significant before L56 (earlier statement superseded)",
+  "Title-position probe target − control (within citation bin) has three versions: ① pre-registered (false_0 only; false_0 is the only false title checked for title reuse, a clean single control; given name 1,706, surname 1,395, initial 1,590 papers): given-name first token L24 +0.051 [0.007, 0.095], L40 +0.049 [0.005, 0.095], L48 +0.073 [0.027, 0.122]; surname L24 −0.002 [−0.037, +0.036], L40 +0.012 [−0.026, +0.048], L48 +0.016 [−0.025, +0.056]; initial L24 +0.033 [0.005, 0.059], L40 +0.031 [−0.001, +0.062], L48 +0.056 [0.025, 0.089] (identical to the published addendum-9 values, e4b_alltok.md). ② per-donor exclusion (post-hoc deviation D1; about 1.5 usable false titles per paper; given name 3,046, surname 4,654, initial 4,812 papers): given name L24 +0.037 [0.012, 0.062], L40 +0.048 [0.021, 0.076], L48 +0.051 [0.023, 0.081]; surname L24 +0.019 [0.001, 0.038], L40 +0.030 [0.013, 0.048], L48 +0.042 [0.025, 0.060]; initial L24 +0.026 [0.012, 0.040], L40 +0.014 [−0.002, +0.030], L48 +0.031 [0.014, 0.048]. ③ \"mean of 5 false titles\" (sensitivity reference only: same papers as ①, excluded by false_0 only; about 79% of false_1..4 should have been excluded, so it contains leakage; given name 1,706, surname 1,395, initial 1,590 papers): given name L40 +0.047 [0.012, 0.081]; surname L40 +0.024 [−0.006, +0.052], L48 +0.031 [0.001, 0.059]; initial L40 +0.021 [−0.002, +0.043]. Conclusion: in the pre-registered version the given-name first token is positive at L24–L48 and the surname is not significant at L24–L48 (L40 +0.012 [−0.026, +0.048]); in the post-hoc per-donor version the surname is positive from L24 (L40 +0.030 [0.013, 0.048]). The given-name signal is consistent across the three versions; the surname evidence is weak and comes only from the post-hoc version. The initial is positive at some layers with an inconsistent pattern (no multi-layer correction); no conclusion is drawn",
+  1
+ ],
+ [
+  "1 wording B v3 (en: README b, Stage 13 script)",
+  "talk_docs/stage13_script_zh_en.html",
+  "target − control positive from L16 for the given-name first token and from L24 for the surname (L40 +0.030 [0.013, 0.048]); initial not significant (L40 +0.014 [−0.002, +0.030]); with false_0 only the surname is not significant before L56 (earlier statement superseded)",
+  "Title-position probe target − control (within citation bin) has three versions: ① pre-registered (false_0 only; false_0 is the only false title checked for title reuse, a clean single control; given name 1,706, surname 1,395, initial 1,590 papers): given-name first token L24 +0.051 [0.007, 0.095], L40 +0.049 [0.005, 0.095], L48 +0.073 [0.027, 0.122]; surname L24 −0.002 [−0.037, +0.036], L40 +0.012 [−0.026, +0.048], L48 +0.016 [−0.025, +0.056]; initial L24 +0.033 [0.005, 0.059], L40 +0.031 [−0.001, +0.062], L48 +0.056 [0.025, 0.089] (identical to the published addendum-9 values, e4b_alltok.md). ② per-donor exclusion (post-hoc deviation D1; about 1.5 usable false titles per paper; given name 3,046, surname 4,654, initial 4,812 papers): given name L24 +0.037 [0.012, 0.062], L40 +0.048 [0.021, 0.076], L48 +0.051 [0.023, 0.081]; surname L24 +0.019 [0.001, 0.038], L40 +0.030 [0.013, 0.048], L48 +0.042 [0.025, 0.060]; initial L24 +0.026 [0.012, 0.040], L40 +0.014 [−0.002, +0.030], L48 +0.031 [0.014, 0.048]. ③ \"mean of 5 false titles\" (sensitivity reference only: same papers as ①, excluded by false_0 only; about 79% of false_1..4 should have been excluded, so it contains leakage; given name 1,706, surname 1,395, initial 1,590 papers): given name L40 +0.047 [0.012, 0.081]; surname L40 +0.024 [−0.006, +0.052], L48 +0.031 [0.001, 0.059]; initial L40 +0.021 [−0.002, +0.043]. Conclusion: in the pre-registered version the given-name first token is positive at L24–L48 and the surname is not significant at L24–L48 (L40 +0.012 [−0.026, +0.048]); in the post-hoc per-donor version the surname is positive from L24 (L40 +0.030 [0.013, 0.048]). The given-name signal is consistent across the three versions; the surname evidence is weak and comes only from the post-hoc version. The initial is positive at some layers with an inconsistent pattern (no multi-layer correction); no conclusion is drawn",
+  1
+ ],
+ [
+  "1 wording B v3 (deck slide 72, compact en; full text in note 72)",
+  "merged_deck/stage1_11_deck.html",
+  "<li><b>Target − control (five false titles, per-donor exclusion): </b>given-name first token positive from L16, surname from L24 (L40 +0.030 [0.013, 0.048]); initial not significant (L40 +0.014 [−0.002, +0.030]); with false_0 only the surname is not significant before L56 — earlier statement superseded<span class=\"src\">(within bin; b1_e4b5_report.md, per-donor)</span></li>",
+  "<li><b>Target − control, three versions: </b>pre-registered (false_0; 1,706 / 1,395 papers): given name + at L24–L48, surname n.s. (L40 +0.012 [−0.026, +0.048]); per-donor (post hoc, D1; 4,654 papers): surname + from L24 (L40 +0.030 [0.013, 0.048]); 5-title mean (leaky, sensitivity only): surname L40 +0.024 [−0.006, +0.052] → given name consistent, surname evidence weak (post hoc only)<span class=\"src\">(within bin; perdonor_by_run_layer.csv V0 / Vpd / V5x0)</span></li>",
+  1
+ ],
+ [
+  "1 item-title note (first occurrence)",
+  "stage1_11/stage1_11_report.html",
+  "减 5 个假标题平均",
+  "减 5 个假标题平均（实际每篇可用假标题个数见正文）",
+  1
+ ],
+ [
+  "1 item-title note (first occurrence)",
+  "advisor/index.html",
+  "减 5 个假标题",
+  "减 5 个假标题（实际每篇可用假标题个数见正文）",
+  1
+ ],
+ [
+  "1 item-title note (first occurrence)",
+  "process_report/draft_zh.md",
+  "减 5 个假标题",
+  "减 5 个假标题（实际每篇可用假标题个数见正文）",
+  1
+ ],
+ [
+  "1 item-title note (first occurrence)",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "减 5 个假标题",
+  "减 5 个假标题（实际每篇可用假标题个数见正文）",
+  1
+ ],
+ [
+  "1 item-title note (first occurrence)",
+  "pages_20261106b/methods_addendum/index.html",
+  "减 5 个假标题",
+  "减 5 个假标题（实际每篇可用假标题个数见正文）",
+  1
+ ],
+ [
+  "1 item-title note (first occurrence)",
+  "methods/parts/B_global2.html",
+  "减 5 个假标题",
+  "减 5 个假标题（实际每篇可用假标题个数见正文）",
+  1
+ ],
+ [
+  "2 V0 label (addendum-9 sentence)",
+  "talk_docs/experiment_walkthrough_methods_zh.html",
+  "（目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  "（预注册版 V0：只减 false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  1
+ ],
+ [
+  "2 V0 label (addendum-9 sentence)",
+  "talk_docs/experiment_walkthrough_zh.html",
+  "（目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  "（预注册版 V0：只减 false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  1
+ ],
+ [
+  "2 V0 label (addendum-9 sentence)",
+  "talk_docs/keys_and_shelves_script_zh_en.html",
+  "（目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  "（预注册版 V0：只减 false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  1
+ ],
+ [
+  "2 V0 label (addendum-9 sentence)",
+  "talk_docs/methods_handbook_guide_plain_zh.html",
+  "（目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  "（预注册版 V0：只减 false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  1
+ ],
+ [
+  "2 V0 label (addendum-9 sentence)",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "（目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  "（预注册版 V0：只减 false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  1
+ ],
+ [
+  "2 V0 label (addendum-9 sentence)",
+  "talk_docs/stage13_script_zh_en.html",
+  "（目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  "（预注册版 V0：只减 false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）",
+  1
+ ],
+ [
+  "2 V0 label (en)",
+  "merged_deck/stage1_11_deck.html",
+  "(1,395 papers; e4b_alltok.md)",
+  "(pre-registered V0: false_0 only, 1,395 papers; e4b_alltok.md)",
+  1
+ ],
+ [
+  "2 V0 label (en)",
+  "talk_docs/stage13_script_zh_en.html",
+  "(1,395 papers; e4b_alltok.md)",
+  "(pre-registered V0: false_0 only, 1,395 papers; e4b_alltok.md)",
+  1
+ ],
+ [
+  "2 V0 label (README table)",
+  "github/README_draft_20261106b.md",
+  "surname first token L40 +0.071 [0.058, 0.085] |",
+  "surname first token L40 +0.071 [0.058, 0.085] (pre-registered V0, false_0 only, 1,395 papers) |",
+  1
+ ],
+ [
+  "2 V0 label (audit)",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "Addendum 9 shows surname_first L40 +0.071 and given_first +0.124",
+  "Addendum 9 (pre-registered version V0, false_0 only; 1,395 / 1,706 papers) shows surname_first L40 +0.071 and given_first +0.124",
+  1
+ ],
+ [
+  "3 RQ1 lower bound (report #p1-s8, deck slide 19 + note, handbook #s19-s8d)",
+  "stage1_11/stage1_11_report.html",
+  "+0.130 [0.109, 0.153]",
+  "+0.130 [0.108, 0.153]",
+  1
+ ],
+ [
+  "3 RQ1 lower bound (report #p1-s8, deck slide 19 + note, handbook #s19-s8d)",
+  "merged_deck/stage1_11_deck.html",
+  "+0.130 [0.109, 0.153]",
+  "+0.130 [0.108, 0.153]",
+  1
+ ],
+ [
+  "3 RQ1 lower bound (report #p1-s8, deck slide 19 + note, handbook #s19-s8d)",
+  "methods/parts/C_stage1_9.html",
+  "+0.130 [0.109, 0.153]",
+  "+0.130 [0.108, 0.153]",
+  1
+ ],
+ [
+  "3 RQ1 lower bound (report #p1-s8, deck slide 19 + note, handbook #s19-s8d)",
+  "notes_zh.json #19",
+  "+0.130 [0.109, 0.153]",
+  "+0.130 [0.108, 0.153]",
+  1
+ ]
+]

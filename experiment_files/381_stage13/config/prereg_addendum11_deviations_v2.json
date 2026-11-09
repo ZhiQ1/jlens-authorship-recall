@@ -1,0 +1,21 @@
+{
+ "title": "Addendum 11 deviation record D11-1, version 2 (amends version 1; written before any probe result)",
+ "amends": {
+  "file": "prereg_addendum11_deviations.json",
+  "sha256": "7685cfc52a361747028be9b6829a37778fa39dcb5de200bd60a375da23b449eb",
+  "status": "superseded by this version; kept unchanged"
+ },
+ "written": "2026-11-08 01:18:02 EST",
+ "state_when_written": {
+  "probe_outputs_exist": false,
+  "report_outputs": [],
+  "hold_file_present": true,
+  "note": "GPU residual capture in progress (11/432 units at the time of the decision); the probe step has never run"
+ },
+ "change_vs_v1": "Control rows (gold tokens of a random other paper; of a random same-field paper) for the per-donor (Vpd) primary analysis are computed per false title and averaged over the SAME usable false-title set as the main Vpd result (previously only the 5-title average ctrl_*5 was available).",
+ "reason": "The main result and its controls must use the same false-title set; mixing a per-donor main result with 5-title-average controls would let title-reuse leakage enter the controls only. User decision 2026-11-08 (option b).",
+ "implementation": "CPU only: the probe step already computes per-title control scores (stage13_b2_np_probe.py:146–147) but discarded them; a new probe version stores ctrl_*_f0..f4 (and true) per paper; the v2 report forms Vpd controls with the per-paper usable-title mask. No new GPU forwards; the 11 completed GPU units need no recomputation.",
+ "hard_check": "On the tiny data and on 1 real shard, the V0 and V5x0 tables (including control rows) from the new probe/report must equal the old ones exactly (max |diff| = 0); otherwise stop. The report lists the usable-title distribution separately for the Vpd main result and the Vpd control rows and checks they are identical.",
+ "everything_else": "as version 1 (primary Vpd; V0 and V5x0 'contains leakage, sensitivity only' reported beside)",
+ "approved_by_user": "user message 2026-11-08 (option b)"
+}

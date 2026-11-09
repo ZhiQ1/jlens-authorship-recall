@@ -1,0 +1,310 @@
+[
+ [
+  "1 L02 attribution",
+  "stage1_11/stage1_11_report.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution",
+  "advisor/index.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  2
+ ],
+ [
+  "1 L02 attribution",
+  "process_report/draft_zh.md",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution",
+  "pages_20261106b/methods_addendum/index.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution",
+  "talk_docs/experiment_walkthrough_zh.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution",
+  "talk_docs/experiment_walkthrough_methods_zh.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution",
+  "talk_docs/methods_handbook_guide_plain_zh.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "最多变 0.070。保留在事后改动清单里",
+  "最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里",
+  1
+ ],
+ [
+  "1 L02 attribution (keys zh)",
+  "talk_docs/keys_and_shelves_script_zh_en.html",
+  "只有按 0.5 才通过。</p>",
+  "只有按 0.5 才通过。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。</p>",
+  1
+ ],
+ [
+  "1 L02 attribution (keys en)",
+  "talk_docs/keys_and_shelves_script_zh_en.html",
+  "passes only at 0.5.</p>",
+  "passes only at 0.5. With the original 0.25, 10 of the 25 lens × layer pairs of the Stage 10 main-round parity check (12 contexts, 52 token positions) exceeded 0.25, max 0.367 (parity_before_tol05_amendment.json); in 3-3, 99.81% of 23,280 rows (7 papers) were within 0.25. This size matches the bf16 rounding that changes with forward length found in 3-3 (up to about 0.46), but the tolerance was relaxed to 0.5 after seeing the data, a post-hoc change.</p>",
+  1
+ ],
+ [
+  "1 L02 attribution (README)",
+  "github/README_draft_20261106b.md",
+  "post-hoc change, kept listed);",
+  "post-hoc change, kept listed; With the original 0.25, 10 of the 25 lens × layer pairs of the Stage 10 main-round parity check (12 contexts, 52 token positions) exceeded 0.25, max 0.367 (parity_before_tol05_amendment.json); in 3-3, 99.81% of 23,280 rows (7 papers) were within 0.25. This size matches the bf16 rounding that changes with forward length found in 3-3 (up to about 0.46), but the tolerance was relaxed to 0.5 after seeing the data, a post-hoc change.);",
+  2
+ ],
+ [
+  "1 L02 attribution (slide 82)",
+  "merged_deck/stage1_11_deck.html",
+  "parity tolerance 0.25 → 0.5 was used (Stage 10 main round, max 0.367);",
+  "parity tolerance 0.25 → 0.5 was used, a post-hoc change (main round: 10 of 25 pairs above 0.25, max 0.367; size matches bf16 rounding, up to ~0.46);",
+  1
+ ],
+ [
+  "1 L02 attribution (note 82)",
+  "notes_zh.json #82",
+  "容差 0.25 → 0.5 已用于 Stage 10 主轮（最大差 0.367）",
+  "容差 0.25 → 0.5 已用于 Stage 10 主轮（原定 0.25 时 25 个组合有 10 个超出，最大差 0.367；3-3 按 0.25 有 99.81% 在容差内；量级与 bf16 舍入随前向长度变化（最大约 0.46）一致，但放宽属事后修改）",
+  1
+ ],
+ [
+  "2 advisor deck label",
+  "advisor/index.html",
+  "〔2026-11-06 已更新：当前为 v20（本地已备，待发布）；见页首更新框〕",
+  "〔2026-11-08 已更新：当前为 v21；见页首更新框〕",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "stage1_11/stage1_11_report.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "advisor/index.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  2
+ ],
+ [
+  "3 v30 numbers registered",
+  "process_report/draft_zh.md",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "/scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "pages_20261106b/methods_addendum/index.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "talk_docs/experiment_walkthrough_zh.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "talk_docs/experiment_walkthrough_methods_zh.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "talk_docs/methods_handbook_guide_plain_zh.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "；另有约 1,024 个像结论的数字还没登记（2026-11-07 的计数）；第 30 版新放回或新增的数字（D13-1、P1 / P2 五个假标题、C / D 组补全）尚待登记",
+  "；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）",
+  1
+ ],
+ [
+  "3 v30 numbers registered (note 82)",
+  "notes_zh.json #82",
+  "数字核对已登记 680 个、4,307 处全部一致，约 1,024 个未登记",
+  "第 30 版的数字已登记进严格核对（claims_defs_v9），另约 1,024 个结论性数字未登记",
+  1
+ ],
+ [
+  "3 v30 numbers registered (README)",
+  "github/README_draft_20261106b.md",
+  "about 1,024 conclusion-like numbers not registered (count from 2026-11-07).",
+  "the v30 numbers are registered in the strict checker (claims_defs_v9); about 1,024 conclusion-like numbers are not registered (count from 2026-11-07).",
+  2
+ ],
+ [
+  "4 D13-1 version labels",
+  "stage1_11/stage1_11_report.html",
+  "报告 v29 和 PPT v20 都以锁定计划的",
+  "报告 v30 和 PPT v21 都以锁定计划的",
+  1
+ ],
+ [
+  "5 slide 77 258/462",
+  "merged_deck/stage1_11_deck.html",
+  "within bin same timing as A, larger gap",
+  "within bin (258 of 462 C papers, 6 bins) same timing as A, larger gap",
+  1
+ ],
+ [
+  "5 slide 81 p9",
+  "merged_deck/stage1_11_deck.html",
+  "colon numerator B/A 0.72–0.87<span class=\"src\">(b1_p12f_report.md)</span>",
+  "colon numerator B/A 0.72–0.87; p9: 694–711 papers per false title, different sets, unweighted<span class=\"src\">(b1_p12f_report.md)</span>",
+  1
+ ],
+ [
+  "5 slide 81 258/462",
+  "merged_deck/stage1_11_deck.html",
+  "C / D completion done (C 462 papers: same timing as A)",
+  "C / D completion done (C 462 papers; within bin 258 of 462 vs A: same timing)",
+  1
+ ],
+ [
+  "5 slide 82 subtitle",
+  "merged_deck/stage1_11_deck.html",
+  "Written 2026-11-06; last two items added 2026-11-08 (v30)",
+  "Written 2026-11-06; last three items added 2026-11-08 (v30)",
+  1
+ ],
+ [
+  "5 slide 82 L01 consequences + 2-11",
+  "merged_deck/stage1_11_deck.html",
+  "pipeline use false_0 only, no plan</li></ul>",
+  "pipeline use false_0 only, no plan</li><li><b>Layer gap, stopped item: </b>X4 year onset somewhere in L33–L40; Jacobian vs logit jump between L32 and L40; X4 first-author peak could be L33–L47 · 2-11 stopped (first-name reproduction 0.880 &lt; 0.90)</li></ul>",
+  1
+ ],
+ [
+  "6 note 82 no plan + L33-L40",
+  "notes_zh.json #82",
+  "M5 B 部分和 E4b 的 X1 对照流程只用 false_0；",
+  "M5 B 部分和 E4b 的 X1 对照流程只用 false_0，没有补做计划；落在层缺口里的只有描述：X4 年份起点在 L33–L40 之间，Jacobian 对 logit 的跳变在 L32–L40 之间，X4 第一作者峰值可能在 L33–L47；",
+  1
+ ],
+ [
+  "6 note 81 shortened (overflow)",
+  "notes_zh.json #81",
+  "（2-1、2-2 用较省但包含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 AUROC、两个基线、对照组只作描述）",
+  "",
+  1
+ ],
+ [
+  "6 note 81 shortened (duplicate C/D clause)",
+  "notes_zh.json #81",
+  "批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；",
+  "批次 1 结束后已由编排作业开始运行；",
+  1
+ ],
+ [
+  "6 note 81 shortened (E4b detail, in note 72)",
+  "notes_zh.json #81",
+  "，逐个排除版（4,654 篇）第一个 token +0.066；原 E4b（1,395 篇）+0.061；置换对照首字母仍 +0.018，其余 ≈ 0",
+  "",
+  1
+ ],
+ [
+  "6 note 81 shortened (sources)",
+  "notes_zh.json #81",
+  "〔381_stage13/config/prereg_addendum14_deviations.json；381_stage13/summary_b3_71b/gate.json；381_stage13/b3_33_v2/v2_C1_summary.json〕；3-4",
+  "〔381_stage13/config/prereg_addendum14_deviations.json〕；3-4",
+  1
+ ],
+ [
+  "6 note 72 shortened (probe definition is in report / handbook)",
+  "notes_zh.json #72",
+  "probe 的定义：输入是第 l 层标题最后一个 token 的残差；目标是模型自己在 L63、在预测该角色名字 token 的位置上的状态，按论文平均；ridge，按作者团队分折；在 9,137 个名字 token 的词表里解码；标题特异 = 真标题 − false_0。",
+  "",
+  1
+ ],
+ [
+  "6 note 72 shortened (source)",
+  "notes_zh.json #72",
+  "〔381_stage13/summary_b1_e4b5/perdonor_by_run_layer.csv（version = V0 / Vpd / V5x0，列 tc / tc_lo / tc_hi；引用档内 target − control，团队整群 bootstrap 2,000 次 95% CI）；381_stage13/reports/e4b_alltok.md；b1_e4b5_report.md〕",
+  "〔381_stage13/summary_b1_e4b5/perdonor_by_run_layer.csv；b1_e4b5_report.md〕",
+  1
+ ],
+ [
+  "6 note 72 shortened (source 2)",
+  "notes_zh.json #72",
+  "〔381_stage13/reports/b1_e4b5_report.md 第 2 节与 “Per-donor exclusion” 节，目标 + 对照，团队聚类 95% CI〕",
+  "〔381_stage13/reports/b1_e4b5_report.md〕",
+  1
+ ],
+ [
+  "7 talk-doc progress report C04/C08/2-11",
+  "talk_docs/progress_report_for_advisor_zh.html",
+  "；P1/P2 五个假标题也已完成（5 个假标题平均为主结果，与 false_0 版的差别区间都含 0，结论不变）<span class=\"src\">（b1_p12f_report.md）</span>。批次 2（补充 11、12，含 Stage 9 Fit B 与 holdout）已开始：C / D 组补全已完成（C 的信号更大，但时间点与 A 相同）<span class=\"src\">（b2_cd_report.md）</span>；2-11 按预注册停止，改为 2-11b（补充 15），只跑第 0 个分片；",
+  "；P1/P2 五个假标题也已完成：按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列，两版之差的区间都含 0，结论不变；“:” 位置分子 B/A 5 个假标题版 0.72–0.87，false_0 版 0.78–0.99（B 的比例高只因分母约为 A 的一半）；p9 各假标题 694–711 篇，集合不同，未加权<span class=\"src\">（391_groups/reports/b1_p12f_report.md）</span>。批次 2（补充 11、12，含 Stage 9 Fit B 与 holdout）已开始：C / D 组补全已完成——C 组未写出作者 462 篇，同一引用档内与 A 比较只用到其中 258 篇（6 个引用档，A 323 篇），时间点与 A 相同；C 的真假标题差距更大（分母 C 0.559、A 0.407，比例差主要反映分母不同）；D 33 篇按补充 11 只作描述<span class=\"src\">（391_groups/reports/b2_cd_report.md）</span>；2-11 模型自生成名字的首名复现率 0.880 &lt; 0.90，按预注册停止，改为 2-11b（补充 15），只跑第 0 个分片；",
+  1
+ ],
+ [
+  "8 README X4 sentence",
+  "github/README_draft_20261106b.md",
+  "In X4, the X4 recognised − control difference is no longer counted as H2 evidence (text-only BERT baseline +0.088 not weaker than Qwen L8 +0.018).",
+  "In X4, the recognised − control difference (test set L8 +0.023 [−0.001, +0.048], not significant) is no longer counted as H2 evidence (text-only BERT baseline +0.088 not weaker than Qwen L8 +0.018).",
+  1
+ ],
+ [
+  "9 2,103",
+  "stage1_11/stage1_11_report.html",
+  "n = 462 (2103 authors)",
+  "n = 462 (2,103 authors)",
+  5
+ ],
+ [
+  "K regenerated from the report",
+  "methods/parts/K_post_defence.html",
+  "(part 5 of the report)",
+  "(regenerated)",
+  1
+ ]
+]

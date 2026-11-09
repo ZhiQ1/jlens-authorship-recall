@@ -1,0 +1,23 @@
+{
+ "title": "Addendum 11 deviation record D11-1: name-position probe (item A) primary analysis switched to per-donor exclusion — written before any probe result",
+ "applies_to": "prereg_addendum11.json item 'A name-position probe' ('title-specific signal' and 'controls' entries); that file is unchanged",
+ "written": "2026-11-08 00:13:52 EST",
+ "hold_file": {
+  "path": "/scratch/zhang.zhiqi2/jlens/381_stage13/orch_b2/HOLD_np_final",
+  "mtime": "2026-11-08 00:04:54 EST"
+ },
+ "state_when_written": {
+  "probe_or_report_outputs_existing": [],
+  "note": "no probe fit and no report had been run; GPU residual capture still in progress"
+ },
+ "reason": "The planned rule ('5-donor title-reuse rule of addendum 10, and the false_0-only version beside it if fewer than 1,000 papers remain') makes the report fall back to V5x0 (paper exclusion by false_0 only, false_1..4 unchecked). The 2026-11-07 audit of the E4b five-title versions showed that in V5x0 about 79% of false_1..4 should have been excluded (title-reuse leakage) and that the 5-donor whole-paper rule keeps 0 papers. User decision 2026-11-08.",
+ "change": {
+  "primary": "per-donor exclusion (Vpd, as deviation D1 of addendum 10): per paper, average only the false titles whose donor is not in another training fold; papers with no usable false title are dropped; report the number of usable titles per paper (mean, median, distribution) by target/control",
+  "also_reported": [
+   "V0: true minus false_0 only, with the false_0 title-reuse rule (clean single comparison)",
+   "V5x0: mean of false_0..4 with the false_0-only paper rule — labelled 'contains leakage, sensitivity only'"
+  ],
+  "unchanged": "positions, layers, ridge probe, folds, controls, lens comparison, primary H3 contrast definition (now evaluated on Vpd), hard checks"
+ },
+ "approved_by_user": "user message 2026-11-08 (name-position probe report: agreed)"
+}

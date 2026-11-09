@@ -19,7 +19,7 @@ from pathlib import Path
 J = Path('/scratch/zhang.zhiqi2/jlens'); R13 = J / '381_stage13'; G = J / '391_groups'
 W13 = Path.home() / 'jlens_work/13_stage13'; W14 = Path.home() / 'jlens_work/14_groups'
 OD = R13 / 'orch_b2'; STATE = OD / 'state.json'; LOG = OD / 'orch.log'
-GPU_OPTS = ['-p', 'gpu,gpu-short,gpu-interactive', '--time-min=00:20:00']
+GPU_OPTS = ['-p', 'gpu,gpu-short', '--time-min=00:20:00']   # 2026-11-08: gpu-interactive dropped (its submit cap of 4 caused QOSMaxSubmit refusals)
 MAX_GPU_QUEUED = 8
 DRY = '--dry' in sys.argv
 
@@ -94,8 +94,8 @@ ITEMS = {
                gate_ok=lambda: not (R13 / 'summary_b2_np/HARD_CHECK1_FAILED').exists() and n_files(R13 / 'raw/b2_npprobe', '*/shard_000.npz') >= 6,
                rest=['--export=ALL,SHARDS=--all', 'stage13_b2_np_gpu.sbatch'], parallel=3,
                complete=lambda: n_files(R13 / 'raw/b2_npprobe', '*/shard_*.npz') >= 432,
-               final=[['stage13_b2_np_probe.sbatch'], ['stage13_b2_np_report.sbatch']],
-               done=lambda: (R13 / 'reports/b2_np_report.md').exists()),
+               final=[['stage13_b2_np_probe_v2.sbatch'], ['stage13_b2_np_report_v2.sbatch']],   # D11-1 v2 (2026-11-08): probe_v2 stores per-title controls; report_v2 Vpd primary
+               done=lambda: (R13 / 'reports/b2_np_report_v2.md').exists()),
 }
 # group C items (2-1, 2-2, 2-11): status-driven (b2_orch_items_c.json; each script's `status` names the next step).
 ITEMS_C = json.loads((W13 / 'b2_orch_items_c.json').read_text())
@@ -187,6 +187,8 @@ def poll():
                     for _ in range(max(0, want)):
                         if gpu >= MAX_GPU_QUEUED: break
                         if sbatch(it['rest'], it['cwd'], gpu=True): gpu += 1
+        if s['phase'] == 'final' and (OD / f'HOLD_{k}_final').exists():
+            log(k, f'final step held by orch_b2/HOLD_{k}_final (user/main session); not submitting'); continue
         if s['phase'] == 'final':
             prev = None
             for f in it['final']:

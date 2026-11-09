@@ -1,0 +1,82 @@
+[
+ {
+  "file": "stage1_11/stage1_11_report.html",
+  "removed": "（用户 2026-11-06 决定，偏离 D13-1，见下框）",
+  "replacement": "（用户 2026-11-06 决定）"
+ },
+ {
+  "file": "stage1_11/stage1_11_report.html",
+  "removed": "\n<div class=\"bx warn\"><b>偏离 D13-1（补充 13 C-2 的规则触发）</b>按补充 13 C-2 的判定规则（prereg_addendum13.json 第 18 行），全部作者 CPU 代理（public J-lens 名次、Stage 10 的 5 个假标题——每篇都是整 5 个，351_stage10.py 第 302、863 行；不是原 W）只在 L56 的 RQ2 上与已发表结论不一致：+0.064 [−0.032, +0.163]，区间含 0<span class=\"src\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2），endpoint=L56）</span>。因此触发按原 W 在 GPU 上重算；用户 2026-11-06 决定不做，列为偏离。报告 v29 和 PPT v20 都以锁定计划的 7 层积分为冻结主终点（本节“Stage 8 结论”；PPT 第 17 页“7-layer (frozen primary)”）；L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清（U28）。在 10-18 14:29 锁定计划的 7 层积分终点上（Stage 10 没有 L16，按 L16 = 0 或 L16 = L24 近似），代理 RQ2 为 +0.046 [+0.007, +0.088] 或 +0.049 [+0.005, +0.094]，RQ1 为 +0.111 [+0.093, +0.131] 或 +0.117 [+0.095, +0.138]，都与已发表结论同向、区间不含 0<span class=\"src\">（同上，endpoint=int7_L16zero / int7_L16eqL24）</span>。6 层 int6 的 RQ2 为 +0.054 [+0.008, +0.102]<span class=\"src\">（同上，endpoint=int6；int6 = public J-lens 在 L24、L32、L40、L48、L56、L62 的等权平均，少了 L16，与锁定的 7 层积分不是同一终点（13_stage13/stage13_c13_s10lib.py 第 17、70 行；351_stage8/config/analysis_plan.json 第 14、27、29 行））</span>。补充 13 的规则是 RQ1 或 RQ2 任一结论改变即触发；本次触发只来自 L56。7 层积分的代理结果是近似值（Stage 10 没有 L16 的读出）。Stage 8 RQ2 在 L56 的结论没有用原统计量复核。已发表的原 W（按原种子复现）：7 层积分 RQ1 +2.326 [+1.496, +3.192] pp、RQ2 +2.409 [+0.909, +4.003] pp；L56 RQ1 +5.178 [+2.926, +7.476] pp、RQ2 +4.981 [+0.322, +9.915] pp<span class=\"src\">（351_stage8/recompute_2026-10-30/s8_endpoints.csv 第 2–7 行）</span></div>",
+  "replacement": ""
+ },
+ {
+  "file": "stage1_11/stage1_11_report.html",
+  "removed": "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做，列为偏离 D13-1：规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56（PROTOCOL.md 后改的终点，U28）的 RQ2；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）同向且区间不含 0，RQ2 +0.046 [+0.007, +0.088]；见 Stage 8 节）。</li>",
+  "replacement": "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做；CPU 代理见 Stage 8 节）。</li>"
+ },
+ {
+  "file": "stage1_11/stage1_11_report.html",
+  "removed": "<li><b>Stage 8 L56 的 RQ2 没有用原统计量复核。</b>CPU 代理只在后改的 L56 上区间含 0，按补充 13 触发了 W 的 GPU 重算；用户决定不做（偏离 D13-1，见 Stage 8 节）。</li>\n",
+  "replacement": ""
+ },
+ {
+  "file": "talk/src/export/notes_zh.json",
+  "removed": "Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1〔381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv〕）。",
+  "replacement": ""
+ },
+ {
+  "file": "talk/src/export/with_notes.html",
+  "removed": "Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1<span class=\"src\">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>）。",
+  "replacement": ""
+ },
+ {
+  "file": "methods/methods_handbook.html",
+  "removed": "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做，列为偏离 D13-1：规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56（PROTOCOL.md 后改的终点，U28）的 RQ2；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）同向且区间不含 0，RQ2 +0.046 [+0.007, +0.088]；见 Stage 8 节）。</li>",
+  "replacement": "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做；CPU 代理见 Stage 8 节）。</li>"
+ },
+ {
+  "file": "methods/methods_handbook.html",
+  "removed": "<li><b>Stage 8 L56 的 RQ2 没有用原统计量复核。</b>CPU 代理只在后改的 L56 上区间含 0，按补充 13 触发了 W 的 GPU 重算；用户决定不做（偏离 D13-1，见 Stage 8 节）。</li>\n",
+  "replacement": ""
+ },
+ {
+  "file": "methods/methods_handbook.html",
+  "removed": "<tr><td>V59</td><td>Stage 8 按原 W 统计量的 GPU 重算（补充 13 C-2 的规则触发）= 偏离 D13-1</td><td><span class=\"st st-plan\">不做</span>（偏离 D13-1）</td><td>用户 2026-11-06 决定不做。D13-1：CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0）；在 10-18 14:29 锁定的 7 层积分终点上（L16 = 0 或 = L24 近似）RQ2 +0.046 [+0.007, +0.088] / +0.049 [+0.005, +0.094]，RQ1 +0.111 [+0.093, +0.131] / +0.117 [+0.095, +0.138]，同向且区间不含 0；int6 RQ2 +0.054 [+0.008, +0.102]。规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56；L56 在锁定计划里是探索性次终点，21:14 由 PROTOCOL.md 改为主终点（U28）；7 层积分的代理是近似值（Stage 10 没有 L16）；代理用 Stage 10 的 5 个假标题，每篇整 5 个（351_stage10.py 第 302、863 行）。Stage 8 RQ2 在 L56 的结论没有用原统计量复核。<span class=\"src\">381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2）</span>；只报 CPU 代理（public J-lens 名次指标，不是 W）。<span class=\"src\">381_stage13/reports/c13_C2.md “Decision for batch 3 item 3-4”</span></td><td><a href=\"#s19-s8d\">s19-s8d</a></td></tr>",
+  "replacement": "<tr><td>V59</td><td>Stage 8 按原 W 统计量的 GPU 重算（补充 13 C-2 的规则触发）</td><td><span class=\"st st-plan\">不做</span></td><td>用户 2026-11-06 决定不做；只报 CPU 代理（public J-lens 名次指标，不是 W）。<span class=\"src\">381_stage13/reports/c13_C2.md “Decision for batch 3 item 3-4”</span></td><td><a href=\"#s19-s8d\">s19-s8d</a></td></tr>"
+ },
+ {
+  "file": "methods/methods_handbook.html",
+  "removed": "<tr><td>D13-1（补充 13 C-2）</td><td>代理与已发表结论不一致时按原 W 在 GPU 上重算</td><td>只在后改的 L56 上 RQ2 区间含 0（+0.064 [−0.032, +0.163]）；用户决定不做；规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56（PROTOCOL.md 后改的终点，U28）；锁定的 7 层积分终点上（近似，Stage 10 没有 L16）同向、区间不含 0</td><td><span class=\"st st-review\">偏离</span></td><td><span class=\"src\">381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2）</span></td></tr>\n",
+  "replacement": ""
+ },
+ {
+  "file": "methods/methods_handbook.html",
+  "removed": "（用户 2026-11-06 决定，偏离 D13-1，见附录 V59）",
+  "replacement": "（用户 2026-11-06 决定）"
+ },
+ {
+  "file": "methods/parts/B_global2.html",
+  "removed": "<tr><td>D13-1（补充 13 C-2）</td><td>代理与已发表结论不一致时按原 W 在 GPU 上重算</td><td>只在后改的 L56 上 RQ2 区间含 0（+0.064 [−0.032, +0.163]）；用户决定不做；规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56（PROTOCOL.md 后改的终点，U28）；锁定的 7 层积分终点上（近似，Stage 10 没有 L16）同向、区间不含 0</td><td><span class=\"st st-review\">偏离</span></td><td><span class=\"src\">381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2）</span></td></tr>\n",
+  "replacement": ""
+ },
+ {
+  "file": "methods/parts/K_post_defence.html",
+  "removed": "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做，列为偏离 D13-1：规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56（PROTOCOL.md 后改的终点，U28）的 RQ2；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）同向且区间不含 0，RQ2 +0.046 [+0.007, +0.088]；见 Stage 8 节）。</li>",
+  "replacement": "<li><b>不做：</b>Stage 8 在 GPU 上按原 W 统计量重算（补充 13 规则触发，用户 2026-11-06 决定不做；CPU 代理见 Stage 8 节）。</li>"
+ },
+ {
+  "file": "methods/parts/K_post_defence.html",
+  "removed": "<li><b>Stage 8 L56 的 RQ2 没有用原统计量复核。</b>CPU 代理只在后改的 L56 上区间含 0，按补充 13 触发了 W 的 GPU 重算；用户决定不做（偏离 D13-1，见 Stage 8 节）。</li>\n",
+  "replacement": ""
+ },
+ {
+  "file": "methods/parts/G_appendix.html",
+  "removed": "<tr><td>V59</td><td>Stage 8 按原 W 统计量的 GPU 重算（补充 13 C-2 的规则触发）= 偏离 D13-1</td><td><span class=\"st st-plan\">不做</span>（偏离 D13-1）</td><td>用户 2026-11-06 决定不做。D13-1：CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0）；在 10-18 14:29 锁定的 7 层积分终点上（L16 = 0 或 = L24 近似）RQ2 +0.046 [+0.007, +0.088] / +0.049 [+0.005, +0.094]，RQ1 +0.111 [+0.093, +0.131] / +0.117 [+0.095, +0.138]，同向且区间不含 0；int6 RQ2 +0.054 [+0.008, +0.102]。规则是 RQ1 或 RQ2 任一改变即触发，本次只来自 L56；L56 在锁定计划里是探索性次终点，21:14 由 PROTOCOL.md 改为主终点（U28）；7 层积分的代理是近似值（Stage 10 没有 L16）；代理用 Stage 10 的 5 个假标题，每篇整 5 个（351_stage10.py 第 302、863 行）。Stage 8 RQ2 在 L56 的结论没有用原统计量复核。<span class=\"src\">381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv（aa_all 行；RQ1 团队 bootstrap 2,000 次，RQ2 配对 bootstrap 10,000 次，200 篇 / 100 对，种子同 C-2）</span>；只报 CPU 代理（public J-lens 名次指标，不是 W）。<span class=\"src\">381_stage13/reports/c13_C2.md “Decision for batch 3 item 3-4”</span></td><td><a href=\"#s19-s8d\">s19-s8d</a></td></tr>",
+  "replacement": "<tr><td>V59</td><td>Stage 8 按原 W 统计量的 GPU 重算（补充 13 C-2 的规则触发）</td><td><span class=\"st st-plan\">不做</span></td><td>用户 2026-11-06 决定不做；只报 CPU 代理（public J-lens 名次指标，不是 W）。<span class=\"src\">381_stage13/reports/c13_C2.md “Decision for batch 3 item 3-4”</span></td><td><a href=\"#s19-s8d\">s19-s8d</a></td></tr>"
+ },
+ {
+  "file": "methods/parts/C_stage1_9.html",
+  "removed": "（用户 2026-11-06 决定，偏离 D13-1，见附录 V59）",
+  "replacement": "（用户 2026-11-06 决定）"
+ }
+]

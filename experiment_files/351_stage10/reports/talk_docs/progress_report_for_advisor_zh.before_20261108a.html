@@ -1,0 +1,368 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=claude:viewport-fit-sides content=cover><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>.src{color:#8a8f98;font-size:.78em;font-weight:400}.upd{border-left:4px solid #2F7D3B;padding:6px 12px;margin:10px 0;background:rgba(47,125,59,.06)}</style><style>.md-table{overflow-x:auto}@media print{.md-table{overflow-x:visible}}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<div style="border:2px solid #B3261E;background:#FDECEA;color:#B3261E;padding:12px 16px;margin:0 0 16px;font-size:18px;font-weight:700">本页已过时，最新内容见 <a href="https://claude.ai/artifact/XtBbnuuE9xKki4uiL7KxBs">https://claude.ai/artifact/XtBbnuuE9xKki4uiL7KxBs</a></div>
+<h1>项目进度汇报：Qwen3-32B 在哪一层“记住”论文作者</h1>
+<p>汇报人：Zhiqi Zhang　｜　截至 2026-11-03　｜　代码与结果 tag：<code>defense-2026-11</code></p>
+<hr>
+<h2>一、一句话总结</h2>
+<p>对于模型<strong>写不出作者、但多选题认得出</strong>的论文，Qwen3-32B 内部确实带有这篇论文特有的作者信息：标题信息在 <strong>L44–52</strong> 被读进名字位置，到 <strong>L52</strong> 已全部到位，但要到 <strong>L57–61</strong> 才变成读出工具能看到的名字。我们称之为“<strong>读得早，说得晚</strong>”。中间层里存的是什么，我们检验了三个假设：任务/格式在冒号和名字位置成立；“论文身份”只得到部分支持，所有专门用来区分“认出论文”和“读懂标题意思”的实验都没能证明前者；“作者已经在那里”证据不足。</p>
+<hr>
+<h2>二、研究问题</h2>
+<p>模型经常编造论文作者。我们想知道：**它是真的不知道，还是知道但说不出来？**如果是后者，信息存在哪一层、哪个位置，又是在哪一步才变成说出口的名字。</p>
+<p>核心思路是<strong>对比</strong>：同一份作者名单，配真标题和配假标题（借用同领域另一篇论文的标题）各跑一遍，两者之差只能来自“认得这篇论文”。再把论文分成“认得出”和“认不出”两组比较。</p>
+<hr>
+<h2>三、数据与分组</h2>
+<p><strong>论文</strong>：9,108 篇，来自 Dreaming Up Authors 代码包（dua 1.0.0）的分层样本：从 OAG v2 抽取、经 5 道过滤剩 1,921,209 篇，再按 8 个领域 × 13 个引用档、每格最多 100 篇取样。标题、年份、作者、引用数来自 Semantic Scholar 2025 年 9 月快照。我们的 9,108 篇和包里逐篇一致。</p>
+<p><strong>标签</strong>：组长用 elm 流程在同一个 Qwen3-32B 上生成，我们原样使用。</p>
+<ol>
+<li><strong>开放回答</strong>：关闭 thinking、贪心解码、最多 96 token，用 NameMatcher（姓 + 名首字母）匹配，按写对比例分 R0（一个都没写对）、R1（写对少数）、R2（基本写对，作为 guard 不分析）。</li>
+<li><strong>多选题</strong>：真名单加 3 个同领域、同规模、同引用档的真实团队，换 4 种顺序问。4 次全对且真选项概率 ≥ 0.5 为 <strong>target</strong>，最多对 1 次为 <strong>control</strong>。</li>
+</ol>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th></th>
+<th>target（认得出）</th>
+<th>control（认不出）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0</td>
+<td>A = 4,110</td>
+<td>B = 2,186</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>C = 511</td>
+<td>D = 34</td>
+</tr>
+<tr>
+<td>合计</td>
+<td><strong>4,621</strong></td>
+<td><strong>2,220</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>多选题是否只是“名字听起来更像”</strong>：不给标题时，真名单被选为最像真的比例是 25.5%，等于四选一瞎猜（Stage 12 N1），所以多选答对依赖标题。</p>
+<p><strong>假标题</strong>：每篇论文 5 个，同领域、保留本论文年份，按年份、作者人数、标题长度、引用档的加权差最小匹配，要求无共同姓氏、标题词重合 ≤ 0.6。</p>
+<hr>
+<h2>四、实验体系</h2>
+<h3>1. 按研究问题划分 Stage</h3>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>问题</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–2</td>
+<td>分组和提示词是否可靠</td>
+<td>标签核对、提示词验证</td>
+</tr>
+<tr>
+<td>3</td>
+<td>读出工具能不能用</td>
+<td>搭建和校验 Jacobian lens</td>
+</tr>
+<tr>
+<td>4–7</td>
+<td>小样本上有没有信号、能否排除替代解释</td>
+<td>20–200 篇，交叉标题、完整作者名、多种对照</td>
+</tr>
+<tr>
+<td>8</td>
+<td>独立样本能否复现</td>
+<td>200 篇新论文，冻结分析计划</td>
+</tr>
+<tr>
+<td>9</td>
+<td>读出工具是否稳定</td>
+<td>重新拟合 lens（只完成 Fit A）</td>
+</tr>
+<tr>
+<td>10</td>
+<td>全队列逐层“看”</td>
+<td>9,108 篇 × 4 种读出工具</td>
+</tr>
+<tr>
+<td>11</td>
+<td>动手干预，信息什么时候到位</td>
+<td>替换（patching）、阻断（knockout）、probe</td>
+</tr>
+<tr>
+<td>12</td>
+<td>定位到具体位置和部件</td>
+<td>逐位置替换、注意力 vs MLP、名字先验</td>
+</tr>
+<tr>
+<td>13</td>
+<td>中间层到底表示什么</td>
+<td>三个假设，M1–M4、X1–X7 共 11 项实验</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>2. 四条论证线</h3>
+<ul>
+<li>**A 线：是这篇论文吗？**真标题 vs 假标题，论文特有信号是否存在。</li>
+<li>**B 线：读出工具可不可靠？**多种 lens 交叉比较、probe、文本基线。</li>
+<li>**C 线：发生在哪一层？**读出曲线、替换、阻断、层序汇总。</li>
+<li>**D 线：落在哪个 token？**首字母、名、姓分开看。</li>
+</ul>
+<h3>3. 主要工具</h3>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>回答什么</th>
+<th>做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>logit lens / Jacobian lens</td>
+<td>某一层“想说”什么词</td>
+<td>把中间层状态（经线性近似搬到最后一层）直接变成词表打分</td>
+</tr>
+<tr>
+<td>probe</td>
+<td>信息是否线性可读</td>
+<td>5 折 ridge 回归，从内部状态预测答案，在没见过的论文上测</td>
+</tr>
+<tr>
+<td>替换（patching）</td>
+<td>信息何时、在哪里被用到</td>
+<td>把真标题那遍某层某位置的状态塞进假标题那遍，看恢复多少</td>
+</tr>
+<tr>
+<td>阻断（knockout）</td>
+<td>之后还需不需要标题</td>
+<td>从第 l 层起禁止标题之后的位置注意标题</td>
+</tr>
+<tr>
+<td>Patchscope</td>
+<td>状态里能解码出什么</td>
+<td>把状态注入只有占位符的新提示，看模型说出什么</td>
+</tr>
+<tr>
+<td>文本基线</td>
+<td>是否只是标题用词</td>
+<td>BERT、TF-IDF、句子向量模型读同样的标题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>打分</strong>：正确名字 token 在全词表的名次，取 log10(1/名次)。两个分数差 d 等于名次好了 10^d 倍，比如 +0.21 是 1.6 倍，+0.44 是 2.75 倍。</p>
+<hr>
+<h2>五、主要发现</h2>
+<h3>发现 1：认得出的论文，模型确实带有论文特有的作者信息（A 线）</h3>
+<ul>
+<li>最后一层 L62，真标题比假标题对真作者的分数高约 0.44，相当于名次好 2.75 倍。</li>
+<li>分组看：target +0.56，control +0.24；<strong>target − control 在输出层为 +0.207 [0.20, 0.22]</strong>，几乎全部是论文特有的部分。</li>
+<li>只用 R0（一个作者都没写对的论文）重算，差值 +0.199，和全部 +0.207 几乎一样：<strong>写不出作者的论文里，模型照样“知道一些”</strong>。</li>
+<li><strong>独立复现（Stage 8）</strong>：在 200 篇新论文上，按冻结计划的主终点（7 层积分），A − B 为 +2.41 pp，逐对剔除 100 次都不跨 0。逐层检验做 Holm 校正后，只有 L62 仍显著。</li>
+<li><strong>拆分</strong>：真标题带来的 +0.247 = 名字先验 +0.087 + 领域主题 −0.047 + 论文特有 +0.207。</li>
+<li><strong>引用数越高信号越强</strong>：Spearman ρ = 0.451。</li>
+</ul>
+<h3>发现 2：说得晚——名字到最后几层才读得出（C 线）</h3>
+<ul>
+<li>中间层 L24–L48，两组的论文特有信号都约为 0。</li>
+<li>逐层细看：target − control 在 L50 只有 +0.007，L62 达 +0.23，<strong>上升最陡在 L57–61</strong>。</li>
+<li>所有读出工具一致：logit lens 在 L48 之前正确名字排在一万名以后，L62 跳到约第 10 名。Jacobian lens 在中间层多读出的部分只有 +0.01 到 +0.03，而且不偏向 target。</li>
+</ul>
+<h3>发现 3：读得早——信息在 L44–52 就已到位（C 线，因果证据）</h3>
+<ul>
+<li><strong>替换</strong>：把真标题那遍标题之后的状态塞进假标题那遍，L48 恢复约 0.82，L52 起约 1.0。</li>
+<li><strong>阻断</strong>：从 L52 起挡住对标题的注意力，几乎没有损失。</li>
+<li><strong>两项加固</strong>：
+<ul>
+<li>X6 用另外 4 个假标题重做替换，L48 平均 0.82、L52 平均 0.995，每个假标题和原来最多差 0.02。</li>
+<li>X7 在假标题那遍也做阻断并扣除，“论文特有损失”从 L0 起挡是 1.0（全部消失），从 L52 起挡 target 约 2%、control 约 5%，到 L56 两组都为 0。所以阻断结论不是“把模型搞乱”造成的。</li>
+</ul>
+</li>
+<li><strong>层序汇总（X5）</strong>：标题位置的论文属性在最早测到的层（≤ L8–L16）就读得出；替换在 L48 恢复一半、L52 超过 95%；名字位置用 lens 读出作者要到 L53–L62。</li>
+</ul>
+<h3>发现 4：信息落在名字位置本身，先注意力后 MLP（D 线、Stage 12）</h3>
+<ul>
+<li><strong>逐位置替换（P1）</strong>：只换名字位置，L48 恢复 0.61，L52 恢复 0.85；只换冒号最多 0.17；其他单个位置都不超过 0.03。信息主要直接进入名字位置，不是先存在标题后面的 token 上。</li>
+<li><strong>按 token 拆</strong>：首字母的信息经过冒号，但首字母本身真假差只有 0.11；<strong>姓</strong>的信息在名字位置本身，真假差约 0.5，是信号主体。</li>
+<li><strong>按部件替换（P2）</strong>：L48 注意力恢复 0.23（同层 MLP 0.07）；L52、L56 的 MLP 恢复 0.18、0.22。顺序是注意力先把标题信息读进来，MLP 再加工。单层替换只是下限；MLP 那步是否是“查记忆”，这个实验分不出。</li>
+</ul>
+<h3>发现 5：标题位置有一点线性可读的作者信息（B 线）</h3>
+<ul>
+<li>probe 从标题最后一个 token 读作者，在按作者团队分折、剔除标题复用后（1,863 篇，E4b 信号只用其中 target + control 的 1,395 篇），从 L24 起 +0.05 到 +0.08，target 比 control 高 +0.03 到 +0.08。原版标准化用了全部论文，改为只在训练折内标准化；两种标准化差别最大 0.0007，L40 为 0.061、L56 为 0.075，结论不变。</li>
+<li>换成别的论文、同领域论文的作者打分，约为 0，说明信号属于这篇论文。</li>
+<li>局限：只给每位作者的第一个名字 token 打分（73% 是首字母），只减了一个假标题。补充 9（答辩后新增，分析计划在看结果前写定）把这个 probe 扩展到每位作者的全部名字 token 并按角色分开：L40 姓的第一个 token +0.071 [0.058, 0.085]<span class="src">（目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）</span>，高于首字母 +0.044 [0.030, 0.057]<span class="src">（1,590 篇）</span>；名的第一个 token 最强（L40 +0.124、L56 +0.163<span class="src">（1,706 篇）</span>）。原 E4b 只打分第一个 token（多半是首字母），所以低估了标题位置携带的名字信息。逐个假标题排除的版本（补充 10 第 4 项，2026-11-06 完成）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 token 为 +0.071）：L40 姓首 token +0.076 [0.068, 0.083]，姓 − 首字母 +0.033 [0.023, 0.042]，逐个排除版（4,654 篇）第一个 token +0.066；原 E4b（1,395 篇）+0.061；置换对照首字母仍 +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS<span class="src">（补充 10 第 4 项；381_stage13/reports/b1_e4b5_report.md）</span>。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 false_0、样本较小时姓在 L56 前不显著，此前的说法已被取代<span class="src">（b1_e4b5_report.md，per-donor target − control；summary_b1_e4b5/perdonor_by_run_layer.csv Vpd）</span>。</li>
+</ul>
+<h3>发现 6：中间层表示什么——三个假设的检验结果（Stage 13）</h3>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>假设</th>
+<th>判断</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H1 任务 / 格式</strong></td>
+<td>成立（冒号和名字位置）</td>
+<td>lens 在中间层名字位置 100% 把句末标点排第一；换问法时冒号位置的变化是换论文的 3–5 倍（L4–L40；L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class="src">（x1_similarity.md colon 表）</span></td>
+</tr>
+<tr>
+<td><strong>H2 论文身份</strong></td>
+<td>部分支持，未确立</td>
+<td>支持：标题位置能读出年份（R² 0.38→0.56）、引用数（0.29→0.53）、领域（准确率约 0.71，打乱标签 0.13），BERT 只读标题分别是 0.24、0.19；跨问法替换（X1）恢复作者分数差别在 ±0.1 内。不支持：M3 按预注册不高于 L4 的文字水平；X4 先解码出第一作者（L8）再解码年份（L40），和 H2 预测的顺序相反；X3 见下</td>
+</tr>
+<tr>
+<td><strong>H3 作者已在、只是不在词表方向</strong></td>
+<td>证据不足</td>
+<td>专门用作者提示拟合的 lens 也读不出；probe 从 L8 起有作者信号，但只靠标题文字的基线不弱于 Qwen，不能排除文字解释</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>X3 是最关键的区分实验</strong>：同一篇论文改写标题，和一篇用词同样相近的别的论文比。</p>
+<ul>
+<li>结果：改写版在 L28–L40 比近邻更接近原标题（L36 最大 +0.16），行为上保留原标题约 90% 的作者优势。按预注册判据，这算“存在论文身份信号”。</li>
+<li>但我们事后加了两项检验：只懂语义、不认识任何作者的句子向量模型在用词匹配的子集上也有相当优势；而且 target 和 control 完全一样（行为 0.90 对 0.91，表示层 L36 为 +0.158 对 +0.160）。</li>
+<li>所以我们把解读降为“中间层表示了标题的<strong>意思</strong>而不只是用词”，分不清是认出论文还是懂得意思。预注册判据的结果和事后检验都如实报告。</li>
+</ul>
+<hr>
+<h2>六、如何保证实验的系统性与可信度</h2>
+<ol>
+<li><strong>预注册</strong>：Stage 13 的每个判定规则都在看到数据之前写定，原始文件加 5 份补充，均有 sha256 并只读保存；文件修改时间和 git 时间证明写定早于数据。</li>
+<li><strong>严格的对照设计</strong>：每个主要结论都配阳性对照（如冒号位置读年份 R² 0.98，证明方法测得出）、阴性对照（标点 token、换成别人的作者）和打乱标签对照。</li>
+<li><strong>防泄漏</strong>：所有 probe 按作者团队分折（共享任一作者全名即同组，7,247 个团队）；剔除“同一个标题既当真标题又借给别人当假标题”的论文；标准化改为只在训练折内做（重算结论不变）；分折存档，所有脚本读同一份。</li>
+<li><strong>统计</strong>：target 和 control 只在同一引用档内比较并加权；置信区间改为按作者团队整群 bootstrap；Stage 8 补做 Holm 校正和逐对剔除。</li>
+<li><strong>多工具交叉验证</strong>：4 把读出工具、probe、替换、阻断、Patchscope、3 种文本基线，从不同方向回答同一问题。</li>
+<li><strong>复现检查</strong>：每次改代码重跑，都先用原设置复现旧数字（例如 X6 重算 false_0，516 行 × 15 层逐个相同）。</li>
+<li><strong>结论随证据调整</strong>：凡是新检验不支持的，就降级并写明，不删旧结果（见第七部分）。</li>
+<li><strong>完整记录</strong>：方法手册 290 页，每个数字追到脚本行号、结果文件、作业号和 commit；查不到的标“未知/需确认”。代码和结果打 tag <code>defense-2026-11</code>。</li>
+</ol>
+<hr>
+<h2>七、自查中发现并修正的问题</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>影响</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>假标题被重复借用，同一标题出现在训练和测试</td>
+<td>M2 的假标题结果虚高</td>
+<td>作废</td>
+</tr>
+<tr>
+<td>probe 没按作者团队分折</td>
+<td>结果可能偏高</td>
+<td>全部改为按团队分折重跑，结论不变</td>
+</tr>
+<tr>
+<td>一个标题既当真标题又当假标题</td>
+<td>probe 结论可能虚高</td>
+<td>剔除后重跑（剩 1,863 篇），信号仍在；“只用假标题训练信号更强”一说撤回</td>
+</tr>
+<tr>
+<td>置信区间按论文独立重抽</td>
+<td>区间偏窄</td>
+<td>改为团队整群 bootstrap，点估计不变</td>
+</tr>
+<tr>
+<td>Stage 11 替换范围包含名字位置</td>
+<td>“信息存在标题后 token 上”的解释不对</td>
+<td>Stage 12 拆开后改为“进入名字位置”</td>
+</tr>
+<tr>
+<td>替换只用一个假标题、阻断可能搞乱模型</td>
+<td>时间点可能偶然</td>
+<td>X6、X7 补做，结论成立</td>
+</tr>
+<tr>
+<td>Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）</td>
+<td>可能“挑了有利终点”</td>
+<td>补报原定主终点（仍显著）、Holm、逐对剔除</td>
+</tr>
+<tr>
+<td>M3 自动判定没按预注册规则</td>
+<td>H2 被过度支持</td>
+<td>按补充 2 重判为不支持</td>
+</tr>
+<tr>
+<td>X4 文本基线代码错误、阳性对照失败</td>
+<td>H3 被过度支持</td>
+<td>修正后结论反转为“不能排除文字解释”</td>
+</tr>
+<tr>
+<td>几个区间和数字找不到计算文件</td>
+<td>无法复现</td>
+<td>从原始数据重算替换，数值都在原范围内</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2>八、局限</h2>
+<ol>
+<li>只用了一个模型（Qwen3-32B），层数和机制是否适用于其他模型未知。</li>
+<li>全部结论基于“把正确名字放进去打分”的教师强制偏好，不是模型自由生成时的行为。</li>
+<li>读出工具的拟合稳定性只有 Stage 9 Fit A 一份证据；Fit B 与 holdout 已列入重做计划（补充 12，批次 2），尚未运行。</li>
+<li>bf16 一致性容差在看到差距后从 0.25 放宽到 0.5（原记录保留）。</li>
+<li>高引用档几乎没有 control 论文，结论主要来自中低引用论文。</li>
+<li>单层替换只给出下限；MLP 是否在“查记忆”无法区分。</li>
+<li>标签流程的部分细节（干扰团队抽法、elm 版本等）还需组长确认。</li>
+</ol>
+<hr>
+<h2>九、目前状态与下一步</h2>
+<p><strong>实验状态</strong>：Stage 1–8、10–12 全部完成；Stage 9 只完成 Fit A（Fit B 与 holdout 已列入重做计划）；Stage 13 完成 M1–M4、X1–X7（X2 于 2026-11-05 完成），M5 的 CPU 部分已完成。重做计划（补充 10–14，规则都在看结果前写定）进行中：已完成 X7 五个假标题<span class="src">（b1_x7f_report.md）</span>、补充 9 全部名字 token 的 probe<span class="src">（e4b_alltok.md）</span>、CPU 项 C-1 到 C-5<span class="src">（c13_C1.md–c13_C5.md）</span>；批次 1 的 X1–X4 全部作者（结论都不变）<span class="src">（b1_xall_report.md）</span>和 E4b 逐个假标题排除版（L40 姓首 token +0.076 [0.068, 0.083]，4,654 篇，每篇平均约 1.5 个可用假标题；预注册版 1,395 篇为 +0.071）<span class="src">（b1_e4b5_report.md）</span>也已完成，C-3b 只作敏感性分析<span class="src">（c13_C3b.md）</span>；P1/P2 五个假标题还在运行（194 个单元已完成 187 个，结果尚未出来）。批次 2（补充 11、12，含 Stage 9 Fit B 与 holdout）代码和测试已完成，批次 1 结束后自动开始；批次 3（补充 14）：3-1、3-2 代码已就绪，第二批之后开始；3-3（7.1B 快路径补完）已停止（偏离 D14-1）：无法确认与旧逐前缀结果等效（论文级 Welch 95% CI [−0.0207, +0.0324] 超出 ±0.02）。</p>
+<p><strong>待确认</strong>：</p>
+<ul>
+<li>向组长确认 6 项标签流程细节（elm 代码和运行记录、多选题 thinking 设置、名字切分规则、干扰团队抽法、et al. 截断规则、运行配置）。</li>
+<li>Stage 8 主终点改动的来由，正在查当时的会话记录。</li>
+</ul>
+<p><strong>可能的下一步</strong>（希望听取老师意见）：</p>
+<ol>
+<li>换一个模型复现主要结果，检验“读得早、说得晚”是否普遍。</li>
+<li>在模型自由生成时检验，看内部信号能否预测它最终写对还是写错。</li>
+<li>设计新的实验区分“认出论文”和“懂得标题意思”，比如用模型不可能见过的虚构论文作对照。</li>
+<li>补完 Fit B，加固读出工具的稳定性证据。</li>
+</ol>
+<hr>
+<h2>十、材料索引</h2>
+<div class="md-table" role="group" aria-label="Table" tabindex="0"><table>
+<thead>
+<tr>
+<th>材料</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验报告（主报告；当前 v29，2026-11-06）</td>
+<td><a href="https://claude.ai/artifact/QB335qoaBWvSdFyfvc2bSe">https://claude.ai/artifact/QB335qoaBWvSdFyfvc2bSe</a></td>
+</tr>
+<tr>
+<td>方法手册（全部实验的材料、工具、步骤、出处）</td>
+<td><a href="https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo">https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo</a></td>
+</tr>
+<tr>
+<td>汇报 PPT（当前 v20，82 页）</td>
+<td><a href="https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD">https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD</a></td>
+</tr>
+<tr>
+<td>下载页（所有 PDF 和 pptx）</td>
+<td><a href="https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta">https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</body></html>

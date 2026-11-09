@@ -1,0 +1,15 @@
+﻿doc,location,text,status
+报告,,"文。 目标 − 对照（用户确认的措辞）：认得出的论文在标题位置携带更多名字信息，按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+报告,,"已发表的 +0.061 ± 0.005，1,395 篇；同一报告第 2 节）。 按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+报告,,"现已发表的 +0.061 ± 0.005，1,395 篇；同一报告第 2 节）。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+PPT,第72页 正文,"fic(e4b_alltok.md §7) Target − control (five false titles, per-donor exclusion): given-name first token positive from L16, surname from L24 (L40 +0.030 [0.013, 0.048]); initial not significant (L40 ",held（等用户定措辞 B）
+PPT 备注 notes_zh.json,第72页 备注,"，说明首字母的信号约一半不针对具体论文。认得出的论文在标题位置携带更多名字信息，按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+方法手册,,"）。 7 结果 见上框。目标 − 对照：认得出的论文在标题位置携带更多名字信息，按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+方法手册,,"现已发表的 +0.061 ± 0.005，1,395 篇；同一报告第 2 节）。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+讲稿 progress_report_for_advisor_zh,,"；381_stage13/reports/b1_e4b5_report.md）。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+讲稿 stage13_script_zh_en,,"；381_stage13/reports/b1_e4b5_report.md）。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+导师页 advisor,," +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+过程报告 process_report,," +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+打分审计 scoring_audit,," +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+方法补遗 methods_addendum,," +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS。按逐个假标题排除、5 个假标题平均，名的第一个 token 从 L16 起、姓从 L24 起 target−control 为正（姓 L40 +0.030 [0.013, 0.048]）；首字母不显著（L40 +0.014 [−0.002, +0.030]）。只用 fals",held（等用户定措辞 B）
+计划 b,,tch 1 | 4 E4b and all-token probe minus five false titles (per-donor exclusion) | batch 1 | **done** | addendum 10 item 4; deviation D1 | 381_stage13/reports/b1_e4b5_report.md (hard check ,held（等用户定措辞 B）
