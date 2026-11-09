@@ -1,0 +1,1188 @@
+﻿part,location,number,category,has_source_citation,context
+PPT v20 第14页 正文,第14页 正文,7.3,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 7.3 · Line A Shuffled titles: the true titl
+PPT v20 第14页 正文,第14页 正文,100,版本 / 编号（Stage、补充、§、页、图、表）,无,"age 7.3 · Line A Shuffled titles: the true title helps Same 100 candidates, 20 metadata-matched wrong t"
+PPT v20 第14页 正文,第14页 正文,20,其他整数（计数、编号、说明）,无," Shuffled titles: the true title helps Same 100 candidates, 20 metadata-matched wrong titles per paper"
+PPT v20 第14页 正文,第14页 正文,"1,000",样本 / 计数（篇、位、个、对、token、行）,无,"100 candidates, 20 metadata-matched wrong titles per paper, 1,000 contexts; only the title changes All 50"
+PPT v20 第14页 正文,第14页 正文,50,层号,无,"itles per paper, 1,000 contexts; only the title changes All 50 papers: true vs mean of 20 alternative "
+PPT v20 第14页 正文,第14页 正文,20,其他整数（计数、编号、说明）,有,exts; only the title changes All 50 papers: true vs mean of 20 alternative titles Pooled L56: 0.616 vs
+PPT v20 第14页 正文,第14页 正文,50,标识符 / 路径 / 编号中的数字,有,"titles Pooled L56: 0.616 vs 0.523 → +9.3 pp [4.8, 14.0], 35/50 papers positive​(J-Lens L56, 50 papers;"
+PPT v20 第14页 正文,第14页 正文,50,样本 / 计数（篇、位、个、对、token、行）,有,"3 → +9.3 pp [4.8, 14.0], 35/50 papers positive​(J-Lens L56, 50 papers; paper_null_distribution.csv; CI"
+PPT v20 第14页 正文,第14页 正文,10,其他整数（计数、编号、说明）,有," L56, 50 papers; paper_null_distribution.csv; CI recomputed 10-30) Leave-one-out: +8.6 to +10.0 pp​(st"
+PPT v20 第14页 正文,第14页 正文,30,其他整数（计数、编号、说明）,有,"6, 50 papers; paper_null_distribution.csv; CI recomputed 10-30) Leave-one-out: +8.6 to +10.0 pp​(stage"
+PPT v20 第14页 正文,第14页 正文,20,样本 / 计数（篇、位、个、对、token、行）,有,"ution.csv) Matched A−B integrated: +0.018 [−0.021, +0.063]​(20 pairs, integrated_ab_bootstrap.csv) Two"
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,"Stage 7.3 用打乱的标题：候选名字不变，每篇论文配 20 个元数据匹配的错误标题，共 1,"
+PPT v20 第14页 备注,第14页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"Stage 7.3 用打乱的标题：候选名字不变，每篇论文配 20 个元数据匹配的错误标题，共 1,000 个上下文〔Stage 7.3 设计，5"
+PPT v20 第14页 备注,第14页 备注,"1,000",样本 / 计数（篇、位、个、对、token、行）,有,"Stage 7.3 用打乱的标题：候选名字不变，每篇论文配 20 个元数据匹配的错误标题，共 1,000 个上下文〔Stage 7.3 设计，50 篇 × 20 个替代标题；~/jle"
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,"e 7.3 用打乱的标题：候选名字不变，每篇论文配 20 个元数据匹配的错误标题，共 1,000 个上下文〔Stage 7.3 设计，50 篇 × 20 个替代标题；~/jlens_work/07_3_st"
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,"打乱的标题：候选名字不变，每篇论文配 20 个元数据匹配的错误标题，共 1,000 个上下文〔Stage 7.3 设计，50 篇 × 20 个替代标题；~/jlens_work/07_3_stage7_3"
+PPT v20 第14页 备注,第14页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"选名字不变，每篇论文配 20 个元数据匹配的错误标题，共 1,000 个上下文〔Stage 7.3 设计，50 篇 × 20 个替代标题；~/jlens_work/07_3_stage7_3/351_st"
+PPT v20 第14页 备注,第14页 备注,07,标识符 / 路径 / 编号中的数字,有,"错误标题，共 1,000 个上下文〔Stage 7.3 设计，50 篇 × 20 个替代标题；~/jlens_work/07_3_stage7_3/351_stage7_3.py:83-91；351_st"
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,上下文〔Stage 7.3 设计，50 篇 × 20 个替代标题；~/jlens_work/07_3_stage7_3/351_stage7_3.py:83-91；351_stage7_3/reports/
+PPT v20 第14页 备注,第14页 备注,83,代码行号 / 文件内位置,有,，50 篇 × 20 个替代标题；~/jlens_work/07_3_stage7_3/351_stage7_3.py:83-91；351_stage7_3/reports/freeze_audit.md
+PPT v20 第14页 备注,第14页 备注,91,其他整数（计数、编号、说明）,有, 篇 × 20 个替代标题；~/jlens_work/07_3_stage7_3/351_stage7_3.py:83-91；351_stage7_3/reports/freeze_audit.md〕，只
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,× 20 个替代标题；~/jlens_work/07_3_stage7_3/351_stage7_3.py:83-91；351_stage7_3/reports/freeze_audit.md〕，只有标题在
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,_3.py:83-91；351_stage7_3/reports/freeze_audit.md〕，只有标题在变。全部 50 篇合并〔Pilot50 50 篇；351_stage7_3/summary/p
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,_stage7_3/reports/freeze_audit.md〕，只有标题在变。全部 50 篇合并〔Pilot50 50 篇；351_stage7_3/summary/paper_null_distr
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,e7_3/reports/freeze_audit.md〕，只有标题在变。全部 50 篇合并〔Pilot50 50 篇；351_stage7_3/summary/paper_null_distributio
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,r_null_distribution.csv〕，L56 上真标题 0.616 对错误标题平均 0.523〔Stage 7.3，J-Lens L56，金标准首 token 胜率，合并池，50 篇均值：真标题
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有, 0.616 对错误标题平均 0.523〔Stage 7.3，J-Lens L56，金标准首 token 胜率，合并池，50 篇均值：真标题 0.6160、20 个错误标题平均 0.5226；351_st
+PPT v20 第14页 备注,第14页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,23〔Stage 7.3，J-Lens L56，金标准首 token 胜率，合并池，50 篇均值：真标题 0.6160、20 个错误标题平均 0.5226；351_stage7_3/summary/pap
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,s L56，金标准首 token 胜率，合并池，50 篇均值：真标题 0.6160、20 个错误标题平均 0.5226；351_stage7_3/summary/paper_null_distributio
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,"ode=jlens_L56）列 true_win、null_mean〕，高 +9.3 个百分点 [4.8, 14.0]，50 篇里 35 篇为正〔Stage 7.3，J-Lens L56，真标题胜率 − "
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,"e_win、null_mean〕，高 +9.3 个百分点 [4.8, 14.0]，50 篇里 35 篇为正〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pil"
+PPT v20 第14页 备注,第14页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有," 个百分点 [4.8, 14.0]，50 篇里 35 篇为正〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0"
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,"5 篇为正〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重"
+PPT v20 第14页 备注,第14页 备注,2026,日期 / 时间,有,"胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_st"
+PPT v20 第14页 备注,第14页 备注,10,日期 / 时间,有,"20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage"
+PPT v20 第14页 备注,第14页 备注,30,日期 / 时间,有,"个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3"
+PPT v20 第14页 备注,第14页 备注,"20,000",其他整数（计数、编号、说明）,有,"池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_n"
+PPT v20 第14页 备注,第14页 备注,50,标识符 / 路径 / 编号中的数字,有,"0 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_null_dis"
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,"0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_null_distributio"
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,"/paper_null_distribution.csv（pool=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_in"
+PPT v20 第14页 备注,第14页 备注,10,日期 / 时间,有,"（pool=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv；报告 Sta"
+PPT v20 第14页 备注,第14页 备注,30,日期 / 时间,有,"ol=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv；报告 Stage "
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,recompute_2026-10-30/stage7_interval_recompute.csv；报告 Stage 7.3 节〕；逐篇剔除后在 +8.6 到 +10.0 之间〔Stage 7.3，J-L
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,_recompute.csv；报告 Stage 7.3 节〕；逐篇剔除后在 +8.6 到 +10.0 之间〔Stage 7.3，J-Lens L56 标题优势，50 篇逐一留出一篇后的均值范围 +8.64 
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,age 7.3 节〕；逐篇剔除后在 +8.6 到 +10.0 之间〔Stage 7.3，J-Lens L56 标题优势，50 篇逐一留出一篇后的均值范围 +8.64 到 +9.99 pp；351_stag
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,Stage 7.3，J-Lens L56 标题优势，50 篇逐一留出一篇后的均值范围 +8.64 到 +9.99 pp；351_stage7_3/recompute_2026-10-30/stage7_l5
+PPT v20 第14页 备注,第14页 备注,10,日期 / 时间,有, 篇逐一留出一篇后的均值范围 +8.64 到 +9.99 pp；351_stage7_3/recompute_2026-10-30/stage7_l56_loo.csv〕。Vanilla 在 L56 为 
+PPT v20 第14页 备注,第14页 备注,30,日期 / 时间,有,一留出一篇后的均值范围 +8.64 到 +9.99 pp；351_stage7_3/recompute_2026-10-30/stage7_l56_loo.csv〕。Vanilla 在 L56 为 +10
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,0/stage7_l56_loo.csv〕。Vanilla 在 L56 为 +10.6，最终输出 +7.2〔Stage 7.3，Vanilla L56 / 最终输出 L63，真标题胜率 − 20 个错误标题
+PPT v20 第14页 备注,第14页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有, 为 +10.6，最终输出 +7.2〔Stage 7.3，Vanilla L56 / 最终输出 L63，真标题胜率 − 20 个错误标题平均，合并池，50 篇均值 +0.1063 / +0.0716；35
+PPT v20 第14页 备注,第14页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,7.2〔Stage 7.3，Vanilla L56 / 最终输出 L63，真标题胜率 − 20 个错误标题平均，合并池，50 篇均值 +0.1063 / +0.0716；351_stage7_3/summ
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有, / 最终输出 L63，真标题胜率 − 20 个错误标题平均，合并池，50 篇均值 +0.1063 / +0.0716；351_stage7_3/summary/paper_null_distributio
+PPT v20 第14页 备注,第14页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,"L56、final_L63）〕。但匹配的 A−B 积分只有 +0.018 [−0.021, +0.063]〔Stage 7.3，J-Lens 7 层积分标题优势的匹配 A − B，合并池，20 对，+0.0"
+PPT v20 第14页 备注,第14页 备注,7,样本 / 计数（篇、位、个、对、token、行）,有,"63）〕。但匹配的 A−B 积分只有 +0.018 [−0.021, +0.063]〔Stage 7.3，J-Lens 7 层积分标题优势的匹配 A − B，合并池，20 对，+0.0177 [−0.0"
+PPT v20 第14页 备注,第14页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"18 [−0.021, +0.063]〔Stage 7.3，J-Lens 7 层积分标题优势的匹配 A − B，合并池，20 对，+0.0177 [−0.0211, +0.0626]，配对 bootstr"
+PPT v20 第14页 备注,第14页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"势的匹配 A − B，合并池，20 对，+0.0177 [−0.0211, +0.0626]，配对 bootstrap 95% CI；351_stage7_3/summary/integrated_ab_b"
+PPT v20 第14页 备注,第14页 备注,351,标识符 / 路径 / 编号中的数字,有,"− B，合并池，20 对，+0.0177 [−0.0211, +0.0626]，配对 bootstrap 95% CI；351_stage7_3/summary/integrated_ab_bootstra"
+PPT v20 第16页 正文,第16页 正文,8,版本 / 编号（Stage、补充、§、页、图、表）,无,Method · Independent replication (Stage 8) 
+PPT v20 第16页 备注,第16页 备注,8,版本 / 编号（Stage、补充、§、页、图、表）,有,Stage 8 是独立重复：分析计划在 10 月 18 日 14:29 冻结（analysis
+PPT v20 第16页 备注,第16页 备注,10,日期 / 时间,有,Stage 8 是独立重复：分析计划在 10 月 18 日 14:29 冻结（analysis_plan.json），当天 
+PPT v20 第16页 备注,第16页 备注,18,日期 / 时间,有,Stage 8 是独立重复：分析计划在 10 月 18 日 14:29 冻结（analysis_plan.json），当天 21:14
+PPT v20 第16页 备注,第16页 备注,14,日期 / 时间,有,Stage 8 是独立重复：分析计划在 10 月 18 日 14:29 冻结（analysis_plan.json），当天 21:14 的协议把
+PPT v20 第16页 备注,第16页 备注,29,代码行号 / 文件内位置,有,Stage 8 是独立重复：分析计划在 10 月 18 日 14:29 冻结（analysis_plan.json），当天 21:14 的协议把 L5
+PPT v20 第16页 备注,第16页 备注,21,日期 / 时间,有,age 8 是独立重复：分析计划在 10 月 18 日 14:29 冻结（analysis_plan.json），当天 21:14 的协议把 L56 定为主层，仍在打分之前。然后取 200 篇新论文（10
+PPT v20 第16页 备注,第16页 备注,14,代码行号 / 文件内位置,有, 8 是独立重复：分析计划在 10 月 18 日 14:29 冻结（analysis_plan.json），当天 21:14 的协议把 L56 定为主层，仍在打分之前。然后取 200 篇新论文（100 对
+PPT v20 第16页 备注,第16页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有,29 冻结（analysis_plan.json），当天 21:14 的协议把 L56 定为主层，仍在打分之前。然后取 200 篇新论文（100 对 A/B）〔Stage 8A 抽样，100 对匹配 A/B
+PPT v20 第16页 备注,第16页 备注,100,样本 / 计数（篇、位、个、对、token、行）,有,lysis_plan.json），当天 21:14 的协议把 L56 定为主层，仍在打分之前。然后取 200 篇新论文（100 对 A/B）〔Stage 8A 抽样，100 对匹配 A/B；351_stag
+PPT v20 第16页 备注,第16页 备注,8,标识符 / 路径 / 编号中的数字,有,当天 21:14 的协议把 L56 定为主层，仍在打分之前。然后取 200 篇新论文（100 对 A/B）〔Stage 8A 抽样，100 对匹配 A/B；351_stage8/cohort/stage
+PPT v20 第16页 备注,第16页 备注,100,样本 / 计数（篇、位、个、对、token、行）,有,14 的协议把 L56 定为主层，仍在打分之前。然后取 200 篇新论文（100 对 A/B）〔Stage 8A 抽样，100 对匹配 A/B；351_stage8/cohort/stage8_papers
+PPT v20 第16页 备注,第16页 备注,351,标识符 / 路径 / 编号中的数字,有,定为主层，仍在打分之前。然后取 200 篇新论文（100 对 A/B）〔Stage 8A 抽样，100 对匹配 A/B；351_stage8/cohort/stage8_papers.csv；351_sta
+PPT v20 第16页 备注,第16页 备注,351,标识符 / 路径 / 编号中的数字,有,Stage 8A 抽样，100 对匹配 A/B；351_stage8/cohort/stage8_papers.csv；351_stage8/summary/matching_audit.json〕，10 
+PPT v20 第16页 备注,第16页 备注,10,日期 / 时间,有,t/stage8_papers.csv；351_stage8/summary/matching_audit.json〕，10 月 18 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ
+PPT v20 第16页 备注,第16页 备注,18,日期 / 时间,有,ge8_papers.csv；351_stage8/summary/matching_audit.json〕，10 月 18 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ1：L56
+PPT v20 第16页 备注,第16页 备注,21,日期 / 时间,有,apers.csv；351_stage8/summary/matching_audit.json〕，10 月 18 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ1：L56 处真标题
+PPT v20 第16页 备注,第16页 备注,47,代码行号 / 文件内位置,有,rs.csv；351_stage8/summary/matching_audit.json〕，10 月 18 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ1：L56 处真标题相对 
+PPT v20 第16页 备注,第16页 备注,10,日期 / 时间,有,51_stage8/summary/matching_audit.json〕，10 月 18 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ1：L56 处真标题相对 20 个假标题的
+PPT v20 第16页 备注,第16页 备注,20,日期 / 时间,有,age8/summary/matching_audit.json〕，10 月 18 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ1：L56 处真标题相对 20 个假标题的胜率高 +
+PPT v20 第16页 备注,第16页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"son〕，10 月 18 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ1：L56 处真标题相对 20 个假标题的胜率高 +5.18 个百分点 [2.93, 7.48]〔Stage "
+PPT v20 第16页 备注,第16页 备注,+5.18,样本 / 计数（篇、位、个、对、token、行）,有," 日 21:47 开始打分、10 月 20 日结束，再按计划检查。RQ1：L56 处真标题相对 20 个假标题的胜率高 +5.18 个百分点 [2.93, 7.48]〔Stage 8D RQ1，J-Lens L"
+PPT v20 第16页 备注,第16页 备注,8,标识符 / 路径 / 编号中的数字,有,"检查。RQ1：L56 处真标题相对 20 个假标题的胜率高 +5.18 个百分点 [2.93, 7.48]〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新"
+PPT v20 第16页 备注,第16页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"题的胜率高 +5.18 个百分点 [2.93, 7.48]〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，"
+PPT v20 第16页 备注,第16页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有," 个百分点 [2.93, 7.48]〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap"
+PPT v20 第16页 备注,第16页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_q"
+PPT v20 第16页 备注,第16页 备注,351,标识符 / 路径 / 编号中的数字,有," 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_question"
+PPT v20 第16页 备注,第16页 备注,8,标识符 / 路径 / 编号中的数字,有,"ummary/primary_questions.csv 行 RQ1_L56_replication；报告 Stage 8D 节〕；计划里冻结的主终点（7 层平均）是 +2.33 [1.50, 3.19"
+PPT v20 第16页 备注,第16页 备注,7,样本 / 计数（篇、位、个、对、token、行）,有,"uestions.csv 行 RQ1_L56_replication；报告 Stage 8D 节〕；计划里冻结的主终点（7 层平均）是 +2.33 [1.50, 3.19]〔Stage 8 冻结计划主终"
+PPT v20 第16页 备注,第16页 备注,8,版本 / 编号（Stage、补充、§、页、图、表）,有,"n；报告 Stage 8D 节〕；计划里冻结的主终点（7 层平均）是 +2.33 [1.50, 3.19]〔Stage 8 冻结计划主终点，J-Lens 7 层积分，真标题 − 20 个错误标题平均，2"
+PPT v20 第16页 备注,第16页 备注,7,样本 / 计数（篇、位、个、对、token、行）,有,"计划里冻结的主终点（7 层平均）是 +2.33 [1.50, 3.19]〔Stage 8 冻结计划主终点，J-Lens 7 层积分，真标题 − 20 个错误标题平均，200 篇，+2.33 pp [1."
+PPT v20 第16页 备注,第16页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"层平均）是 +2.33 [1.50, 3.19]〔Stage 8 冻结计划主终点，J-Lens 7 层积分，真标题 − 20 个错误标题平均，200 篇，+2.33 pp [1.50, 3.19]，论文 "
+PPT v20 第16页 备注,第16页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有," [1.50, 3.19]〔Stage 8 冻结计划主终点，J-Lens 7 层积分，真标题 − 20 个错误标题平均，200 篇，+2.33 pp [1.50, 3.19]，论文 bootstrap 95"
+PPT v20 第16页 备注,第16页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"分，真标题 − 20 个错误标题平均，200 篇，+2.33 pp [1.50, 3.19]，论文 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_e"
+PPT v20 第16页 备注,第16页 备注,351,标识符 / 路径 / 编号中的数字,有," 20 个错误标题平均，200 篇，+2.33 pp [1.50, 3.19]，论文 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_endpoint"
+PPT v20 第16页 备注,第16页 备注,10,日期 / 时间,有," [1.50, 3.19]，论文 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_endpoints.csv〕。"
+PPT v20 第16页 备注,第16页 备注,30,日期 / 时间,有,".50, 3.19]，论文 bootstrap 95% CI；351_stage8/recompute_2026-10-30/s8_endpoints.csv〕。"
+PPT v20 第17页 正文,第17页 正文,8,标识符 / 路径 / 编号中的数字,有,"Stage 8D · Lines A, B On 200 new papers the tit"
+PPT v20 第17页 正文,第17页 正文,200,其他整数（计数、编号、说明）,有,"Stage 8D · Lines A, B On 200 new papers the title effect replicates "
+PPT v20 第17页 正文,第17页 正文,8,标识符 / 路径 / 编号中的数字,有,"es A, B On 200 new papers the title effect replicates Stage 8D L56 estimates (PROTOCOL.md), 95% CI (p"
+PPT v20 第17页 正文,第17页 正文,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"tle effect replicates Stage 8D L56 estimates (PROTOCOL.md), 95% CI (pp)​(primary_questions.csv) ​(Stage"
+PPT v20 第17页 正文,第17页 正文,8,标识符 / 路径 / 编号中的数字,有," (PROTOCOL.md), 95% CI (pp)​(primary_questions.csv) ​(Stage 8D, J-Lens L56; primary_questions.csv) Es"
+PPT v20 第17页 正文,第17页 正文,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"sv) ​(Stage 8D, J-Lens L56; primary_questions.csv) Estimate 95% CI RQ1 title, L56​(200 papers) +5.18 pp"
+PPT v20 第17页 正文,第17页 正文,200,样本 / 计数（篇、位、个、对、token、行）,有,"L56; primary_questions.csv) Estimate 95% CI RQ1 title, L56​(200 papers) +5.18 pp [+2.93, +7.48] RQ2 A−B"
+PPT v20 第17页 正文,第17页 正文,100,样本 / 计数（篇、位、个、对、token、行）,有,"tle, L56​(200 papers) +5.18 pp [+2.93, +7.48] RQ2 A−B, L56​(100 pairs) +4.98 pp [+0.32, +9.91] RQ2 A−B,"
+PPT v20 第17页 正文,第17页 正文,7,其他整数（计数、编号、说明）,有,"] RQ2 A−B, L56​(100 pairs) +4.98 pp [+0.32, +9.91] RQ2 A−B, 7-layer (frozen primary)​(100 pairs; s8_e"
+PPT v20 第17页 正文,第17页 正文,100,样本 / 计数（篇、位、个、对、token、行）,有," +4.98 pp [+0.32, +9.91] RQ2 A−B, 7-layer (frozen primary)​(100 pairs; s8_endpoints.csv) +2.41 pp [+0.9"
+PPT v20 第17页 正文,第17页 正文,25,其他整数（计数、编号、说明）,有,"rs; s8_endpoints.csv) +2.41 pp [+0.91, +4.00] RQ3 low−high​(25 + 25 pairs) +2.45 pp [−3.69, +8.60] J-L"
+PPT v20 第17页 正文,第17页 正文,25,样本 / 计数（篇、位、个、对、token、行）,有,"8_endpoints.csv) +2.41 pp [+0.91, +4.00] RQ3 low−high​(25 + 25 pairs) +2.45 pp [−3.69, +8.60] J-Lens−V"
+PPT v20 第17页 正文,第17页 正文,50,标识符 / 路径 / 编号中的数字,有,"ds: low +6.8 [2.5, 11.6], mid +4.8, high +4.4 [−1.1, 10.0]​(50/100/50 papers; layer_and_band_summary.c"
+PPT v20 第17页 正文,第17页 正文,100,标识符 / 路径 / 编号中的数字,有," low +6.8 [2.5, 11.6], mid +4.8, high +4.4 [−1.1, 10.0]​(50/100/50 papers; layer_and_band_summary.csv) "
+PPT v20 第17页 正文,第17页 正文,50,标识符 / 路径 / 编号中的数字,有," +6.8 [2.5, 11.6], mid +4.8, high +4.4 [−1.1, 10.0]​(50/100/50 papers; layer_and_band_summary.csv) RQ1"
+PPT v20 第17页 备注,第17页 备注,8,标识符 / 路径 / 编号中的数字,有,Stage 8D 在 200 篇全新论文上〔Stage 8 新论文；351_stage8/co
+PPT v20 第17页 备注,第17页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有,Stage 8D 在 200 篇全新论文上〔Stage 8 新论文；351_stage8/cohort/st
+PPT v20 第17页 备注,第17页 备注,8,版本 / 编号（Stage、补充、§、页、图、表）,有,Stage 8D 在 200 篇全新论文上〔Stage 8 新论文；351_stage8/cohort/stage8_papers.csv
+PPT v20 第17页 备注,第17页 备注,351,标识符 / 路径 / 编号中的数字,有,Stage 8D 在 200 篇全新论文上〔Stage 8 新论文；351_stage8/cohort/stage8_papers.csv〕冻结设计后复现
+PPT v20 第17页 备注,第17页 备注,+5.18,样本 / 计数（篇、位、个、对、token、行）,有," 8 新论文；351_stage8/cohort/stage8_papers.csv〕冻结设计后复现。RQ1 标题效应 +5.18 个百分点 [+2.93, +7.48]〔Stage 8D RQ1，J-Lens"
+PPT v20 第17页 备注,第17页 备注,8,标识符 / 路径 / 编号中的数字,有,"papers.csv〕冻结设计后复现。RQ1 标题效应 +5.18 个百分点 [+2.93, +7.48]〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新"
+PPT v20 第17页 备注,第17页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"题效应 +5.18 个百分点 [+2.93, +7.48]〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，"
+PPT v20 第17页 备注,第17页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有,"百分点 [+2.93, +7.48]〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap"
+PPT v20 第17页 备注,第17页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_q"
+PPT v20 第17页 备注,第17页 备注,351,标识符 / 路径 / 编号中的数字,有," 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_question"
+PPT v20 第17页 备注,第17页 备注,8,标识符 / 路径 / 编号中的数字,有,ummary/primary_questions.csv 行 RQ1_L56_replication；报告 Stage 8D 节〕，这是第一次独立确认：正确标题能帮助正确作者。RQ2 的 A−B 为 +
+PPT v20 第17页 备注,第17页 备注,8,标识符 / 路径 / 编号中的数字,有,"是第一次独立确认：正确标题能帮助正确作者。RQ2 的 A−B 为 +4.98 [+0.32, +9.91]〔Stage 8D RQ2，J-Lens L56 匹配 A − B，100 对，+4.98 pp"
+PPT v20 第17页 备注,第17页 备注,100,样本 / 计数（篇、位、个、对、token、行）,有,"A−B 为 +4.98 [+0.32, +9.91]〔Stage 8D RQ2，J-Lens L56 匹配 A − B，100 对，+4.98 pp [0.32, 9.91]，配对 bootstrap 95"
+PPT v20 第17页 备注,第17页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"-Lens L56 匹配 A − B，100 对，+4.98 pp [0.32, 9.91]，配对 bootstrap 95% CI；351_stage8/stage8D/summary/primary_q"
+PPT v20 第17页 备注,第17页 备注,351,标识符 / 路径 / 编号中的数字,有,"56 匹配 A − B，100 对，+4.98 pp [0.32, 9.91]，配对 bootstrap 95% CI；351_stage8/stage8D/summary/primary_question"
+PPT v20 第17页 备注,第17页 备注,0,其他整数（计数、编号、说明）,有,estions.csv 行 RQ2_matched_A_minus_B〕；RQ3 低引用减高引用为 +2.45，区间含 0〔Stage 8D RQ3，J-Lens L56，配对平衡的低引用 − 高引用，
+PPT v20 第17页 备注,第17页 备注,8,标识符 / 路径 / 编号中的数字,有,csv 行 RQ2_matched_A_minus_B〕；RQ3 低引用减高引用为 +2.45，区间含 0〔Stage 8D RQ3，J-Lens L56，配对平衡的低引用 − 高引用，50 对，+2.
+PPT v20 第17页 备注,第17页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有,"低引用减高引用为 +2.45，区间含 0〔Stage 8D RQ3，J-Lens L56，配对平衡的低引用 − 高引用，50 对，+2.45 pp [−3.69, +8.60]；351_stage8/st"
+PPT v20 第17页 备注,第17页 备注,351,标识符 / 路径 / 编号中的数字,有," RQ3，J-Lens L56，配对平衡的低引用 − 高引用，50 对，+2.45 pp [−3.69, +8.60]；351_stage8/stage8D/summary/primary_question"
+PPT v20 第17页 备注,第17页 备注,0,其他整数（计数、编号、说明）,有,ions.csv 行 RQ3_low_minus_high〕；J-Lens 减 Vanilla 为 −1.38，区间含 0〔Stage 8D，L56 J-Lens − Vanilla 标题优势，200 
+PPT v20 第17页 备注,第17页 备注,8,标识符 / 路径 / 编号中的数字,有, 行 RQ3_low_minus_high〕；J-Lens 减 Vanilla 为 −1.38，区间含 0〔Stage 8D，L56 J-Lens − Vanilla 标题优势，200 篇，−1.38 
+PPT v20 第17页 备注,第17页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有," 减 Vanilla 为 −1.38，区间含 0〔Stage 8D，L56 J-Lens − Vanilla 标题优势，200 篇，−1.38 pp [−3.48, +0.68]，论文 bootstrap "
+PPT v20 第17页 备注,第17页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"s − Vanilla 标题优势，200 篇，−1.38 pp [−3.48, +0.68]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/jlens_min"
+PPT v20 第17页 备注,第17页 备注,351,标识符 / 路径 / 编号中的数字,有,"illa 标题优势，200 篇，−1.38 pp [−3.48, +0.68]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/jlens_minus_vani"
+PPT v20 第17页 备注,第17页 备注,8,标识符 / 路径 / 编号中的数字,有,lens_minus_vanilla.csv〕。按引用分档，低档 +6.8，中档 +4.8，高档 +4.4〔Stage 8D，J-Lens L56 标题优势按引用带，低 50 / 中 100 / 高 5
+PPT v20 第17页 备注,第17页 备注,50,其他整数（计数、编号、说明）,有,引用分档，低档 +6.8，中档 +4.8，高档 +4.4〔Stage 8D，J-Lens L56 标题优势按引用带，低 50 / 中 100 / 高 50 篇：+6.83 / +4.75 / +4.38 
+PPT v20 第17页 备注,第17页 备注,100,其他整数（计数、编号、说明）,有, +6.8，中档 +4.8，高档 +4.4〔Stage 8D，J-Lens L56 标题优势按引用带，低 50 / 中 100 / 高 50 篇：+6.83 / +4.75 / +4.38 pp；351_s
+PPT v20 第17页 备注,第17页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有, +4.8，高档 +4.4〔Stage 8D，J-Lens L56 标题优势按引用带，低 50 / 中 100 / 高 50 篇：+6.83 / +4.75 / +4.38 pp；351_stage8/s
+PPT v20 第17页 备注,第17页 备注,351,标识符 / 路径 / 编号中的数字,有,L56 标题优势按引用带，低 50 / 中 100 / 高 50 篇：+6.83 / +4.75 / +4.38 pp；351_stage8/stage8D/summary/layer_and_band_s
+PPT v20 第24页 正文,第24页 正文,9,其他整数（计数、编号、说明）,有, (mostly an initial) · all tokens by role: see the addendum-9 slide (surname first token L40 +0.071​(
+PPT v20 第24页 备注,第24页 备注,5,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,探针直接从状态读属性：取标题最后一个 token（这里是 “loss”）的残差，例如 L40，用 5 折岭回归〔Stage 11 E4b / Stage 13 复核设计：5 折、按
+PPT v20 第24页 备注,第24页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,直接从状态读属性：取标题最后一个 token（这里是 “loss”）的残差，例如 L40，用 5 折岭回归〔Stage 11 E4b / Stage 13 复核设计：5 折、按作者团队分折，α ∈ {0.
+PPT v20 第24页 备注,第24页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"个 token（这里是 “loss”）的残差，例如 L40，用 5 折岭回归〔Stage 11 E4b / Stage 13 复核设计：5 折、按作者团队分折，α ∈ {0.1, 1, 10}；~/jle"
+PPT v20 第24页 备注,第24页 备注,5,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"这里是 “loss”）的残差，例如 L40，用 5 折岭回归〔Stage 11 E4b / Stage 13 复核设计：5 折、按作者团队分折，α ∈ {0.1, 1, 10}；~/jlens_work"
+PPT v20 第24页 备注,第24页 备注,0.1,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有," L40，用 5 折岭回归〔Stage 11 E4b / Stage 13 复核设计：5 折、按作者团队分折，α ∈ {0.1, 1, 10}；~/jlens_work/10_stage10/stage10"
+PPT v20 第24页 备注,第24页 备注,"1,",配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"用 5 折岭回归〔Stage 11 E4b / Stage 13 复核设计：5 折、按作者团队分折，α ∈ {0.1, 1, 10}；~/jlens_work/10_stage10/stage10_ext"
+PPT v20 第24页 备注,第24页 备注,10,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有," 折岭回归〔Stage 11 E4b / Stage 13 复核设计：5 折、按作者团队分折，α ∈ {0.1, 1, 10}；~/jlens_work/10_stage10/stage10_extra_"
+PPT v20 第24页 备注,第24页 备注,10,标识符 / 路径 / 编号中的数字,有,"b / Stage 13 复核设计：5 折、按作者团队分折，α ∈ {0.1, 1, 10}；~/jlens_work/10_stage10/stage10_extra_r0r1.py probe()；3"
+PPT v20 第24页 备注,第24页 备注,381,标识符 / 路径 / 编号中的数字,有,", 10}；~/jlens_work/10_stage10/stage10_extra_r0r1.py probe()；381_stage13/reports/e4b_trainstd_compare.md"
+PPT v20 第24页 备注,第24页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有," spec = 真标题的探针分 − 假标题的探针分，L40 为 +0.061 [0.047, 0.076]〔Stage 13 E4b 复核，标题最后一个 token 上的 probe，probe 只打分第"
+PPT v20 第24页 备注,第24页 备注,"1,863",样本 / 计数（篇、位、个、对、token、行）,有,"按作者团队分折 + 剔除标题复用 + 训练折内标准化，target + control 1,395 篇（剔除后全部论文 1,863 篇，E4b 只用其中 1,395 篇），L40 +0.061 [0.047, "
+PPT v20 第24页 备注,第24页 备注,"1,395",样本 / 计数（篇、位、个、对、token、行）,有,"+ 训练折内标准化，target + control 1,395 篇（剔除后全部论文 1,863 篇，E4b 只用其中 1,395 篇），L40 +0.061 [0.047, 0.076]，论文 bootstr"
+PPT v20 第24页 备注,第24页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有," 篇，E4b 只用其中 1,395 篇），L40 +0.061 [0.047, 0.076]，论文 bootstrap 95% CI；报告 §6.11；381_stage13/reports/e4b_tra"
+PPT v20 第24页 备注,第24页 备注,6.11,版本 / 编号（Stage、补充、§、页、图、表）,有," 1,395 篇），L40 +0.061 [0.047, 0.076]，论文 bootstrap 95% CI；报告 §6.11；381_stage13/reports/e4b_trainstd_compar"
+PPT v20 第24页 备注,第24页 备注,381,标识符 / 路径 / 编号中的数字,有,"5 篇），L40 +0.061 [0.047, 0.076]，论文 bootstrap 95% CI；报告 §6.11；381_stage13/reports/e4b_trainstd_compare.md"
+PPT v20 第24页 备注,第24页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"tory 表 L40 行 new 列〕。年份的 R² 从 L16 的 0.38 升到 L52 的 0.56〔Stage 13 M2，真标题，标题最后一个 token，年份岭回归 R²，9,108 篇：L1"
+PPT v20 第24页 备注,第24页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"标题，标题最后一个 token，年份岭回归 R²，9,108 篇：L16 0.383 → L52 0.561，团队整群 95% CI；报告 Stage 13 M2 节；381_stage13/reports"
+PPT v20 第24页 备注,第24页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"年份岭回归 R²，9,108 篇：L16 0.383 → L52 0.561，团队整群 95% CI；报告 Stage 13 M2 节；381_stage13/reports/m2_teamci.md 第"
+PPT v20 第24页 备注,第24页 备注,381,标识符 / 路径 / 编号中的数字,有,"，9,108 篇：L16 0.383 → L52 0.561，团队整群 95% CI；报告 Stage 13 M2 节；381_stage13/reports/m2_teamci.md 第 46、86 行〕"
+PPT v20 第24页 备注,第24页 备注,46,版本 / 编号（Stage、补充、§、页、图、表）,有, 95% CI；报告 Stage 13 M2 节；381_stage13/reports/m2_teamci.md 第 46、86 行〕（M2）。注意：这个 probe 只给每位作者名字的第一个 toke
+PPT v20 第24页 备注,第24页 备注,86,样本 / 计数（篇、位、个、对、token、行）,有,% CI；报告 Stage 13 M2 节；381_stage13/reports/m2_teamci.md 第 46、86 行〕（M2）。注意：这个 probe 只给每位作者名字的第一个 token 打
+PPT v20 第24页 备注,第24页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 toke
+PPT v20 第24页 备注,第24页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058
+PPT v20 第24页 备注,第24页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,"；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058, 0.085]"
+PPT v20 第24页 备注,第24页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,"Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058, 0.085]〔补充 9，目标 + 对照 1,395 篇，团队聚类 95% CI；381_stage13"
+PPT v20 第24页 备注,第24页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"姓的第一个 token +0.071 [0.058, 0.085]〔补充 9，目标 + 对照 1,395 篇，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md〕。"
+PPT v20 第24页 备注,第24页 备注,381,标识符 / 路径 / 编号中的数字,有,"oken +0.071 [0.058, 0.085]〔补充 9，目标 + 对照 1,395 篇，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md〕。"
+PPT v20 第26页 备注,第26页 备注,0,其他整数（计数、编号、说明）,无,引用数。两组内部，标题特异信号都随引用档稳定上升：目标组从 0–2 档的 +0.35 升到 4097+ 档的 +0.64〔Stage 10，真
+PPT v20 第26页 备注,第26页 备注,2,样本 / 计数（篇、位、个、对、token、行）,无,引用数。两组内部，标题特异信号都随引用档稳定上升：目标组从 0–2 档的 +0.35 升到 4097+ 档的 +0.64〔Stage 10，真标题
+PPT v20 第26页 备注,第26页 备注,4097,其他整数（计数、编号、说明）,有,引用数。两组内部，标题特异信号都随引用档稳定上升：目标组从 0–2 档的 +0.35 升到 4097+ 档的 +0.64〔Stage 10，真标题 − 5 个假标题平均，最终输出 
+PPT v20 第26页 备注,第26页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,部，标题特异信号都随引用档稳定上升：目标组从 0–2 档的 +0.35 升到 4097+ 档的 +0.64〔Stage 10，真标题 − 5 个假标题平均，最终输出 L63，目标组各引用档均值：0-2 档
+PPT v20 第26页 备注,第26页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,随引用档稳定上升：目标组从 0–2 档的 +0.35 升到 4097+ 档的 +0.64〔Stage 10，真标题 − 5 个假标题平均，最终输出 L63，目标组各引用档均值：0-2 档 +0.347（
+PPT v20 第26页 备注,第26页 备注,0,其他整数（计数、编号、说明）,有,到 4097+ 档的 +0.64〔Stage 10，真标题 − 5 个假标题平均，最终输出 L63，目标组各引用档均值：0-2 档 +0.347（200 篇）→ 4097+ 档 +0.644 [0.59
+PPT v20 第26页 备注,第26页 备注,2,样本 / 计数（篇、位、个、对、token、行）,有,"4097+ 档的 +0.64〔Stage 10，真标题 − 5 个假标题平均，最终输出 L63，目标组各引用档均值：0-2 档 +0.347（200 篇）→ 4097+ 档 +0.644 [0.591,"
+PPT v20 第26页 备注,第26页 备注,4097,其他整数（计数、编号、说明）,有,"e 10，真标题 − 5 个假标题平均，最终输出 L63，目标组各引用档均值：0-2 档 +0.347（200 篇）→ 4097+ 档 +0.644 [0.591, 0.701]（84 篇），论文 boots"
+PPT v20 第26页 备注,第26页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"47（200 篇）→ 4097+ 档 +0.644 [0.591, 0.701]（84 篇），论文 bootstrap 95% CI；报告 §6.8 图与表；351_stage10/summary_titl"
+PPT v20 第26页 备注,第26页 备注,6.8,版本 / 编号（Stage、补充、§、页、图、表）,有,"4097+ 档 +0.644 [0.591, 0.701]（84 篇），论文 bootstrap 95% CI；报告 §6.8 图与表；351_stage10/summary_title/A_group_b"
+PPT v20 第26页 备注,第26页 备注,351,标识符 / 路径 / 编号中的数字,有,"+0.644 [0.591, 0.701]（84 篇），论文 bootstrap 95% CI；报告 §6.8 图与表；351_stage10/summary_title/A_group_bin_layer"
+PPT v20 第26页 备注,第26页 备注,351,标识符 / 路径 / 编号中的数字,有,_stage10/summary_title/A_group_bin_layer.csv（readout=final）；351_stage10/summary_extra/X2_by_bin.csv〕。与对
+PPT v20 第26页 备注,第26页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,mary_extra/X2_by_bin.csv〕。与对数引用数的 Spearman 相关：全部 0.45〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 
+PPT v20 第26页 备注,第26页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,sv〕。与对数引用数的 Spearman 相关：全部 0.45〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 log10(引用数+1) 的 Spearm
+PPT v20 第26页 备注,第26页 备注,1,其他整数（计数、编号、说明）,有,"5〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 log10(引用数+1) 的 Spearman ρ，全部 9,108 篇 0.451 [0.433, "
+PPT v20 第26页 备注,第26页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"数+1) 的 Spearman ρ，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/"
+PPT v20 第26页 备注,第26页 备注,6.8,版本 / 编号（Stage、补充、§、页、图、表）,有,"rman ρ，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/X2_spearman"
+PPT v20 第26页 备注,第26页 备注,351,标识符 / 路径 / 编号中的数字,有,"，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/X2_spearman.csv〕，"
+PPT v20 第26页 备注,第26页 备注,6.8,版本 / 编号（Stage、补充、§、页、图、表）,有,"：目标 4,621 篇 0.328，对照 2,220 篇 0.187；读出水平只有 0.181 / 0.084；报告 §6.8 表；351_stage10/summary_extra/X2_spearman"
+PPT v20 第26页 备注,第26页 备注,351,标识符 / 路径 / 编号中的数字,有,"621 篇 0.328，对照 2,220 篇 0.187；读出水平只有 0.181 / 0.084；报告 §6.8 表；351_stage10/summary_extra/X2_spearman.csv〕。"
+PPT v20 第30页 正文,第30页 正文,1,其他整数（计数、编号、说明）,无,Stages 1–9 · 20–200 papers What we saw True titl
+PPT v20 第30页 正文,第30页 正文,9,其他整数（计数、编号、说明）,无,Stages 1–9 · 20–200 papers What we saw True title 
+PPT v20 第30页 正文,第30页 正文,20,其他整数（计数、编号、说明）,无,Stages 1–9 · 20–200 papers What we saw True title helps
+PPT v20 第30页 正文,第30页 正文,200,样本 / 计数（篇、位、个、对、token、行）,无,Stages 1–9 · 20–200 papers What we saw True title helps: pi
+PPT v20 第30页 正文,第30页 正文,7.3,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,"200 papers What we saw True title helps: pilot L56 +9.3 pp​(7.3, 50 papers); 200 new papers +5.2 pp​(8D"
+PPT v20 第30页 正文,第30页 正文,50,样本 / 计数（篇、位、个、对、token、行）,无,"apers What we saw True title helps: pilot L56 +9.3 pp​(7.3, 50 papers); 200 new papers +5.2 pp​(8D RQ1"
+PPT v20 第30页 正文,第30页 正文,200,其他整数（计数、编号、说明）,无,"e saw True title helps: pilot L56 +9.3 pp​(7.3, 50 papers); 200 new papers +5.2 pp​(8D RQ1, 200 papers)"
+PPT v20 第30页 正文,第30页 正文,8,标识符 / 路径 / 编号中的数字,无,"pilot L56 +9.3 pp​(7.3, 50 papers); 200 new papers +5.2 pp​(8D RQ1, 200 papers) A−B uncertain in the "
+PPT v20 第30页 正文,第30页 正文,200,样本 / 计数（篇、位、个、对、token、行）,无,"6 +9.3 pp​(7.3, 50 papers); 200 new papers +5.2 pp​(8D RQ1, 200 papers) A−B uncertain in the pilot; +5."
+PPT v20 第30页 正文,第30页 正文,200,样本 / 计数（篇、位、个、对、token、行）,无,"(8D RQ1, 200 papers) A−B uncertain in the pilot; +5.0 pp on 200 papers but gone after dropping 10 pairs"
+PPT v20 第30页 正文,第30页 正文,10,样本 / 计数（篇、位、个、对、token、行）,无,"in the pilot; +5.0 pp on 200 papers but gone after dropping 10 pairs​(8D RQ2, 100 pairs) Low − high ci"
+PPT v20 第30页 正文,第30页 正文,8,标识符 / 路径 / 编号中的数字,无,"ot; +5.0 pp on 200 papers but gone after dropping 10 pairs​(8D RQ2, 100 pairs) Low − high citation: i"
+PPT v20 第30页 正文,第30页 正文,100,样本 / 计数（篇、位、个、对、token、行）,无," pp on 200 papers but gone after dropping 10 pairs​(8D RQ2, 100 pairs) Low − high citation: inconclusiv"
+PPT v20 第30页 正文,第30页 正文,10,其他整数（计数、编号、说明）,无," Low − high citation: inconclusive Overview · Line A Stages 10–11 · 9,108 papers What scale showed Tit"
+PPT v20 第30页 正文,第30页 正文,11,其他整数（计数、编号、说明）,无,"w − high citation: inconclusive Overview · Line A Stages 10–11 · 9,108 papers What scale showed Title-"
+PPT v20 第30页 正文,第30页 正文,6.9,版本 / 编号（Stage、补充、§、页、图、表）,无,"e-specific signal clear in every group, ≈0.44 at L62​(L62, §6.9) target − control ≈0 at L24–L40, slight"
+PPT v20 第30页 正文,第30页 正文,0,其他整数（计数、编号、说明）,无," in every group, ≈0.44 at L62​(L62, §6.9) target − control ≈0 at L24–L40, slightly negative at L48 (−"
+PPT v20 第30页 正文,第30页 正文,6.4,版本 / 编号（Stage、补充、§、页、图、表）,无," ≈0 at L24–L40, slightly negative at L48 (−0.04 to −0.05)​(§6.4), +0.21 [0.20, 0.22] at the output​(L63"
+PPT v20 第30页 正文,第30页 正文,6.4,版本 / 编号（Stage、补充、§、页、图、表）,无,"4 to −0.05)​(§6.4), +0.21 [0.20, 0.22] at the output​(L63, §6.4) Name prior (delete-title condition) is"
+PPT v20 第30页 正文,第30页 正文,0,其他整数（计数、编号、说明）,无,e prior (delete-title condition) is only ~0.35 of the gap; ~0 on surnames​(§6.12) Signal rises steadi
+PPT v20 第30页 正文,第30页 正文,6.12,版本 / 编号（Stage、补充、§、页、图、表）,无,title condition) is only ~0.35 of the gap; ~0 on surnames​(§6.12) Signal rises steadily with citations (
+PPT v20 第30页 正文,第30页 正文,6.8,版本 / 编号（Stage、补充、§、页、图、表）,无,"​(§6.12) Signal rises steadily with citations (ρ = 0.451)​(§6.8) Same groups as the pilot (R0 only, A −"
+PPT v20 第30页 正文,第30页 正文,6.13,版本 / 编号（Stage、补充、§、页、图、表）,无,"ups as the pilot (R0 only, A − B): +0.20 [0.19, 0.21]​(R0, §6.13), same late shape R1 papers (C) know mo"
+PPT v20 第30页 正文,第30页 正文,6.13,版本 / 编号（Stage、补充、§、页、图、表）,无,"), same late shape R1 papers (C) know more (+0.11 over A)​(§6.13) but are just as late Line A: from “the"
+PPT v20 第30页 正文,第30页 正文,7,版本 / 编号（Stage、补充、§、页、图、表）,无,"t advantage is real but confined to the last layers, so the 7-layer average and the L56 endpoint both"
+PPT v20 第30页 备注,第30页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,A 线的小结。小样本阶段看到：真标题有帮助，Pilot 在 L56 高 +9.3 个百分点〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pil
+PPT v20 第30页 备注,第30页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,真标题有帮助，Pilot 在 L56 高 +9.3 个百分点〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0
+PPT v20 第30页 备注,第30页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有," 个百分点〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重"
+PPT v20 第30页 备注,第30页 备注,2026,日期 / 时间,有,"胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_st"
+PPT v20 第30页 备注,第30页 备注,10,日期 / 时间,有,"20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage"
+PPT v20 第30页 备注,第30页 备注,30,日期 / 时间,有,"个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3"
+PPT v20 第30页 备注,第30页 备注,"20,000",其他整数（计数、编号、说明）,有,"池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_n"
+PPT v20 第30页 备注,第30页 备注,50,标识符 / 路径 / 编号中的数字,有,"0 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_null_dis"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,"0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_null_distributio"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,"/paper_null_distribution.csv（pool=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_in"
+PPT v20 第30页 备注,第30页 备注,10,日期 / 时间,有,"（pool=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv；报告 Sta"
+PPT v20 第30页 备注,第30页 备注,30,日期 / 时间,有,"ol=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv；报告 Stage "
+PPT v20 第30页 备注,第30页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,recompute_2026-10-30/stage7_interval_recompute.csv；报告 Stage 7.3 节〕，200 篇新论文上 +5.2〔Stage 8D RQ1，J-Lens L
+PPT v20 第30页 备注,第30页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有,te_2026-10-30/stage7_interval_recompute.csv；报告 Stage 7.3 节〕，200 篇新论文上 +5.2〔Stage 8D RQ1，J-Lens L56，真标题 
+PPT v20 第30页 备注,第30页 备注,8,标识符 / 路径 / 编号中的数字,有,interval_recompute.csv；报告 Stage 7.3 节〕，200 篇新论文上 +5.2〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新
+PPT v20 第30页 备注,第30页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"告 Stage 7.3 节〕，200 篇新论文上 +5.2〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，"
+PPT v20 第30页 备注,第30页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有," 节〕，200 篇新论文上 +5.2〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap"
+PPT v20 第30页 备注,第30页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_q"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有," 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_question"
+PPT v20 第30页 备注,第30页 备注,8,标识符 / 路径 / 编号中的数字,有,ummary/primary_questions.csv 行 RQ1_L56_replication；报告 Stage 8D 节〕；A−B 在 Pilot 中不确定，在 200 篇上是 +5.0〔Sta
+PPT v20 第30页 备注,第30页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有,csv 行 RQ1_L56_replication；报告 Stage 8D 节〕；A−B 在 Pilot 中不确定，在 200 篇上是 +5.0〔Stage 8D RQ2，J-Lens L56 匹配 A −
+PPT v20 第30页 备注,第30页 备注,8,标识符 / 路径 / 编号中的数字,有,cation；报告 Stage 8D 节〕；A−B 在 Pilot 中不确定，在 200 篇上是 +5.0〔Stage 8D RQ2，J-Lens L56 匹配 A − B，100 对，+4.98 pp
+PPT v20 第30页 备注,第30页 备注,100,样本 / 计数（篇、位、个、对、token、行）,有," Pilot 中不确定，在 200 篇上是 +5.0〔Stage 8D RQ2，J-Lens L56 匹配 A − B，100 对，+4.98 pp [0.32, 9.91]，配对 bootstrap 95"
+PPT v20 第30页 备注,第30页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"-Lens L56 匹配 A − B，100 对，+4.98 pp [0.32, 9.91]，配对 bootstrap 95% CI；351_stage8/stage8D/summary/primary_q"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,"56 匹配 A − B，100 对，+4.98 pp [0.32, 9.91]，配对 bootstrap 95% CI；351_stage8/stage8D/summary/primary_question"
+PPT v20 第30页 备注,第30页 备注,10,样本 / 计数（篇、位、个、对、token、行）,有,/summary/primary_questions.csv 行 RQ2_matched_A_minus_B〕 但去掉 10 对就消失〔Stage 8D RQ2，J-Lens L56 金标准胜率匹配 A−
+PPT v20 第30页 备注,第30页 备注,8,标识符 / 路径 / 编号中的数字,有,ry_questions.csv 行 RQ2_matched_A_minus_B〕 但去掉 10 对就消失〔Stage 8D RQ2，J-Lens L56 金标准胜率匹配 A−B，100 对，均值 +4
+PPT v20 第30页 备注,第30页 备注,100,样本 / 计数（篇、位、个、对、token、行）,有,_A_minus_B〕 但去掉 10 对就消失〔Stage 8D RQ2，J-Lens L56 金标准胜率匹配 A−B，100 对，均值 +4.98 pp，按 A−B 降序去掉前 10 对后其余 90 对均
+PPT v20 第30页 备注,第30页 备注,10,样本 / 计数（篇、位、个、对、token、行）,有,8D RQ2，J-Lens L56 金标准胜率匹配 A−B，100 对，均值 +4.98 pp，按 A−B 降序去掉前 10 对后其余 90 对均值 −0.39 pp（事后诊断）；351_stage8/s
+PPT v20 第30页 备注,第30页 备注,90,样本 / 计数（篇、位、个、对、token、行）,有,-Lens L56 金标准胜率匹配 A−B，100 对，均值 +4.98 pp，按 A−B 降序去掉前 10 对后其余 90 对均值 −0.39 pp（事后诊断）；351_stage8/stage8D/s
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,100 对，均值 +4.98 pp，按 A−B 降序去掉前 10 对后其余 90 对均值 −0.39 pp（事后诊断）；351_stage8/stage8D/summary/matched_pair_dif
+PPT v20 第30页 备注,第30页 备注,8,标识符 / 路径 / 编号中的数字,有,ary/matched_pair_differences.csv（mode=jlens_L56）重算；报告 Stage 8D 节〕；低引用减高引用没有定论。全量阶段看到：每组都有清楚的标题特异信号，L6
+PPT v20 第30页 备注,第30页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"age 8D 节〕；低引用减高引用没有定论。全量阶段看到：每组都有清楚的标题特异信号，L62 约 0.44〔Stage 10，真标题 − 5 个假标题平均，L62，全部 9,108 篇均值，三种 Jaco"
+PPT v20 第30页 备注,第30页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"；低引用减高引用没有定论。全量阶段看到：每组都有清楚的标题特异信号，L62 约 0.44〔Stage 10，真标题 − 5 个假标题平均，L62，全部 9,108 篇均值，三种 Jacobian len"
+PPT v20 第30页 备注,第30页 备注,0.442,版本 / 编号（Stage、补充、§、页、图、表）,有,"个假标题平均，L62，全部 9,108 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3"
+PPT v20 第30页 备注,第30页 备注,6.9,版本 / 编号（Stage、补充、§、页、图、表）,有,"全部 9,108 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3_means.cs"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,08 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3_means.csv〕；目标−
+PPT v20 第30页 备注,第30页 备注,0,其他整数（计数、编号、说明）,有,表；351_stage10/summary_extra/X3_means.csv〕；目标−对照在 L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0〔Stage 10
+PPT v20 第30页 备注,第30页 备注,0,其他整数（计数、编号、说明）,有,means.csv〕；目标−对照在 L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0〔Stage 10，引用档内目标−对照，三种 Jacobian lens L48
+PPT v20 第30页 备注,第30页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,v〕；目标−对照在 L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0〔Stage 10，引用档内目标−对照，三种 Jacobian lens L48 −0.037 到
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,含 0〔Stage 10，引用档内目标−对照，三种 Jacobian lens L48 −0.037 到 −0.054；351_stage10/summary_title/B_spec_target_vs_
+PPT v20 第30页 备注,第30页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"vs_control_within_bin.csv〕），输出处 +0.207 [0.195, 0.220]〔Stage 10 合并口径（target = A + C 对 control = B + D），"
+PPT v20 第30页 备注,第30页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,".220]〔Stage 10 合并口径（target = A + C 对 control = B + D），真标题 − 5 个假标题平均，最终输出 L63，引用档内 目标−对照（共有引用档 目标 3,7"
+PPT v20 第30页 备注,第30页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"档 目标 3,734 + 对照 2,182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/"
+PPT v20 第30页 备注,第30页 备注,6.4,版本 / 编号（Stage、补充、§、页、图、表）,有,"+ 对照 2,182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/B_spec_targ"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,",182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/B_spec_target_vs_"
+PPT v20 第30页 备注,第30页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,spec_target_vs_control_within_bin.csv〕；名字先验只占差距的约三分之一〔Stage 12 名字先验拆解（CPU），最终输出 L63，全部名字 token，引用档内 目标
+PPT v20 第30页 备注,第30页 备注,6.12,版本 / 编号（Stage、补充、§、页、图、表）,有," 2,220 篇）：先验 +0.087 [0.070, 0.103] ÷ 真标题差 +0.247 = 0.35；报告 §6.12 第二张表；371_stage12/summary_cpu/A_prior_de"
+PPT v20 第30页 备注,第30页 备注,371,标识符 / 路径 / 编号中的数字,有,"先验 +0.087 [0.070, 0.103] ÷ 真标题差 +0.247 = 0.35；报告 §6.12 第二张表；371_stage12/summary_cpu/A_prior_decompositi"
+PPT v20 第30页 备注,第30页 备注,0,其他整数（计数、编号、说明）,有,"张表；371_stage12/summary_cpu/A_prior_decomposition.csv〕，在姓上约为 0〔同上，姓的第一个 token，先验 目标−对照 +0.022 [−0.019,"
+PPT v20 第30页 备注,第30页 备注,6.12,版本 / 编号（Stage、补充、§、页、图、表）,有,"标−对照 +0.022 [−0.019, +0.063]，论文特有 +0.423 [0.393, 0.454]；报告 §6.12 第二张表；371_stage12/summary_cpu/A_prior_de"
+PPT v20 第30页 备注,第30页 备注,371,标识符 / 路径 / 编号中的数字,有,"2 [−0.019, +0.063]，论文特有 +0.423 [0.393, 0.454]；报告 §6.12 第二张表；371_stage12/summary_cpu/A_prior_decompositi"
+PPT v20 第30页 备注,第30页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,_cpu/A_prior_decomposition.csv〕；信号随引用数稳定上升（ρ = 0.451）〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 
+PPT v20 第30页 备注,第30页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,tion.csv〕；信号随引用数稳定上升（ρ = 0.451）〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 log10(引用数+1) 的 Spearm
+PPT v20 第30页 备注,第30页 备注,1,其他整数（计数、编号、说明）,有,"）〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 log10(引用数+1) 的 Spearman ρ，全部 9,108 篇 0.451 [0.433, "
+PPT v20 第30页 备注,第30页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"数+1) 的 Spearman ρ，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/"
+PPT v20 第30页 备注,第30页 备注,6.8,版本 / 编号（Stage、补充、§、页、图、表）,有,"rman ρ，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/X2_spearman"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,"，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/X2_spearman.csv〕；"
+PPT v20 第30页 备注,第30页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"n.csv〕；只用和 Pilot 相同的 R0 分组（A − B）为 +0.20 [0.19, 0.21]〔Stage 10 只用 R0（A 对 B），真标题 − 5 个假标题平均，最终输出 L63，引用"
+PPT v20 第30页 备注,第30页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"0 分组（A − B）为 +0.20 [0.19, 0.21]〔Stage 10 只用 R0（A 对 B），真标题 − 5 个假标题平均，最终输出 L63，引用档内 目标−对照，A 3,423 + B "
+PPT v20 第30页 备注,第30页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"标−对照，A 3,423 + B 2,151 篇，+0.199 [0.188, 0.212]，论文 bootstrap 95% CI；报告 §6.13 表；351_stage10/reports/r0_se"
+PPT v20 第30页 备注,第30页 备注,6.13,版本 / 编号（Stage、补充、§、页、图、表）,有,"3 + B 2,151 篇，+0.199 [0.188, 0.212]，论文 bootstrap 95% CI；报告 §6.13 表；351_stage10/reports/r0_sensitivity.md"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,",151 篇，+0.199 [0.188, 0.212]，论文 bootstrap 95% CI；报告 §6.13 表；351_stage10/reports/r0_sensitivity.md；351_s"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,rap 95% CI；报告 §6.13 表；351_stage10/reports/r0_sensitivity.md；351_stage10/summary_r0/B_spec_target_vs_con
+PPT v20 第30页 备注,第30页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,rol_within_bin_R0.csv〕，形状同样是后期才上升；R1 论文（C）比 A 多 +0.11〔Stage 10，目标组内 R1 − R0（C − A），真标题 − 5 个假标题平均，最终输出
+PPT v20 第30页 备注,第30页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,期才上升；R1 论文（C）比 A 多 +0.11〔Stage 10，目标组内 R1 − R0（C − A），真标题 − 5 个假标题平均，最终输出 L63，引用档内（每格 ≥ 10 篇），C 485 +
+PPT v20 第30页 备注,第30页 备注,10,样本 / 计数（篇、位、个、对、token、行）,有,"ge 10，目标组内 R1 − R0（C − A），真标题 − 5 个假标题平均，最终输出 L63，引用档内（每格 ≥ 10 篇），C 485 + A 3,204 篇，+0.110 [0.086, 0.1"
+PPT v20 第30页 备注,第30页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有," 10 篇），C 485 + A 3,204 篇，+0.110 [0.086, 0.135]，论文 bootstrap 95% CI；351_stage10/summary_r0/target_R1_min"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,"C 485 + A 3,204 篇，+0.110 [0.086, 0.135]，论文 bootstrap 95% CI；351_stage10/summary_r0/target_R1_minus_R0_w"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,CI；351_stage10/summary_r0/target_R1_minus_R0_within_bin.csv；351_stage10/reports/r0_sensitivity.md〕，但时间点
+PPT v20 第30页 备注,第30页 备注,7,样本 / 计数（篇、位、个、对、token、行）,有,s/r0_sensitivity.md〕，但时间点一样晚。小样本说对了标题重要，但没看出目标组的优势只在最后几层，所以 7 层平均〔Stage 5–8 的积分终点 = 7 个源层平均（L63 不计入）；
+PPT v20 第30页 备注,第30页 备注,5,版本 / 编号（Stage、补充、§、页、图、表）,有,vity.md〕，但时间点一样晚。小样本说对了标题重要，但没看出目标组的优势只在最后几层，所以 7 层平均〔Stage 5–8 的积分终点 = 7 个源层平均（L63 不计入）；351_stage6/c
+PPT v20 第30页 备注,第30页 备注,8,其他整数（计数、编号、说明）,有,ty.md〕，但时间点一样晚。小样本说对了标题重要，但没看出目标组的优势只在最后几层，所以 7 层平均〔Stage 5–8 的积分终点 = 7 个源层平均（L63 不计入）；351_stage6/con
+PPT v20 第30页 备注,第30页 备注,7,样本 / 计数（篇、位、个、对、token、行）,有,点一样晚。小样本说对了标题重要，但没看出目标组的优势只在最后几层，所以 7 层平均〔Stage 5–8 的积分终点 = 7 个源层平均（L63 不计入）；351_stage6/config/protoc
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,"没看出目标组的优势只在最后几层，所以 7 层平均〔Stage 5–8 的积分终点 = 7 个源层平均（L63 不计入）；351_stage6/config/protocol.json ""paper_inte"
+PPT v20 第30页 备注,第30页 备注,351,标识符 / 路径 / 编号中的数字,有,"L63 不计入）；351_stage6/config/protocol.json ""paper_integrated""；351_stage8/config/analysis_plan.json〕和 L56 "
+PPT v20 第55页 备注,第55页 备注,10,样本 / 计数（篇、位、个、对、token、行）,无,知道了第一个词，其余部分会更容易吗？对完整的名，是的：名进入前 10 名时，姓在输出处高 +0.22，logit lens 在 L62 高 +0.3
+PPT v20 第55页 备注,第55页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,无,"名，是的：名进入前 10 名时，姓在输出处高 +0.22，logit lens 在 L62 高 +0.32〔Stage 10 §6.7，真标题，完整名开头的 8,876 位作者（名进前 10：678 位）"
+PPT v20 第55页 备注,第55页 备注,6.7,版本 / 编号（Stage、补充、§、页、图、表）,无,"：名进入前 10 名时，姓在输出处高 +0.22，logit lens 在 L62 高 +0.32〔Stage 10 §6.7，真标题，完整名开头的 8,876 位作者（名进前 10：678 位），姓（后续"
+PPT v20 第55页 备注,第55页 备注,10,其他整数（计数、编号、说明）,有,"t lens 在 L62 高 +0.32〔Stage 10 §6.7，真标题，完整名开头的 8,876 位作者（名进前 10：678 位），姓（后续 token）平均 log10(1/名次)，进前 10 "
+PPT v20 第55页 备注,第55页 备注,1,标识符 / 路径 / 编号中的数字,有,"§6.7，真标题，完整名开头的 8,876 位作者（名进前 10：678 位），姓（后续 token）平均 log10(1/名次)，进前 10 − 未进，论文聚类 bootstrap 95% CI：最终"
+PPT v20 第55页 备注,第55页 备注,10,其他整数（计数、编号、说明）,有,"完整名开头的 8,876 位作者（名进前 10：678 位），姓（后续 token）平均 log10(1/名次)，进前 10 − 未进，论文聚类 bootstrap 95% CI：最终输出 L63 +0."
+PPT v20 第55页 备注,第55页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"：678 位），姓（后续 token）平均 log10(1/名次)，进前 10 − 未进，论文聚类 bootstrap 95% CI：最终输出 L63 +0.222 [0.165, 0.275]，logit"
+PPT v20 第55页 备注,第55页 备注,351,标识符 / 路径 / 编号中的数字,有," +0.222 [0.165, 0.275]，logit lens L62 +0.322 [0.253, 0.388]；351_stage10/summary_extra/X1_cond_by_first_"
+PPT v20 第59页 正文,第59页 正文,1,其他整数（计数、编号、说明）,无,"the book on the shelf, or is the key failing to get it out? 1 Is the book on the shelf? Yes True titl"
+PPT v20 第59页 正文,第59页 正文,6.9,版本 / 编号（Stage、补充、§、页、图、表）,无,he shelf? Yes True title beats false titles (≈0.44 at L62​(§6.9)); a probe on the title token reads pap
+PPT v20 第59页 正文,第59页 正文,"5,",版本 / 编号（Stage、补充、§、页、图、表）,无,"r-specific authors from L24 (re-checked) Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, read"
+PPT v20 第59页 正文,第59页 正文,7.3,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,"pecific authors from L24 (re-checked) Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, read int"
+PPT v20 第59页 正文,第59页 正文,8,标识符 / 路径 / 编号中的数字,无,"ic authors from L24 (re-checked) Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, read into t"
+PPT v20 第59页 正文,第59页 正文,"10,",其他整数（计数、编号、说明）,无,"uthors from L24 (re-checked) Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, read into the nam"
+PPT v20 第59页 正文,第59页 正文,11,其他整数（计数、编号、说明）,无,"rs from L24 (re-checked) Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, read into the name p"
+PPT v20 第59页 正文,第59页 正文,2,其他整数（计数、编号、说明）,无,"from L24 (re-checked) Lines A, B · Stage 5, 7.3, 8D, 10, 11 2 Key = the title, read into the name pos"
+PPT v20 第59页 正文,第59页 正文,52,其他整数（计数、编号、说明）,无,", 11 2 Key = the title, read into the name positions at L44–52 Whole prompt: 0.82 at L48, ≈1.0 from L5"
+PPT v20 第59页 正文,第59页 正文,"11,",版本 / 编号（Stage、补充、§、页、图、表）,无,"rs); knockout after L52 costs almost nothing Line C · Stage 11, 12 P1 3 Book there but stuck? Not suppo"
+PPT v20 第59页 正文,第59页 正文,12,其他整数（计数、编号、说明）,无," knockout after L52 costs almost nothing Line C · Stage 11, 12 P1 3 Book there but stuck? Not supporte"
+PPT v20 第59页 正文,第59页 正文,3,其他整数（计数、编号、说明）,无,"out after L52 costs almost nothing Line C · Stage 11, 12 P1 3 Book there but stuck? Not supported Tar"
+PPT v20 第59页 正文,第59页 正文,0,其他整数（计数、编号、说明）,无,"P1 3 Book there but stuck? Not supported Target − control ≈ 0 at L24–L40, slightly negative at L48 (−"
+PPT v20 第59页 正文,第59页 正文,61,其他整数（计数、编号、说明）,无,"lightly negative at L48 (−0.04 to −0.05), grows only at L57–61 (+0.21 at output​(§6.4)): retrieval its"
+PPT v20 第59页 正文,第59页 正文,6.4,版本 / 编号（Stage、补充、§、页、图、表）,无,"8 (−0.04 to −0.05), grows only at L57–61 (+0.21 at output​(§6.4)): retrieval itself is weak Lines A, C "
+PPT v20 第59页 正文,第59页 正文,7.2,版本 / 编号（Stage、补充、§、页、图、表）,无,"output​(§6.4)): retrieval itself is weak Lines A, C · Stage 7.2, 10 4 Which shelf? Both, in order Atten"
+PPT v20 第59页 正文,第59页 正文,10,其他整数（计数、编号、说明）,无,"t​(§6.4)): retrieval itself is weak Lines A, C · Stage 7.2, 10 4 Which shelf? Both, in order Attention"
+PPT v20 第59页 正文,第59页 正文,4,其他整数（计数、编号、说明）,无,"§6.4)): retrieval itself is weak Lines A, C · Stage 7.2, 10 4 Which shelf? Both, in order Attention b"
+PPT v20 第59页 正文,第59页 正文,56,其他整数（计数、编号、说明）,无,"on brings the title in at L48 (0.23); MLP takes over at L52–56 (0.18, 0.22)​(P2, 1,186 papers). One-la"
+PPT v20 第59页 正文,第59页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,无,er the MLP step is memory lookup is not yet separable Stage 12 P2 Caveat: a readout not finding it ≠ a
+PPT v20 第59页 正文,第59页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,无,tage 12 P2 Caveat: a readout not finding it ≠ absent. Stage 13: ':' and name positions hold the task; 
+PPT v20 第59页 备注,第59页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"用“钥匙和书架”来串起四条线。第一，书在不在架上？在：真标题胜过假标题，L62 约 0.44〔Stage 10，真标题 − 5 个假标题平均，L62，全部 9,108 篇均值，三种 Jaco"
+PPT v20 第59页 备注,第59页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"钥匙和书架”来串起四条线。第一，书在不在架上？在：真标题胜过假标题，L62 约 0.44〔Stage 10，真标题 − 5 个假标题平均，L62，全部 9,108 篇均值，三种 Jacobian len"
+PPT v20 第59页 备注,第59页 备注,0.442,版本 / 编号（Stage、补充、§、页、图、表）,有,"个假标题平均，L62，全部 9,108 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3"
+PPT v20 第59页 备注,第59页 备注,6.9,版本 / 编号（Stage、补充、§、页、图、表）,有,"全部 9,108 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3_means.cs"
+PPT v20 第59页 备注,第59页 备注,351,标识符 / 路径 / 编号中的数字,有,08 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3_means.csv〕；标题 
+PPT v20 第59页 备注,第59页 备注,52,其他整数（计数、编号、说明）,有,v〕；标题 token 上的 probe 能读出论文特有的作者（复核后从 L24 起）。第二，钥匙就是标题，在 L44–52 被读进名字位置：整段提示替换在 L48 恢复 0.82〔Stage 11 E1
+PPT v20 第59页 备注,第59页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,L24 起）。第二，钥匙就是标题，在 L44–52 被读进名字位置：整段提示替换在 L48 恢复 0.82〔Stage 11 E1 替换，真标题→false_0，标题之后全部位置，最终输出名字 token
+PPT v20 第59页 备注,第59页 备注,6.11,版本 / 编号（Stage、补充、§、页、图、表）,有,"en 恢复比例（均值比），目标 593 + 对照 593 篇，L48 0.825 [0.807, 0.842]；报告 §6.11 恢复比例图；361_stage11/summary/E1_recovery.c"
+PPT v20 第59页 备注,第59页 备注,361,标识符 / 路径 / 编号中的数字,有,"），目标 593 + 对照 593 篇，L48 0.825 [0.807, 0.842]；报告 §6.11 恢复比例图；361_stage11/summary/E1_recovery.csv（group=a"
+PPT v20 第59页 备注,第59页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,tage11/summary/E1_recovery.csv（group=all）〕，L52 起约 1.0〔Stage 11 E1 替换，真标题→false_0，标题之后全部位置，最终输出名字 token
+PPT v20 第59页 备注,第59页 备注,6.11,版本 / 编号（Stage、补充、§、页、图、表）,有,"en 恢复比例（均值比），目标 593 + 对照 593 篇，L52 0.996 [0.989, 1.003]；报告 §6.11 恢复比例图；361_stage11/summary/E1_recovery.c"
+PPT v20 第59页 备注,第59页 备注,361,标识符 / 路径 / 编号中的数字,有,"），目标 593 + 对照 593 篇，L52 0.996 [0.989, 1.003]；报告 §6.11 恢复比例图；361_stage11/summary/E1_recovery.csv（group=a"
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,ery.csv（group=all）〕；只换名字位置从 0.61 升到 0.85，只换“:”最多 0.17〔Stage 12 P1 逐位置替换，真标题→false_0，最终输出名字 token 恢复比例，
+PPT v20 第59页 备注,第59页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有," 0.17〔Stage 12 P1 逐位置替换，真标题→false_0，最终输出名字 token 恢复比例，Stage 11 样本 1,186 篇：只换名字位置 L48 0.61、L52 0.847，单个"
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,".61、L52 0.847，单个位置最大为 “:” L52 0.172 [0.156, 0.187]；报告 Stage 12 节 P1 表；371_stage12/summary/P1_patch_pos"
+PPT v20 第59页 备注,第59页 备注,371,标识符 / 路径 / 编号中的数字,有,"847，单个位置最大为 “:” L52 0.172 [0.156, 0.187]；报告 Stage 12 节 P1 表；371_stage12/summary/P1_patch_pos.csv〕；L52 之"
+PPT v20 第59页 备注,第59页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,；371_stage12/summary/P1_patch_pos.csv〕；L52 之后阻断几乎没有损失〔Stage 11 E2 阻断，标题之后全部位置从第 l 层起不能注意标题，最终输出损失比例（÷ 
+PPT v20 第59页 备注,第59页 备注,6.11,版本 / 编号（Stage、补充、§、页、图、表）,有,"比例（÷ 真标题 − false_0 差距），1,186 篇，L52 0.007 [0.001, 0.013]；报告 §6.11 阻断图；361_stage11/summary/E2_knockout.csv"
+PPT v20 第59页 备注,第59页 备注,361,标识符 / 路径 / 编号中的数字,有,"− false_0 差距），1,186 篇，L52 0.007 [0.001, 0.013]；报告 §6.11 阻断图；361_stage11/summary/E2_knockout.csv（group=a"
+PPT v20 第59页 备注,第59页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,1 阻断图；361_stage11/summary/E2_knockout.csv（group=all）〕（Stage 11 和 Stage 12 P1）。第三，书在架上但取不出来？不支持：目标−对照在 
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,tage11/summary/E2_knockout.csv（group=all）〕（Stage 11 和 Stage 12 P1）。第三，书在架上但取不出来？不支持：目标−对照在 L24–L40 约为 
+PPT v20 第59页 备注,第59页 备注,0,其他整数（计数、编号、说明）,有,（Stage 11 和 Stage 12 P1）。第三，书在架上但取不出来？不支持：目标−对照在 L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0〔Stage 10
+PPT v20 第59页 备注,第59页 备注,0,其他整数（计数、编号、说明）,有,上但取不出来？不支持：目标−对照在 L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0〔Stage 10，引用档内目标−对照，三种 Jacobian lens L48
+PPT v20 第59页 备注,第59页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,支持：目标−对照在 L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0〔Stage 10，引用档内目标−对照，三种 Jacobian lens L48 −0.037 到
+PPT v20 第59页 备注,第59页 备注,351,标识符 / 路径 / 编号中的数字,有,含 0〔Stage 10，引用档内目标−对照，三种 Jacobian lens L48 −0.037 到 −0.054；351_stage10/summary_title/B_spec_target_vs_
+PPT v20 第59页 备注,第59页 备注,61,其他整数（计数、编号、说明）,有,mary_title/B_spec_target_vs_control_within_bin.csv〕），只在 L57–61 上升（输出处 +0.21）〔Stage 10 合并口径（target = A 
+PPT v20 第59页 备注,第59页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,t_vs_control_within_bin.csv〕），只在 L57–61 上升（输出处 +0.21）〔Stage 10 合并口径（target = A + C 对 control = B + D），
+PPT v20 第59页 备注,第59页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"0.21）〔Stage 10 合并口径（target = A + C 对 control = B + D），真标题 − 5 个假标题平均，最终输出 L63，引用档内 目标−对照（共有引用档 目标 3,7"
+PPT v20 第59页 备注,第59页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"档 目标 3,734 + 对照 2,182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/"
+PPT v20 第59页 备注,第59页 备注,6.4,版本 / 编号（Stage、补充、§、页、图、表）,有,"+ 对照 2,182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/B_spec_targ"
+PPT v20 第59页 备注,第59页 备注,351,标识符 / 路径 / 编号中的数字,有,",182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/B_spec_target_vs_"
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,sv〕，提取本身就弱。第四，在哪个书架上？两者都有，有先后：L48 的注意力把标题读进来（恢复 0.23）〔Stage 12 P2，标题之后全部位置只替换单层 attention 或 MLP 输出，最终输
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,ention L48 0.231（MLP 0.07），MLP L52 0.178、L56 0.224；报告 Stage 12 节 P2 表；371_stage12/summary/P2_patch_com
+PPT v20 第59页 备注,第59页 备注,371,标识符 / 路径 / 编号中的数字,有, 0.231（MLP 0.07），MLP L52 0.178、L56 0.224；报告 Stage 12 节 P2 表；371_stage12/summary/P2_patch_comp.csv〕，L52–
+PPT v20 第59页 备注,第59页 备注,56,其他整数（计数、编号、说明）,有, Stage 12 节 P2 表；371_stage12/summary/P2_patch_comp.csv〕，L52–56 由 MLP 接手（0.18、0.22）〔Stage 12 P2，标题之后全部位
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,summary/P2_patch_comp.csv〕，L52–56 由 MLP 接手（0.18、0.22）〔Stage 12 P2，标题之后全部位置只替换单层 attention 或 MLP 输出，最终输
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,ention L48 0.231（MLP 0.07），MLP L52 0.178、L56 0.224；报告 Stage 12 节 P2 表；371_stage12/summary/P2_patch_com
+PPT v20 第59页 备注,第59页 备注,371,标识符 / 路径 / 编号中的数字,有, 0.231（MLP 0.07），MLP L52 0.178、L56 0.224；报告 Stage 12 节 P2 表；371_stage12/summary/P2_patch_comp.csv〕。单层替换
+PPT v20 第59页 备注,第59页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,ummary/P2_patch_comp.csv〕。单层替换只是下限，MLP 这一步是不是在查记忆还分不开（Stage 12 P2）。最后提醒：读出工具找不到，不等于信息不存在。Stage 13 显示：冒
+PPT v20 第59页 备注,第59页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,MLP 这一步是不是在查记忆还分不开（Stage 12 P2）。最后提醒：读出工具找不到，不等于信息不存在。Stage 13 显示：冒号和名字位置承载的是任务；标题位置承载论文属性和超出用词的语义，但没有
+PPT v20 第59页 备注,第59页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 toke
+PPT v20 第59页 备注,第59页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058
+PPT v20 第59页 备注,第59页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,"；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058, 0.085]"
+PPT v20 第59页 备注,第59页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,"Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058, 0.085]〔补充 9，目标 + 对照 1,395 篇，团队聚类 95% CI；381_stage13"
+PPT v20 第59页 备注,第59页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"姓的第一个 token +0.071 [0.058, 0.085]〔补充 9，目标 + 对照 1,395 篇，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md〕。"
+PPT v20 第59页 备注,第59页 备注,381,标识符 / 路径 / 编号中的数字,有,"oken +0.071 [0.058, 0.085]〔补充 9，目标 + 对照 1,395 篇，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md〕。"
+PPT v20 第61页 正文,第61页 正文,1,其他整数（计数、编号、说明）,有,"Overview Small vs large, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 p"
+PPT v20 第61页 正文,第61页 正文,9,其他整数（计数、编号、说明）,有,"Overview Small vs large, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 pap"
+PPT v20 第61页 正文,第61页 正文,20,其他整数（计数、编号、说明）,有,"Overview Small vs large, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 papers)"
+PPT v20 第61页 正文,第61页 正文,200,样本 / 计数（篇、位、个、对、token、行）,有,"verview Small vs large, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 papers) Ver"
+PPT v20 第61页 正文,第61页 正文,10,其他整数（计数、编号、说明）,有,"rge, in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 papers) Verdict True title he"
+PPT v20 第61页 正文,第61页 正文,11,其他整数（计数、编号、说明）,有,", in one table Finding Stages 1–9 (20–200 papers) Stages 10–11 (9,108 papers) Verdict True title helps"
+PPT v20 第61页 正文,第61页 正文,200,其他整数（计数、编号、说明）,有,"papers) Verdict True title helps +9.3 pp pilot, +5.2 pp new 200​(7.3; 8D RQ1) ≈0.44 title-specific at L"
+PPT v20 第61页 正文,第61页 正文,7.3,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"s) Verdict True title helps +9.3 pp pilot, +5.2 pp new 200​(7.3; 8D RQ1) ≈0.44 title-specific at L62​(X"
+PPT v20 第61页 正文,第61页 正文,8,标识符 / 路径 / 编号中的数字,有,"rdict True title helps +9.3 pp pilot, +5.2 pp new 200​(7.3; 8D RQ1) ≈0.44 title-specific at L62​(X3_m"
+PPT v20 第61页 正文,第61页 正文,6.4,版本 / 编号（Stage、补充、§、页、图、表）,有,"d > not recognised uncertain, tail-driven +0.21 at output​(§6.4), ≈0 at L24–L40, slightly negative at L"
+PPT v20 第61页 正文,第61页 正文,0,其他整数（计数、编号、说明）,有," recognised uncertain, tail-driven +0.21 at output​(§6.4), ≈0 at L24–L40, slightly negative at L48 (−"
+PPT v20 第61页 正文,第61页 正文,6.13,版本 / 编号（Stage、补充、§、页、图、表）,无,"e groups (A vs B, R0 only) A − B as above +0.20 at output​(§6.13), ≈0 at L24–L40, slightly negative at L"
+PPT v20 第61页 正文,第61页 正文,0,其他整数（计数、编号、说明）,无," (A vs B, R0 only) A − B as above +0.20 at output​(§6.13), ≈0 at L24–L40, slightly negative at L48; R"
+PPT v20 第61页 正文,第61页 正文,61,其他整数（计数、编号、说明）,无,"g comparable, unchanged Key layer L56 starts L56, rises L57–61; read L24–50 refined J-Lens over Vanill"
+PPT v20 第61页 正文,第61页 正文,50,其他整数（计数、编号、说明）,无," unchanged Key layer L56 starts L56, rises L57–61; read L24–50 refined J-Lens over Vanilla no incremen"
+PPT v20 第61页 正文,第61页 正文,9,版本 / 编号（Stage、补充、§、页、图、表）,有,an.csv) resolved Lens stability split-half one split; Stage 9 only Fit A three Jacobian lenses fitted
+PPT v20 第61页 正文,第61页 正文,9,版本 / 编号（Stage、补充、§、页、图、表）,有,itted on different text agree; fit stability rests on Stage 9 Fit A only only one piece of evidence (
+PPT v20 第61页 正文,第61页 正文,9,版本 / 编号（Stage、补充、§、页、图、表）,无,sts on Stage 9 Fit A only only one piece of evidence (Stage 9 Fit A); Fit B not completed 
+PPT v20 第61页 备注,第61页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,一张表对照小样本和全量。真标题有帮助：Pilot +9.3〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pil
+PPT v20 第61页 备注,第61页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,一张表对照小样本和全量。真标题有帮助：Pilot +9.3〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0
+PPT v20 第61页 备注,第61页 备注,50,样本 / 计数（篇、位、个、对、token、行）,有," +9.3〔Stage 7.3，J-Lens L56，真标题胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重"
+PPT v20 第61页 备注,第61页 备注,2026,日期 / 时间,有,"胜率 − 20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_st"
+PPT v20 第61页 备注,第61页 备注,10,日期 / 时间,有,"20 个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage"
+PPT v20 第61页 备注,第61页 备注,30,日期 / 时间,有,"个错误标题平均胜率，合并池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3"
+PPT v20 第61页 备注,第61页 备注,"20,000",其他整数（计数、编号、说明）,有,"池，Pilot50 50 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_n"
+PPT v20 第61页 备注,第61页 备注,50,标识符 / 路径 / 编号中的数字,有,"0 篇均值 +0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_null_dis"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,"0.0934 [0.048, 0.140]（2026-10-30 重算区间，B = 20,000），35/50 篇为正；351_stage7_3/summary/paper_null_distributio"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,"/paper_null_distribution.csv（pool=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_in"
+PPT v20 第61页 备注,第61页 备注,10,日期 / 时间,有,"（pool=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv；报告 Sta"
+PPT v20 第61页 备注,第61页 备注,30,日期 / 时间,有,"ol=combined, mode=jlens_L56）；351_stage7_3/recompute_2026-10-30/stage7_interval_recompute.csv；报告 Stage "
+PPT v20 第61页 备注,第61页 备注,7.3,版本 / 编号（Stage、补充、§、页、图、表）,有,recompute_2026-10-30/stage7_interval_recompute.csv；报告 Stage 7.3 节〕、新 200 篇 +5.18 个百分点〔Stage 8D RQ1，J-Le
+PPT v20 第61页 备注,第61页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有,_2026-10-30/stage7_interval_recompute.csv；报告 Stage 7.3 节〕、新 200 篇 +5.18 个百分点〔Stage 8D RQ1，J-Lens L56，真标
+PPT v20 第61页 备注,第61页 备注,8,标识符 / 路径 / 编号中的数字,有,rval_recompute.csv；报告 Stage 7.3 节〕、新 200 篇 +5.18 个百分点〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新
+PPT v20 第61页 备注,第61页 备注,20,样本 / 计数（篇、位、个、对、token、行）,有,"age 7.3 节〕、新 200 篇 +5.18 个百分点〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，"
+PPT v20 第61页 备注,第61页 备注,200,样本 / 计数（篇、位、个、对、token、行）,有,"新 200 篇 +5.18 个百分点〔Stage 8D RQ1，J-Lens L56，真标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap"
+PPT v20 第61页 备注,第61页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"标题 − 20 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_q"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有," 个匹配错误标题，200 篇新论文，+5.18 pp [2.93, 7.48]，论文 bootstrap 95% CI；351_stage8/stage8D/summary/primary_question"
+PPT v20 第61页 备注,第61页 备注,8,标识符 / 路径 / 编号中的数字,有,ummary/primary_questions.csv 行 RQ1_L56_replication；报告 Stage 8D 节〕，全量 L62 标题特异约 0.44〔Stage 10，真标题 − 5 
+PPT v20 第61页 备注,第61页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有," RQ1_L56_replication；报告 Stage 8D 节〕，全量 L62 标题特异约 0.44〔Stage 10，真标题 − 5 个假标题平均，L62，全部 9,108 篇均值，三种 Jaco"
+PPT v20 第61页 备注,第61页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"replication；报告 Stage 8D 节〕，全量 L62 标题特异约 0.44〔Stage 10，真标题 − 5 个假标题平均，L62，全部 9,108 篇均值，三种 Jacobian len"
+PPT v20 第61页 备注,第61页 备注,0.442,版本 / 编号（Stage、补充、§、页、图、表）,有,"个假标题平均，L62，全部 9,108 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3"
+PPT v20 第61页 备注,第61页 备注,6.9,版本 / 编号（Stage、补充、§、页、图、表）,有,"全部 9,108 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3_means.cs"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,08 篇均值，三种 Jacobian lens 0.436–0.444（public 0.442）；报告 §6.9 表；351_stage10/summary_extra/X3_means.csv〕，确认。
+PPT v20 第61页 备注,第61页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,tra/X3_means.csv〕，确认。认得出大于认不出：小样本不确定、依赖尾部，全量输出处 +0.21〔Stage 10 合并口径（target = A + C 对 control = B + D），
+PPT v20 第61页 备注,第61页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"+0.21〔Stage 10 合并口径（target = A + C 对 control = B + D），真标题 − 5 个假标题平均，最终输出 L63，引用档内 目标−对照（共有引用档 目标 3,7"
+PPT v20 第61页 备注,第61页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"档 目标 3,734 + 对照 2,182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/"
+PPT v20 第61页 备注,第61页 备注,6.4,版本 / 编号（Stage、补充、§、页、图、表）,有,"+ 对照 2,182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/B_spec_targ"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,",182 篇），+0.207 [0.195, 0.220]，论文 bootstrap 95% CI；报告 §6.4 表；351_stage10/summary_title/B_spec_target_vs_"
+PPT v20 第61页 备注,第61页 备注,0,其他整数（计数、编号、说明）,有,y_title/B_spec_target_vs_control_within_bin.csv〕、L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0），确认，但只在最
+PPT v20 第61页 备注,第61页 备注,0,其他整数（计数、编号、说明）,有,l_within_bin.csv〕、L24–L40 约为 0、L48 略为负（−0.037 到 −0.054，区间不含 0），确认，但只在最后几层。同一分组（A 对 B，只用 R0）：输出 +0.20〔
+PPT v20 第61页 备注,第61页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有, −0.054，区间不含 0），确认，但只在最后几层。同一分组（A 对 B，只用 R0）：输出 +0.20〔Stage 10 只用 R0（A 对 B），真标题 − 5 个假标题平均，最终输出 L63，引用
+PPT v20 第61页 备注,第61页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"最后几层。同一分组（A 对 B，只用 R0）：输出 +0.20〔Stage 10 只用 R0（A 对 B），真标题 − 5 个假标题平均，最终输出 L63，引用档内 目标−对照，A 3,423 + B "
+PPT v20 第61页 备注,第61页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"标−对照，A 3,423 + B 2,151 篇，+0.199 [0.188, 0.212]，论文 bootstrap 95% CI；报告 §6.13 表；351_stage10/reports/r0_se"
+PPT v20 第61页 备注,第61页 备注,6.13,版本 / 编号（Stage、补充、§、页、图、表）,有,"3 + B 2,151 篇，+0.199 [0.188, 0.212]，论文 bootstrap 95% CI；报告 §6.13 表；351_stage10/reports/r0_sensitivity.md"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,",151 篇，+0.199 [0.188, 0.212]，论文 bootstrap 95% CI；报告 §6.13 表；351_stage10/reports/r0_sensitivity.md；351_s"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,rap 95% CI；报告 §6.13 表；351_stage10/reports/r0_sensitivity.md；351_stage10/summary_r0/B_spec_target_vs_con
+PPT v20 第61页 备注,第61页 备注,0,其他整数（计数、编号、说明）,有,/summary_r0/B_spec_target_vs_control_within_bin_R0.csv〕、中间约 0，R1 只增加强度不改变时间，两阶段可比、结论不变。关键层：小样本是 L56，全
+PPT v20 第61页 备注,第61页 备注,61,其他整数（计数、编号、说明）,有,、中间约 0，R1 只增加强度不改变时间，两阶段可比、结论不变。关键层：小样本是 L56，全量是 L56 开始、L57–61 上升、标题在 L24–50 被读取，细化。J-Lens 胜过 Vanilla：
+PPT v20 第61页 备注,第61页 备注,50,其他整数（计数、编号、说明）,有,度不改变时间，两阶段可比、结论不变。关键层：小样本是 L56，全量是 L56 开始、L57–61 上升、标题在 L24–50 被读取，细化。J-Lens 胜过 Vanilla：小样本没有增量，全量读出更多
+PPT v20 第61页 备注,第61页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,ken，全量由首字母和完整名的格式差别解释。引用数：小样本低减高没有定论，全量单调上升 ρ = 0.451〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 
+PPT v20 第61页 备注,第61页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,引用数：小样本低减高没有定论，全量单调上升 ρ = 0.451〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 log10(引用数+1) 的 Spearm
+PPT v20 第61页 备注,第61页 备注,1,其他整数（计数、编号、说明）,有,"1〔Stage 10 补充 X2，标题特异信号（真标题 − 5 个假标题平均，最终输出 L63）对 log10(引用数+1) 的 Spearman ρ，全部 9,108 篇 0.451 [0.433, "
+PPT v20 第61页 备注,第61页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"数+1) 的 Spearman ρ，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/"
+PPT v20 第61页 备注,第61页 备注,6.8,版本 / 编号（Stage、补充、§、页、图、表）,有,"rman ρ，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/X2_spearman"
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,"，全部 9,108 篇 0.451 [0.433, 0.467]，bootstrap 95% CI；报告 §6.8 表；351_stage10/summary_extra/X2_spearman.csv〕，"
+PPT v20 第61页 备注,第61页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,/summary_extra/X2_spearman.csv〕，解决。lens 稳定性：小样本只有一次拆分、Stage 9 只有 Fit A，全量三把用不同文本拟合的 Jacobian lens〔Sta
+PPT v20 第61页 备注,第61页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,小样本只有一次拆分、Stage 9 只有 Fit A，全量三把用不同文本拟合的 Jacobian lens〔Stage 10 三种 Jacobian lens：public（557 条 WikiText-
+PPT v20 第61页 备注,第61页 备注,557,样本 / 计数（篇、位、个、对、token、行）,有,全量三把用不同文本拟合的 Jacobian lens〔Stage 10 三种 Jacobian lens：public（557 条 WikiText-103）、self100（100 条）、fitA（Sta
+PPT v20 第61页 备注,第61页 备注,103,其他整数（计数、编号、说明）,有,cobian lens〔Stage 10 三种 Jacobian lens：public（557 条 WikiText-103）、self100（100 条）、fitA（Stage 9 Fit A 100 
+PPT v20 第61页 备注,第61页 备注,100,样本 / 计数（篇、位、个、对、token、行）,有,tage 10 三种 Jacobian lens：public（557 条 WikiText-103）、self100（100 条）、fitA（Stage 9 Fit A 100 条）；351_stage1
+PPT v20 第61页 备注,第61页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,n lens：public（557 条 WikiText-103）、self100（100 条）、fitA（Stage 9 Fit A 100 条）；351_stage10/config/lenses.
+PPT v20 第61页 备注,第61页 备注,100,样本 / 计数（篇、位、个、对、token、行）,有,ublic（557 条 WikiText-103）、self100（100 条）、fitA（Stage 9 Fit A 100 条）；351_stage10/config/lenses.json；报告 §6
+PPT v20 第61页 备注,第61页 备注,351,标识符 / 路径 / 编号中的数字,有,57 条 WikiText-103）、self100（100 条）、fitA（Stage 9 Fit A 100 条）；351_stage10/config/lenses.json；报告 §6.9〕 结论一
+PPT v20 第61页 备注,第61页 备注,6.9,版本 / 编号（Stage、补充、§、页、图、表）,有,itA（Stage 9 Fit A 100 条）；351_stage10/config/lenses.json；报告 §6.9〕 结论一致；但同一把 lens 的拟合稳定性只有 Fit A 一份证据，Fit
+PPT v20 第67页 正文,第67页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 12 Stage 12: where the paper information t
+PPT v20 第67页 正文,第67页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 12 Stage 12: where the paper information travels Al
+PPT v20 第67页 正文,第67页 正文,408,层号,无,Stage 12 Stage 12: where the paper information travels All 408 GPU units done · true title → false_0 ·
+PPT v20 第67页 正文,第67页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,有,"ition at a time: the colon carries at most 0.17 (L52)(Stage 12 P1, 1,186 papers, paper bootstrap; P1_p"
+PPT v20 第67页 正文,第67页 正文,11,版本 / 编号（Stage、补充、§、页、图、表）,有,"52(same; CI [0.830, 0.864]); the whole prompt 1.00 (= Stage 11 E1)(same, 0.996) P2 one component of on"
+PPT v20 第67页 正文,第67页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,有,"ent of one layer: attention at L48 +0.23 [0.22, 0.24](Stage 12 P2, 1,186 papers; P2_patch_comp.csv), M"
+PPT v20 第67页 正文,第67页 正文,0.25,版本 / 编号（Stage、补充、§、页、图、表）,有," the true list looks ""most real"" in 0.255 of papers (chance 0.25)(Stage 12 N1, 8,894 R0/R1 papers; N1_pr"
+PPT v20 第67页 正文,第67页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,有,"st looks ""most real"" in 0.255 of papers (chance 0.25)(Stage 12 N1, 8,894 R0/R1 papers; N1_prior_mc.csv"
+PPT v20 第67页 正文,第67页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,有,"l +0.047 [0.031, 0.062] vs +0.247 with the true title(Stage 12 N2, final L63, 4,621 + 2,220, within bi"
+PPT v20 第67页 正文,第67页 正文,"4,621",其他整数（计数、编号、说明）,有,".062] vs +0.247 with the true title(Stage 12 N2, final L63, 4,621 + 2,220, within bin; stage12_report.md)"
+PPT v20 第67页 正文,第67页 正文,"2,220,",其他整数（计数、编号、说明）,有," +0.247 with the true title(Stage 12 N2, final L63, 4,621 + 2,220, within bin; stage12_report.md) → pure n"
+PPT v20 第67页 正文,第67页 正文,6.12,版本 / 编号（Stage、补充、§、页、图、表）,有, → pure name prior ≈ 19% of the gap (delete-title prior of §6.12: 0.35) F2 lens fitted on author prompts
+PPT v20 第67页 正文,第67页 正文,0,其他整数（计数、编号、说明）,有," 0.35) F2 lens fitted on author prompts: target − control ≤ 0 at L24–L56, +0.238 only at L62(Stage 12"
+PPT v20 第67页 正文,第67页 正文,12,版本 / 编号（Stage、补充、§、页、图、表）,有,": target − control ≤ 0 at L24–L56, +0.238 only at L62(Stage 12 F2, name positions, Stage 11 sample, tr"
+PPT v20 第67页 正文,第67页 正文,11,版本 / 编号（Stage、补充、§、页、图、表）,有,"–L56, +0.238 only at L62(Stage 12 F2, name positions, Stage 11 sample, true − 5 false; F2_author_lens."
+PPT v20 第67页 正文,第67页 正文,5,其他整数（计数、编号、说明）,有,"at L62(Stage 12 F2, name positions, Stage 11 sample, true − 5 false; F2_author_lens.csv) No single ""n"
+PPT v20 第67页 备注,第67页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 12（408 个 GPU 单元全部完成）。P1 一次只替换一个位置：“:” 最多恢复
+PPT v20 第67页 备注,第67页 备注,408,样本 / 计数（篇、位、个、对、token、行）,无,Stage 12（408 个 GPU 单元全部完成）。P1 一次只替换一个位置：“:” 最多恢复 0.1
+PPT v20 第67页 备注,第67页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,Stage 12（408 个 GPU 单元全部完成）。P1 一次只替换一个位置：“:” 最多恢复 0.17〔Stage 12 P1，真标题→false_0，只替换 “:”，L52，最终输出恢复比例，Sta
+PPT v20 第67页 备注,第67页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,"多恢复 0.17〔Stage 12 P1，真标题→false_0，只替换 “:”，L52，最终输出恢复比例，Stage 11 样本 1,186 篇，论文 bootstrap 95% CI [0.156, "
+PPT v20 第67页 备注,第67页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"lse_0，只替换 “:”，L52，最终输出恢复比例，Stage 11 样本 1,186 篇，论文 bootstrap 95% CI [0.156, 0.187]；报告第四部分 Stage 12 P1 表；"
+PPT v20 第67页 备注,第67页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有," 样本 1,186 篇，论文 bootstrap 95% CI [0.156, 0.187]；报告第四部分 Stage 12 P1 表；371_stage12/summary/P1_patch_pos.c"
+PPT v20 第67页 备注,第67页 备注,371,标识符 / 路径 / 编号中的数字,有,"6 篇，论文 bootstrap 95% CI [0.156, 0.187]；报告第四部分 Stage 12 P1 表；371_stage12/summary/P1_patch_pos.csv〕，全部名字位"
+PPT v20 第67页 备注,第67页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,"85〔同上，全部名字位置，L52 0.847 [0.830, 0.864]〕，整个提示 1.00〔同上，= Stage 11 E1，L52 0.996〕。P2 只替换一层的一个组件：L48 注意力 +0."
+PPT v20 第67页 备注,第67页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,"，= Stage 11 E1，L52 0.996〕。P2 只替换一层的一个组件：L48 注意力 +0.23〔Stage 12 P2，标题之后全部 token，1,186 篇，L48 注意力 0.231 ["
+PPT v20 第67页 备注,第67页 备注,371,标识符 / 路径 / 编号中的数字,有,"age 12 P2，标题之后全部 token，1,186 篇，L48 注意力 0.231 [0.221, 0.244]；371_stage12/summary/P2_patch_comp.csv〕，L52–"
+PPT v20 第67页 备注,第67页 备注,4,样本 / 计数（篇、位、个、对、token、行）,有,"224 [0.208, 0.239]〕：先是注意力把标题读进来，然后 MLP 接着处理。N1：不给标题时，真作者列表在 4 个选项里“最像真的”的比例 0.255〔Stage 12 N1，删去标题，R0"
+PPT v20 第67页 备注,第67页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,"读进来，然后 MLP 接着处理。N1：不给标题时，真作者列表在 4 个选项里“最像真的”的比例 0.255〔Stage 12 N1，删去标题，R0/R1 论文 8,894 篇，CI [0.246, 0.2"
+PPT v20 第67页 备注,第67页 备注,371,标识符 / 路径 / 编号中的数字,有,"例 0.255〔Stage 12 N1，删去标题，R0/R1 论文 8,894 篇，CI [0.246, 0.264]；371_stage12/summary/N1_prior_mc.csv〕，与随机的 0"
+PPT v20 第67页 备注,第67页 备注,0.25,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"CI [0.246, 0.264]；371_stage12/summary/N1_prior_mc.csv〕，与随机的 0.25 一样；给真标题后 0.625〔同上，真标题，CI [0.615, 0.635]"
+PPT v20 第67页 备注,第67页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有," [0.615, 0.635]〕。N2：纯名字提示下 target − control 只有 +0.047〔Stage 12 N2，纯名字提示，最终输出 L63，目标 4,621 / 对照 2,220，引"
+PPT v20 第67页 备注,第67页 备注,95%,版本 / 编号（Stage、补充、§、页、图、表）,有,"12 N2，纯名字提示，最终输出 L63，目标 4,621 / 对照 2,220，引用档内差，论文 bootstrap 95% CI [0.031, 0.062]；371_stage12/reports/s"
+PPT v20 第67页 备注,第67页 备注,371,标识符 / 路径 / 编号中的数字,有,"标 4,621 / 对照 2,220，引用档内差，论文 bootstrap 95% CI [0.031, 0.062]；371_stage12/reports/stage12_report.md〕，真标题下"
+PPT v20 第67页 备注,第67页 备注,6.12,版本 / 编号（Stage、补充、§、页、图、表）,有,"〔同上，真标题，[0.229, 0.266]〕，纯名字先验约占 19%〔0.047 ÷ 0.247，由上两数算出；与 §6.12 删标题条件下的先验 0.35 定义不同〕。F2：用作者提示拟合的 lens 在"
+PPT v20 第67页 备注,第67页 备注,0,其他整数（计数、编号、说明）,有,定义不同〕。F2：用作者提示拟合的 lens 在名字位置 L24–L56 的 target − control 都 ≤ 0，只有 L62 为 +0.238〔Stage 12 F2，名字位置，真 − 5 
+PPT v20 第67页 备注,第67页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,名字位置 L24–L56 的 target − control 都 ≤ 0，只有 L62 为 +0.238〔Stage 12 F2，名字位置，真 − 5 个假标题平均，Stage 11 样本，[0.210
+PPT v20 第67页 备注,第67页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"target − control 都 ≤ 0，只有 L62 为 +0.238〔Stage 12 F2，名字位置，真 − 5 个假标题平均，Stage 11 样本，[0.210, 0.267]；371_s"
+PPT v20 第67页 备注,第67页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,"l 都 ≤ 0，只有 L62 为 +0.238〔Stage 12 F2，名字位置，真 − 5 个假标题平均，Stage 11 样本，[0.210, 0.267]；371_stage12/summary/F"
+PPT v20 第67页 备注,第67页 备注,371,标识符 / 路径 / 编号中的数字,有,"38〔Stage 12 F2，名字位置，真 − 5 个假标题平均，Stage 11 样本，[0.210, 0.267]；371_stage12/summary/F2_author_lens.csv〕。"
+PPT v20 第68页 正文,第68页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 13 · X6 X7 The Stage 11 timing holds for a
+PPT v20 第68页 正文,第68页 正文,11,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 13 · X6 X7 The Stage 11 timing holds for all 5 false titles X6:
+PPT v20 第68页 正文,第68页 正文,5,层号,无,Stage 13 · X6 X7 The Stage 11 timing holds for all 5 false titles X6: replacement with each 
+PPT v20 第68页 正文,第68页 正文,5,版本 / 编号（Stage、补充、§、页、图、表）,无,lds for all 5 false titles X6: replacement with each of the 5 false titles · X7: knockout minus the s
+PPT v20 第68页 正文,第68页 正文,5,版本 / 编号（Stage、补充、§、页、图、表）,有,n the false-title run (S = T − F) X6 replacement: mean over 5 false titles 0.821 at L48 and 0.995 at 
+PPT v20 第68页 正文,第68页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"ean over 5 false titles 0.821 at L48 and 0.995 at L52(Stage 13 X6, 1,186 papers, team-cluster CI; x6_r"
+PPT v20 第68页 正文,第68页 正文,0.02,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有," team-cluster CI; x6_recovery.csv); each false title within 0.02 of false_0(x6_report.md) → ""≈80% at L48"
+PPT v20 第68页 正文,第68页 正文,80%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"; each false title within 0.02 of false_0(x6_report.md) → ""≈80% at L48, all from L52"" is not specific t"
+PPT v20 第68页 正文,第68页 正文,0.96,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"token 0.734 at L48, surname continuation 0.893; all roles ≥ 0.96 at L52(X6 roles, all papers; x6x7_roles"
+PPT v20 第68页 正文,第68页 正文,0,其他整数（计数、编号、说明）,有,"le on the false-title run RAISES the true author score (F < 0), so the paper-specific loss S(L0) ≈ 1."
+PPT v20 第68页 正文,第68页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"core (F < 0), so the paper-specific loss S(L0) ≈ 1.00(Stage 13 X7, 1,186 papers, all: 1.004; x7_report"
+PPT v20 第68页 正文,第68页 正文,0.05,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,".018) and all papers; control just misses (0.051, threshold 0.05)(X7, target 593 / control 593; x7_repor"
+PPT v20 第68页 正文,第68页 正文,2026,日期 / 时间,有,"old 0.05)(X7, target 593 / control 593; x7_report.md) Added 2026-11-06, mean of 5 false titles: target +"
+PPT v20 第68页 正文,第68页 正文,11,日期 / 时间,有,".05)(X7, target 593 / control 593; x7_report.md) Added 2026-11-06, mean of 5 false titles: target +0.0"
+PPT v20 第68页 正文,第68页 正文,"06,",日期 / 时间,有,")(X7, target 593 / control 593; x7_report.md) Added 2026-11-06, mean of 5 false titles: target +0.022, "
+PPT v20 第68页 正文,第68页 正文,5,其他整数（计数、编号、说明）,有," 593 / control 593; x7_report.md) Added 2026-11-06, mean of 5 false titles: target +0.022, control +0"
+PPT v20 第68页 正文,第68页 正文,0.05,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"e titles: target +0.022, control +0.042, all +0.028 — all ≤ 0.05, so the claim holds in every group; con"
+PPT v20 第68页 正文,第68页 正文,10,版本 / 编号（Stage、补充、§、页、图、表）,有, control’s 0.051 was one false title’s fluctuation(addendum 10 item 2; b1_x7f_report.md) What changesN
+PPT v20 第68页 正文,第68页 正文,2,版本 / 编号（Stage、补充、§、页、图、表）,有,’s 0.051 was one false title’s fluctuation(addendum 10 item 2; b1_x7f_report.md) What changesNothing 
+PPT v20 第68页 备注,第68页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,无,X6：把 Stage 11 的替换换成 5 个假标题各做一遍，平均恢复 L48 为 0.821、L52 为
+PPT v20 第68页 备注,第68页 备注,5,样本 / 计数（篇、位、个、对、token、行）,无,X6：把 Stage 11 的替换换成 5 个假标题各做一遍，平均恢复 L48 为 0.821、L52 为 0.995〔S
+PPT v20 第68页 备注,第68页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,tage 11 的替换换成 5 个假标题各做一遍，平均恢复 L48 为 0.821、L52 为 0.995〔Stage 13 X6，真标题→5 个假标题平均，标题后全部位置，最终输出恢复比例（均值比），1
+PPT v20 第68页 备注,第68页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"换换成 5 个假标题各做一遍，平均恢复 L48 为 0.821、L52 为 0.995〔Stage 13 X6，真标题→5 个假标题平均，标题后全部位置，最终输出恢复比例（均值比），1,186 篇，团队"
+PPT v20 第68页 备注,第68页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"Stage 13 X6，真标题→5 个假标题平均，标题后全部位置，最终输出恢复比例（均值比），1,186 篇，团队聚类 95% CI L48 [0.806, 0.835]、L52 [0.990, 1.001"
+PPT v20 第68页 备注,第68页 备注,381,标识符 / 路径 / 编号中的数字,有,"聚类 95% CI L48 [0.806, 0.835]、L52 [0.990, 1.001]；报告第四部分 X6 表；381_stage13/summary_x6/x6_recovery.csv〕；每个假"
+PPT v20 第68页 备注,第68页 备注,0.02,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,81_stage13/summary_x6/x6_recovery.csv〕；每个假标题与 false_0 相差不超过 0.02〔381_stage13/reports/x6_report.md；对照组最大 
+PPT v20 第68页 备注,第68页 备注,381,标识符 / 路径 / 编号中的数字,有,age13/summary_x6/x6_recovery.csv〕；每个假标题与 false_0 相差不超过 0.02〔381_stage13/reports/x6_report.md；对照组最大 0.01
+PPT v20 第68页 备注,第68页 备注,381,标识符 / 路径 / 编号中的数字,有,"en 0.893〔X6 角色拆分，全部论文，团队 CI [0.711, 0.757] / [0.880, 0.906]；381_stage13/reports/x6x7_roles.md〕，L52 各角色都"
+PPT v20 第68页 备注,第68页 备注,0.96,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"0.880, 0.906]；381_stage13/reports/x6x7_roles.md〕，L52 各角色都 ≥ 0.96〔同上〕。X7：在假标题运行上做同样的阻断，真作者的分数反而上升（F 为负），所"
+PPT v20 第68页 备注,第68页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"在假标题运行上做同样的阻断，真作者的分数反而上升（F 为负），所以论文特有的损失 S(L0) ≈ 1.00〔Stage 13 X7，S = T − F，1,186 篇，全部 1.004；381_stage"
+PPT v20 第68页 备注,第68页 备注,381,标识符 / 路径 / 编号中的数字,有,"论文特有的损失 S(L0) ≈ 1.00〔Stage 13 X7，S = T − F，1,186 篇，全部 1.004；381_stage13/reports/x7_report.md〕，S(L52) = "
+PPT v20 第68页 备注,第68页 备注,0.05,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"S(L52) = 0.029〔同上，全部论文，团队 CI [0.021, 0.038]〕。预注册判定 S(L52) ≤ 0.05：target 成立（0.018〔X7，target 593 篇，[0.010,"
+PPT v20 第68页 备注,第68页 备注,2026,日期 / 时间,无,"，control 593 篇，[0.033, 0.068]〕），control 要到 L54–L56 才完全不需要标题。2026-11-06 补做（补充 10 第 2 项）：X7 补做了另外 4 个假标题，按"
+PPT v20 第68页 备注,第68页 备注,11,日期 / 时间,无,"rol 593 篇，[0.033, 0.068]〕），control 要到 L54–L56 才完全不需要标题。2026-11-06 补做（补充 10 第 2 项）：X7 补做了另外 4 个假标题，按 5 "
+PPT v20 第68页 备注,第68页 备注,06,日期 / 时间,无," 593 篇，[0.033, 0.068]〕），control 要到 L54–L56 才完全不需要标题。2026-11-06 补做（补充 10 第 2 项）：X7 补做了另外 4 个假标题，按 5 个平均"
+PPT v20 第68页 备注,第68页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,无,".033, 0.068]〕），control 要到 L54–L56 才完全不需要标题。2026-11-06 补做（补充 10 第 2 项）：X7 补做了另外 4 个假标题，按 5 个平均判定，target"
+PPT v20 第68页 备注,第68页 备注,2,版本 / 编号（Stage、补充、§、页、图、表）,无, 0.068]〕），control 要到 L54–L56 才完全不需要标题。2026-11-06 补做（补充 10 第 2 项）：X7 补做了另外 4 个假标题，按 5 个平均判定，target、con
+PPT v20 第68页 备注,第68页 备注,4,样本 / 计数（篇、位、个、对、token、行）,无,rol 要到 L54–L56 才完全不需要标题。2026-11-06 补做（补充 10 第 2 项）：X7 补做了另外 4 个假标题，按 5 个平均判定，target、control 和全部论文都满足预
+PPT v20 第68页 备注,第68页 备注,5,样本 / 计数（篇、位、个、对、token、行）,无,4–L56 才完全不需要标题。2026-11-06 补做（补充 10 第 2 项）：X7 补做了另外 4 个假标题，按 5 个平均判定，target、control 和全部论文都满足预注册判据（S(L5
+PPT v20 第68页 备注,第68页 备注,0.05,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,t、control 和全部论文都满足预注册判据（S(L52) 分别为 +0.022、+0.042、+0.028，均 ≤ 0.05）〔X7 五个假标题平均，target 593 / control 593 / 
+PPT v20 第68页 备注,第68页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"0.05）〔X7 五个假标题平均，target 593 / control 593 / 全部 1,186 篇，团队聚类 95% CI [0.015, 0.029] / [0.028, 0.055] / [0"
+PPT v20 第68页 备注,第68页 备注,381,标识符 / 路径 / 编号中的数字,有,"队聚类 95% CI [0.015, 0.029] / [0.028, 0.055] / [0.022, 0.035]；381_stage13/reports/b1_x7f_report.md〕；原来对照组"
+PPT v20 第69页 正文,第69页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,无,"Stage 13 · M3 X1 Same title, different question "
+PPT v20 第69页 正文,第69页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,有," ≥ 0.92 at L16–L40, but never above the L4 text level(Stage 13 M3, 9,108 papers, team folds; m3_report"
+PPT v20 第69页 正文,第69页 正文,0,版本 / 编号（Stage、补充、§、页、图、表）,有,"eport.md) (year T − T(L4) −0.03 to −0.06)(same, CIs exclude 0) → M3 does not support H2 M3 at the col"
+PPT v20 第69页 正文,第69页 正文,0.5,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,Is exclude 0) → M3 does not support H2 M3 at the colon: T < 0.5 → the state is already organised by the
+PPT v20 第69页 正文,第69页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"0), 0.42 (L48) whichever question the state came from(Stage 13 X1, test 582 pairs, team CI; x1_report."
+PPT v20 第69页 正文,第69页 正文,0.02,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"t 582 pairs, team CI; x1_report.md); authors − year within ±0.02, except a small +0.019 at L48(same, [0."
+PPT v20 第69页 正文,第69页 正文,2026,日期 / 时间,有," small +0.019 at L48(same, [0.012, 0.026]) Retrieval (added 2026-11-05): no layer retrieves the paper ac"
+PPT v20 第69页 正文,第69页 正文,11,日期 / 时间,有,"l +0.019 at L48(same, [0.012, 0.026]) Retrieval (added 2026-11-05): no layer retrieves the paper acros"
+PPT v20 第69页 正文,第69页 正文,05,日期 / 时间,有,"0.019 at L48(same, [0.012, 0.026]) Retrieval (added 2026-11-05): no layer retrieves the paper across q"
+PPT v20 第69页 备注,第69页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"M3：同一篇论文换三种问法，标题最后一个 token 上的迁移比 T 在 L16–L40 都 ≥ 0.92〔Stage 13 M3，9,108 篇，按作者团队分 5 折的 probe，迁移比 = 跨问法成"
+PPT v20 第69页 备注,第69页 备注,5,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"token 上的迁移比 T 在 L16–L40 都 ≥ 0.92〔Stage 13 M3，9,108 篇，按作者团队分 5 折的 probe，迁移比 = 跨问法成绩 ÷ 同问法成绩；报告第四部分 M3 "
+PPT v20 第69页 备注,第69页 备注,381,标识符 / 路径 / 编号中的数字,有,"3，9,108 篇，按作者团队分 5 折的 probe，迁移比 = 跨问法成绩 ÷ 同问法成绩；报告第四部分 M3 表；381_stage13/reports/m3_report.md〕，但按补充 2 只看"
+PPT v20 第69页 备注,第69页 备注,2,版本 / 编号（Stage、补充、§、页、图、表）,有, ÷ 同问法成绩；报告第四部分 M3 表；381_stage13/reports/m3_report.md〕，但按补充 2 只看相对 L4 的变化：年份 T − T(L4) 为 −0.03 到 −0.0
+PPT v20 第69页 备注,第69页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,md〕，但按补充 2 只看相对 L4 的变化：年份 T − T(L4) 为 −0.03 到 −0.06〔同上，团队聚类 95% CI 都不含 0；summary_m3/m3_transfer.csv〕，不高
+PPT v20 第69页 备注,第69页 备注,0,其他整数（计数、编号、说明）,有,只看相对 L4 的变化：年份 T − T(L4) 为 −0.03 到 −0.06〔同上，团队聚类 95% CI 都不含 0；summary_m3/m3_transfer.csv〕，不高于文字水平，所以 
+PPT v20 第69页 备注,第69页 备注,0.5,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,summary_m3/m3_transfer.csv〕，不高于文字水平，所以 M3 不支持 H2。“:” 位置 T < 0.5〔同上〕，状态已按问题重新组织。X1：把 A 在别的问法下的标题状态替换进 B 
+PPT v20 第69页 备注,第69页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,下的标题状态替换进 B 的作者提示，恢复 R 在 L24 约 0.99、L40 0.92、L48 0.42〔Stage 13 X1，测试集 582 对，作者问法来源，团队聚类 95% CI；381_sta
+PPT v20 第69页 备注,第69页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有, 约 0.99、L40 0.92、L48 0.42〔Stage 13 X1，测试集 582 对，作者问法来源，团队聚类 95% CI；381_stage13/reports/x1_report.md〕，三种
+PPT v20 第69页 备注,第69页 备注,381,标识符 / 路径 / 编号中的数字,有,、L40 0.92、L48 0.42〔Stage 13 X1，测试集 582 对，作者问法来源，团队聚类 95% CI；381_stage13/reports/x1_report.md〕，三种来源几乎相同；
+PPT v20 第69页 备注,第69页 备注,0.02,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"95% CI；381_stage13/reports/x1_report.md〕，三种来源几乎相同；作者 − 年份在 ±0.02 以内，只有 L48 有 +0.019〔同上，[0.012, 0.026]〕。答"
+PPT v20 第69页 备注,第69页 备注,1,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,", 0.026]〕。答辩后补算的跨任务检索（X5 预注册曲线）也没有一层高于 L4〔X5 检索，9,108 篇，top-1；381_stage13/reports/x5_retrieval.md；事后补"
+PPT v20 第69页 备注,第69页 备注,381,标识符 / 路径 / 编号中的数字,有,"0.026]〕。答辩后补算的跨任务检索（X5 预注册曲线）也没有一层高于 L4〔X5 检索，9,108 篇，top-1；381_stage13/reports/x5_retrieval.md；事后补算〕。 "
+PPT v20 第69页 备注,第69页 备注,2026,日期 / 时间,有,"检索，9,108 篇，top-1；381_stage13/reports/x5_retrieval.md；事后补算〕。 2026-11-06（批次 1 第 1 项）：X1–X4 改为给全部作者打分（全部名字 "
+PPT v20 第69页 备注,第69页 备注,11,日期 / 时间,有,108 篇，top-1；381_stage13/reports/x5_retrieval.md；事后补算〕。 2026-11-06（批次 1 第 1 项）：X1–X4 改为给全部作者打分（全部名字 tok
+PPT v20 第69页 备注,第69页 备注,06,日期 / 时间,有, 篇，top-1；381_stage13/reports/x5_retrieval.md；事后补算〕。 2026-11-06（批次 1 第 1 项）：X1–X4 改为给全部作者打分（全部名字 token）
+PPT v20 第69页 备注,第69页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,-1；381_stage13/reports/x5_retrieval.md；事后补算〕。 2026-11-06（批次 1 第 1 项）：X1–X4 改为给全部作者打分（全部名字 token）并按作者排
+PPT v20 第69页 备注,第69页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,81_stage13/reports/x5_retrieval.md；事后补算〕。 2026-11-06（批次 1 第 1 项）：X1–X4 改为给全部作者打分（全部名字 token）并按作者排位分层，
+PPT v20 第69页 备注,第69页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"X1 仍与任务无关，L48 有一点小而确实的任务依赖（作者 − 年份 +0.024 [0.019, 0.030]〔补充 10 第 1 项，测试集，团队聚类 95% CI；381_stage13/repor"
+PPT v20 第69页 备注,第69页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,"任务无关，L48 有一点小而确实的任务依赖（作者 − 年份 +0.024 [0.019, 0.030]〔补充 10 第 1 项，测试集，团队聚类 95% CI；381_stage13/reports/b"
+PPT v20 第69页 备注,第69页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"而确实的任务依赖（作者 − 年份 +0.024 [0.019, 0.030]〔补充 10 第 1 项，测试集，团队聚类 95% CI；381_stage13/reports/b1_xall_report.m"
+PPT v20 第69页 备注,第69页 备注,381,标识符 / 路径 / 编号中的数字,有,"赖（作者 − 年份 +0.024 [0.019, 0.030]〔补充 10 第 1 项，测试集，团队聚类 95% CI；381_stage13/reports/b1_xall_report.md〕）。"
+PPT v20 第70页 正文,第70页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 13 · X4 X3 Patchscope and paraphrases X4: 
+PPT v20 第70页 正文,第70页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,有," author: decodable from L8, D = +0.046 [0.035, 0.059](Stage 13 X4, test split, team CI; x4_report.md);"
+PPT v20 第70页 正文,第70页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"l than a word-matched paper beyond L4, peak L36 +0.16(Stage 13 X3, test 552 papers, G′ − G′(L4), team "
+PPT v20 第70页 备注,第70页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"标题状态注入“X 的第一作者 / 年份 / 领域是”提示。第一作者从 L8 起可解码，D = +0.046〔Stage 13 X4，测试集，团队聚类 95% CI [0.035, 0.059]；报告第四部"
+PPT v20 第70页 备注,第70页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"/ 年份 / 领域是”提示。第一作者从 L8 起可解码，D = +0.046〔Stage 13 X4，测试集，团队聚类 95% CI [0.035, 0.059]；报告第四部分 X4 表；381_stage"
+PPT v20 第70页 备注,第70页 备注,381,标识符 / 路径 / 编号中的数字,有,".046〔Stage 13 X4，测试集，团队聚类 95% CI [0.035, 0.059]；报告第四部分 X4 表；381_stage13/reports/x4_report.md〕；年份要到 L40，"
+PPT v20 第70页 备注,第70页 备注,381,标识符 / 路径 / 编号中的数字,有,"要在姓的第一个 token 上（+0.066〔X4 按 token 角色，1,178 篇，[0.045, 0.088]；381_stage13/summary_x1x4/x4_rolesplit.csv〕）"
+PPT v20 第70页 备注,第70页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,标题在 L28–L40 比用词相近的近邻 D 更接近原标题，超出 L4 文字水平，最高 L36 +0.16〔Stage 13 X3，主分析测试集 552 篇，G′ − G′(L4)，团队 CI [0.14
+PPT v20 第70页 备注,第70页 备注,381,标识符 / 路径 / 编号中的数字,有,"6〔Stage 13 X3，主分析测试集 552 篇，G′ − G′(L4)，团队 CI [0.146, 0.171]；381_stage13/reports/x3_report.md〕；行为上保留约 90"
+PPT v20 第70页 备注,第70页 备注,381,标识符 / 路径 / 编号中的数字,有,4]〕。事后加的检验：不认识作者的句子向量模型在用词匹配子集上也有相当优势，target 与 control 没有差别〔381_stage13/reports/x3_textbase_recovery.md
+PPT v20 第70页 备注,第70页 备注,2026,日期 / 时间,有,e_recovery.md、x3_groupsplit.md〕，所以只能说中间层表示了标题的意思，不能与论文身份区分。 2026-11-06（批次 1 第 1 项，全部作者）：X3 改写标题保留约 90% 的
+PPT v20 第70页 备注,第70页 备注,11,日期 / 时间,有,overy.md、x3_groupsplit.md〕，所以只能说中间层表示了标题的意思，不能与论文身份区分。 2026-11-06（批次 1 第 1 项，全部作者）：X3 改写标题保留约 90% 的作者偏
+PPT v20 第70页 备注,第70页 备注,06,日期 / 时间,有,ry.md、x3_groupsplit.md〕，所以只能说中间层表示了标题的意思，不能与论文身份区分。 2026-11-06（批次 1 第 1 项，全部作者）：X3 改写标题保留约 90% 的作者偏好，t
+PPT v20 第70页 备注,第70页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,x3_groupsplit.md〕，所以只能说中间层表示了标题的意思，不能与论文身份区分。 2026-11-06（批次 1 第 1 项，全部作者）：X3 改写标题保留约 90% 的作者偏好，target
+PPT v20 第70页 备注,第70页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,roupsplit.md〕，所以只能说中间层表示了标题的意思，不能与论文身份区分。 2026-11-06（批次 1 第 1 项，全部作者）：X3 改写标题保留约 90% 的作者偏好，target 与 c
+PPT v20 第70页 备注,第70页 备注,3,版本 / 编号（Stage、补充、§、页、图、表）,有,"注册在测试集上不显著（L8 +0.023 [−0.001, +0.048]，v42_paper_vs_team.md §3）；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再"
+PPT v20 第70页 备注,第70页 备注,381,标识符 / 路径 / 编号中的数字,有,，这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）〔381_stage13/reports/b1_xall_report.md〕。
+PPT v20 第71页 正文,第71页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 13 · X2 X2: swap only a subspace Patch onl
+PPT v20 第71页 正文,第71页 正文,9,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,无," swap only a subspace Patch only the paper-attribute (S_id, 9-dim) or the author (S_auth, 10-dim) com"
+PPT v20 第71页 正文,第71页 正文,10,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,无,"ly the paper-attribute (S_id, 9-dim) or the author (S_auth, 10-dim) component of A’s title states into"
+PPT v20 第71页 正文,第71页 正文,95%,版本 / 编号（Stage、补充、§、页、图、表）,无, of A’s title states into B · test 582 pairs · team-cluster 95% CI Carry: S_id at L40 moves +0.005 of t
+PPT v20 第71页 正文,第71页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"auth at L48 moves +0.018 (random +0.003, full +0.428)(Stage 13 X2, test 582 pairs; x2_report.md Verdic"
+PPT v20 第71页 正文,第71页 正文,0.5,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,ict) Pre-registered verdict: H2 not supported (R_id 0.005 < 0.5 × R_full 0.460); H3 passes (R_auth − R_
+PPT v20 第71页 正文,第71页 正文,5,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"he full replacement(subspace fits on 5,041 training papers, 5 team folds; x2_report.md) Remove arm: s"
+PPT v20 第71页 备注,第71页 备注,6,版本 / 编号（Stage、补充、§、页、图、表）,无,X2 只替换子空间（预注册补充 6，2026-11-05 完成）。在 B 的作者提示里只把标题位置状态在某个子空间
+PPT v20 第71页 备注,第71页 备注,2026,日期 / 时间,有,X2 只替换子空间（预注册补充 6，2026-11-05 完成）。在 B 的作者提示里只把标题位置状态在某个子空间上的分量换
+PPT v20 第71页 备注,第71页 备注,11,日期 / 时间,有,X2 只替换子空间（预注册补充 6，2026-11-05 完成）。在 B 的作者提示里只把标题位置状态在某个子空间上的分量换成 A
+PPT v20 第71页 备注,第71页 备注,05,日期 / 时间,有,X2 只替换子空间（预注册补充 6，2026-11-05 完成）。在 B 的作者提示里只把标题位置状态在某个子空间上的分量换成 A 的：
+PPT v20 第71页 备注,第71页 备注,9,其他整数（计数、编号、说明）,有,）。在 B 的作者提示里只把标题位置状态在某个子空间上的分量换成 A 的：论文属性子空间 S_id（年份、引用数、领域，9 维）在 L40 只搬动 +0.005〔Stage 13 X2，测试集 582 
+PPT v20 第71页 备注,第71页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,的分量换成 A 的：论文属性子空间 S_id（年份、引用数、领域，9 维）在 L40 只搬动 +0.005〔Stage 13 X2，测试集 582 对，R_S（均值比）；随机子空间 +0.003，完整替换
+PPT v20 第71页 备注,第71页 备注,381,标识符 / 路径 / 编号中的数字,有,005〔Stage 13 X2，测试集 582 对，R_S（均值比）；随机子空间 +0.003，完整替换 +0.920；381_stage13/reports/x2_report.md Verdict 表〕
+PPT v20 第71页 备注,第71页 备注,0.5,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,；随机 +0.003，完整替换 +0.428〕。按预注册判据，H3 通过、H2 不支持〔H2：R_id 0.005 < 0.5 × R_full 0.460；H3：R_auth − R_id +0.014 
+PPT v20 第71页 备注,第71页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有," R_full 0.460；H3：R_auth − R_id +0.014 [+0.008, +0.020]，团队聚类 95% CI；同上〕。但作者子空间本身几乎解码不出作者（留出 R² ≤ 0.003〔S"
+PPT v20 第71页 备注,第71页 备注,5,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"；同上〕。但作者子空间本身几乎解码不出作者（留出 R² ≤ 0.003〔S_auth 作者映射，5,041 篇训练论文，5 折团队留出 R² 0.0009–0.0033；x2_report.md Sub"
+PPT v20 第71页 备注,第71页 备注,1,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,Subspace fits 表〕，第一作者名字 token 猜中率 0.078–0.079〔同表 author top-1，L16–L48 各层〕，低于常数基线 0.080〔同表 majority〕），
+PPT v20 第71页 备注,第71页 备注,9,其他整数（计数、编号、说明）,有,预注册的出入：X2 的 H3 判定按规则通过，但因子空间本身无解码能力而降级，与 X3 的处理方式相同；S_id 只有 9 维。 2026-11-06（批次 1 第 1 项）：用全部作者重新拟合作者子空
+PPT v20 第71页 备注,第71页 备注,2026,日期 / 时间,有,入：X2 的 H3 判定按规则通过，但因子空间本身无解码能力而降级，与 X3 的处理方式相同；S_id 只有 9 维。 2026-11-06（批次 1 第 1 项）：用全部作者重新拟合作者子空间后，搬动量从 
+PPT v20 第71页 备注,第71页 备注,11,日期 / 时间,有,的 H3 判定按规则通过，但因子空间本身无解码能力而降级，与 X3 的处理方式相同；S_id 只有 9 维。 2026-11-06（批次 1 第 1 项）：用全部作者重新拟合作者子空间后，搬动量从 0.0
+PPT v20 第71页 备注,第71页 备注,06,日期 / 时间,有,3 判定按规则通过，但因子空间本身无解码能力而降级，与 X3 的处理方式相同；S_id 只有 9 维。 2026-11-06（批次 1 第 1 项）：用全部作者重新拟合作者子空间后，搬动量从 0.016 
+PPT v20 第71页 备注,第71页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,则通过，但因子空间本身无解码能力而降级，与 X3 的处理方式相同；S_id 只有 9 维。 2026-11-06（批次 1 第 1 项）：用全部作者重新拟合作者子空间后，搬动量从 0.016 升到 0.
+PPT v20 第71页 备注,第71页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,但因子空间本身无解码能力而降级，与 X3 的处理方式相同；S_id 只有 9 维。 2026-11-06（批次 1 第 1 项）：用全部作者重新拟合作者子空间后，搬动量从 0.016 升到 0.032（
+PPT v20 第71页 备注,第71页 备注,381,标识符 / 路径 / 编号中的数字,有,升到 0.032（完整替换的约 7%），但子空间本身仍几乎解码不出作者（留出 R² ≤ 0.009），H3 仍证据不足〔381_stage13/reports/b1_xall_report.md “X2: 
+PPT v20 第72页 正文,第72页 正文,13,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 13 · addendum 9 The probe on every name to
+PPT v20 第72页 正文,第72页 正文,9,版本 / 编号（Stage、补充、§、页、图、表）,无,Stage 13 · addendum 9 The probe on every name token Title-pos
+PPT v20 第72页 正文,第72页 正文,95%,版本 / 编号（Stage、补充、§、页、图、表）,无,"alse_0 · 1,395–1,754 target + control papers · team-cluster 95% CI Surname first token: +0.071 [0.058, "
+PPT v20 第72页 正文,第72页 正文,9,版本 / 编号（Stage、补充、§、页、图、表）,有,"8 [0.011, 0.045] → both pre-registered checks pass(addendum 9; e4b_alltok.md §5) Given name first tok"
+PPT v20 第72页 正文,第72页 正文,5,版本 / 编号（Stage、补充、§、页、图、表）,有, both pre-registered checks pass(addendum 9; e4b_alltok.md §5) Given name first token strongest: L40 
+PPT v20 第72页 正文,第72页 正文,0,其他整数（计数、编号、说明）,有,"or’s first token, mostly an initial Permutation controls: ≈ 0 on surname and given-name tokens; ≈ +0."
+PPT v20 第72页 正文,第72页 正文,7,版本 / 编号（Stage、补充、§、页、图、表）,有,"f the initial’s signal is not paper-specific(e4b_alltok.md §7) Target − control, three versions: pre-"
+PPT v20 第72页 正文,第72页 正文,5,其他整数（计数、编号、说明）,无,"54 papers): surname + from L24 (L40 +0.030 [0.013, 0.048]); 5-title mean (leaky, sensitivity only): s"
+PPT v20 第72页 正文,第72页 正文,1,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"y_run_layer.csv V0 / Vpd / V5x0) Per-donor exclusion (batch 1)Per-donor exclusion, 4,654 papers: surn"
+PPT v20 第72页 正文,第72页 正文,+0.033,层号,有,"lusion, 4,654 papers: surname L40 +0.076, surname − initial +0.033. Without the title-reuse exclusion (C-3"
+PPT v20 第72页 正文,第72页 正文,"3,",其他整数（计数、编号、说明）,有,"name − initial +0.033. Without the title-reuse exclusion (C-3, C-3b) the signals are unchanged but inc"
+PPT v20 第72页 正文,第72页 正文,3,标识符 / 路径 / 编号中的数字,有,"− initial +0.033. Without the title-reuse exclusion (C-3, C-3b) the signals are unchanged but include"
+PPT v20 第72页 备注,第72页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,补充 9（答辩后新增，分析计划在看结果前写定）：把标题位置 probe 扩展到每位作者的
+PPT v20 第72页 备注,第72页 备注,"1,395",样本 / 计数（篇、位、个、对、token、行）,有,"ken，并按角色分开。在 L40，姓的第一个 token 的标题特异信号为 +0.071 [0.058, 0.085]〔1,395 篇，剔除标题复用；e4b_alltok.md 第 5 节〕，高于首字母的 +0"
+PPT v20 第72页 备注,第72页 备注,5,版本 / 编号（Stage、补充、§、页、图、表）,有,"题特异信号为 +0.071 [0.058, 0.085]〔1,395 篇，剔除标题复用；e4b_alltok.md 第 5 节〕，高于首字母的 +0.044 [0.030, 0.057]〔同上，1,59"
+PPT v20 第72页 备注,第72页 备注,"1,590",样本 / 计数（篇、位、个、对、token、行）,有,"剔除标题复用；e4b_alltok.md 第 5 节〕，高于首字母的 +0.044 [0.030, 0.057]〔同上，1,590 篇〕，差为 +0.028 [0.011, 0.045]〔同上，两项均值之差〕，"
+PPT v20 第72页 备注,第72页 备注,0,其他整数（计数、编号、说明）,有,"0.142]〕，L56 +0.163〔[0.145, 0.181]〕）。两种置换对照在姓、名的其余 token 上约为 0；在首字母上约为 +0.02〔随机论文 / 同领域论文的作者作金标准；e4b_a"
+PPT v20 第72页 备注,第72页 备注,7,版本 / 编号（Stage、补充、§、页、图、表）,有,ken 上约为 0；在首字母上约为 +0.02〔随机论文 / 同领域论文的作者作金标准；e4b_alltok.md 第 7 节〕，说明首字母的信号约一半不针对具体论文。标题位置 probe 的 targ
+PPT v20 第72页 备注,第72页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,"0]、L40 +0.014 [−0.002, +0.030]、L48 +0.031 [0.014, 0.048]。③ ""5 个假标题平均""版（仅敏感性参考：论文同①，只按 false_0 剔除，fals"
+PPT v20 第72页 备注,第72页 备注,"1,706",其他整数（计数、编号、说明）,有,"除（姓 4,402 / 5,580；名 42%、首字母 72%；v5x0_leak_share.json），含泄漏；名 1,706、姓 1,395、首字母 1,590 篇）：名 L40 +0.047 [0.01"
+PPT v20 第72页 备注,第72页 备注,381,标识符 / 路径 / 编号中的数字,有,048]）。名的信号在三版中一致；姓的证据弱，只来自事后版本。首字母在个别层为正、模式不一致（未做多层校正），不作结论〔381_stage13/summary_b1_e4b5/perdonor_by_run
+PPT v20 第72页 备注,第72页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,ary_b1_e4b5/perdonor_by_run_layer.csv；b1_e4b5_report.md〕。批次 1 第 4 项（2026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留
+PPT v20 第72页 备注,第72页 备注,4,版本 / 编号（Stage、补充、§、页、图、表）,有,"b1_e4b5/perdonor_by_run_layer.csv；b1_e4b5_report.md〕。批次 1 第 4 项（2026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留 4,6"
+PPT v20 第72页 备注,第72页 备注,2026,日期 / 时间,有,"4b5/perdonor_by_run_layer.csv；b1_e4b5_report.md〕。批次 1 第 4 项（2026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇"
+PPT v20 第72页 备注,第72页 备注,11,日期 / 时间,有,"erdonor_by_run_layer.csv；b1_e4b5_report.md〕。批次 1 第 4 项（2026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约"
+PPT v20 第72页 备注,第72页 备注,06,日期 / 时间,有,"onor_by_run_layer.csv；b1_e4b5_report.md〕。批次 1 第 4 项（2026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1."
+PPT v20 第72页 备注,第72页 备注,"4,654",样本 / 计数（篇、位、个、对、token、行）,有,"4b5_report.md〕。批次 1 第 4 项（2026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0"
+PPT v20 第72页 备注,第72页 备注,0,其他整数（计数、编号、说明）,有,"（2026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 toke"
+PPT v20 第72页 备注,第72页 备注,4,样本 / 计数（篇、位、个、对、token、行）,有,"026-11-06）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 token "
+PPT v20 第72页 备注,第72页 备注,"1,395",样本 / 计数（篇、位、个、对、token、行）,有,"题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 token 为 +0.071）：L40 姓首 token "
+PPT v20 第72页 备注,第72页 备注,"4,654",样本 / 计数（篇、位、个、对、token、行）,有,"n +0.076 [0.068, 0.083]，姓 − 首字母 +0.033 [0.023, 0.042]，逐个排除版（4,654 篇）第一个 token +0.066；原 E4b（1,395 篇）+0.061"
+PPT v20 第72页 备注,第72页 备注,"1,395",样本 / 计数（篇、位、个、对、token、行）,有," +0.033 [0.023, 0.042]，逐个排除版（4,654 篇）第一个 token +0.066；原 E4b（1,395 篇）+0.061；置换对照首字母仍 +0.018，其余 ≈ 0；硬检查 E4b"
+PPT v20 第72页 备注,第72页 备注,0,其他整数（计数、编号、说明）,有,"）第一个 token +0.066；原 E4b（1,395 篇）+0.061；置换对照首字母仍 +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS〔381_stage13/re"
+PPT v20 第72页 备注,第72页 备注,381,标识符 / 路径 / 编号中的数字,有,95 篇）+0.061；置换对照首字母仍 +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS〔381_stage13/reports/b1_e4b5_report.md〕。不剔除标
+PPT v20 第72页 备注,第72页 备注,13,版本 / 编号（Stage、补充、§、页、图、表）,有,ASS〔381_stage13/reports/b1_e4b5_report.md〕。不剔除标题复用的敏感性分析（补充 13 C-3、C-3b）含泄漏，只作敏感性分析，不作结论：C-3b 硬检查 PASS
+PPT v20 第72页 备注,第72页 备注,3,其他整数（计数、编号、说明）,有,81_stage13/reports/b1_e4b5_report.md〕。不剔除标题复用的敏感性分析（补充 13 C-3、C-3b）含泄漏，只作敏感性分析，不作结论：C-3b 硬检查 PASS，L40
+PPT v20 第72页 备注,第72页 备注,3,标识符 / 路径 / 编号中的数字,有,tage13/reports/b1_e4b5_report.md〕。不剔除标题复用的敏感性分析（补充 13 C-3、C-3b）含泄漏，只作敏感性分析，不作结论：C-3b 硬检查 PASS，L40 姓的第
+PPT v20 第72页 备注,第72页 备注,3,标识符 / 路径 / 编号中的数字,有,_report.md〕。不剔除标题复用的敏感性分析（补充 13 C-3、C-3b）含泄漏，只作敏感性分析，不作结论：C-3b 硬检查 PASS，L40 姓的第一个 token +0.077 [0.071
+PPT v20 第72页 备注,第72页 备注,"6,841",样本 / 计数（篇、位、个、对、token、行）,有,"84]、首字母 +0.034 [0.029, 0.039]、姓 − 首字母 +0.043 [0.035, 0.051]〔6,841 篇；c13_C3b.md〕，target − control 的区间几乎处处在"
+PPT v20 第72页 备注,第72页 备注,0,其他整数（计数、编号、说明）,有,"0.035, 0.051]〔6,841 篇；c13_C3b.md〕，target − control 的区间几乎处处在 0 以上，与 C-3 一样。"
+PPT v20 第72页 备注,第72页 备注,3,其他整数（计数、编号、说明）,有,"051]〔6,841 篇；c13_C3b.md〕，target − control 的区间几乎处处在 0 以上，与 C-3 一样。"
+PPT v20 第81页 正文,第81页 正文,10,其他整数（计数、编号、说明）,无, after the defence · redo programme Redo programme (addenda 10–14) All rules fixed before the results 
+PPT v20 第81页 正文,第81页 正文,14,其他整数（计数、编号、说明）,无,ter the defence · redo programme Redo programme (addenda 10–14) All rules fixed before the results · r
+PPT v20 第81页 正文,第81页 正文,2026,日期 / 时间,无,e published numbers is a hard check for every item · status 2026-11-08 Done: X7 with five false titles; 
+PPT v20 第81页 正文,第81页 正文,11,日期 / 时间,无,lished numbers is a hard check for every item · status 2026-11-08 Done: X7 with five false titles; all
+PPT v20 第81页 正文,第81页 正文,08,日期 / 时间,无,hed numbers is a hard check for every item · status 2026-11-08 Done: X7 with five false titles; all-to
+PPT v20 第81页 正文,第81页 正文,9,版本 / 编号（Stage、补充、§、页、图、表）,无, Done: X7 with five false titles; all-token probe (addendum 9); CPU items C-1 to C-5; C-3b (no-exclus
+PPT v20 第81页 正文,第81页 正文,1,其他整数（计数、编号、说明）,无,"ive false titles; all-token probe (addendum 9); CPU items C-1 to C-5; C-3b (no-exclusion sensitivity,"
+PPT v20 第81页 正文,第81页 正文,5,其他整数（计数、编号、说明）,无,"se titles; all-token probe (addendum 9); CPU items C-1 to C-5; C-3b (no-exclusion sensitivity, includ"
+PPT v20 第81页 正文,第81页 正文,3,标识符 / 路径 / 编号中的数字,无,"tles; all-token probe (addendum 9); CPU items C-1 to C-5; C-3b (no-exclusion sensitivity, includes le"
+PPT v20 第81页 正文,第81页 正文,"1,",配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,无,"sion sensitivity, includes leakage, not a conclusion) Batch 1, done: X1–X4 for all authors → conclusio"
+PPT v20 第81页 正文,第81页 正文,"4,654",样本 / 计数（篇、位、个、对、token、行）,有,"nsufficient)(b1_xall_report.md) · E4b, per-donor exclusion (4,654 papers, ~1.5 false titles each): surnam"
+PPT v20 第81页 正文,第81页 正文,"1,",配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,", 0.083], surname − initial +0.033(b1_e4b5_report.md) Batch 1, done: P1 / P2 with five false titles (f"
+PPT v20 第81页 正文,第81页 正文,0,其他整数（计数、编号、说明）,有,"primary, false_0 beside): every mean5 − false_0 CI includes 0 → conclusions unchanged; colon numerato"
+PPT v20 第81页 正文,第81页 正文,2,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有," title, different sets, unweighted(b1_p12f_report.md) Batch 2 (addenda 11, 12): running; C / D comple"
+PPT v20 第81页 正文,第81页 正文,"11,",配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"ferent sets, unweighted(b1_p12f_report.md) Batch 2 (addenda 11, 12): running; C / D completion done (C "
+PPT v20 第81页 正文,第81页 正文,12,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"nt sets, unweighted(b1_p12f_report.md) Batch 2 (addenda 11, 12): running; C / D completion done (C 462"
+PPT v20 第81页 正文,第81页 正文,462,版本 / 编号（Stage、补充、§、页、图、表）,有,"Batch 2 (addenda 11, 12): running; C / D completion done (C 462 papers; within bin 258 of 462 vs A: sam"
+PPT v20 第81页 正文,第81页 正文,2,其他整数（计数、编号、说明）,有,ne (C 462 papers; within bin 258 of 462 vs A: same timing); 2-11 stopped by its hard check → 2-11b (a
+PPT v20 第81页 正文,第81页 正文,11,其他整数（计数、编号、说明）,有, (C 462 papers; within bin 258 of 462 vs A: same timing); 2-11 stopped by its hard check → 2-11b (adde
+PPT v20 第81页 正文,第81页 正文,2,其他整数（计数、编号、说明）,有,"of 462 vs A: same timing); 2-11 stopped by its hard check → 2-11b (addendum 15), shard 0 only, queued"
+PPT v20 第81页 正文,第81页 正文,11,标识符 / 路径 / 编号中的数字,有," 462 vs A: same timing); 2-11 stopped by its hard check → 2-11b (addendum 15), shard 0 only, queued; o"
+PPT v20 第81页 正文,第81页 正文,15,版本 / 编号（Stage、补充、§、页、图、表）,有,"e timing); 2-11 stopped by its hard check → 2-11b (addendum 15), shard 0 only, queued; other items in "
+PPT v20 第81页 正文,第81页 正文,0,其他整数（计数、编号、说明）,有,"2-11 stopped by its hard check → 2-11b (addendum 15), shard 0 only, queued; other items in progress; "
+PPT v20 第81页 正文,第81页 正文,1,其他整数（计数、编号、说明）,有,", queued; other items in progress; deviations recorded (D12-1 to D12-3; 2-7 source = year-free X4 pro"
+PPT v20 第81页 正文,第81页 正文,3,其他整数（计数、编号、说明）,有, other items in progress; deviations recorded (D12-1 to D12-3; 2-7 source = year-free X4 prompt)(prer
+PPT v20 第81页 正文,第81页 正文,2,其他整数（计数、编号、说明）,有,her items in progress; deviations recorded (D12-1 to D12-3; 2-7 source = year-free X4 prompt)(prereg_
+PPT v20 第81页 正文,第81页 正文,7,其他整数（计数、编号、说明）,有,r items in progress; deviations recorded (D12-1 to D12-3; 2-7 source = year-free X4 prompt)(prereg_ad
+PPT v20 第81页 正文,第81页 正文,3,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"ar-free X4 prompt)(prereg_addendum12_deviations.json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L4"
+PPT v20 第81页 正文,第81页 正文,14,版本 / 编号（Stage、补充、§、页、图、表）,有,"rompt)(prereg_addendum12_deviations.json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L2"
+PPT v20 第81页 正文,第81页 正文,3,代码行号 / 文件内位置,有,")(prereg_addendum12_deviations.json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: q"
+PPT v20 第81页 正文,第81页 正文,1,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"prereg_addendum12_deviations.json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: que"
+PPT v20 第81页 正文,第81页 正文,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"ddendum12_deviations.json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: queued, star"
+PPT v20 第81页 正文,第81页 正文,3,其他整数（计数、编号、说明）,有,"ns.json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: queued, start after batch 2 ·"
+PPT v20 第81页 正文,第81页 正文,2,其他整数（计数、编号、说明）,有,".json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: queued, start after batch 2 · 3"
+PPT v20 第81页 正文,第81页 正文,2,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"age 10 L41–L47, L49 · 3-2 L0–L23: queued, start after batch 2 · 3-3 Stage 7.1B fast path: stopped (de"
+PPT v20 第81页 正文,第81页 正文,3,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"10 L41–L47, L49 · 3-2 L0–L23: queued, start after batch 2 · 3-3 Stage 7.1B fast path: stopped (deviat"
+PPT v20 第81页 正文,第81页 正文,3,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有," L41–L47, L49 · 3-2 L0–L23: queued, start after batch 2 · 3-3 Stage 7.1B fast path: stopped (deviatio"
+PPT v20 第81页 正文,第81页 正文,7.1,标识符 / 路径 / 编号中的数字,有,", L49 · 3-2 L0–L23: queued, start after batch 2 · 3-3 Stage 7.1B fast path: stopped (deviation D14-1; e"
+PPT v20 第81页 正文,第81页 正文,1,其他整数（计数、编号、说明）,有, batch 2 · 3-3 Stage 7.1B fast path: stopped (deviation D14-1; equivalence with the old per-prefix re
+PPT v20 第81页 正文,第81页 正文,3,其他整数（计数、编号、说明）,有,equivalence with the old per-prefix results not confirmed); 3-4 / 3-5 (Stage 8 GPU W) not run(prereg_
+PPT v20 第81页 正文,第81页 正文,4,其他整数（计数、编号、说明）,有,uivalence with the old per-prefix results not confirmed); 3-4 / 3-5 (Stage 8 GPU W) not run(prereg_ad
+PPT v20 第81页 正文,第81页 正文,3,其他整数（计数、编号、说明）,有,lence with the old per-prefix results not confirmed); 3-4 / 3-5 (Stage 8 GPU W) not run(prereg_addend
+PPT v20 第81页 正文,第81页 正文,5,其他整数（计数、编号、说明）,有,nce with the old per-prefix results not confirmed); 3-4 / 3-5 (Stage 8 GPU W) not run(prereg_addendum
+PPT v20 第81页 正文,第81页 正文,8,版本 / 编号（Stage、补充、§、页、图、表）,有,the old per-prefix results not confirmed); 3-4 / 3-5 (Stage 8 GPU W) not run(prereg_addendum14.json) 
+PPT v20 第81页 正文,第81页 正文,8,版本 / 编号（Stage、补充、§、页、图、表）,有,ge 8 GPU W) not run(prereg_addendum14.json) Not done: Stage 8 GPU re-run of the original W (user deci
+PPT v20 第81页 正文,第81页 正文,2026,日期 / 时间,有,t done: Stage 8 GPU re-run of the original W (user decision 2026-11-06; CPU proxy C-2 instead)(c13_C2.md
+PPT v20 第81页 正文,第81页 正文,11,日期 / 时间,有,e: Stage 8 GPU re-run of the original W (user decision 2026-11-06; CPU proxy C-2 instead)(c13_C2.md) 
+PPT v20 第81页 正文,第81页 正文,06,日期 / 时间,有,Stage 8 GPU re-run of the original W (user decision 2026-11-06; CPU proxy C-2 instead)(c13_C2.md) 
+PPT v20 第81页 正文,第81页 正文,2,其他整数（计数、编号、说明）,有,un of the original W (user decision 2026-11-06; CPU proxy C-2 instead)(c13_C2.md) 
+PPT v20 第81页 备注,第81页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,重做计划（补充 10–14，规则都在看结果前写定并锁定；复现已发表数字是每一项的硬检查）。已完成：X
+PPT v20 第81页 备注,第81页 备注,14,其他整数（计数、编号、说明）,有,重做计划（补充 10–14，规则都在看结果前写定并锁定；复现已发表数字是每一项的硬检查）。已完成：X7 五
+PPT v20 第81页 备注,第81页 备注,9,版本 / 编号（Stage、补充、§、页、图、表）,有,做计划（补充 10–14，规则都在看结果前写定并锁定；复现已发表数字是每一项的硬检查）。已完成：X7 五个假标题、补充 9 全部名字 token 的 probe、CPU 项 C-1 到 C-5〔b1_x
+PPT v20 第81页 备注,第81页 备注,1,其他整数（计数、编号、说明）,有,已发表数字是每一项的硬检查）。已完成：X7 五个假标题、补充 9 全部名字 token 的 probe、CPU 项 C-1 到 C-5〔b1_x7f_report.md、e4b_alltok.md、c1
+PPT v20 第81页 备注,第81页 备注,5,其他整数（计数、编号、说明）,有,每一项的硬检查）。已完成：X7 五个假标题、补充 9 全部名字 token 的 probe、CPU 项 C-1 到 C-5〔b1_x7f_report.md、e4b_alltok.md、c13_C1–C
+PPT v20 第81页 备注,第81页 备注,3,标识符 / 路径 / 编号中的数字,有, 项 C-1 到 C-5〔b1_x7f_report.md、e4b_alltok.md、c13_C1–C5.md〕；C-3b（不剔除标题复用，只作敏感性分析，含泄漏，不作结论）〔c13_C3b.md〕。
+PPT v20 第81页 备注,第81页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,c13_C1–C5.md〕；C-3b（不剔除标题复用，只作敏感性分析，含泄漏，不作结论）〔c13_C3b.md〕。批次 1 已完成：X1–X4 改为给全部作者打分（全部名字 token），并按作者排位分
+PPT v20 第81页 备注,第81页 备注,3,版本 / 编号（Stage、补充、§、页、图、表）,有,"注册在测试集上不显著（L8 +0.023 [−0.001, +0.048]，v42_paper_vs_team.md §3）；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，不再作为 H"
+PPT v20 第81页 备注,第81页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,0.032（完整替换的约 7%），但子空间本身仍几乎解码不出作者（留出 R² ≤ 0.009），H3 仍证据不足〔补充 10 第 1 项，硬检查 PASS；381_stage13/reports/b1_x
+PPT v20 第81页 备注,第81页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有,（完整替换的约 7%），但子空间本身仍几乎解码不出作者（留出 R² ≤ 0.009），H3 仍证据不足〔补充 10 第 1 项，硬检查 PASS；381_stage13/reports/b1_xall_
+PPT v20 第81页 备注,第81页 备注,381,标识符 / 路径 / 编号中的数字,有,子空间本身仍几乎解码不出作者（留出 R² ≤ 0.009），H3 仍证据不足〔补充 10 第 1 项，硬检查 PASS；381_stage13/reports/b1_xall_report.md〕。E4b 
+PPT v20 第81页 备注,第81页 备注,"4,654",样本 / 计数（篇、位、个、对、token、行）,有,"S；381_stage13/reports/b1_xall_report.md〕。E4b 逐个假标题排除版（偏离 D1，4,654 篇，每篇约 1.5 个可用假标题）：L40 姓首 token +0.076 ["
+PPT v20 第81页 备注,第81页 备注,381,标识符 / 路径 / 编号中的数字,有,"083]，姓 − 首字母 +0.033 [0.023, 0.042]；硬检查 E4b L40 +0.0609 PASS〔381_stage13/reports/b1_e4b5_report.md〕。P1 /"
+PPT v20 第81页 备注,第81页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,.0609 PASS〔381_stage13/reports/b1_e4b5_report.md〕。P1 / P2 用 5 个假标题（已完成）：5 个假标题平均为主结果，与 false_0 之差的区间都
+PPT v20 第81页 备注,第81页 备注,5,样本 / 计数（篇、位、个、对、token、行）,有,81_stage13/reports/b1_e4b5_report.md〕。P1 / P2 用 5 个假标题（已完成）：5 个假标题平均为主结果，与 false_0 之差的区间都含 0，结论不变；p9 
+PPT v20 第81页 备注,第81页 备注,0,其他整数（计数、编号、说明）,有,rt.md〕。P1 / P2 用 5 个假标题（已完成）：5 个假标题平均为主结果，与 false_0 之差的区间都含 0，结论不变；p9 各假标题 694–711 篇，集合不同，未加权；“:” 分子 
+PPT v20 第81页 备注,第81页 备注,2,版本 / 编号（Stage、补充、§、页、图、表）,有,内与 A 时间点相同；D 33 篇只作描述〔b1_p12f_report.md；b2_cd_report.md〕。批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行；2-11 模型自生成
+PPT v20 第81页 备注,第81页 备注,11,版本 / 编号（Stage、补充、§、页、图、表）,有,时间点相同；D 33 篇只作描述〔b1_p12f_report.md；b2_cd_report.md〕。批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行；2-11 模型自生成名字的首名复
+PPT v20 第81页 备注,第81页 备注,12,其他整数（计数、编号、说明）,有,相同；D 33 篇只作描述〔b1_p12f_report.md；b2_cd_report.md〕。批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行；2-11 模型自生成名字的首名复现率 
+PPT v20 第81页 备注,第81页 备注,1,版本 / 编号（Stage、补充、§、页、图、表）,有, 篇只作描述〔b1_p12f_report.md；b2_cd_report.md〕。批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行；2-11 模型自生成名字的首名复现率 0.880 
+PPT v20 第81页 备注,第81页 备注,2,其他整数（计数、编号、说明）,有,eport.md；b2_cd_report.md〕。批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为
+PPT v20 第81页 备注,第81页 备注,11,其他整数（计数、编号、说明）,有,ort.md；b2_cd_report.md〕。批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-
+PPT v20 第81页 备注,第81页 备注,2,其他整数（计数、编号、说明）,有,次 1 结束后已由编排作业开始运行；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe
+PPT v20 第81页 备注,第81页 备注,11,标识符 / 路径 / 编号中的数字,有,1 结束后已由编排作业开始运行；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其
+PPT v20 第81页 备注,第81页 备注,15,版本 / 编号（Stage、补充、§、页、图、表）,有,编排作业开始运行；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，
+PPT v20 第81页 备注,第81页 备注,0,版本 / 编号（Stage、补充、§、页、图、表）,有,1 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果；与预
+PPT v20 第81页 备注,第81页 备注,12,版本 / 编号（Stage、补充、§、页、图、表）,有,已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果；与预注册的出入记在补充 12 出入记录 D12-1 到 D12-3〔381_stage13/config/p
+PPT v20 第81页 备注,第81页 备注,1,其他整数（计数、编号、说明）,有,分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果；与预注册的出入记在补充 12 出入记录 D12-1 到 D12-3〔381_stage13/config/prereg_adden
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,字位置 probe 等其余各项进行中，没有可报告的结果；与预注册的出入记在补充 12 出入记录 D12-1 到 D12-3〔381_stage13/config/prereg_addendum12_de
+PPT v20 第81页 备注,第81页 备注,381,标识符 / 路径 / 编号中的数字,有,置 probe 等其余各项进行中，没有可报告的结果；与预注册的出入记在补充 12 出入记录 D12-1 到 D12-3〔381_stage13/config/prereg_addendum12_deviat
+PPT v20 第81页 备注,第81页 备注,2,其他整数（计数、编号、说明）,有,D12-3〔381_stage13/config/prereg_addendum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 
+PPT v20 第81页 备注,第81页 备注,7,其他整数（计数、编号、说明）,有,2-3〔381_stage13/config/prereg_addendum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排
+PPT v20 第81页 备注,第81页 备注,3,版本 / 编号（Stage、补充、§、页、图、表）,有,/prereg_addendum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中
+PPT v20 第81页 备注,第81页 备注,14,版本 / 编号（Stage、补充、§、页、图、表）,有,eg_addendum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,ddendum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1
+PPT v20 第81页 备注,第81页 备注,1,其他整数（计数、编号、说明）,有,endum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,dum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路
+PPT v20 第81页 备注,第81页 备注,2,其他整数（计数、编号、说明）,有,m12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路径补
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,改用不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路径补完）已停止（偏离 D14-1）：3-3 停止：只有 7 
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,不含年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路径补完）已停止（偏离 D14-1）：3-3 停止：只有 7 篇论
+PPT v20 第81页 备注,第81页 备注,7.1,标识符 / 路径 / 编号中的数字,有,年份的 X4 提示。批次 3（补充 14）：3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路径补完）已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有
+PPT v20 第81页 备注,第81页 备注,1,其他整数（计数、编号、说明）,有,3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路径补完）已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,、3-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路径补完）已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者在 ±
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,-2 编排作业已提交，第二批全部结束后自动开始（进行中）；3-3（7.1B 快路径补完）已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者在 ±0.
+PPT v20 第81页 备注,第81页 备注,0.02,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,路径补完）已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者在 ±0.02 内等效（输出层 target−control 差值之差 +0.0059，按论文
+PPT v20 第81页 备注,第81页 备注,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,"足以确认两者在 ±0.02 内等效（输出层 target−control 差值之差 +0.0059，按论文 Welch 95% CI [−0.0207, +0.0324]；论文级 bootstrap [−0"
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,"CI [−0.0207, +0.0324]；论文级 bootstrap [−0.0005, +0.0181]，因每组仅 3–4 篇偏窄，不作判据）。差异来源为 bf16 舍入随前向长度变化；长度跨档比例"
+PPT v20 第81页 备注,第81页 备注,4,样本 / 计数（篇、位、个、对、token、行）,有," [−0.0207, +0.0324]；论文级 bootstrap [−0.0005, +0.0181]，因每组仅 3–4 篇偏窄，不作判据）。差异来源为 bf16 舍入随前向长度变化；长度跨档比例 t"
+PPT v20 第81页 备注,第81页 备注,10,版本 / 编号（Stage、补充、§、页、图、表）,有,据）。差异来源为 bf16 舍入随前向长度变化；长度跨档比例 target 28%、control 15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage
+PPT v20 第81页 备注,第81页 备注,0.25,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,度跨档比例 target 28%、control 15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定
+PPT v20 第81页 备注,第81页 备注,351,标识符 / 路径 / 编号中的数字,有,rget 28%、control 15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定过程：原判据（
+PPT v20 第81页 备注,第81页 备注,919,版本 / 编号（Stage、补充、§、页、图、表）,有,15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定过程：原判据（≥ 99% 名次完全一致）未通过（
+PPT v20 第81页 备注,第81页 备注,99%,样本 / 计数（篇、位、个、对、token、行）,有,一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定过程：原判据（≥ 99% 名次完全一致）未通过（79.8%）→ 用户指出事后判据的设计缺陷 → 在看到论
+PPT v20 第81页 备注,第81页 备注,381,标识符 / 路径 / 编号中的数字,有,事后判据的设计缺陷 → 在看到论文级结果之前写定并锁定修正判据 → 按修正判据（Welch 区间）仍未通过 → 停止。〔381_stage13/config/prereg_addendum14_deviat
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,→ 停止。〔381_stage13/config/prereg_addendum14_deviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-
+PPT v20 第81页 备注,第81页 备注,4,其他整数（计数、编号、说明）,有,停止。〔381_stage13/config/prereg_addendum14_deviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11
+PPT v20 第81页 备注,第81页 备注,3,其他整数（计数、编号、说明）,有,。〔381_stage13/config/prereg_addendum14_deviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11-0
+PPT v20 第81页 备注,第81页 备注,5,其他整数（计数、编号、说明）,有,381_stage13/config/prereg_addendum14_deviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11-06 
+PPT v20 第81页 备注,第81页 备注,8,版本 / 编号（Stage、补充、§、页、图、表）,有,/config/prereg_addendum14_deviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11-06 决定）〔381_sta
+PPT v20 第81页 备注,第81页 备注,2026,日期 / 时间,有,ndum14_deviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11-06 决定）〔381_stage13/config/prereg_add
+PPT v20 第81页 备注,第81页 备注,11,日期 / 时间,有,4_deviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11-06 决定）〔381_stage13/config/prereg_addend
+PPT v20 第81页 备注,第81页 备注,06,日期 / 时间,有,eviations.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11-06 决定）〔381_stage13/config/prereg_addendum1
+PPT v20 第81页 备注,第81页 备注,381,标识符 / 路径 / 编号中的数字,有,ns.json〕；3-4、3-5 不做（Stage 8 按原 W 的 GPU 重算，用户 2026-11-06 决定）〔381_stage13/config/prereg_addendum14.json〕。
+导师页 advisor/index.html,(文档开头),32,标识符 / 路径 / 编号中的数字,无,jlens 作者记忆进度汇报 jlens · Qwen3-32B 作者记忆 · 进度汇报 模型在哪一层“知道”一篇论文的作者 截至 2026-
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,无,作者记忆进度汇报 jlens · Qwen3-32B 作者记忆 · 进度汇报 模型在哪一层“知道”一篇论文的作者 截至 2026-11-04，Stage 1–13 全部完成（答辩定稿，git tag defe
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,无,度汇报 jlens · Qwen3-32B 作者记忆 · 进度汇报 模型在哪一层“知道”一篇论文的作者 截至 2026-11-04，Stage 1–13 全部完成（答辩定稿，git tag defense
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,04,日期 / 时间,无, jlens · Qwen3-32B 作者记忆 · 进度汇报 模型在哪一层“知道”一篇论文的作者 截至 2026-11-04，Stage 1–13 全部完成（答辩定稿，git tag defense-20
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,无,Qwen3-32B 作者记忆 · 进度汇报 模型在哪一层“知道”一篇论文的作者 截至 2026-11-04，Stage 1–13 全部完成（答辩定稿，git tag defense-2026-11）。数
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,13,其他整数（计数、编号、说明）,无,en3-32B 作者记忆 · 进度汇报 模型在哪一层“知道”一篇论文的作者 截至 2026-11-04，Stage 1–13 全部完成（答辩定稿，git tag defense-2026-11）。数字均可
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,无,”一篇论文的作者 截至 2026-11-04，Stage 1–13 全部完成（答辩定稿，git tag defense-2026-11）。数字均可在实验记录 v26 和方法手册中追到出处文件。 2026-11
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,无,的作者 截至 2026-11-04，Stage 1–13 全部完成（答辩定稿，git tag defense-2026-11）。数字均可在实验记录 v26 和方法手册中追到出处文件。 2026-11-06
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,无,成（答辩定稿，git tag defense-2026-11）。数字均可在实验记录 v26 和方法手册中追到出处文件。 2026-11-06 合并更新：本页与讲稿版《给老师的进度汇报》合并为一个当前版本（加入
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,无,稿，git tag defense-2026-11）。数字均可在实验记录 v26 和方法手册中追到出处文件。 2026-11-06 合并更新：本页与讲稿版《给老师的进度汇报》合并为一个当前版本（加入了讲稿
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,06,日期 / 时间,无,it tag defense-2026-11）。数字均可在实验记录 v26 和方法手册中追到出处文件。 2026-11-06 合并更新：本页与讲稿版《给老师的进度汇报》合并为一个当前版本（加入了讲稿版的“
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,无,一个当前版本（加入了讲稿版的“自查中发现并修正的问题”表和“下一步”）；答辩后的结果见下方更新框。讲稿版不再单独更新。 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,无,本（加入了讲稿版的“自查中发现并修正的问题”表和“下一步”）；答辩后的结果见下方更新框。讲稿版不再单独更新。 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,06,日期 / 时间,无,入了讲稿版的“自查中发现并修正的问题”表和“下一步”）；答辩后的结果见下方更新框。讲稿版不再单独更新。 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,其他整数（计数、编号、说明）,无,的“自查中发现并修正的问题”表和“下一步”）；答辩后的结果见下方更新框。讲稿版不再单独更新。 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,08,其他整数（计数、编号、说明）,无,查中发现并修正的问题”表和“下一步”）；答辩后的结果见下方更新框。讲稿版不再单独更新。 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组补全、
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,无,）；答辩后的结果见下方更新框。讲稿版不再单独更新。 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组补全、报告第 30 版的前提和局限，用户
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,版本 / 编号（Stage、补充、§、页、图、表）,无,方更新框。讲稿版不再单独更新。 2026-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组补全、报告第 30 版的前提和局限，用户已确认措辞） 以下数
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,30,版本 / 编号（Stage、补充、§、页、图、表）,无,26-11-06 / 11-08 更新：答辩后的重做计划（批次 1 全部结果、批次 2 的 C / D 组补全、报告第 30 版的前提和局限，用户已确认措辞） 以下数字都来自看结果前写定规则的重做项目（补
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,9,版本 / 编号（Stage、补充、§、页、图、表）,无,的 C / D 组补全、报告第 30 版的前提和局限，用户已确认措辞） 以下数字都来自看结果前写定规则的重做项目（补充 9–14），复现已发表数字是每一项的硬检查。本页其余内容保持原样，后来被更新的说法
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,14,其他整数（计数、编号、说明）,无,C / D 组补全、报告第 30 版的前提和局限，用户已确认措辞） 以下数字都来自看结果前写定规则的重做项目（补充 9–14），复现已发表数字是每一项的硬检查。本页其余内容保持原样，后来被更新的说法在原处
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,无,每一项的硬检查。本页其余内容保持原样，后来被更新的说法在原处加了橙色标注，原数字未改。 X1–X4 改为全部作者（批次 1 第 1 项，已完成，硬检查 PASS）：X1–X4 改为给全部作者打分（全部名
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,无,硬检查。本页其余内容保持原样，后来被更新的说法在原处加了橙色标注，原数字未改。 X1–X4 改为全部作者（批次 1 第 1 项，已完成，硬检查 PASS）：X1–X4 改为给全部作者打分（全部名字 to
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,版本 / 编号（Stage、补充、§、页、图、表）,有,"注册在测试集上不显著（L8 +0.023 [−0.001, +0.048]，v42_paper_vs_team.md §3）；但只靠标题文字的基线不弱于 Qwen，仍不能排除标题文字的解释，这一差别不再"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,到 0.032（完整替换的约 7%），但子空间本身仍几乎解码不出作者（留出 R² ≤ 0.009），H3 仍证据不足。（381_stage13/reports/b1_xall_report.md：X1 节（
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"2,000",版本 / 编号（Stage、补充、§、页、图、表）,有,"3/reports/b1_xall_report.md：X1 节（测试集，作者 − 年份，团队聚类 bootstrap 2,000 次）；X3 behaviour 表（测试集 552 篇，恢复比 0.897 ["
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,无,_auth）；New S_auth 表（authall_r2 ≤ 0.009）；Hard check 表） E4b 减 5 个假标题（实际每篇可用假标题个数见正文）（批次 1 第 4 项，已完成）：E4
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,无,"l_r2 ≤ 0.009）；Hard check 表） E4b 减 5 个假标题（实际每篇可用假标题个数见正文）（批次 1 第 4 项，已完成）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,4,版本 / 编号（Stage、补充、§、页、图、表）,无," ≤ 0.009）；Hard check 表） E4b 减 5 个假标题（实际每篇可用假标题个数见正文）（批次 1 第 4 项，已完成）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"4,654",样本 / 计数（篇、位、个、对、token、行）,无," 个假标题（实际每篇可用假标题个数见正文）（批次 1 第 4 项，已完成）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,无,"1 第 4 项，已完成）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 toke"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,4,样本 / 计数（篇、位、个、对、token、行）,无,"第 4 项，已完成）：E4b 逐个假标题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 token "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"1,395",样本 / 计数（篇、位、个、对、token、行）,无,"题排除版（偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 token 为 +0.071）：L40 姓首 token "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"4,654",样本 / 计数（篇、位、个、对、token、行）,无,"n +0.076 [0.068, 0.083]，姓 − 首字母 +0.033 [0.023, 0.042]，逐个排除版（4,654 篇）第一个 token +0.066；原 E4b（1,395 篇）+0.061"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"1,395",样本 / 计数（篇、位、个、对、token、行）,无," +0.033 [0.023, 0.042]，逐个排除版（4,654 篇）第一个 token +0.066；原 E4b（1,395 篇）+0.061；置换对照首字母仍 +0.018，其余 ≈ 0；硬检查 E4b"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,无,"）第一个 token +0.066；原 E4b（1,395 篇）+0.061；置换对照首字母仍 +0.018，其余 ≈ 0；硬检查 E4b L40 +0.0609 PASS。标题位置 probe 的 t"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,9,版本 / 编号（Stage、补充、§、页、图、表）,有,"]、L40 +0.031 [−0.001, +0.062]、L48 +0.056 [0.025, 0.089]（与补充 9 已发表值相同，e4b_alltok.md）。② 逐个排除版（事后偏离 D1；每"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,"0]、L40 +0.014 [−0.002, +0.030]、L48 +0.031 [0.014, 0.048]。③ ""5 个假标题平均""版（仅敏感性参考：论文同①，只按 false_0 剔除，fals"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,"lse_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"1,706",其他整数（计数、编号、说明）,有,"age13/e4b_standardisation_check/v5x0_leak_share.json），含泄漏；名 1,706、姓 1,395、首字母 1,590 篇）：名 L40 +0.047 [0.01"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,048]）。名的信号在三版中一致；姓的证据弱，只来自事后版本。首字母在个别层为正、模式不一致（未做多层校正），不作结论（381_stage13/summary_b1_e4b5/perdonor_by_run
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"2,000",版本 / 编号（Stage、补充、§、页、图、表）,有,"0，列 tc / tc_lo / tc_hi；引用档内 target − control，团队整群 bootstrap 2,000 次 95% CI）；381_stage13/reports/e4b_allto"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,95%,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有," tc_lo / tc_hi；引用档内 target − control，团队整群 bootstrap 2,000 次 95% CI）；381_stage13/reports/e4b_alltok.md；b"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有," tc_hi；引用档内 target − control，团队整群 bootstrap 2,000 次 95% CI）；381_stage13/reports/e4b_alltok.md；b1_e4b5_r"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,有,age13/reports/e4b_alltok.md；b1_e4b5_report.md）。 X7 五个假标题（批次 1 第 2 项，已完成）：X7 补做了另外 4 个假标题，按 5 个平均判定，ta
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,版本 / 编号（Stage、补充、§、页、图、表）,有,3/reports/e4b_alltok.md；b1_e4b5_report.md）。 X7 五个假标题（批次 1 第 2 项，已完成）：X7 补做了另外 4 个假标题，按 5 个平均判定，target
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,4,样本 / 计数（篇、位、个、对、token、行）,有,ok.md；b1_e4b5_report.md）。 X7 五个假标题（批次 1 第 2 项，已完成）：X7 补做了另外 4 个假标题，按 5 个平均判定，target、control 和全部论文都满足预
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,e4b5_report.md）。 X7 五个假标题（批次 1 第 2 项，已完成）：X7 补做了另外 4 个假标题，按 5 个平均判定，target、control 和全部论文都满足预注册判据（S(L5
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.05,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,t、control 和全部论文都满足预注册判据（S(L52) 分别为 +0.022、+0.042、+0.028，均 ≤ 0.05）；原来对照组只用 false_0 时为 0.051，属于单个假标题的波动。（3
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,0.042、+0.028，均 ≤ 0.05）；原来对照组只用 false_0 时为 0.051，属于单个假标题的波动。（381_stage13/reports/b1_x7f_report.md（target
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"b1_x7f_report.md（target 593 / control 593 / 全部 1,186 篇，团队聚类 95% CI）） C-3b（补充 13，只作敏感性分析，含泄漏，不作结论）：5 个假标"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,标识符 / 路径 / 编号中的数字,有,"rt.md（target 593 / control 593 / 全部 1,186 篇，团队聚类 95% CI）） C-3b（补充 13，只作敏感性分析，含泄漏，不作结论）：5 个假标题版本不剔除标题复"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,13,版本 / 编号（Stage、补充、§、页、图、表）,有,"target 593 / control 593 / 全部 1,186 篇，团队聚类 95% CI）） C-3b（补充 13，只作敏感性分析，含泄漏，不作结论）：5 个假标题版本不剔除标题复用：硬检查 P"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,"593 / 全部 1,186 篇，团队聚类 95% CI）） C-3b（补充 13，只作敏感性分析，含泄漏，不作结论）：5 个假标题版本不剔除标题复用：硬检查 PASS；L40 姓的第一个 token "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,有,"字母 +0.043 [0.035, 0.051]（6,841 篇）；target − control 的区间几乎处处在 0 以上，与 C-3 一样。（381_stage13/reports/c13_C3"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,有," [0.035, 0.051]（6,841 篇）；target − control 的区间几乎处处在 0 以上，与 C-3 一样。（381_stage13/reports/c13_C3b.md（Prim"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,"5, 0.051]（6,841 篇）；target − control 的区间几乎处处在 0 以上，与 C-3 一样。（381_stage13/reports/c13_C3b.md（Primary cont"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,C3b.md（Primary contrasts at L40 表 V5x0_noexcl 列）） P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,有,mary contrasts at L40 表 V5x0_noexcl 列）） P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,版本 / 编号（Stage、补充、§、页、图、表）,有, contrasts at L40 表 V5x0_noexcl 列）） P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标题平均为
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,x0_noexcl 列）） P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,27,版本 / 编号（Stage、补充、§、页、图、表）,有,excl 列）） P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,列）） P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,已完成，硬检查 PASS）：按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,有, 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,无,，已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"1 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstra"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,版本 / 编号（Stage、补充、§、页、图、表）,有,"174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,版本 / 编号（Stage、补充、§、页、图、表）,有,"]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% C"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"2,000",版本 / 编号（Stage、补充、§、页、图、表）,有,".236]（0.224）（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_rep"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,95%,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"224）（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,391,标识符 / 路径 / 编号中的数字,有," 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,9,其他整数（计数、编号、说明）,有,/ P2 表；summary_b1_p12f/p12f_mean5.csv）。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,_1 694、false_2 711、false_3 707、false_4 710 篇）。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,557,其他整数（计数、编号、说明）,有,7，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,586,样本 / 计数（篇、位、个、对、token、行）,有,0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,78–0.99；B 的比例高只因分母约为 A 的一半（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,391,标识符 / 路径 / 编号中的数字,有,51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_mi
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2.2,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,rerun/p1_p2_num_den_B_minus_A.csv））。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。 C / D 组补全 E1 / E2（批次 2 第 2-6
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,16,其他整数（计数、编号、说明）,有,/p1_p2_num_den_B_minus_A.csv））。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。 C / D 组补全 E1 / E2（批次 2 第 2-6 项，补
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,版本 / 编号（Stage、补充、§、页、图、表）,有,硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。 C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：C 组未写出作者 462 篇，同一引
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,版本 / 编号（Stage、补充、§、页、图、表）,有,false_0 臂复现已发表值（最大差 2.2e-16），PASS。 C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：C 组未写出作者 462 篇，同一引用档内与
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,6,其他整数（计数、编号、说明）,有,lse_0 臂复现已发表值（最大差 2.2e-16），PASS。 C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：C 组未写出作者 462 篇，同一引用档内与 A
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,版本 / 编号（Stage、补充、§、页、图、表）,有,复现已发表值（最大差 2.2e-16），PASS。 C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,无,"6 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,版本 / 编号（Stage、补充、§、页、图、表）,有," +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述（补充 11 B；未写出作者；团队"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,版本 / 编号（Stage、补充、§、页、图、表）,有,"，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；3"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"2,000",版本 / 编号（Stage、补充、§、页、图、表）,有,"）按补充 11 只作描述，D − B、C − D 也只作描述（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_repor"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,95%,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"只作描述，D − B、C − D 也只作描述（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md N"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,391,标识符 / 路径 / 编号中的数字,有,"− B、C − D 也只作描述（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerato"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,版本 / 编号（Stage、补充、§、页、图、表）,有,port.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）。前提：同一引用档内
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,版本 / 编号（Stage、补充、§、页、图、表）,有,md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）。前提：同一引用档内只用到 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.0,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,ator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）。前提：同一引用档内只用到 C 462 篇中的 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.005,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,有,引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。 2026-11-08（报告第 30 版）补充的前提：Stage 8 的结论（真标题让模型
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,有,用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。 2026-11-08（报告第 30 版）补充的前提：Stage 8 的结论（真标题让模型更偏好
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,08,日期 / 时间,无,C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。 2026-11-08（报告第 30 版）补充的前提：Stage 8 的结论（真标题让模型更偏好真实第
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,30,版本 / 编号（Stage、补充、§、页、图、表）,无,中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。 2026-11-08（报告第 30 版）补充的前提：Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,8,版本 / 编号（Stage、补充、§、页、图、表）,有, false_0；比例差主要反映分母不同（分母效应）。 2026-11-08（报告第 30 版）补充的前提：Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,8,版本 / 编号（Stage、补充、§、页、图、表）,有,1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母（au
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有, 篇（64.5%）这个 token 只是首字母（audit_20261105/part_A_stage4_9.md 第 10 行）；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,其他整数（计数、编号、说明）,有,en 只是首字母（audit_20261105/part_A_stage4_9.md 第 10 行）；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,13,版本 / 编号（Stage、补充、§、页、图、表）,有,字母（audit_20261105/part_A_stage4_9.md 第 10 行）；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,有,dit_20261105/part_A_stage4_9.md 第 10 行）；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,有,"者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,有,"发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,有,"一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,06,日期 / 时间,有,"+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,7,样本 / 计数（篇、位、个、对、token、行）,有, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.0
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,"了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,有,"上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,有,"0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0（381_stage13/reports/c13_C2.md；381_stage"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,"088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0（381_stage13/reports/c13_C2.md；381_stage13/c"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有, +0.094]（L16 = L24），同向、区间不含 0（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_pro
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,其他整数（计数、编号、说明）,有,_C2_followup/c2_followup_proxy.csv）；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,18,其他整数（计数、编号、说明）,有,_followup/c2_followup_proxy.csv）；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,21,日期 / 时间,有,llowup/c2_followup_proxy.csv）；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。X4 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,14,代码行号 / 文件内位置,有,wup/c2_followup_proxy.csv）；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。X4 中认得
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,有,这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。 2026-11-08（报告第 30 版）补充的局限：层不完整：Stage 10 在 L2
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,有,再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。 2026-11-08（报告第 30 版）补充的局限：层不完整：Stage 10 在 L24–L
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,08,日期 / 时间,有, H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。 2026-11-08（报告第 30 版）补充的局限：层不完整：Stage 10 在 L24–L40 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,30,版本 / 编号（Stage、补充、§、页、图、表）,有,（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。 2026-11-08（报告第 30 版）补充的局限：层不完整：Stage 10 在 L24–L40 每 8 层取一
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,8 不弱于 Qwen L8 +0.018）。 2026-11-08（报告第 30 版）补充的局限：层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,8,样本 / 计数（篇、位、个、对、token、行）,无,0.018）。 2026-11-08（报告第 30 版）补充的局限：层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,14,版本 / 编号（Stage、补充、§、页、图、表）,无,整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit le
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,其他整数（计数、编号、说明）,有,L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过（~/jlens_work/conclusions_v30_c
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,ns_work/conclusions_v30_checks.md A1）；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,有,1）；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,日期 / 时间,有,性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,25,日期 / 时间,有,事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,标识符 / 路径 / 编号中的数字,有,读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.25,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 le
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.25,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_be
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,351,标识符 / 路径 / 编号中的数字,有,上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_ame
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,有,"367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,有,"7（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.25,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"ment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"nt.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.5,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里（351_stage10/reports
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,351,标识符 / 路径 / 编号中的数字,有,舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里（351_stage10/reports/parity.json tolerance_a
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,60,样本 / 计数（篇、位、个、对、token、行）,有,"、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做（361_stage11/summary/E1"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,样本 / 计数（篇、位、个、对、token、行）,有,"7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做（361_stage11/summary/E1_reco"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,361,标识符 / 路径 / 编号中的数字,有,"1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做（361_stage11/summary/E1_recovery.csv n_paper"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有, 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,样本 / 计数（篇、位、个、对、token、行）,有,置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 已不在此列：M2 的假标题运行已补 5 个假标题；标题复用和供体在训练折的排除对每个假标题都为 0 行（exclusi
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,论文以 target 行出现在训练折中（显示另一篇论文的标题和标签，只有年份在 ':' 之后进入提示），未作为泄漏处理（381_stage13/reports/m2_f5_report.md；381_sta
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,年份在 ':' 之后进入提示），未作为泄漏处理（381_stage13/reports/m2_f5_report.md；381_stage13/summary_m2_f5/M2_f5_mean.csv、ex
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11747064,作业号,有,"stage13/summary_m2_f5/M2_f5_mean.csv、exclusion_audit.csv（作业 11747064））；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,29,版本 / 编号（Stage、补充、§、页、图、表）,有,"csv（作业 11747064））；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；第 30 版新放回或新增的数字已登记进严格核对（claims"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,30,版本 / 编号（Stage、补充、§、页、图、表）,有,"4））；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,"1,024",样本 / 计数（篇、位、个、对、token、行）,有," 版 h 的核对）；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/re"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,有,"新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,有,"增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/cla"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,07,日期 / 时间,有,"字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/claims"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,351,标识符 / 路径 / 编号中的数字,有,"核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/claims/out_202"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,6,版本 / 编号（Stage、补充、§、页、图、表）,有,/out_20261108_140102/）。 答辩后已完成、以前写“没做 / 暂停”的项目：X2 只替换子空间（补充 6，2026-11-05）：按预注册判据 H2 不支持、H3 通过，但作者子空间几
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2026,日期 / 时间,有,ut_20261108_140102/）。 答辩后已完成、以前写“没做 / 暂停”的项目：X2 只替换子空间（补充 6，2026-11-05）：按预注册判据 H2 不支持、H3 通过，但作者子空间几乎解码不出
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,日期 / 时间,有,261108_140102/）。 答辩后已完成、以前写“没做 / 暂停”的项目：X2 只替换子空间（补充 6，2026-11-05）：按预注册判据 H2 不支持、H3 通过，但作者子空间几乎解码不出作者，
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,05,日期 / 时间,有,108_140102/）。 答辩后已完成、以前写“没做 / 暂停”的项目：X2 只替换子空间（补充 6，2026-11-05）：按预注册判据 H2 不支持、H3 通过，但作者子空间几乎解码不出作者，H3 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,9,版本 / 编号（Stage、补充、§、页、图、表）,有,"不支持、H3 通过，但作者子空间几乎解码不出作者，H3 证据仍不足；全部名字 token 的标题位置 probe（补充 9）：L40 姓的第一个 token +0.071 [0.058, 0.085]；"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,其他整数（计数、编号、说明）,有," [0.058, 0.085]；X5 跨问法检索曲线：没有一层高于 L4；M5 能用已有数据回答的部分；CPU 项 C-1 到 C-5（Stage 7.1 加标题对照、Stage 8 CPU 代理、不剔"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,其他整数（计数、编号、说明）,有,"8, 0.085]；X5 跨问法检索曲线：没有一层高于 L4；M5 能用已有数据回答的部分；CPU 项 C-1 到 C-5（Stage 7.1 加标题对照、Stage 8 CPU 代理、不剔除标题复用的"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,7.1,版本 / 编号（Stage、补充、§、页、图、表）,有,]；X5 跨问法检索曲线：没有一层高于 L4；M5 能用已有数据回答的部分；CPU 项 C-1 到 C-5（Stage 7.1 加标题对照、Stage 8 CPU 代理、不剔除标题复用的敏感性、M1 换 4
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,8,版本 / 编号（Stage、补充、§、页、图、表）,有,层高于 L4；M5 能用已有数据回答的部分；CPU 项 C-1 到 C-5（Stage 7.1 加标题对照、Stage 8 CPU 代理、不剔除标题复用的敏感性、M1 换 4 个假标题、Stage 10
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,4,样本 / 计数（篇、位、个、对、token、行）,有,项 C-1 到 C-5（Stage 7.1 加标题对照、Stage 8 CPU 代理、不剔除标题复用的敏感性、M1 换 4 个假标题、Stage 10 附加分析补齐全部已存层）。（381_stage13
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,tage 7.1 加标题对照、Stage 8 CPU 代理、不剔除标题复用的敏感性、M1 换 4 个假标题、Stage 10 附加分析补齐全部已存层）。（381_stage13/reports/x2_re
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,age 8 CPU 代理、不剔除标题复用的敏感性、M1 换 4 个假标题、Stage 10 附加分析补齐全部已存层）。（381_stage13/reports/x2_report.md；e4b_alltok
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,版本 / 编号（Stage、补充、§、页、图、表）,有,析补齐全部已存层）。（381_stage13/reports/x2_report.md；e4b_alltok.md 第 5 节；x5_retrieval.md；m5_report.md；c13_C1.m
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,版本 / 编号（Stage、补充、§、页、图、表）,有, 第 5 节；x5_retrieval.md；m5_report.md；c13_C1.md–c13_C5.md） 批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,版本 / 编号（Stage、补充、§、页、图、表）,有,节；x5_retrieval.md；m5_report.md；c13_C1.md–c13_C5.md） 批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,12,其他整数（计数、编号、说明）,有,5_retrieval.md；m5_report.md；c13_C1.md–c13_C5.md） 批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,版本 / 编号（Stage、补充、§、页、图、表）,有,eval.md；m5_report.md；c13_C1.md–c13_C5.md） 批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,有,_C5.md） 批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,6,其他整数（计数、编号、说明）,有,5.md） 批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,有,批次 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,其他整数（计数、编号、说明）,有, 2（补充 11、12）：批次 1 结束后已由编排作业开始运行：C / D 组补全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,有,全 E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,标识符 / 路径 / 编号中的数字,有,E1 / E2（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,15,版本 / 编号（Stage、补充、§、页、图、表）,有,（2-6）已完成；2-11 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0,版本 / 编号（Stage、补充、§、页、图、表）,有,1 模型自生成名字的首名复现率 0.880 < 0.90，按预注册停止，改为 2-11b（补充 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果（含 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,9,版本 / 编号（Stage、补充、§、页、图、表）,无, 15，已锁定），只跑第 0 个分片，排队中；名字位置 probe 等其余各项进行中，没有可报告的结果（含 Stage 9 Fit B 与 holdout、F1 对半拆分、名字位置 probe 等）；与
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,其他整数（计数、编号、说明）,无,e 9 Fit B 与 holdout、F1 对半拆分、名字位置 probe 等）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-1
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,无,B 与 holdout、F1 对半拆分、名字位置 probe 等）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,无,与 holdout、F1 对半拆分、名字位置 probe 等）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,其他整数（计数、编号、说明）,无,holdout、F1 对半拆分、名字位置 probe 等）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 A
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,无,ldout、F1 对半拆分、名字位置 probe 等）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 AUR
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,无,out、F1 对半拆分、名字位置 probe 等）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 AUROC
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,无, 等）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,11,其他整数（计数、编号、说明）,无,）；与预注册的出入记在出入记录 D12-1 到 D12-3（2-1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源改用不
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,无,1、2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stag
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,7,其他整数（计数、编号、说明）,无,2-2 较省但含原始提示逐位复现重拟合的硬检查；2-11 重建标签、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,版本 / 编号（Stage、补充、§、页、图、表）,无,查；2-11 重建标签、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 10 补 L41–L47、L49，3-2 补
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,14,版本 / 编号（Stage、补充、§、页、图、表）,无,1 重建标签、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L2
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,无,标签、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,其他整数（计数、编号、说明）,无,、论文内 AUROC、两个基线、对照组只作描述），2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,无,OC、两个基线、对照组只作描述），2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,无,2-7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）；3-
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,2,其他整数（计数、编号、说明）,无,7 的来源改用不含年份的 X4 提示。批次 3（补充 14）：3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）；3-3 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,无,age 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）；3-3 Stage 7.1B 快路径：已停止（偏离 D14-1）：3-3 停止：只
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,无,e 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）；3-3 Stage 7.1B 快路径：已停止（偏离 D14-1）：3-3 停止：只有 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,7.1,标识符 / 路径 / 编号中的数字,无,41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中）；3-3 Stage 7.1B 快路径：已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,1,其他整数（计数、编号、说明）,无,L23：编排作业已提交，第二批全部结束后自动开始（进行中）；3-3 Stage 7.1B 快路径：已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,无,：编排作业已提交，第二批全部结束后自动开始（进行中）；3-3 Stage 7.1B 快路径：已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者在 ±
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,无,排作业已提交，第二批全部结束后自动开始（进行中）；3-3 Stage 7.1B 快路径：已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者在 ±0.
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.02,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无, 快路径：已停止（偏离 D14-1）：3-3 停止：只有 7 篇论文同时有旧逐前缀结果和快路径结果，不足以确认两者在 ±0.02 内等效（输出层 target−control 差值之差 +0.0059，按论文
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,95%,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,"足以确认两者在 ±0.02 内等效（输出层 target−control 差值之差 +0.0059，按论文 Welch 95% CI [−0.0207, +0.0324]；论文级 bootstrap [−0"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,有,"CI [−0.0207, +0.0324]；论文级 bootstrap [−0.0005, +0.0181]，因每组仅 3–4 篇偏窄，不作判据）。差异来源为 bf16 舍入随前向长度变化；长度跨档比例"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,4,样本 / 计数（篇、位、个、对、token、行）,有," [−0.0207, +0.0324]；论文级 bootstrap [−0.0005, +0.0181]，因每组仅 3–4 篇偏窄，不作判据）。差异来源为 bf16 舍入随前向长度变化；长度跨档比例 t"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,10,版本 / 编号（Stage、补充、§、页、图、表）,有,据）。差异来源为 bf16 舍入随前向长度变化；长度跨档比例 target 28%、control 15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,0.25,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,度跨档比例 target 28%、control 15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,351,标识符 / 路径 / 编号中的数字,有,rget 28%、control 15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定过程：原判据（
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,919,版本 / 编号（Stage、补充、§、页、图、表）,有,15%。Stage 10 全程使用快路径，组间口径一致，一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定过程：原判据（≥ 99% 名次完全一致）未通过（
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,99%,样本 / 计数（篇、位、个、对、token、行）,有,一致性检查按 0.25 容差（351_stage10.py 第 919 行）通过率 99.81%。决定过程：原判据（≥ 99% 名次完全一致）未通过（79.8%）→ 用户指出事后判据的设计缺陷 → 在看到论
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,有,出事后判据的设计缺陷 → 在看到论文级结果之前写定并锁定修正判据 → 按修正判据（Welch 区间）仍未通过 → 停止；3-4、3-5（Stage 8 按 W 的 GPU 重算）不做。（381_stag
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,4,其他整数（计数、编号、说明）,有,后判据的设计缺陷 → 在看到论文级结果之前写定并锁定修正判据 → 按修正判据（Welch 区间）仍未通过 → 停止；3-4、3-5（Stage 8 按 W 的 GPU 重算）不做。（381_stage1
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,3,其他整数（计数、编号、说明）,有,据的设计缺陷 → 在看到论文级结果之前写定并锁定修正判据 → 按修正判据（Welch 区间）仍未通过 → 停止；3-4、3-5（Stage 8 按 W 的 GPU 重算）不做。（381_stage13/
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,5,其他整数（计数、编号、说明）,有,设计缺陷 → 在看到论文级结果之前写定并锁定修正判据 → 按修正判据（Welch 区间）仍未通过 → 停止；3-4、3-5（Stage 8 按 W 的 GPU 重算）不做。（381_stage13/co
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,8,版本 / 编号（Stage、补充、§、页、图、表）,有,看到论文级结果之前写定并锁定修正判据 → 按修正判据（Welch 区间）仍未通过 → 停止；3-4、3-5（Stage 8 按 W 的 GPU 重算）不做。（381_stage13/config/pre
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,→ 按修正判据（Welch 区间）仍未通过 → 停止；3-4、3-5（Stage 8 按 W 的 GPU 重算）不做。（381_stage13/config/prereg_addendum11.json、p
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,381,标识符 / 路径 / 编号中的数字,有,on、prereg_addendum12_deviations.json、prereg_addendum14.json；381_stage13/reports/b2_groupA_handoff.md） 研
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者,32,标识符 / 路径 / 编号中的数字,有,4.json；381_stage13/reports/b2_groupA_handoff.md） 研究问题。Qwen3-32B 常常在开放回答里写不出一篇论文的作者，却能在多选题里认出真作者名单。那么作者
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行1 列3 [表头: ; 行首: 论证线],1,版本 / 编号（Stage、补充、§、页、图、表）,无,"线，每条线先在小样本上建立信号、逐一排除替代解释，再在全部论文上复核和干预： 论证线 要回答的问题 小样本（Stage 1–9，20–200 篇） 全量（Stage 10–13，9,108 篇） A 这"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行1 列3 [表头: ; 行首: 论证线],9,其他整数（计数、编号、说明）,无,"每条线先在小样本上建立信号、逐一排除替代解释，再在全部论文上复核和干预： 论证线 要回答的问题 小样本（Stage 1–9，20–200 篇） 全量（Stage 10–13，9,108 篇） A 这篇论"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行1 列3 [表头: ; 行首: 论证线],20,其他整数（计数、编号、说明）,无,"线先在小样本上建立信号、逐一排除替代解释，再在全部论文上复核和干预： 论证线 要回答的问题 小样本（Stage 1–9，20–200 篇） 全量（Stage 10–13，9,108 篇） A 这篇论文？ "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行1 列3 [表头: ; 行首: 论证线],200,样本 / 计数（篇、位、个、对、token、行）,无,"小样本上建立信号、逐一排除替代解释，再在全部论文上复核和干预： 论证线 要回答的问题 小样本（Stage 1–9，20–200 篇） 全量（Stage 10–13，9,108 篇） A 这篇论文？ 信号是否"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行1 列4 [表头: ; 行首: 论证线],10,版本 / 编号（Stage、补充、§、页、图、表）,无,"释，再在全部论文上复核和干预： 论证线 要回答的问题 小样本（Stage 1–9，20–200 篇） 全量（Stage 10–13，9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行1 列4 [表头: ; 行首: 论证线],13,其他整数（计数、编号、说明）,无,"在全部论文上复核和干预： 论证线 要回答的问题 小样本（Stage 1–9，20–200 篇） 全量（Stage 10–13，9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好猜 5"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行2 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: A 这篇论文？],5,其他整数（计数、编号、说明）,无,"200 篇） 全量（Stage 10–13，9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好猜 5、7.2、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行2 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: A 这篇论文？],7.2,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,"0 篇） 全量（Stage 10–13，9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好猜 5、7.2、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行2 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: A 这篇论文？],7.3,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无," 全量（Stage 10–13，9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好猜 5、7.2、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行2 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: A 这篇论文？],8,其他整数（计数、编号、说明）,无,"Stage 10–13，9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好猜 5、7.2、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具"
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行2 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: A 这篇论文？]",10,其他整数（计数、编号、说明）,无,"age 10–13，9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好猜 5、7.2、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同"
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行2 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: A 这篇论文？]",11,样本 / 计数（篇、位、个、对、token、行）,无,"9,108 篇） A 这篇论文？ 信号是否针对这篇论文，而不是名字本身好猜 5、7.2、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同读出工具各能看到什么"
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行2 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: A 这篇论文？]",13,其他整数（计数、编号、说明）,无,信号是否针对这篇论文，而不是名字本身好猜 5、7.2、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同读出工具各能看到什么 3、7.4、8、9 10 三种 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: B 读出工具],3,其他整数（计数、编号、说明）,无,、7.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同读出工具各能看到什么 3、7.4、8、9 10 三种 Jacobian lens 与 logit len
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: B 读出工具],7.4,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,.3、8 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同读出工具各能看到什么 3、7.4、8、9 10 三种 Jacobian lens 与 logit lens；11
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: B 读出工具],8,其他整数（计数、编号、说明）,无, 10 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同读出工具各能看到什么 3、7.4、8、9 10 三种 Jacobian lens 与 logit lens；11 线
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: B 读出工具],9,其他整数（计数、编号、说明）,无,0 标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同读出工具各能看到什么 3、7.4、8、9 10 三种 Jacobian lens 与 logit lens；11 线性 
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: B 读出工具]",10,其他整数（计数、编号、说明）,无,标题特异信号；11 名字先验、probe 对照；13 X3 B 读出工具 不同读出工具各能看到什么 3、7.4、8、9 10 三种 Jacobian lens 与 logit lens；11 线性 pro
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: B 读出工具]",11,其他整数（计数、编号、说明）,无,出工具 不同读出工具各能看到什么 3、7.4、8、9 10 三种 Jacobian lens 与 logit lens；11 线性 probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: B 读出工具]",12,其他整数（计数、编号、说明）,无,看到什么 3、7.4、8、9 10 三种 Jacobian lens 与 logit lens；11 线性 probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行3 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: B 读出工具]",13,其他整数（计数、编号、说明）,无,9 10 三种 Jacobian lens 与 logit lens；11 线性 probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: C 哪一层],4,其他整数（计数、编号、说明）,无,t lens；11 线性 probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: C 哪一层],7.2,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,lens；11 线性 probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: C 哪一层],7.3,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,；11 线性 probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13 X5–
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: C 哪一层],8,其他整数（计数、编号、说明）,无,线性 probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13 X5–X7
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: C 哪一层]",10,其他整数（计数、编号、说明）,无, probe；12 作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13 X5–X7 D 
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: C 哪一层]",61,其他整数（计数、编号、说明）,无,作者提示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13 X5–X7 D 哪个 token 名
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: C 哪一层]",11,其他整数（计数、编号、说明）,无,示 lens；13 M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13 X5–X7 D 哪个 token 名字和提
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: C 哪一层]",12,其他整数（计数、编号、说明）,无, M2、X4 C 哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13 X5–X7 D 哪个 token 名字和提示的哪一部分带有信
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行4 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: C 哪一层]",13,其他整数（计数、编号、说明）,无,哪一层 信号何时出现、何时被使用 4、7.2、7.3、8 10 细层 L50–61；11 替换与阻断；12 P1/P2；13 X5–X7 D 哪个 token 名字和提示的哪一部分带有信号 6、7.1 1
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行5 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: D 哪个 token],6,其他整数（计数、编号、说明）,无,L50–61；11 替换与阻断；12 P1/P2；13 X5–X7 D 哪个 token 名字和提示的哪一部分带有信号 6、7.1 10 名字格式与 token 角色；11 标题之后的 token 每一
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行5 列3 [表头: 小样本（Stage 1–9，20–200 篇）; 行首: D 哪个 token],7.1,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,0–61；11 替换与阻断；12 P1/P2；13 X5–X7 D 哪个 token 名字和提示的哪一部分带有信号 6、7.1 10 名字格式与 token 角色；11 标题之后的 token 每一步用的控
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行5 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: D 哪个 token]",10,样本 / 计数（篇、位、个、对、token、行）,无,；11 替换与阻断；12 P1/P2；13 X5–X7 D 哪个 token 名字和提示的哪一部分带有信号 6、7.1 10 名字格式与 token 角色；11 标题之后的 token 每一步用的控制 对
+导师页 advisor/index.html,"模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 | 表1 行5 列4 [表头: 全量（Stage 10–13，9,108 篇）; 行首: D 哪个 token]",11,其他整数（计数、编号、说明）,无,"；13 X5–X7 D 哪个 token 名字和提示的哪一部分带有信号 6、7.1 10 名字格式与 token 角色；11 标题之后的 token 每一步用的控制 对照组：“认得出”（target，4,"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制,5,样本 / 计数（篇、位、个、对、token、行）,有,"写对作者的论文（R0）复核，结论不变（输出处 +0.199 [0.188, 0.212]）。 标题特异信号：真标题减去 5 个按领域和长度匹配的假标题的平均，另设“无标题”条件估计名字先验。 因果干预："
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制,13,版本 / 编号（Stage、补充、§、页、图、表）,有,估计名字先验。 因果干预：把真标题运行的表示替换进假标题运行（替换），或从某层起阻断对标题的注意力（阻断）；Stage 13 用另外 4 个假标题重做（X6、X7）。 预注册：Stage 13 的判定规则
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制,4,样本 / 计数（篇、位、个、对、token、行）,有, 因果干预：把真标题运行的表示替换进假标题运行（替换），或从某层起阻断对标题的注意力（阻断）；Stage 13 用另外 4 个假标题重做（X6、X7）。 预注册：Stage 13 的判定规则在看数据前写
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制,13,版本 / 编号（Stage、补充、§、页、图、表）,有,，或从某层起阻断对标题的注意力（阻断）；Stage 13 用另外 4 个假标题重做（X6、X7）。 预注册：Stage 13 的判定规则在看数据前写定（prereg.json + 补充 1–5，均有 sh
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制,1,版本 / 编号（Stage、补充、§、页、图、表）,有,4 个假标题重做（X6、X7）。 预注册：Stage 13 的判定规则在看数据前写定（prereg.json + 补充 1–5，均有 sha256）；所有层都报告，不挑层；调参集选、测试集确认。 统计：
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制,5,其他整数（计数、编号、说明）,有,个假标题重做（X6、X7）。 预注册：Stage 13 的判定规则在看数据前写定（prereg.json + 补充 1–5，均有 sha256）；所有层都报告，不挑层；调参集选、测试集确认。 统计：区间
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 怎么系统地做 > 每一步用的控制,"4,712",样本 / 计数（篇、位、个、对、token、行）,无,"GPU 作业前先在微型随机模型上跑通全流程，再跑一个真实分片；作业内做复现核对（如 X4 按 token 重算与原分数 4,712 个值逐位相同；P2 钩子的完全替换检查逐位恢复）。 主要发现 真标题有帮助，而"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,200,样本 / 计数（篇、位、个、对、token、行）,无," 主要发现 真标题有帮助，而且针对这篇论文。 小样本：L56 真标题比错误标题高 +9.3 pp（Pilot50），在 200 篇新论文上 +5.18 pp [+2.93, +7.48]（Stage 8 冻"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,8,版本 / 编号（Stage、补充、§、页、图、表）,无," +9.3 pp（Pilot50），在 200 篇新论文上 +5.18 pp [+2.93, +7.48]（Stage 8 冻结设计）。全量：标题特异信号在 L62 约 0.44；名字先验只占目标−对照"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,0,其他整数（计数、编号、说明）,无,异信号在 L62 约 0.44；名字先验只占目标−对照差的约 0.35（约三分之一），在姓的第一个 token 上约为 0。 “认得出”的优势是真的，但只在最后几层出现。 引用档内的目标−对照差：中间层
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,0,其他整数（计数、编号、说明）,无,姓的第一个 token 上约为 0。 “认得出”的优势是真的，但只在最后几层出现。 引用档内的目标−对照差：中间层约为 0，输出处 +0.21。写对了部分作者的论文（R1）最强，但时间点相同。标题特异信
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,5,样本 / 计数（篇、位、个、对、token、行）,无,形成，在 L44–L52 进入名字位置。 替换标题之后的 token：L48 恢复 0.82，L52 恢复 0.995（5 个假标题平均，各假标题之间相差不超过 0.02）。从 L52 起阻断对标题的注
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,0.02,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,替换标题之后的 token：L48 恢复 0.82，L52 恢复 0.995（5 个假标题平均，各假标题之间相差不超过 0.02）。从 L52 起阻断对标题的注意力，论文特有损失只剩 0.029（contro
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,0.05,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,过 0.02）。从 L52 起阻断对标题的注意力，论文特有损失只剩 0.029（control 组 0.051，略高于 0.05 的预注册界线，到 L54–56 降为 0）〔2026-11-06 已更新：X7
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,56,其他整数（计数、编号、说明）,无,标题的注意力，论文特有损失只剩 0.029（control 组 0.051，略高于 0.05 的预注册界线，到 L54–56 降为 0）〔2026-11-06 已更新：X7 按 5 个假标题平均，cont
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,0,其他整数（计数、编号、说明）,无,，论文特有损失只剩 0.029（control 组 0.051，略高于 0.05 的预注册界线，到 L54–56 降为 0）〔2026-11-06 已更新：X7 按 5 个假标题平均，control +
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,2026,日期 / 时间,无,特有损失只剩 0.029（control 组 0.051，略高于 0.05 的预注册界线，到 L54–56 降为 0）〔2026-11-06 已更新：X7 按 5 个假标题平均，control +0.042，
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,11,日期 / 时间,无,剩 0.029（control 组 0.051，略高于 0.05 的预注册界线，到 L54–56 降为 0）〔2026-11-06 已更新：X7 按 5 个假标题平均，control +0.042，已满足
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,06,日期 / 时间,无,.029（control 组 0.051，略高于 0.05 的预注册界线，到 L54–56 降为 0）〔2026-11-06 已更新：X7 按 5 个假标题平均，control +0.042，已满足判据；
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,5,样本 / 计数（篇、位、个、对、token、行）,无, 组 0.051，略高于 0.05 的预注册界线，到 L54–56 降为 0）〔2026-11-06 已更新：X7 按 5 个假标题平均，control +0.042，已满足判据；见页首更新框〕。只替换
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,56,其他整数（计数、编号、说明）,无,L52 恢复 0.85，只替换 “:” 最多 0.17。注意力在 L48 把标题带进来（0.23），MLP 在 L52–56 接手（0.18、0.22）。 读出工具在中间层读不到“这篇论文的作者”。 名字
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,0,其他整数（计数、编号、说明）,无,作者”。 名字位置上，logit lens 和三种 Jacobian lens 在 L24–L48 的标题特异信号约为 0，Jacobian lens 多读出的只是“名字形状”；在作者提示上重新拟合的 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,12,版本 / 编号（Stage、补充、§、页、图、表）,无,题特异信号约为 0，Jacobian lens 多读出的只是“名字形状”；在作者提示上重新拟合的 lens（Stage 12 F2）也要到 L62 才区分目标组。标题位置的线性 probe 能读出少量论文
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,0,其他整数（计数、编号、说明）,无,"e 能读出少量论文特有信号（L24 +0.050、L40 +0.061、L56 +0.075，换成随机论文的作者后约为 0；E4b，target + control 1,395 篇，训练折标准化），但它"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,2026,日期 / 时间,无,"rget + control 1,395 篇，训练折标准化），但它只给名字第一个 token 打分，而这多半是首字母。〔2026-11-06 已更新：补充 9 给全部名字 token 打分，L40 姓的第一个"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,11,日期 / 时间,无,"+ control 1,395 篇，训练折标准化），但它只给名字第一个 token 打分，而这多半是首字母。〔2026-11-06 已更新：补充 9 给全部名字 token 打分，L40 姓的第一个 to"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,06,日期 / 时间,无,"ontrol 1,395 篇，训练折标准化），但它只给名字第一个 token 打分，而这多半是首字母。〔2026-11-06 已更新：补充 9 给全部名字 token 打分，L40 姓的第一个 token"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,9,版本 / 编号（Stage、补充、§、页、图、表）,无,95 篇，训练折标准化），但它只给名字第一个 token 打分，而这多半是首字母。〔2026-11-06 已更新：补充 9 给全部名字 token 打分，L40 姓的第一个 token +0.071；逐
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现,"4,654",样本 / 计数（篇、位、个、对、token、行）,无,"-06 已更新：补充 9 给全部名字 token 打分，L40 姓的第一个 token +0.071；逐个假标题排除版（4,654 篇，每篇约 1.5 个可用假标题）+0.076；见页首更新框〕 中间层在标题位"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 主要发现 > 层序汇总（X5，只用已有结果）,61,其他整数（计数、编号、说明）,无,有结果） 圆点为按各来源规则最早出现的层，菱形为更严的阈值，灰带为预注册中 H2 预测“lens 读出名字”的 L57–61。图中标签为英文（集群上没有中文字体）。 三个假设的现状 假设 现状 依据 H1
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 三个假设的现状 | 表2 行4 列3 [表头: 依据; 行首: H3 作者信息已在，只是不在词表方向],2026,日期 / 时间,无, H3 作者信息已在，只是不在词表方向 证据不足 X4 文本基线不弱于 Qwen；只替换子空间的因果检验（X2）没有做〔2026-11-06 已更新：X2 已于 2026-11-05 完成，H3 仍证据不足；
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 三个假设的现状 | 表2 行4 列3 [表头: 依据; 行首: H3 作者信息已在，只是不在词表方向],11,日期 / 时间,无,者信息已在，只是不在词表方向 证据不足 X4 文本基线不弱于 Qwen；只替换子空间的因果检验（X2）没有做〔2026-11-06 已更新：X2 已于 2026-11-05 完成，H3 仍证据不足；见页首
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 三个假设的现状 | 表2 行4 列3 [表头: 依据; 行首: H3 作者信息已在，只是不在词表方向],06,日期 / 时间,无,已在，只是不在词表方向 证据不足 X4 文本基线不弱于 Qwen；只替换子空间的因果检验（X2）没有做〔2026-11-06 已更新：X2 已于 2026-11-05 完成，H3 仍证据不足；见页首更新框
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 三个假设的现状 | 表2 行4 列3 [表头: 依据; 行首: H3 作者信息已在，只是不在词表方向],2026,日期 / 时间,无,据不足 X4 文本基线不弱于 Qwen；只替换子空间的因果检验（X2）没有做〔2026-11-06 已更新：X2 已于 2026-11-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 三个假设的现状 | 表2 行4 列3 [表头: 依据; 行首: H3 作者信息已在，只是不在词表方向],11,日期 / 时间,无,4 文本基线不弱于 Qwen；只替换子空间的因果检验（X2）没有做〔2026-11-06 已更新：X2 已于 2026-11-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 三个假设的现状 | 表2 行4 列3 [表头: 依据; 行首: H3 作者信息已在，只是不在词表方向],05,日期 / 时间,无,本基线不弱于 Qwen；只替换子空间的因果检验（X2）没有做〔2026-11-06 已更新：X2 已于 2026-11-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明 St
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行2 列1 [表头: 阶段; 行首: ],1,版本 / 编号（Stage、补充、§、页、图、表）,无,X2 已于 2026-11-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明 Stage 1–6、7.2、7.3、8 完成 Stage 8 冻结主终点复现 +2.33 / 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行2 列1 [表头: 阶段; 行首: ],6,其他整数（计数、编号、说明）,无, 已于 2026-11-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明 Stage 1–6、7.2、7.3、8 完成 Stage 8 冻结主终点复现 +2.33 / +2
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行2 列1 [表头: 阶段; 行首: ],7.2,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,于 2026-11-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明 Stage 1–6、7.2、7.3、8 完成 Stage 8 冻结主终点复现 +2.33 / +2.41 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行2 列1 [表头: 阶段; 行首: ],7.3,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,无,26-11-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明 Stage 1–6、7.2、7.3、8 完成 Stage 8 冻结主终点复现 +2.33 / +2.41 pp；H
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行2 列1 [表头: 阶段; 行首: ],8,其他整数（计数、编号、说明）,无,1-05 完成，H3 仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明 Stage 1–6、7.2、7.3、8 完成 Stage 8 冻结主终点复现 +2.33 / +2.41 pp；Hol
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行2 列3 [表头: 说明; 行首: Stage 1–6、7.2、7.3、8],8,版本 / 编号（Stage、补充、§、页、图、表）,无,仍证据不足；见页首更新框〕 各阶段完成情况 阶段 状态 说明 Stage 1–6、7.2、7.3、8 完成 Stage 8 冻结主终点复现 +2.33 / +2.41 pp；Holm 校正后只有 L62
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行3 列1 [表头: 阶段; 行首: ],7.1,版本 / 编号（Stage、补充、§、页、图、表）,无,"点复现 +2.33 / +2.41 pp；Holm 校正后只有 L62 显著；无出处的区间已从原始数据重算 Stage 7.1 部分 7.1B 停在 1,166 / 15,519，内容由 Stage 10 "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行3 列3 [表头: 说明; 行首: Stage 7.1],7.1,标识符 / 路径 / 编号中的数字,无,"33 / +2.41 pp；Holm 校正后只有 L62 显著；无出处的区间已从原始数据重算 Stage 7.1 部分 7.1B 停在 1,166 / 15,519，内容由 Stage 10 覆盖 Stag"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行3 列3 [表头: 说明; 行首: Stage 7.1],10,版本 / 编号（Stage、补充、§、页、图、表）,无,"出处的区间已从原始数据重算 Stage 7.1 部分 7.1B 停在 1,166 / 15,519，内容由 Stage 10 覆盖 Stage 9 部分 Fit A 完成；Fit B 停在 66/100，"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列1 [表头: 阶段; 行首: ],9,版本 / 编号（Stage、补充、§、页、图、表）,无,"算 Stage 7.1 部分 7.1B 停在 1,166 / 15,519，内容由 Stage 10 覆盖 Stage 9 部分 Fit A 完成；Fit B 停在 66/100，答辩前不补（lens "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],66,标识符 / 路径 / 编号中的数字,无,"1,166 / 15,519，内容由 Stage 10 覆盖 Stage 9 部分 Fit A 完成；Fit B 停在 66/100，答辩前不补（lens 拟合稳定性只有一份证据）〔2026-11-06 "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],100,标识符 / 路径 / 编号中的数字,无,"66 / 15,519，内容由 Stage 10 覆盖 Stage 9 部分 Fit A 完成；Fit B 停在 66/100，答辩前不补（lens 拟合稳定性只有一份证据）〔2026-11-06 已更新："
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],2026,日期 / 时间,无,Stage 9 部分 Fit A 完成；Fit B 停在 66/100，答辩前不补（lens 拟合稳定性只有一份证据）〔2026-11-06 已更新：Fit B 与 holdout 列入批次 2，代码已就绪，
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],11,日期 / 时间,无, 9 部分 Fit A 完成；Fit B 停在 66/100，答辩前不补（lens 拟合稳定性只有一份证据）〔2026-11-06 已更新：Fit B 与 holdout 列入批次 2，代码已就绪，自动开
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],06,日期 / 时间,无,部分 Fit A 完成；Fit B 停在 66/100，答辩前不补（lens 拟合稳定性只有一份证据）〔2026-11-06 已更新：Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；2
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],2,版本 / 编号（Stage、补充、§、页、图、表）,无,答辩前不补（lens 拟合稳定性只有一份证据）〔2026-11-06 已更新：Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；见页首更新框〕
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],2026,日期 / 时间,无,稳定性只有一份证据）〔2026-11-06 已更新：Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；见页首更新框〕 Stage 10、11 完成 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],11,日期 / 时间,无,一份证据）〔2026-11-06 已更新：Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；见页首更新框〕 Stage 10、11 完成 全量逐
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行4 列3 [表头: 说明; 行首: Stage 9],08,日期 / 时间,无,据）〔2026-11-06 已更新：Fit B 与 holdout 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；见页首更新框〕 Stage 10、11 完成 全量逐层读出
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行5 列1 [表头: 阶段; 行首: ],10,版本 / 编号（Stage、补充、§、页、图、表）,无,oldout 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；见页首更新框〕 Stage 10、11 完成 全量逐层读出；替换与阻断 Stage 12 完成 单位置替换、注意
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行5 列1 [表头: 阶段; 行首: ],11,其他整数（计数、编号、说明）,无,out 列入批次 2，代码已就绪，自动开始；2026-11-08：已在运行，尚无结果；见页首更新框〕 Stage 10、11 完成 全量逐层读出；替换与阻断 Stage 12 完成 单位置替换、注意力与 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行6 列1 [表头: 阶段; 行首: ],12,版本 / 编号（Stage、补充、§、页、图、表）,无,6-11-08：已在运行，尚无结果；见页首更新框〕 Stage 10、11 完成 全量逐层读出；替换与阻断 Stage 12 完成 单位置替换、注意力与 MLP 分开替换（钩子显式检查通过）、名字先验、作
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行7 列1 [表头: 阶段; 行首: ],13,版本 / 编号（Stage、补充、§、页、图、表）,无,ge 12 完成 单位置替换、注意力与 MLP 分开替换（钩子显式检查通过）、名字先验、作者提示 lens Stage 13 完成 M1–M3、X1、X3–X7 完成；M4 由 Stage 12 完成；M
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行7 列3 [表头: 说明; 行首: Stage 13],12,版本 / 编号（Stage、补充、§、页、图、表）,无,通过）、名字先验、作者提示 lens Stage 13 完成 M1–M3、X1、X3–X7 完成；M4 由 Stage 12 完成；M5 并入 X4；X2 暂停未做〔2026-11-06 已更新：X2 已
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行7 列3 [表头: 说明; 行首: Stage 13],2026,日期 / 时间,无,e 13 完成 M1–M3、X1、X3–X7 完成；M4 由 Stage 12 完成；M5 并入 X4；X2 暂停未做〔2026-11-06 已更新：X2 已完成；M5 的 CPU 部分已完成；X1–X4 已
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行7 列3 [表头: 说明; 行首: Stage 13],11,日期 / 时间,无,完成 M1–M3、X1、X3–X7 完成；M4 由 Stage 12 完成；M5 并入 X4；X2 暂停未做〔2026-11-06 已更新：X2 已完成；M5 的 CPU 部分已完成；X1–X4 已改为全
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 各阶段完成情况 | 表3 行7 列3 [表头: 说明; 行首: Stage 13],06,日期 / 时间,无,M1–M3、X1、X3–X7 完成；M4 由 Stage 12 完成；M5 并入 X4；X2 暂停未做〔2026-11-06 已更新：X2 已完成；M5 的 CPU 部分已完成；X1–X4 已改为全部作者
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,0.0007,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,练和测试里）；按团队分折并剔除标题复用后，信号与普通 probe 相当。标准化改为只在训练折内拟合；两种标准化差别最大 0.0007，无结论翻转（381_stage13/e4b_standardisation_c
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,381,标识符 / 路径 / 编号中的数字,有,剔除标题复用后，信号与普通 probe 相当。标准化改为只在训练折内拟合；两种标准化差别最大 0.0007，无结论翻转（381_stage13/e4b_standardisation_check/）。 M3
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,2,版本 / 编号（Stage、补充、§、页、图、表）,有,e4b_standardisation_check/）。 M3 的自动判定原来按绝对阈值写成“支持 H2”，不符合补充 2；按规则重判为不支持。 团队分折在支持 AVX-512 的节点上会不同；核对后所
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,512,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,/）。 M3 的自动判定原来按绝对阈值写成“支持 H2”，不符合补充 2；按规则重判为不支持。 团队分折在支持 AVX-512 的节点上会不同；核对后所有原始运行与存档一致（点估计差 0），现统一读存档。 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,0,其他整数（计数、编号、说明）,有,补充 2；按规则重判为不支持。 团队分折在支持 AVX-512 的节点上会不同；核对后所有原始运行与存档一致（点估计差 0），现统一读存档。 X4 首次逐 token 自检对不上，原因是批大小不同造成的
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,8,版本 / 编号（Stage、补充、§、页、图、表）,无, X4 首次逐 token 自检对不上，原因是批大小不同造成的 bf16 舍入；按原批大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 2
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,10,其他整数（计数、编号、说明）,无,token 自检对不上，原因是批大小不同造成的 bf16 舍入；按原批大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PR
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,18,其他整数（计数、编号、说明）,无,en 自检对不上，原因是批大小不同造成的 bf16 舍入；按原批大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTO
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,14,日期 / 时间,无,自检对不上，原因是批大小不同造成的 bf16 舍入；按原批大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,29,代码行号 / 文件内位置,无,不上，原因是批大小不同造成的 bf16 舍入；按原批大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,7,样本 / 计数（篇、位、个、对、token、行）,无,的 bf16 舍入；按原批大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,21,日期 / 时间,无,按原批大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,14,代码行号 / 文件内位置,无,大小重算后逐位一致。 Stage 8：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题,8,标识符 / 路径 / 编号中的数字,无,-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）；git 中没有改动记录。 自查中发现并修正
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行6 列1 [表头: 问题; 行首: ],11,版本 / 编号（Stage、补充、§、页、图、表）,无,标题训练信号更强”一说撤回 置信区间按论文独立重抽 区间偏窄 改为团队整群 bootstrap，点估计不变 Stage 11 替换范围包含名字位置 “信息存在标题后 token 上”的解释不对 Stage
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行6 列3 [表头: 处理; 行首: Stage 11 替换范围包含名字位置],12,版本 / 编号（Stage、补充、§、页、图、表）,无,trap，点估计不变 Stage 11 替换范围包含名字位置 “信息存在标题后 token 上”的解释不对 Stage 12 拆开后改为“进入名字位置” 替换只用一个假标题、阻断可能搞乱模型 时间点可能偶
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行7 列3 [表头: 处理; 行首: 替换只用一个假标题、阻断可能搞乱模型],2026,日期 / 时间,无,e 12 拆开后改为“进入名字位置” 替换只用一个假标题、阻断可能搞乱模型 时间点可能偶然 X6、X7 补做，结论成立〔2026-11-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行7 列3 [表头: 处理; 行首: 替换只用一个假标题、阻断可能搞乱模型],11,日期 / 时间,无,拆开后改为“进入名字位置” 替换只用一个假标题、阻断可能搞乱模型 时间点可能偶然 X6、X7 补做，结论成立〔2026-11-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 S
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行7 列3 [表头: 处理; 行首: 替换只用一个假标题、阻断可能搞乱模型],06,日期 / 时间,无,改为“进入名字位置” 替换只用一个假标题、阻断可能搞乱模型 时间点可能偶然 X6、X7 补做，结论成立〔2026-11-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 Stag
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行7 列3 [表头: 处理; 行首: 替换只用一个假标题、阻断可能搞乱模型],5,样本 / 计数（篇、位、个、对、token、行）,无,只用一个假标题、阻断可能搞乱模型 时间点可能偶然 X6、X7 补做，结论成立〔2026-11-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 Stage 8 分析计划在 10
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],8,版本 / 编号（Stage、补充、§、页、图、表）,无,补做，结论成立〔2026-11-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 2
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],10,其他整数（计数、编号、说明）,无,2026-11-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PR
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],18,其他整数（计数、编号、说明）,无,6-11-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTO
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],14,日期 / 时间,无,1-06 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],29,代码行号 / 文件内位置,无,6 已更新：X7 已按 5 个假标题平均重判，三组都成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],7,样本 / 计数（篇、位、个、对、token、行）,无, 个假标题平均重判，三组都成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],21,日期 / 时间,无,三组都成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],14,代码行号 / 文件内位置,无,成立；见页首更新框〕 Stage 8 分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行8 列1 [表头: 问题; 行首: ],8,标识符 / 路径 / 编号中的数字,无,-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28） 可能“挑了有利终点” 补报原定主终点（仍显
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节） | 表4 行9 列3 [表头: 处理; 行首: M3 自动判定没按预注册规则],2,版本 / 编号（Stage、补充、§、页、图、表）,无,“挑了有利终点” 补报原定主终点（仍显著）、Holm、逐对剔除 M3 自动判定没按预注册规则 H2 被过度支持 按补充 2 重判为不支持 X4 文本基线代码错误、阳性对照失败 H3 被过度支持 修正后结
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节）,8,标识符 / 路径 / 编号中的数字,无,复现 从原始数据重算替换，数值都在原范围内 出处：讲稿版进度汇报（https://claude.ai/artifact/8XcY8CRpz3AAjfDE4n6V6e）第七节；各条的详细记录与出处文件见方
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 复核中发现并改正的问题 > 自查中发现并修正的问题（汇总表，来自讲稿版进度汇报第七节）,6,版本 / 编号（Stage、补充、§、页、图、表）,无,实验全过程汇总（https://claude.ai/artifact/TmqEtZg3gHTz7p7vCkaiB4）第 6 节。本表各行没有逐行列出结果文件。 局限 只用了一个模型（Qwen3-32B，
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,32,标识符 / 路径 / 编号中的数字,无,"qEtZg3gHTz7p7vCkaiB4）第 6 节。本表各行没有逐行列出结果文件。 局限 只用了一个模型（Qwen3-32B，bf16）。 Stage 7.1B 的终端读出只完成 1,166 / 15,"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,7.1,标识符 / 路径 / 编号中的数字,无,"iB4）第 6 节。本表各行没有逐行列出结果文件。 局限 只用了一个模型（Qwen3-32B，bf16）。 Stage 7.1B 的终端读出只完成 1,166 / 15,519 个上下文（7.5%）；用 S"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,10,版本 / 编号（Stage、补充、§、页、图、表）,无,"f16）。 Stage 7.1B 的终端读出只完成 1,166 / 15,519 个上下文（7.5%）；用 Stage 10 快路径补完的尝试（补充 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,14,版本 / 编号（Stage、补充、§、页、图、表）,无,"B 的终端读出只完成 1,166 / 15,519 个上下文（7.5%）；用 Stage 10 快路径补完的尝试（补充 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停止，7.1B 的估计量不报告。"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,3,版本 / 编号（Stage、补充、§、页、图、表）,无,"读出只完成 1,166 / 15,519 个上下文（7.5%）；用 Stage 10 快路径补完的尝试（补充 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停止，7.1B 的估计量不报告。（偏离 "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,3,其他整数（计数、编号、说明）,无,"只完成 1,166 / 15,519 个上下文（7.5%）；用 Stage 10 快路径补完的尝试（补充 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停止，7.1B 的估计量不报告。（偏离 D1"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,7.1,标识符 / 路径 / 编号中的数字,无,文（7.5%）；用 Stage 10 快路径补完的尝试（补充 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停止，7.1B 的估计量不报告。（偏离 D14-1） Stage 8 RQ2 在 L56 的
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,1,其他整数（计数、编号、说明）,无,径补完的尝试（补充 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停止，7.1B 的估计量不报告。（偏离 D14-1） Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,8,版本 / 编号（Stage、补充、§、页、图、表）,无, 14 第 3-3 项）因无法确认与旧逐前缀结果等效而停止，7.1B 的估计量不报告。（偏离 D14-1） Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1）。Stage 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,1,其他整数（计数、编号、说明）,无,1B 的估计量不报告。（偏离 D14-1） Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1）。Stage 8 的结论有三个前提：W 只给第一作者的第一个 token 打分
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,8,版本 / 编号（Stage、补充、§、页、图、表）,无,告。（偏离 D14-1） Stage 8 RQ2 在 L56 的结论没有用原统计量复核（偏离 D13-1）。Stage 8 的结论有三个前提：W 只给第一作者的第一个 token 打分（64.5% 是首
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,1,其他整数（计数、编号、说明）,无,3-1）。Stage 8 的结论有三个前提：W 只给第一作者的第一个 token 打分（64.5% 是首字母）；D13-1；U28（L56 是后改的终点，原因待查）。 层不完整（第 30 版补）。Sta
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,30,版本 / 编号（Stage、补充、§、页、图、表）,无,第一个 token 打分（64.5% 是首字母）；D13-1；U28（L56 是后改的终点，原因待查）。 层不完整（第 30 版补）。Stage 10 在 L24–L40 每 8 层取一层（没有 L25–
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,10,版本 / 编号（Stage、补充、§、页、图、表）,无,64.5% 是首字母）；D13-1；U28（L56 是后改的终点，原因待查）。 层不完整（第 30 版补）。Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,8,样本 / 计数（篇、位、个、对、token、行）,无,-1；U28（L56 是后改的终点，原因待查）。 层不完整（第 30 版补）。Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,14,版本 / 编号（Stage、补充、§、页、图、表）,无,）。Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,10,版本 / 编号（Stage、补充、§、页、图、表）,有,的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit le
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,0,其他整数（计数、编号、说明）,有,L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过（~/jlens_work/conclusions_v30_c
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,30,版本 / 编号（Stage、补充、§、页、图、表）,有,jlens_work/conclusions_v30_checks.md A1）。 一致性容差事后放宽，而且用到了（第 30 版补）。Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,10,版本 / 编号（Stage、补充、§、页、图、表）,有,nclusions_v30_checks.md A1）。 一致性容差事后放宽，而且用到了（第 30 版补）。Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,2026,日期 / 时间,有,后放宽，而且用到了（第 30 版补）。Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,10,日期 / 时间,有,且用到了（第 30 版补）。Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,25,日期 / 时间,有,了（第 30 版补）。Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,1,标识符 / 路径 / 编号中的数字,有,读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,0.25,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,10,版本 / 编号（Stage、补充、§、页、图、表）,有,全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 le
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,0.25,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_be
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,351,标识符 / 路径 / 编号中的数字,有,上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_ame
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,3,其他整数（计数、编号、说明）,有,"367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,3,其他整数（计数、编号、说明）,有,"7（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,0.25,结果数字（不在结论清单内：表格、正文细节、图注；本轮未逐条核对）,有,"parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,3,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"ment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,3,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,"nt.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,0.5,配置 / 设计常数（种子、阈值、K、折数、bootstrap 次数等）,有,在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里（351_stage10/reports
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,351,标识符 / 路径 / 编号中的数字,有,舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。保留在事后改动清单里（351_stage10/reports/parity.json tolerance_a
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,30,版本 / 编号（Stage、补充、§、页、图、表）,有,"endment.json；conclusions_v30_checks.md A2）。 干预只用了 1,186 篇（第 30 版补）。E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,1"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,60,样本 / 计数（篇、位、个、对、token、行）,有,"、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做（361_stage11/summary/E1"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,10,样本 / 计数（篇、位、个、对、token、行）,有,"7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做（361_stage11/summary/E1_reco"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,361,标识符 / 路径 / 编号中的数字,有,"1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做（361_stage11/summary/E1_recovery.csv n_paper"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,30,版本 / 编号（Stage、补充、§、页、图、表）,有,限，不重做（361_stage11/summary/E1_recovery.csv n_papers）。 分母效应（第 30 版补）。恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.55
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,5,样本 / 计数（篇、位、个、对、token、行）,有, 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,30,版本 / 编号（Stage、补充、§、页、图、表）,有, 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提。 只用 false_0、没有补做计划（第 30 版补）。M5 B 部分（真标题对 false_0 的标题 / “:” 位置 p
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,5,样本 / 计数（篇、位、个、对、token、行）,有,置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 已不在此列：M2 的假标题运行已补 5 个假标题；标题复用和供体在训练折的排除对每个假标题都为 0 行（exclusi
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,381,标识符 / 路径 / 编号中的数字,有,论文以 target 行出现在训练折中（显示另一篇论文的标题和标签，只有年份在 ':' 之后进入提示），未作为泄漏处理（381_stage13/reports/m2_f5_report.md；381_sta
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,381,标识符 / 路径 / 编号中的数字,有,年份在 ':' 之后进入提示），未作为泄漏处理（381_stage13/reports/m2_f5_report.md；381_stage13/summary_m2_f5/M2_f5_mean.csv、ex
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,11747064,作业号,有,stage13/summary_m2_f5/M2_f5_mean.csv、exclusion_audit.csv（作业 11747064））。 数字核对只覆盖已登记的部分（第 30 版补）。已登记 680 个结论数字
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,30,版本 / 编号（Stage、补充、§、页、图、表）,有,"mean.csv、exclusion_audit.csv（作业 11747064））。 数字核对只覆盖已登记的部分（第 30 版补）。已登记 680 个结论数字、4,307 处全部一致（第 29 版 h "
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,29,版本 / 编号（Stage、补充、§、页、图、表）,有,"47064））。 数字核对只覆盖已登记的部分（第 30 版补）。已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；第 30 版新放回或新增的数字已登记进严格核对（claims"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,30,版本 / 编号（Stage、补充、§、页、图、表）,有,"覆盖已登记的部分（第 30 版补）。已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,"1,024",样本 / 计数（篇、位、个、对、token、行）,有," 版 h 的核对）；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/re"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,2026,日期 / 时间,有,"新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,11,日期 / 时间,有,"增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/cla"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,07,日期 / 时间,有,"字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/claims"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,351,标识符 / 路径 / 编号中的数字,有,"核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）（351_stage10/reports/numcheck/claims/out_202"
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,9,版本 / 编号（Stage、补充、§、页、图、表）,有,得出 / 认不出”的标签来自组里的标注包，生成标签的代码（elm）不在集群上。 lens 的拟合稳定性只有 Stage 9 Fit A 一份证据；作者提示 lens 没做对半拟合。〔2026-11-06
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,2026,日期 / 时间,有,m）不在集群上。 lens 的拟合稳定性只有 Stage 9 Fit A 一份证据；作者提示 lens 没做对半拟合。〔2026-11-06 已更新：Fit B 与 F1 对半拆分都列入批次 2；见页首更新框
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,11,日期 / 时间,有,群上。 lens 的拟合稳定性只有 Stage 9 Fit A 一份证据；作者提示 lens 没做对半拟合。〔2026-11-06 已更新：Fit B 与 F1 对半拆分都列入批次 2；见页首更新框〕 X
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,06,日期 / 时间,有, lens 的拟合稳定性只有 Stage 9 Fit A 一份证据；作者提示 lens 没做对半拟合。〔2026-11-06 已更新：Fit B 与 F1 对半拆分都列入批次 2；见页首更新框〕 X5 预
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,2,版本 / 编号（Stage、补充、§、页、图、表）,有, 一份证据；作者提示 lens 没做对半拟合。〔2026-11-06 已更新：Fit B 与 F1 对半拆分都列入批次 2；见页首更新框〕 X5 预注册的“跨问法检索”曲线没有计算；X2（只替换子空间）
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,2026,日期 / 时间,有, F1 对半拆分都列入批次 2；见页首更新框〕 X5 预注册的“跨问法检索”曲线没有计算；X2（只替换子空间）没有做。〔2026-11-06 已更新：X5 检索曲线与 X2 都已在答辩后完成；见页首更新框〕 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,11,日期 / 时间,有,半拆分都列入批次 2；见页首更新框〕 X5 预注册的“跨问法检索”曲线没有计算；X2（只替换子空间）没有做。〔2026-11-06 已更新：X5 检索曲线与 X2 都已在答辩后完成；见页首更新框〕 需要确
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 局限,06,日期 / 时间,有,都列入批次 2；见页首更新框〕 X5 预注册的“跨问法检索”曲线没有计算；X2（只替换子空间）没有做。〔2026-11-06 已更新：X5 检索曲线与 X2 都已在答辩后完成；见页首更新框〕 需要确认的问
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 需要确认的问题 > 请组长确认,1,版本 / 编号（Stage、补充、§、页、图、表）,有,切分规则；多选干扰团队的抽取规则（年份与人数容差、是否排除共同作者、随机种子）；“et al.” 截断规则；Stage 1 标注运行的配置。 需要我自己补的记录 Stage 8 主终点从 7 层积分改为
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 需要确认的问题 > 需要我自己补的记录,8,版本 / 编号（Stage、补充、§、页、图、表）,有,排除共同作者、随机种子）；“et al.” 截断规则；Stage 1 标注运行的配置。 需要我自己补的记录 Stage 8 主终点从 7 层积分改为 L56 的决定与依据（影响唯一的确认性检验）。 Ex
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 需要确认的问题 > 需要我自己补的记录,7,样本 / 计数（篇、位、个、对、token、行）,有,随机种子）；“et al.” 截断规则；Stage 1 标注运行的配置。 需要我自己补的记录 Stage 8 主终点从 7 层积分改为 L56 的决定与依据（影响唯一的确认性检验）。 Exp 1–7 编
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 需要确认的问题 > 需要我自己补的记录,1,版本 / 编号（Stage、补充、§、页、图、表）,有, 需要我自己补的记录 Stage 8 主终点从 7 层积分改为 L56 的决定与依据（影响唯一的确认性检验）。 Exp 1–7 编号来源文档；7.1B 是否有意停止；public lens 的模型与语料
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 需要确认的问题 > 需要我自己补的记录,7,其他整数（计数、编号、说明）,有,要我自己补的记录 Stage 8 主终点从 7 层积分改为 L56 的决定与依据（影响唯一的确认性检验）。 Exp 1–7 编号来源文档；7.1B 是否有意停止；public lens 的模型与语料版本
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 需要确认的问题 > 需要我自己补的记录,7.1,标识符 / 路径 / 编号中的数字,有,Stage 8 主终点从 7 层积分改为 L56 的决定与依据（影响唯一的确认性检验）。 Exp 1–7 编号来源文档；7.1B 是否有意停止；public lens 的模型与语料版本（需问 Neuronp
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 需要确认的问题 > 需要我自己补的记录,10,版本 / 编号（Stage、补充、§、页、图、表）,无,来源文档；7.1B 是否有意停止；public lens 的模型与语料版本（需问 Neuronpedia）；Stage 10 冻结版本与运行版本之间的改动。 待确认与下一步（来自讲稿版进度汇报第九节） 待
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,6,其他整数（计数、编号、说明）,无,）；Stage 10 冻结版本与运行版本之间的改动。 待确认与下一步（来自讲稿版进度汇报第九节） 待确认： 向组长确认 6 项标签流程细节（elm 代码和运行记录、多选题 thinking 设置、名字切
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,8,版本 / 编号（Stage、补充、§、页、图、表）,无,运行记录、多选题 thinking 设置、名字切分规则、干扰团队抽法、et al. 截断规则、运行配置）。 Stage 8 主终点改动的来由，正在查当时的会话记录。 可能的下一步（希望听取老师意见）： 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,2026,日期 / 时间,无,分“认出论文”和“懂得标题意思”，比如用模型不可能见过的虚构论文作对照。 补完 Fit B，加固读出工具的稳定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,11,日期 / 时间,无,文”和“懂得标题意思”，比如用模型不可能见过的虚构论文作对照。 补完 Fit B，加固读出工具的稳定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,06,日期 / 时间,无,“懂得标题意思”，比如用模型不可能见过的虚构论文作对照。 补完 Fit B，加固读出工具的稳定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,2,版本 / 编号（Stage、补充、§、页、图、表）,无,补完 Fit B，加固读出工具的稳定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；见页首
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,12,版本 / 编号（Stage、补充、§、页、图、表）,无,t B，加固读出工具的稳定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；见页首更新框〕 “
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,2,版本 / 编号（Stage、补充、§、页、图、表）,无,固读出工具的稳定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；见页首更新框〕 “可能的下
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,1,其他整数（计数、编号、说明）,无,出工具的稳定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；见页首更新框〕 “可能的下一步
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,2026,日期 / 时间,无,定性证据。〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；见页首更新框〕 “可能的下一步”是建议，没有数
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,11,日期 / 时间,无,〔2026-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；见页首更新框〕 “可能的下一步”是建议，没有数据支撑
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 待确认与下一步（来自讲稿版进度汇报第九节）,08,日期 / 时间,无,26-11-06 已更新：Fit B 与 holdout 已列入批次 2（补充 12 第 2-1 项），2026-11-08 已在运行，尚无结果；见页首更新框〕 “可能的下一步”是建议，没有数据支撑，不是
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,2026,日期 / 时间,无,“可能的下一步”是建议，没有数据支撑，不是结论。 材料 以下页面都需要登录并获得共享权限才能打开。 实验记录 v26：〔2026-11-08 已更新：当前为第 30 版；见页首更新框〕claude.ai/ar
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,11,日期 / 时间,无,一步”是建议，没有数据支撑，不是结论。 材料 以下页面都需要登录并获得共享权限才能打开。 实验记录 v26：〔2026-11-08 已更新：当前为第 30 版；见页首更新框〕claude.ai/artif
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,08,日期 / 时间,无,是建议，没有数据支撑，不是结论。 材料 以下页面都需要登录并获得共享权限才能打开。 实验记录 v26：〔2026-11-08 已更新：当前为第 30 版；见页首更新框〕claude.ai/artifact
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,30,版本 / 编号（Stage、补充、§、页、图、表）,无,是结论。 材料 以下页面都需要登录并获得共享权限才能打开。 实验记录 v26：〔2026-11-08 已更新：当前为第 30 版；见页首更新框〕claude.ai/artifact/QB335qoaBWv
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,2026,日期 / 时间,无,字附出处）：claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo 合并 PPT v16：〔2026-11-08 已更新：当前为 v21；见页首更新框〕claude.ai/arti
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,11,日期 / 时间,无,：claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo 合并 PPT v16：〔2026-11-08 已更新：当前为 v21；见页首更新框〕claude.ai/artifac
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,08,日期 / 时间,无,aude.ai/artifact/W7r7xVte3eaNcbo8D8cybo 合并 PPT v16：〔2026-11-08 已更新：当前为 v21；见页首更新框〕claude.ai/artifact/X
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,5,标识符 / 路径 / 编号中的数字,无,act/XcgK4YF2dYQxudWfhk8MsD PDF 与 pptx 下载：claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta 代码与结果：GitHub ZhiQ1
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,2026,日期 / 时间,无,jzta 代码与结果：GitHub ZhiQ1/jlens-authorship-recall，tag defense-2026-11 
+导师页 advisor/index.html,模型在哪一层“知道”一篇论文的作者 > 材料,11,日期 / 时间,无,代码与结果：GitHub ZhiQ1/jlens-authorship-recall，tag defense-2026-11 

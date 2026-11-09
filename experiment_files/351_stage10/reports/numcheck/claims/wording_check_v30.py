@@ -14,7 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
-import claims_defs_v11 as D11        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
+import claims_defs_v12 as D12        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
 from claims_docs import units, locate
 
 OUT = Path(sys.argv[1]) / 'wording_v30'
@@ -109,6 +109,9 @@ STALE = [
     ('批次状态过时（代码已就绪 / 自动开始，未写已在运行）', ALT(r'代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始', r'code ready, after batch 2', r'代码已就绪，第二批之后开始', r'starts automatically after batch 1', r'code ready, queued'), None),
     ('数字核对：第 30 版新数字“尚待登记”（v9 已登记）', ALT(r'尚待登记', r'not yet registered', r'yet to be registered', r'第 30 版新放回或新增的数字（D13-1'), None),
     ('D13-1 段落中的旧版本号', r'报告 v29 和 PPT v20', None),
+    ('round f：M2 五个假标题数字未与 false_0 并列', r'(?:R²|year|donor 年份 R²|引用数|log citations|log 引用|citations\|year|领域准确率|field acc|年份 L16|L52) (?:0\.527|0\.507|0\.491|0\.712|0\.341|0\.529)(?![\d])(?!（false_0 版|（5 个假标题| \(false_0)', None),
+    ('round f：M2 仍被列为只用 false_0 / 待做', ALT(r'M2 的假标题运行也只用 false_0', r'M2 with five titles needs CPU only', r'M2[^。；]{0,40}只需 CPU', r'M2[^。；]{0,40}是否做待定', r'M2[^.;]{0,40}decision pending'), None),
+    ('round f：H2 状态不是“部分支持但未确立”', ALT(r'H2(?:：| )?(?:成立|已确立|得到支持)', r'H2 (?:is )?(?:supported|established)'), r'未确立|not established|不成立|部分支持|预测|predict|若|if'),
     ('round e：“C 略晚 / 略慢”只能出现在新句（补全前（C 组 36 篇）曾观察到 C 略晚 … 原观察未被重现）', ALT(r'略晚', r'略慢', r'slightly later', r'slightly slower'), r'补全前（C 组 36 篇）曾观察到 C 略晚|before completion'),
     ('round e：旧的“补全后未确认”标记', ALT(r'补全后[^。]{0,20}未确认', r'“略晚”[^。]{0,40}(?:未|没有)得到确认', r'C[^。]{0,40}(?:未|没有)得到确认'), r'X4'),
 ]
@@ -149,6 +152,8 @@ DOCREQ = {   # round d: qualifiers that must now be present in a specific docume
     'README 草稿 b': [('X4 test L8 +0.023 [−0.001, +0.048] not significant', r'test set L8 \+0\.023 \[−0\.001, \+0\.048\], not significant')],
     '导师页 advisor': [('PPT 当前为 v21', r'当前为 v21')],
 }
+H2RX = ALT(r'H2 部分支持', r'H2 partly supported', r'H2[：:] ?部分支持', r'H2 partially supported')
+H2OK = ALT(r'部分支持但未确立', r'partly supported but not established', r'partially supported but not established')
 SKIP = {'计划 b'}          # plan document of 2026-11-06 b: not part of the v30 document set
 for doc in DOCS:
     if doc in SKIP:
@@ -166,6 +171,12 @@ for doc in DOCS:
         if not re.search(rx, full):
             miss.append(('round d', lab))
             rows.append(dict(doc=doc, kind='missing qualifier', item='round d', label=lab, location='(whole document)', line='', text=''))
+    for u in us:
+        for m in re.finditer(H2RX, u[3]):
+            if not re.match(r'.{0,30}?' + H2OK, u[3][m.start():m.start() + 80]):
+                miss.append(('round f', 'H2 状态须为“部分支持但未确立”'))
+                rows.append(dict(doc=doc, kind='missing qualifier (local)', item='H2', label='H2 状态须为“部分支持但未确立”', location=locate(u, m.start()),
+                                 line=raw_line(u[1], u[3][m.start():m.start() + 30]) if u[2] == '' else u[2], text=u[3][max(0, m.start() - 60):m.end() + 100]))
     local = []
     for lab, trig, partner, win in PAIR:
         for u in us:
