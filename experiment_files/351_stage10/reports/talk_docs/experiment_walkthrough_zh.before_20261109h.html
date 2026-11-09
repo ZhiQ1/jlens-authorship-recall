@@ -1,0 +1,102 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=claude:viewport-fit-sides content=cover><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>.src{color:#8a8f98;font-size:.78em;font-weight:400}.upd{border-left:4px solid #2F7D3B;padding:6px 12px;margin:10px 0;background:rgba(47,125,59,.06)}</style><style>.md-table{overflow-x:auto}@media print{.md-table{overflow-x:visible}}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>逐个实验讲解稿：怎么做、结果、说明什么</h1>
+<p>按汇报顺序排，每个实验三段：<strong>怎么做 / 结果 / 说明什么</strong>。括号里是对应的页码，指《Keys_and_shelves_evidence_pages.pdf》（16 页证据页，取自 PPT v19）。数字都是定稿版（报告 v26）；2026-11-06 起与报告 v29 一致，2026-11-08 起与报告第 30 版一致，重做计划的新结果用绿色框标出。</p>
+<p>讲数字时可以随手换算：分数差 d 就是“名次好了 10^d 倍”。+0.05 ≈ 1.1 倍，+0.21 ≈ 1.6 倍，+0.44 ≈ 2.75 倍，+0.56 ≈ 3.6 倍。</p>
+<hr>
+<h2>开场：问题和答案</h2>
+<p>“模型经常编论文作者。我们想知道它是真不知道，还是知道但说不出。答案是：对认得出的论文，它知道一些；这份信息在中间层就到位了，但到最后几层才说出来。我们叫‘读得早，说得晚’。下面我分三部分讲：它知不知道、什么时候知道、中间层存的是什么。”</p>
+<hr>
+<h2>第一部分：它知道吗？</h2>
+<h3>实验 1：分组（Stage 1，第 3、4 页）</h3>
+<p><strong>怎么做</strong>：用组长的标签流程，在同一个 Qwen3-32B 上对 9,108 篇论文做两件事。第一，让模型自由列作者，按写对多少分成 R0（一个都没写对）、R1（写对少数）、R2（基本写对，不分析）。第二，做多选题：真名单加 3 个同领域、同规模、同引用档的真实团队，换 4 种顺序问。4 次全对、且真选项概率 ≥ 0.5 的叫 target（认得出），最多对 1 次的叫 control（认不出）。</p>
+<p><strong>结果</strong>：target 4,621 篇，control 2,220 篇。其中 R0 里认得出的有 4,110 篇，也就是“一个作者都写不对，但多选题每次都认得出”。另外做了一个检查：不给标题时，真名单被选为“最像真的”只有 25.5%，和四选一瞎猜一样。</p>
+<p><strong>说明什么</strong>：有大量论文属于“写不出但认得出”，这正是我们要研究的对象。多选题答对靠的是标题，不是名字听起来像。</p>
+<h3>实验 2：怎么读模型、怎么打分（第 2 页）</h3>
+<p><strong>怎么做</strong>：提示是“Who are the authors of the paper titled ‘标题’ (年份)? Authors:”，后面接真作者名。在每一层取出内部状态，用读出工具变成“对下一个词的预测”，看正确名字 token 在整个词表里排第几，打分 log10(1/名次)。同一份名单再配 5 个假标题各跑一遍，假标题借自同领域、年份和规模相近的别的论文。真标题分数减假标题平均分，叫“标题特异信号”。</p>
+<p><strong>说明什么</strong>：名字一样、token 一样，减掉之后剩下的只能来自“认得这篇论文”，这是我们所有实验的基本量。</p>
+<h3>实验 3：全队列逐层读出（Stage 10，第 6 页）</h3>
+<p><strong>怎么做</strong>：9,108 篇论文、全部作者名，在 6 个层用 4 种读出工具算标题特异信号，target 和 control 只在同一引用档内比较。</p>
+<p><strong>结果</strong>：用 public Jacobian lens，L24 到 L48 两组都约为 0；L62 上 target 平均 +0.56，control 平均 +0.24。模型输出层上，按引用档配对的 target − control 为 <strong>+0.21 [0.20, 0.22]</strong>。只用 R0 论文重算是 +0.20 [0.19, 0.21]，几乎不变。（组间比较只用 target 和 control，R2 和识别不确定的论文没有进入。）</p>
+<p><strong>说明什么</strong>：认得出的论文，模型确实带有论文特有的作者信息；按 L62 的 +0.56 换算，真作者的名次比假标题时好约 3.6 倍；即使一个作者都写不对，这份信息也在。但读出工具在中间层看不到它。</p>
+<h3>实验 4：信号拆分（Stage 10）</h3>
+<p><strong>怎么做</strong>：把真标题的分数拆成三块：不给标题时也有的分（名字先验）、换成同领域假标题带来的分（领域主题）、只有真标题才有的分（论文特有）。</p>
+<p><strong>结果</strong>：+0.247 = 先验 +0.087 + 主题 −0.047 + 论文特有 +0.207。</p>
+<p><strong>说明什么</strong>：主要部分是论文特有的，不是“这个领域常见这些姓”。</p>
+<h3>实验 5：独立复现（Stage 8）</h3>
+<p><strong>怎么做</strong>：在 200 篇新论文上，按事先冻结的分析计划重做，主终点是 7 层平均的 A − B 差。</p>
+<p><strong>结果</strong>：冻结计划的主终点（7 层积分）A − B 为 +2.41 个百分点 [+0.91, +4.00]，逐次剔除每一对论文重算 100 次都不跨 0。PROTOCOL.md 改定的 L56 终点，同一批 100 对，是 +4.98 个百分点 [+0.32, +9.91]，100 次里有 14 次区间跨 0。逐层检验做 Holm 多重比较校正后，只有 L62 仍显著。Holm 校正和逐对剔除是冻结计划里要求、但原代码没做，10 月 30 日补算的。</p>
+<p><strong>说明什么</strong>：主效应在新样本上能复现，而且不靠某几篇论文撑着；但逐层的显著性只在最后一层站得住，和“说得晚”一致。要主动说明：分析计划在 10-18 14:29 写定锁定（主终点为 7 层积分），同日 21:14 的 PROTOCOL 改为 L56，两者都早于 8C 打分；改动人和理由待查（U28）；我们把原定主终点和 L56 都报告了。</p>
+<p class="upd">2026-11-08（报告第 30 版）：Stage 8 的结论（真标题让模型更偏好真实第一作者 RQ1；A 组强于 B 组 RQ2）较稳，但有三个前提：① W 只给第一作者名字的第一个 token 打分，在 Stage 8 的 200 篇里有 129 篇（64.5%）这个 token 只是首字母<span class="src">（audit_20261105/part_A_stage4_9.md 第 10 行）</span>；② 偏离 D13-1：按补充 13 C-2 的规则，全部作者 CPU 代理只在 L56 的 RQ2 上与已发表结论不一致（+0.064 [−0.032, +0.163]，区间含 0），触发了按原 W 在 GPU 上重算，用户 2026-11-06 决定不做；在锁定计划的 7 层积分终点上（近似，Stage 10 没有 L16）代理 RQ2 为 +0.046 [+0.007, +0.088]（L16 = 0）或 +0.049 [+0.005, +0.094]（L16 = L24），同向、区间不含 0<span class="src">（381_stage13/reports/c13_C2.md；381_stage13/c13_C2_followup/c2_followup_proxy.csv）</span>；③ U28：L56 在锁定计划里是探索性次终点，10-18 21:14 的 PROTOCOL.md 把它改为主终点，改动者和依据仍未查清。</p>
+<hr>
+<h2>第二部分：什么时候知道？</h2>
+<h3>实验 6：细层读出（Stage 10，第 11、12 页）</h3>
+<p><strong>怎么做</strong>：在主轮 L40、48、56、62 之外，补算 L50–L55 和 L57–L61（只用 logit lens 和 public lens），算 target − control。L41–L47 和 L49 没有算。</p>
+<p><strong>结果</strong>：L50 只有 +0.007，L62 达到 +0.23，<strong>上升最快在 L57–61</strong>。</p>
+<p><strong>说明什么</strong>：从读出工具看，“认得出”的优势只在最后十来层形成，这是“说得晚”。</p>
+<h3>实验 7：读出工具比较（Stage 10，第 13–15 页）</h3>
+<p><strong>怎么做</strong>：比较 logit lens 和 3 把 Jacobian lens（用不同文本拟合）。</p>
+<p><strong>结果</strong>：logit lens 在 L48 前正确名字排在一万名以后；Jacobian lens 在 L48 能把 15–18% 的正确 token 排进前 10，logit lens 只有 1%。但 Jacobian lens 多读出的论文特有信号只有 +0.01 到 +0.03，而且不偏向 target。</p>
+<p><strong>说明什么</strong>：换更好的读出工具，中间层也看不到论文特有的作者信息。但“读出工具看不到”不等于“没有”，所以下一步要动手干预。</p>
+<h3>实验 8：替换（Stage 11，第 9、10 页）</h3>
+<p><strong>怎么做</strong>：真标题跑一遍、假标题跑一遍。在第 l 层把真标题那遍“标题之后所有 token”的内部状态复制到假标题那遍，其余照常往后算，看真作者分数恢复了多少：恢复率 = (替换后 − 假) ÷ (真 − 假)，先对所有论文平均再相除。样本是 593 + 593 篇。</p>
+<p><strong>结果</strong>：L24 恢复不到 0.1，L40 约 0.3，<strong>L48 约 0.82，L52 起约 1.0</strong>；target 和 control 时间点一样。</p>
+<p><strong>说明什么</strong>：到 L52，论文信息已经全部在标题之后的位置上了，比读出工具看到它（L57–61）早 5 到 10 层。这是“读得早”的因果证据。</p>
+<h3>实验 9：阻断（Stage 11，第 10 页）</h3>
+<p><strong>怎么做</strong>：从第 l 层到最后一层，禁止标题之后的所有位置去注意标题 token，看分数掉多少。</p>
+<p><strong>结果</strong>：从 L0 起挡损失约 0.83，从 L32 起约 0.37，<strong>从 L52 起几乎为 0</strong>。</p>
+<p><strong>说明什么</strong>：L52 以后模型不再需要看标题，和替换实验从相反方向得到同一个时间点。</p>
+<h3>实验 10：两项加固（X6、X7）</h3>
+<p><strong>怎么做</strong>：X6：替换原来只用了一个假标题，现在用另外 4 个重做。X7：阻断可能“把模型搞乱”，所以在假标题那遍也做同样阻断，用真标题的损失减去假标题的损失。</p>
+<p><strong>结果</strong>：X6：5 个假标题平均，L48 恢复 0.82、L52 恢复 0.995，每个假标题和原来最多差 0.02。X7：从 L0 起挡，论文特有信号全部消失（1.0）；从 L52 起挡，target 只剩约 2%，control 约 5%，L56 起都是 0。</p>
+<p><strong>说明什么</strong>：时间点不是某个假标题碰巧造成的，阻断的结论也不是“搞乱模型”造成的。</p>
+<h3>实验 11：信息落在哪个位置（Stage 12 P1，第 1 页）</h3>
+<p><strong>怎么做</strong>：替换时一次只换一个位置：冒号、年份数字、“Authors”、名字位置等。</p>
+<p><strong>结果</strong>：只换名字位置，L48 恢复 0.61、L52 恢复 0.85；只换冒号最多 0.17；其他单个位置都不超过 0.03。按 token 拆：姓的信息在名字位置本身，真假差约 0.5，是主体；首字母的信息经过冒号，但真假差只有 0.11。</p>
+<p><strong>说明什么</strong>：信息主要直接进入名字位置，主要体现在姓上。</p>
+<h3>实验 12：哪个部件在起作用（Stage 12 P2，第 1 页）</h3>
+<p><strong>怎么做</strong>：只替换某一层的注意力输出，或只替换 MLP 的输出，替换范围是整段对齐尾部（右引号、年份、“Authors”、冒号）加全部名字位置，不只是名字位置。</p>
+<p><strong>结果</strong>：L48 注意力恢复 0.23，同层 MLP 只有 0.07；L52、L56 的 MLP 分别恢复 0.18、0.22。L44 之前任何单个部件都不超过 0.03。</p>
+<p><strong>说明什么</strong>：先由 L48 的注意力把标题信息搬进名字位置，再由 L52–56 的 MLP 加工。要说明两点：只换一层是下限；MLP 那一步是不是“查记忆”，这个实验分不出来。</p>
+<h3>实验 13：标题位置的 probe（Stage 11 E4b，第 7、8 页）</h3>
+<p><strong>怎么做</strong>：取标题最后一个 token 的状态，用 5 折 ridge 回归学一个线性映射，预测模型自己在冒号处最后一层的状态，因为那个状态直接决定说出的第一个名字。再把预测结果变成对名字 token 的打分。按作者团队分折，剔除“标题在训练中出现过”的论文，剩 1,863 篇，E4b 信号只用其中 target + control 的 1,395 篇：L24 +0.050、L40 +0.061、L56 +0.075。原版标准化用了全部论文（含测试折），复核时改为只在训练折内标准化；两种标准化差别最大 0.0007，结论不变。</p>
+<p><strong>结果</strong>：从 L24 起 +0.05 到 +0.08，target 比 control 高 +0.03 到 +0.08。换成别的论文或同领域论文的作者打分，约为 0。</p>
+<p><strong>说明什么</strong>：标题位置很早就有一点线性可读、属于这篇论文的作者信息，读出工具读不到。信号很小，名次只好 1.2 倍，而且只打分了第一个名字 token（多是首字母），所以它是辅助证据，主要证据还是替换实验。</p>
+<p class="upd">补充 9（答辩后新增，分析计划在看结果前写定）把这个 probe 扩展到每位作者的全部名字 token 并按角色分开：L40 姓的第一个 token +0.071 [0.058, 0.085]<span class="src">（预注册版 V0：只减 false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md）</span>，高于首字母 +0.044 [0.030, 0.057]<span class="src">（1,590 篇）</span>；名的第一个 token 最强（L40 +0.124、L56 +0.163<span class="src">（1,706 篇）</span>）。原 E4b 只打分第一个 token（多半是首字母），所以低估了标题位置携带的名字信息。</p>
+<h3>实验 14：层序汇总（X5）</h3>
+<p><strong>怎么做</strong>：把前面各实验的“最早出现层”放到同一条层轴上。</p>
+<p><strong>结果</strong>：标题位置的论文属性 ≤ L8–L16 就读得出；替换在 L48 恢复一半、L52 超过 95%；名字位置用读出工具读出作者要到 L53–L62。</p>
+<p><strong>说明什么</strong>：一张图把“读得早，说得晚”的时间线完整串起来。</p>
+<hr>
+<h2>第三部分：中间层存的是什么？</h2>
+<p>“既然信息在中间层就有，读出工具却看不到，那中间层里存的是什么形式？我们提了三个假设：H1 是任务和格式，‘我要输出作者名单’；H2 是论文身份，‘这是哪篇论文’；H3 是作者其实已经在了，只是不在词表方向上。”</p>
+<h3>实验 15：中间层排第一的是什么（M1）</h3>
+<p><strong>怎么做</strong>：不看正确名字排第几，而看名字位置上读出工具排第一的是什么词。</p>
+<p><strong>结果</strong>：L24–L48，100% 是句号、换行这类句末符号；L51–52 起出现 Robert、Zhang 这样的常见名字；正确名字在 L52 只占 0.1%。</p>
+<p><strong>说明什么</strong>：读出工具在名字位置看到的是“格式”，支持 H1。</p>
+<h3>实验 16：读论文的其他属性（M2、M2c）</h3>
+<p><strong>怎么做</strong>：在标题最后一个 token 上训练 probe，读年份、引用数、领域、认不认得出。这个位置还没看到年份，不会泄题。对照：打乱标签；冒号位置读年份作阳性对照（那里已经看到年份）；用只读标题文字的 BERT 作基线。</p>
+<p><strong>结果</strong>：年份 R² 从 L16 的 0.38 升到 L52 的 0.56，引用数 0.29 → 0.53，领域准确率约 0.71（打乱标签只有 0.13），认得出 AUROC 0.62 → 0.67。BERT 分别是 0.24、0.19、0.63。冒号位置读年份 R² 0.98。</p>
+<p><strong>说明什么</strong>：标题位置很早就有论文属性，年份和引用数明显超过只看文字的 BERT，支持 H2。但“认不认得出”BERT 也能做到 0.63，所以这一项不作证据；而且按预注册，Qwen 胜过 BERT 只作参考。</p>
+<h3>实验 17：换问法（M3、X1）</h3>
+<p><strong>怎么做</strong>：同一个标题，换成问作者、问年份、问领域三种问法，看标题位置的状态变不变。X1 更进一步：把“问年份”时的标题状态替换进“问作者”那遍，看作者分数能否恢复。</p>
+<p><strong>结果</strong>：M3：同一篇论文换问法，状态几乎不变，但这在 L4（几乎只有文字）就已经如此；按预注册要比 L4 高才算数，结果不高于 L4。X1：替换后作者分数恢复得和用“问作者”的状态一样好，差别在预注册的 ±0.1 以内；冒号位置相反，换问法时变化是换论文的 3–5 倍（L4–L40；L48 约 2.2 倍，L56–L63 为 1.3–1.5 倍）<span class="src">（x1_similarity.md colon 表）</span>。</p>
+<p><strong>说明什么</strong>：冒号位置存的是任务，支持 H1。标题位置跨问法通用，但 M3 显示这可能只是因为三种问法的标题文字相同，所以 M3 不支持 H2。</p>
+<h3>实验 18：改写标题（X3，最关键的区分实验）</h3>
+<p><strong>怎么做</strong>：同一篇论文的标题换个说法，和一篇用词相近的别的论文 D 比：如果模型认的是“论文”，改写版应该更像原标题。扣掉 L4 的文字水平，再控制用词重合度。</p>
+<p><strong>结果</strong>：L28–L40 改写版比 D 更接近原标题，L36 最大 +0.16；行为上，改写标题保留了原标题约 90% 的作者优势。按预注册判据，这算“存在论文身份信号”。但我们看到结果后又加了两项检验：只懂语义、不认识作者的句子向量模型在用词匹配的论文上也能做到差不多；而且 target 和 control 完全一样，行为 0.90 对 0.91，表示层 0.158 对 0.160。</p>
+<p><strong>说明什么</strong>：Qwen 中间层表示了标题的“意思”而不只是用词，但分不清是认出了论文还是懂了意思。我们把解读降为“语义表示”，预注册的结果和事后检验都如实报告。</p>
+<h3>实验 19：Patchscope（X4）</h3>
+<p><strong>怎么做</strong>：把论文的标题状态注入一个只有占位符的新提示，比如“这篇论文发表于”，看模型能不能说出年份或第一作者。另外用只读标题文字的模型作基线。</p>
+<p><strong>结果</strong>：第一作者 L8 就能解码出一点（+0.046），年份要到 L40（+0.013）。但只靠标题文字的基线在名字首 token 上不弱于 Qwen。</p>
+<p><strong>说明什么</strong>：作者信息出现得很早，但不能排除来自标题文字，所以 H3 证据不足。而且“先作者后年份”的顺序和 H2 预测的方向相反。</p>
+<h3>第三部分小结</h3>
+<p>“三个假设的结论是：H1 在冒号和名字位置成立；H2 部分支持但未确立，标题位置有论文属性和语义，但我们专门设计的区分实验 M3、X3、X4 都没能证明是‘认出论文’；H3 证据不足。”</p>
+<hr>
+<h2>收尾</h2>
+<p><strong>怎么保证可信</strong>：“Stage 13 所有判定规则都在看数据之前写定；所有 probe 按作者团队分折防泄漏；每个结论都配阳性、阴性对照和文本基线；置信区间按作者团队重抽。过程中我们自己查出过假标题复用的泄漏、一个预注册判据用错、一个文本基线的代码错误，都修正了，结论该降级的降级，旧结果保留。”</p>
+<p><strong>局限</strong>：“只用了一个模型；测的是把正确名字放进去打分的偏好，不是真实生成；读出工具的稳定性只有一份拟合证据。”</p>
+<p class="upd">2026-11-08（报告第 30 版）：<b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b>按补充 10 第 27 行，5 个假标题平均为主结果，原 false_0 版并列。两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148），已发表结论不变：论文信息在 L44–L52 汇集到名字位置，注意力在 L48 读入，MLP 在 L52–L56 接手。5 个假标题平均（括号内为 false_0）：P1 全部位置 L48 +0.821 [0.807, 0.835]（0.825）、L52 +0.995 [0.990, 1.001]（0.996）；P1 只换名字位置 L52 +0.841 [0.827, 0.856]（0.847）；P2 注意力 L48 +0.237 [0.229, 0.246]（0.231）；P2 MLP L52 +0.181 [0.174, 0.188]（0.178）、L56 +0.226 [0.217, 0.236]（0.224）<span class="src">（补充 10 第 3 项，Stage 11 样本 1,186 篇，团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b1_p12f_report.md P1 / P2 表；summary_b1_p12f/p12f_mean5.csv）</span>。p9 位置（标题的右引号；只有共享尾长为 9 的论文，平均每篇约 3 个可用假标题）：各假标题 694–711 篇，集合不同，未加权<span class="src">（summary_b1_p12f/p12f_per_title.csv，item = p9：false_0 708、false_1 694、false_2 711、false_3 707、false_4 710 篇）</span>。“:” 位置的分子 B/A：5 个假标题版 0.72–0.87，false_0 版 0.78–0.99；B 的比例高只因分母约为 A 的一半<span class="src">（P1 只替换 “:”，未写出作者，A 557 / B 586 篇：5 个假标题版 L44 0.72、L48 0.87，分母 B/A 0.51（b1_p12f_report.md “B - A” 表）；false_0 版 L44 0.78、L48 0.99（391_groups/summary_rerun/p1_p2_num_den_B_minus_A.csv））</span>。硬检查：false_0 臂复现已发表值（最大差 2.2e-16），PASS。<b>C / D 组补全 E1 / E2（批次 2 第 2-6 项，补充 11 B，已完成）：</b>C 组未写出作者 462 篇，同一引用档内与 A 相比（6 个引用档，C 258 篇、A 323 篇）：E1 恢复比例 L48 −0.037 [−0.080, +0.009]，L52 +0.007 [−0.009, +0.024]；L56 −0.007 [−0.014, −0.001]，个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）；E2 阻断损失 L32–L52 区间都含 0。C 的真假标题差距更大：分母 C 0.559 [0.529, 0.590]、A 0.407 [0.386, 0.430]，同档内 C − A +0.075 [+0.024, +0.130]。也就是说，C 的信号更大，但时间点与 A 相同。D（33 篇）按补充 11 只作描述，D − B、C − D 也只作描述<span class="src">（补充 11 B；未写出作者；团队整群 bootstrap 2,000 次 95% CI；391_groups/reports/b2_cd_report.md Numerator / denominator 表与 Contrasts 表；硬检查：重跑 Stage 11 第 0 号分片，差 0.0（容差 0.005），PASS）</span>。前提：同一引用档内只用到 C 462 篇中的 258 篇；分子、分母都只用 false_0；比例差主要反映分母不同（分母效应）。X4 中认得出的论文第一作者 D 更高（测试集不显著）这一差别不再作为 H2 的证据（只看标题文字的 BERT 基线 +0.088 不弱于 Qwen L8 +0.018）。<b>2026-11-08（报告第 30 版）补充的局限：</b>层不完整：Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（补充 14 只补 L41–L47、L49 和 L0–L23，都在排队）。主要结论的起始层都不在缺口里；落在缺口里的只有三条描述：X4 年份最早可读出层 L40（前一个测量层是 L32，真实起点在 L33–L40 之间）、Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道）、X4 第一作者峰值 L40（真实峰值可能在 L33–L47）。“L24–L48 约为 0”在缺口层没有测过<span class="src">（~/jlens_work/conclusions_v30_checks.md A1）</span>；一致性容差事后放宽，而且用到了：Stage 10 一致性检查的容差在看到结果后从 0.25 放宽到 0.5（用户 2026-10-25 批准）。主轮 25 个（读出 × 层）组合的最大差 0.367，只有按 0.5 才通过；全部名次 < 42 完全一致，名次不一致使 log10(1/名次) 最多变 0.070。原定 0.25 时，Stage 10 主轮一致性检查（12 个上下文、52 个 token 位置）的 25 个 lens × 层组合中有 10 个超出 0.25，最大差 0.367（351_stage10/reports/parity_before_tol05_amendment.json）；3-3 在 7 篇论文的 23,280 行上按 0.25 计 99.81% 在容差内。这一量级与 3-3 查明的 bf16 舍入随前向长度变化（最大约 0.46）一致，但容差是在看到数据后放宽到 0.5 的，属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。保留在事后改动清单里<span class="src">（351_stage10/reports/parity.json tolerance_amendment；parity_before_tol05_amendment.json；conclusions_v30_checks.md A2）</span>；干预只用了 1,186 篇：E1、E1t、E2、E2n、P1、P2、F2、X6、X7 只用 9,108 篇中的 1,186 篇（target 593 + control 593，每档每组最多 60 篇，10 档），作为局限，不重做<span class="src">（361_stage11/summary/E1_recovery.csv n_papers）</span>；分母效应：恢复比例 = 分子 ÷ 真假标题差距，组间比较受分母影响：C 0.559 对 A 0.407（C / D 组补全）；“:” 位置分子 B/A 5 个假标题版 0.72–0.87、false_0 版 0.78–0.99；B 组比例偏高只因分母约为 A 的一半。C / D 组补全与 P1 / P2 五个假标题的结论都以此为前提；只用 false_0、没有补做计划：M5 B 部分（真标题对 false_0 的标题 / “:” 位置 probe）和 E4b 的 X1 对照流程只用 false_0，没有计划；M2 已不在此列：M2 的假标题运行已补 5 个假标题；标题复用和供体在训练折的排除对每个假标题都为 0 行（exclusion_audit.csv）；另有约 7,240–7,370 行/假标题的供体论文以 target 行出现在训练折中（显示另一篇论文的标题和标签，只有年份在 ':' 之后进入提示），未作为泄漏处理<span class="src">（381_stage13/reports/m2_f5_report.md；381_stage13/summary_m2_f5/M2_f5_mean.csv、exclusion_audit.csv（作业 11747064））</span>；数字核对只覆盖已登记的部分：已登记 680 个结论数字、4,307 处全部一致（第 29 版 h 的核对）；第 30 版新放回或新增的数字已登记进严格核对（claims_defs_v9，结果见核对表）；另约 1,024 个结论性数字未登记（2026-11-07 计数）<span class="src">（351_stage10/reports/numcheck/claims/out_20261108_140102/）</span>。</p>
+<p><strong>请教</strong>：“下一步我们考虑换一个模型复现，或者用模型不可能见过的虚构论文做对照，来区分‘认出论文’和‘懂得意思’。想听您的意见。”</p>
+
+</body></html>

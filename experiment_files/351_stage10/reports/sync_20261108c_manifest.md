@@ -299,3 +299,89 @@ Script `sync_20261107/apply_20261109f.py` (backups `*.before_20261109f`; numbers
 | f20 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
 Round f export: 11747113 (report v30, handbook 20261108c, page / talk-doc PDFs; deck/pptx unchanged).
 | g1 | H2 status (wording check) | talk_docs/stage13_script_zh_en.html | H2 部分支持： | H2 部分支持但未确立： | 1 |
+
+## round g
+
+Script `sync_20261107/apply_20261109g.py` (backups `*.before_20261109g`, stage13_script_zh_en `.before_20261109g2`; numbers asserted against 381_stage13/reports/b2_e1noise.md, b2_e1t5.md, b2_e1t5_numden.md, b2_x3role.md, b2_m3tok.md). No tier change; H2 status unchanged.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| g1 | stage1_11/stage1_11_report.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 2 |
+| g2 | advisor/index.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g3 | process_report/draft_zh.md | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g4 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g5 | pages_20261106b/methods_addendum/index.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g6 | talk_docs/experiment_walkthrough_zh.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g7 | talk_docs/experiment_walkthrough_methods_zh.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g8 | talk_docs/stage13_script_zh_en.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g9 | talk_docs/methods_handbook_guide_plain_zh.html | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g10 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 2 |
+| g11 | notes_zh.json #77 | 个别层差异极小，不作解释 | 个别层差异极小，不作解释（小于批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md… | 1 |
+| g12 | stage1_11/stage1_11_report.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g13 | advisor/index.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g14 | process_report/draft_zh.md | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g15 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g16 | pages_20261106b/methods_addendum/index.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g17 | talk_docs/experiment_walkthrough_zh.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g18 | talk_docs/experiment_walkthrough_methods_zh.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g19 | talk_docs/stage13_script_zh_en.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g20 | talk_docs/methods_handbook_guide_plain_zh.html | 两版所有“5 个假标题平均 − false_0”的区间都含 0 | 两版所有“5 个假标题平均 − false_0”的区间都含 0（差 0.004–0.006，在批量舍入噪声的量级内：组级最大 0.0148） | 1 |
+| g21 | stage1_11/stage1_11_report.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g22 | advisor/index.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 2 |
+| g23 | process_report/draft_zh.md | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g24 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g25 | pages_20261106b/methods_addendum/index.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g26 | talk_docs/experiment_walkthrough_zh.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g27 | talk_docs/experiment_walkthrough_methods_zh.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g28 | talk_docs/keys_and_shelves_script_zh_en.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g29 | talk_docs/methods_handbook_guide_plain_zh.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g30 | talk_docs/progress_report_for_advisor_zh.html | 属于事后修改。 | 属于事后修改。批量大小本身造成的组级 E1 恢复比例差最大 0.0148（L40），单 token 的 log10(1/名次) 差 p99 最高 0.22（补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md）。 | 1 |
+| g31 | stage1_11/stage1_11_report.html | 这一时间对 5 个假标题都成立<span class="src">（Stage 13 X6 | 这一时间对 5 个假标题都成立（5 个标题之间 L52 的差别在批量舍入噪声的量级内：组级最大 0.0148，补充 12 第 2-4 项）<span class="src">（Stage 13 X6 | 1 |
+| g32 | stage1_11/stage1_11_report.html | ：标题最后一个 token 本身携带的信息很少。</p> | ：标题最后一个 token 本身携带的信息很少。E1t 用 5 个假标题（补充 12 第 2-8 项，已完成）：5 个假标题平均与 false_0 版一致——全部论文 L24 +0.136 [+0.125, +0.147]（false_0 版 +0.142）、L40 +0.134（+0.139）、L… | 1 |
+| g33 | methods/parts/D_stage10_11.html | target 与 control 形状相同（control 略高，例如 L24 0.175 vs 0.125）。 | target 与 control 形状相同（control 略高，例如 L24 0.175 vs 0.125）。2026-11-09 补：E1t 用 5 个假标题（补充 12 第 2-8 项，已完成）：5 个假标题平均与 false_0 版一致——全部论文 L24 +0.136 [+0.125, +… | 1 |
+| g34 | stage1_11/stage1_11_report.html | ② 补充 5 要求“按 token 角色”报告，但 para_run 只存了每个名字的平均分，无法按角色拆分。 | ② 补充 5 要求“按 token 角色”报告；原 para_run 只存了每个名字的平均分，已由补充 12 第 2-3 项用逐 token 打分补做：X3 行为按 token 角色拆开后（补充 12 第 2-3 项，全部作者，测试集），恢复比在 0.806–0.924 之间（首字母 0.851 [… | 1 |
+| g35 | methods/parts/F_stage13.html | ① 补充 4/5 要求所有 X3 结果也按 token 角色报告，但 para_run 只存了每个名字的平均分，<b>做不到</b>； | ① 补充 4/5 要求所有 X3 结果也按 token 角色报告，但 para_run 只存了每个名字的平均分，<b>做不到</b>（2026-11-09：已由补充 12 第 2-3 项补做；X3 行为按 token 角色拆开后（补充 12 第 2-3 项，全部作者，测试集），恢复比在 0.806–… | 1 |
+| g36 | methods/parts/B_global2.html | 偏离：按 token 角色报告做不到（para_run 只存每个名字的平均分）； | 偏离：按 token 角色报告做不到（para_run 只存每个名字的平均分；2026-11-09 已由补充 12 第 2-3 项补做，C14 不变）； | 1 |
+| g37 | methods/parts/G_appendix.html | <td><span class="st st-plan">计划未做</span>（做不到）</td><td>para_run 只存了每个名字的平均分，没有逐 token 分数，无法按角色拆分；不补跑。 | <td><span class="st st-done">已完成（2026-11-09，补充 12 第 2-3 项）</span></td><td>原 para_run 只存了每个名字的平均分；已用批次 1 全部作者的逐 token 打分补做：X3 行为按 token 角色拆开后（补充 12 第 2… | 1 |
+| g38 | process_report/draft_zh.md | 按 token 角色报告做不到（V51） | 按 token 角色报告做不到（V51；2026-11-09 已由补充 12 第 2-3 项补做，C14 不变） | 1 |
+| g39 | process_report/draft_zh.md | V51 X3 按 token 角色； | V51 X3 按 token 角色（2026-11-09 已完成）； | 1 |
+| g40 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | <b>X3 by token role</b> (V51) | <b>X3 by token role</b> (V51; 2026-11-09: done in addendum 12 item 2-3, all roles 0.806–0.924, target − control includes 0, C14 unchanged; b2_x3role.m… | 1 |
+| g41 | stage1_11/stage1_11_report.html | 作者差与分组的定义（认得出作者名单）有关，只是描述。 | 作者差与分组的定义（认得出作者名单）有关，只是描述。2026-11-09 补（补充 12 第 2-10 项）：对全部作者的全部名字 token 打分，引用档内 target − control 为 +0.234 [+0.215, +0.252]（团队区间，10 档），姓的第一个 token +0.3… | 1 |
+| g42 | stage1_11/stage1_11_report.html | 只跑第 0 个分片，排队中 | 第 0 片已完成，其余 47 片运行中 | 1 |
+| g43 | advisor/index.html | 只跑第 0 个分片，排队中 | 第 0 片已完成，其余 47 片运行中 | 1 |
+| g44 | process_report/draft_zh.md | 只跑第 0 个分片，排队中 | 第 0 片已完成，其余 47 片运行中 | 1 |
+| g45 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 只跑第 0 个分片，排队中 | 第 0 片已完成，其余 47 片运行中 | 1 |
+| g46 | pages_20261106b/methods_addendum/index.html | 只跑第 0 个分片，排队中 | 第 0 片已完成，其余 47 片运行中 | 1 |
+| g47 | notes_zh.json #81 | 只跑第 0 个分片，排队中 | 第 0 片已完成，其余 47 片运行中 | 1 |
+| g48 | stage1_11/stage1_11_report.html | 名字位置 probe 等其余各项进行中，没有可报告的结果 | X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成；Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）… | 1 |
+| g49 | advisor/index.html | 名字位置 probe 等其余各项进行中，没有可报告的结果 | X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成；Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）… | 1 |
+| g50 | process_report/draft_zh.md | 名字位置 probe 等其余各项进行中，没有可报告的结果 | X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成；Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）… | 1 |
+| g51 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 名字位置 probe 等其余各项进行中，没有可报告的结果 | X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成；Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）… | 1 |
+| g52 | pages_20261106b/methods_addendum/index.html | 名字位置 probe 等其余各项进行中，没有可报告的结果 | X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成；Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）… | 1 |
+| g53 | notes_zh.json #81 | 名字位置 probe 等其余各项进行中，没有可报告的结果 | X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成；Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）… | 1 |
+| g54 | talk_docs/progress_report_for_advisor_zh.html | 改为 2-11b（补充 15），只跑第 0 个分片；其余各项进行中； | 改为 2-11b（补充 15），第 0 片已完成，其余 47 片运行中；2-3、2-4、2-8、2-10 已完成；Patchscope 和名字位置 probe 的最终分析进行中；2-1 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中； | 1 |
+| g55 | merged_deck/stage1_11_deck.html | 2-11b (addendum 15), shard 0 only, queued; other items in progress; | 2-11b (addendum 15): shard 0 done, other 47 shards running; 2-3, 2-4, 2-8, 2-10 done; Patchscope (2-7, 2-9) and name-position probe: final analysis ru… | 1 |
+| g56 | github/README_draft_20261106b.md | 2-11b (addendum 15), shard 0 only, queued; other items in progress; | 2-11b (addendum 15): shard 0 done, other 47 shards running; 2-3, 2-4, 2-8, 2-10 done; Patchscope (2-7, 2-9) and name-position probe: final analysis ru… | 1 |
+| g57 | github/README_draft_20261106b.md | 2-11 stopped → 2-11b shard 0 queued; other items in progress | 2-11 stopped → 2-11b: 47 shards running; 2-3, 2-4, 2-8, 2-10 done; Patchscope and name-position probe: final analysis running; 2-1 gate re-run | 1 |
+| g58 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | 全部 token 版 2-10 进行中〕 | 全部 token 版 2-10 已完成：+0.234 [+0.215, +0.252]，姓的第一个 token +0.362，首字母 +0.028（`R13/reports/b2_m3tok.md`），是输出层行为分数，不是分层表征指标，不作为 H2 证据，C06 不变〕 | 1 |
+| g59 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md |   - M3 行为分数只有第一作者的第一个 token（2-10 进行中）。 |   - （M3 行为分数已由 2-10 补全部 token，不再属于此项；C06 的 T / I 指标不变。） | 1 |
+| g60 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | - 第二批其余项（2-1、2-2、2-3、2-4、2-7、2-8、2-9、2-10）：运行中，没有可报告的结果。 | - 2-3、2-4、2-8、2-10：已完成（2026-11-09，结果写进 C02、C04、C08、C14、L02、U46，见 RQ "第二批结果"）。 - 2-7、2-9（Patchscope）和名字位置 probe：最终分析进行中。 - 2-1：门槛重跑中（集群作业结束脚本误杀，已加看护作业）… | 1 |
+| g61 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | - **2-11b**（现场生成名字，补充 15 已锁定）：只跑第 0 个分片，GPU 作业 11736874 排队中；其余 47 片要另行决定（PG 2026-11-08 ~18:15 条）。 | - **2-11b**（现场生成名字，补充 15 已锁定）：第 0 片已完成，其余 47 片运行中。 | 1 |
+| g62 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | - **名字位置 probe**（2-5，补充 11 A，主结果按 D11-1 第 2 版用逐个排除版）：GPU 单元还在跑。编排状态 np = rest（`R13/orch_b2/state.json`），2026-11-08 13:30 时为 240 / 432 个单元（RQ R3）。 | - **名字位置 probe**（2-5，补充 11 A，主结果按 D11-1 第 2 版用逐个排除版）：GPU 单元已齐，最终分析进行中。 | 1 |
+| g63 | ~/jlens_work/conclusions_v30_draft.md | (C14) | X3 行为按 token 角色拆开后（补充 12 第 2-3 项，全部作者，测试集），恢复比在 0.806–0.924 之间（首字母 0.851 [0.723, 0.978]，姓的第一个 token 0.900 [0.863, 0.935]），各角色、各分层 target − control 的区间… | 1 |
+| g64 | ~/jlens_work/conclusions_v30_draft.md | (C02) | 批量舍入噪声：同一输入按 batch 1 和 15 元素 batch 计算，组级 E1 恢复比例的差最大 0.0148（L40），L52 约 0.002，只给分布、没有 CI；补充 12 第 2-4 项，381_stage13/reports/b2_e1noise.md | 1 |
+| g65 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+| g2-1 | notes_zh.json #81 (overflow) | X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成；Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中 | 2-3、2-4、2-8、2-10 已完成；Patchscope 和名字位置 probe 最终分析进行中；2-1 门槛重跑中（作业被误杀，已加看护） | 1 |
+Round g exports: 11759923 (report v30, handbook 20261108c, page / talk-doc PDFs); deck v21 11759920 → 11760055 (final, after note 81 shortened; overflow slides 30/72/81 at 901 px vs 898). pptx: pptx_text_fix_20261109g.py (slide 81 status, notes 77/81).
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | advisor/index.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | methods/methods_handbook.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | methods/parts/K_post_defence.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | pages_20261106b/methods_addendum/index.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | process_report/draft_zh.md | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | process_report/index.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | stage1_11/stage1_11_report.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | talk_docs/experiment_walkthrough_methods_zh.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | talk_docs/experiment_walkthrough_zh.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | talk_docs/methods_handbook_guide_plain_zh.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | talk_docs/stage13_script_zh_en.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+| h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | ../../audit_20261105/scoring_audit.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |

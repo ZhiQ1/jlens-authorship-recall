@@ -14,7 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
-import claims_defs_v12 as D12        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
+import claims_defs_v13 as D13        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
 from claims_docs import units, locate
 
 OUT = Path(sys.argv[1]) / 'wording_v30'
@@ -87,7 +87,11 @@ REQUIRE = {
     'L12': [('泄漏 / leak', ALT(r'泄漏', r'leak'))],
 }
 # (label, trigger, partner, window): partner must be within +-window characters of every trigger
-PAIR = [('round e：“约 79%”须带姓的篇数限定（姓的 1,395 篇 / 姓 4,402 / 5,580 / surname set）', ALT(r'约 79% 本应剔除', r'about 79% of false_1\.\.4'), ALT(r'姓的 1,395 篇', r'姓 4,402 / 5,580', r'surname set'), 120),
+PAIR = [('round g：E1t 探索性句须带“探索性”', r'恢复比例 target − control 为负', r'探索性', 200),
+        ('round g：E1t 探索性句须带“分母效应”', r'恢复比例 target − control 为负', r'分母效应', 200),
+        ('round g：M3 全部 token（U46）须带“不作为 H2 证据”', r'\+0\.234 \[\+0\.215', ALT(r'不作为 H2 证据', r'not H2 evidence', r'not counted as H2 evidence'), 600),
+        ('round g：M3 全部 token（U46）须带“C06 不变”', r'\+0\.234 \[\+0\.215', ALT(r'C06 不变', r'C06 unchanged'), 600),
+        ('round e：“约 79%”须带姓的篇数限定（姓的 1,395 篇 / 姓 4,402 / 5,580 / surname set）', ALT(r'约 79% 本应剔除', r'about 79% of false_1\.\.4'), ALT(r'姓的 1,395 篇', r'姓 4,402 / 5,580', r'surname set'), 120),
         ('round e：新句须写“原观察未被重现”', r'补全前（C 组 36 篇）曾观察到 C 略晚', r'原观察未被重现', 260),
         ('round d：L02 的 10 个超出须带 0.367', ALT(r'有 10 个超出', r'10 of (?:the )?25'), r'0\.367', 200),
         ('round d：3-3 99.81% 须注明按 0.25', r'99\.81%', r'0\.25', 120),
@@ -109,6 +113,10 @@ STALE = [
     ('批次状态过时（代码已就绪 / 自动开始，未写已在运行）', ALT(r'代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始', r'code ready, after batch 2', r'代码已就绪，第二批之后开始', r'starts automatically after batch 1', r'code ready, queued'), None),
     ('数字核对：第 30 版新数字“尚待登记”（v9 已登记）', ALT(r'尚待登记', r'not yet registered', r'yet to be registered', r'第 30 版新放回或新增的数字（D13-1'), None),
     ('D13-1 段落中的旧版本号', r'报告 v29 和 PPT v20', None),
+    ('round g：+0.0215 不是 L40 的标注', r'(?<!L40 )\+0\.0215', None),
+    ('round g：X3 “不能按角色拆分”仍作为未解决局限', ALT(r'无法按角色拆分', r'按 token 角色报告做不到', r'cannot be (?:split|reported) by (?:token )?role', r'X3 按 token 角色（V51）尚未'), r'已由补充 12|已完成|2026-11-09|done in addendum 12|已用批次 1'),
+    ('round g：2-3 / 2-4 / 2-8 / 2-10 仍写进行中', r'(?:2-3|2-4|2-8|2-10)(?:（[^）]*）)?[^。；，,]{0,12}(?:进行中|运行中|running|queued|排队)', r'已完成|done'),
+    ('round g：旧的批次 2 状态句', ALT(r'名字位置 probe 等其余各项进行中，没有可报告的结果', r'只跑第 0 个分片，排队中', r'shard 0 only, queued', r'2-11b shard 0 queued'), None),
     ('round f：M2 五个假标题数字未与 false_0 并列', r'(?:R²|year|donor 年份 R²|引用数|log citations|log 引用|citations\|year|领域准确率|field acc|年份 L16|L52) (?:0\.527|0\.507|0\.491|0\.712|0\.341|0\.529)(?![\d])(?!（false_0 版|（5 个假标题| \(false_0)', None),
     ('round f：M2 仍被列为只用 false_0 / 待做', ALT(r'M2 的假标题运行也只用 false_0', r'M2 with five titles needs CPU only', r'M2[^。；]{0,40}只需 CPU', r'M2[^。；]{0,40}是否做待定', r'M2[^.;]{0,40}decision pending'), None),
     ('round f：H2 状态不是“部分支持但未确立”', ALT(r'H2(?:：| )?(?:成立|已确立|得到支持)', r'H2 (?:is )?(?:supported|established)'), r'未确立|not established|不成立|部分支持|预测|predict|若|if'),
@@ -154,7 +162,9 @@ DOCREQ = {   # round d: qualifiers that must now be present in a specific docume
 }
 H2RX = ALT(r'H2 部分支持', r'H2 partly supported', r'H2[：:] ?部分支持', r'H2 partially supported')
 H2OK = ALT(r'部分支持但未确立', r'partly supported but not established', r'partially supported but not established')
-SKIP = {'计划 b'}          # plan document of 2026-11-06 b: not part of the v30 document set
+SKIP = {'计划 b'}
+B2DONE = ALT(r'2-3、2-4、2-8、2-10 已完成', r'X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成', r'2-3, 2-4, 2-8, 2-10 done')
+B2STAT = ALT(r'批次 1 结束后已由编排作业开始运行', r'Batch 2 \(addenda 11, 12\): running', r'Batch 2 \(addenda 11–12\): running', r'批次 2（补充 11、12[^）]*）已开始', r'running \(C / D done')          # plan document of 2026-11-06 b: not part of the v30 document set
 for doc in DOCS:
     if doc in SKIP:
         continue
@@ -177,6 +187,12 @@ for doc in DOCS:
                 miss.append(('round f', 'H2 状态须为“部分支持但未确立”'))
                 rows.append(dict(doc=doc, kind='missing qualifier (local)', item='H2', label='H2 状态须为“部分支持但未确立”', location=locate(u, m.start()),
                                  line=raw_line(u[1], u[3][m.start():m.start() + 30]) if u[2] == '' else u[2], text=u[3][max(0, m.start() - 60):m.end() + 100]))
+    for u in us:
+        for m in re.finditer(B2STAT, u[3]):
+            if not re.search(B2DONE, u[3][m.start():m.end() + 700]):
+                miss.append(('round g', '批次 2 状态须列 2-3/2-4/2-8/2-10 已完成'))
+                rows.append(dict(doc=doc, kind='missing qualifier (local)', item='B2', label='批次 2 状态须列 2-3/2-4/2-8/2-10 已完成', location=locate(u, m.start()),
+                                 line=raw_line(u[1], u[3][m.start():m.start() + 30]) if u[2] == '' else u[2], text=u[3][m.start():m.end() + 300]))
     local = []
     for lab, trig, partner, win in PAIR:
         for u in us:
