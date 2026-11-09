@@ -14,7 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
-import claims_defs_v10 as D10        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
+import claims_defs_v11 as D11        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
 from claims_docs import units, locate
 
 OUT = Path(sys.argv[1]) / 'wording_v30'
@@ -87,13 +87,14 @@ REQUIRE = {
     'L12': [('泄漏 / leak', ALT(r'泄漏', r'leak'))],
 }
 # (label, trigger, partner, window): partner must be within +-window characters of every trigger
-PAIR = [('round d：L02 的 10 个超出须带 0.367', ALT(r'有 10 个超出', r'10 of (?:the )?25'), r'0\.367', 200),
+PAIR = [('round e：“约 79%”须带姓的篇数限定（姓的 1,395 篇 / 姓 4,402 / 5,580 / surname set）', ALT(r'约 79% 本应剔除', r'about 79% of false_1\.\.4'), ALT(r'姓的 1,395 篇', r'姓 4,402 / 5,580', r'surname set'), 120),
+        ('round e：新句须写“原观察未被重现”', r'补全前（C 组 36 篇）曾观察到 C 略晚', r'原观察未被重现', 260),
+        ('round d：L02 的 10 个超出须带 0.367', ALT(r'有 10 个超出', r'10 of (?:the )?25'), r'0\.367', 200),
         ('round d：3-3 99.81% 须注明按 0.25', r'99\.81%', r'0\.25', 120),
         ('B/A false_0 0.78–0.99 须与 5 个假标题版 0.72–0.87 并列', r'0\.78–0\.99', r'0\.72–0\.87', 160),
         ('int6 RQ1 +0.130 须注明 int6 / 6 层（不是锁定的 7 层终点）', r'RQ1 \+0\.130', ALT(r'int6', r'6 层平均', r'6-layer mean', r'6 层'), 220),
         ('L56 RQ2 +0.064 须与 D13-1 / 规则触发同句', r'RQ2 \+0\.064', ALT(r'D13-1', r'触发', r'triggered'), 400),
-        ('X4 认得出更高 须带“不再作为 H2 的证据”', ALT(r'认得出的论文(?:第一作者 D )?(?:方向上)?更高', r'X4 中认得出的论文更高'), ALT(r'不再作为 H2 的证据', r'不再作为证据'), 400),
-        ('“略晚 / 略慢”（C 组）须带补全后未确认 / 时间点与 A 相同', ALT(r'略晚', r'略慢'), ALT(r'没有得到确认', r'时间点与 A 相同'), 1200)]
+        ('X4 认得出更高 须带“不再作为 H2 的证据”', ALT(r'认得出的论文(?:第一作者 D )?(?:方向上)?更高', r'X4 中认得出的论文更高'), ALT(r'不再作为 H2 的证据', r'不再作为证据'), 400),]
 STALE = [
     ('P1/P2 五个假标题还在运行', ALT(r'P1 ?/ ?P2 ?(?:用 )?(?:五|5) ?个假标题[^。；]{0,12}还在运行', r'P1 / P2 with five false titles still running', r'Batch 1, running', r'批次 1 只剩 P1', r'第 3 项还在运行', r'only P1 / P2 with five false titles still running'), None),
     ('结果经用户确认后补入', ALT(r'结果经用户确认后补入', r'result after approval'), None),
@@ -108,6 +109,8 @@ STALE = [
     ('批次状态过时（代码已就绪 / 自动开始，未写已在运行）', ALT(r'代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始', r'code ready, after batch 2', r'代码已就绪，第二批之后开始', r'starts automatically after batch 1', r'code ready, queued'), None),
     ('数字核对：第 30 版新数字“尚待登记”（v9 已登记）', ALT(r'尚待登记', r'not yet registered', r'yet to be registered', r'第 30 版新放回或新增的数字（D13-1'), None),
     ('D13-1 段落中的旧版本号', r'报告 v29 和 PPT v20', None),
+    ('round e：“C 略晚 / 略慢”只能出现在新句（补全前（C 组 36 篇）曾观察到 C 略晚 … 原观察未被重现）', ALT(r'略晚', r'略慢', r'slightly later', r'slightly slower'), r'补全前（C 组 36 篇）曾观察到 C 略晚|before completion'),
+    ('round e：旧的“补全后未确认”标记', ALT(r'补全后[^。]{0,20}未确认', r'“略晚”[^。]{0,40}(?:未|没有)得到确认', r'C[^。]{0,40}(?:未|没有)得到确认'), r'X4'),
 ]
 
 

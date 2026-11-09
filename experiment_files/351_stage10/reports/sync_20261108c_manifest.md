@@ -245,3 +245,28 @@ Script `sync_20261107/apply_20261108d.py` (checker out_20261108_192440/wording_v
 | d2-5 | d2 note 81 shortened (overflow) | notes_zh.json #81 | （偏离 D1，保留 4,654 篇，每篇平均约 1.5 个可用假标题，0–4 个；预注册版只减 false_0、1,395 篇时 L40 姓首 token 为 +0.071） | （偏离 D1，4,654 篇，每篇约 1.5 个可用假标题） | 1 |
 
 Round d exports: 11740702 export_0108d (report v30 PDF, handbook 20261108c PDF, page / talk-doc PDFs 20261108c, overwritten; COMPLETED); pptx v21 by `talk/src/export/pptx_text_fix_20261108d.py` from `Stage1-13_deck_v21_editable.pptx.before_20261108d` (5/5 rules, 1 bullet added on slide 82, notes 72/81/82 replaced); deck v21 PDFs 11740706 → 11740745 (final, after `apply_20261108d_part2.py` shortened notes 72/81). Notes overflow after the fix: slides 30, 72, 81 at 901 px against 898 (3 px; slide 30 was already 901 in v20h); before the fix slide 72 was 1071 and slide 81 was 1003.
+
+## round e
+
+Script `sync_20261107/apply_20261108e.py` (backups `*.before_20261108e`). Leak share recomputed by `381_stage13/e4b_standardisation_check/v5x0_leak_share.py` (json/md beside it): surname 4,402 / 5,580 = 78.89% (target 78.35%, control 79.86%; matches stored dropped_k); given name 2,894 / 6,824 = 42.4%; initial 4,567 / 6,360 = 71.8%. "约 79%" kept and qualified as the surname set.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| e1 | stage1_11/stage1_11_report.html | 也就是说，R1 论文的标题信息被读取得略晚一点，但完成时间相同。 | 补全前（C 组 36 篇）曾观察到 C 略晚；补全到 462 篇后（档内可比 258 篇），C 与 A 的时间点相同、信号更大（分母 C − A +0.075 [+0.024, +0.130]），原观察未被重现<span class="src">（391_groups/reports/b2_cd_r… | 1 |
+| e2 | stage1_11/stage1_11_report.html | “略晚”在补全后的同一引用档比较中没有得到确认（见第五部分 C / D 组补全）。 | (deleted) | 1 |
+| e3 | stage1_11/stage1_11_report.html | <td>同样 L52 完成；36 篇中 L40–48 略慢，补全到 462 篇后同一引用档内时间点与 A 相同（补充 11 B）</td> | <td>同样 L52 完成；补全前（C 组 36 篇）曾观察到 C 略晚；补全到 462 篇后（档内可比 258 篇），C 与 A 的时间点相同、信号更大（分母 C − A +0.075 [+0.024, +0.130]），原观察未被重现<span class="src">（391_groups/r… | 1 |
+| e4 | stage1_11/stage1_11_report.html | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 3 |
+| e5 | advisor/index.html | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e6 | process_report/draft_zh.md | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e7 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e8 | pages_20261106b/methods_addendum/index.html | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e9 | talk_docs/stage13_script_zh_en.html | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e10 | talk_docs/progress_report_for_advisor_zh.html | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e11 | methods/parts/F_stage13.html | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e12 | notes_zh.json #72 | false_1..4 中约 79% 本应剔除 | false_1..4 中约 79% 本应剔除（姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | 1 |
+| e13 | github/README_draft_20261106b.md | about 79% of false_1..4 should have been excluded | about 79% of false_1..4 should have been excluded (surname set, 1,395 papers: 4,402 / 5,580; given name 42%, initial 72%; v5x0_leak_share.json) | 1 |
+| e14 | talk_docs/stage13_script_zh_en.html | about 79% of false_1..4 should have been excluded | about 79% of false_1..4 should have been excluded (surname set, 1,395 papers: 4,402 / 5,580; given name 42%, initial 72%; v5x0_leak_share.json) | 1 |
+| e15 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+| e2-1 | notes_zh.json #72 (overflow) | （姓的 1,395 篇：4,402 / 5,580；名 42%、首字母 72%；381_stage13/e4b_standardisation_check/v5x0_leak_share.json） | （姓 4,402 / 5,580；名 42%、首字母 72%；v5x0_leak_share.json） | 1 |
+| e2-2 | notes_zh.json #72 (overflow) | 〔补充 9，标题最后一个 token，真标题 − false_0，目标 + 对照 1,395 篇，剔除标题复用，团队聚类 95% CI；381_stage13/reports/e4b_alltok.md 第 5 节〕 | 〔1,395 篇，剔除标题复用；e4b_alltok.md 第 5 节〕 | 1 |
+Round e exports: report/handbook/pages 11741368; deck v21 11741367 -> 11741399 (final).
