@@ -48,8 +48,13 @@ if [ "$P1" = "$P0" ] && [ "$N1" = "$NXT" ]; then STALL=$((STALL+1)); else STALL=
 if [ $STALL -ge 2 ]; then note "STOP: no progress in 2 consecutive rounds"; exit 3; fi
 case "$N1" in resume|holdout_and_rest|analyze|done) ;; *) note "STOP: next step '$N1' after this round"; exit 3 ;; esac
 NR=$ROUND; [ "$N1" = "$NXT" ] && NR=$((ROUND+1)) || NR=1
+# 2026-11-09 killguard: --exclude the nodes of our other running jobs (this job is ignored: the successor starts after it ends);
+# DEFER (no A100-80GB node free of our jobs) -> submit without --exclude here, the 2-1 watchdog's refresh re-points it while pending.
+KG=~/jlens_work/killguard.py
 for t in 1 2 3; do
-  J=$(sbatch --parsable --dependency=afterok:$SLURM_JOB_ID --export=ALL,ROUND=$NR,PHASE=$N1,STALL=$STALL $D/stage9_b2_fitb_v3_chain.sbatch 2>&1)
+  EX=$($PY $KG exclude --name b2c_fitb3chain --minutes 45 --ignore $SLURM_JOB_ID 2>/dev/null); [ "$EX" = DEFER ] && EX=""
+  J=$(sbatch --parsable $EX --dependency=afterok:$SLURM_JOB_ID --export=ALL,ROUND=$NR,PHASE=$N1,STALL=$STALL $D/stage9_b2_fitb_v3_chain.sbatch 2>&1)
+  [[ "$J" =~ ^[0-9]+$ ]] && $PY $KG record --jid $J --name b2c_fitb3chain --unit "2-1:chain:$N1:round$NR" --orch fitb_chain --excl "$EX" 2>/dev/null
   if [[ "$J" =~ ^[0-9]+$ ]]; then note "next chain job $J (round $NR, phase $N1)"; exit 0; fi
   note "sbatch error: $J"; sleep 60
   Q=$(squeue -h -u $USER -n b2c_fitb3chain -o %i 2>/dev/null | grep -v "^$SLURM_JOB_ID$")

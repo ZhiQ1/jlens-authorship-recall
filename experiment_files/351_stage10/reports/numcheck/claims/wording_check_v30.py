@@ -14,7 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
-import claims_defs_v13 as D13        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
+import claims_defs_v14 as D14        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
 from claims_docs import units, locate
 
 OUT = Path(sys.argv[1]) / 'wording_v30'
@@ -87,7 +87,15 @@ REQUIRE = {
     'L12': [('泄漏 / leak', ALT(r'泄漏', r'leak'))],
 }
 # (label, trigger, partner, window): partner must be within +-window characters of every trigger
-PAIR = [('round g：E1t 探索性句须带“探索性”', r'恢复比例 target − control 为负', r'探索性', 200),
+PAIR = [('round h：H3 判词须带“lens 的区间同样不含 0”', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'lens 的区间同样不含 0', r'lens intervals also exclude 0'), 500),
+        ('round h：H3 判词须带“尺度不同”', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'尺度不同', r'scales differ'), 600),
+        ('round h：H3 判词须写后续 token 在 L40 对 J-lens 不满足判据', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'后续 token 在 L40 与 J-lens 比较时不满足判据', r'continuation tokens do not meet the criterion at L40 against the J-lens'), 700),
+        ('round h：首字母须写“约一半信号不是论文特有的”', ALT(r'首字母的对照行', r'For initials the control row'), ALT(r'约一半信号不是论文特有的', r'about half of it is not paper-specific'), 200),
+        ('round h：同档 T − C 须标“预注册要求报告、无判定规则”', r'只作描述：同一引用档内 target − control', r'预注册要求报告、无判定规则', 60),
+        ('round h：行为分组须标“预注册要求报告、无判定规则”', r'按行为分组，A − B', r'预注册要求报告、无判定规则', 120),
+        ('round h：lens T − C 须标“探索性”', r'lens 的 target − control', r'探索性', 30),
+        ('round h：逐层峰值须标“探索性”', r'逐层峰值和逐层上升', r'探索性', 30),
+        ('round g：E1t 探索性句须带“探索性”', r'恢复比例 target − control 为负', r'探索性', 200),
         ('round g：E1t 探索性句须带“分母效应”', r'恢复比例 target − control 为负', r'分母效应', 200),
         ('round g：M3 全部 token（U46）须带“不作为 H2 证据”', r'\+0\.234 \[\+0\.215', ALT(r'不作为 H2 证据', r'not H2 evidence', r'not counted as H2 evidence'), 600),
         ('round g：M3 全部 token（U46）须带“C06 不变”', r'\+0\.234 \[\+0\.215', ALT(r'C06 不变', r'C06 unchanged'), 600),
@@ -113,6 +121,9 @@ STALE = [
     ('批次状态过时（代码已就绪 / 自动开始，未写已在运行）', ALT(r'代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始', r'code ready, after batch 2', r'代码已就绪，第二批之后开始', r'starts automatically after batch 1', r'code ready, queued'), None),
     ('数字核对：第 30 版新数字“尚待登记”（v9 已登记）', ALT(r'尚待登记', r'not yet registered', r'yet to be registered', r'第 30 版新放回或新增的数字（D13-1'), None),
     ('D13-1 段落中的旧版本号', r'报告 v29 和 PPT v20', None),
+    ('round h：H3 总体判断仍写“证据不足”', ALT(r'H3 ?(?:仍|仍然)?证据(?:仍)?不足', r'H3[：:] ?(?:X\d[^。；]{0,60})?证据(?:仍)?不足', r'H3 (?:has |had )?insufficient evidence', r'H3[:：] insufficient', r'H3 (?:still )?insufficient', r'H3 \(hidden author knowledge\)[:：]? insufficient'),
+     r'单看 X[24]|X[24] alone|原为|此前|had insufficient|改为部分支持|H3 部分支持|now partly supported|H3 partly supported|partly supported by the name-position|11-03|V57|措辞记录|历史'),
+    ('round h：重复从句', ALT(r'(单看 X\d，)\1', r'(X\d alone[,:] )\2', r'单看 X2，单看 X2'), None),
     ('round g：+0.0215 不是 L40 的标注', r'(?<!L40 )\+0\.0215', None),
     ('round g：X3 “不能按角色拆分”仍作为未解决局限', ALT(r'无法按角色拆分', r'按 token 角色报告做不到', r'cannot be (?:split|reported) by (?:token )?role', r'X3 按 token 角色（V51）尚未'), r'已由补充 12|已完成|2026-11-09|done in addendum 12|已用批次 1'),
     ('round g：2-3 / 2-4 / 2-8 / 2-10 仍写进行中', r'(?:2-3|2-4|2-8|2-10)(?:（[^）]*）)?[^。；，,]{0,12}(?:进行中|运行中|running|queued|排队)', r'已完成|done'),
@@ -163,7 +174,8 @@ DOCREQ = {   # round d: qualifiers that must now be present in a specific docume
 H2RX = ALT(r'H2 部分支持', r'H2 partly supported', r'H2[：:] ?部分支持', r'H2 partially supported')
 H2OK = ALT(r'部分支持但未确立', r'partly supported but not established', r'partially supported but not established')
 SKIP = {'计划 b'}
-B2DONE = ALT(r'2-3、2-4、2-8、2-10 已完成', r'X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成', r'2-3, 2-4, 2-8, 2-10 done')
+H3PART = ALT(r'H3 部分支持', r'H3 partly supported', r'H3 \(hidden author knowledge\)[:：]? partly supported', r'H3 改为部分支持', r'H3[：:] ?partly supported')
+B2DONE = ALT(r'2-3、2-4、2-8、2-10 已完成', r'X3 按 token 角色（2-3）、E1 批量舍入噪声（2-4）、E1t 用 5 个假标题（2-8）、M3 全部 token 分数（2-10）已完成', r'2-3, 2-4, 2-8, 2-10 done', r'2-3[,、] 2-4[,、] 2-5[^;；]{0,60}?2-8[,、] 2-10 (?:done|已完成)')
 B2STAT = ALT(r'批次 1 结束后已由编排作业开始运行', r'Batch 2 \(addenda 11, 12\): running', r'Batch 2 \(addenda 11–12\): running', r'批次 2（补充 11、12[^）]*）已开始', r'running \(C / D done')          # plan document of 2026-11-06 b: not part of the v30 document set
 for doc in DOCS:
     if doc in SKIP:
@@ -193,6 +205,12 @@ for doc in DOCS:
                 miss.append(('round g', '批次 2 状态须列 2-3/2-4/2-8/2-10 已完成'))
                 rows.append(dict(doc=doc, kind='missing qualifier (local)', item='B2', label='批次 2 状态须列 2-3/2-4/2-8/2-10 已完成', location=locate(u, m.start()),
                                  line=raw_line(u[1], u[3][m.start():m.start() + 30]) if u[2] == '' else u[2], text=u[3][m.start():m.end() + 300]))
+    if re.search(H3PART, full):
+        for lab, rx in [('round h：H3 部分支持须带“按补充 11 预注册判据”', ALT(r'按补充 11 预注册判据', r'addendum-11 pre-registered criterion', r'criterion met for the surname', r'meets the pre-registered criterion', r'按补充 11 判据', r'meets the addendum-11 criterion', r'L40/L48 按判据满足')),
+                        ('round h：H3 部分支持须带“lens 的区间同样不含 0”', ALT(r'lens 的区间同样不含 0', r'lens intervals also exclude 0', r'lens 区间也不含 0')),
+                        ('round h：H3 部分支持须带“尺度不同”', ALT(r'尺度不同', r'scales differ', r'scales cannot be compared'))]:
+            if not re.search(rx, full):
+                miss.append(('round h', lab)); rows.append(dict(doc=doc, kind='missing qualifier', item='H3', label=lab, location='(whole document)', line='', text=''))
     local = []
     for lab, trig, partner, win in PAIR:
         for u in us:

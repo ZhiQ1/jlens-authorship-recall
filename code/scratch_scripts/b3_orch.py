@@ -20,6 +20,11 @@ Rules (addendum 14 + HANDOFF long-term rules):
 - Every item that becomes done/stopped appends one line to review_queue_events.log (env ORCH_EVENTS_LOG overrides).
 - STOP file (orch_b3/STOP) ends the orchestrator. State: orch_b3/state.json; log: orch_b3/orch.log (env ORCH_B3_DIR
   overrides the directory, for the dry-run simulation).
+- 2026-11-09 killguard (~/jlens_work/killguard.py; HANDOFF "Cluster gotchas"): every GPU sbatch gets --exclude of the nodes
+  running our jobs (deferred while that leaves no A100-80GB node; relaxed rule after 2 h); pending GPU jobs submitted here get
+  their ExcNodeList refreshed each poll. Signal-9 endings (FAILED/CANCELLED x:9 = epilog kill) are not crashes: the gate is
+  resubmitted without using its one retry, workers are not counted in 'crashes'. More than 3 kills of the same unit (gate, or
+  rest at the same number of finished units) -> item STOPPED + a line in review_queue.md.
 Usage: b3_orch.py poll [--dry]      (--dry: print sbatch commands, submit nothing; ORCH_DRY_ADVANCE=1 also treats
                                      every 'complete'/'report' check as true so the whole path is printed)
 """
@@ -39,6 +44,7 @@ PARALLEL = 3
 N_UNITS = 504                                                            # 7 conditions x 72 Stage 10 shards
 DRY = '--dry' in sys.argv
 ADV = DRY and os.environ.get('ORCH_DRY_ADVANCE') == '1'
+sys.path.insert(0, str(Path.home() / 'jlens_work')); import killguard as kg   # noqa: E402
 WAITING = ('PENDING', 'RUNNING', 'REQUEUED', 'CONFIGURING', 'COMPLETING', 'SUSPENDED', 'RESIZING', None)
 
 
@@ -66,8 +72,13 @@ def sh(cmd, cwd=None):
     raise RuntimeError(f'{cmd}: {p.stderr.strip()}')
 
 
-def sbatch(args, gpu=False, time_min=False):
-    cmd = ['sbatch', '--parsable'] + (GPU_OPTS if gpu else []) + (TIME_MIN if time_min else []) + args
+def sbatch(args, gpu=False, time_min=False, name='', unit=''):
+    ex = []
+    if gpu:
+        ex, mode, note = kg.gpu_exclude(name or 'b3_gpu', 45)
+        if mode == 'defer': log('killguard: GPU submission deferred', name, unit, '-', note); return None
+        if mode != 'strict' or ex: log('killguard', mode, ex, note)
+    cmd = ['sbatch', '--parsable'] + (GPU_OPTS if gpu else []) + (TIME_MIN if time_min else []) + ex + args
     if DRY: log('DRY', W13, ' '.join(cmd)); return 'DRY'
     try: out = sh(cmd, cwd=W13)
     except RuntimeError as ex:
@@ -75,7 +86,24 @@ def sbatch(args, gpu=False, time_min=False):
         try: log('squeue:', sh(['squeue', '-u', os.environ.get('USER', 'zhang.zhiqi2'), '-h', '-o', '%i %j %T']).replace('\n', '; '))
         except Exception: pass
         return None
-    jid = out.split(';')[0]; log('submitted', jid, ' '.join(args)); return jid
+    jid = out.split(';')[0]; log('submitted', jid, ' '.join(ex + args))
+    if gpu: kg.record(jid, name, unit, 45, 'b3_orch', '', ','.join(ex))
+    return jid
+
+
+def job_ec(jid):
+    if not jid or jid == 'DRY': return None, None
+    try: out = sh(['sacct', '-j', str(jid), '-X', '-n', '-P', '-o', 'State,ExitCode'])
+    except RuntimeError: return None, None
+    if not out: return 'PENDING', ''
+    st, ec = out.splitlines()[0].split('|')[:2]
+    return st.split()[0], ec
+
+
+def kill_over_cap(unit, jid, why):
+    n = kg.kill_note('b3_orch', unit, jid); log(unit, f'job {jid} killed by signal 9 (epilog) - kill {n} of this unit')
+    if kg.over_cap(n): kg.review_line('b3_orch', unit, why); return True
+    return False
 
 
 def job_state(jid):
@@ -140,7 +168,7 @@ def poll_item(k, s, q, gpu):
         if (jread(R['gate']) or {}).get('status') == 'PASS':
             log(k, 'gate.json already PASS - skipping gate job'); s['phase'] = 'rest'
         elif gpu < MAX_GPU_QUEUED:
-            j = sbatch(['-J', it['name'], f'--export=ALL,ITEM={k},MODE=gate', 'stage13_b3_s10_gpu.sbatch'], gpu=True)
+            j = sbatch(['-J', it['name'], f'--export=ALL,ITEM={k},MODE=gate', 'stage13_b3_s10_gpu.sbatch'], gpu=True, name=it['name'], unit=f'{k}:gate')
             if j: s.update(phase='gate_wait', gate_job=j); s['gate_tries'] = s.get('gate_tries', 0) + 1; gpu += 1
             return gpu
         else: return gpu
@@ -149,6 +177,11 @@ def poll_item(k, s, q, gpu):
         if js in WAITING: return gpu
         if js != 'COMPLETED':
             if rc == 3 or R['fail'].exists(): stop(k, s, f'GATE job {s["gate_job"]} {js} exit {rc}: hard check FAILED'); return gpu
+            js2, ec = job_ec(s['gate_job'])
+            if kg.is_kill(js2, ec):
+                if kill_over_cap(f'{k}:gate', s['gate_job'], 'gate job'): stop(k, s, f'gate killed by signal 9 more than {kg.KILL_CAP} times'); return gpu
+                s['gate_tries'] = max(0, s.get('gate_tries', 1) - 1); s['phase'] = 'gate'
+                log(k, f'gate job {s["gate_job"]} killed by the epilog ({ec}) - resubmit (retry not used)'); return gpu
             if s.get('gate_tries', 1) < 2:
                 log(k, f'gate job {s["gate_job"]} ended {js} exit {rc} (not exit 3) - one retry'); s['phase'] = 'gate'; return gpu
             stop(k, s, f'GATE job {s["gate_job"]} ended {js} exit {rc} twice'); return gpu
@@ -163,6 +196,10 @@ def poll_item(k, s, q, gpu):
             js, rc = job_state(j)
             if js in WAITING: continue
             s['workers'].remove(j)
+            js2, ec = job_ec(j)
+            if kg.is_kill(js2, ec):
+                if kill_over_cap(f'{k}:rest@{n}', j, f'worker killed at {n} finished units'): stop(k, s, f'workers killed by signal 9 more than {kg.KILL_CAP} times at {n} units'); return gpu
+                continue
             if js in ('COMPLETED', 'TIMEOUT') or n > s.get('units_seen', 0): s['crashes'] = 0
             else: s['crashes'] = s.get('crashes', 0) + 1; log(k, f'worker {j} ended {js} exit {rc} (crash {s["crashes"]})')
             if rc == 3: stop(k, s, f'worker {j} exit 3 (refused / hard check marker)'); return gpu
@@ -176,7 +213,7 @@ def poll_item(k, s, q, gpu):
                 if gpu >= MAX_GPU_QUEUED: break
                 if s.get('n_workers', 0) >= it['max_workers']:
                     stop(k, s, f'{it["max_workers"]} worker jobs submitted, {left} units still missing'); return gpu
-                j = sbatch(['-J', it['name'], f'--export=ALL,ITEM={k}', 'b3_orch_gpu.sbatch'], gpu=True, time_min=True)
+                j = sbatch(['-J', it['name'], f'--export=ALL,ITEM={k}', 'b3_orch_gpu.sbatch'], gpu=True, time_min=True, name=it['name'], unit=f'{k}:rest')
                 if not j: break
                 s.setdefault('workers', []).append(j); s['n_workers'] = s.get('n_workers', 0) + 1; gpu += 1
             if s.get('n_workers'): log(k, f'rest: {n}/{N_UNITS} units, workers submitted so far {s["n_workers"]}')
@@ -210,6 +247,7 @@ def poll():
     ok, why = b2_finished()
     if not ok: log('batch 2 not finished -', why, '- waiting'); return True
     st = jread(STATE) or {}
+    for m in kg.refresh_pending(dry=DRY): log('killguard refresh:', m)
     q, gpu = queued()
     for k in ORDER:
         s = st.setdefault(k, dict(phase='gate'))

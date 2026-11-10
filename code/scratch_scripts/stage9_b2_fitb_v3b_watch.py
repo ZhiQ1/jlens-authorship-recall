@@ -12,14 +12,18 @@ What it does (one GPU job at a time, all GPU jobs 45 min, no --time-min):
                resubmit stage9_b2_fitb_v3_chain.sbatch with its ROUND/PHASE/STALL (max KILL_CAP); if it ended otherwise and no successor
                exists -> stop (the chain's own STOP rules: crash, 12 rounds, no progress).
 After every sbatch error: re-check squeue before trying again (next poll). Every action is logged to b2_fitb/chain_v3.log.
+2026-11-09 killguard (~/jlens_work/killguard.py, HANDOFF "Cluster gotchas"): every GPU sbatch gets --exclude of the nodes running
+our jobs (deferred while that leaves no A100-80GB node, relaxed after 2 h); pending jobs it submitted get ExcNodeList refreshed.
+KILL_CAP 6 -> 3, counted per unit (gate; chain job per round+phase): the 4th kill of the same unit stops + review_queue.md line.
 """
 import json, re, subprocess, sys, time
 from datetime import datetime
 from pathlib import Path
+sys.path.insert(0, str(Path.home() / 'jlens_work')); import killguard as kg   # noqa: E402
 
 D = Path.home() / 'jlens_work/09_stage9'; ROOT = Path('/scratch/zhang.zhiqi2/jlens/381_stage13/b2_fitb'); CLOG = ROOT / 'chain_v3.log'
 PY = str(Path.home() / 'conda-envs/jlens/bin/python'); GATE_SB = D / 'stage9_b2_fitb_v3b_gate.sbatch'; CHAIN_SB = D / 'stage9_b2_fitb_v3_chain.sbatch'
-KILL_CAP, POLL, MAX_H = 6, 120, 47
+KILL_CAP, POLL, MAX_H = kg.KILL_CAP, 120, 47
 STATE = ROOT / 'watch_v3b_state.json'
 
 
@@ -50,10 +54,15 @@ def ended(jid):
 def killed(st): return st is not None and st[1] == '0:9' and st[0] in ('FAILED', 'CANCELLED')
 
 
-def submit(sb, env=''):
-    cmd = ['sbatch', '--parsable'] + ([f'--export=ALL,{env}'] if env else []) + [str(sb)]
+def submit(sb, env='', name='b2c_fitb3', unit=''):
+    ex, mode, why = kg.gpu_exclude(name, 45)
+    if mode == 'defer': note('killguard: submission deferred (retry next poll):', name, why); return None
+    cmd = ['sbatch', '--parsable'] + ex + ([f'--export=ALL,{env}'] if env else []) + [str(sb)]
     rc, out, err = sh(cmd)
-    if rc == 0 and out.split(';')[0].isdigit(): return out.split(';')[0]
+    if rc == 0 and out.split(';')[0].isdigit():
+        kg.record(out.split(';')[0], name, unit, 45, 'fitb_watch', mode, ','.join(ex))
+        if ex: note('killguard', mode, ex[0], why)
+        return out.split(';')[0]
     note('sbatch error (squeue checked before any retry next poll):', ' '.join(cmd), (err or out)[:160]); return None
 
 
@@ -97,6 +106,7 @@ def main():
     note('start; known gate jobs', st['gate_jobs'], 'kills so far gate/chain', st['gate_kills'], st['chain_kills']); save()
     t0 = time.time()
     while time.time() - t0 < MAX_H * 3600:
+        for m in kg.refresh_pending(): note('killguard refresh:', m)
         g = gate_status()
         if g == 'FAIL' or (ROOT / 'HARD_CHECK_FAILED').exists(): note('STOP: D12-1 gate FAIL / HARD_CHECK_FAILED - nothing else runs'); return 3
         if g is None:                                                   # ---------------- gate phase
@@ -112,9 +122,10 @@ def main():
                 if g2 is None: note(f'STOP: gate job {last} ended {e} without gate_v2.json (not an epilog kill)'); return 3
                 continue
             if last and killed(e):
-                if st['gate_kills'] >= KILL_CAP: note(f'STOP: gate killed {st["gate_kills"]} times (cap {KILL_CAP})'); return 4
+                if st['gate_kills'] >= KILL_CAP:
+                    note(f'STOP: gate killed {st["gate_kills"] + 1} times (cap {KILL_CAP})'); kg.review_line('fitb_watch', '2-1:gate', f'gate jobs {st["gate_jobs"]}'); return 4
                 st['gate_kills'] += 1; note(f'gate job {last} killed by signal 9 ({e}); resubmit {st["gate_kills"]}/{KILL_CAP}')
-            j = submit(GATE_SB)
+            j = submit(GATE_SB, name='b2c_fitb3bgate', unit='2-1:gate')
             if j: st['gate_jobs'].append(j); note('gate job submitted', j); save()
             time.sleep(POLL); continue
         # ---------------------------------------------------------------- chain phase (gate PASS)
@@ -128,16 +139,19 @@ def main():
             note('GPU work complete; analyze job submitted by the chain - watchdog ends'); return 0
         lc = last_chain_job()
         if lc is None:                                                  # no chain job yet: start it
-            j = submit(CHAIN_SB)
+            j = submit(CHAIN_SB, name='b2c_fitb3chain', unit='2-1:chain')
             if j: note(f'watch resubmitted chain job {j} round=1 phase=none stall=0 (first chain job)')
             time.sleep(POLL); continue
         e = ended(lc['job'])
         if e is None: time.sleep(POLL); continue
         if killed(e):
-            if st['chain_kills'] >= KILL_CAP: note(f'STOP: chain killed {st["chain_kills"]} times (cap {KILL_CAP})'); return 4
             env = chain_env_of(lc['job']) or (lc.get('round') or '1', lc.get('phase') or '', lc.get('stall') or '0')
-            st['chain_kills'] += 1; save()
-            j = submit(CHAIN_SB, f'ROUND={env[0]},PHASE={env[1]},STALL={env[2]}')
+            unit = f'2-1:chain:{env[1] or "none"}:round{env[0]}:{(nx or {}).get("progress")}'
+            ku = st.setdefault('chain_kills_by_unit', {})
+            if lc['job'] not in ku.setdefault(unit, []): ku[unit].append(lc['job']); st['chain_kills'] += 1; save()
+            if len(ku[unit]) > KILL_CAP:
+                note(f'STOP: chain unit {unit} killed {len(ku[unit])} times (cap {KILL_CAP})'); kg.review_line('fitb_watch', unit, f'chain jobs {ku[unit]}'); return 4
+            j = submit(CHAIN_SB, f'ROUND={env[0]},PHASE={env[1]},STALL={env[2]}', name='b2c_fitb3chain', unit=unit)
             if j: note(f'watch resubmitted chain job {j} round={env[0]} phase={env[1] or "none"} stall={env[2]} (previous {lc["job"]} killed {e}, kill {st["chain_kills"]}/{KILL_CAP})')
             time.sleep(POLL); continue
         note(f'STOP: last chain job {lc["job"]} ended {e} with no successor queued (chain stop rule; see log above)'); return 3

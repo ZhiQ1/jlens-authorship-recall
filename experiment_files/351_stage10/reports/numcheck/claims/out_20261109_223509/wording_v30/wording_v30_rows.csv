@@ -1,0 +1,4 @@
+﻿doc,kind,item,label,location,line,text
+PPT,missing qualifier,H3,round h：H3 部分支持须带“尺度不同”,(whole document),,
+讲稿 progress_report_for_advisor_zh,missing qualifier,C04,mean5 L48 +0.821,(whole document),,
+README 草稿 b,missing qualifier (local),H2,H2 状态须为“部分支持但未确立”,README > Status | 第233行,233,"/ | | Stage 13 M1–M4, X1–X7 | what the middle layers hold | H2 partly supported, not established; H3 partly supported (name-position probe, 2026-11-09) | done | 381_stage13/report"

@@ -385,3 +385,117 @@ Round g exports: 11759923 (report v30, handbook 20261108c, page / talk-doc PDFs)
 | h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | talk_docs/methods_handbook_guide_plain_zh.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
 | h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | talk_docs/stage13_script_zh_en.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
 | h1 | P1/P2 mean5 − false_0 range (checker: p12f_mean5.csv |diff| 0.0005–0.0055) | ../../audit_20261105/scoring_audit.html | 差 0.004–0.006 | 差的绝对值 0.001–0.006 | 1 |
+
+## round h
+
+Script `sync_20261107/apply_20261109h.py` (backups `*.before_20261109h2`; numbers asserted against 381_stage13/reports/b2_np_report_v2.md lines 80, 91, 102, 113, 124, 373, 377, 443). H3 "证据不足" → "部分支持" (user decision 2026-11-09); X2- / X4-only statements keep their own verdict; historical records (11-03 wording log, V57) unchanged.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| h1 | stage1_11/stage1_11_report.html | <p><b>总体判断（2026-11-03）：H2 部分支持但未确立，H3 证据不足。</b> | <p><b>总体判断（2026-11-03；2026-11-09 更新 H3）：H2 部分支持但未确立，H3 部分支持。</b> | 1 |
+| h2 | stage1_11/stage1_11_report.html | H3：X2 按规则通过，但作者子空间几乎解码不出作者，证据仍不足。</p> | H3：按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.064, 0.074]、L48 +0.103 [0.097, 0.110]；target − control L40 +0.031 [0.… | 1 |
+| h3 | stage1_11/stage1_11_report.html | <td><b>文本基线不弱于 Qwen，不能排除文字解释，证据不足</b>（X4： | <td><b>部分支持（2026-11-09，名字位置 probe，补充 11）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.064, 0.074]、L48 +0.103 [0.0… | 1 |
+| h4 | stage1_11/stage1_11_report.html | <b>X2 按规则通过，但作者子空间几乎解码不出作者（留出 R² ≤ 0.009；用全部作者重新拟合后搬动 0.032，约为完整替换的 7%），证据仍不足</b></td> | 单看 X2：<b>X2 按规则通过，但作者子空间几乎解码不出作者（留出 R² ≤ 0.009；用全部作者重新拟合后搬动 0.032，约为完整替换的 7%），证据仍不足</b></td> | 1 |
+| h5 | advisor/index.html | 〔2026-11-06 已更新：X2 已于 2026-11-05 完成，H3 仍证据不足；见页首更新框〕 | 〔2026-11-06 已更新：X2 已于 2026-11-05 完成；2026-11-09 已更新：名字位置 probe 后 H3 改为部分支持；见页首更新框〕 | 1 |
+| h6 | stage1_11/stage1_11_report.html | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 3 |
+| h7 | advisor/index.html | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h8 | process_report/draft_zh.md | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h9 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h10 | pages_20261106b/methods_addendum/index.html | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h11 | talk_docs/stage13_script_zh_en.html | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h12 | methods/parts/F_stage13.html | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h13 | notes_zh.json #71 | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h14 | notes_zh.json #81 | H3 仍证据不足 | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h15 | stage1_11/stage1_11_report.html | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 3 |
+| h16 | advisor/index.html | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 2 |
+| h17 | process_report/draft_zh.md | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 2 |
+| h18 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 2 |
+| h19 | pages_20261106b/methods_addendum/index.html | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 2 |
+| h20 | talk_docs/stage13_script_zh_en.html | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 1 |
+| h21 | methods/parts/F_stage13.html | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 1 |
+| h22 | notes_zh.json #65 | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 1 |
+| h23 | notes_zh.json #71 | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 1 |
+| h24 | notes_zh.json #81 | H3 证据仍不足 | 单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持） | 1 |
+| h25 | notes_zh.json #65 | H2 部分支持但未确立，H3 证据不足 | H2 部分支持但未确立，H3 部分支持（名字位置 probe，补充 11） | 1 |
+| h26 | notes_zh.json #74 | H2 部分支持但未确立，H3 证据不足 | H2 部分支持但未确立，H3 部分支持（名字位置 probe，补充 11） | 1 |
+| h27 | talk_docs/experiment_walkthrough_zh.html | ；H3 证据不足。”</p> | ；H3 部分支持（名字位置 probe，补充 11）。”</p> | 1 |
+| h28 | talk_docs/experiment_walkthrough_methods_zh.html | X4 顺序相反；H3 证据不足。</p> | X4 顺序相反；H3 部分支持（名字位置 probe，补充 11）。</p> | 1 |
+| h29 | talk_docs/experiment_walkthrough_zh.html | 但不能排除来自标题文字，所以 H3 证据不足。 | 但不能排除来自标题文字，所以单看 X4，H3 证据不足（H3 总体判断见名字位置 probe：部分支持）。 | 1 |
+| h30 | talk_docs/experiment_walkthrough_methods_zh.html | 但不能排除来自标题文字，H3 证据不足； | 但不能排除来自标题文字，单看 X4，H3 证据不足（H3 总体判断见名字位置 probe：部分支持）； | 1 |
+| h31 | talk_docs/methods_handbook_guide_plain_zh.html | 所以 H3 证据不足，仍是开放问题。 | 所以单看 X4，H3 证据不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）。 | 1 |
+| h32 | talk_docs/stage13_script_zh_en.html | H3 证据不足：连专门用作者提示拟合的读出工具也读不出名字； | H3 原为证据不足（2026-11-09 按名字位置 probe 改为部分支持，见下）：连专门用作者提示拟合的读出工具也读不出名字； | 1 |
+| h33 | talk_docs/stage13_script_zh_en.html | H3 has insufficient evidence: | H3 had insufficient evidence before the name-position probe (now partly supported, see below): | 1 |
+| h34 | talk_docs/keys_and_shelves_script_zh_en.html | H3 是作者已经在那里、只是不在词表方向上，证据不足： | H3 是作者已经在那里、只是不在词表方向上，原为证据不足（2026-11-09 按名字位置 probe 改为部分支持）： | 1 |
+| h35 | talk_docs/keys_and_shelves_script_zh_en.html | off the vocabulary directions, has insufficient evidence: | off the vocabulary directions, had insufficient evidence (since 2026-11-09 partly supported by the name-position probe): | 1 |
+| h36 | talk_docs/progress_report_for_advisor_zh.html | ；“作者已经在那里”证据不足。</p> | ；“作者已经在那里”部分支持（名字位置 probe，补充 11）。</p> | 1 |
+| h37 | talk_docs/progress_report_for_advisor_zh.html | <td><strong>H3 作者已在、只是不在词表方向</strong></td> <td>证据不足</td> | <td><strong>H3 作者已在、只是不在词表方向</strong></td> <td>部分支持（2026-11-09，名字位置 probe）</td> | 1 |
+| h38 | advisor/index.html | <span class="pill no">证据不足</span> | <span class="pill part">部分支持</span> | 1 |
+| h39 | process_report/draft_zh.md | 假设：H1 在 ":" 和名字位置成立；H2 部分支持但未确立；H3 证据不足。 | 假设：H1 在 ":" 和名字位置成立；H2 部分支持但未确立；H3 证据不足（2026-11-09 按名字位置 probe 改为部分支持，见第 0 节）。 | 1 |
+| h40 | methods/parts/F_stage13.html | <li><b>H3</b>：X4 文本基线不弱于 Qwen，不能排除文字解释，证据不足； | <li><b>H3</b>（2026-11-09 改为部分支持）：按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.064, 0.074]、L48 +0.103 [0.097, 0.110]；t… | 1 |
+| h41 | methods/parts/F_stage13.html | <p><b>总体判断（2026-11-03，与报告、PPT 统一）：H2 部分支持但未确立，H3 证据不足。</b></p> | <p><b>总体判断（2026-11-03，与报告、PPT 统一）：H2 部分支持但未确立，H3 证据不足；2026-11-09 按名字位置 probe 改为 H3 部分支持（见上）。</b></p> | 1 |
+| h42 | stage1_11/stage1_11_report.html | <li id="pd-b2-cd"> | <li id="pd-b2-np"><b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.… | 1 |
+| h43 | advisor/index.html | <li><b>2026-11-08（报告第 30 版）补充的局限：</b> | <li><b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.064, 0.074]、L4… | 1 |
+| h44 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | <li><b>2026-11-08（报告第 30 版）补充的局限：</b> | <li><b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.064, 0.074]、L4… | 1 |
+| h45 | pages_20261106b/methods_addendum/index.html | <li><b>2026-11-08（报告第 30 版）补充的局限：</b> | <li><b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.064, 0.074]、L4… | 1 |
+| h46 | process_report/draft_zh.md |  - **2026-11-08（报告第 30 版）补充的局限：** |  - **名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：**按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0.069 [0.064, 0.074]、L48 +0… | 1 |
+| h47 | talk_docs/experiment_walkthrough_zh.html | <p class="upd">2026-11-08（报告第 30 版）： | <p class="upd">2026-11-09：<b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0… | 2 |
+| h48 | talk_docs/experiment_walkthrough_methods_zh.html | <p class="upd">2026-11-08（报告第 30 版）： | <p class="upd">2026-11-09：<b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0… | 2 |
+| h49 | talk_docs/methods_handbook_guide_plain_zh.html | <p class="upd">2026-11-08（报告第 30 版）： | <p class="upd">2026-11-09：<b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；probe L40 +0… | 1 |
+| h50 | talk_docs/progress_report_for_advisor_zh.html | <li>高引用档几乎没有 control 论文，结论主要来自中低引用论文。</li> | <li>高引用档几乎没有 control 论文，结论主要来自中低引用论文。</li> <li><b>名字位置 probe（批次 2 第 2-5 项，补充 11 A，已完成；H3 改为部分支持）：</b>按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，… | 1 |
+| h51 | talk_docs/stage13_script_zh_en.html | P1 / P2 with five false titles, done:  | Name-position probe (addendum 11 A), done: By the addendum-11 pre-registered criterion, the surname first token meets H3 at L40/L48 (name-position pro… | 1 |
+| h52 | stage1_11/stage1_11_report.html | 第 0 片已完成，其余 47 片运行中 | 第 0 片已完成，其余分片运行中 | 1 |
+| h53 | advisor/index.html | 第 0 片已完成，其余 47 片运行中 | 第 0 片已完成，其余分片运行中 | 1 |
+| h54 | process_report/draft_zh.md | 第 0 片已完成，其余 47 片运行中 | 第 0 片已完成，其余分片运行中 | 1 |
+| h55 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 第 0 片已完成，其余 47 片运行中 | 第 0 片已完成，其余分片运行中 | 1 |
+| h56 | pages_20261106b/methods_addendum/index.html | 第 0 片已完成，其余 47 片运行中 | 第 0 片已完成，其余分片运行中 | 1 |
+| h57 | talk_docs/progress_report_for_advisor_zh.html | 第 0 片已完成，其余 47 片运行中 | 第 0 片已完成，其余分片运行中 | 1 |
+| h58 | notes_zh.json #81 | 第 0 片已完成，其余 47 片运行中 | 第 0 片已完成，其余分片运行中 | 1 |
+| h59 | stage1_11/stage1_11_report.html | Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中 | 1 |
+| h60 | advisor/index.html | Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中 | 1 |
+| h61 | process_report/draft_zh.md | Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中 | 1 |
+| h62 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中 | 1 |
+| h63 | pages_20261106b/methods_addendum/index.html | Patchscope（2-7、2-9）和名字位置 probe 的最终分析进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中 | 1 |
+| h64 | talk_docs/progress_report_for_advisor_zh.html | Patchscope 和名字位置 probe 的最终分析进行中 | 名字位置 probe 已完成（H3 部分支持）；Patchscope 的最终分析进行中 | 1 |
+| h65 | notes_zh.json #81 | Patchscope 和名字位置 probe 最终分析进行中 | 名字位置 probe 已完成（H3 部分支持）；Patchscope 最终分析进行中 | 1 |
+| h66 | merged_deck/stage1_11_deck.html | shard 0 done, other 47 shards running; 2-3, 2-4, 2-8, 2-10 done; Patchscope (2-7, 2-9) and name-position probe: final analysis running; | shard 0 done, other shards running; 2-3, 2-4, 2-5 (name-position probe: H3 partly supported), 2-8, 2-10 done; Patchscope (2-7, 2-9): final analysis ru… | 1 |
+| h67 | github/README_draft_20261106b.md | shard 0 done, other 47 shards running; 2-3, 2-4, 2-8, 2-10 done; Patchscope (2-7, 2-9) and name-position probe: final analysis running; | shard 0 done, other shards running; 2-3, 2-4, 2-5 (name-position probe: H3 partly supported), 2-8, 2-10 done; Patchscope (2-7, 2-9): final analysis ru… | 1 |
+| h68 | github/README_draft_20261106b.md | 2-11b: 47 shards running; 2-3, 2-4, 2-8, 2-10 done; Patchscope and name-position probe: final analysis running | 2-11b: other shards running; 2-3, 2-4, 2-5, 2-8, 2-10 done; Patchscope: final analysis running | 1 |
+| h69 | merged_deck/stage1_11_deck.html | H3 (hidden author knowledge): insufficient evidence · X2 (2026-11-05): H2 not supported; H3 passes by rule but the author subspace can hardly decode a… | H3 (hidden author knowledge): partly supported (name-position probe, addendum 11: criterion met for the surname at L40/L48, but lens intervals also ex… | 1 |
+| h70 | merged_deck/stage1_11_deck.html | H3: insufficient evidence (text baseline not weaker than Qwen). | H3: partly supported by the name-position probe (addendum 11); X4 alone cannot exclude the title text. | 1 |
+| h71 | merged_deck/stage1_11_deck.html | subspace R² ≤ 0.009, H3 still insufficient) | subspace R² ≤ 0.009, X2 alone leaves H3 insufficient) | 1 |
+| h72 | notes_zh.json #65 | 所以 H2 部分支持但未确立，H3 部分支持（名字位置 probe，补充 11）； | 所以 H2 部分支持但未确立，H3 部分支持（名字位置 probe，补充 11：姓首 token L40/L48 按判据满足，但 lens 区间也不含 0、尺度不同，降为部分支持）； | 1 |
+| h73 | github/README_draft_20261106b.md | H3 (hidden author knowledge) insufficient evidence.** | H3 (hidden author knowledge) partly supported.** The name-position probe (addendum 11) meets the pre-registered criterion for the surname first token … | 1 |
+| h74 | github/README_draft_20261106b.md | H2 partly supported, not established; H3 insufficient \| | H2 partly supported, not established; H3 partly supported (name-position probe, 2026-11-09) \| | 1 |
+| h75 | github/README_draft_20261106b.md | H3 still insufficient) <sub> | X2 alone leaves H3 insufficient) <sub> | 1 |
+| h76 | github/README_draft_20261106b.md | **Latest (2026-11-08, report v30).** | **Latest (2026-11-09).** Name-position probe (addendum 11 A): By the addendum-11 pre-registered criterion, the surname first token meets H3 at L40/L48… | 1 |
+| h77 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | ### C22 作者子空间几乎解码不出作者，H3 的证据仍不足（X2，补充 10 全部作者） | ### C22 H3 部分支持：名字位置 probe 按补充 11 判据满足，但 lens 区间也不含 0（2-5）；X2 作者子空间几乎解码不出作者 | 1 |
+| h78 | ~/jlens_work/conclusions_v30_draft.md | (C22 body) | 按补充 11 预注册判据，姓首 token 在 L40/L48 满足 H3（名字位置 probe，逐个假标题排除版；pr | 1 |
+| h79 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | 当前总体判断（REP 第 1101 行，v30 沿用）：H1 在 ":" 和名字位置成立；H2 部分支持但未确立；H3 证据不足。 | 当前总体判断（2026-11-09 更新 H3）：H1 在 ":" 和名字位置成立；H2 部分支持但未确立；H3 部分支持。 | 1 |
+| h80 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | \| C22 \| 未定 \| H3 \| 证据不足 \| 按规则通过但解码量极小 \| | \| C22 \| 未定 \| H3 \| 部分支持 \| 名字位置 probe 按补充 11 判据满足（姓 L40/L48），lens 区间也不含 0、尺度不同；X2 解码量极小 \| | 1 |
+| h81 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | - **名字位置 probe**（2-5，补充 11 A，主结果按 D11-1 第 2 版用逐个排除版）：GPU 单元已齐，最终分析进行中。 | - **名字位置 probe**（2-5，补充 11 A）：已完成，见 C22。 | 1 |
+| h82 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | - 2-7、2-9（Patchscope）和名字位置 probe：最终分析进行中。 | - 2-7、2-9（Patchscope）：最终分析进行中。 | 1 |
+| h83 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | 第 0 片已完成，其余 47 片运行中。 | 第 0 片已完成，其余分片运行中。 | 1 |
+| h84 | stage1_11/src/hyp_table_png_v30_en.py | 'X2 按规则通过，但作者子空间几乎解码不出作者（留出 R² ≤ 0.009；用全部作者重新拟合后搬动 0.032，约为完整替换的 7%），证据仍不足' | 'X2 按规则通过，但作者子空间几乎解码不出作者（留出 R² ≤ 0.009；用全部作者重新拟合后搬动 0.032，约为完整替换的 7%），证据仍不足', '部分支持（2026-11-09，名字位置 probe，补充 11）' | 1 |
+| h85 | stage1_11/src/hyp_table_png_v30_en.py |   '<b>Text baseline not weaker than Qwen, a text explanation cannot be excluded: insufficient evidence</b> (X4: |   '<b>Partly supported (2026-11-09, name-position probe, addendum 11):</b> By the addendum-11 pre-registered criterion, the surname first token meets … | 1 |
+| h86 | stage1_11/src/hyp_table_png_v30_en.py | <b>X2 passes by rule, but the author subspace | X2 alone: <b>X2 passes by rule, but the author subspace | 1 |
+| h87 | stage1_11/src/hyp_table_png_v30_en.py | JUDGE = ('<b>Overall (2026-11-03): H2 partly supported but not established; H3 insufficient evidence.</b> | JUDGE = ('<b>Overall (2026-11-03; H3 updated 2026-11-09): H2 partly supported but not established; H3 partly supported.</b> | 1 |
+| h88 | stage1_11/src/hyp_table_png_v30_en.py | H3: X2 passes by rule, but the author subspace hardly decodes authors, so the evidence is still insufficient.') | H3: the name-position probe meets the addendum-11 criterion for the surname at L40/L48, but the lens intervals also exclude 0 and the scales differ, s… | 1 |
+| h89 | stage1_11/src/hyp_table_png_v30_en.py | assert '总体判断（2026-11-03）：H2 部分支持但未确立，H3 证据不足。' in s | assert '总体判断（2026-11-03；2026-11-09 更新 H3）：H2 部分支持但未确立，H3 部分支持。' in s | 1 |
+| h90 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+| h2-1 | stage1_11/stage1_11_report.html | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 3 |
+| h2-2 | advisor/index.html | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h2-3 | process_report/draft_zh.md | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h2-4 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h2-5 | pages_20261106b/methods_addendum/index.html | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h2-6 | talk_docs/stage13_script_zh_en.html | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h2-7 | methods/parts/F_stage13.html | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h2-8 | notes_zh.json #71 | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足（H3 总体判断已按名字位置 probe 改为部分支持） | 1 |
+| h2-9 | notes_zh.json #81 | 单看 X2，单看 X2，H3 证据仍不足（2026-11-09 名字位置 probe 后 H3 总体改为部分支持）（H3… | 单看 X2，H3 证据仍不足 | 1 |
+| h2-K | methods/parts/K_post_defence.html | (part 5) | regenerated | 1 |
+Round h exports: 11763611 + deck 11763628 (superseded); final 11763773 (PNGs v30, slide-65 image, pptx v21, report / handbook / page PDFs) + deck v21 11763778.
+| h3-1 | notes_zh.json #81 (overflow) | 〔补充 10 第 1 项，硬检查 PASS；381_stage13/reports/b1_xall_report.md〕 | 〔b1_xall_report.md〕 | 1 |
+| h3-2 | notes_zh.json #81 (overflow) | 〔381_stage13/reports/b1_e4b5_report.md〕 | 〔b1_e4b5_report.md〕 | 1 |
+| h3-3 | notes_zh.json #81 (overflow) | 〔381_stage13/config/prereg_addendum12_deviations.json〕 | 〔prereg_addendum12_deviations.json〕 | 1 |
+| h3-4 | notes_zh.json #81 (overflow) | 〔381_stage13/config/prereg_addendum14.json〕 | 〔prereg_addendum14.json〕 | 1 |
+Round h final deck v21: 11763989 (after note 81 source tags shortened).
+| i1 | deck slide H3 cell (wording check) | merged_deck/stage1_11_deck.html | but lens intervals also exclude 0) | ... and the scales differ, so sizes cannot be compared) | 1 |

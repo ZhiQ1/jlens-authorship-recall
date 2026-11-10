@@ -11,6 +11,12 @@ Rules (HANDOFF long-term rules + addenda 10-12):
   with -p gpu,gpu-short,gpu-interactive --time-min=20 (backfill); the scripts cap their budget at the real time left.
 - Items whose rest phase self-chains (cd, b2B) are re-kicked if their chain broke (no job queued, not finished), <= 6 times.
 - STOP file (orch_b2/STOP) ends the orchestrator. State: orch_b2/state.json; log: orch_b2/orch.log.
+- 2026-11-09 killguard (~/jlens_work/killguard.py; HANDOFF "Cluster gotchas"): every GPU sbatch gets --exclude of the nodes
+  running our jobs (deferred while that leaves no A100-80GB node; relaxed rule after 2 h); pending GPU jobs submitted here get
+  their ExcNodeList refreshed each poll. A job ending FAILED/CANCELLED with signal 9 is an epilog kill: it is resubmitted
+  (gate: back to 'gate'; C items: the submission is not counted against STEP_CAP); more than 3 kills of the same unit
+  (item:step at the same progress) -> that item STOPPED + a line in review_queue.md. Unit counts ignore *.tmp* files; the
+  final analysis waits while *.tmp* leftovers exist in the item's raw dir.
 Usage: b2_orch.py poll [--dry]
 """
 import json, os, subprocess, sys, time
@@ -22,6 +28,7 @@ OD = R13 / 'orch_b2'; STATE = OD / 'state.json'; LOG = OD / 'orch.log'
 GPU_OPTS = ['-p', 'gpu,gpu-short', '--time-min=00:20:00']   # 2026-11-08: gpu-interactive dropped (its submit cap of 4 caused QOSMaxSubmit refusals)
 MAX_GPU_QUEUED = 8
 DRY = '--dry' in sys.argv
+sys.path.insert(0, str(Path.home() / 'jlens_work')); import killguard as kg   # noqa: E402
 
 
 def log(*a):
@@ -40,13 +47,37 @@ def sh(cmd, cwd=None):
     raise RuntimeError(f'{cmd}: {p.stderr.strip()}')
 
 
-def sbatch(args, cwd, gpu=False):
-    cmd = ['sbatch', '--parsable'] + (GPU_OPTS if gpu else []) + args
+def sbatch(args, cwd, gpu=False, name='', unit=''):
+    ex = []
+    if gpu:
+        ex, mode, note = kg.gpu_exclude(name or 'b2_gpu', 45)
+        if mode == 'defer': log('killguard: GPU submission deferred', name, unit, '-', note); return None
+        if mode != 'strict' or ex: log('killguard', mode, ex, note)
+    cmd = ['sbatch', '--parsable'] + (GPU_OPTS if gpu else []) + ex + args
     if DRY: log('DRY', cwd, ' '.join(cmd)); return 'DRY'
     try: out = sh(cmd, cwd=cwd)
     except RuntimeError as ex:
         log('sbatch error (checking squeue before any retry next poll):', ex); return None
-    jid = out.split(';')[0]; log('submitted', jid, ' '.join(args)); return jid
+    jid = out.split(';')[0]; log('submitted', jid, ' '.join(ex + args))
+    if gpu: kg.record(jid, name, unit, 45, 'b2_orch', '', ','.join(ex))
+    return jid
+
+
+def job_state2(jid):
+    """(state, exitcode string) or (None, None) while unknown."""
+    if not jid or jid == 'DRY': return None, None
+    try: out = sh(['sacct', '-j', str(jid), '-X', '-n', '-P', '-o', 'State,ExitCode'])
+    except RuntimeError: return None, None
+    if not out: return 'PENDING', ''
+    st, ec = out.splitlines()[0].split('|')[:2]
+    return st.split()[0], ec
+
+
+def killed_over_cap(st, unit, jid, why):
+    """count a signal-9 kill of unit; True (and review line) when the same unit was killed more than kg.KILL_CAP times."""
+    n = kg.kill_note('b2_orch', unit, jid); log(unit, f'job {jid} killed by signal 9 (epilog) - kill {n} of this unit')
+    if kg.over_cap(n): kg.review_line('b2_orch', unit, f'{why}; jobs {kg.json.loads(kg._kfile("b2_orch").read_text())[unit]["jobs"]}'); return True
+    return False
 
 
 def job_state(jid):
@@ -70,7 +101,10 @@ def jread(p):
     except Exception: return None
 
 
-def n_files(d, pat): return len(list(Path(d).glob(pat)))
+def n_files(d, pat): return sum(1 for f in Path(d).glob(pat) if '.tmp' not in f.name)
+
+
+def tmp_left(d): return sorted(str(f) for f in Path(d).rglob('*.tmp*')) if Path(d).exists() else []
 
 
 # ---------------------------------------------------------------- items
@@ -87,13 +121,15 @@ ITEMS = {
                partial=['--export=ALL,ARGS=--partial', 'stage13_b2_ps_analyze.sbatch'],
                gate_ok=lambda: (jread(R13 / 'summary_b2_ps/hardcheck_partial.json') or {}).get('status') == 'PASS',
                rest=['--export=ALL,SHARDS=--all', 'stage13_b2_ps_gpu.sbatch'], parallel=2,
-               complete=lambda: n_files(R13 / 'raw/b2_pscope', 'shard_*.parquet') >= 24,
+               complete=lambda: n_files(R13 / 'raw/b2_pscope', 'shard_*.parquet') >= 24, raw=R13 / 'raw/b2_pscope',
+               progress=lambda: n_files(R13 / 'raw/b2_pscope', 'shard_*.parquet'),
                final=[['stage13_b2_ps_analyze.sbatch']],
                done=lambda: (R13 / 'summary_b2_ps/hardcheck.json').exists()),
     'np': dict(cwd=W13, name='b2np_gpu', gate=['--export=ALL,SHARDS=0', 'stage13_b2_np_gpu.sbatch'],
                gate_ok=lambda: not (R13 / 'summary_b2_np/HARD_CHECK1_FAILED').exists() and n_files(R13 / 'raw/b2_npprobe', '*/shard_000.npz') >= 6,
                rest=['--export=ALL,SHARDS=--all', 'stage13_b2_np_gpu.sbatch'], parallel=3,
-               complete=lambda: n_files(R13 / 'raw/b2_npprobe', '*/shard_*.npz') >= 432,
+               complete=lambda: n_files(R13 / 'raw/b2_npprobe', '*/shard_*.npz') >= 432, raw=R13 / 'raw/b2_npprobe',
+               progress=lambda: n_files(R13 / 'raw/b2_npprobe', '*/shard_*.npz'),
                final=[['stage13_b2_np_probe_v2.sbatch'], ['stage13_b2_np_report_v2.sbatch']],   # D11-1 v2 (2026-11-08): probe_v2 stores per-title controls; report_v2 Vpd primary
                done=lambda: (R13 / 'reports/b2_np_report_v2.md').exists()),
 }
@@ -112,6 +148,16 @@ def poll_c(st, gpu):
         except Exception as ex:
             log(k, 'WARN status failed (retry next poll):', repr(ex)); continue
         nxt = o.get('next'); s['last'] = o
+        stop_now = False
+        for rec in list(s.get('jobs', [])):                               # killguard: signal-9 bookkeeping
+            js, ec = job_state2(rec[0])
+            if js in ('PENDING', 'RUNNING', 'REQUEUED', 'CONFIGURING', 'COMPLETING', None): continue
+            s['jobs'].remove(rec)
+            if kg.is_kill(js, ec):
+                s['subs'][rec[1]] = max(0, s['subs'].get(rec[1], 1) - 1)    # an epilog kill is not a normal submission
+                if killed_over_cap(st, f'C{k}:{rec[1]}@{rec[2]}', rec[0], f'step {rec[1]} at progress {rec[2]}'): stop_now = True
+        if stop_now:
+            s['phase'] = 'stopped'; log(k, 'same unit killed by signal 9 more than', kg.KILL_CAP, 'times - item STOPPED'); continue
         if nxt == 'done': s['phase'] = 'done'; log(k, 'DONE', o.get('progress')); continue
         if nxt == 'failed': s['phase'] = 'stopped'; log(k, 'FAILED - item STOPPED:', o.get('reason')); continue
         if nxt == 'wait_tests' or nxt not in it['steps']: continue
@@ -124,8 +170,10 @@ def poll_c(st, gpu):
             s['phase'] = 'stopped'; log(k, f'step {nxt} submitted {n} times without progress - item STOPPED'); continue
         for _ in range(step['max_parallel'] - nq):
             if step['gpu'] and gpu >= MAX_GPU_QUEUED: break
-            if sbatch(step['sbatch_args'], it['cwd'], gpu=step['gpu']):
+            j = sbatch(step['sbatch_args'], it['cwd'], gpu=step['gpu'], name=it['job_names'][0], unit=f'C{k}:{nxt}')
+            if j:
                 s['subs'][nxt] = s['subs'].get(nxt, 0) + 1
+                s.setdefault('jobs', []).append([j, nxt, str(o.get('progress'))])
                 if step['gpu']: gpu += 1
     return gpu
 
@@ -137,6 +185,7 @@ def poll():
     if not Path(os.environ.get('ORCH_B1_REPORT', G / 'reports/b1_p12f_report.md')).exists():
         log('batch 1 not finished (no b1_p12f_report.md) - waiting'); return True
     names = [v['name'] for v in ITEMS.values()]
+    for m in kg.refresh_pending(dry=DRY): log('killguard refresh:', m)
     q, gpu = queued(names)
     for k, it in ITEMS.items():
         s = st.setdefault(k, dict(phase='gate', kicks=0))
@@ -145,12 +194,17 @@ def poll():
             s['phase'] = 'done'; log(k, 'DONE'); continue
         if s['phase'] == 'gate':
             if gpu >= MAX_GPU_QUEUED: continue
-            j = sbatch(it['gate'], it['cwd'], gpu=True)
+            j = sbatch(it['gate'], it['cwd'], gpu=True, name=it['name'], unit=f'{k}:gate')
             if j: s.update(phase='gate_wait', gate_job=j); gpu += 1
         elif s['phase'] == 'gate_wait':
             js = job_state(s['gate_job'])
             if js in ('PENDING', 'RUNNING', 'REQUEUED', 'CONFIGURING', 'COMPLETING', None): continue
             if js != 'COMPLETED' and js != 'DRY':
+                js2, ec = job_state2(s['gate_job'])
+                if kg.is_kill(js2, ec):
+                    if killed_over_cap(st, f'{k}:gate', s['gate_job'], 'gate job'):
+                        s['phase'] = 'stopped'; log(k, 'gate killed by signal 9 more than', kg.KILL_CAP, 'times - item STOPPED'); continue
+                    s['phase'] = 'gate'; log(k, 'gate job killed by the epilog - resubmitting the gate'); continue
                 s['phase'] = 'stopped'; log(k, f'GATE job {s["gate_job"]} ended {js} - item STOPPED (hard check failed or crash)'); continue
             if 'partial' in it:
                 j = sbatch(it['partial'], it['cwd'])
@@ -171,24 +225,46 @@ def poll():
             if it.get('selfchain'):
                 if s.get('rest_job') is None:
                     if gpu < MAX_GPU_QUEUED:
-                        j = sbatch(it['rest'], it['cwd'], gpu=True)
+                        j = sbatch(it['rest'], it['cwd'], gpu=True, name=it['name'], unit=f'{k}:chain')
                         if j: s['rest_job'] = j; gpu += 1
                 elif q.get(it['name'], 0) == 0 and job_state(s['rest_job']) not in ('PENDING', 'RUNNING', None):
                     # chain ended without the final report: re-kick (chain scripts skip finished units)
+                    js2, ec = job_state2(s['rest_job'])
+                    if kg.is_kill(js2, ec) and s.get('kill_seen') != s['rest_job']:
+                        s['kill_seen'] = s['rest_job']
+                        if killed_over_cap(st, f'{k}:chain', s['rest_job'], 'self-chain job'):
+                            s['phase'] = 'stopped'; log(k, 'chain killed by signal 9 more than', kg.KILL_CAP, 'times - STOPPED'); continue
+                        s['kicks'] = max(0, s['kicks'] - 1)                # a kill is not a chain break
                     if s['kicks'] < 6 and gpu < MAX_GPU_QUEUED:
-                        j = sbatch(it['rest'], it['cwd'], gpu=True)
+                        j = sbatch(it['rest'], it['cwd'], gpu=True, name=it['name'], unit=f'{k}:chain')
                         if j: s['rest_job'] = j; s['kicks'] += 1; gpu += 1; log(k, 'chain re-kicked', s['kicks'])
                     elif s['kicks'] >= 6: s['phase'] = 'stopped'; log(k, 'chain broke 6 times - STOPPED')
             else:
+                prog = it['progress']() if 'progress' in it else ''
+                stop_now = False
+                for j in list(s.get('rest_jobs', [])):                      # killguard: signal-9 bookkeeping
+                    js2, ec = job_state2(j)
+                    if js2 in ('PENDING', 'RUNNING', 'REQUEUED', 'CONFIGURING', 'COMPLETING', None): continue
+                    s['rest_jobs'].remove(j)
+                    if kg.is_kill(js2, ec) and killed_over_cap(st, f'{k}:rest@{prog}', j, f'rest worker at {prog} finished units'): stop_now = True
+                if stop_now:
+                    s['phase'] = 'stopped'; log(k, 'workers killed by signal 9 more than', kg.KILL_CAP, 'times without progress - item STOPPED'); continue
                 if it['complete']():
                     s['phase'] = 'final'
                 else:
                     want = it['parallel'] - q.get(it['name'], 0)
                     for _ in range(max(0, want)):
                         if gpu >= MAX_GPU_QUEUED: break
-                        if sbatch(it['rest'], it['cwd'], gpu=True): gpu += 1
+                        j = sbatch(it['rest'], it['cwd'], gpu=True, name=it['name'], unit=f'{k}:rest')
+                        if not j: break
+                        s.setdefault('rest_jobs', []).append(j); gpu += 1
         if s['phase'] == 'final' and (OD / f'HOLD_{k}_final').exists():
             log(k, f'final step held by orch_b2/HOLD_{k}_final (user/main session); not submitting'); continue
+        if s['phase'] == 'final' and 'raw' in it and tmp_left(it['raw']):
+            t = tmp_left(it['raw'])
+            if not s.get('tmp_noted'):
+                s['tmp_noted'] = True; kg.review_line('b2_orch', f'{k}:final', f'final analysis held: *.tmp* leftovers in {it["raw"]}: {t[:5]} (check and remove, then the orchestrator continues)', cap=False)
+            log(k, 'final analysis held: *.tmp* leftovers', t[:3]); continue
         if s['phase'] == 'final':
             prev = None
             for f in it['final']:
