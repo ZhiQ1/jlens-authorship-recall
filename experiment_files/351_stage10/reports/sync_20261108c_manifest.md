@@ -499,3 +499,105 @@ Round h exports: 11763611 + deck 11763628 (superseded); final 11763773 (PNGs v30
 | h3-4 | notes_zh.json #81 (overflow) | 〔381_stage13/config/prereg_addendum14.json〕 | 〔prereg_addendum14.json〕 | 1 |
 Round h final deck v21: 11763989 (after note 81 source tags shortened).
 | i1 | deck slide H3 cell (wording check) | merged_deck/stage1_11_deck.html | but lens intervals also exclude 0) | ... and the scales differ, so sizes cannot be compared) | 1 |
+
+## round i
+
+Script `sync_20261107/apply_20261112i.py` (backups `*.before_20261112i`; numbers asserted against 381_stage13/reports/b2_f1team_report.md and b3_3_1_report.md). Autonomous changes only; H1/H2/H3 unchanged; Patchscope and 2-11b numbers not written. The Stage 10 §6.1 sentence is about the true-title readout LEVEL (−3.0 vs −4.4), which 3-1 does not report; it is kept and the 3-1 title-specific-signal range (J-lens +0.007 to +0.014 at L41–L46, logit ≈ 0, nearly equal at L47) is added beside it.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| i1 | stage1_11/stage1_11_report.html | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i2 | advisor/index.html | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i3 | process_report/draft_zh.md | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i4 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i5 | pages_20261106b/methods_addendum/index.html | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i6 | talk_docs/progress_report_for_advisor_zh.html | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i7 | notes_zh.json #81 | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i8 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | 第 0 片已完成，其余分片运行中 | 已完成，结论待定 | 1 |
+| i9 | advisor/index.html | 其余各项进行中（含 Stage 9 Fit B 与 holdout、F1 对半拆分、名字位置 probe 等） | 其余各项进行中 | 1 |
+| i10 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 其余各项进行中（含 Stage 9 Fit B 与 holdout、F1 对半拆分、名字位置 probe 等） | 其余各项进行中 | 1 |
+| i11 | pages_20261106b/methods_addendum/index.html | 其余各项进行中（含 Stage 9 Fit B 与 holdout、F1 对半拆分、名字位置 probe 等） | 其余各项进行中 | 1 |
+| i12 | stage1_11/stage1_11_report.html | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层；F1 对半拆分（2-2）已完成，F2 的结论在两半都成立；2-1 停止（D12-1，待用户定） | 1 |
+| i13 | advisor/index.html | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层；F1 对半拆分（2-2）已完成，F2 的结论在两半都成立；2-1 停止（D12-1，待用户定） | 1 |
+| i14 | process_report/draft_zh.md | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层；F1 对半拆分（2-2）已完成，F2 的结论在两半都成立；2-1 停止（D12-1，待用户定） | 1 |
+| i15 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层；F1 对半拆分（2-2）已完成，F2 的结论在两半都成立；2-1 停止（D12-1，待用户定） | 1 |
+| i16 | pages_20261106b/methods_addendum/index.html | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）的最终分析进行中；2-1 Fit B 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中 | 名字位置 probe（2-5）已完成（H3 部分支持）；Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层；F1 对半拆分（2-2）已完成，F2 的结论在两半都成立；2-1 停止（D12-1，待用户定） | 1 |
+| i17 | talk_docs/progress_report_for_advisor_zh.html | 名字位置 probe 已完成（H3 部分支持）；Patchscope 的最终分析进行中；2-1 门槛重跑中（集群作业结束脚本误杀，已加看护作业）；其余各项进行中； | 名字位置 probe 已完成（H3 部分支持）；Patchscope 已完成，结果待写入（描述性）；2-2 已完成；2-1 停止（D12-1，待用户定）； | 1 |
+| i18 | notes_zh.json #81 | 名字位置 probe 已完成（H3 部分支持）；Patchscope 最终分析进行中；2-1 门槛重跑中（作业被误杀，已加看护） | 名字位置 probe、2-2 已完成；Patchscope 已完成，结果待写入；2-1 停止（D12-1，待定） | 1 |
+| i19 | stage1_11/stage1_11_report.html | 3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中） | 3-1 Stage 10 补 L41–L47、L49：已完成；3-2 补 L0–L23：运行中（194 / 504） | 1 |
+| i20 | advisor/index.html | 3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中） | 3-1 Stage 10 补 L41–L47、L49：已完成；3-2 补 L0–L23：运行中（194 / 504） | 1 |
+| i21 | process_report/draft_zh.md | 3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中） | 3-1 Stage 10 补 L41–L47、L49：已完成；3-2 补 L0–L23：运行中（194 / 504） | 1 |
+| i22 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中） | 3-1 Stage 10 补 L41–L47、L49：已完成；3-2 补 L0–L23：运行中（194 / 504） | 1 |
+| i23 | pages_20261106b/methods_addendum/index.html | 3-1 Stage 10 补 L41–L47、L49，3-2 补 L0–L23：编排作业已提交，第二批全部结束后自动开始（进行中） | 3-1 Stage 10 补 L41–L47、L49：已完成；3-2 补 L0–L23：运行中（194 / 504） | 1 |
+| i24 | talk_docs/progress_report_for_advisor_zh.html | 3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中） | 3-1 已完成，3-2 运行中（194 / 504） | 1 |
+| i25 | notes_zh.json #81 | 3-1、3-2 编排作业已提交，第二批全部结束后自动开始（进行中） | 3-1 已完成，3-2 运行中（194 / 504） | 1 |
+| i26 | merged_deck/stage1_11_deck.html | shard 0 done, other shards running; 2-3, 2-4, 2-5 (name-position probe: H3 partly supported), 2-8, 2-10 done; Patchscope (2-7, 2-9): final analysis ru… | done, conclusion pending; 2-2, 2-3, 2-4, 2-5 (name-position probe: H3 partly supported), 2-8, 2-10 done; Patchscope (2-7, 2-9) done, results to be wri… | 1 |
+| i27 | github/README_draft_20261106b.md | shard 0 done, other shards running; 2-3, 2-4, 2-5 (name-position probe: H3 partly supported), 2-8, 2-10 done; Patchscope (2-7, 2-9): final analysis ru… | done, conclusion pending; 2-2, 2-3, 2-4, 2-5 (name-position probe: H3 partly supported), 2-8, 2-10 done; Patchscope (2-7, 2-9) done, results to be wri… | 1 |
+| i28 | github/README_draft_20261106b.md | 2-11b: other shards running; 2-3, 2-4, 2-5, 2-8, 2-10 done; Patchscope: final analysis running; 2-1 gate re-run | 2-11b done, conclusion pending; 2-2, 2-3, 2-4, 2-5, 2-7/2-9, 2-8, 2-10 done; 2-1 stopped (D12-1) | 1 |
+| i29 | merged_deck/stage1_11_deck.html | 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23: queued, start after batch 2 | 3-1 Stage 10 L41–L47, L49: done · 3-2 L0–L23: running (194/504) | 1 |
+| i30 | github/README_draft_20261106b.md | Stage 10 L41–L47, L49 and L0–L23 queued, start after batch 2; | Stage 10 L41–L47, L49 done (3-1); L0–L23 running (3-2, 194/504); | 1 |
+| i31 | github/README_draft_20261106b.md | \| 3-1, 3-2 queued (after batch 2); | \| 3-1 done; 3-2 running (194/504); | 1 |
+| i32 | stage1_11/stage1_11_report.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i33 | advisor/index.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 2 |
+| i34 | process_report/draft_zh.md | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i35 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i36 | pages_20261106b/methods_addendum/index.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i37 | talk_docs/experiment_walkthrough_zh.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i38 | talk_docs/experiment_walkthrough_methods_zh.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i39 | talk_docs/methods_handbook_guide_plain_zh.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i40 | talk_docs/progress_report_for_advisor_zh.html | （补充 14 只补 L41–L47、L49 和 L0–L23，都在排队） | （补充 14 的 3-1 已补 L41–L47、L49，2026-11-12 完成；3-2 补 L0–L23，运行中，194 / 504） | 1 |
+| i41 | stage1_11/stage1_11_report.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i42 | advisor/index.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 2 |
+| i43 | process_report/draft_zh.md | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i44 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i45 | pages_20261106b/methods_addendum/index.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i46 | talk_docs/experiment_walkthrough_zh.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i47 | talk_docs/experiment_walkthrough_methods_zh.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i48 | talk_docs/methods_handbook_guide_plain_zh.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i49 | talk_docs/progress_report_for_advisor_zh.html | “L24–L48 约为 0”在缺口层没有测过 | “L24–L48 约为 0”在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L41–L… | 1 |
+| i50 | stage1_11/stage1_11_report.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i51 | advisor/index.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 2 |
+| i52 | process_report/draft_zh.md | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i53 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i54 | pages_20261106b/methods_addendum/index.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i55 | talk_docs/experiment_walkthrough_zh.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i56 | talk_docs/experiment_walkthrough_methods_zh.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i57 | talk_docs/methods_handbook_guide_plain_zh.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i58 | talk_docs/progress_report_for_advisor_zh.html | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道） | Stage 10 真标题下 Jacobian lens 从 L40 起明显好于 logit lens（跳变在 L33–L40 的哪一层不知道；3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-le… | 1 |
+| i59 | stage1_11/stage1_11_report.html | 明显好于 logit lens（约 −3.0） | 明显好于 logit lens（约 −3.0；这是真标题下的读出水平。3-1 补测后，标题特异信号上 J-lens 在 L41–L46 为 +0.007 到 +0.014、logit 约为 0，到 L47 两者几乎相同（J-lens +0.001 [−0.005, +0.006]，logit −0.… | 1 |
+| i60 | stage1_11/stage1_11_report.html | beat the logit lens from L40 on (the previous measured layer is L32, so the jump lies somewhere in L33–L40; about −3.0) | beat the logit lens from L40 on (the previous measured layer is L32, so the jump lies somewhere in L33–L40; about −3.0; this is the true-title readout… | 1 |
+| i61 | notes_zh.json #82 | Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划； | Stage 10 在 L24–L40 每 8 层取一层（没有 L25–L31、L33–L39），没有补层计划（L41–L47、L49 已由 3-1 补齐）； | 1 |
+| i62 | merged_deck/stage1_11_deck.html | (no L25–L31, L33–L39; no plan to fill) | (no L25–L31, L33–L39; no plan to fill; L41–L47, L49 filled by 3-1) | 1 |
+| i63 | github/README_draft_20261106b.md | (no L25–L31, L33–L39) with no plan to fill them | (no L25–L31, L33–L39) with no plan to fill them (L41–L47, L49 filled by 3-1 on 2026-11-12: logit target − control within ±0.005 there, J-lens negative… | 2 |
+| i64 | stage1_11/stage1_11_report.html | <li id="pd-b2-np"> | <li id="pd-b2-f1"><b>F1 对半拆分（批次 2 第 2-2 项，已完成）：</b>F2 的阴性结论在两半拟合中都成立——名字位置 target − control L48：A 半 −0.050 [−0.078, −0.022]、B 半 −0.063 [−0.094, −0.033… | 1 |
+| i65 | advisor/index.html | <li><b>名字位置 probe（批次 2 第 2-5 项 | <li><b>F1 对半拆分（批次 2 第 2-2 项，已完成）：</b>F2 的阴性结论在两半拟合中都成立——名字位置 target − control L48：A 半 −0.050 [−0.078, −0.022]、B 半 −0.063 [−0.094, −0.033]、全部 −0.058；L6… | 1 |
+| i66 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | <li><b>名字位置 probe（批次 2 第 2-5 项 | <li><b>F1 对半拆分（批次 2 第 2-2 项，已完成）：</b>F2 的阴性结论在两半拟合中都成立——名字位置 target − control L48：A 半 −0.050 [−0.078, −0.022]、B 半 −0.063 [−0.094, −0.033]、全部 −0.058；L6… | 1 |
+| i67 | pages_20261106b/methods_addendum/index.html | <li><b>名字位置 probe（批次 2 第 2-5 项 | <li><b>F1 对半拆分（批次 2 第 2-2 项，已完成）：</b>F2 的阴性结论在两半拟合中都成立——名字位置 target − control L48：A 半 −0.050 [−0.078, −0.022]、B 半 −0.063 [−0.094, −0.033]、全部 −0.058；L6… | 1 |
+| i68 | process_report/draft_zh.md |  - **名字位置 probe（批次 2 第 2-5 项 |  - **F1 对半拆分（批次 2 第 2-2 项，已完成）：**F2 的阴性结论在两半拟合中都成立——名字位置 target − control L48：A 半 −0.050 [−0.078, −0.022]、B 半 −0.063 [−0.094, −0.033]、全部 −0.058；L62：+0… | 1 |
+| i69 | advisor/index.html | 作者提示 lens 没做对半拟合。<span style="color:#A15C07;font-size:.85em">〔2026-11-06 已更新：Fit B 与 F1 对半拆分都列入批次 2；见页首更新框〕</span> | 作者提示 lens 没做对半拟合。<span style="color:#A15C07;font-size:.85em">〔2026-11-06 已更新：Fit B 与 F1 对半拆分都列入批次 2；2026-11-12 已更新：F1 对半拆分已完成，F2 的结论在两半都成立，中间层 lens 矩阵… | 1 |
+| i70 | ~/jlens_work/conclusions_v30_draft.md | 样本不完整（F1 只用 40 篇拟合；对半拆分 2-2 进行中） | 样本不完整（F1 只用 40 篇拟合；对半拆分 2-2 已完成：F2 的阴性结论在两半拟合中都成立——名字位置 target − control L48：A 半 −0.050 [−0.078, −0.022]、B 半 −0.063 [−0.094, −0.033]、全部 −0.058；L62：+0.… | 1 |
+| i71 | ~/jlens_work/conclusions_v30_draft.md | 事后改判据（一致性容差 0.25 → 0.5，主轮数据靠 0.5 才通过，见 CHK A2）〕 | 事后改判据（一致性容差 0.25 → 0.5，主轮数据靠 0.5 才通过，见 CHK A2）；2026-11-12：3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 tar… | 1 |
+| i72 | ~/jlens_work/conclusions_v30_draft.md | 也没有 L41–L47、L49、L0–L23） | 也没有 L0–L23（3-2 运行中）；L41–L47、L49 已由 3-1 补齐） | 1 |
+| i73 | ~/jlens_work/conclusions_v30_draft.md | - **第三批**（3-1 补 L41–L47、L49；3-2 补 L0–L23）：编排作业 b3_orch 等第二批全部结束后自动开始。3-3 已停止（见 L07）。 | - **第三批**：3-1（补 L41–L47、L49）已完成；3-2（补 L0–L23）运行中（194 / 504）。3-3 已停止（见 L07）。 | 1 |
+| i74 | ~/jlens_work/conclusions_v30_draft.md | - 2-7、2-9（Patchscope）：最终分析进行中。 | - 2-7、2-9（Patchscope）：已完成，结果待写入（描述性）；x4tok 已补全部层。 | 1 |
+| i75 | ~/jlens_work/conclusions_v30_draft.md | - 2-1：门槛重跑中（集群作业结束脚本误杀，已加看护作业）。2-2：进行中。 | - 2-1：停止（D12-1，待用户定）。2-2：已完成（见 C16、L13）。 | 1 |
+| i76 | ~/jlens_work/conclusions_v30_draft.md |   - L41–L47、L49 由 3-1 补，排队中。L0–L23 由 3-2 补，排队中，只补 logit 和 public，只补 target + control 6,841 篇。 |   - L41–L47、L49 已由 3-1 补齐（2026-11-12）。L0–L23 由 3-2 补，运行中（194 / 504），只补 logit 和 public，只补 target + control 6,841 篇。 | 1 |
+| i77 | ~/jlens_work/conclusions_v30_draft.md |   - "L24–L48 约为 0"在缺口层没有测过。 |   - "L24–L48 约为 0"在 L25–L31、L33–L39 没有测过；3-1 补测的 L41–L49 上，logit 的 target − control 都在 ±0.005 以内、从 L50 起为正（起始层不变）；public J-lens 的 target − control 在 L… | 1 |
+| i78 | ~/jlens_work/conclusions_v30_draft.md |   - F1 作者 lens 只用 40 篇拟合（2-2 进行中）； |   - F1 作者 lens 只用 40 篇拟合；2-2 对半拆分已完成，F2 结论在两半都成立，但中间层 lens 矩阵随拟合集变化大（A–B 余弦 L24 0.64、L40 0.85、L48 0.94；L24 top-10 重合 0.28）； | 1 |
+| i79 | ~/jlens_work/conclusions_v30_draft.md |   - Stage 9 Fit B 停在 66 / 100（2-1 进行中）。 |   - Stage 9 Fit B 停在 66 / 100（2-1 停止，D12-1，待用户定）。 | 1 |
+| i80 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+Round i exports: 11831475 (report v30, handbook 20261108c, page / talk-doc PDFs) + deck v21 11831474; pptx via pptx_text_fix_20261112i.py (3/3 rules, notes 81/82).
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | stage1_11/stage1_11_report.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | github/README_draft_20261106b.md | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 0+2 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | methods/methods_handbook.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | methods/parts/K_post_defence.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | advisor/index.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 2+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | pages_20261106b/methods_addendum/index.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | process_report/index.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | process_report/draft_zh.md | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | talk_docs/experiment_walkthrough_methods_zh.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | talk_docs/experiment_walkthrough_zh.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | talk_docs/methods_handbook_guide_plain_zh.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | talk_docs/progress_report_for_advisor_zh.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | ../../audit_20261105/scoring_audit.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
+| j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 2+0 |

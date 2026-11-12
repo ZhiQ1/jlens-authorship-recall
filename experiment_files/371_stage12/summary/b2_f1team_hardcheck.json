@@ -1,0 +1,127 @@
+{
+ "status": "PASS",
+ "rule": "D12-2: (a) S_all over the 40 original prompts bitwise == stored F1 checkpoint sum and fp16(S_all/40) == stored lens (layer 2000+l); (b) (S_A+S_B)/40 vs stored lens rel. Frobenius <= 1e-3 (layer l)",
+ "a": "PASS",
+ "b": "PASS",
+ "rows": [
+  {
+   "layer": 2024,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 2032,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 2040,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 2044,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 2048,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 2052,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 2056,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 2062,
+   "relfro_combined_vs_stored": 0.0,
+   "maxabs": 0.0,
+   "threshold": 0.0,
+   "status": "PASS"
+  },
+  {
+   "layer": -1,
+   "relfro_combined_vs_stored": NaN,
+   "maxabs": 40.0,
+   "threshold": 40.0,
+   "status": "PASS"
+  },
+  {
+   "layer": 24,
+   "relfro_combined_vs_stored": 0.00020748478857156937,
+   "maxabs": 0.0004714965820311612,
+   "threshold": 0.001,
+   "status": "PASS"
+  },
+  {
+   "layer": 32,
+   "relfro_combined_vs_stored": 0.00020726146120362017,
+   "maxabs": 0.00046401023864750535,
+   "threshold": 0.001,
+   "status": "PASS"
+  },
+  {
+   "layer": 40,
+   "relfro_combined_vs_stored": 0.00020731349764001506,
+   "maxabs": 0.0006685256958007812,
+   "threshold": 0.001,
+   "status": "PASS"
+  },
+  {
+   "layer": 44,
+   "relfro_combined_vs_stored": 0.00020630897540787629,
+   "maxabs": 0.0007110595703125888,
+   "threshold": 0.001,
+   "status": "PASS"
+  },
+  {
+   "layer": 48,
+   "relfro_combined_vs_stored": 0.00020980567489500398,
+   "maxabs": 0.0006472587585450995,
+   "threshold": 0.001,
+   "status": "PASS"
+  },
+  {
+   "layer": 52,
+   "relfro_combined_vs_stored": 0.0001805334385270896,
+   "maxabs": 0.0008537292480470526,
+   "threshold": 0.001,
+   "status": "PASS"
+  },
+  {
+   "layer": 56,
+   "relfro_combined_vs_stored": 0.00018122651687033163,
+   "maxabs": 0.0009373664855956143,
+   "threshold": 0.001,
+   "status": "PASS"
+  },
+  {
+   "layer": 62,
+   "relfro_combined_vs_stored": 0.00025780973823521066,
+   "maxabs": 0.0015304565429685724,
+   "threshold": 0.001,
+   "status": "PASS"
+  }
+ ]
+}

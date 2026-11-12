@@ -14,7 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
-import claims_defs_v14 as D14        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
+import claims_defs_v15 as D15        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
 from claims_docs import units, locate
 
 OUT = Path(sys.argv[1]) / 'wording_v30'
@@ -73,7 +73,10 @@ REQUIRE = {
     'C15': [('L8 / L40', r'L40')],
     'C21': [('不再作为 H2 的证据 / no longer H2 evidence', ALT(r'不再作为 H2 的证据', r'no longer counted as H2 evidence', r'X4 recognition gap no longer counted', r'no longer (?:counted|H2)')),
             ('测试集不显著 / test n.s.', ALT(r'测试集(?:上)?不显著', r'not significant\)', r'not significant on the test', r'test.{0,20}n\.s\.', r'测试集 target − control 为 \+0\.023'))],
-    'L01': [('没有补层计划 / no plan', ALT(r'没有补层计划', r'no plan to fill', r'补层计划里没有')), ('L33–L40', r'L33–L40')],
+    'L01': [('没有补层计划 / no plan', ALT(r'没有补层计划', r'no plan to fill', r'补层计划里没有')), ('L33–L40', r'L33–L40'),
+            ('round i：L41–L47、L49 已由 3-1 补齐', ALT(r'3-1 已补 L41–L47、L49', r'L41–L47、L49 已由 3-1 补齐', r'L41–L47, L49 filled by 3-1', r'3-1 Stage 10 补 L41–L47、L49：已完成')),
+            ('round i：L0–L23 运行中（3-2）', ALT(r'3-2 补 L0–L23，运行中', r'3-2 补 L0–L23：运行中', r'L0–L23:? running', r'3-2[^。；]{0,20}运行中'))],
+    'C16': [('round i：C16 前提（2-2 对半拆分）', ALT(r'F1 对半拆分', r'对半拆分', r'split-half', r'2-2 已完成'))],
     'L02': [('主轮最大差 0.367', r'0\.367'), ('已用到 / was used', ALT(r'只有按 0\.5 才通过', r'用到', r'was (?:actually )?used', r'passes only at 0\.5')),
             ('round d：主轮 25 个中 10 个超出 0.25', ALT(r'有 10 个超出', r'10 of (?:the )?25')), ('round d：事后修改', ALT(r'事后修改', r'post-hoc change'))],
     'L03': [('1,186 / 9,108', r'1,186'), ('9,108', r'9,108')],
@@ -87,13 +90,18 @@ REQUIRE = {
     'L12': [('泄漏 / leak', ALT(r'泄漏', r'leak'))],
 }
 # (label, trigger, partner, window): partner must be within +-window characters of every trigger
-PAIR = [('round h：H3 判词须带“lens 的区间同样不含 0”', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'lens 的区间同样不含 0', r'lens intervals also exclude 0'), 500),
+B2STAT_ = ALT(r'批次 1 结束后已由编排作业开始运行', r'Batch 2 \(addenda 11, 12\): running', r'Batch 2 \(addenda 11–12\): running', r'批次 2（补充 11、12[^）]*）已开始', r'running \(C / D done')
+PAIR = [('round i：批次 2 状态须写 2-2 已完成', B2STAT_, ALT(r'2-2）已完成', r'2-2 已完成', r'2-2, 2-3', r'名字位置 probe、2-2 已完成', r'2-2：已完成'), 900),
+        ('round i：批次 2 状态须写 2-1 停止（D12-1）', B2STAT_, ALT(r'2-1 停止（D12-1', r'2-1 stopped \(D12-1'), 900),
+        ('round i：批次 2 状态须写 Patchscope“已完成，结果待写入”', B2STAT_, ALT(r'Patchscope[^。；]{0,15}已完成，结果待写入', r'Patchscope \(2-7, 2-9\) done, results to be written', r'2-7/2-9'), 900),
+        ('round i：批次 2 状态须写 2-11b“已完成，结论待定”', B2STAT_, ALT(r'已完成，结论待定', r'done, conclusion pending'), 900),
+        ('round h：H3 判词须带“lens 的区间同样不含 0”', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'lens 的区间同样不含 0', r'lens intervals also exclude 0'), 500),
         ('round h：H3 判词须带“尺度不同”', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'尺度不同', r'scales differ'), 600),
         ('round h：H3 判词须写后续 token 在 L40 对 J-lens 不满足判据', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'后续 token 在 L40 与 J-lens 比较时不满足判据', r'continuation tokens do not meet the criterion at L40 against the J-lens'), 700),
         ('round h：首字母须写“约一半信号不是论文特有的”', ALT(r'首字母的对照行', r'For initials the control row'), ALT(r'约一半信号不是论文特有的', r'about half of it is not paper-specific'), 200),
         ('round h：同档 T − C 须标“预注册要求报告、无判定规则”', r'只作描述：同一引用档内 target − control', r'预注册要求报告、无判定规则', 60),
         ('round h：行为分组须标“预注册要求报告、无判定规则”', r'按行为分组，A − B', r'预注册要求报告、无判定规则', 120),
-        ('round h：lens T − C 须标“探索性”', r'lens 的 target − control', r'探索性', 30),
+        ('round h：lens T − C 须标“探索性”', r'(?<!J-)lens 的 target − control', r'探索性', 30),
         ('round h：逐层峰值须标“探索性”', r'逐层峰值和逐层上升', r'探索性', 30),
         ('round g：E1t 探索性句须带“探索性”', r'恢复比例 target − control 为负', r'探索性', 200),
         ('round g：E1t 探索性句须带“分母效应”', r'恢复比例 target − control 为负', r'分母效应', 200),
@@ -121,6 +129,10 @@ STALE = [
     ('批次状态过时（代码已就绪 / 自动开始，未写已在运行）', ALT(r'代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始', r'code ready, after batch 2', r'代码已就绪，第二批之后开始', r'starts automatically after batch 1', r'code ready, queued'), None),
     ('数字核对：第 30 版新数字“尚待登记”（v9 已登记）', ALT(r'尚待登记', r'not yet registered', r'yet to be registered', r'第 30 版新放回或新增的数字（D13-1'), None),
     ('D13-1 段落中的旧版本号', r'报告 v29 和 PPT v20', None),
+    ('round i：2-2 / F1 对半拆分仍写进行中', ALT(r'2-2(?:（[^）]*）)?[^。；，,]{0,12}(?:进行中|运行中|running|queued)', r'F1 对半拆分[^。；]{0,12}(?:进行中|排队)', r'对半拆分 2-2 进行中'), r'已完成|done'),
+    ('round i：L41–L47、L49 仍写排队 / 未补', ALT(r'补充 14 只补 L41–L47、L49 和 L0–L23', r'L41–L47、L49 由 3-1 补，排队中', r'L41–L47, L49[^.;]{0,30}queued', r'3-1[^。；]{0,30}(?:排队|编排作业已提交)', r'也没有 L41–L47'), None),
+    ('round i：Patchscope / 2-11b 写出了结果数字', r'(?:Patchscope|2-7|2-9|2-11b|x4tok)(?:（[^）]*）)?[^。；;]{0,40}?[+−\-]?\d\.\d{2,}', r'0\.880|0\.90|2-11 |自检|FAIL|max \|diff\||reproduce'),
+    ('round i：2-1 仍写重跑 / 运行中', ALT(r'2-1[^。；，]{0,12}(?:门槛重跑|gate re-run|进行中|运行中)', r'Fit B[^。；]{0,12}(?:已在运行|重跑中)'), r'停止|stopped'),
     ('round h：H3 总体判断仍写“证据不足”', ALT(r'H3 ?(?:仍|仍然)?证据(?:仍)?不足', r'H3[：:] ?(?:X\d[^。；]{0,60})?证据(?:仍)?不足', r'H3 (?:has |had )?insufficient evidence', r'H3[:：] insufficient', r'H3 (?:still )?insufficient', r'H3 \(hidden author knowledge\)[:：]? insufficient'),
      r'单看 X[24]|X[24] alone|原为|此前|had insufficient|改为部分支持|H3 部分支持|now partly supported|H3 partly supported|partly supported by the name-position|11-03|V57|措辞记录|历史'),
     ('round h：重复从句', ALT(r'(单看 X\d，)\1', r'(X\d alone[,:] )\2', r'单看 X2，单看 X2'), None),

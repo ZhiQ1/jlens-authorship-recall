@@ -1,0 +1,209 @@
+# Batch 3 item 3-1: Stage 10 readouts at new layers (addendum 14)
+
+Generated Thu Nov 12 00:37:08 2026. Plan `prereg_addendum14.json` (sha256 795185e94594…). 6841 papers (target + control), 114650 name tokens, conditions true, false_0..4, delete; readouts logit and public J-lens (Neuronpedia 557); Stage 10 fast path.
+
+**Hard check: PASS.**
+
+## 1. Hard check
+
+| check | scope | value | threshold | status | note |
+|---|---|---|---|---|---|
+| rank_exact_L24_L48 | all units pooled | 1 | 0.99 | PASS | 3210200/3210200 exact |
+| mismatch_within_4_bf16 | all units pooled | 0 | 4.0 | PASS | 0/0 mismatches within 4 units |
+| rank_exact_jlens_public_L24 | per pair (WARN) | 1 | 0.99 | PASS | max ulps 0.00 |
+| rank_exact_jlens_public_L48 | per pair (WARN) | 1 | 0.99 | PASS | max ulps 0.00 |
+| rank_exact_logit_L24 | per pair (WARN) | 1 | 0.99 | PASS | max ulps 0.00 |
+| rank_exact_logit_L48 | per pair (WARN) | 1 | 0.99 | PASS | max ulps 0.00 |
+| paper_spec_L48_jlens_public_target_mean | all papers | 9.54098e-17 | 0.005 | PASS | new -0.007401 vs published -0.007401 |
+| paper_spec_L48_jlens_public_control_mean | all papers | 4.85723e-17 | 0.005 | PASS | new 0.037819 vs published 0.037819 |
+| paper_spec_L48_jlens_public_tc_within_bin | all papers | 3.46945e-17 | 0.005 | PASS | new -0.043696 vs published -0.043696 |
+| paper_spec_L48_jlens_public_share_within | per paper | 1 | 0.99 | PASS | max per-paper |diff| 0.00000 |
+| paper_spec_L48_logit_target_mean | all papers | 1.56125e-17 | 0.005 | PASS | new 0.005090 vs published 0.005090 |
+| paper_spec_L48_logit_control_mean | all papers | 9.93129e-17 | 0.005 | PASS | new 0.002437 vs published 0.002437 |
+| paper_spec_L48_logit_tc_within_bin | all papers | 1.64799e-17 | 0.005 | PASS | new 0.003548 vs published 0.003548 |
+| paper_spec_L48_logit_share_within | per paper | 1 | 0.99 | PASS | max per-paper |diff| 0.00000 |
+
+Per pair and condition: `rank_match.csv`.
+
+## 2. Layer grid
+
+Layers with data: L24, L32, L40, L41, L42, L43, L44, L45, L46, L47, L48, L49, L50, L51, L52, L53, L54, L55, L56, L57, L58, L59, L60, L61, L62 (+ final L63). New in batch 3: L41, L42, L43, L44, L45, L46, L47, L49. Not computed anywhere: L0, L1, L2, L3, L4, L5, L6, L7, L8, L9, L10, L11, L12, L13, L14, L15, L16, L17, L18, L19, L20, L21, L22, L23, L25, L26, L27, L28, L29, L30, L31, L33, L34, L35, L36, L37, L38, L39. Onset = first layer of this grid whose 95% team-cluster CI excludes 0.
+
+## 3. jlens_public: title-specific signal (all tokens) and target − control within citation bin
+
+| layer | source | target | control | target+control | target − control (within bin) |
+|---|---|---|---|---|---|
+| L24 | stage10 | +0.014 [+0.011, +0.017] | +0.017 [+0.012, +0.021] | +0.015 [+0.013, +0.017] | -0.002 [-0.007, +0.004] |
+| L32 | stage10 | +0.021 [+0.016, +0.025] | +0.022 [+0.016, +0.029] | +0.021 [+0.017, +0.025] | +0.001 [-0.007, +0.009] |
+| L40 | stage10 | +0.025 [+0.018, +0.033] | +0.031 [+0.020, +0.042] | +0.027 [+0.021, +0.033] | +0.002 [-0.014, +0.017] |
+| L41 | b3_3-1 | +0.008 [+0.001, +0.016] | +0.026 [+0.015, +0.037] | +0.014 [+0.008, +0.020] | -0.017 [-0.032, -0.002] |
+| L42 | b3_3-1 | +0.008 [+0.003, +0.013] | +0.024 [+0.017, +0.032] | +0.013 [+0.009, +0.017] | -0.014 [-0.025, -0.004] |
+| L43 | b3_3-1 | -0.003 [-0.010, +0.003] | +0.028 [+0.019, +0.037] | +0.007 [+0.002, +0.012] | -0.027 [-0.041, -0.014] |
+| L44 | b3_3-1 | +0.008 [+0.004, +0.012] | +0.020 [+0.014, +0.025] | +0.012 [+0.008, +0.015] | -0.008 [-0.016, +0.000] |
+| L45 | b3_3-1 | +0.005 [+0.001, +0.010] | +0.022 [+0.016, +0.029] | +0.011 [+0.007, +0.014] | -0.015 [-0.025, -0.005] |
+| L46 | b3_3-1 | -0.002 [-0.009, +0.004] | +0.028 [+0.019, +0.038] | +0.008 [+0.002, +0.013] | -0.033 [-0.046, -0.019] |
+| L47 | b3_3-1 | -0.011 [-0.017, -0.004] | +0.025 [+0.016, +0.034] | +0.001 [-0.005, +0.006] | -0.035 [-0.049, -0.022] |
+| L48 | stage10 | -0.007 [-0.015, +0.000] | +0.038 [+0.028, +0.048] | +0.007 [+0.001, +0.013] | -0.044 [-0.059, -0.029] |
+| L49 | b3_3-1 | +0.010 [+0.002, +0.018] | +0.056 [+0.045, +0.066] | +0.025 [+0.018, +0.031] | -0.043 [-0.059, -0.028] |
+| L50 | stage10 | +0.018 [+0.008, +0.026] | +0.072 [+0.059, +0.085] | +0.035 [+0.027, +0.043] | -0.050 [-0.069, -0.032] |
+| L51 | stage10 | +0.020 [+0.011, +0.028] | +0.065 [+0.052, +0.077] | +0.035 [+0.027, +0.041] | -0.037 [-0.055, -0.020] |
+| L52 | stage10 | +0.023 [+0.014, +0.031] | +0.070 [+0.057, +0.083] | +0.038 [+0.030, +0.045] | -0.043 [-0.061, -0.025] |
+| L53 | stage10 | +0.029 [+0.020, +0.038] | +0.072 [+0.058, +0.085] | +0.043 [+0.035, +0.050] | -0.038 [-0.056, -0.020] |
+| L54 | stage10 | +0.057 [+0.048, +0.066] | +0.080 [+0.066, +0.092] | +0.065 [+0.057, +0.072] | -0.023 [-0.041, -0.004] |
+| L55 | stage10 | +0.094 [+0.084, +0.103] | +0.095 [+0.080, +0.108] | +0.094 [+0.086, +0.102] | -0.009 [-0.028, +0.012] |
+| L56 | stage10 | +0.145 [+0.136, +0.155] | +0.123 [+0.107, +0.138] | +0.138 [+0.130, +0.146] | +0.007 [-0.014, +0.029] |
+| L57 | stage10 | +0.202 [+0.192, +0.212] | +0.143 [+0.126, +0.158] | +0.183 [+0.174, +0.191] | +0.029 [+0.008, +0.052] |
+| L58 | stage10 | +0.277 [+0.266, +0.288] | +0.174 [+0.157, +0.190] | +0.244 [+0.235, +0.252] | +0.054 [+0.032, +0.077] |
+| L59 | stage10 | +0.363 [+0.351, +0.374] | +0.203 [+0.187, +0.218] | +0.311 [+0.302, +0.320] | +0.093 [+0.072, +0.115] |
+| L60 | stage10 | +0.472 [+0.459, +0.484] | +0.234 [+0.218, +0.249] | +0.394 [+0.385, +0.404] | +0.145 [+0.125, +0.168] |
+| L61 | stage10 | +0.552 [+0.540, +0.563] | +0.243 [+0.230, +0.256] | +0.451 [+0.442, +0.461] | +0.207 [+0.190, +0.225] |
+| L62 | stage10 | +0.560 [+0.550, +0.572] | +0.235 [+0.224, +0.246] | +0.455 [+0.445, +0.464] | +0.230 [+0.216, +0.246] |
+| final L63 | stage10 | +0.481 [+0.473, +0.489] | +0.200 [+0.191, +0.208] | +0.390 [+0.382, +0.397] | +0.207 [+0.196, +0.220] |
+
+## 3. logit: title-specific signal (all tokens) and target − control within citation bin
+
+| layer | source | target | control | target+control | target − control (within bin) |
+|---|---|---|---|---|---|
+| L24 | stage10 | +0.004 [+0.002, +0.006] | -0.000 [-0.003, +0.002] | +0.003 [+0.001, +0.004] | +0.007 [+0.003, +0.011] |
+| L32 | stage10 | +0.007 [+0.004, +0.010] | +0.006 [+0.002, +0.009] | +0.007 [+0.004, +0.009] | +0.005 [-0.000, +0.011] |
+| L40 | stage10 | +0.004 [+0.002, +0.006] | +0.004 [+0.001, +0.008] | +0.004 [+0.002, +0.006] | +0.003 [-0.002, +0.008] |
+| L41 | b3_3-1 | +0.003 [+0.000, +0.005] | +0.001 [-0.003, +0.005] | +0.002 [+0.000, +0.004] | +0.003 [-0.002, +0.008] |
+| L42 | b3_3-1 | +0.001 [-0.002, +0.003] | +0.001 [-0.002, +0.005] | +0.001 [-0.001, +0.003] | -0.000 [-0.005, +0.005] |
+| L43 | b3_3-1 | -0.000 [-0.003, +0.002] | +0.000 [-0.003, +0.004] | -0.000 [-0.002, +0.002] | -0.000 [-0.004, +0.004] |
+| L44 | b3_3-1 | -0.004 [-0.006, -0.002] | +0.001 [-0.002, +0.004] | -0.003 [-0.004, -0.001] | -0.004 [-0.008, +0.000] |
+| L45 | b3_3-1 | -0.005 [-0.007, -0.003] | -0.002 [-0.005, +0.001] | -0.004 [-0.006, -0.003] | -0.001 [-0.005, +0.003] |
+| L46 | b3_3-1 | -0.004 [-0.006, -0.002] | -0.002 [-0.005, +0.001] | -0.003 [-0.005, -0.002] | -0.001 [-0.004, +0.003] |
+| L47 | b3_3-1 | -0.004 [-0.006, -0.002] | +0.001 [-0.002, +0.004] | -0.003 [-0.004, -0.001] | -0.005 [-0.009, -0.001] |
+| L48 | stage10 | +0.005 [+0.003, +0.008] | +0.002 [-0.001, +0.006] | +0.004 [+0.002, +0.006] | +0.004 [-0.001, +0.008] |
+| L49 | b3_3-1 | +0.014 [+0.010, +0.017] | +0.011 [+0.007, +0.016] | +0.013 [+0.010, +0.016] | +0.004 [-0.002, +0.010] |
+| L50 | stage10 | +0.022 [+0.019, +0.026] | +0.020 [+0.015, +0.025] | +0.021 [+0.018, +0.025] | +0.007 [+0.001, +0.014] |
+| L51 | stage10 | +0.027 [+0.023, +0.031] | +0.021 [+0.016, +0.025] | +0.025 [+0.022, +0.028] | +0.011 [+0.005, +0.018] |
+| L52 | stage10 | +0.041 [+0.036, +0.045] | +0.027 [+0.021, +0.033] | +0.036 [+0.032, +0.040] | +0.018 [+0.010, +0.027] |
+| L53 | stage10 | +0.052 [+0.047, +0.058] | +0.038 [+0.031, +0.044] | +0.047 [+0.043, +0.052] | +0.019 [+0.010, +0.029] |
+| L54 | stage10 | +0.086 [+0.079, +0.092] | +0.054 [+0.046, +0.063] | +0.075 [+0.070, +0.081] | +0.030 [+0.019, +0.042] |
+| L55 | stage10 | +0.126 [+0.117, +0.134] | +0.078 [+0.068, +0.090] | +0.110 [+0.103, +0.117] | +0.037 [+0.023, +0.052] |
+| L56 | stage10 | +0.183 [+0.174, +0.191] | +0.104 [+0.091, +0.117] | +0.157 [+0.149, +0.164] | +0.065 [+0.049, +0.082] |
+| L57 | stage10 | +0.243 [+0.234, +0.251] | +0.123 [+0.110, +0.136] | +0.204 [+0.197, +0.211] | +0.093 [+0.076, +0.111] |
+| L58 | stage10 | +0.313 [+0.303, +0.322] | +0.159 [+0.143, +0.173] | +0.263 [+0.254, +0.271] | +0.114 [+0.096, +0.133] |
+| L59 | stage10 | +0.390 [+0.379, +0.401] | +0.195 [+0.179, +0.212] | +0.327 [+0.317, +0.336] | +0.136 [+0.116, +0.157] |
+| L60 | stage10 | +0.492 [+0.479, +0.504] | +0.233 [+0.216, +0.250] | +0.408 [+0.397, +0.418] | +0.178 [+0.157, +0.200] |
+| L61 | stage10 | +0.596 [+0.581, +0.611] | +0.282 [+0.263, +0.300] | +0.494 [+0.482, +0.506] | +0.212 [+0.188, +0.237] |
+| L62 | stage10 | +0.583 [+0.572, +0.593] | +0.252 [+0.241, +0.264] | +0.475 [+0.466, +0.485] | +0.229 [+0.214, +0.245] |
+| final L63 | stage10 | +0.481 [+0.473, +0.489] | +0.200 [+0.191, +0.208] | +0.390 [+0.382, +0.397] | +0.207 [+0.196, +0.220] |
+
+## 4. Onset layers (first grid layer whose team CI excludes 0; sign; first with lo > 0; sustained lo > 0 to L62)
+
+| readout | quantity | position | role | group | onset (excl. 0) | sign | first lo>0 | sustained |
+|---|---|---|---|---|---|---|---|---|
+| jlens_public | title_specific | all | all | target | 24.0 | + | 24.0 | 49.0 |
+| jlens_public | title_specific | all | all | control | 24.0 | + | 24.0 | 24.0 |
+| jlens_public | title_specific | all | all | target+control | 24.0 | + | 24.0 | 48.0 |
+| jlens_public | target_minus_control_within_bin | all | all | target-control | 41.0 | - | 57.0 | 57.0 |
+| jlens_public | title_specific | first | all | target | 40.0 | + | 40.0 | 49.0 |
+| jlens_public | title_specific | first | all | control | 24.0 | + | 24.0 | 46.0 |
+| jlens_public | title_specific | first | all | target+control | 24.0 | + | 24.0 | 49.0 |
+| jlens_public | target_minus_control_within_bin | first | all | target-control | 24.0 | - | 42.0 | 62.0 |
+| jlens_public | title_specific | later | all | target | 24.0 | + | 24.0 | 49.0 |
+| jlens_public | title_specific | later | all | control | 24.0 | + | 24.0 | 24.0 |
+| jlens_public | title_specific | later | all | target+control | 24.0 | + | 24.0 | 48.0 |
+| jlens_public | target_minus_control_within_bin | later | all | target-control | 41.0 | - | 56.0 | 56.0 |
+| jlens_public | title_specific | all | initial_first | target | 24.0 | + | 24.0 | 58.0 |
+| jlens_public | title_specific | all | initial_first | control | 24.0 | + | 24.0 | 46.0 |
+| jlens_public | title_specific | all | initial_first | target+control | 24.0 | + | 24.0 | 54.0 |
+| jlens_public | target_minus_control_within_bin | all | initial_first | target-control | 24.0 | - | 42.0 | nan |
+| jlens_public | title_specific | all | given_first | target | 24.0 | + | 24.0 | 48.0 |
+| jlens_public | title_specific | all | given_first | control | 24.0 | + | 24.0 | 24.0 |
+| jlens_public | title_specific | all | given_first | target+control | 24.0 | + | 24.0 | 24.0 |
+| jlens_public | target_minus_control_within_bin | all | given_first | target-control | 40.0 | + | 40.0 | 49.0 |
+| jlens_public | title_specific | all | surname_first | target | 24.0 | + | 24.0 | 49.0 |
+| jlens_public | title_specific | all | surname_first | control | 24.0 | + | 24.0 | 24.0 |
+| jlens_public | title_specific | all | surname_first | target+control | 24.0 | + | 24.0 | 24.0 |
+| jlens_public | target_minus_control_within_bin | all | surname_first | target-control | 40.0 | + | 40.0 | 56.0 |
+| logit | title_specific | all | all | target | 24.0 | + | 24.0 | 48.0 |
+| logit | title_specific | all | all | control | 32.0 | + | 32.0 | 49.0 |
+| logit | title_specific | all | all | target+control | 24.0 | + | 24.0 | 48.0 |
+| logit | target_minus_control_within_bin | all | all | target-control | 24.0 | + | 24.0 | 50.0 |
+| logit | title_specific | first | all | target | 24.0 | + | 24.0 | 24.0 |
+| logit | title_specific | first | all | control | 32.0 | + | 32.0 | 47.0 |
+| logit | title_specific | first | all | target+control | 24.0 | + | 24.0 | 24.0 |
+| logit | target_minus_control_within_bin | first | all | target-control | 40.0 | + | 40.0 | 62.0 |
+| logit | title_specific | later | all | target | 24.0 | + | 24.0 | 49.0 |
+| logit | title_specific | later | all | control | 32.0 | + | 32.0 | 49.0 |
+| logit | title_specific | later | all | target+control | 24.0 | + | 24.0 | 49.0 |
+| logit | target_minus_control_within_bin | later | all | target-control | 24.0 | + | 24.0 | 50.0 |
+| logit | title_specific | all | initial_first | target | 42.0 | + | 42.0 | 48.0 |
+| logit | title_specific | all | initial_first | control | 45.0 | - | 49.0 | 49.0 |
+| logit | title_specific | all | initial_first | target+control | 42.0 | + | 42.0 | 48.0 |
+| logit | target_minus_control_within_bin | all | initial_first | target-control | 45.0 | + | 45.0 | 62.0 |
+| logit | title_specific | all | given_first | target | 32.0 | + | 32.0 | 45.0 |
+| logit | title_specific | all | given_first | control | 48.0 | + | 48.0 | 48.0 |
+| logit | title_specific | all | given_first | target+control | 32.0 | + | 32.0 | 45.0 |
+| logit | target_minus_control_within_bin | all | given_first | target-control | 44.0 | + | 44.0 | 48.0 |
+| logit | title_specific | all | surname_first | target | 24.0 | + | 24.0 | 48.0 |
+| logit | title_specific | all | surname_first | control | 32.0 | + | 32.0 | 49.0 |
+| logit | title_specific | all | surname_first | target+control | 24.0 | + | 24.0 | 48.0 |
+| logit | target_minus_control_within_bin | all | surname_first | target-control | 24.0 | + | 24.0 | 48.0 |
+
+## 5. By position (first token / later tokens), target − control within bin
+
+| readout | layer | first | later |
+|---|---|---|---|
+| jlens_public | L24 | -0.015 [-0.023, -0.007] | +0.001 [-0.005, +0.008] |
+| jlens_public | L32 | -0.024 [-0.035, -0.013] | +0.008 [-0.002, +0.017] |
+| jlens_public | L40 | +0.006 [-0.007, +0.020] | -0.001 [-0.021, +0.020] |
+| jlens_public | L41 | +0.003 [-0.008, +0.014] | -0.022 [-0.042, -0.003] |
+| jlens_public | L42 | +0.029 [+0.013, +0.045] | -0.027 [-0.040, -0.015] |
+| jlens_public | L43 | +0.022 [+0.012, +0.032] | -0.043 [-0.060, -0.026] |
+| jlens_public | L44 | +0.019 [+0.010, +0.028] | -0.017 [-0.027, -0.006] |
+| jlens_public | L45 | +0.000 [-0.010, +0.012] | -0.020 [-0.031, -0.008] |
+| jlens_public | L46 | -0.024 [-0.038, -0.007] | -0.035 [-0.050, -0.020] |
+| jlens_public | L47 | -0.025 [-0.040, -0.009] | -0.038 [-0.053, -0.023] |
+| jlens_public | L48 | -0.040 [-0.055, -0.024] | -0.044 [-0.061, -0.028] |
+| jlens_public | L49 | -0.042 [-0.060, -0.023] | -0.043 [-0.059, -0.026] |
+| jlens_public | L50 | -0.047 [-0.067, -0.026] | -0.050 [-0.071, -0.031] |
+| jlens_public | L51 | -0.030 [-0.049, -0.011] | -0.038 [-0.058, -0.020] |
+| jlens_public | L52 | -0.028 [-0.045, -0.010] | -0.048 [-0.069, -0.027] |
+| jlens_public | L53 | -0.033 [-0.052, -0.013] | -0.040 [-0.060, -0.019] |
+| jlens_public | L54 | -0.026 [-0.045, -0.007] | -0.020 [-0.041, +0.001] |
+| jlens_public | L55 | -0.035 [-0.055, -0.013] | +0.000 [-0.021, +0.023] |
+| jlens_public | L56 | -0.048 [-0.073, -0.023] | +0.026 [+0.003, +0.051] |
+| jlens_public | L57 | -0.040 [-0.064, -0.015] | +0.052 [+0.028, +0.077] |
+| jlens_public | L58 | -0.040 [-0.067, -0.011] | +0.085 [+0.062, +0.111] |
+| jlens_public | L59 | -0.035 [-0.065, -0.006] | +0.134 [+0.110, +0.159] |
+| jlens_public | L60 | -0.003 [-0.033, +0.028] | +0.192 [+0.170, +0.217] |
+| jlens_public | L61 | +0.027 [-0.003, +0.057] | +0.263 [+0.245, +0.284] |
+| jlens_public | L62 | +0.064 [+0.038, +0.090] | +0.282 [+0.265, +0.299] |
+| logit | L24 | +0.000 [-0.002, +0.003] | +0.009 [+0.003, +0.014] |
+| logit | L32 | -0.000 [-0.004, +0.003] | +0.006 [-0.000, +0.013] |
+| logit | L40 | +0.006 [+0.001, +0.011] | +0.002 [-0.004, +0.008] |
+| logit | L41 | +0.007 [+0.000, +0.014] | +0.002 [-0.004, +0.008] |
+| logit | L42 | +0.003 [-0.004, +0.011] | -0.001 [-0.007, +0.005] |
+| logit | L43 | +0.002 [-0.003, +0.008] | -0.000 [-0.006, +0.005] |
+| logit | L44 | +0.004 [+0.000, +0.008] | -0.006 [-0.011, -0.001] |
+| logit | L45 | +0.013 [+0.009, +0.017] | -0.005 [-0.010, +0.000] |
+| logit | L46 | +0.009 [+0.004, +0.014] | -0.003 [-0.008, +0.001] |
+| logit | L47 | +0.002 [-0.003, +0.007] | -0.007 [-0.011, -0.002] |
+| logit | L48 | +0.015 [+0.007, +0.023] | +0.001 [-0.005, +0.006] |
+| logit | L49 | +0.017 [+0.005, +0.028] | +0.001 [-0.005, +0.007] |
+| logit | L50 | +0.010 [-0.001, +0.021] | +0.007 [+0.000, +0.014] |
+| logit | L51 | +0.020 [+0.009, +0.030] | +0.009 [+0.003, +0.016] |
+| logit | L52 | +0.027 [+0.014, +0.040] | +0.016 [+0.008, +0.025] |
+| logit | L53 | +0.022 [+0.007, +0.036] | +0.019 [+0.010, +0.030] |
+| logit | L54 | +0.012 [-0.009, +0.033] | +0.037 [+0.026, +0.048] |
+| logit | L55 | -0.036 [-0.064, -0.008] | +0.060 [+0.047, +0.076] |
+| logit | L56 | -0.018 [-0.048, +0.012] | +0.092 [+0.077, +0.110] |
+| logit | L57 | -0.020 [-0.051, +0.011] | +0.131 [+0.114, +0.148] |
+| logit | L58 | -0.051 [-0.091, -0.011] | +0.169 [+0.151, +0.187] |
+| logit | L59 | -0.104 [-0.151, -0.055] | +0.213 [+0.194, +0.232] |
+| logit | L60 | -0.077 [-0.124, -0.028] | +0.260 [+0.241, +0.282] |
+| logit | L61 | -0.044 [-0.087, +0.004] | +0.294 [+0.269, +0.320] |
+| logit | L62 | +0.070 [+0.045, +0.096] | +0.278 [+0.260, +0.297] |
+
+Roles (initial_first, given_first, given_cont, surname_first, surname_cont, particle_first, punct): `layer_signal.csv` / `layer_tc.csv` (punct is the negative control).
+
+## 6. Notes
+
+- Title-specific signal = per paper, token mean of log10(1/rank) under the true title minus the mean over the 5 matched false titles; target − control within citation bins with >= 30 papers in both groups, weights n_t n_c/(n_t+n_c) (Stage 10 definition).
+- CIs: team-cluster bootstrap (archived team ids, 2,000 draws, seed 1414, one draw set shared by every layer and cell). Stage 10 published CIs were paper bootstraps, so stored-layer CIs here differ from the published ones; point estimates are the same.
+- L24 and L48 rows use the stored Stage 10 ranks (the recomputed ranks are used only for the hard check).
+- Outputs: `/scratch/zhang.zhiqi2/jlens/381_stage13/summary_b3_s10_3_1/` (hardcheck.csv, rank_match.csv, layer_signal.csv, layer_tc.csv, onset.csv).

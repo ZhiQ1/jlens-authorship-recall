@@ -25,6 +25,12 @@ Rules (addendum 14 + HANDOFF long-term rules):
   their ExcNodeList refreshed each poll. Signal-9 endings (FAILED/CANCELLED x:9 = epilog kill) are not crashes: the gate is
   resubmitted without using its one retry, workers are not counted in 'crashes'. More than 3 kills of the same unit (gate, or
   rest at the same number of finished units) -> item STOPPED + a line in review_queue.md.
+- 2026-11-10: no-progress rule = 3 worker jobs in a row that end COMPLETED/TIMEOUT without new units -> STOPPED; the
+  submission count (3 x max_workers) is only a runaway guard. Workers keep --time-min=20: a 20-min grant gives a 12.9-min
+  budget = ~2 min load + ~18 units of ~35 s, enough progress per job.
+- 2026-11-10: rest workers are submitted one at a time (no new one while one is pending), each with the killguard --exclude.
+- 2026-11-10: jobs CANCELLED by the controller reset (killguard.reset_casualty: plain CANCELLED near a reset) are resubmitted
+  and never counted as crashes, kills or tries.
 Usage: b3_orch.py poll [--dry]      (--dry: print sbatch commands, submit nothing; ORCH_DRY_ADVANCE=1 also treats
                                      every 'complete'/'report' check as true so the whole path is printed)
 """
@@ -175,6 +181,8 @@ def poll_item(k, s, q, gpu):
     if s['phase'] == 'gate_wait':
         js, rc = job_state(s['gate_job'])
         if js in WAITING: return gpu
+        if kg.reset_casualty(s['gate_job']):
+            log(k, f'gate job {s["gate_job"]} CANCELLED by the controller reset - resubmit (not counted)'); s['phase'] = 'gate'; return gpu
         if js != 'COMPLETED':
             if rc == 3 or R['fail'].exists(): stop(k, s, f'GATE job {s["gate_job"]} {js} exit {rc}: hard check FAILED'); return gpu
             js2, ec = job_ec(s['gate_job'])
@@ -196,23 +204,34 @@ def poll_item(k, s, q, gpu):
             js, rc = job_state(j)
             if js in WAITING: continue
             s['workers'].remove(j)
+            if kg.reset_casualty(j):
+                s['n_workers'] = max(0, s.get('n_workers', 1) - 1); log(k, f'worker {j} CANCELLED by the controller reset - not a crash, not counted'); continue
             js2, ec = job_ec(j)
             if kg.is_kill(js2, ec):
                 if kill_over_cap(f'{k}:rest@{n}', j, f'worker killed at {n} finished units'): stop(k, s, f'workers killed by signal 9 more than {kg.KILL_CAP} times at {n} units'); return gpu
                 continue
+            if js in ('COMPLETED', 'TIMEOUT'):                    # 2026-11-10: no-progress cap counts progress, not submissions
+                if n > s.get('units_seen', 0): s['noprog'] = 0
+                else: s['noprog'] = s.get('noprog', 0) + 1; log(k, f'worker {j} ended {js} without new units (no-progress {s["noprog"]})')
             if js in ('COMPLETED', 'TIMEOUT') or n > s.get('units_seen', 0): s['crashes'] = 0
             else: s['crashes'] = s.get('crashes', 0) + 1; log(k, f'worker {j} ended {js} exit {rc} (crash {s["crashes"]})')
             if rc == 3: stop(k, s, f'worker {j} exit 3 (refused / hard check marker)'); return gpu
         s['units_seen'] = max(n, s.get('units_seen', 0))
         if s.get('crashes', 0) >= 3: stop(k, s, '3 worker crashes in a row without new units'); return gpu
+        if s.get('noprog', 0) >= 3: stop(k, s, '3 finished worker jobs in a row without new units'); return gpu
         if n >= N_UNITS or ADV:
             log(k, f'all {N_UNITS} units present'); s['phase'] = 'final'
         else:
             left = N_UNITS - n; want = (PARALLEL if left > 40 else 1) - q.get(it['name'], 0)
+            # 2026-11-10: at most ONE pending worker at a time, so every worker is submitted knowing where the others run
+            # (three workers submitted together all started on d1028 at 14:12; only 2 A100-80GB nodes exist).
+            try: npend = len([x for x in sh(['squeue', '-u', os.environ.get('USER', 'zhang.zhiqi2'), '-h', '-t', 'PD', '-n', it['name'], '-o', '%i']).split() if x])
+            except Exception: npend = 1
+            want = min(want, 0 if npend else 1)
             for _ in range(max(0, want)):
                 if gpu >= MAX_GPU_QUEUED: break
-                if s.get('n_workers', 0) >= it['max_workers']:
-                    stop(k, s, f'{it["max_workers"]} worker jobs submitted, {left} units still missing'); return gpu
+                if s.get('n_workers', 0) >= 3 * it['max_workers']:     # runaway guard only; progress is judged by 'noprog'
+                    stop(k, s, f'{3 * it["max_workers"]} worker jobs submitted, {left} units still missing'); return gpu
                 j = sbatch(['-J', it['name'], f'--export=ALL,ITEM={k}', 'b3_orch_gpu.sbatch'], gpu=True, time_min=True, name=it['name'], unit=f'{k}:rest')
                 if not j: break
                 s.setdefault('workers', []).append(j); s['n_workers'] = s.get('n_workers', 0) + 1; gpu += 1
@@ -228,6 +247,8 @@ def poll_item(k, s, q, gpu):
     if s['phase'] == 'final_wait':
         js, rc = job_state(s['an_job'])
         if js in WAITING: return gpu
+        if kg.reset_casualty(s['an_job']):
+            log(k, f'analysis {s["an_job"]} CANCELLED by the controller reset - resubmit (not counted)'); s['phase'] = 'final'; return gpu
         if js == 'COMPLETED' and (R['report'].exists() or ADV) and not R['fail'].exists():
             s['phase'] = 'done'; log(k, 'DONE'); event(k, 'done', R['report'], 'analysis exit 0 (full hard check PASS)')
         elif rc == 3 or R['fail'].exists():
