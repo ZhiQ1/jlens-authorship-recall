@@ -601,3 +601,16 @@ Round i exports: 11831475 (report v30, handbook 20261108c, page / talk-doc PDFs)
 | j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | talk_docs/progress_report_for_advisor_zh.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
 | j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | ../../audit_20261105/scoring_audit.html | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 1+0 |
 | j1 | 3-1 J-lens T − C range (checker v15: L56 +0.007 [−0.014, +0.029]) | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | 在 L41–L56 为负 / negative to L56 | 在 L41–L55 为负、L56 约为 0 / negative through L55, about 0 at L56 | 2+0 |
+
+### round k (2026-11-12, user correction: 99.81% belongs to 3-3)
+| k1 | D14-1 quote correction note | advisor/index.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | methods/methods_handbook.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 2 |
+| k1 | D14-1 quote correction note | methods/parts/B_global2.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | methods/parts/K_post_defence.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | pages_20261106b/methods_addendum/index.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | process_report/draft_zh.md | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | process_report/index.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | stage1_11/stage1_11_report.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | talk/src/export/notes_zh.json | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | talk/src/export/with_notes.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+| k1 | D14-1 quote correction note | ../../audit_20261105/scoring_audit.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |

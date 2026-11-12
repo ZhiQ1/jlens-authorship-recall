@@ -1,0 +1,35 @@
+{
+ "title": "Addendum 12 deviation record D12-5 (item 2-1, D12-1 part (b)): gate reference value computed in the wrong precision; fixed to fp32 vs fp32. Decided after seeing the data.",
+ "decision": "fix_gate_precision_fp32",
+ "statement": "gate reference value computed in the wrong precision (f64 vs the fp32-logged reference); not a relaxation of the criterion; original-code rerun reproduces 4.366808 vs log 4.367; decided after seeing the data",
+ "applies_to": "D12-1 part (b) in prereg_addendum12_deviations.json (unchanged, sha256 unchanged); supersedes the branch-B stop of 2026-11-09 23:19 (reports/b2_fitb_D12-1_outcome.*)",
+ "approved_by_user": "user rule relayed 2026-11-12 (choose (b) if 4.378 is the gate f64 recomputation and the remaining prompts run with the original frozen code)",
+ "decided_after_seeing_data": true,
+ "evidence": {
+  "gate_v3_job": "11753858",
+  "gate_value_f64": 4.378043340693925,
+  "gate_d_mean_f64": 0.10808027071607847,
+  "gate_json_sha256": "819ddc4182de4804833f3a6538cd1e51efb8fa2cf98072c92bdbdd44be99c0fd",
+  "gate_code": "stage9_b2_fitb.py:162 norm = max(J[l].double().norm()) / sqrt(d) (f64); :164 d_mean in f64; J from jlens.jacobian_for_prompt (:178) with stage9_loader (:112-118, same arguments as stage9_fullfit.py:207-208)",
+  "logged_reference_code": "jlens/fitting.py:335 jacobian_for_prompt, :352 prompt_norm = max(per_prompt_J[l].norm().item()) / sqrt_d (fp32), called by stage9_fullfit.py:212 jlens.fit",
+  "original_code_rerun": {
+   "job": "11760695",
+   "host": "d1029",
+   "fp32": 4.366807620218065,
+   "f64": 4.378043340693925,
+   "d_mean_f64": 0.10808027071607847,
+   "seq_len": 128,
+   "n_valid": 111,
+   "result_sha256": "500f4b3fae2abdf29640daa0396d2864fda0102146576fef1ccb288d8e4c70ff"
+  },
+  "same_J": "gate f64 norm and d_mean equal the original-code-rerun f64 values on its J to all printed digits (4.378043340693925, 0.10808027071607847); the gate J itself was not stored, so bitwise array identity is not shown directly",
+  "cpu_precheck_fp32_on_original_code_J": {
+   "norm": 4.366807620218065,
+   "d_mean": 0.1080457791686058,
+   "status": "PASS (thresholds 0.004867, 0.000608)"
+  }
+ },
+ "unchanged": "checks (norm, d_mean, seq_len + n_valid), thresholds 0.5 * printed unit + 1e-3 * |reference| (0.004867, 0.000608), part (a) Fit A k=3 bitwise, loaders, prompts, layers; Fit B prompts 67-100 run by the frozen command stage9_fullfit.py run --half B (stage9_b2_fitb.py:202); holdout, read units and analysis are the pre-registered addendum-12 code (stage9_b2_fitb.py holdout :266, read_unit :318, gpu :347, analyze)",
+ "implementation": "gate v4 = stage9_b2_fitb_v4.py gate (part (b) computed as fitting.py:352-358 in fp32); new root 381_stage13/b2_fitb_d125; failed v2/v3 gate outputs kept in 381_stage13/b2_fitb/",
+ "written": "2026-11-12"
+}
