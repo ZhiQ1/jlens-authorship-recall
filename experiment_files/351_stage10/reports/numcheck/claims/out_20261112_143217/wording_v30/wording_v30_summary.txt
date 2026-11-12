@@ -1,0 +1,23 @@
+报告 | stated 36, consistent 36 | local-missing 2 | stale 0 | missing: —
+PPT | stated 23, consistent 23 | local-missing 0 | stale 0 | missing: —
+PPT 备注 notes_zh.json | stated 34, consistent 34 | local-missing 0 | stale 0 | missing: —
+方法手册 | stated 34, consistent 34 | local-missing 0 | stale 0 | missing: —
+讲稿 experiment_walkthrough_methods_zh | stated 21, consistent 21 | local-missing 0 | stale 0 | missing: —
+讲稿 experiment_walkthrough_zh | stated 20, consistent 20 | local-missing 0 | stale 0 | missing: —
+讲稿 keys_and_shelves_script_zh_en | stated 5, consistent 5 | local-missing 0 | stale 0 | missing: —
+讲稿 methods_handbook_guide_plain_zh | stated 23, consistent 23 | local-missing 0 | stale 0 | missing: —
+讲稿 progress_report_for_advisor_zh | stated 27, consistent 26 | local-missing 0 | stale 0 | missing: C04: mean5 L48 +0.821
+讲稿 stage13_script_zh_en | stated 16, consistent 16 | local-missing 1 | stale 0 | missing: —
+导师页 advisor | stated 29, consistent 29 | local-missing 0 | stale 0 | missing: —
+过程报告 process_report | stated 32, consistent 32 | local-missing 0 | stale 0 | missing: —
+打分审计 scoring_audit | stated 27, consistent 27 | local-missing 0 | stale 0 | missing: —
+方法补遗 methods_addendum | stated 27, consistent 27 | local-missing 0 | stale 0 | missing: —
+README 草稿 b | stated 28, consistent 28 | local-missing 1 | stale 0 | missing: round f: H2 状态须为“部分支持但未确立”
+过程报告草稿 draft_zh.md | stated 32, consistent 32 | local-missing 0 | stale 0 | missing: —
+
+findings:
+报告 | missing qualifier (local) |  round l：C24 须带“输出置信度 … 尚未排除” | #ov | 总览：一个问题，四条论证线 | line 179 | 补充 10 第 3 项）也已完成，结论不变；批次 2 中 C / D 组补全已完成：C 的信号更大，但时间点与 A 相同；2-11b 新增一条独立结论 C24：Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，名字 token 平均；L16–L56 七层都同时胜过排
+报告 | missing qualifier (local) |  round l：C24 名气基线须标“事后，探索性” | #ov | 总览：一个问题，四条论证线 | line 179 | 补充 10 第 3 项）也已完成，结论不变；批次 2 中 C / D 组补全已完成：C 的信号更大，但时间点与 A 相同；2-11b 新增一条独立结论 C24：Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，名字 token 平均；L16–L56 七层都同时胜过排
+讲稿 stage13_script_zh_en | missing qualifier (local) |  round l：Patchscope 须写“不据此讨论 H3” | Stage 13 讲稿（中英对照） > 六、三个假设：预测与结果 | line 48 | ce (discussion only)(b2_gennames_b_report.md; b2_gennames_b_robust_posthoc.md). Patchscope (2-7, 2-9; descriptive only): from the name-position source the first author is ≈ 0 at L8–L16, +0.006 [0.004,
+README 草稿 b | missing qualifier (local) | H2 H2 状态须为“部分支持但未确立” | README > Status | 第235行 | line 235 | / | | Stage 13 M1–M4, X1–X7 | what the middle layers hold | H2 partly supported, not established; H3 partly supported (name-position probe, 2026-11-09) | done | 381_stage13/report
+README 草稿 b | missing qualifier (local) |  round l：Patchscope 须写“不据此讨论 H3” | README > One-Page Summary | 第27行 | line 27 | on only) <sub>(b2_gennames_b_report.md; b2_gennames_b_robust_posthoc.md)</sub>. Patchscope (2-7, 2-9; descriptive only): from the name-position source the first author is ≈ 0 at L8–L16, +0.006 [0.004,

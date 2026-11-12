@@ -614,3 +614,55 @@ Round i exports: 11831475 (report v30, handbook 20261108c, page / talk-doc PDFs)
 | k1 | D14-1 quote correction note | talk/src/export/notes_zh.json | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
 | k1 | D14-1 quote correction note | talk/src/export/with_notes.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
 | k1 | D14-1 quote correction note | ../../audit_20261105/scoring_audit.html | …通过率 99.81%。 | + 〔更正：99.81% 出自 3-3 检查；Stage 10 主轮见局限 L02。〕 | 1 |
+
+## round l
+
+Script `sync_20261107/apply_20261112l.py` (backups `*.before_20261112l`; numbers asserted against b2_gennames_b_report.md, b2_gennames_b_robust_posthoc.md, b2_ps_report.md). New conclusion C24 (user 2026-11-12); Patchscope descriptive only; H1/H2/H3 and hypothesis tables unchanged.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| l1 | talk_docs/experiment_walkthrough_zh.html | (duplicate name-position-probe paragraph before the Stage 8 premises) | (removed) | 1 |
+| l2 | talk_docs/experiment_walkthrough_methods_zh.html | (duplicate name-position-probe paragraph before the Stage 8 premises) | (removed) | 1 |
+| l3 | stage1_11/stage1_11_report.html | 已完成，结论待定 | 已完成：预注册判定在 7 层都成立（见 C24） | 1 |
+| l4 | advisor/index.html | 已完成，结论待定 | 已完成：预注册判定在 7 层都成立（见 C24） | 1 |
+| l5 | process_report/draft_zh.md | 已完成，结论待定 | 已完成：预注册判定在 7 层都成立（见 C24） | 1 |
+| l6 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 已完成，结论待定 | 已完成：预注册判定在 7 层都成立（见 C24） | 1 |
+| l7 | pages_20261106b/methods_addendum/index.html | 已完成，结论待定 | 已完成：预注册判定在 7 层都成立（见 C24） | 1 |
+| l8 | talk_docs/progress_report_for_advisor_zh.html | 已完成，结论待定 | 已完成：预注册判定在 7 层都成立（见 C24） | 1 |
+| l9 | notes_zh.json #81 | 已完成，结论待定 | 已完成：预注册判定在 7 层都成立（见 C24） | 1 |
+| l10 | stage1_11/stage1_11_report.html | Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层 | Patchscope（2-7、2-9）已完成，只作描述（见下），x4tok 已补全部层 | 1 |
+| l11 | advisor/index.html | Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层 | Patchscope（2-7、2-9）已完成，只作描述（见下），x4tok 已补全部层 | 1 |
+| l12 | process_report/draft_zh.md | Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层 | Patchscope（2-7、2-9）已完成，只作描述（见下），x4tok 已补全部层 | 1 |
+| l13 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层 | Patchscope（2-7、2-9）已完成，只作描述（见下），x4tok 已补全部层 | 1 |
+| l14 | pages_20261106b/methods_addendum/index.html | Patchscope（2-7、2-9）已完成，结果待写入（描述性），x4tok 已补全部层 | Patchscope（2-7、2-9）已完成，只作描述（见下），x4tok 已补全部层 | 1 |
+| l15 | talk_docs/progress_report_for_advisor_zh.html | Patchscope 已完成，结果待写入（描述性） | Patchscope 已完成（只作描述） | 1 |
+| l16 | notes_zh.json #81 | Patchscope 已完成，结果待写入 | Patchscope 已完成（描述） | 1 |
+| l17 | merged_deck/stage1_11_deck.html | done, conclusion pending; | done: pre-registered verdict passes at all 7 layers (C24); | 1 |
+| l18 | github/README_draft_20261106b.md | done, conclusion pending; | done: pre-registered verdict passes at all 7 layers (C24); | 2 |
+| l19 | merged_deck/stage1_11_deck.html | Patchscope (2-7, 2-9) done, results to be written (descriptive); | Patchscope (2-7, 2-9) done (descriptive only); | 1 |
+| l20 | github/README_draft_20261106b.md | Patchscope (2-7, 2-9) done, results to be written (descriptive); | Patchscope (2-7, 2-9) done (descriptive only); | 1 |
+| l21 | stage1_11/stage1_11_report.html | <li id="pd-b2-f1"> | <li id="pd-b2-gn"><b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字… | 1 |
+| l22 | stage1_11/stage1_11_report.html | 批次 2 中 C / D 组补全已完成：C 的信号更大，但时间点与 A 相同（第五部分）。 | 批次 2 中 C / D 组补全已完成：C 的信号更大，但时间点与 A 相同；2-11b 新增一条独立结论 C24：Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，名字 token 平均；L16–L56 七层… | 1 |
+| l23 | advisor/index.html | <li><b>F1 对半拆分（批次 2 第 2-2 项 | <li><b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，… | 1 |
+| l24 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | <li><b>F1 对半拆分（批次 2 第 2-2 项 | <li><b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，… | 1 |
+| l25 | pages_20261106b/methods_addendum/index.html | <li><b>F1 对半拆分（批次 2 第 2-2 项 | <li><b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，… | 1 |
+| l26 | process_report/draft_zh.md |  - **F1 对半拆分（批次 2 第 2-2 项 |  - **C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：**Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，名字 t… | 1 |
+| l27 | talk_docs/experiment_walkthrough_zh.html | <p class="upd">2026-11-09：<b>名字位置 probe | <p class="upd">2026-11-12：<b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真… | 1 |
+| l28 | talk_docs/experiment_walkthrough_methods_zh.html | <p class="upd">2026-11-09：<b>名字位置 probe | <p class="upd">2026-11-12：<b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真… | 1 |
+| l29 | talk_docs/methods_handbook_guide_plain_zh.html | <p class="upd">2026-11-09：<b>名字位置 probe | <p class="upd">2026-11-12：<b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真… | 1 |
+| l30 | talk_docs/progress_report_for_advisor_zh.html | <li><b>名字位置 probe（批次 2 第 2-5 项 | <li><b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，… | 1 |
+| l31 | talk_docs/stage13_script_zh_en.html | <b>P1 / P2 用 5 个假标题（批次 1 第 3 项，已完成，硬检查 PASS）：</b> | <b>C24 模型自己写出的名字：真作者与编造的名字可在名字 token 上线性区分（较稳但有前提；补充 15，批次 2 第 2-11b 项）：</b>Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，名字 t… | 1 |
+| l32 | talk_docs/stage13_script_zh_en.html | Name-position probe (addendum 11 A), done:  | C24 (fairly solid, with premises; addendum 15, 2-11b): when Qwen3-32B writes the author list itself, the middle-layer residuals on the written name to… | 1 |
+| l33 | notes_zh.json #75 | (append) | C24 + Patchscope | 1 |
+| l34 | github/README_draft_20261106b.md | **Latest (2026-11-09).** | **Latest (2026-11-12).** C24 (fairly solid, with premises; addendum 15, 2-11b): when Qwen3-32B writes the author list itself, the middle-layer residua… | 1 |
+| l35 | ~/jlens_work/conclusions_v30_draft.md | - **2-11b**（现场生成名字，补充 15 已锁定）：已完成，结论待定。 | - **2-11b**：已完成，见 C24。 | 1 |
+| l36 | ~/jlens_work/conclusions_v30_draft.md | - 2-7、2-9（Patchscope）：已完成，结果待写入（描述性）；x4tok 已补全部层。 | - 2-7、2-9（Patchscope）：已完成，只作描述（预注册要求报告、无判定规则；认得出的 target − control 与 name_all 源 x4tok 为探索性）：用名字位置作源时，第一作者在 L8–L16 约为 0，L40 +0.006 [0.004, 0.008]，L48 +… | 1 |
+| l37 | ~/jlens_work/conclusions_v30_draft.md | ### L10 2-11 已停止；2-11b 只跑第 0 片 | ### L10 2-11 已停止；2-11b 已完成（C24） | 1 |
+| l38 | ~/jlens_work/conclusions_v30_draft.md | \| C22 \| 未定 \| H3 \| | \| C24 \| 较稳 \| — \| 独立结论 \| 与 H3 的关系未预注册，只作讨论 \| \| C22 \| 未定 \| H3 \| | 1 |
+| l39 | ~/jlens_work/conclusions_v30_draft.md | (new section) | C24 | 1 |
+| l40 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+Round l exports: 11836527 (report v30, handbook 20261108c, page / talk-doc PDFs) + deck v21 11836526; pptx via pptx_text_fix_20261112l.py (2/2 rules, notes 75/81). Notes overflow unchanged (slides 30/72/81 at 901 px vs 898).
+
+### round m (wording gaps after round-l check)
+| m1 | C24 overview caveat | stage1_11/stage1_11_report.html | …读不出（次分析，…） | + 输出置信度替代解释尚未排除；事后、探索性的知名度基线不能解释 | 1 |
+| m2 | Patchscope en "not used for H3" | talk_docs/stage13_script_zh_en.html, github/README_draft_20261106b.md | …exploratory) | …exploratory; not used for H3) | 2 |

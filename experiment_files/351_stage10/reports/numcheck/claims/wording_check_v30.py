@@ -14,7 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
-import claims_defs_v15 as D15        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
+import claims_defs_v16 as D16        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
 from claims_docs import units, locate
 
 OUT = Path(sys.argv[1]) / 'wording_v30'
@@ -54,7 +54,7 @@ DETECT = {
     'L07': [r'3-3.{0,40}(?:停止|stopped)', r'D14-1'],
     'L08': [r'U28'],
     'L09': [r'数字核对', r'number checker'],
-    'L10': [r'2-11'],
+    'L10': [r'2-11(?!b)'],
     'L11': [r'D（33 篇）', r'D \(33 papers\)', r'D 33 篇'],
     'L12': [r'V5x0', r'C-3b'],
     'L13': [r'Fit B'],
@@ -90,11 +90,22 @@ REQUIRE = {
     'L12': [('泄漏 / leak', ALT(r'泄漏', r'leak'))],
 }
 # (label, trigger, partner, window): partner must be within +-window characters of every trigger
+C24T = ALT(r'Qwen3-32B 自己写作者名单时', r'when Qwen3-32B writes the author list itself')
+PST = ALT(r'Patchscope（批次 2 第 2-7、2-9 项，补充 12；只作描述）：', r'Patchscope \(2-7, 2-9; descriptive only\):', r'用名字位置作源时，第一作者')
 B2STAT_ = ALT(r'批次 1 结束后已由编排作业开始运行', r'Batch 2 \(addenda 11, 12\): running', r'Batch 2 \(addenda 11–12\): running', r'批次 2（补充 11、12[^）]*）已开始', r'running \(C / D done')
-PAIR = [('round i：批次 2 状态须写 2-2 已完成', B2STAT_, ALT(r'2-2）已完成', r'2-2 已完成', r'2-2, 2-3', r'名字位置 probe、2-2 已完成', r'2-2：已完成'), 900),
+PAIR = [('round l：C24 须带“补充 15 预注册”', C24T, ALT(r'补充 15 预注册', r'addendum 15'), 400),
+        ('round l：C24 须带“名字写出之后”', C24T, ALT(r'名字写出之后', r'on the written name tokens'), 200),
+        ('round l：C24 须带“写出之前…读不出”', C24T, ALT(r'名字写出之前的位置读不出', r'positions before the name is written do not'), 900),
+        ('round l：C24 须带“输出置信度 … 尚未排除”', C24T, ALT(r'输出置信度”这一替代解释尚未排除', r'output confidence not yet excluded'), 1500),
+        ('round l：C24 名气基线须标“事后，探索性”', C24T, ALT(r'事后，探索性', r'post-hoc fame baseline \(exploratory\)'), 1800),
+        ('round l：C24 须带“与 H3 的关系未预注册”', C24T, ALT(r'与 H3 的关系未预注册', r'no relation to H3', r'not H3 evidence'), 2200),
+        ('round l：Patchscope 须标“预注册要求报告、无判定规则”', PST, ALT(r'预注册要求报告、无判定规则', r'pre-registered to report, no decision rule'), 900),
+        ('round l：Patchscope 须标“探索性”', PST, ALT(r'探索性', r'exploratory'), 900),
+        ('round l：Patchscope 须写“不据此讨论 H3”', PST, ALT(r'不据此讨论 H3', r'no H3 argument', r'not used for H3'), 1000),
+        ('round i：批次 2 状态须写 2-2 已完成', B2STAT_, ALT(r'2-2）已完成', r'2-2 已完成', r'2-2, 2-3', r'名字位置 probe、2-2 已完成', r'2-2：已完成'), 900),
         ('round i：批次 2 状态须写 2-1 停止（D12-1）', B2STAT_, ALT(r'2-1 停止（D12-1', r'2-1 stopped \(D12-1'), 900),
-        ('round i：批次 2 状态须写 Patchscope“已完成，结果待写入”', B2STAT_, ALT(r'Patchscope[^。；]{0,15}已完成，结果待写入', r'Patchscope \(2-7, 2-9\) done, results to be written', r'2-7/2-9'), 900),
-        ('round i：批次 2 状态须写 2-11b“已完成，结论待定”', B2STAT_, ALT(r'已完成，结论待定', r'done, conclusion pending'), 900),
+        ('round l：批次 2 状态须写 Patchscope 已完成、只作描述', B2STAT_, ALT(r'Patchscope（2-7、2-9）已完成，只作描述', r'Patchscope 已完成（只作描述）', r'Patchscope 已完成（描述）', r'Patchscope \(2-7, 2-9\) done \(descriptive only\)', r'2-7/2-9'), 900),
+        ('round l：批次 2 状态须写 2-11b 已完成（C24）', B2STAT_, ALT(r'预注册判定在 7 层都成立（见 C24）', r'pre-registered verdict passes at all 7 layers \(C24\)'), 900),
         ('round h：H3 判词须带“lens 的区间同样不含 0”', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'lens 的区间同样不含 0', r'lens intervals also exclude 0'), 500),
         ('round h：H3 判词须带“尺度不同”', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'尺度不同', r'scales differ'), 600),
         ('round h：H3 判词须写后续 token 在 L40 对 J-lens 不满足判据', ALT(r'按补充 11 预注册判据', r'By the addendum-11 pre-registered criterion'), ALT(r'后续 token 在 L40 与 J-lens 比较时不满足判据', r'continuation tokens do not meet the criterion at L40 against the J-lens'), 700),
@@ -129,9 +140,13 @@ STALE = [
     ('批次状态过时（代码已就绪 / 自动开始，未写已在运行）', ALT(r'代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始', r'code ready, after batch 2', r'代码已就绪，第二批之后开始', r'starts automatically after batch 1', r'code ready, queued'), None),
     ('数字核对：第 30 版新数字“尚待登记”（v9 已登记）', ALT(r'尚待登记', r'not yet registered', r'yet to be registered', r'第 30 版新放回或新增的数字（D13-1'), None),
     ('D13-1 段落中的旧版本号', r'报告 v29 和 PPT v20', None),
+    ('round l：旧状态“2-11b 结论待定 / Patchscope 结果待写入”', ALT(r'已完成，结论待定', r'结果待写入', r'conclusion pending', r'results to be written'), None),
+    ('round l：C24 被当作 H3 证据或写进假设判定', ALT(r'C24[^。；]{0,60}(?:支持 H3|H3 的证据(?!；)|supports H3|H3 evidence(?! \(discussion))', r'H3[^。；]{0,40}(?:由|依据|rests on)[^。；]{0,20}C24'), r'不作为|not H3 evidence|未预注册|no relation'),
+    ('round l：Patchscope 被用来论证 H3', r'Patchscope[^。]{0,200}(?:支持 H3|H3 (?:成立|部分支持)|supports H3)', r'不据此讨论 H3|不讨论 H3|no H3'),
+    ('round k：D14-1 引文“通过率 99.81%”后缺 2026-11-12 更正', r'通过率 99\.81%(?![^。〕]{0,6}〔?更正)(?!。〔更正)', None),
     ('round i：2-2 / F1 对半拆分仍写进行中', ALT(r'2-2(?:（[^）]*）)?[^。；，,]{0,12}(?:进行中|运行中|running|queued)', r'F1 对半拆分[^。；]{0,12}(?:进行中|排队)', r'对半拆分 2-2 进行中'), r'已完成|done'),
     ('round i：L41–L47、L49 仍写排队 / 未补', ALT(r'补充 14 只补 L41–L47、L49 和 L0–L23', r'L41–L47、L49 由 3-1 补，排队中', r'L41–L47, L49[^.;]{0,30}queued', r'3-1[^。；]{0,30}(?:排队|编排作业已提交)', r'也没有 L41–L47'), None),
-    ('round i：Patchscope / 2-11b 写出了结果数字', r'(?:Patchscope|2-7|2-9|2-11b|x4tok)(?:（[^）]*）)?[^。；;]{0,40}?[+−\-]?\d\.\d{2,}', r'0\.880|0\.90|2-11 |自检|FAIL|max \|diff\||reproduce'),
+    # round i rule 'Patchscope / 2-11b 写出了结果数字' retired in round l (C24 and the Patchscope table are now written by design)
     ('round i：2-1 仍写重跑 / 运行中', ALT(r'2-1[^。；，]{0,12}(?:门槛重跑|gate re-run|进行中|运行中)', r'Fit B[^。；]{0,12}(?:已在运行|重跑中)'), r'停止|stopped'),
     ('round h：H3 总体判断仍写“证据不足”', ALT(r'H3 ?(?:仍|仍然)?证据(?:仍)?不足', r'H3[：:] ?(?:X\d[^。；]{0,60})?证据(?:仍)?不足', r'H3 (?:has |had )?insufficient evidence', r'H3[:：] insufficient', r'H3 (?:still )?insufficient', r'H3 \(hidden author knowledge\)[:：]? insufficient'),
      r'单看 X[24]|X[24] alone|原为|此前|had insufficient|改为部分支持|H3 部分支持|now partly supported|H3 partly supported|partly supported by the name-position|11-03|V57|措辞记录|历史'),
