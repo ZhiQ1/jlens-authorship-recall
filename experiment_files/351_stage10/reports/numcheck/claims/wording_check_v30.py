@@ -14,7 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
-import claims_defs_v16 as D16        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
+import claims_defs_v17 as D17        # noqa: F401  (v9 patches claims_docs.doc_list: + process_report/draft_zh.md)
 from claims_docs import units, locate
 
 OUT = Path(sys.argv[1]) / 'wording_v30'
@@ -70,7 +70,7 @@ REQUIRE = {
             ],   # int6 qualifier is checked locally (PAIR) where +0.130 is written
     'C08': [('C 462 篇', r'462'), ('同档 258 篇', r'258'), ('C 分母 0.559', r'0\.559'), ('时间点与 A 相同 / same timing as A', ALT(r'时间点与 A 相同', r'same timing as A')),
             ('D 只作描述', ALT(r'D（33 篇）[^。]{0,20}只作描述', r'D 33 篇[^。]{0,10}只作描述', r'D \(33 papers\) descriptive', r'D 33 / R2-unwritten 28 papers → descriptive', r'D 33 篇按补充 11 只作描述', r'D（33 篇）按补充 11 只作描述', r'\(33\) descriptive'))],
-    'C15': [('L8 / L40', r'L40')],
+    'C15': [('L8 / L40', r'L40'), ('round o：C15 补“全作者版本同样从 L8 起可解码（测试集 +0.048 [0.039, 0.058]）”', ALT(r'全作者版本同样从 L8 起可解码', r'all-author version (?:is )?also (?:decodable )?from L8', r'all authors also from L8'))],
     'C21': [('不再作为 H2 的证据 / no longer H2 evidence', ALT(r'不再作为 H2 的证据', r'no longer counted as H2 evidence', r'X4 recognition gap no longer counted', r'no longer (?:counted|H2)')),
             ('测试集不显著 / test n.s.', ALT(r'测试集(?:上)?不显著', r'not significant\)', r'not significant on the test', r'test.{0,20}n\.s\.', r'测试集 target − control 为 \+0\.023'))],
     'L01': [('没有补层计划 / no plan', ALT(r'没有补层计划', r'no plan to fill', r'补层计划里没有')), ('L33–L40', r'L33–L40'),
@@ -92,8 +92,16 @@ REQUIRE = {
 # (label, trigger, partner, window): partner must be within +-window characters of every trigger
 C24T = ALT(r'Qwen3-32B 自己写作者名单时', r'when Qwen3-32B writes the author list itself')
 PST = ALT(r'Patchscope（批次 2 第 2-7、2-9 项，补充 12；只作描述）：', r'Patchscope \(2-7, 2-9; descriptive only\):', r'用名字位置作源时，第一作者')
+LIM1T = ALT(r'仍为首 token / 第一作者的分析', r'Analyses still on the first token')
 B2STAT_ = ALT(r'批次 1 结束后已由编排作业开始运行', r'Batch 2 \(addenda 11, 12\): running', r'Batch 2 \(addenda 11–12\): running', r'批次 2（补充 11、12[^）]*）已开始', r'running \(C / D done')
-PAIR = [('round l：C24 须带“补充 15 预注册”', C24T, ALT(r'补充 15 预注册', r'addendum 15'), 400),
+PAIR = [('round n：“仍为首 token / 第一作者”须列 Stage 4–8 / W', LIM1T, r'Stage 4–8（含 Stage 8 的 W）|Stages? 4–8', 900),
+        ('round n：“仍为首 token / 第一作者”须列 X4 / x4tok / 2-7', LIM1T, r'X4 认得出对比、x4tok、2-7|X4[^.;]{0,30}x4tok[^.;]{0,20}2-7', 900),
+        ('round n：“仍为首 token / 第一作者”须列 Stage 11 E4', LIM1T, r'Stage 11 E4 lens|Stage 11 E4', 900),
+        ('round n：“仍为首 token / 第一作者”须列 E4b X1 对照流程', LIM1T, r'E4b 的 X1 对照流程|X1-controls pipeline|X1 control pipeline', 900),
+        ('round n：“仍为首 token / 第一作者”须列 理由：存储的数据只有首 token', LIM1T, r'存储的数据只有|stored data hold only|only the first-token', 900),
+        ('round n：“仍为首 token / 第一作者”须列 理由：提示按设计问第一作者', LIM1T, r'按设计问第一作者|by design', 900),
+        ('round n：“仍为首 token / 第一作者”须列 理由：E4 需要 GPU', LIM1T, r'全部 token 需要 GPU|need[s]? GPU', 900),
+        ('round l：C24 须带“补充 15 预注册”', C24T, ALT(r'补充 15 预注册', r'addendum 15'), 400),
         ('round l：C24 须带“名字写出之后”', C24T, ALT(r'名字写出之后', r'on the written name tokens'), 200),
         ('round l：C24 须带“写出之前…读不出”', C24T, ALT(r'名字写出之前的位置读不出', r'positions before the name is written do not'), 900),
         ('round l：C24 须带“输出置信度 … 尚未排除”', C24T, ALT(r'输出置信度”这一替代解释尚未排除', r'output confidence not yet excluded'), 1500),
@@ -140,6 +148,13 @@ STALE = [
     ('批次状态过时（代码已就绪 / 自动开始，未写已在运行）', ALT(r'代码、tiny 测试和硬检查的单元测试都已完成，批次 1 结束后由编排作业自动开始', r'code ready, after batch 2', r'代码已就绪，第二批之后开始', r'starts automatically after batch 1', r'code ready, queued'), None),
     ('数字核对：第 30 版新数字“尚待登记”（v9 已登记）', ALT(r'尚待登记', r'not yet registered', r'yet to be registered', r'第 30 版新放回或新增的数字（D13-1'), None),
     ('D13-1 段落中的旧版本号', r'报告 v29 和 PPT v20', None),
+    ('round o：“全作者版本…未做调参/测试拆分”接在可解码性上', r'(?:可解码|decodab)[^。.]{0,80}(?:没有做|未做|no) ?调参 ?/ ?测试拆分|(?:全作者|全部作者|all-author)版本[^。]{0,40}(?:没有做|未做)调参 ?/ ?测试拆分[^。]{0,60}可解码', r'认得出|recogni'),
+    ('round o：标题位置 T − C 主数字仍为旧版 +0.03 到 +0.08（不在“旧版”括号内）', ALT(r'目标组比对照组高 \+0\.03 到 \+0\.08', r'target 比 control 高 \+0\.03 到 \+0\.08', r'target exceeds control by \+0\.03 to \+0\.08'), r'旧版|old first-token'),
+    ('round n：标题位置 probe 首 token 旧值作为主数字（不在“旧版”括号内）', ALT(r'\+0\.050 / \+0\.061 / \+0\.075', r'L24 \+0\.050[，、] ?L40 \+0\.061', r'L40 (?:为 )?\+0\.061 \[0\.047, 0\.076\]', r'L24 约 \+?0\.05，L40 约 \+?0\.06', r'about \+0\.05 at L24'),
+     r'旧版|old first-token|1,863|X1 对照流程|X1-controls|原 E4b|原版|硬检查|一致性检查|复现已发表|hard check|e4b_parity|V0（1,395 篇）\+0\.061'),
+    ('round n：X1 主 R 仍为第一作者旧值', ALT(r'R ≈ 0\.99 \(L24\)', r'L24 约 0\.99，L40 约 0\.92', r'L24 约 0\.99、L40 0\.92', r'R 0\.99 at L24'), r'旧版|old first-author|原 X1'),
+    ('round n：X3 主数字仍为第一作者旧值', ALT(r'保留约 90% 的第一作者偏好', r'≈ 90% of the first-author preference', r'恢复比例 0\.90 \[0\.86, 0\.94\]，测试集'), r'旧版|old first-author'),
+    ('round n：M3 主数字仍为第一作者首 token', ALT(r'(?<!旧版只看)第一作者首 token \+0\.147', r'(?<!old )first-author first token \+0\.147'), r'旧版|old first-author'),
     ('round l：旧状态“2-11b 结论待定 / Patchscope 结果待写入”', ALT(r'已完成，结论待定', r'结果待写入', r'conclusion pending', r'results to be written'), None),
     ('round l：C24 被当作 H3 证据或写进假设判定', ALT(r'C24[^。；]{0,60}(?:支持 H3|H3 的证据(?!；)|supports H3|H3 evidence(?! \(discussion))', r'H3[^。；]{0,40}(?:由|依据|rests on)[^。；]{0,20}C24'), r'不作为|not H3 evidence|未预注册|no relation'),
     ('round l：Patchscope 被用来论证 H3', r'Patchscope[^。]{0,200}(?:支持 H3|H3 (?:成立|部分支持)|supports H3)', r'不据此讨论 H3|不讨论 H3|no H3'),
@@ -238,6 +253,10 @@ for doc in DOCS:
                         ('round h：H3 部分支持须带“尺度不同”', ALT(r'尺度不同', r'scales differ', r'scales cannot be compared'))]:
             if not re.search(rx, full):
                 miss.append(('round h', lab)); rows.append(dict(doc=doc, kind='missing qualifier', item='H3', label=lab, location='(whole document)', line='', text=''))
+    for u in us:
+        if u[0].startswith('PPT') and u[2].startswith('第24页'):
+            for m in re.finditer(ALT(r'first author', r'第一作者', r'只给每位作者名字的第一个 token 打分'), u[3]):
+                rows.append(dict(doc=doc, kind='stale phrase', item='24', label='round n：第 24 页 / 备注 24 的 E4b 仍写第一作者 / 只打首 token', location=u[2], line=u[2], text=u[3][max(0, m.start() - 80):m.end() + 80]))
     local = []
     for lab, trig, partner, win in PAIR:
         for u in us:

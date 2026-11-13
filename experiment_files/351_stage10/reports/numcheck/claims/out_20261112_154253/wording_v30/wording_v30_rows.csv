@@ -1,0 +1,10 @@
+﻿doc,kind,item,label,location,line,text
+报告,missing qualifier (local),,round l：C24 须带“输出置信度 … 尚未排除”,#ov | 总览：一个问题，四条论证线,179,补充 10 第 3 项）也已完成，结论不变；批次 2 中 C / D 组补全已完成：C 的信号更大，但时间点与 A 相同；2-11b 新增一条独立结论 C24：Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，名字 token 平均；L16–L56 七层都同时胜过排
+报告,missing qualifier (local),,round l：C24 名气基线须标“事后，探索性”,#ov | 总览：一个问题，四条论证线,179,补充 10 第 3 项）也已完成，结论不变；批次 2 中 C / D 组补全已完成：C 的信号更大，但时间点与 A 相同；2-11b 新增一条独立结论 C24：Qwen3-32B 自己写作者名单时，名字写出之后，名字 token 上的中间层残差能线性区分真作者与编造的名字（补充 15 预注册主分析，名字 token 平均；L16–L56 七层都同时胜过排
+PPT 备注 notes_zh.json,stale phrase,24,round n：第 24 页 / 备注 24 的 E4b 仍写第一作者 / 只打首 token,第24页 备注,第24页 备注,CI；报告 Stage 13 M2 节；381_stage13/reports/m2_teamci.md 第 46、86 行〕（M2）。注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分
+讲稿 progress_report_for_advisor_zh,missing qualifier,C04,mean5 L48 +0.821,(whole document),,
+讲稿 progress_report_for_advisor_zh,missing qualifier,C15,"round o：C15 补“全作者版本同样从 L8 起可解码（测试集 +0.048 [0.039, 0.058]）”",(whole document),,
+讲稿 stage13_script_zh_en,missing qualifier,C15,"round o：C15 补“全作者版本同样从 L8 起可解码（测试集 +0.048 [0.039, 0.058]）”",(whole document),,
+过程报告 process_report,stale phrase,,round n：标题位置 probe 首 token 旧值作为主数字（不在“旧版”括号内）,#s6 | 实验全过程汇总：数据、步骤、HPC 实操、问题与调整 > 5. 主要发现汇总（STATUS §0 / report v26 / 进度汇报页）,126,"L24–L48 ≈ 0；F2 作者提示 lens 到 L62 才区分；标题位置 probe 少量信号（E4b，target + control 1,395 篇：L24 +0.050、L40 +0.061、L56 +0.075），只打首 token。进度汇报页 标题位置表示论文属性（年份 R² 到 0.56、引用到 0.53、领域约 0.70–0.72），"":"""
+README 草稿 b,missing qualifier (local),H2,H2 状态须为“部分支持但未确立”,README > Status | 第235行,235,"/ | | Stage 13 M1–M4, X1–X7 | what the middle layers hold | H2 partly supported, not established; H3 partly supported (name-position probe, 2026-11-09) | done | 381_stage13/report"
+过程报告草稿 draft_zh.md,stale phrase,,round n：标题位置 probe 首 token 旧值作为主数字（不在“旧版”括号内）,jlens 项目过程报告（素材稿，2026-11-04） > 5. 主要发现汇总（STATUS §0 / report v26 / advisor 页） | 第319行,319,"L24–L48 ≈ 0；F2 作者提示 lens 到 L62 才区分；标题位置 probe 少量信号（E4b，target + control 1,395 篇：L24 +0.050、L40 +0.061、L56 +0.075），只打首 token。【advisor 页】 5. 标题位置表示论文属性（年份 R² 到 0.56、引用到 0.53、领域约 0.70–"

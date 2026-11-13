@@ -1,0 +1,144 @@
+{
+ "one": {
+  "67": "recovery(l) = mean_p[ P̄_p(l) − F̄_p ] / mean_p[ T̄_p − F̄_p ]（P1 位置子集 / P2 单层单组件；5 个假标题平均，细虚线 = 只用 false_0）· Stage 11 样本 1,186 篇 · 团队整群 95% CI · 391_groups/summary_b1_p12f/p12f_mean5.csv（b1_p12f_report.md）",
+  "68": "X6：R(l) = mean_papers(nlr_patched@l − nlr_false) / mean_papers(nlr_true − nlr_false)；平均 R = 5 个标题 R 的简单平均（bootstrap 同样逐次平均） · X7：T(l) = mean(kT64 − kT_l) / mean(true − false)；F(l) = mean(kF64 − kF_l) / mean(true − false)；S(l) = T(l) − F(l)（论文特有损失） · 1,186 篇（593 + 593），标题后全部位置，最终输出 · 团队整群 95% CI · summary_x6/x6_recovery.csv；summary_b1_x7f/x7f_knockout.csv",
+  "72": "spec(p) = score(p, X_true) − score(p, X_false_0)，每个名字 token 按角色取名次 → nlr；T − C：target−control = Σ_b w_b [mean_{target,b} − mean_{control,b}]，w_b = n_t n_c/(n_t+n_c) 归一化 · L40，名 1,706 / 姓 1,395 / 首字母 1,590 篇（V0）；Vpd 3,046 / 4,654 / 4,812 篇 · 团队整群 95% CI · alltok_controls.csv；perdonor_by_run_layer.csv",
+  "np": "名字位置 probe：ridge 从第 l 层\"预测名字 token 的位置\"的残差拟合到同一位置模型自己的 L63 状态，在 9,137 个名字 token 内求名次 → nlr；spec = probe(true) − probe(false)（方法手册 定义：名字位置 probe spec） · T − C：档内合并差 · Vpd 4,654 篇（姓首 token），层 L32–L56 · 团队整群 95% CI · summary_b2_np/np_lens_compare_v2.csv；np_role_layer_v2.csv",
+  "c24": "论文内 AUROC：每篇 target 论文（≥ 1 个真作者 M 且 ≥ 1 个编造名字 H）内的全部 M–H 名字对，probe 分数 M > H 记 1、并列记 0.5，取平均（方法手册 定义：2-11b 论文内 AUROC） · 518 篇 target 论文、3,388 个 M–H 对，L16–L56 · 团队整群 95% CI · b2_gennames_b/summary/probe_within.csv；robust_posthoc.csv",
+  "82": "分母 = mean_p[ T̄_p − F̄_p ] · 未写出作者，A 557 / B 586 / C 462 / D 33 篇 · 团队整群 · cd_group_values.csv"
+ },
+ "five": {
+  "67": [
+   [
+    "怎么算",
+    "recovery(l) = mean_p[ P̄_p(l) − F̄_p ] / mean_p[ T̄_p − F̄_p ]（P1、P2 同一估计量：分子换成\"替换后 − 未替换\"，分母\"真 − 未替换\"，见方法手册 D-P1 / D-P2）"
+   ],
+   [
+    "数据",
+    "Stage 11 样本 1,186 篇（target 593 + control 593），全部作者全部名字 token，最终输出 L63；P1 层 L32–L56，P2 层 L8–L56"
+   ],
+   [
+    "对照",
+    "5 个假标题 false_0..false_4 各做一次替换，取平均（主线）；细虚线 = 只用 false_0（原 Stage 12 发表版）"
+   ],
+   [
+    "区间",
+    "团队整群 bootstrap 2,000 次（按作者团队重抽，2.5/97.5 百分位）"
+   ],
+   [
+    "出处",
+    "391_groups/summary_b1_p12f/p12f_mean5.csv；391_groups/reports/b1_p12f_report.md"
+   ]
+  ],
+  "68": [
+   [
+    "怎么算",
+    "X6：R(l) = mean_papers(nlr_patched@l − nlr_false) / mean_papers(nlr_true − nlr_false)；平均 R = 5 个标题 R 的简单平均（bootstrap 同样逐次平均）；X7：T(l) = mean(kT64 − kT_l) / mean(true − false)；F(l) = mean(kF64 − kF_l) / mean(true − false)；S(l) = T(l) − F(l)（论文特有损失）"
+   ],
+   [
+    "数据",
+    "Stage 11 样本 1,186 篇（target 593 + control 593），标题后全部位置，全部作者全部名字 token，最终输出；X6 层 L24–L63，X7 起始层 L0–L62"
+   ],
+   [
+    "对照",
+    "X6：5 个假标题各替换一次（细线），粗线为平均；X7：同样的阻断在假标题运行上做一遍（F），S = T − F；判据 S(L52) ≤ 0.05（红虚线）"
+   ],
+   [
+    "区间",
+    "团队整群 bootstrap 2,000 次（按作者团队重抽，2.5/97.5 百分位）"
+   ],
+   [
+    "出处",
+    "381_stage13/summary_x6/x6_recovery.csv；381_stage13/summary_b1_x7f/x7f_knockout.csv；x6_report.md；b1_x7f_report.md"
+   ]
+  ],
+  "72": [
+   [
+    "怎么算",
+    "score(p, x) = mean_{a ∈ authors(p)} −log10( 1 + #{v ∈ V: ℓ_v(x) > ℓ_{g_a}(x)} )，ℓ(x) = RMSNorm(probe(x)) · W_Vᵀ；spec(p) = score(p, X_true) − score(p, X_false_0)（推广到全部作者全部名字 token，按角色取 gold）；target − control：target−control = Σ_b w_b [mean_{target,b} − mean_{control,b}]，w_b = n_t n_c/(n_t+n_c) 归一化"
+   ],
+   [
+    "数据",
+    "标题最后一个 token 的残差，L40；target + control 论文，剔除标题复用后：名 1,706、姓 1,395、首字母 1,590 篇（V0）；逐个排除版 Vpd 名 3,046、姓 4,654、首字母 4,812 篇"
+   ],
+   [
+    "对照",
+    "置换对照：gold 换成随机另一篇 / 同领域另一篇论文的作者；三个版本 V0（预注册，只减 false_0）/ Vpd（事后偏离 D1）/ V5x0（5 个假标题平均，含泄漏，仅敏感性）"
+   ],
+   [
+    "区间",
+    "团队整群 bootstrap 2,000 次（按作者团队重抽，2.5/97.5 百分位）"
+   ],
+   [
+    "出处",
+    "381_stage13/summary_alltok/alltok_controls.csv；381_stage13/summary_b1_e4b5/perdonor_by_run_layer.csv；e4b_alltok.md；b1_e4b5_report.md"
+   ]
+  ],
+  "np": [
+   [
+    "怎么算",
+    "名字位置 probe：ridge 从第 l 层\"预测名字 token 的位置\"的残差拟合到同一位置模型自己的 L63 状态，在 9,137 个名字 token 内求名次 → nlr；spec = probe(true) − probe(false)（方法手册 定义：名字位置 probe spec）；target − control：target−control = Σ_b w_b [mean_{target,b} − mean_{control,b}]，w_b = n_t n_c/(n_t+n_c) 归一化"
+   ],
+   [
+    "数据",
+    "target + control 6,841 篇中逐个假标题排除后保留 4,654 篇（姓首 token；每篇平均约 1.5 个可用假标题），名字位置（预测每个名字 token 的位置），L32、L40、L48、L52、L56；teacher forcing"
+   ],
+   [
+    "对照",
+    "主版本 Vpd（D11-1）；V0（只减 false_0）与 V5x0（含泄漏，仅敏感性）见报告；lens 对照：logit lens、public J-lens 在同一组论文、token、假标题上读；置换对照：gold 换成随机另一篇论文的作者"
+   ],
+   [
+    "区间",
+    "团队整群 bootstrap 2,000 次（按作者团队重抽，2.5/97.5 百分位）"
+   ],
+   [
+    "出处",
+    "381_stage13/summary_b2_np/np_lens_compare_v2.csv；np_role_layer_v2.csv；381_stage13/reports/b2_np_report_v2.md（第 5 节判据表）"
+   ]
+  ],
+  "c24": [
+   [
+    "怎么算",
+    "论文内 AUROC：每篇 target 论文（≥ 1 个真作者 M 且 ≥ 1 个编造名字 H）内的全部 M–H 名字对，probe 分数 M > H 记 1、并列记 0.5，取平均（方法手册 定义：2-11b 论文内 AUROC）；判据：CI(probe − 排位) > 0 且 CI(probe − 名字特征) > 0"
+   ],
+   [
+    "数据",
+    "target 论文中至少有 1 个真作者和 1 个编造名字的 518 篇，671 个真名，3,388 个论文内名字对；L16–L56 七层；(ii) 名字 token 平均（主）、(i) 写名字之前的位置（次）；chat 模板下现场生成"
+   ],
+   [
+    "对照",
+    "基线：名字在列表中的位置；名字长度与队列内频率；名气（事后）；三者合并（事后）；打乱标签（训练折内置换）≈ 0.5"
+   ],
+   [
+    "区间",
+    "团队整群 bootstrap 2,000 次（按作者团队重抽，2.5/97.5 百分位）"
+   ],
+   [
+    "出处",
+    "381_stage13/b2_gennames_b/summary/probe_within.csv；robust_posthoc.csv；381_stage13/reports/b2_gennames_b_report.md；b2_gennames_b_robust_posthoc.md"
+   ]
+  ],
+  "82": [
+   [
+    "怎么算",
+    "分母 = mean_p[ T̄_p − F̄_p ]，即 recovery(l) = mean_p[ P̄_p(l) − F̄_p ] / mean_p[ T̄_p − F̄_p ] 的分母；parity：max |Δlogit|（容差 0.25 → 0.5）；首名复现率 = 复现出的第一作者名字比例"
+   ],
+   [
+    "数据",
+    "E1 未写出作者：A 557、B 586、C 462、D 33 篇（D 只作描述）；parity 12 个上下文、25 对；2-11 首名复现率 0.880"
+   ],
+   [
+    "对照",
+    "分母只用 false_0；C 与 A 比较在同一引用档内（258 篇可比）"
+   ],
+   [
+    "区间",
+    "团队整群 bootstrap 2,000 次（按作者团队重抽，2.5/97.5 百分位）（分母柱）；parity 与复现率无区间"
+   ],
+   [
+    "出处",
+    "391_groups/b2_cd/summary/cd_group_values.csv；351_stage10/reports/parity.json；381_stage13/orch_b2/state.json；m3_scores.md §2"
+   ]
+  ]
+ }
+}

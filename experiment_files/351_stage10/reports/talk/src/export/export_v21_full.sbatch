@@ -15,5 +15,5 @@ E=/scratch/zhang.zhiqi2/jlens/351_stage10/reports/talk/src/export; O=/scratch/zh
 D=/scratch/zhang.zhiqi2/jlens/351_stage10/reports/downloads; PY=~/conda-envs/jlens/bin/python
 cd $E
 export PLAYWRIGHT_BROWSERS_PATH=/scratch/zhang.zhiqi2/pw PYTHONPATH=/scratch/zhang.zhiqi2/pylib2
-NOTES_H=1620 PARTS=1-27,28-55,56-82 $PY export_deck_v20d_split3.py $D /scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html v21
+NOTES_H=1620 PARTS=1-27,28-55,56-84 $PY export_deck_v20d_split3.py $D /scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html v21
 ls -la $D/Stage1-13_deck_v21_*_part*.pdf

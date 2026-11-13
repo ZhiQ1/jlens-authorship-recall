@@ -666,3 +666,193 @@ Round l exports: 11836527 (report v30, handbook 20261108c, page / talk-doc PDFs)
 ### round m (wording gaps after round-l check)
 | m1 | C24 overview caveat | stage1_11/stage1_11_report.html | …读不出（次分析，…） | + 输出置信度替代解释尚未排除；事后、探索性的知名度基线不能解释 | 1 |
 | m2 | Patchscope en "not used for H3" | talk_docs/stage13_script_zh_en.html, github/README_draft_20261106b.md | …exploratory) | …exploratory; not used for H3) | 2 |
+
+## round n
+
+Script `sync_20261107/apply_20261112n.py` (backups `*.before_20261112n`; census + 需要用户拍板 in ~/jlens_work/review_queue.md "首 token / 第一作者主数字普查（2026-11-12）"; numbers asserted against e4b_alltok.md, b1_xall_report.md, b2_m3tok.md). Target − control claims and C15 (X4 first author) not changed.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| n1 | stage1_11/stage1_11_report.html | 已复核</span>：L24 约 +0.05，L40 约 +0.06，L56 约 +0.08（+0.050 / +0.061 / +0.075） | 已复核</span>：全部作者、全部名字 token、按角色（补充 9，预注册版 V0，只减 false_0）L24 / L40 / L56：名的第一个 token +0.098 / +0.124 / +0.163，姓的第一个 token +0.058 / +0.071 / +0.098，首字母 +… | 1 |
+| n2 | stage1_11/stage1_11_report.html | ；目标组比对照组高 +0.03 到 +0.08（L24–L60 | ；旧版（只打首 token）中目标组比对照组高 +0.03 到 +0.08（L24–L60 | 1 |
+| n3 | stage1_11/stage1_11_report.html | about +0.05 at L24, +0.06 at L40 and +0.08 at L56 (+0.050 / +0.061 / +0.075) | all authors, all name tokens by role (addendum 9, pre-registered V0) at L24 / L40 / L56: given-name first token +0.098 / +0.124 / +0.163, surname firs… | 1 |
+| n4 | notes_zh.json #39 | L24 约 0.05，到 L56 升到约 0.08〔 | 全部作者、全部名字 token、按角色（补充 9，预注册版 V0，只减 false_0）L24 / L40 / L56 的标题特异信号：名的第一个 token +0.098 / +0.124 / +0.163，姓的第一个 token +0.058 / +0.071 / +0.098，首字母 +0.0… | 1 |
+| n5 | notes_zh.json #40 | 复核后为 +0.05 到 +0.08〔 | 复核后为 +0.05 到 +0.08（旧版只打首 token）；全部作者全部名字 token 按角色（补充 9）各层都为正，L40 名首 token +0.124、姓首 token +0.071、首字母 +0.044〔e4b_alltok.md〕〔 | 1 |
+| n6 | notes_zh.json #73 | 复核：+0.05 到 +0.08〔 | 复核：全部作者全部名字 token 按角色（补充 9，预注册版 V0）：L40 名首 token +0.124、姓首 token +0.071、首字母 +0.044〔e4b_alltok.md〕（旧版只打首 token：+0.05 到 +0.08）〔 | 1 |
+| n7 | talk_docs/experiment_walkthrough_zh.html | E4b 信号只用其中 target + control 的 1,395 篇：L24 +0.050、L40 +0.061、L56 +0.075。 | E4b 信号只用其中 target + control 的 1,395 篇。全部作者、全部名字 token、按角色（补充 9，预注册版 V0，只减 false_0）L24 / L40 / L56：名的第一个 token +0.098 / +0.124 / +0.163，姓的第一个 token +0.… | 1 |
+| n8 | talk_docs/experiment_walkthrough_methods_zh.html | <strong>结果</strong>：L24 +0.050，L40 +0.061，L56 +0.075（E4b | <strong>结果</strong>：全部作者、全部名字 token、按角色（补充 9，预注册版 V0，只减 false_0）L24 / L40 / L56：名的第一个 token +0.098 / +0.124 / +0.163，姓的第一个 token +0.058 / +0.071 / +0.… | 1 |
+| n9 | advisor/index.html | （L24 <span class="num">+0.050</span>、L40 <span class="num">+0.061</span>、L56 <span class="num">+0.075</span>，换成随机论文的作者后约为 0； | （全部作者全部名字 token 按角色（补充 9，预注册版 V0）：L40 名首 token +0.124、姓首 token +0.071、首字母 +0.044；旧版只打首 token：L24 <span class="num">+0.050</span>、L40 <span class="num"… | 1 |
+| n10 | merged_deck/stage1_11_deck.html | slide 24 diagram: first author / +0.061 / footnote | all authors / surname 1st token +0.071 / addendum-9 footnote (old +0.061) | 6 |
+| n11 | notes_zh.json #24 | 预测第一作者的首个 token 或年份。标题特异分数 spec = 真标题的探针分 − 假标题的探针分，L40 为 +0.061 [0.047, 0.076]〔Stage 13 E4b 复核，标题最后一个 token 上的 probe，probe 只打分第一作者名字的第一个 token， | 预测每位作者名字的 token（按角色）或年份。标题特异分数 spec = 真标题的探针分 − 假标题的探针分，全部作者全部名字 token 按角色（补充 9，预注册版 V0）L40 姓的第一个 token +0.071 [0.058, 0.085]、名的第一个 token +0.124 [0.10… | 1 |
+| n12 | notes_zh.json #24 | Confirmatory 表 L40 行 new 列〕。年份的 R² | Confirmatory 表 L40 行 new 列〕）。年份的 R² | 1 |
+| n13 | stage1_11/stage1_11_report.html | 全部 0.90 [0.86, 0.94]，target 0.90 [0.85, 0.94]，control 0.91 [0.84, 0.98]，两组之差 −0.01 [−0.09, +0.07] | 全部作者、全部名字 token 0.897 [0.868, 0.926]，target − control −0.007 [−0.075, +0.059]（补充 10 第 1 项；381_stage13/reports/b1_xall_report.md）（旧版只看第一作者：全部 0.90 [0.8… | 1 |
+| n14 | stage1_11/stage1_11_report.html | 约 90%<span class="src">（Stage 13 X3 行为恢复比例 0.90 [0.86, 0.94]，测试集 552 篇； | 约 90%<span class="src">（Stage 13 X3 行为恢复比例，全部作者全部 token 0.897 [0.868, 0.926]（b1_xall_report.md）；旧版只看第一作者：0.90 [0.86, 0.94]，测试集 552 篇； | 1 |
+| n15 | merged_deck/stage1_11_deck.html | behaviour keeps ≈ 90% of the first-author preference<span class="src">(same, 0.90 [0.86, 0.94])</span> | behaviour keeps ≈ 90% of the author preference<span class="src">(all authors, all tokens 0.897 [0.868, 0.926]; old first-author version 0.90 [0.86, 0.… | 1 |
+| n16 | notes_zh.json #70 | 行为上保留约 90% 的第一作者偏好〔同上，教师强制打分，0.90 [0.86, 0.94]〕 | 行为上保留约 90% 的作者偏好〔全部作者全部 token 0.897 [0.868, 0.926]，补充 10 第 1 项；旧版只看第一作者：0.90 [0.86, 0.94]〕 | 1 |
+| n17 | methods/parts/G_appendix.html | 行为上保留约 90% 的第一作者偏好（0.90 [0.86, 0.94]） | 行为上保留约 90% 的作者偏好（全部作者全部 token 0.897 [0.868, 0.926]；旧版只看第一作者：0.90 [0.86, 0.94]） | 1 |
+| n18 | stage1_11/stage1_11_report.html | ，第一作者首 token +0.147 [+0.096, +0.191]<span class="src">（同上，第一作者首 token 分数；m3_scores.md 第 3 节）</span> | ，全部作者全部名字 token +0.234 [+0.215, +0.252]<span class="src">（补充 12 第 2-10 项；381_stage13/reports/b2_m3tok.md）</span>（旧版只看第一作者首 token：+0.147 [+0.096, +0.19… | 1 |
+| n19 | merged_deck/stage1_11_deck.html | first-author first token +0.147 [0.096, 0.191]<span class="src">(output | all authors, all name tokens +0.234 [0.215, 0.252] (2-10; old first-author first-token version +0.147 [0.096, 0.191])<span class="src">(output | 1 |
+| n20 | notes_zh.json #80 | 第一作者首 token +0.147〔同上，[0.096, 0.191]〕 | 全部作者全部名字 token +0.234〔补充 12 第 2-10 项，[0.215, 0.252]；b2_m3tok.md〕（旧版只看第一作者首 token：+0.147〔[0.096, 0.191]〕） | 1 |
+| n21 | stage1_11/stage1_11_report.html | (pd-limits list end) | <li><b>仍为首 token / 第一作者的分析（2026-11-12）。</b>Stage 4–8（含 Stage 8 的 W）：存储的数据只有候选名字第一个 token 的 logit；GPU 重做即 3-4 / 3-5，用户 2026-11-06 决定不做；C-1 / C-2 是全部作者的 | 1 |
+| n22 | advisor/index.html | <li><b>2026-11-08（报告第 30 版）补充的局限：</b> | <li><b>仍为首 token / 第一作者的分析（2026-11-12）：</b>Stage 4–8（含 Stage 8 的 W）（存储的数据只有候选名字第一个 token 的 logit；GPU 重做即 3-4 / 3-5，用户 2026-11-06 决定不做；C-1 / C-2 是全部作者的… | 1 |
+| n23 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | <li><b>2026-11-08（报告第 30 版）补充的局限：</b> | <li><b>仍为首 token / 第一作者的分析（2026-11-12）：</b>Stage 4–8（含 Stage 8 的 W）（存储的数据只有候选名字第一个 token 的 logit；GPU 重做即 3-4 / 3-5，用户 2026-11-06 决定不做；C-1 / C-2 是全部作者的… | 1 |
+| n24 | pages_20261106b/methods_addendum/index.html | <li><b>2026-11-08（报告第 30 版）补充的局限：</b> | <li><b>仍为首 token / 第一作者的分析（2026-11-12）：</b>Stage 4–8（含 Stage 8 的 W）（存储的数据只有候选名字第一个 token 的 logit；GPU 重做即 3-4 / 3-5，用户 2026-11-06 决定不做；C-1 / C-2 是全部作者的… | 1 |
+| n25 | process_report/draft_zh.md |  - **2026-11-08（报告第 30 版）补充的局限：** |  - **仍为首 token / 第一作者的分析（2026-11-12）：**Stage 4–8（含 Stage 8 的 W）（存储的数据只有候选名字第一个 token 的 logit；GPU 重做即 3-4 / 3-5，用户 2026-11-06 决定不做；C-1 / C-2 是全部作者的代理，指… | 1 |
+| n26 | github/README_draft_20261106b.md | - Cannot be redone: one model; teacher forcing; label pipeline not on the cluster; the 4097+ citation bin has no B / D papers. | - Cannot be redone: one model; teacher forcing; label pipeline not on the cluster; the 4097+ citation bin has no B / D papers. Analyses still on the f… | 1 |
+| n27 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+| n2-1 | merged_deck/stage1_11_deck.html (slide 24) | ⚠ E4b scores only the first name token (mostly an initial) · all tokens by role: see the addendum-9 slide (surname first… | ⚠ Main number = all authors, all name tokens by role (addendum 9; surname first token L40 +0.071; old first-token version (E4b) +0.061 | 1 |
+| n2-2 | merged_deck/stage1_11_deck.html (slide 24) | +0.071: addendum 9, all authors, all name tokens by role (surname first token), pre-registered V0, 1,395 papers, team fo… | +0.071: addendum 9, all authors, all tokens, surname first token, V0, 1,395 papers (old first-token: +0.061); e4b_alltok.md | 1 |
+Round n exports: 11837552 (report v30, handbook 20261108c, page / talk-doc PDFs); deck v21 11837551 → 11837594 (final, after slide-24 warning line / footnote fix); pptx via pptx_text_fix_20261112n.py (9/9 rules, notes 24/39/40/70/73/80).
+
+## round n (2)
+
+Script `sync_20261107/apply_20261112n2.py` (backups `*.before_20261112n2`). X1 all-author R from b1_xall_report.md lines 61/63/64; the report has no X1 R sentence (nothing changed there). Handbook F X3 table: all-author table added, first-author table kept as 旧版.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| n2-1 | merged_deck/stage1_11_deck.html | R ≈ 0.99 (L24), 0.92 (L40), 0.42 (L48) whichever question the state came from | R ≈ 0.996 (L24), 0.933 (L40), 0.455 (L48) for all authors, whichever question the state came from (old first-author version: 0.99 / 0.92 / 0.42) | 1 |
+| n2-2 | notes_zh.json #62 | L24 约 0.99，L40 约 0.92，L48 约 0.42〔 | 全部作者 L24 约 0.996，L40 约 0.933，L48 约 0.455〔补充 10 第 1 项；381_stage13/reports/b1_xall_report.md “X1: R (test, confirmatory) by stratum” 表〕（旧版只看第一作者：L24 约 0… | 1 |
+| n2-3 | notes_zh.json #69 | 恢复 R 在 L24 约 0.99、L40 0.92、L48 0.42〔 | 恢复 R 在 L24 约 0.996、L40 0.933、L48 0.455（全部作者，b1_xall_report.md；旧版只看第一作者：0.99 / 0.92 / 0.42）〔 | 1 |
+| n2-4 | github/README_draft_20261106b.md | (R 0.99 at L24, 0.92 at L40) | (all authors R 0.996 at L24, 0.933 at L40; old first-author version: 0.99, 0.92) | 1 |
+| n2-5 | methods/parts/F_stage13.html | (X3 behaviour table, first author) | all-author table inserted above; old table labelled 旧版只看第一作者 | 1 |
+Round n (2) exports: 11837654 (report, handbook, pages) + deck v21 11837653; pptx_text_fix_20261112n2.py (1/1 rule, notes 62/69).
+
+## round n (3)
+
+Script `sync_20261107/apply_20261112n3.py` (backups `*.before_20261112n3`).
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| n3-1 | methods/parts/F_stage13.html | X1 result table (first author only) | all-author table (b1_xall_report.md lines 56–64) inserted above; old table labelled 旧版只看第一作者 | 1 |
+Round n (3) export: 11837799 (handbook PDF).
+
+## round o
+
+Script `sync_20261107/apply_20261112o.py` (backups `*.before_20261112o`). Target − control: wording B v3 main, old first-token in parentheses. C15: all-author sentence added; b1_xall_report.md lines 179/203 show the all-author X4 WAS tune/test-split (confirmed on test), so the requested "未做调参/测试拆分" was not written.
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| o1 | stage1_11/stage1_11_report.html | (regex) ；旧版（只打首 token）中目标组比对照组高 \+0\.03 到 \+0\.08（L24–L60，置信区间在 0 以上，L44 下界 \+0\.000 在边界上）(<span class="src">.*?</span>) | (computed) | 1 |
+| o2 | stage1_11/stage1_11_report.html | ，标题最后一个 token 上从 L24 起就有可被线性读出的、属于这篇论文的作者信息（目标组更多），只是现有 lens 读不出来。 | ，标题最后一个 token 上从 L24 起就有可被线性读出的、属于这篇论文的作者信息，只是现有 lens 读不出来。target − control（同一引用档内，全部作者全部名字 token 按角色，措辞 B 第 3 版）：预注册版中名的第一个 token 在 L24–L48 为正，姓在 L24… | 1 |
+| o3 | notes_zh.json #25 | ，目标组更多，只是 lens 读不出来。 | ，只是 lens 读不出来。target − control（同一引用档内，全部作者全部名字 token 按角色，措辞 B 第 3 版）：预注册版中名的第一个 token 在 L24–L48 为正，姓在 L24–L48 不显著（L40 +0.012 [−0.026, +0.048]）；事后的逐个排除… | 1 |
+| o4 | notes_zh.json #73 | 和 probe 的结果（标题 token 上目标组有优势） | 和 probe 的结果（标题 token 上的 target − control（同一引用档内，全部作者全部名字 token 按角色，措辞 B 第 3 版）：预注册版中名的第一个 token 在 L24–L48 为正，姓在 L24–L48 不显著（L40 +0.012 [−0.026, +0.048… | 1 |
+| o5 | talk_docs/experiment_walkthrough_zh.html | 从 L24 起 +0.05 到 +0.08，target 比 control 高 +0.03 到 +0.08。 | 全部作者全部名字 token 按角色从 L16 起各角色都为正（L40 名首 token +0.124、姓首 token +0.071、首字母 +0.044）；target − control（同一引用档内，全部作者全部名字 token 按角色，措辞 B 第 3 版）：预注册版中名的第一个 toke… | 1 |
+| o6 | talk_docs/keys_and_shelves_script_zh_en.html | 从 L24 起 +0.05 到 +0.08，target 比 control 高 +0.03 到 +0.08。 | 全部作者全部名字 token 按角色从 L16 起各角色都为正（L40 名首 token +0.124、姓首 token +0.071、首字母 +0.044）；target − control（同一引用档内，全部作者全部名字 token 按角色，措辞 B 第 3 版）：预注册版中名的第一个 toke… | 1 |
+| o7 | talk_docs/progress_report_for_advisor_zh.html | 从 L24 起 +0.05 到 +0.08，target 比 control 高 +0.03 到 +0.08。 | 全部作者全部名字 token 按角色从 L16 起各角色都为正（L40 名首 token +0.124、姓首 token +0.071、首字母 +0.044）；target − control（同一引用档内，全部作者全部名字 token 按角色，措辞 B 第 3 版）：预注册版中名的第一个 toke… | 1 |
+| o8 | talk_docs/experiment_walkthrough_methods_zh.html | ；target 比 control 高 +0.03 到 +0.08；两个置换对照 | ；target 比 control 高 +0.03 到 +0.08（以上为旧版）。target − control（同一引用档内，全部作者全部名字 token 按角色，措辞 B 第 3 版）：预注册版中名的第一个 token 在 L24–L48 为正，姓在 L24–L48 不显著（L40 +0.01… | 1 |
+| o9 | talk_docs/keys_and_shelves_script_zh_en.html | The probe reads +0.05 to +0.08 from L24 onward, and target exceeds control by +0.03 to +0.08; | With all name tokens of all authors by role every role is positive from L16 (L40: given-name first token +0.124, surname first token +0.071, initial +… | 1 |
+| o10 | stage1_11/stage1_11_report.html | ，而且很弱。也就是说，最早可解码的顺序是 | ，而且很弱。全作者版本同样从 L8 起可解码（测试集 +0.048 [0.039, 0.058]，按调参集选层、测试集确认；381_stage13/reports/b1_xall_report.md 第 179、203 行）。也就是说，最早可解码的顺序是 | 1 |
+| o11 | merged_deck/stage1_11_deck.html | (Stage 13 X4, test split, team CI; x4_report.md)</span> | (Stage 13 X4, test split, team CI; x4_report.md)</span> (all authors also from L8: +0.048 [0.039, 0.058]) | 1 |
+| o12 | notes_zh.json #70 | (regex) (第一作者从 L8 起可解码，D = \+0\.046〔[^〕]*〕) | (computed) | 1 |
+| o13 | advisor/index.html | 第一作者 L8 起可解码（<span class="num">+0.046 [0.035, 0.059]</span>，主要在姓上） | 第一作者 L8 起可解码（<span class="num">+0.046 [0.035, 0.059]</span>，主要在姓上）（全作者版本同样从 L8 起可解码：测试集 +0.048 [0.039, 0.058]） | 1 |
+| o14 | process_report/draft_zh.md | X4：第一作者 L8 起可解码（+0.046，主要在姓上 +0.066） | X4：第一作者 L8 起可解码（+0.046，主要在姓上 +0.066）（全作者版本同样从 L8 起可解码：测试集 +0.048 [0.039, 0.058]） | 1 |
+| o15 | process_report/draft_zh.md | X4：第一作者 L8 起可解码，可能来自标题文字； | X4：第一作者 L8 起可解码（全作者版本同样从 L8 起可解码：测试集 +0.048 [0.039, 0.058]），可能来自标题文字； | 1 |
+| o16 | github/README_draft_20261106b.md | X4: first author decodable at L8 but possibly explained by the title text. | X4: first author decodable at L8 (the all-author version also from L8, test +0.048 [0.039, 0.058], tune-selected and confirmed on test) but possibly e… | 1 |
+| o17 | talk_docs/experiment_walkthrough_zh.html | 第一作者 L8 就能解码出一点（+0.046） | 第一作者 L8 就能解码出一点（+0.046）（全作者版本同样从 L8 起可解码：测试集 +0.048 [0.039, 0.058]） | 1 |
+| o18 | talk_docs/experiment_walkthrough_methods_zh.html | 第一作者 L8 起可解码（+0.046） | 第一作者 L8 起可解码（+0.046）（全作者版本同样从 L8 起可解码：测试集 +0.048 [0.039, 0.058]） | 1 |
+| o19 | talk_docs/methods_handbook_guide_plain_zh.html | 第一作者 L8 就能解码，年份要到 L40 | 第一作者 L8 就能解码（全作者版本同样从 L8 起可解码：测试集 +0.048 [0.039, 0.058]），年份要到 L40 | 1 |
+| o20 | methods/parts/F_stage13.html | ；但第一作者（L8）早于年份（L40），与 H2 预测的方向相反。 | ；但第一作者（L8）早于年份（L40），与 H2 预测的方向相反。全作者版本同样从 L8 起可解码（测试集 +0.048 [0.039, 0.058]，按调参集选层、测试集确认；381_stage13/reports/b1_xall_report.md 第 179、203 行）。 | 1 |
+| o21 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md |   - 第一作者 L8 +0.046 [0.035, 0.059]； |   - 第一作者 L8 +0.046 [0.035, 0.059]；全作者版本同样从 L8 起可解码：测试集 +0.048 [0.039, 0.058]（调参集选层、测试集确认；`R13/reports/b1_xall_report.md` 第 179、203 行）； | 1 |
+| o22 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+Round o exports: 11838136 (report, handbook, pages) + deck v21 11838135; pptx_text_fix_20261112o.py (1/1 rule, notes 25/70/73).
+
+## round p
+
+Script `sync_20261107/apply_20261112p.py` (backups `*.before_20261112p`; gaps from out_20261112_154253/wording_v30/).
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| p1 | process_report/draft_zh.md | 标题位置 probe 少量信号（E4b，target + control 1,395 篇：L24 +0.050、L40 +0.061、L56 +0.075），只打首 token。 | 标题位置 probe 少量信号（全部作者、全部名字 token、按角色（补充 9，预注册版 V0，只减 false_0）L24 / L40 / L56：名的第一个 token +0.098 / +0.124 / +0.163，姓的第一个 token +0.058 / +0.071 / +0.098，… | 1 |
+| p2 | notes_zh.json #24 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p3 | notes_zh.json #25 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p4 | notes_zh.json #28 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p5 | notes_zh.json #31 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p6 | notes_zh.json #39 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p7 | notes_zh.json #40 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p8 | notes_zh.json #59 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p9 | notes_zh.json #73 | 注意：这个 probe 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9）已完成，见 Stage 13 部分的补充 9 页：L40 姓的第一个 token +0.071 [0.058… | 注意：旧版 E4b 只给每位作者名字的第一个 token 打分（73% 的名字以首字母开头，多数时候是首字母）；上面的主数字是给全部名字 token 打分、按首字母 / 名 / 姓分开的版本（补充 9，见 Stage 13 部分的补充 9 页）：L40 姓的第一个 token +0.071 [0.0… | 1 |
+| p10 | talk_docs/progress_report_for_advisor_zh.html | X4 先解码出第一作者（L8）再解码年份（L40），和 H2 预测的顺序相反； | X4 先解码出第一作者（L8）再解码年份（L40），和 H2 预测的顺序相反（全作者版本同样从 L8 起可解码（测试集 +0.048 [0.039, 0.058]，按调参集选层、测试集确认））； | 1 |
+| p11 | talk_docs/stage13_script_zh_en.html | 另外 X4 最早解码出的是第一作者（L8），年份要到 L40， | 另外 X4 最早解码出的是第一作者（L8；全作者版本同样从 L8 起可解码（测试集 +0.048 [0.039, 0.058]，按调参集选层、测试集确认）），年份要到 L40， | 1 |
+| p12 | talk_docs/stage13_script_zh_en.html | a probe reads a little of the first author from L8 (+0.046) | a probe reads a little of the first author from L8 (+0.046; the all-author version is also decodable from L8, test +0.048 [0.039, 0.058], tune-selecte… | 1 |
+| p13 | stage1_11/stage1_11_report.html | 事后、探索性的 | 事后，探索性的 | 1 |
+| p14 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+Round p exports: 11838232 (report, handbook, pages) + deck v21 11838231; pptx_text_fix_20261112p.py (notes 24/25/28/31/39/40/59/73).
+
+## round q
+
+Script `sync_20261107/apply_20261112q.py` (backups `*.before_20261112q`). 2-1 -> D12-5 status; deck diagram slides 62/63/64 (other diagram slides checked: 16, 20, 24, 27, 35 unchanged, see docstring).
+
+| # | file | before | after | count |
+|---|---|---|---|---|
+| q1 | stage1_11/stage1_11_report.html | 2-1 停止（D12-1，待用户定） | 2-1：出入记录 D12-5（gate 参照值用错精度：f64 对 fp32 日志；不是放宽判据），gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中 | 1 |
+| q2 | advisor/index.html | 2-1 停止（D12-1，待用户定） | 2-1：出入记录 D12-5（gate 参照值用错精度：f64 对 fp32 日志；不是放宽判据），gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中 | 1 |
+| q3 | process_report/draft_zh.md | 2-1 停止（D12-1，待用户定） | 2-1：出入记录 D12-5（gate 参照值用错精度：f64 对 fp32 日志；不是放宽判据），gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中 | 1 |
+| q4 | /scratch/zhang.zhiqi2/jlens/audit_20261105/scoring_audit.html | 2-1 停止（D12-1，待用户定） | 2-1：出入记录 D12-5（gate 参照值用错精度：f64 对 fp32 日志；不是放宽判据），gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中 | 1 |
+| q5 | pages_20261106b/methods_addendum/index.html | 2-1 停止（D12-1，待用户定） | 2-1：出入记录 D12-5（gate 参照值用错精度：f64 对 fp32 日志；不是放宽判据），gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中 | 1 |
+| q6 | talk_docs/progress_report_for_advisor_zh.html | 2-1 停止（D12-1，待用户定） | 2-1：出入记录 D12-5（gate 参照值用错精度：f64 对 fp32 日志；不是放宽判据），gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中 | 1 |
+| q7 | notes_zh.json #81 | 2-1 停止（D12-1，待定） | 2-1：出入记录 D12-5（gate 精度修正），gate v4 排队中 | 1 |
+| q8 | advisor/index.html | Fit B（2-1）停止，待定 | Fit B（2-1）：出入记录 D12-5（gate 参照值用错精度，已改为 fp32 对 fp32），gate v4 排队中 | 1 |
+| q9 | merged_deck/stage1_11_deck.html | 2-1 stopped (D12-1, user to decide); | 2-1: deviation D12-5 (gate reference computed in the wrong precision, f64 vs the fp32 log; not a relaxed criterion); gate fixed to fp32 vs fp32 and re… | 1 |
+| q10 | github/README_draft_20261106b.md | 2-1 stopped (D12-1, user to decide); | 2-1: deviation D12-5 (gate reference computed in the wrong precision, f64 vs the fp32 log; not a relaxed criterion); gate fixed to fp32 vs fp32 and re… | 1 |
+| q11 | github/README_draft_20261106b.md | 2-1 stopped (D12-1) | 2-1: D12-5, gate v4 queued | 1 |
+| q12 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | - 2-1：停止（D12-1，待用户定）。 | - 2-1：出入记录 D12-5（gate 参照值用错精度：f64 对 fp32 日志；不是放宽判据），gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中（`R13/config/prereg_addendum12_deviations_D12-5.json`，sha256… | 1 |
+| q13 | /home/zhang.zhiqi2/jlens_work/conclusions_v30_draft.md | （2-1 停止，D12-1，待用户定） | （2-1：出入记录 D12-5，gate 已改为 fp32 对 fp32 并恢复运行，gate v4 排队中） | 1 |
+| q14 | merged_deck/stage1_11_deck.html | slide 62: score first author; R table first author; footnote | score all authors; R table all authors (9 cells); footnote with old values | 11 |
+| q15 | merged_deck/stage1_11_deck.html | slide 63: first-author score +0.239 | all-author score +0.229 (old +0.239 in footnote) | 2 |
+| q16 | merged_deck/stage1_11_deck.html | slide 64 footnote | + "prompt asks for the first author by design" | 1 |
+| q17 | notes_zh.json #62 | 再给本篇第一作者打分： | 再给本篇全部作者打分（旧版只看第一作者）： | 1 |
+| q18 | notes_zh.json #63 | (regex) 第一作者分数改写 − D 为 \+0\.239(〔[^〕]*〕) | (computed) | 1 |
+| q19 | notes_zh.json #64 | 第一作者从 L8 起可以解码（+0.046） | 第一作者从 L8 起可以解码（+0.046；提示按设计问第一作者；全作者版本同样从 L8 起可解码，测试集 +0.048 [0.039, 0.058]） | 1 |
+| q20 | methods/parts/K_post_defence.html | (part 5) | (regenerated from the report) | 1 |
+Round q exports: 11838415 (report, handbook, pages) + deck v21 11838414; pptx_text_fix_20261112q.py (6 rules, 9 R cells, notes 62/63/64/81).
+| q2-1 | notes_zh.json #81 (overflow) | ；与预注册的出入记在补充 12 出入记录 D12-1 到 D12-3〔prereg_addendum12_deviations.json〕，2-7 的来源改用不含年份的 X4 提示。 | ；出入记录见补充 12（D12-1 到 D12-5；2-7 的来源改用不含年份的 X4 提示）。 | 1 |
+Round q final deck v21: 11838428 (after note 81 shortened).
+
+## round r (deck charts, priority build for the talk)
+
+Script `sync_20261107/apply_20261112r.py` (+ `apply_20261112r_lib.py`, `apply_20261112r_charts.py`, `apply_20261112r_frag_b.py` for slide 65); backups `*.before_20261112r`. Priority slides only (coordinator 2026-11-12 19:05); slide numbers before insertion except where marked. Non-priority redraws (25, 28, 36, 39, 73, 74, 17, 34, 66), report 729/730, handbook definitions and the image-number CSV postponed (nothing written to those files).
+
+| # | file | change |
+|---|---|---|
+| r1 | deck slide 67 | chart slide: P1 / P2 by layer, five-title mean + CI, false_0 thin (p12f_mean5.csv) |
+| r2 | deck slide 68 | chart slide: X6 five false titles + mean; X7 S(l) target/control/all with S = 0.05 line |
+| r3 | deck slide 72 | chart slide: L40 bars by role + permutation controls; T − C forest V0 / Vpd / V5x0 (leaky light) |
+| r4 | deck slide 65 | header date → report v41, 2026-11-12 (patch over image + figcaption) |
+| r5 | deck slide 59 | P1 five-title mean main, false_0 in parentheses |
+| r6 | deck slide 59 | P2 five-title mean main, false_0 in parentheses |
+| r7 | deck slide 59 | one-line 怎么算 |
+| r8 | deck slide 21 | CI method statement (paper-level Stage 10–12, team-cluster from Stage 13) + 团队级补算进行中 |
+| r9 | deck slide 21 | one-line 怎么算 (SVG text) |
+| r10 | deck slide 6 | one-line 怎么算 (SVG text) |
+| r11 | deck slide 20 | one-line 怎么算 (SVG text) |
+| r12 | deck slide 35 | one-line 怎么算 (SVG text) |
+| r13 | deck slide 46 | one-line 怎么算 (SVG text) |
+| r14 | deck slide 23 | one-line 怎么算 (overlay below the image content) |
+| r15 | deck slide 44 | one-line 怎么算 (overlay below the image content) |
+| r16 | deck slide 45 | one-line 怎么算 (overlay below the image content) |
+| r17 | deck slide 49 | one-line 怎么算 (overlay below the image content) |
+| r18 | deck slide 65 | one-line 怎么算 |
+| r19 | deck slide 78 | one-line 怎么算 |
+| r20 | deck slide 82 | teacher-forcing limit: C24 exception |
+| r21 | deck slide 82 | chart: E1 denominators by group (cd_group_values.csv) + one-line 怎么算 |
+| r22 | deck slides 73, 74 (new) | name-position probe (addendum 11 A, H3 partly supported); C24 2-11b (初步：输出置信度基线进行中) |
+| r23 | notes_zh.json #59 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r24 | notes_zh.json #6 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r25 | notes_zh.json #20 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r26 | notes_zh.json #23 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r27 | notes_zh.json #21 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r28 | notes_zh.json #35 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r29 | notes_zh.json #44 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r30 | notes_zh.json #45 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r31 | notes_zh.json #46 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r32 | notes_zh.json #49 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r33 | notes_zh.json #67 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r34 | notes_zh.json #68 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r35 | notes_zh.json #72 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r36 | notes_zh.json #65 | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r37 | notes_zh.json #80 (old 78) | 1-minute talk script + five-line 怎么算 (old note kept in notes_zh.json.before_20261112r) |
+| r38 | notes_zh.json #84 (old 82) | 1-minute talk script + five-line 怎么算 |
+| r39 | notes_zh.json #73, #74 (new) | talk script + five-line 怎么算 |
+| r40 | talk/src/export/export_v21_full.sbatch | PARTS 1-27,28-55,56-82 → 1-27,28-55,56-84 (backup .before_20261112r) |
+| r41 | downloads/Stage1-13_deck_v21_editable.pptx (+ .b64.txt) | pptx_text_fix_20261112r.py: 67/68/72 + new 73/74 as full-slide pictures; 59 P1/P2 runs, 82→84 C24 exception + chart picture, 21 CI text, 65 date patch + caption, one-line 怎么算 boxes, page numbers 77–84, notes of changed/new slides = notes_zh.json |
+Round r exports: deck v21 PDFs 11842738 (84 slides; part 3 now p56-84; stale p56-82 files from 15:56 left in downloads, not removed).

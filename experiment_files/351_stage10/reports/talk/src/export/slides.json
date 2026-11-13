@@ -459,7 +459,8 @@
   "text": "Stage 12 Stage 12: where the paper information travels All 408 GPU units done · true title → false_0 · share of the true−false gap recovered at the output P1 one position at a time: the colon carries at most 0.17 (L52)(Stage 12 P1, 1,186 papers, paper bootstrap; P1_patch_pos.csv); all name positions together 0.85 at L52(same; CI [0.830, 0.864]); the whole prompt 1.00 (= Stage 11 E1)(same, 0.996) P2 one component of one layer: attention at L48 +0.23 [0.22, 0.24](Stage 12 P2, 1,186 papers; P2_patch_comp.csv), MLP at L52–L56 +0.18 to +0.22(same) → attention reads the title in, MLP processes it next N1 name plausibility: without a title the true list looks \"most real\" in 0.255 of papers (chance 0.25)(Stage 12 N1, 8,894 R0/R1 papers; N1_prior_mc.csv); with the true title 0.625(same, CI [0.615, 0.635]) N2 pure name prior (no paper): target − control +0.047 [0.031, 0.062] vs +0.247 with the true title(Stage 12 N2, final L63, 4,621 + 2,220, within bin; stage12_report.md) → prior ≈ 19% of the gap F2 lens fitted on author prompts: target − control ≤ 0 at L24–L56, +0.238 only at L62(Stage 12 F2, name positions, Stage 11 sample, true − 5 false; F2_author_lens.csv)",
   "figs": [],
   "added": "2026-11-05",
-  "new18": "s12"
+  "new18": "s12",
+  "updated": "2026-11-12r"
  },
  {
   "i": 68,
@@ -467,7 +468,8 @@
   "text": "Stage 13 · X6 X7 The Stage 11 timing holds for all 5 false titles X6: replacement with each of the 5 false titles · X7: knockout minus the same knockout on the false-title run (S = T − F) X6 replacement: mean over 5 false titles 0.821 at L48 and 0.995 at L52(Stage 13 X6, 1,186 papers, team-cluster CI; x6_recovery.csv); each false title within 0.02 of false_0(x6_report.md) → \"≈80% at L48, all from L52\" is not specific to false_0 By name-token role: surname first token 0.734 at L48, surname continuation 0.893; all roles ≥ 0.96 at L52(X6 roles, all papers; x6x7_roles.md) X7 knockout: blocking the title on the false-title run RAISES the true author score (F < 0), so the paper-specific loss S(L0) ≈ 1.00(Stage 13 X7, 1,186 papers, all: 1.004; x7_report.md); S(L52) = 0.029 [0.021, 0.038](same, all papers) Pre-registered verdict (false_0 only): holds for target (S(L52) 0.018) and all papers; control just misses (0.051, threshold 0.05)(X7, target 593 / control 593; x7_report.md) Added 2026-11-06, mean of 5 false titles: target +0.022, control +0.042, all +0.028 — all ≤ 0.05, so the claim holds in every group; control’s 0.051 was one false title’s fluctuation(addendum 10 item 2; b1_x7f_report.md)",
   "figs": [],
   "added": "2026-11-05",
-  "new18": "x6x7"
+  "new18": "x6x7",
+  "updated": "2026-11-12r"
  },
  {
   "i": 69,
@@ -500,22 +502,38 @@
   "figs": [],
   "added": "2026-11-05",
   "new18": "alltok",
-  "updated": "2026-11-06b"
+  "updated": "2026-11-12r"
  },
  {
-  "i": 73,
+  "kind": "html",
+  "text": "Name-position probe: H3 partly supported (addendum 11 A)",
+  "figs": [],
+  "added": "2026-11-12",
+  "new18": "np",
+  "i": 73
+ },
+ {
+  "kind": "html",
+  "text": "Names the model writes itself: true vs fabricated (C24, 2-11b; 初步：输出置信度基线进行中)",
+  "figs": [],
+  "added": "2026-11-12",
+  "new18": "c24",
+  "i": 74
+ },
+ {
+  "i": 75,
   "kind": "deck",
   "deck": 14,
   "notes": "Wrap up. One line: read early, spoken late. The title is taken in during L24 to L50 (patching, knockout, probe at the title token), but the author names only become readable at the name positions in L57 to L61. The lens result (no middle-layer lead for target) and the probe result (a small target lead at the title token) are about different positions and do not conflict."
  },
  {
-  "i": 74,
+  "i": 76,
   "kind": "deck",
   "deck": 15,
   "notes": "Limits. Stage 12 and Stage 13 are done. Stage 12: single-position patching (P1), attention versus MLP patching (P2, with an explicit hook check that passed), two name-prior baselines (N1, N2) and a lens fitted on author prompts (F1, F2): the middle layers are still not readable as names. Stage 13: probes read year, citations and field at the title from L16 or earlier (M2), but the task-swap identity index never exceeds the L4 text level (M3); the replacement effect is task-independent (X1); paraphrases share meaning beyond wording in L28 to L40, which cannot be separated from paper identity (X3); the first author is decodable at L8 but may be explained by the title text (X4); five false titles confirm the Stage 11 timing (X6, X7). Limits: one model, teacher-forced preference rather than generation, labels from the team lead package without the labelling code, H2 (paper identity) is partly supported but not established, and for H3 (hidden author knowledge) the evidence is insufficient."
  },
  {
-  "i": 75,
+  "i": 77,
   "kind": "html",
   "text": "Added after the defence Added after the defence (2026-11-05) Group comparisons (plan fixed before the results: addenda 7, 8) · CPU leftovers (post-hoc) · experiments still running 1. Group comparisons A / B / C / D: three findings, intervention re-runs (E1 and P1 / P2 numerator / denominator), recognition 2. CPU leftovers on existing data: X5 retrieval curve, M3 scores, N2 by layer, paper vs team intervals, M5 3. Redo programme (addenda 10–14): done, batch 1 (only P1 / P2 with five false titles still running), batches 2 and 3; limits that cannot be redone",
   "figs": [],
@@ -524,7 +542,7 @@
   "updated": "2026-11-06b"
  },
  {
-  "i": 76,
+  "i": 78,
   "kind": "html",
   "text": "Added after the defence · groups Group comparisons: three findings Plan fixed before the results (addenda 7, 8) · unwritten authors only · output (L63) title-specific signal · within citation bin · team-bootstrap 95% CI · Holm over 4 tests 1 Recognition: with no author written (R0), recognised papers (A) beat unrecognised ones (B) by +0.200 [0.188, 0.213](P1 A − B, 3,417 / 2,148 papers, Holm p ≤ 0.002; primary.csv); with confounders +0.173 [0.161, 0.186](paper level, 5,565), author level + position +0.151 [0.139, 0.163](19,893 authors) 2 Graded: each extra multiple-choice order right adds +0.059 [0.056, 0.063](P3, 8,288 R0 papers, bin FE; Holm p ≤ 0.002) (confounders +0.046 [0.042, 0.049](author level)); ≈ 0.17 with none right, ≈ 0.46 with all four(R0, 927 / 4,105 papers; stage10_curves.csv) 3 Partial recall helps little (≈ ⅓ of recognition), output only: C − A co-authors +0.061 [0.034, 0.090](P2-other, 390 / 2,826 papers, Holm p ≤ 0.002), first author +0.031 [−0.006, 0.069], n.s.(P2-first, 292 / 3,199); ≈ 0 at L48–L62 with the logit lens, −0.07 to −0.11 at L48–L59 with the public J-lens(stage10_contrasts.csv, unwritten_other). The earlier ≈ +0.11 used all authors (circular)(r0_r1_analysis.md §2) Reference only: R2 written authors +0.844(200 papers; summary_table.md); only 28 R2 papers have unwritten authors(same)",
   "figs": [],
@@ -532,7 +550,7 @@
   "new18": "pd1"
  },
  {
-  "i": 77,
+  "i": 79,
   "kind": "html",
   "text": "Added after the defence · re-runs Re-runs: numerator and denominator Addendum 8 · E1 recovery R = mean(patched − false) ÷ mean(true − false) · unwritten authors · team-cluster 95% CI B’s higher ratio is a small-denominator effect: numerator B − A −0.010, −0.040, −0.144, −0.184 at L24 / L40 / L48 / L52, all CIs below 0(e1_e2_num_den_B_minus_A.csv) — B carries no more absolute paper-specific signal than A at any layer. U0 timing as A and B (descriptive); R2 upper reference only; C 32 / D 5 / R2-unwritten 28 papers → descriptive(rerun_report.md Counts) group (unwritten authors) | papers | denominator: true − false | E1 numerator L48 | E1 R(L48) | E1 R(L52) A  R0 × recognised | 557 | +0.407 [0.386, 0.430] | +0.330 | +0.811 [0.790, 0.832] | +0.988 [0.980, 0.996] B  R0 × not recognised | 586 | +0.214 [0.196, 0.234] | +0.186 | +0.869 [0.835, 0.906] | +1.016 [1.002, 1.031] U0  R0 × uncertain | 599 | +0.293 [0.271, 0.316] | +0.248 | +0.844 [0.814, 0.877] | +1.000 [0.988, 1.012] C  R1 × recognised (descriptive) | 32 | +0.464 [0.388, 0.538] | +0.335 | +0.721 [0.650, 0.806] | +0.996 [0.968, 1.026] R2 written authors (reference) | 200 | +0.845 [0.798, 0.897] | +0.566 | +0.670 [0.630, 0.707] | +0.948 [0.927, 0.965]",
   "figs": [],
@@ -540,7 +558,7 @@
   "new18": "pd2"
  },
  {
-  "i": 78,
+  "i": 80,
   "kind": "html",
   "text": "Added after the defence · groups Recognition changes the size, not the timing Unwritten authors, output (L63) signal, plain means with team-bootstrap 95% CI; n < 30 descriptive Re-runs: over 0–4 orders right the denominator rises 0.185 → 0.407, while E1 R(L48) stays flat, 0.90 → 0.81(R0 papers A + U0 + B, 241 / 557 papers at 0 / 4; rerun_report.md “Continuous recognition”)",
   "figs": [],
@@ -548,7 +566,7 @@
   "new18": "pd3"
  },
  {
-  "i": 79,
+  "i": 81,
   "kind": "html",
   "text": "Added after the defence · re-runs P1 / P2: the same small-denominator effect Stage 12 single positions (P1) and attention / MLP (P2) split by group · unwritten authors · paired team bootstrap 95% CI B’s higher P1 / P2 ratios also come from the small denominator: B’s numerator is below A’s at the name positions, in attention and in the MLP; at the ':' token the numerators are similar in L44–L48 (B/A 0.78–0.99), and B’s ratio is higher only because its denominator is about half of A’s(A 557 / B 586 papers; denominator B − A −0.192, B/A 0.53; p1_p2_num_den_B_minus_A.csv; e1_num_den.md P1/P2) patched part | layer | numerator B − A | ratio B − A | numerator B/A P1 all name positions | L48 | −0.105 [−0.123, −0.087] | +0.052 [+0.011, +0.098] | 0.57 P1 all name positions | L56 | −0.183 [−0.209, −0.157] | −0.050 [−0.087, −0.012] | 0.50 P2 attention | L48 | −0.029 [−0.038, −0.021] | +0.057 [+0.030, +0.086] | 0.66 P2 MLP | L56 | −0.041 [−0.053, −0.029] | +0.008 [−0.030, +0.044] | 0.54 P1 ':' only | L48 | −0.000 [−0.007, +0.005] | +0.050 [+0.026, +0.071] | 0.99 P1 ':' only | L52 | −0.013 [−0.024, −0.002] | +0.073 [+0.038, +0.106] | 0.79",
   "figs": [],
@@ -556,7 +574,7 @@
   "new18": "pd3b"
  },
  {
-  "i": 80,
+  "i": 82,
   "kind": "html",
   "text": "Added after the defence · CPU CPU leftovers on existing data (post-hoc) No new GPU runs · descriptive only · not in the pre-registration except the X5 retrieval curve X5 retrieval curve (pre-registered, computed now): top-1 retrieval of the same paper across questions is never above L4(M3 cache, 9,108 papers; x5_retrieval.md) (title token 1.000 up to L44, 0.734 at the output)(same, team CI) M3 behaviour scores: year target − control +0.007 [0.003, 0.012]; first-author first token +0.147 [0.096, 0.191](output, 4,621 / 2,220, within bin, team CI; m3_scores.md) N2 by layer: pure name prior target − control +0.047 at the output, +0.039 at logit L62; public J-lens L48 −0.133 (true title)(Stage 12 N2 rescored by layer; n2_layers.md) → only L62 reproduces the output pattern Paper vs team intervals: width ratio 0.97–1.00 (median); \"excludes 0\" changes in 2 of 1,155 rows(X1, X4, X6, X7, M3; v42_paper_vs_team.md) M5 true vs false title at the name positions: output 0.919; logit L24 0.516 → L62 0.899(share of pairs, all papers × 5 false titles, team CI; m5_report.md); probe at title / colon AUROC 0.50–0.52(same, Part B)",
   "figs": [],
@@ -564,7 +582,7 @@
   "new18": "pd4"
  },
  {
-  "i": 81,
+  "i": 83,
   "kind": "html",
   "text": "Added after the defence · redo programme Redo programme (addenda 10–14) All rules fixed before the results · reproducing the published numbers is a hard check for every item · status 2026-11-06 evening Done: X7 with five false titles; all-token probe (addendum 9); CPU items C-1 to C-5; C-3b (no-exclusion sensitivity, includes leakage, not a conclusion) Batch 1, done: X1–X4 for all authors → conclusions unchanged (X1 task-independent, small L48 author − year +0.024; X3 keeps ≈ 90%; X4 from L8; X2 moves 0.032, subspace R² ≤ 0.009, H3 still insufficient)(b1_xall_report.md) · E4b minus five false titles: surname L40 +0.076 [0.068, 0.083], surname − initial +0.033(b1_e4b5_report.md) Batch 1, running: P1 / P2 with five false titles — 116 / 194 units done, 78 left in three parallel chains; result after approval Batch 2 (addenda 11, 12): code, tiny tests and hard-check unit tests done; starts automatically after batch 1; deviations recorded (D12-1 to D12-3; 2-7 source = year-free X4 prompt)(prereg_addendum12_deviations.json) Batch 3 (addendum 14): 3-1 Stage 10 L41–L47, L49 · 3-2 L0–L23 · 3-3 Stage 7.1B fast path: code in progress; 3-4 / 3-5 (Stage 8 GPU W) not run(prereg_addendum14.json) Not done: Stage 8 GPU re-run of the original W (user decision 2026-11-06; CPU proxy C-2 instead)(c13_C2.md)",
   "figs": [],
@@ -573,7 +591,7 @@
   "updated": "2026-11-06b"
  },
  {
-  "i": 82,
+  "i": 84,
   "kind": "html",
   "text": "Added after the defence · limits Limits that cannot be redone Written 2026-11-06 One model: the groups (recognised or not, authors written or not) come from Qwen3-32B’s own labels; another model would need new labels Teacher forcing: every score is the rank the model gives the correct name once it is in the prompt — a preference, not generation Label pipeline: the label package author’s elm code and run.json are not on the cluster, so generation length, thinking mode and the multiple-choice setup cannot be re-checked High-citation bins: the 4097+ bin has no B / D papers(84 target, 0 control; m3_scores.md §2), so within-bin comparisons cannot use it",
   "figs": [],

@@ -1,0 +1,17 @@
+{
+ "aria": "Stage 12-13 hypotheses",
+ "note_append": "",
+ "manifest": [
+  [
+   "slide 65 image header \"Current result (report v30, 2026-11-08)\"",
+   "overlay \"Current result (report v41, 2026-11-12)\" (image kept)"
+  ],
+  [
+   "slide 65 figcaption current results (report v30, 2026-11-08)",
+   "current results (report v41, 2026-11-12)"
+  ]
+ ],
+ "sources": [
+  "header text only; no numbers changed"
+ ]
+}
