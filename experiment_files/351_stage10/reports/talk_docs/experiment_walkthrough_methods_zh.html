@@ -179,7 +179,7 @@ R0：M = 0；R1：M &gt; 0 且 HR2 &gt; 0.5；R2：HR2 ≤ 0.5（guard，不分�
 <li>在模型输出上打分。</li>
 </ul>
 <p><strong>公式</strong>：0.7 的恢复率 R(l)。</p>
-<p><strong>结果</strong>：L24 约 0.07–0.09，L40 约 0.27–0.34，<strong>L48 约 0.82，L52 起约 1.0</strong>；target、control 时间点一样。只换标题最后一个 token（E1t）在 L40 前约 0.12–0.15，L56 后为 0。</p>
+<p><strong>结果</strong>：L24 约 0.07–0.09，L40 约 0.27–0.34，<strong>L48 约 0.82，L52 起约 1.0</strong>；target 与 control 时间几乎相同（都在 L52–L54 达到 R ≈ 1；L48 target − control −0.063 [−0.104, −0.024]，团队 95% CI，事后，control 略早）。只换标题最后一个 token（E1t）在 L40 前约 0.12–0.15，L56 后为 0。</p>
 <p><strong>说明什么</strong>：到 L52，论文信息已经全部到了标题之后的位置，比读出工具看到它早 5–10 层：“读得早”。</p>
 <h3>实验 8：阻断（Stage 11 E2）</h3>
 <p><strong>设计</strong>：从第 l 层到 L63，在注意力打分上加掩码：标题之后的所有位置对标题 token 的那些格子设为 bf16 能表示的最小值，softmax 后约等于 0，所有头都挡。</p>

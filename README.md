@@ -1,10 +1,13 @@
+**Talk slides (Google Slides, latest):** https://docs.google.com/presentation/d/1tYnNLexpAQw0V-gXuUh2Gj0qVws6E8_Vp74ThO7wbv8/edit  
+**Latest complete deck (pptx, 86 slides, 2026-11-13):** [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx)
+
 # README
 
 **newest experiment report**: [stage 1-13 experiment report v30](https://github.com/ZhiQ1/jlens-authorship-recall/blob/main/Stage1-13_report_v30_A4.pdf) (previous: [v29](https://github.com/ZhiQ1/jlens-authorship-recall/blob/main/Stage1-13_report_v29e_A4.pdf)); number check of every conclusion: [docs/numcheck_claims_check_20261108c.csv](docs/numcheck_claims_check_20261108c.csv); conclusions by tier: [docs/conclusions_v30.md](docs/conclusions_v30.md)
 
 > **Current documents (Stages 1–13 and the post-defence work, kept up to date):**
 > - **Report:** [Stage 1–13 experiment report](https://claude.ai/artifact/QB335qoaBWvSdFyfvc2bSe) (v30, 2026-11-08: batch 1 complete, groups C / D completed, Stage 8 premises and new limitations)
-> - **Slides:** [Stage 1–13 merged deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) (v21, 2026-11-08, 82 slides)
+> - **Slides:** talk deck in Google Slides (link at the top) and [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx) (86 slides, 2026-11-13); older merged deck: [Stage 1–13 merged deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD)
 > - **Methods handbook:** [Stage 1–13 methods handbook](https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo) (2026-11-08 c)
 > - **Downloads (PDF / pptx):** [download page](https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta)
 >
