@@ -134,18 +134,23 @@ MARKER = re.compile(r'^\s*(?:[-*\u2022]|\d+[.)])\s*')
 
 
 def list_text(full):
-    """the answer list inside the generated text (v2 rule; generation is NOT stopped early, so this can be revised on CPU).
-    Answer on the same line as the prompt: that line up to the first sentence end. Answer starting on a new line (vertical
-    list, e.g. '\\n1. Smith, J.\\n2. ...'): consecutive non-empty lines up to the first blank line, list markers removed, each
-    line cut at its sentence end, joined by '; '."""
+    """the answer list inside the generated text (v2b rule; generation is NOT stopped early, so this can be revised on CPU).
+    Answer on the same line as the prompt: that line up to the first sentence end ('.' after >= 2 lower-case letters).
+    Answer starting on a new line: if the first non-empty line has a list marker (-, *, 1.), the run of marker lines (blank
+    lines between them allowed; marker-only lines give no item) up to the first non-marker line; otherwise consecutive
+    non-empty plain lines up to the first blank line. Markers and '*' removed, each line cut at its sentence end, '; '-joined."""
     if not full.strip(): return ''
     first_nl = full.find('\n'); same_line = full[:first_nl if first_nl >= 0 else len(full)]
     if same_line.strip():
         m = SENT_END.search(same_line); return (same_line[:m.start()] if m else same_line).strip()
-    out = []
-    for ln in full.lstrip('\n').split('\n'):
-        if not ln.strip(): break
-        ln = MARKER.sub('', ln); m = SENT_END.search(ln); ln = (ln[:m.start()] if m else ln).strip()
+    lines = full.lstrip().split('\n'); out = []
+    marker_mode = bool(MARKER.match(lines[0])) if lines else False
+    for ln in lines:
+        if not ln.strip():
+            if marker_mode: continue
+            break
+        if marker_mode and not MARKER.match(ln): break
+        ln = MARKER.sub('', ln).replace('*', ''); m = SENT_END.search(ln); ln = (ln[:m.start()] if m else ln).strip()
         if ln: out.append(ln)
     return '; '.join(out)
 
@@ -661,6 +666,9 @@ def unit_asserts():
     assert list_text('\n\n1. Smith, John\n2. Doe, Jane.\n\nThe paper') == 'Smith, John; Doe, Jane'
     assert list_text(' Zhang, Lixian; Lam, James. The paper titled "X" (2014)') == 'Zhang, Lixian; Lam, James'
     assert list_text(' C. Y. Liang, Jr. Smith\nmore') == 'C. Y. Liang, Jr. Smith'
+    assert list_text(' \n- Sola, Joan\n- Rigau, German\nThe paper') == 'Sola, Joan; Rigau, German'
+    assert list_text(' \n\n1. \n\n2. \n\n10.\nThe paper titled') == ''
+    assert list_text('\n1. **Ugo Boscain**  \n2. Jean-Paul Gauthier  \n\nMore') == 'Ugo Boscain; Jean-Paul Gauthier'
     assert render('Kevin L. Smith', 'F4') == ' L. Smith' and render('N. Arkani-Hamed', 'F4') == ' Arkani-Hamed' and render('Sung K. Kang', 'F1') == ' Kang, Sung K.'
     print('unit asserts OK')
 
@@ -748,9 +756,31 @@ def tiny(a):
     print('TINY', 'ALL PASS' if ok else 'SOME FAIL'); return 0 if ok else 1
 
 
+def reparse(a):
+    """CPU: recompute list / items / matches from the stored full generated text with the current parser -> parsed/shard_KKK.parquet."""
+    import pandas as pd
+    unit_asserts(); D = Data(); s = load_sample(a.item).set_index('paper_id')
+    shards = sorted(set(int(x) for x in a.shards.split(',')))
+    for k in shards:
+        P = paths(OUT, a.item, k)
+        if not P['gen'].exists(): log('missing', P['gen']); continue
+        g = pd.read_parquet(P['gen']); rows = []
+        for r in g.itertuples():
+            row = s.loc[r.paper_id]; true = D.authors(r.paper_id); txt = list_text(r.full_text)
+            if a.item == 'B':
+                items = split_items((row.first_initial + '.' + txt) if r.cond == 'F4' else txt, r.cond)
+                sc = score_gen(items, true, D.authors(row.ctrl_f4_paper_id if r.cond == 'F4' else row.ctrl_paper_id))
+            else:
+                items = split_items(txt, 'F0'); rest = true[1:]; ht, ut = match_items(rest, items); hs, us = match_surname(rest, items)
+                sc = dict(n_items=len(items), n_rest=len(rest), n_rest_full=int(sum(ht)), n_rest_sur=int(sum(hs)), any_rest_full=any(ht),
+                          n_fab_full=len(items) - len(ut), hit_full=json.dumps([bool(h) for h in ht]), hit_sur=json.dumps([bool(h) for h in hs]))
+            rows.append(dict(paper_id=r.paper_id, grp=row.grp, cond=r.cond, text=txt, items=json.dumps(items), **sc))
+        f = OUT / f'a16_{a.item}' / f'parsed/shard_{k:03d}.parquet'; save_parquet(pd.DataFrame(rows), f); log('wrote', f, len(rows))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['freeze', 'precheck', 'tiny', 'work', 'remaining'])
+    ap.add_argument('cmd', choices=['freeze', 'precheck', 'tiny', 'work', 'remaining', 'reparse'])
     ap.add_argument('--root'); ap.add_argument('--item', choices=['B', 'D']); ap.add_argument('--shards', default='0')
     ap.add_argument('--max-minutes', type=float, default=None); ap.add_argument('--write', action='store_true')
     a = ap.parse_args()
@@ -758,6 +788,7 @@ def main():
     elif a.cmd == 'precheck': precheck(a)
     elif a.cmd == 'tiny': sys.exit(tiny(a))
     elif a.cmd == 'work': sys.exit(work(a))
+    elif a.cmd == 'reparse': reparse(a)
     else: remaining(a)
 
 
