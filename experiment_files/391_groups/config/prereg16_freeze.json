@@ -1,0 +1,186 @@
+{
+ "created": "2026-11-14T05:49:09",
+ "script_sha256": "045740106ce29d60b89ab847f9a558c9fda24ca45e48b196501e60b89f6a4c4e",
+ "prereg_sha256": "c78daad08f77080e7dd49c84c2501f9ca31b1195ab9e38364e3c3bab9243e66a",
+ "seed": 1114,
+ "rng_order": "B sample (A,B,C) -> D sample (A,B,C) -> B controls (per paper: ctrl, ctrl_f4) -> D controls (per paper: ctrl, perm)",
+ "stage11_sample_sha256": "9c490cee068f76a7e295d14b724946c7eb28029a3a6a7ae0a29cfec4da20c374",
+ "B_A": {
+  "alloc": {
+   "0-2": 61,
+   "3-4": 61,
+   "5-8": 61,
+   "9-16": 61,
+   "17-32": 61,
+   "33-64": 61,
+   "65-128": 61,
+   "129-256": 60,
+   "257-512": 60,
+   "513-1024": 53
+  },
+  "notes": [],
+  "n": 600,
+  "quota": 600,
+  "candidates_outside_stage11_bins": 687
+ },
+ "B_B": {
+  "alloc": {
+   "0-2": 61,
+   "3-4": 61,
+   "5-8": 61,
+   "9-16": 61,
+   "17-32": 61,
+   "33-64": 61,
+   "65-128": 61,
+   "129-256": 60,
+   "257-512": 60,
+   "513-1024": 53
+  },
+  "notes": [],
+  "n": 600,
+  "quota": 600,
+  "candidates_outside_stage11_bins": 35
+ },
+ "B_C": {
+  "alloc": {
+   "0-2": 4,
+   "3-4": 9,
+   "5-8": 6,
+   "9-16": 7,
+   "17-32": 22,
+   "33-64": 26,
+   "65-128": 33,
+   "129-256": 43,
+   "257-512": 61,
+   "513-1024": 89
+  },
+  "notes": [
+   "bin 0-2: only 4 papers, take all",
+   "bin 3-4: only 9 papers, take all",
+   "bin 5-8: only 6 papers, take all",
+   "bin 9-16: only 7 papers, take all",
+   "bin 17-32: only 22 papers, take all",
+   "bin 33-64: only 26 papers, take all",
+   "bin 65-128: only 33 papers, take all",
+   "bin 129-256: only 43 papers, take all",
+   "bin 257-512: only 61 papers, take all"
+  ],
+  "n": 300,
+  "quota": 300,
+  "candidates_outside_stage11_bins": 198
+ },
+ "D_A": {
+  "alloc": {
+   "0-2": 61,
+   "3-4": 61,
+   "5-8": 61,
+   "9-16": 61,
+   "17-32": 61,
+   "33-64": 61,
+   "65-128": 61,
+   "129-256": 60,
+   "257-512": 60,
+   "513-1024": 53
+  },
+  "notes": [],
+  "n": 600,
+  "quota": 600,
+  "candidates_outside_stage11_bins": 388
+ },
+ "D_B": {
+  "alloc": {
+   "0-2": 65,
+   "3-4": 65,
+   "5-8": 64,
+   "9-16": 64,
+   "17-32": 64,
+   "33-64": 64,
+   "65-128": 64,
+   "129-256": 64,
+   "257-512": 57,
+   "513-1024": 29
+  },
+  "notes": [
+   "bin 257-512: only 57 papers, take all",
+   "bin 513-1024: only 29 papers, take all"
+  ],
+  "n": 600,
+  "quota": 600,
+  "candidates_outside_stage11_bins": 12
+ },
+ "D_C": {
+  "alloc": {
+   "0-2": 3,
+   "3-4": 7,
+   "5-8": 5,
+   "9-16": 5,
+   "17-32": 16,
+   "33-64": 20,
+   "65-128": 22,
+   "129-256": 32,
+   "257-512": 50,
+   "513-1024": 68
+  },
+  "notes": [
+   "bin 0-2: only 3 papers, take all",
+   "bin 3-4: only 7 papers, take all",
+   "bin 5-8: only 5 papers, take all",
+   "bin 9-16: only 5 papers, take all",
+   "bin 17-32: only 16 papers, take all",
+   "bin 33-64: only 20 papers, take all",
+   "bin 65-128: only 22 papers, take all",
+   "bin 129-256: only 32 papers, take all",
+   "bin 257-512: only 50 papers, take all",
+   "bin 513-1024: only 68 papers, take all",
+   "all bins exhausted: 72 short of 300"
+  ],
+  "n": 228,
+  "quota": 300,
+  "candidates_outside_stage11_bins": 148
+ },
+ "B": {
+  "n": 1500,
+  "shards": 30,
+  "sha256": "117a9127ea3333c0d50a7f2142bb1a72bea59bafc31ea599ff15b28aa41583f3",
+  "groups": {
+   "A": 600,
+   "B": 600,
+   "C": 300
+  },
+  "bins": {
+   "513-1024": 195,
+   "257-512": 181,
+   "129-256": 163,
+   "65-128": 155,
+   "33-64": 148,
+   "17-32": 144,
+   "3-4": 131,
+   "9-16": 129,
+   "5-8": 128,
+   "0-2": 126
+  },
+  "f4_same_initial_share": 1.0
+ },
+ "D": {
+  "n": 1428,
+  "shards": 29,
+  "sha256": "5e373fda56e6a5ed80f88c6ba9846a9c0903a45ec703b038598fa0a81e0bc0f2",
+  "groups": {
+   "A": 600,
+   "B": 600,
+   "C": 228
+  },
+  "bins": {
+   "257-512": 167,
+   "129-256": 156,
+   "513-1024": 150,
+   "65-128": 147,
+   "33-64": 145,
+   "17-32": 141,
+   "3-4": 133,
+   "9-16": 130,
+   "5-8": 130,
+   "0-2": 129
+  }
+ }
+}

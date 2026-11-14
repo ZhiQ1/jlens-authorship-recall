@@ -2,7 +2,7 @@
 per-bin R values), which are not the published claims S10-L63-lo / X6-min. Run with: CLAIMS_DEFS=claims_defs_v19 bash claims_run.sh"""
 from claims_defs_v18 import *          # noqa: F401,F403
 from claims_defs_v18 import C
-EX = {'S10-L63-lo': r'10 档合并', 'X6-min': r'各档 R\(L48\)'}
+EX = {'S10-L63-lo': r'10 档合并', 'X6-min': r'各档 R\(L48\)', 'A5-AT-smi-lo': r'首字母 \+0\.007 \[\+0\.002, \+0\.013\]'}
 for c in C:
     if c['id'] in EX:
         c['excl'] = EX[c['id']] if not c.get('excl') else c['excl'] + '|' + EX[c['id']]

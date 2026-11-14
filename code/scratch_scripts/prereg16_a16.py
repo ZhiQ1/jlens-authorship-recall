@@ -129,12 +129,35 @@ def match_surname(true, gen):
     return hit, used
 
 
+SENT_END = re.compile(r'(?<=[a-z]{2})\.(?=\s|$)')            # '.' after >= 2 lower-case letters = end of the list sentence
+MARKER = re.compile(r'^\s*(?:[-*\u2022]|\d+[.)])\s*')
+
+
+def list_text(full):
+    """the answer list inside the generated text (v2 rule; generation is NOT stopped early, so this can be revised on CPU).
+    Answer on the same line as the prompt: that line up to the first sentence end. Answer starting on a new line (vertical
+    list, e.g. '\\n1. Smith, J.\\n2. ...'): consecutive non-empty lines up to the first blank line, list markers removed, each
+    line cut at its sentence end, joined by '; '."""
+    if not full.strip(): return ''
+    first_nl = full.find('\n'); same_line = full[:first_nl if first_nl >= 0 else len(full)]
+    if same_line.strip():
+        m = SENT_END.search(same_line); return (same_line[:m.start()] if m else same_line).strip()
+    out = []
+    for ln in full.lstrip('\n').split('\n'):
+        if not ln.strip(): break
+        ln = MARKER.sub('', ln); m = SENT_END.search(ln); ln = (ln[:m.start()] if m else ln).strip()
+        if ln: out.append(ln)
+    return '; '.join(out)
+
+
 def split_items(text, fmt):
     t = re.sub(r'\bet al\.?', ' ', text)
-    if fmt == 'F1' and ';' not in t:
+    if ';' in t: parts = re.split(r';|\band\b|&', t)
+    elif fmt == 'F1':
         parts = [x.strip() for x in re.split(r',|\band\b|&', t) if x.strip()]
-        return [' '.join(parts[i:i + 2]) for i in range(0, len(parts), 2)]
-    return [x.strip() for x in re.split(r';|,|\band\b|&', t) if x.strip() and words(x)]
+        parts = [' '.join(parts[i:i + 2]) for i in range(0, len(parts), 2)]
+    else: parts = re.split(r',|\band\b|&', t)
+    return [x.strip() for x in parts if x.strip() and words(x)]
 
 
 # ------------------------------------------------------------------ name rendering
@@ -430,8 +453,10 @@ def cut_text(text):
     return text[:m.end() - 1] if m else text
 
 
-def generate(hf, tok, prompts, torch, bs=16, max_new=MAX_NEW):
-    """greedy, left-padded batches; returns list of (gen_ids, text_until_stop, stop_reason)."""
+def generate(hf, tok, prompts, torch, bs=16, max_new=MAX_NEW, stop_nl=False):
+    """greedy, left-padded batches; returns list of (gen_ids, full_text, stop_reason). v2 (2026-11-14, after B shard 0 v1):
+    no newline stop by default - v1 stopped F1/F2 answers that start with '\\n1.' after the first marker; greedy decoding is
+    causal, so generating to 80 tokens / EOS and cutting the list afterwards (list_text) equals stopping at that point."""
     from transformers import StoppingCriteriaList
     out = [None] * len(prompts); order = sorted(range(len(prompts)), key=lambda i: len(prompts[i]))
     dev = next(hf.parameters()).device
@@ -442,12 +467,12 @@ def generate(hf, tok, prompts, torch, bs=16, max_new=MAX_NEW):
         with torch.inference_mode():
             g = hf.generate(input_ids=x.to(dev), attention_mask=m.to(dev), max_new_tokens=max_new, do_sample=False, temperature=None,
                             top_p=None, top_k=None, num_beams=1, eos_token_id=list(EOS), pad_token_id=tok.pad_token_id,
-                            stopping_criteria=StoppingCriteriaList([NLStop(tok, T)]))
+                            stopping_criteria=(StoppingCriteriaList([NLStop(tok, T)]) if stop_nl else None))
         for j, i in enumerate(b):
             raw = g[j, T:].tolist(); e = next((q for q, t in enumerate(raw) if t in EOS), None)
             ids = raw if e is None else raw[:e]          # rows stopped by NLStop are padded with pad=EOS id afterwards
-            full = tok.decode(ids); txt = cut_text(full)
-            reason = 'newline' if re.search(r'\S[^\n]*\n', full) else ('eos' if e is not None else 'max_new')
+            full = tok.decode(ids); txt = full
+            reason = 'eos' if e is not None else 'max_new'
             out[i] = (ids, txt, reason)
     return out
 
@@ -514,7 +539,10 @@ def save_json(o, f):
 
 def paths(root, item, k):
     r = root / f'a16_{item}'
-    return dict(tf=r / f'tf/shard_{k:03d}.parquet', gen=r / f'gen/shard_{k:03d}.parquet', meta=r / f'meta/shard_{k:03d}.json')
+    # gen/ + meta/ = v1 (newline-stopped generation; B shard 0 job 11867053, D shard 0 job 11867054): superseded, kept.
+    # tf/ is the same code in v1 and v2 -> reused if present.
+    return dict(tf=r / f'tf/shard_{k:03d}.parquet', gen=r / f'gen_v2/shard_{k:03d}.parquet', meta=r / f'meta_v2/shard_{k:03d}.json',
+                meta_v1=r / f'meta/shard_{k:03d}.json')
 
 
 def tf_frame(units, keys):
@@ -544,18 +572,24 @@ def do_shard(item, k, s, D, hf, model, tok, torch, root, tiny=False, sample_sha=
         if not all([meta['invariants']['prefix_scored_rows'] == 0, meta['invariants']['scored_sets_identical_k1'],
                     meta['invariants']['scored_sets_identical_k2'], meta['invariants']['reverse_scores_only_first']]):
             meta['invariants']['status'] = 'WARN'; log('WARN D invariants', meta['invariants'])
-    t1 = time.monotonic()
-    nb = tf_run(model, tf, torch); t2 = time.monotonic()
-    tfd = tf_frame(tf, keys)
-    tfd['written'] = [bool(D.written.get((p, a), False)) for p, a in zip(tfd.paper_id, tfd.author_index)]
+    t1 = time.monotonic(); reuse = P['tf'].exists() and P['meta_v1'].exists()
+    if reuse:                                   # v1 run of this shard: identical teacher-forcing code -> reuse
+        tfd = pd.read_parquet(P['tf']); nb = None; m1 = json.loads(P['meta_v1'].read_text())
+        if len(tfd) != sum(len(u['name']) for u in tf): raise RuntimeError('stored tf rows differ from the units')
+        meta['tf_reused_from_v1'] = dict(job=m1.get('job'), seconds=m1['seconds']['teacher_forcing'])
+    else:
+        nb = tf_run(model, tf, torch)
+        tfd = tf_frame(tf, keys)
+        tfd['written'] = [bool(D.written.get((p, a), False)) for p, a in zip(tfd.paper_id, tfd.author_index)]
+    t2 = time.monotonic()
     g = generate(hf, tok, [u['ids'] for u in gen], torch); t3 = time.monotonic()
     # WARN check: batched vs one-by-one greedy for the first 4 prompts
     single = [generate(hf, tok, [u['ids']], torch, bs=1)[0] for u in gen[:4]]
     meta['gen_batch_vs_single_identical'] = f'{sum(a[0] == b[0] for a, b in zip(g[:4], single))}/4'
     t4 = time.monotonic()
     S = sk.set_index('paper_id'); rows = []
-    for u, (ids, txt, reason) in zip(gen, g):
-        pid = u['paper_id']; true = D.authors(pid); row = S.loc[pid]
+    for u, (ids, full, reason) in zip(gen, g):
+        pid = u['paper_id']; true = D.authors(pid); row = S.loc[pid]; txt = list_text(full)
         if item == 'B':
             fmt = u['fmt']; items = split_items((row.first_initial + '.' + txt) if fmt == 'F4' else txt, fmt)
             ctrl = D.authors(row.ctrl_f4_paper_id if fmt == 'F4' else row.ctrl_paper_id)
@@ -567,10 +601,10 @@ def do_shard(item, k, s, D, hf, model, tok, torch, root, tiny=False, sample_sha=
                       n_fab_full=len(items) - len(ut), hit_full=json.dumps([bool(h) for h in ht]), hit_sur=json.dumps([bool(h) for h in hs]),
                       prefix_author=u['prompt'])
             fmt = u['fmt']
-        rows.append(dict(paper_id=pid, grp=row.grp, cond=fmt, prompt=u['prompt'] if item == 'B' else '', gen_ids=json.dumps(ids), text=txt,
+        rows.append(dict(paper_id=pid, grp=row.grp, cond=fmt, prompt=u['prompt'] if item == 'B' else '', gen_ids=json.dumps(ids), full_text=full, text=txt,
                          stop=reason, n_gen=len(ids), items=json.dumps(items), **sc))
     gd = pd.DataFrame(rows)
-    meta['parity_vs_stage10'] = parity_check(D, tfd, 'F0' if item == 'B' else 'P_none', tiny)
+    meta['parity_vs_stage10'] = m1['parity_vs_stage10'] if reuse else parity_check(D, tfd, 'F0' if item == 'B' else 'P_none', tiny)
     for c, v in meta['parity_vs_stage10'].items():
         if not str(v.get('status', '')).startswith('OK'): log(f'WARN parity {item} shard {k} {c}: {v}')
     meta.update(n_tf_seqs=len(tf), n_tf_tokens=int(len(tfd)), n_tf_batches=nb, n_gen=len(gen), mean_gen_tokens=float(gd.n_gen.mean()),
@@ -581,7 +615,8 @@ def do_shard(item, k, s, D, hf, model, tok, torch, root, tiny=False, sample_sha=
         meta['quick'] = {f: {o: float(gd[gd.cond == f][o].mean()) for o in ['any_full', 'c_any_full', 'any_sur', 'c_any_sur', 'first_sur', 'c_first_sur', 'n_fab_full']} for f in FMTS}
     else:
         meta['quick'] = {f: {o: float(gd[gd.cond == f][o].mean()) for o in ['any_rest_full', 'n_rest_full', 'n_fab_full']} for f in ['G_true1', 'G_other1']}
-    save_parquet(tfd, P['tf']); save_parquet(gd, P['gen']); meta['seconds']['total'] = time.monotonic() - t0; save_json(meta, P['meta'])
+    if not reuse: save_parquet(tfd, P['tf'])
+    save_parquet(gd, P['gen']); meta['seconds']['total'] = time.monotonic() - t0; save_json(meta, P['meta'])
     log(f'{item} shard {k:03d} papers={len(sk)} tf_seqs={len(tf)} tokens={len(tfd)} gen={len(gen)} {json.dumps(meta["seconds"])}')
     log('  parity', json.dumps({c: (v.get('rank_exact'), v.get('within_tol'), v.get('status')) for c, v in meta['parity_vs_stage10'].items()}))
     log('  gen batch-vs-single', meta['gen_batch_vs_single_identical'], 'quick', json.dumps(meta['quick']))
@@ -616,16 +651,26 @@ def remaining(a):
         print(f'{item}: {n - len(miss)}/{n} shards done; REMAINING {len(miss)}', miss[:40])
 
 
+def unit_asserts():
+    """matcher / parser / renderer sanity (CPU)."""
+    assert match(['Shimon Sakaguchi'], ['Sakaguchi Shimon']) == [True] and match(['A. Smith'], ['B. Smith']) == [False]
+    assert match_surname(['Kevin L. Smith', 'J. Doe'], ['Doe', 'Smith'])[0] == [True, True]
+    assert split_items('Smith, John, Doe, Jane', 'F1') == ['Smith John', 'Doe Jane']
+    assert split_items('Zhang, Lixian; Boukas, El-Kebir; Lam, James', 'F1') == ['Zhang, Lixian', 'Boukas, El-Kebir', 'Lam, James']
+    assert list_text(' L. Li, Y. Zhang, and W. X. Zheng. The paper was') == 'L. Li, Y. Zhang, and W. X. Zheng'
+    assert list_text('\n\n1. Smith, John\n2. Doe, Jane.\n\nThe paper') == 'Smith, John; Doe, Jane'
+    assert list_text(' Zhang, Lixian; Lam, James. The paper titled "X" (2014)') == 'Zhang, Lixian; Lam, James'
+    assert list_text(' C. Y. Liang, Jr. Smith\nmore') == 'C. Y. Liang, Jr. Smith'
+    assert render('Kevin L. Smith', 'F4') == ' L. Smith' and render('N. Arkani-Hamed', 'F4') == ' Arkani-Hamed' and render('Sung K. Kang', 'F1') == ' Kang, Sung K.'
+    print('unit asserts OK')
+
+
 # ------------------------------------------------------------------ precheck (CPU, no model)
 def precheck(a):
     import pandas as pd
     check_prereg(); check_matcher_copy()
     D = Data(); rep = {}
-    # matcher sanity
-    assert match(['Shimon Sakaguchi'], ['Sakaguchi Shimon']) == [True] and match(['A. Smith'], ['B. Smith']) == [False]
-    assert match_surname(['Kevin L. Smith', 'J. Doe'], ['Doe', 'Smith'])[0] == [True, True]
-    assert split_items('Smith, John, Doe, Jane', 'F1') == ['Smith John', 'Doe Jane']
-    assert render('Kevin L. Smith', 'F4') == ' L. Smith' and render('N. Arkani-Hamed', 'F4') == ' Arkani-Hamed' and render('Sung K. Kang', 'F1') == ' Kang, Sung K.'
+    unit_asserts()
     for item in ('B', 'D'):
         s = load_sample(item); per = []
         for k in sorted(s.shard.unique()):
@@ -657,7 +702,7 @@ def precheck(a):
 def tiny(a):
     import pandas as pd
     root = Path(a.root); (root / 'config').mkdir(parents=True, exist_ok=True)
-    checks = {}
+    unit_asserts(); checks = {}
     for item in ('B', 'D'):
         s = load_sample(item)
         sk = pd.concat([s[s.grp == g].head(2) for g in ['A', 'B', 'C']]).copy(); sk['shard'] = [0, 0, 0, 1, 1, 1]
@@ -680,6 +725,11 @@ def tiny(a):
                 checks[f'D shard {k} 8 conditions'] = set(tfd.cond) == set(DCONDS)
         t = time.monotonic(); work(argparse.Namespace(item=item, shards='0,1', max_minutes=None), tiny_root=root / 'raw')
         checks[f'{item} skip-if-exists (no recompute)'] = time.monotonic() - t < 30
+        # v1 -> v2 path: a shard with tf + v1 meta must reuse tf and only regenerate (meta_v2 moved to the v1 name, no deletion)
+        P = paths(root / 'raw', item, 1); os.replace(P['meta'], P['meta_v1']); h_tf = sha(P['tf'])
+        work(argparse.Namespace(item=item, shards='1', max_minutes=None), tiny_root=root / 'raw')
+        m2 = json.loads(P['meta'].read_text())
+        checks[f'{item} v1 tf reused, not recomputed'] = 'tf_reused_from_v1' in m2 and sha(P['tf']) == h_tf
     # parity code on REAL Stage 10 data: feed stored Stage 10 ranks back in -> must be exact (tests the row alignment)
     D = Data(); s = load_sample('B').head(3); tf, _ = b_units(D, s)
     tf = [u for u in tf if u['cond'] == 'F0']

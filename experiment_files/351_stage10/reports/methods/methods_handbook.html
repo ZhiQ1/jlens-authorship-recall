@@ -5167,6 +5167,8 @@ H2_predicts: identity earliest, then author-by-probe, then name-by-lens (L57-61)
 ③ 编造名分类：标注包 open_results.jsonl 的 names 字段；匹配器照搬 stage10_extra_r0r1.py（姓 + 首字母，两种顺序，一对一）；未被匹配的名字按 合作者（与本篇任一真作者在其他队列论文上同署名）→ 同领域 → 其他队列论文 → 不存在 的顺序归类；随机基线 20 次；敏感性：只用 ≤ 3 篇的罕见键、全名精确匹配。脚本 fabricated_names_20261114.py，作业 11866858。
 ④ A 组内的概率回归：补充 8 重跑的 A 组 557 篇；真选项概率十分位分档（切点由全样本定），每次团队抽样内算各档 R_k，再对档中位概率做加权回归（权重 n_k）。脚本 summary_A_prob_20261114.py，作业 11866922。
 <span class="src">输出：391_groups/summary_decode_gap_20261114/、summary_exposure_20261114/、summary_fabricated_20261114/、summary_A_prob_20261114/</span></p>
+<h3 id="k-cleandonor">标题位置 probe 的干净供体样本：方法（2026-11-14）</h3>
+<p>补充 9 管线不变（训练折标准化、α 在第 0 折上选），只改训练集：测试第 f 折时，训练集去掉第 f 折全部论文的 false_0..4 的全部供体论文；预测真标题与 5 个假标题，spec = probe(真) − 5 个假标题平均；target − control 按 Stage 10 档内定义（两组都 ≥ 30 篇的档，权重 n_t n_c/(n_t+n_c)），团队整群 bootstrap 2,000 次。训练集变小后第 0 折规则多选 α = 10（原为 1）。对照 randsize：每折随机抽同样数量的训练论文（供体可留）。先用原管线复现已发表的 V0 / Vpd（姓首 token L40 V0 spec +0.071 [0.058, 0.085]，逐篇一致）。脚本 ~/jlens_work/13_stage13/stage13_clean_donor_20261114.py，作业 11866991。<span class="src">381_stage13/summary_clean_donor_20261114/</span></p>
 <h3 id="k-cpu"><span class="st st-done">CPU 补充</span> 答辩后补算的 CPU 分析（已有数据，事后分析）</h3>
 <p class="note">都只用已有数据，没有新的 GPU 运行。除 X5 检索曲线的定义来自预注册外，其余都不在预注册或补充 1–6 里，属于事后分析，只作描述。</p>
 

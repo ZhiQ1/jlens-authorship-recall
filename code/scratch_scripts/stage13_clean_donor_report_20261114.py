@@ -49,7 +49,7 @@ for l in (40, 48):
             if not len(m): continue
             r = m.iloc[0]
             L.append(f'| {NAME[run]} | {v} | {r.n} ({r.n_target} / {r.n_control}) | {f3(r.spec, r.lo, r.hi)} | {f3(r.tc, r.tc_lo, r.tc_hi)} ({r.tc_bins}) |')
-L += ['', '## Parity (original fit rerun vs stored addendum-10 per-paper files and published perdonor_by_run_layer.csv; WARN only)', '', PAR.round(5).to_markdown(index=False)]
+L += ['', '## Parity (original fit rerun vs stored addendum-10 per-paper files and published perdonor_by_run_layer.csv; WARN only)', '', '```', PAR.round(5).to_string(index=False), '```']
 sf = T[(T.run == 'surname_first') & (T.layer == 40) & (T.version == 'clean')].iloc[0]
 L += ['', '## Key answer', '', f'surname first token, L40, clean: target - control {f3(sf.tc, sf.tc_lo, sf.tc_hi)} -> CI ' + ('excludes 0.' if sf.tc_lo > 0 or sf.tc_hi < 0 else 'includes 0.')]
 (OUT / 'report.md').write_text('\n'.join(L) + '\n'); print('\n'.join(L))
