@@ -1,0 +1,7 @@
+grp,format,top1_text
+A,given_first,' M':8; ' Y':5; ' Li':4; ' T':3; ' X':3; ' David':3; ' L':2; ' Z':2; ' Xia':2; ' S':2; ' R':2; ' John':2; ' Smith':1; ' \n\n':1; ' Michael':1
+A,initial_first,' M':227; ' A':62; ' S':62; ' R':51; ' J':50; ' D':34; ' T':21; ' David':17; ' K':16; ' Y':14; ' V':13; ' John':13; ' C':13; ' H':9; ' James':6
+A,other,' Xiao':1
+B,given_first,' M':9; ' Y':4; ' S':2; ' D':2; ' Xiao':1; ' Robert':1; ' Kim':1; ' Li':1; ' James':1; ' Frank':1; ' X':1; ' Jian':1; ' Deborah':1; ' Lisa':1; ' \n':1
+B,initial_first,' M':126; ' J':44; ' A':40; ' R':31; ' S':28; ' T':10; ' D':9; ' John':8; ' H':7; ' The':6; ' V':6; ' Sarah':3; ' Peter':3; ' Robert':3; ' David':3
+B,other,' T':1; ' M':1

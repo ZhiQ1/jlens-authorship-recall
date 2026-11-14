@@ -1,0 +1,6 @@
+check,item,value,expected,status
+group A overall E1 R(L48) vs rerun_plot_summary_20261112 curves.csv,n_papers,557.0,557.0,OK
+group A overall E1 R(L48) vs rerun_plot_summary_20261112 curves.csv,R(L48),0.8110098234244894,0.811,OK
+group A overall E1 R(L48) vs rerun_plot_summary_20261112 curves.csv,R(L48) lo,0.7902173101911585,0.79,OK
+group A overall E1 R(L48) vs rerun_plot_summary_20261112 curves.csv,R(L48) hi,0.8323149520031583,0.832,OK
+"exact vs stored curves.csv (A, L48)","max|diff| R, lo, hi",0.0,0.0,OK

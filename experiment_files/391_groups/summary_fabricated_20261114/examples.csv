@@ -1,0 +1,41 @@
+paper_id,group_tight,field,name,cls_si,cls_full,cls_si_rare,authors
+941360ac5635b06255caefbe1b433ae07bc3e27f,target,chemistry,Yimin He,same_field,not_in_data,common_key,Xiaofeng Feng; K. Jiang; S. Fan; Matthew W. Kanan
+ab723f82e9410a3d934a5dded95a898b983a497a,target,computer science,David J. Harries,other_cohort,not_in_data,other_cohort,S. Harding; J. Sharman; E. Faccenda; C. Southan; Adam J Pawson; Sam M. Ireland; A. Gray; Liam Bruce; Stephen P. H. Alexander; S. Anderton; C. Bryant; A. Davenport; C. Doerig; D. Fabbro; F. Levi‐Schaffer; M. Spedding; J. Davies; Nc-Iuphar
+7f978fc0b9bb2e16d9d199e60d9f051ead951410,control,chemistry,Robert J. Homer,not_in_data,not_in_data,not_in_data,T. Nagase; A. Moretto; Mara S. Ludwig
+2119a434bad0d41096ca4d83dd206bf05fe2de89,control,materials science,Nikolaj M. M. Nijland,not_in_data,not_in_data,not_in_data,F. Chérioux; O. Galangau; F. Palmino; G. Rapenne
+f6e1d998a6017045b05618ada6b154f8bb434e36,target,biology,Ingo Nubel,not_in_data,not_in_data,not_in_data,M. Richter; R. Rosselló-Móra; F. Glöckner; J. Peplies
+2ea6615ebbe77e9a258ce4bdfa41b536fe7246f5,excluded,chemistry,M. A. El-Sherbeni,same_field,not_in_data,same_field,Zhenyu Liao; Hanjie Wang; Rui-Ling Lv; P. Zhao; Xue-Li Sun; Sheng Wang; Wenya Su; R. Niu; Jin Chang
+27ac603e517a78950794124195af9f050b1ce90b,target,materials science,F. J. Martínez-Vázquez,other_cohort,not_in_data,other_cohort,Á. Kmetty; T. Tábi; J. Kovács; T. Bárány
+8898a0706c25099bd5df8f3bf78ae83f468aeb64,target,medicine,Henrik Larsson,not_in_data,not_in_data,not_in_data,K. Kendler; H. Ohlsson; K. Sundquist; J. Sundquist
+7bb0681b2cd972ac2fd15044a899c85aeda0bad8,excluded,chemistry,David W. Chandler,other_cohort,not_in_data,other_cohort,E. Illenberger; H. Scheunemann; H. Baumgärtel
+13115caf2e76395f86a5a0958546be3750a91bde,excluded,medicine,Richard A. Sposto,other_cohort,not_in_data,other_cohort,S. Donaldson; James R. Anderson
+c968589bf079e3c856b95c98b59cb8fd0cbf1bf6,excluded,materials science,A. S. B. S. de Medeiros,other_cohort,not_in_data,other_cohort,Y. Dappe; M. Andersen; R. Balog; L. Hornekær; X. Bouju
+ddebf0aab127876767897bd25f04bc4be8ce27b4,target,psychology,M. A. M. van den Berg,other_cohort,not_in_data,other_cohort,Sadudee Phuhongsai; Somdej Pinitsoontorn
+e9b391a1470abe1f3b9604ee535b747ea0dfde6f,excluded,chemistry,Yujie Xiong,not_in_data,not_in_data,not_in_data,A. Zhang; Jialei Jiang; Z. Chai
+c769a596207434133a9afec90e21c37a34e1626f,control,psychology,Maria A. Rocca,other_cohort,not_in_data,other_cohort,E. Coppi; E. Houdayer; R. Chieffo; F. Spagnolo; L. Straffi; G. Comi; L. Leocani
+c1dc7e2525a9fcd90c4a5513183541d0e9b3165e,target,psychology,John J. Hart,same_field,not_in_data,same_field,A. Starr; L. Achor
+2e22735aaaa37a24e36a5a8f25b14a83ad6e2102,excluded,chemistry,Jianjun Chen,same_field,not_in_data,common_key,Jun Negishi; K. Nam; Tsuyoshi Kimura; T. Fujisato; A. Kishida
+d2f8ac8812629ea126202f5730eebdcd5f99318a,target,psychology,K. E. Dill,not_in_data,not_in_data,not_in_data,S. Coyne; D. Nelson; Frances Lawton; S. Haslam; Lucy Rooney; L. Titterington; Hannah Trainor; Jack Remnant; Leah Ogunlaja
+ee76ca1c7ae7369813dc1795811f758a1b33add5,control,biology,Anjali Singh,other_cohort,not_in_data,other_cohort,E. Rozemuller; N. Mehra; A. van der Zwan; R. Jaini; M. Tilanus
+acecaeb73559ef3accf2f61e51c93504e9371ebb,excluded,chemistry,C. Vandecasteele,not_in_data,not_in_data,not_in_data,A. Goulas; Petros G Kapasakalidis; H. R. Sinclair; R. Rastall; A. Grandison
+61deaee2c9594b3aed2b2f54f0e5e9d3bbeadab9,control,chemistry,John A. Higgins,other_cohort,not_in_data,other_cohort,H. Meijer; W. J. Li
+ea6bb4aeda59797eed77f193292ae8ccf11d8c8d,excluded,biology,J. P. Larsen,not_in_data,not_in_data,not_in_data,S. Centeno-Lima; J. D. de Lacerda; J. A. D. do Carmo; M. Abecasis; C. Casimiro; F. Exposto
+63e8d7bbe52f64fd0d77333061b85bd59fe6f7d1,target,physics,John J. Bollinger,other_cohort,not_in_data,other_cohort,C. Chou; D. Hume; J. Koelemeij; D. Wineland; T. Rosenband
+39ee3bee69cfe299f626e1fdab6a0301784a774f,target,biology,Julian A. Sale,not_in_data,not_in_data,not_in_data,X. Sun; Ling-mei Wang; Yitao Zhang; L. Yenush; M. G. Myers; Erin Glasheen; William Arbuthnot Sir Lane; J. Pierce; M. White
+d60f7ac3f372d24466b878e424e6e2cf35b9093f,excluded,chemistry,Zhiyong Gu,same_field,not_in_data,same_field,Joaquín Klug; D. Masone; M. D. Pópolo
+ba88276a155787b30195b56790e50c48a44e5ce7,excluded,computer science,C. P. Chen,same_field,not_in_data,common_key,Nai-ming Xie; Nanlei Chen
+3ddbf5e2d6918734303ab32091218d2101cf5cdb,excluded,biology,David C. Sisson,same_field,not_in_data,same_field,K. Amisi; D. Doohan
+fcadf7be44a5056d87e953d8e32f28b7205ab0f6,target,mathematics,Wieger Wesselink,not_in_data,not_in_data,not_in_data,A. Kaiser; D. Kroening; T. Wahl
+2217322b462d2ab0b5ab13e080abdf061e540a0c,control,materials science,Xiaodong Wen,same_field,not_in_data,same_field,Ya-feng Li; Wen-yuan Gao; Xiao-lin Qin; Jing-jing Lu; Yan Liu
+312cfe97bf69d93a95f6a77b2f016cd2bc905ec2,target,materials science,M. F. Ashby,same_field,not_in_data,same_field,M. Grujicic; C.L Zhao; W. DeRosset; D. Helfritch
+5ad5c3a81989712779302bf0e67c998abc5eb605,excluded,medicine,James A. Crowe,same_field,not_in_data,same_field,I. Oliver; F. Lacueva; F. P. Vicente; A. Arroyo; R. Ferrer; P. Cansado; F. Candela; R. Calpena
+840c56f14748f4ffaaf2a3a24cb40c093e64e0bd,excluded,materials science,Xiaohong Wang,coauthor,same_field,common_key,Xiaoyu Zhang; Xiaoning Kang; Lijun Jin; Jie Bai; Wei Liu; Zunyi Wang
+26beea811b34fe23ff25a11b20d81a51ac958818,excluded,mathematics,Xingzhong Li,coauthor,not_in_data,common_key,Haitao Guo; Jun Zhou; Ruili Song; Junpeng Wu
+87efe95a1b1e92aa641f966bf1efbe1378ef3135,excluded,medicine,Xingchen Wang,coauthor,not_in_data,common_key,F. Huang; Yuchen Deng; Yun-Qi Chen; Xiangbin Cai; Mi Peng; Zhimin Jia; Pengju Ren; Dequan Xiao; X. Wen; Ning Wang; Hongyang Liu; Ding Ma
+3b1a3df37316b2ddd96c6b77225c9ca405d62ef5,target,medicine,Kyung-Soo Park,coauthor,not_in_data,common_key,Jinkwan Kim; K. In; Jehyeong Kim; S. You; K. Kang; J. Shim; Sangyeub Lee; Jungbok Lee; Seunggwan Lee; C. Park; C. Shin
+05b03434e24e3a880bc781972f33c177d5f4605f,target,materials science,Xing Wang,coauthor,not_in_data,common_key,Ke Li; Li-xin Guo; Juan Li; S. Chai
+1218cb4078e4d510e78ba46c1f222f1cde3e1f83,target,materials science,Yaxin Zhang,coauthor,not_in_data,common_key,R. Kou; Yuyan Shao; Donghai Wang; M. Engelhard; J. Kwak; Jun Wang; V. Viswanathan; Chongmin Wang; Yuehe Lin; Yong Wang; I. Aksay; Jun Liu
+8f0c31c51c93ac778f31e33abc5aa3e56c6b7f6d,control,materials science,Hui Zhang,coauthor,not_in_data,common_key,Lei Dai; Cuixia Sun; Yang Wei; Like Mao; Yanxiang Gao
+6db124903a86c25196c837ed8aaf5297e00761a8,target,biology,Yiping Chen,coauthor,same_field,common_key,Muyang Li; Jianyuan Luo; C. Brooks; W. Gu
+79ba5dce5354153d4d63927c406beb8ef7bfe968,control,medicine,Kyung Sik Kim,coauthor,not_in_data,common_key,Chung-Ho Lee; M. Hyun; Ye-Ji Kwon; S. Cho; Sung-Soo Park
+c75d373f40ce931edb7342c0cd5d5589b4903ec4,control,materials science,Jun Chen,coauthor,same_field,common_key,Tingting Chen; S. Wu; X. Liu; X. Chen

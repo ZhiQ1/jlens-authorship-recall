@@ -1,0 +1,5 @@
+group_tight,coauthor,not_in_data,other_cohort,repeat_true,same_field,single_token
+control,513,4624,2460,11,2162,52
+excluded,547,4377,2333,7,2186,65
+guard,0,48,16,2,13,0
+target,539,11237,5394,47,3770,195
