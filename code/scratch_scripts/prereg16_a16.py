@@ -726,7 +726,7 @@ def tiny(a):
         t = time.monotonic(); work(argparse.Namespace(item=item, shards='0,1', max_minutes=None), tiny_root=root / 'raw')
         checks[f'{item} skip-if-exists (no recompute)'] = time.monotonic() - t < 30
         # v1 -> v2 path: a shard with tf + v1 meta must reuse tf and only regenerate (meta_v2 moved to the v1 name, no deletion)
-        P = paths(root / 'raw', item, 1); os.replace(P['meta'], P['meta_v1']); h_tf = sha(P['tf'])
+        P = paths(root / 'raw', item, 1); P['meta_v1'].parent.mkdir(parents=True, exist_ok=True); os.replace(P['meta'], P['meta_v1']); h_tf = sha(P['tf'])
         work(argparse.Namespace(item=item, shards='1', max_minutes=None), tiny_root=root / 'raw')
         m2 = json.loads(P['meta'].read_text())
         checks[f'{item} v1 tf reused, not recomputed'] = 'tf_reused_from_v1' in m2 and sha(P['tf']) == h_tf
