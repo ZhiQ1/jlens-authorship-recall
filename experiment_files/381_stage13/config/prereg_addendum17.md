@@ -1,0 +1,13 @@
+# Addendum 17 (partial lock 2026-11-14): strengthening items for C24, H3, the clean title probe, H2, timing and MLP
+
+Status: items 2 and 3 LOCKED by this file (sha256 in prereg_addendum17.md.sha256; lock time = the file's write time, also recorded in addendum17_lock.json). Items 1, 4, 5, 6 remain as in ~/jlens_work/plan_batch_20261114b.md and are NOT locked here.
+
+## Item 2 — H3 same-scale comparison (LOCKED, confirmatory)
+- Data: name-position probe, addendum 11 A per-donor version (Vpd), surname first token, the same 4,654 papers; layers L40 and L48.
+- Lenses: public J-lens (main) and logit lens (secondary), applied to the stored name-position residuals (381_stage13/raw/b2_npprobe) and ranked ONLY among the same 9,137 name token ids as the probe; nlr = log10(1/rank); spec with the probe's Vpd false-title rule (mean of the usable false titles); target − control within citation bin (Stage 10 definition); author-team cluster bootstrap, 2,000 draws.
+- Main comparison: Δ(l) = probe(T−C) − J-lens(T−C) on the same draws, l = L40 and L48.
+- Decision rule: if the 95% CI of Δ is entirely above 0 at L40 and at L48 → H3 supported on the same scale (the probe reads more paper-specific author information than the lens); if the CI includes 0 → not supported on the same scale (H3 stays "partly supported"); if the CI is entirely below 0 → the lens reads at least as much (stated as a result). Logit lens and spec differences are descriptive.
+- Known before locking (stated honestly): the CPU job started before this lock (sbatch 11871903 compute array, 11871904 analysis). At lock time only the tiny-test outputs (1 shard; *_tiny.csv / parity_summary_tiny.json, written 2026-11-14T14:14:23-05:00) existed; they were not opened by the coordinator or the user before this lock. The full analysis (job 11871904) had not started.
+
+## Item 3 — title-position probe, fully clean donor set (LOCKED, marked KNOWN BEFORE LOCK — feasibility check)
+- The result already exists (381_stage13/summary_clean_donor_20261114/, job 11866991, 2026-11-14): surname first token L40 target − control +0.014 [+0.006, +0.021], 6,841 papers. It is labelled "known before locking (feasibility check)". The confirmatory rerun uses the same design: when testing fold f, remove from training every donor of any of the 5 false titles of any fold-f paper; refit ridge (training-fold standardisation, alpha on fold 0); spec = probe(true) − mean of 5 false titles; within-bin target − control; team bootstrap 2,000 draws; size-matched random-training control reported beside it. Decision rule for the rerun: surname first token L40 target − control CI above 0 → "supported (clean)"; includes 0 → "not supported".

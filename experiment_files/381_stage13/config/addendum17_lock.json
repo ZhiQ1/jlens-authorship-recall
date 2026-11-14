@@ -1,0 +1,22 @@
+{
+ "file": "prereg_addendum17.md",
+ "locked_at": "2026-11-14T14:18:29.423380-05:00",
+ "sha256": "d71d6ed6612d5ae136a4f8007a1af3dd54cd3c51d77d8ae4ba93a81f35435ea3",
+ "items_locked": [
+  2,
+  3
+ ],
+ "h3_outputs_at_lock": [
+  "h3_samescale_paired_tiny.csv",
+  "h3_samescale_table_tiny.csv",
+  "logs",
+  "parity",
+  "parity3_published_tiny.csv",
+  "parity_rows_tiny.csv",
+  "parity_summary_tiny.json",
+  "parity_tiny",
+  "ranks",
+  "ranks_tiny",
+  "report_tiny.md"
+ ]
+}
