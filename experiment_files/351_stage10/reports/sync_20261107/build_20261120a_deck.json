@@ -1,0 +1,13 @@
+{
+ "source": "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html.before_20261120a",
+ "out": "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+ "content_changed": {
+  "27": [
+   "n line: add trained-on-false bars n = 1,568"
+  ]
+ },
+ "old": "<span class=\"nn\">n = 1,863 papers (X1-control pipeline, title reuse removed)</span>",
+ "new": "<span class=\"nn\">n = 1,863 papers (X1-control pipeline, title reuse removed); “trained on false titles” bars: n = 1,568 (stricter reuse rule)</span>",
+ "bytes_in": 13177688,
+ "bytes_out": 13177757
+}

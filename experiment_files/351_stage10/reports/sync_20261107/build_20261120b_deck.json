@@ -1,0 +1,158 @@
+{
+ "verdict": "H2 partly supported — a real-paper component exists, but meaning similarity explains most of the signal",
+ "sens_phi_range": [
+  0.7077618068250919,
+  0.7784805861889063
+ ],
+ "slide_a_values": [
+  "target: G 0.425 [0.406, 0.445], A 0.319 [0.301, 0.338], R 0.106 [0.094, 0.118], phi 0.751 [0.723, 0.778] (n 566)",
+  "control: G 0.217 [0.201, 0.234], A 0.167 [0.153, 0.182], R 0.050 [0.039, 0.061], phi 0.770 [0.727, 0.814] (n 561)",
+  "T−C R 0.056 [0.039, 0.072]; T−C phi -0.022 [-0.081, 0.033]",
+  "target (primary) phi 0.751 [0.723, 0.778] R 0.106 n 566",
+  "control phi 0.770 [0.727, 0.814] R 0.050 n 561",
+  "(a) false_0 only phi 0.745 [0.715, 0.773] R 0.106 n 566",
+  "(b) Crossref j2 ≥ 0.4 out phi 0.735 [0.703, 0.765] R 0.110 n 460",
+  "(c) titles ≥ 6 words phi 0.747 [0.719, 0.775] R 0.107 n 543",
+  "(d) first author only phi 0.736 [0.699, 0.772] R 0.117 n 566",
+  "(d) surname 1st token phi 0.719 [0.683, 0.754] R 0.217 n 566",
+  "(e) R0 papers only phi 0.751 [0.722, 0.780] R 0.103 n 531",
+  "(f) title log-prob, tertile 1 phi 0.708 [0.650, 0.764] R 0.114 n 189",
+  "(f) tertile 2 phi 0.758 [0.707, 0.809] R 0.093 n 188",
+  "(f) tertile 3 phi 0.778 [0.741, 0.816] R 0.111 n 189"
+ ],
+ "probe_true_minus_fict_target": [
+  0.023911391245349904,
+  0.025099050598898474,
+  0.019062145734139748,
+  0.01615739429362993,
+  0.017293280957667884,
+  0.024965529005309024,
+  0.03946990962501544,
+  0.040919733639895116,
+  0.031631363966484465
+ ],
+ "probe_true_minus_f0_target": [
+  0.05797436733599642,
+  0.06925587208092084,
+  0.06248496613081503,
+  0.07770326144424711,
+  0.07045127150820511,
+  0.08697837813538595,
+  0.10099252790919279,
+  0.1003993013089809,
+  0.09805749318129464
+ ],
+ "slide_b_values": [
+  "J-lens target R: L24 -0.003, L32 -0.016, L40 +0.023, L48 -0.036, L56 +0.012, L62 +0.115",
+  "J-lens control R: L24 -0.010, L32 -0.023, L40 +0.015, L48 +0.005, L56 +0.035, L62 +0.061",
+  "logit lens target R: L24 -0.002, L32 +0.004, L40 -0.001, L48 -0.003, L56 +0.032, L62 +0.089",
+  "logit lens control R: L24 -0.003, L32 +0.003, L40 -0.001, L48 +0.002, L56 +0.027, L62 +0.045",
+  "E1 target rec_true: L24 0.070, L32 0.126, L40 0.264, L48 0.798, L50 0.907, L52 0.985, L54 1.001, L56 1.000, L58 1.001, L60 0.999, L62 0.999, L63 1.000 | rec_fict: L24 0.050, L32 0.099, L40 0.196, L48 0.626, L50 0.691, L52 0.743, L54 0.746, L56 0.744, L58 0.745, L60 0.743, L62 0.745, L63 0.745",
+  "E1 control rec_true: L24 0.095, L32 0.176, L40 0.334, L48 0.862, L50 0.968, L52 1.015, L54 1.002, L56 0.996, L58 0.997, L60 0.997, L62 1.003, L63 1.000 | rec_fict: L24 0.085, L32 0.163, L40 0.295, L48 0.724, L50 0.776, L52 0.799, L54 0.780, L56 0.774, L58 0.768, L60 0.770, L62 0.765, L63 0.767"
+ ],
+ "text_bottom": [
+  654.4000000000001,
+  625.8000000000001
+ ],
+ "remapped_refs": [
+  [
+   79,
+   "slide 80",
+   "slide 82"
+  ],
+  [
+   84,
+   "slide 83",
+   "slide 85"
+  ],
+  [
+   84,
+   "slide 85",
+   "slide 87"
+  ],
+  [
+   86,
+   "slide 85",
+   "slide 87"
+  ],
+  [
+   86,
+   "slide 87",
+   "slide 89"
+  ],
+  [
+   86,
+   "slide 84",
+   "slide 86"
+  ],
+  [
+   86,
+   "slide 83",
+   "slide 85"
+  ]
+ ],
+ "toc_groups": [
+  {
+   "start": 1,
+   "name": "Overview and setup"
+  },
+  {
+   "start": 12,
+   "name": "Line A · Is it about this paper?"
+  },
+  {
+   "start": 34,
+   "name": "Line B · What can each readout see?"
+  },
+  {
+   "start": 44,
+   "name": "Line C · When does it appear, and when is it used?"
+  },
+  {
+   "start": 52,
+   "name": "Line D · Which token carries it?"
+  },
+  {
+   "start": 62,
+   "name": "Synthesis"
+  },
+  {
+   "start": 65,
+   "name": "Stage 12–13"
+  },
+  {
+   "start": 90,
+   "name": "Group comparisons"
+  },
+  {
+   "start": 94,
+   "name": "Checks and limits"
+  }
+ ],
+ "source": "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html.before_20261120b",
+ "out": "/scratch/zhang.zhiqi2/jlens/351_stage10/reports/merged_deck/stage1_11_deck.html",
+ "changed": {
+  "2": [
+   "roadmap pill: fictitious titles"
+  ],
+  "68": [
+   "H2 status",
+   "H2 latest result"
+  ],
+  "78": [
+   "H2 status"
+  ],
+  "79": [
+   "lead pointer (after remap)"
+  ],
+  "87": [
+   "H2 status (limits)"
+  ]
+ },
+ "new_slides": {
+  "80": "decomposition",
+  "81": "layers and patching"
+ },
+ "bytes_in": 13177757,
+ "bytes_out": 13221826
+}

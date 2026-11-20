@@ -1,0 +1,36 @@
+{
+ "rho_main": {
+  "est": 276.0190785652855,
+  "lo": 202.55601985678192,
+  "hi": 390.4386871999223,
+  "log10": 2.430251792724034,
+  "log10_lo": 2.2961509748203035,
+  "log10_hi": 2.5809626356721274,
+  "verdict": "confirmed",
+  "n_boot_valid": 2000
+ },
+ "rho_sensitivity": {
+  "est": 1184.472957392235,
+  "lo": 851.4867506130477,
+  "hi": 1712.0840689416882,
+  "log10": 3.029295257937953,
+  "log10_lo": 2.8883253510944447,
+  "log10_hi": 3.186872996419075,
+  "verdict": "confirmed",
+  "n_boot_valid": 2000
+ },
+ "trend": {
+  "slope": 0.02970989850193845,
+  "lo": 0.014143207810148542,
+  "hi": 0.044457693969803806,
+  "verdict": "grows with exposure",
+  "n_bins": 10,
+  "n_boot_valid": 2000,
+  "unit": "change in target - control per 10x median citations (log10 scale)"
+ },
+ "label": "confirmatory analysis of already-seen data (post hoc lock), addendum 19",
+ "addendum_sha256": "f6b650726d75d2a21f42dcaabf539803e074e3070ae09ddb2cdd0285b9cc35a4",
+ "n_papers": 9108,
+ "n_teams": 7247,
+ "NB": 2000
+}
