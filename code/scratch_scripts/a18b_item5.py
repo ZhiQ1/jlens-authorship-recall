@@ -38,7 +38,7 @@ FUNC_SYN = {'and': '&', 'with': 'using', 'using': 'with', 'via': 'through', 'thr
             'new': 'novel', 'more': 'further', 'all': 'every', 'each': 'every', 'every': 'each', 'some': 'certain', 'many': 'numerous',
             'few': 'several', 'two': '2', 'three': '3', 'first': 'initial', 'large': 'big', 'part': 'portion', 'beyond': 'past'}
 RAW = Path(os.environ.get('A18B_RAW5', A.R13 / 'raw/a18b_item5')); SUM = Path(os.environ.get('A18B_SUM5', A.R13 / 'summary_a18b_item5'))
-VARF = Path(os.environ.get('A18B_VAR5', A.CFG / 'item5_variants.parquet'))
+VARF = Path(os.environ.get('A18B_VAR5', A.CFG / 'item5_variants_v3.parquet'))   # v1/v2 item5_variants.parquet superseded (slur, lost inflection)
 _SMP = {}
 
 
@@ -58,12 +58,33 @@ def wordnet():
     wn.ensure_loaded(); return wn
 
 
+BLOCK = {'chink', 'wop', 'spic', 'kike', 'nigger', 'gook', 'dago', 'jap', 'chinaman', 'coon', 'paki', 'wetback', 'honky', 'redskin', 'squaw',
+         'dyke', 'fag', 'faggot', 'queer', 'retard', 'bitch', 'bastard', 'whore', 'slut', 'cunt', 'piss', 'shit', 'crap', 'tit', 'boob'}
+BAD_USAGE = ('slur', 'disparagement', 'obscenity', 'vulgarism', 'derogation', 'profanity')
+
+
 def synonym(wn, w):
-    lw = w.lower()
-    for s in wn.synsets(lw):
+    """v3 (2026-11-17, before any GPU output of item 5): keep the inflection (base form via wn.morphy, the word's suffix is
+    re-attached), skip synsets whose usage domain is a slur / disparagement / obscenity (the v1 table had e.g. an ethnic slur)."""
+    lw = w.lower(); base = wn.morphy(lw) or lw
+    # inflection of the original relative to its base: '', plural / 3rd person ('s'), past ('ed'), gerund ('ing'); else skip
+    if lw == base: infl = ''
+    elif lw in (base + 's', base + 'es'): infl = 's'
+    elif lw in (base + 'ed', base + 'd') or (len(base) > 2 and lw == base + base[-1] + 'ed'): infl = 'ed'
+    elif lw in (base + 'ing', base[:-1] + 'ing') or (len(base) > 2 and lw == base + base[-1] + 'ing'): infl = 'ing'
+    else: return None
+    def inflect(n):
+        if infl == 's': return n + ('es' if n.endswith(('s', 'x', 'z', 'ch', 'sh')) else 's')
+        if infl == 'ed': return n + ('d' if n.endswith('e') else 'ed')
+        if infl == 'ing': return (n[:-1] if n.endswith('e') and not n.endswith('ee') else n) + 'ing'
+        return n
+    for s in wn.synsets(base):
+        if any(any(b in d.name() for b in BAD_USAGE) for d in s.usage_domains()): continue
         for l in s.lemmas():
             n = l.name()
-            if '_' in n or not n.isalpha() or n.lower() == lw: continue
+            if '_' in n or not n.isalpha() or n.lower() in (lw, base) or n.lower() in BLOCK: continue
+            if n.lower().endswith(('ing', 'ed')) and infl: continue          # avoid double inflection (e.g. 'unmaskingd')
+            n = inflect(n)
             return n.capitalize() if w[0].isupper() else n
     return None
 
@@ -204,11 +225,9 @@ def analyze(a=None):
         for kd in ('first', 'surname'):
             pm = {}
             for v, pr in zip(ALLC, preds):
-                pc = rp[rv == v]; vals = []
-                for p_, y_ in zip(pc, pr):
-                    gl = [col[name[0]] for _, _, name in ctx[p_]] if kd == 'first' else [col[sf[(p_, a_)]] for a_, _, _ in ctx[p_] if (p_, a_) in sf]
-                    vals.append(I1.decode_nlr(np.repeat(y_[None], len(gl), 0), np.array(gl), Wr, nw, eps).mean() if gl else np.nan)
-                pm[v] = pd.Series(vals, index=pc)
+                pc = rp[rv == v]
+                gls = [[col[name[0]] for _, _, name in ctx[p_]] if kd == 'first' else [col[sf[(p_, a_)]] for a_, _, _ in ctx[p_] if (p_, a_) in sf] for p_ in pc]
+                pm[v] = pd.Series(I1.decode_paper_mean(pr, gls, Wr, nw, eps), index=pc)
             pm = pd.DataFrame(pm); Fp = pm[A.FALSES].mean(1)
             add(f'spec_true', f'probe_L{l}_{kd}', pm['true'] - Fp)
             for c in CLASSES:
@@ -244,14 +263,14 @@ def tiny(a):
     global RAW, SUM, VARF
     import pandas as pd
     root = Path(a.root); RAW = root / 'raw'; SUM = root / 'summary'; VARF = root / 'variants.parquet'; ok = {}
-    sm = A.sample(); _SMP['m'] = pd.concat([sm[sm.shard == k].head(2) for k in range(24)])
+    sm = A.sample(); _SMP['m'] = pd.concat([sm[sm.shard == k].head(1) for k in range(3)])     # 3 papers (CPU tiny is slow: 14 prompt variants)
     prep(out=VARF, papers_subset=_SMP['m'].paper_id.tolist())
     T = pd.read_parquet(VARF); ok['8 variants per paper'] = bool((T.groupby('paper_id').size() == 8).all())
     ok['rand keeps length'] = bool(all(len(json.loads(r.ids)) == len(json.loads(A.s11().cohort()[0].set_index('paper_id').loc[r.paper_id].prompt_ids)) for r in T[T.variant.str.endswith('rand')].head(20).itertuples()))
     ok['syn changes some titles'] = bool((T[T.variant == 'content_syn'].n_replaced > 0).mean() > 0.5)
     print(T[T.variant.str.endswith('syn')].head(8)[['variant', 'n_class_words', 'n_replaced', 'title_new']].to_string())
     C = A.make_ctx(tiny=True); import a18b_item1 as I1; I1.set_tiny_decoder(C)
-    ns = argparse.Namespace(shards='all', max_minutes=600); miss = work(ns, C=C); ok['all units written'] = not miss
+    ns = argparse.Namespace(shards='0-2', max_minutes=600); miss = work(ns, C=C); ok['all units written'] = not miss
     z = np.load(out_path(('main', 0))); ok['res shape'] = z['res'].shape[1:] == (len(PL), C.model.d_model)
     mt = out_path(('main', 0)).stat().st_mtime; work(ns, C=C); ok['skip-if-done'] = out_path(('main', 0)).stat().st_mtime == mt
     try: analyze(); ok['analysis ran'] = (SUM / 'item5_report.md').exists()

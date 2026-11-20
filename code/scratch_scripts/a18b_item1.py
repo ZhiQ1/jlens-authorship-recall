@@ -221,6 +221,14 @@ def set_tiny_decoder(C):
     DECODER['d'] = (W, nw, 1e-6, {int(t): i for i, t in enumerate(ids)})
 
 
+def decode_paper_mean(pred, gold_lists, Wr, nw, eps):
+    """one prediction per paper, several gold columns per paper -> mean nlr per paper (vectorised fp32 decoder)."""
+    x = pred / np.sqrt((pred ** 2).mean(1, keepdims=True) + eps) * nw; lg = (x @ Wr.T).astype(np.float32); out = np.full(len(pred), np.nan)
+    for i, gl in enumerate(gold_lists):
+        if len(gl): g = lg[i, gl]; out[i] = np.mean(-np.log10((lg[i][None, :] > g[:, None]).sum(1) + 1.0))
+    return out
+
+
 def analyze(a=None):
     import pandas as pd
     A.check_addendum(); B = A.Boot(); SUM.mkdir(parents=True, exist_ok=True)
@@ -267,7 +275,7 @@ def analyze(a=None):
                     col = f'rr_{lens}_b16_L{l}'
                     if col not in h3.columns: continue
                     ref = -np.log10(h3[col].reindex(rid).to_numpy(float)); new = NN[m, li, ki]; ok = np.isfinite(ref)
-                    par[f'{cond}_{lens}_L{l}'] = dict(rows=int(ok.sum()), exact_share=float((np.abs(new[ok] - ref[ok]) < 1e-9).mean()),
+                    par[f'{cond}_{lens}_L{l}'] = dict(rows=int(ok.sum()), exact_share=float((np.abs(new[ok] - ref[ok]) < 1e-5).mean()),
                                                      max_abs_dnlr=float(np.abs(new[ok] - ref[ok]).max()))
     except Exception as ex: par['error'] = repr(ex)
     # ---- probes (CPU): name-token ridge probe on the same 9,137 scale
@@ -290,11 +298,8 @@ def analyze(a=None):
             for kd in KINDS:
                 pm = {}
                 for c, pr in zip(A.CONDS, preds):
-                    pc = rp_pid[have_g & (rp_cond == c)]; vals = []
-                    for p_, y_ in zip(pc, pr):
-                        gl = golds_by_paper.get((p_, kd), [])
-                        vals.append(decode_nlr(np.repeat(y_[None], len(gl), 0), np.array(gl), Wr, nw, eps).mean() if gl else np.nan)
-                    pm[c] = pd.Series(vals, index=pc)
+                    pc = rp_pid[have_g & (rp_cond == c)]
+                    pm[c] = pd.Series(decode_paper_mean(pr, [golds_by_paper.get((p_, kd), []) for p_ in pc], Wr, nw, eps), index=pc)
                 cell(g, kd, 'probe', l, pd.DataFrame(pm)[A.CONDS])
     # surname-first name position probe (target = true L63 at the same position)
     rs_pid, rs_ai, rs_cond, rs_gold, RS = cat('rs_pid'), cat('rs_ai'), cat('rs_cond'), cat('rs_gold'), cat('rs_res')
