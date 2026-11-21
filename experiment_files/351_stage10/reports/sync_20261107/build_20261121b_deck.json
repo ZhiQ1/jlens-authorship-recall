@@ -1,0 +1,103 @@
+{
+ "values": {
+  "a": [
+   "true−fict target: L16 +0.024, L24 +0.025, L32 +0.019, L40 +0.016, L44 +0.017, L48 +0.025, L52 +0.039, L56 +0.041, L60 +0.032",
+   "true−fict control: L16 +0.010, L24 +0.016, L32 -0.007, L40 +0.009, L44 +0.004, L48 +0.008, L52 +0.018, L56 +0.019, L60 +0.017",
+   "title E4b V0 (spec0, reuse-free) L40 · FULL (median 55) high−low +0.0034 [-0.0764, +0.0834]",
+   "title E4b Vpd L40 · FULL (median 66) high−low -0.0191 [-0.0592, +0.0207]",
+   "name-position Vpd L40 · FULL (median 66) high−low +0.0018 [-0.0252, +0.0271]",
+   "name-position Vpd L48 · FULL (median 66) high−low +0.0008 [-0.0313, +0.0304]"
+  ],
+  "b": [
+   "L40 PC1-10 0.062, 0.050, 0.048, 0.038, 0.030, 0.022, 0.021, 0.018, 0.018, 0.015; n50 31 n80 234",
+   "L48 PC1-10 0.067, 0.053, 0.045, 0.032, 0.031, 0.025, 0.022, 0.021, 0.020, 0.018; n50 25 n80 151",
+   "share of Δ on PC1 L40 0.007 L48 0.500",
+   "share of Δ in top 10 PCs L40 0.599 L48 0.808",
+   "probe readout in top 10 PCs L40 0.024 L48 0.014",
+   "cos author probe: true-author readout: L40 -0.127 L48 -0.133",
+   "cos author probe: direction 1: L40 +0.123 L48 -0.115",
+   "cos author probe: direction 5: L40 -0.124 L48 +0.146",
+   "cos citations: L40 +0.064 L48 +0.063",
+   "cos year: L40 +0.012 L48 +0.011",
+   "cos field (largest |cos| of 8): L40 +0.083 L48 +0.055",
+   "all17 L40 0.0709 L48 0.0609"
+  ],
+  "s59": "Exploratory · group A, ≥ 1 full true author: F0 4.0% → F4 15.2%; 85% still none (fixes ~12%) · B 0.5% → 3.2%"
+ },
+ "a_bottom": 638.0,
+ "b_bottom": 665.4,
+ "refs_remapped_on_slides": [
+  68,
+  80,
+  82,
+  88,
+  90,
+  94
+ ],
+ "toc": [
+  {
+   "id": "0",
+   "start": 1,
+   "name": "Overview and setup"
+  },
+  {
+   "id": "1",
+   "start": 12,
+   "name": "Line A · Is it about this paper?"
+  },
+  {
+   "id": "2",
+   "start": 34,
+   "name": "Line B · What can each readout see?"
+  },
+  {
+   "id": "3",
+   "start": 44,
+   "name": "Line C · When does it appear, and when is it used?"
+  },
+  {
+   "id": "4",
+   "start": 52,
+   "name": "Line D · Which token carries it?"
+  },
+  {
+   "id": "5",
+   "start": 62,
+   "name": "Synthesis"
+  },
+  {
+   "id": "6a",
+   "start": 65,
+   "name": "Stage 12–13 · What the middle layers hold"
+  },
+  {
+   "id": "6b",
+   "start": 71,
+   "name": "Stage 12–13 · The route"
+  },
+  {
+   "id": "6c",
+   "start": 77,
+   "name": "Stage 12–13 · Meaning or this paper?"
+  },
+  {
+   "id": "6d",
+   "start": 83,
+   "name": "Stage 12–13 · Names in the middle layers"
+  },
+  {
+   "id": "7",
+   "start": 92,
+   "name": "Group comparisons"
+  },
+  {
+   "id": "8",
+   "start": 97,
+   "name": "Checks and limits"
+  }
+ ],
+ "new_slides": [
+  81,
+  86
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "label": "exploratory (post hoc, not pre-registered)",
+ "layers": {
+  "40": {
+   "n_target": 3130,
+   "n_control": 1524,
+   "delta_norm": 2.9650721513419445,
+   "Delta_share_field_subspace": 0.014788479158238284,
+   "field_dims": 8,
+   "Delta_share_author_svd5": 0.03380697381065147,
+   "author_dims": 5,
+   "Delta_share_all_dirs": 0.07086015469337353,
+   "all_dims": 17,
+   "random_per_dim": 0.0001953125,
+   "fields": [
+    "medicine",
+    "biology",
+    "computer science",
+    "psychology",
+    "chemistry",
+    "mathematics",
+    "physics",
+    "materials science"
+   ],
+   "Delta_share_top10PC": 0.5987731272625153,
+   "Delta_share_top50PC": 0.8730151820741444
+  },
+  "48": {
+   "n_target": 3130,
+   "n_control": 1524,
+   "delta_norm": 6.027735851563078,
+   "Delta_share_field_subspace": 0.006653516132931267,
+   "field_dims": 8,
+   "Delta_share_author_svd5": 0.03695383010294258,
+   "author_dims": 5,
+   "Delta_share_all_dirs": 0.06088203893289023,
+   "all_dims": 17,
+   "random_per_dim": 0.0001953125,
+   "fields": [
+    "medicine",
+    "biology",
+    "computer science",
+    "psychology",
+    "chemistry",
+    "mathematics",
+    "physics",
+    "materials science"
+   ],
+   "Delta_share_top10PC": 0.8076754493261247,
+   "Delta_share_top50PC": 0.929221774298354
+  }
+ }
+}

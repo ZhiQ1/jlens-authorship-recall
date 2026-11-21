@@ -1,0 +1,158 @@
+{
+ "6": {
+  "x": 70,
+  "y": 204,
+  "w": 520,
+  "formula": null,
+  "n": "n = 9,108 papers (A 4,110 · U0 2,002 · B 2,186 · C 511 · D 34 …) · Stages 11–13: 593 + 593 · X3: 1,178 pairs"
+ },
+ "18": {
+  "x": 250,
+  "y": 420,
+  "w": 520,
+  "formula": null,
+  "n": "n = 200 new papers (100 A/B pairs), Stage 8D"
+ },
+ "22": {
+  "x": 660,
+  "y": 116,
+  "w": 560,
+  "formula": null,
+  "n": "n = 1 example paper (Coifman, Bonanno, Rafaeli 2007), author 1 · the method is applied to all 9,108 papers"
+ },
+ "25": {
+  "x": 70,
+  "y": 596,
+  "w": 1140,
+  "formula": "prior = nlr(delete),  topic = mean₅ nlr(false) − nlr(delete),  spec = nlr(true) − mean₅ nlr(false);  each T − C within citation bins",
+  "n": "n = 9,108 papers (4,621 target + 2,220 control), L63"
+ },
+ "26": {
+  "x": 130,
+  "y": 216,
+  "w": 620,
+  "formula": null,
+  "n": "n = 9,108 papers (probe fit, 5 author-team folds) · 1,395 reuse-free papers (V0 main number)"
+ },
+ "30": {
+  "x": 180,
+  "y": 500,
+  "w": 640,
+  "formula": null,
+  "n": "n = P1: A 3,417 + B 2,148 papers · P2: C − A (co-authors, first author) · dose: R0 papers by orders right"
+ },
+ "38": {
+  "x": 130,
+  "y": 600,
+  "w": 560,
+  "formula": null,
+  "n": "n = 1 example paper (author 1, token “Co”), true title vs false_0"
+ },
+ "45": {
+  "x": 70,
+  "y": 596,
+  "w": 1140,
+  "formula": "y = T − C within citation bins of spec,  spec = nlr(true) − mean₅ nlr(false),  nlr = log₁₀(1/rank)",
+  "n": "n = 3,734 target + 2,182 control papers, name positions"
+ },
+ "46": {
+  "x": 70,
+  "y": 596,
+  "w": 1140,
+  "formula": "y = T − C within citation bins of spec,  spec = nlr(true) − mean₅ nlr(false),  nlr = log₁₀(1/rank)",
+  "n": "n = 3,734 target + 2,182 control papers, L40–L62"
+ },
+ "48": {
+  "x": 170,
+  "y": 428,
+  "w": 520,
+  "formula": null,
+  "n": "n = 1,186 papers (593 target + 593 control), mean of 5 false titles"
+ },
+ "49": {
+  "x": 370,
+  "y": 596,
+  "w": 520,
+  "formula": null,
+  "n": "n = 1,186 papers (593 target + 593 control)"
+ },
+ "50": {
+  "x": 70,
+  "y": 592,
+  "w": 1140,
+  "formula": "R(l) = mean_p[P̄_p(l) − F̄_p] / mean_p[T̄_p − F̄_p];   loss(l) = mean_p[K̄_p(64) − K̄_p(l)] / mean_p[T̄_p − F̄_p]",
+  "n": "n = 1,186 papers (593 + 593), false_0"
+ },
+ "65": {
+  "x": 240,
+  "y": 504,
+  "w": 480,
+  "formula": null,
+  "n": "n = 582 test papers (team folds)"
+ },
+ "66": {
+  "x": 70,
+  "y": 420,
+  "w": 480,
+  "formula": null,
+  "n": "n = 1,110 papers (primary set; 552 test papers)"
+ },
+ "67": {
+  "x": 520,
+  "y": 408,
+  "w": 480,
+  "formula": null,
+  "n": "n = 582 test papers (596 tune), team CI"
+ },
+ "71": {
+  "x": 80,
+  "y": 588,
+  "w": 660,
+  "formula": "recovery(l) = mean_p[P̄(l) − F̄] / mean_p[T̄ − F̄],  mean of 5 false titles",
+  "n": "n = 1,186 papers (593 + 593)"
+ },
+ "76": {
+  "x": 80,
+  "y": 524,
+  "w": 700,
+  "formula": "R(l) = mean(patched − false) / mean(true − false), mean of 5;   S(l) = T(l) − F(l)",
+  "n": "n = 1,186 papers (593 + 593)"
+ },
+ "84": {
+  "x": 80,
+  "y": 600,
+  "w": 660,
+  "formula": "spec = nlr(true) − nlr(false₀) per name token, ranked by role;  T − C within citation bins",
+  "n": "n = V0 1,395–1,706 · Vpd 3,046–4,812 papers (L40)"
+ },
+ "85": {
+  "x": 80,
+  "y": 532,
+  "w": 420,
+  "formula": null,
+  "n": "n = 4,654 papers (3,130 target + 1,524 control), surname first token"
+ },
+ "87": {
+  "x": 80,
+  "y": 568,
+  "w": 640,
+  "formula": "AUROC = mean over (true M, fabricated H) pairs of 1[probe(M) > probe(H)]  (ties 0.5)",
+  "n": "n = 518 target papers, 3,388 pairs"
+ },
+ "95": {
+  "x": 70,
+  "y": 671,
+  "w": 1140,
+  "formula": "y = mean over unwritten authors of spec,  spec = nlr(true) − mean₅ nlr(false),  L63",
+  "n": "n = R0 927–4,105 · R1 15–462 papers per level"
+ },
+ "99": {
+  "x": 760,
+  "y": 664,
+  "w": 420,
+  "formula": null,
+  "n": "n = A 557 · B 586 · C 462 · D 33 papers (D descriptive)"
+ },
+ "81_svg": "<text x=\"640\" y=\"452\" font-size=\"11.5\" fill=\"#8a8f98\" font-family=\"'Noto Sans SC','PingFang SC','Droid Sans Fallback',system-ui,sans-serif\">y = (T̄ − C̄)_high − (T̄ − C̄)_low, T − C within citation bins of the probe spec = probe(true) − probe(false)</text>",
+ "86_svg": "<text x=\"130\" y=\"466\" font-size=\"11\" fill=\"#8a8f98\" font-family=\"'Noto Sans SC','PingFang SC','Droid Sans Fallback',system-ui,sans-serif\">y = λ_k / Σ_j λ_j (eigenvalues of the target rows d − mean_C d)</text><text x=\"650\" y=\"488\" font-size=\"11\" fill=\"#8a8f98\" font-family=\"'Noto Sans SC','PingFang SC','Droid Sans Fallback',system-ui,sans-serif\">x = cos(Δ, v) = Δ·v / (‖Δ‖ ‖v‖), v = unit probe direction</text>"
+}
