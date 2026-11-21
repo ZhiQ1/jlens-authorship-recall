@@ -1,0 +1,12 @@
+{
+ "F_exposure": "Exposure threshold (addendum 19)",
+ "B_format": "Answer format (B), addendum 16",
+ "D_chain": "Name chain (D), addendum 16",
+ "C_fabricated": "C: fabricated names (exploratory)",
+ "i1_map": "Addendum 18b item 1: readout map",
+ "i3_cells": "Addendum 18b item 3: per-cell patching",
+ "i2_edges": "Addendum 18b item 2: windowed attention blocking",
+ "i6_mlp": "Addendum 18b item 6: MLP memory lookup",
+ "i4_ablation": "Addendum 18b item 4: L57\u2013L61 mean ablation",
+ "i5_words": "Addendum 18b item 5: title-token importance"
+}

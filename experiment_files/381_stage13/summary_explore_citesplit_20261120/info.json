@@ -1,0 +1,46 @@
+{
+ "label": "exploratory (post hoc, not pre-registered)",
+ "median_citations": 31.0,
+ "ties": "papers with citations <= median go to the low half",
+ "n": {
+  "high/control": 296,
+  "high/target": 296,
+  "low/control": 297,
+  "low/target": 297
+ },
+ "full_cohort_median": 66.0,
+ "full_n": {
+  "high/control": 476,
+  "high/target": 2936,
+  "low/control": 1744,
+  "low/target": 1685
+ },
+ "cit_range": {
+  "low": [
+   0.0,
+   31.0
+  ],
+  "high": [
+   32.0,
+   1010.0
+  ]
+ },
+ "parity": {
+  "R_L48": {
+   "mine": 0.8211460597910621,
+   "published": 0.8211460597910623,
+   "rounded_published": 0.821,
+   "diff": -1.1102230246251565e-16,
+   "status": "OK"
+  },
+  "R_L52": {
+   "mine": 0.9954747921101083,
+   "published": 0.9954747921101084,
+   "rounded_published": 0.995,
+   "diff": -1.1102230246251565e-16,
+   "status": "OK"
+  }
+ },
+ "NB": 2000,
+ "seed": 13
+}

@@ -1,0 +1,289 @@
+label,sample,readout,layer,measure,half,n_target,n_control,tc,lo,hi
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,spec_mean_nlr,low,297.0,297.0,0.0034513822704624946,-0.010534617511240804,0.01689576922698058
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,spec_mean_nlr,high,296.0,296.0,0.0047357099140941635,-0.007923583176360265,0.017521679740338362
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,spec_mean_nlr,both,593.0,593.0,0.004092463185327543,-0.00519191111606696,0.0130949678959906
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,spec_mean_nlr,high - low,,,0.0012843276436316688,-0.01760310373199467,0.020534929165008636
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,true_mean_nlr,low,297.0,297.0,-0.0006101439251846048,-0.04677449758632482,0.04507070169764095
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,true_mean_nlr,high,296.0,296.0,-0.016263255669958454,-0.061692910905860605,0.02780402187949144
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,true_mean_nlr,both,593.0,593.0,-0.008423501558326357,-0.03981983926848019,0.022462426572196693
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,40,true_mean_nlr,high - low,,,-0.01565311174477385,-0.07658132694651916,0.048816718067305434
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,spec_mean_nlr,low,297.0,297.0,-0.003889916770232544,-0.017290291582428622,0.009740960879509833
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,spec_mean_nlr,high,296.0,296.0,0.009839107205189006,-0.002730023034545135,0.022453384002428613
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,spec_mean_nlr,both,593.0,593.0,0.0029630193119340306,-0.006603986223219426,0.012022728861053513
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,spec_mean_nlr,high - low,,,0.01372902397542155,-0.005087911732137225,0.03162406662873612
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,true_mean_nlr,low,297.0,297.0,-0.013686944695975811,-0.055903219315826515,0.029865623289111427
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,true_mean_nlr,high,296.0,296.0,-0.03626923340724566,-0.08103416314166209,0.009153079414788965
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,true_mean_nlr,both,593.0,593.0,-0.02495904833600258,-0.05652000186832235,0.007899370149498866
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,48,true_mean_nlr,high - low,,,-0.022582288711269848,-0.08245293909312391,0.03534450273913644
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,spec_mean_nlr,low,297.0,297.0,0.005788993188848459,-0.013034101448392394,0.023475161846702987
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,spec_mean_nlr,high,296.0,296.0,0.015749515412302087,-0.0008995941337073893,0.03217274039870487
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,spec_mean_nlr,both,593.0,593.0,0.010760855883860726,-0.0017634268383884544,0.02332185371102026
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,spec_mean_nlr,high - low,,,0.009960522223453628,-0.013774590700016673,0.03579334157670643
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,true_mean_nlr,low,297.0,297.0,-0.007476781782853006,-0.056205572974782105,0.045450943496928256
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,true_mean_nlr,high,296.0,296.0,-0.058258391125370367,-0.11095278171028974,-0.0053932562553746285
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,true_mean_nlr,both,593.0,593.0,-0.03282476890829169,-0.06816640428738091,0.003813813236032789
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,50,true_mean_nlr,high - low,,,-0.05078160934251736,-0.12195731051310194,0.01683914626218626
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,spec_mean_nlr,low,297.0,297.0,0.01480837253172042,-0.004146468925414217,0.032562498646605174
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,spec_mean_nlr,high,296.0,296.0,0.01870252767459023,0.0030845799031158903,0.03525286114014363
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,spec_mean_nlr,both,593.0,593.0,0.016752166667115806,0.0040664020003539645,0.028856444047171224
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,spec_mean_nlr,high - low,,,0.0038941551428698113,-0.01913880980444676,0.027919408460237917
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,true_mean_nlr,low,297.0,297.0,0.0037897133841517734,-0.04802605222242987,0.06109975121051568
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,true_mean_nlr,high,296.0,296.0,-0.058040441574670636,-0.11339490069929095,-0.0015680923278246438
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,true_mean_nlr,both,593.0,593.0,-0.02707323074369213,-0.06551528518602372,0.013301611720180335
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,51,true_mean_nlr,high - low,,,-0.06183015495882241,-0.13615061147030944,0.011665516578175487
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,spec_mean_nlr,low,297.0,297.0,0.021586136753637464,-0.0010892253153232626,0.04310936785014978
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,spec_mean_nlr,high,296.0,296.0,0.0247799744411851,0.0038767314356715392,0.04558058484710569
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,spec_mean_nlr,both,593.0,593.0,0.02318036264826495,0.007403695143501405,0.03839130620877678
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,spec_mean_nlr,high - low,,,0.003193837687547635,-0.027221702907568694,0.03314373785688329
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,true_mean_nlr,low,297.0,297.0,-0.0026696051606225927,-0.06484997015702627,0.0607235209542977
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,true_mean_nlr,high,296.0,296.0,-0.06328664556349044,-0.12644533048647363,0.001528015979479224
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,true_mean_nlr,both,593.0,593.0,-0.032927014872678045,-0.07628157754192878,0.012959877038534684
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,52,true_mean_nlr,high - low,,,-0.06061704040286785,-0.14447067443070474,0.024030357646742866
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,spec_mean_nlr,low,297.0,297.0,0.0228555049968449,-0.005586012831092115,0.0506257710017954
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,spec_mean_nlr,high,296.0,296.0,0.02183434523764226,-0.0025177461828778183,0.04552947441846814
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,spec_mean_nlr,both,593.0,593.0,0.02234578612884493,0.0037704387036498533,0.04174559993992215
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,spec_mean_nlr,high - low,,,-0.001021159759202639,-0.036406373752468815,0.036309471277445785
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,true_mean_nlr,low,297.0,297.0,-0.009428303450902967,-0.07783399391608344,0.05634729273614631
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,true_mean_nlr,high,296.0,296.0,-0.072086786960022,-0.13831403887770433,-0.006167271708187789
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,true_mean_nlr,both,593.0,593.0,-0.04070471343184603,-0.08660048609944998,0.00694480171705724
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,53,true_mean_nlr,high - low,,,-0.06265848350911904,-0.1520050797386055,0.026141986137780997
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,spec_mean_nlr,low,297.0,297.0,0.03461014762347468,0.0019145312751691185,0.06597836413807981
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,spec_mean_nlr,high,296.0,296.0,0.01723624083142356,-0.01152159842741781,0.04663444042299352
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,spec_mean_nlr,both,593.0,593.0,0.02593784339000566,0.0035306577326925815,0.0473686481919396
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,spec_mean_nlr,high - low,,,-0.017373906792051124,-0.05781612064390967,0.025946317714525626
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,true_mean_nlr,low,297.0,297.0,-0.00451413162432423,-0.07501533003870396,0.0636332783117634
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,true_mean_nlr,high,296.0,296.0,-0.07263523483411831,-0.1427225796530844,0.0016873509754981473
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,true_mean_nlr,both,593.0,593.0,-0.038517245536801546,-0.08711068114101833,0.015443714891259331
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,54,true_mean_nlr,high - low,,,-0.06812110320979407,-0.15840176214314916,0.022958536644941328
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,spec_mean_nlr,low,297.0,297.0,0.03701945734037316,-0.0035038427341696344,0.07682424395309868
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,spec_mean_nlr,high,296.0,296.0,0.02457980065855236,-0.012232081098385682,0.06082006826608273
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,spec_mean_nlr,both,593.0,593.0,0.030810117748772903,0.0016276876623484095,0.058432916520953504
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,spec_mean_nlr,high - low,,,-0.012439656681820798,-0.063260068147976,0.04059744753315403
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,true_mean_nlr,low,297.0,297.0,0.0082770963734654,-0.0669697686472285,0.08180868229558964
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,true_mean_nlr,high,296.0,296.0,-0.06274882515777845,-0.13547169891432945,0.012663046875452885
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,true_mean_nlr,both,593.0,593.0,-0.027175977443141985,-0.08063316611272699,0.02779270967453535
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,55,true_mean_nlr,high - low,,,-0.07102592153124385,-0.17018683329990048,0.028618112137413474
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,spec_mean_nlr,low,297.0,297.0,0.06781733573120552,0.026390047154819983,0.1087086923478245
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,spec_mean_nlr,high,296.0,296.0,0.05379435929397916,0.015221267407120728,0.09456094583882944
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,spec_mean_nlr,both,593.0,593.0,0.060817671270127945,0.031578344974961446,0.0909036915761164
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,spec_mean_nlr,high - low,,,-0.014022976437226359,-0.06767711130526592,0.04280281234985142
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,true_mean_nlr,low,297.0,297.0,0.03744062504162258,-0.043112537062387296,0.11529588894235719
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,true_mean_nlr,high,296.0,296.0,-0.04682032917262635,-0.12414963364252701,0.03697274534121581
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,true_mean_nlr,both,593.0,593.0,-0.004618805729739453,-0.06142248137819097,0.05381997396107893
+"exploratory (post hoc, not pre-registered)",stage11_1186,logit,56,true_mean_nlr,high - low,,,-0.08426095421424892,-0.1930631111339434,0.022403990001021463
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,spec_mean_nlr,low,297.0,297.0,0.021588333877172267,-0.020471912414941142,0.06504835954404357
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,spec_mean_nlr,high,296.0,296.0,0.007656890087137181,-0.034816887179869235,0.05044704263523295
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,spec_mean_nlr,both,593.0,593.0,0.014634358562078866,-0.01554098222839659,0.04565795540292668
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,spec_mean_nlr,high - low,,,-0.013931443790035086,-0.07503236868913449,0.047245967530093635
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,true_mean_nlr,low,297.0,297.0,-0.10545187805106292,-0.17726043779646608,-0.03507516835359466
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,true_mean_nlr,high,296.0,296.0,0.021566382724631593,-0.044218339998802154,0.08848009837445735
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,true_mean_nlr,both,593.0,593.0,-0.04204984569085115,-0.09262256920463612,0.00525594481233312
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,40,true_mean_nlr,high - low,,,0.1270182607756945,0.030448557747962304,0.22465916263127347
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,spec_mean_nlr,low,297.0,297.0,-0.019801292571172534,-0.057284633264839305,0.017067038205382634
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,spec_mean_nlr,high,296.0,296.0,-0.05587233391823904,-0.09362520785905976,-0.020254580680395005
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,spec_mean_nlr,both,593.0,593.0,-0.03780639921321585,-0.0652613253475201,-0.01365844443033867
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,spec_mean_nlr,high - low,,,-0.0360710413470665,-0.08933568734904165,0.018857467982429005
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,true_mean_nlr,low,297.0,297.0,-0.15940797219426409,-0.24041273094375673,-0.0839950761724865
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,true_mean_nlr,high,296.0,296.0,-0.10389440899627475,-0.17969044976816073,-0.034511196485808485
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,true_mean_nlr,both,593.0,593.0,-0.13169799798413787,-0.188676660699174,-0.07859912067155206
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,48,true_mean_nlr,high - low,,,0.055513563197989335,-0.05024110753481264,0.16229617605378546
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,spec_mean_nlr,low,297.0,297.0,-0.02730468010765549,-0.07693386869234213,0.02270514354958424
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,spec_mean_nlr,high,296.0,296.0,-0.07038556650478549,-0.11731445979644294,-0.024222769681693287
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,spec_mean_nlr,both,593.0,593.0,-0.0488087987814337,-0.08195352537002973,-0.016037923076057548
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,spec_mean_nlr,high - low,,,-0.043080886397129994,-0.11370627659256259,0.02717563953756632
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,true_mean_nlr,low,297.0,297.0,-0.193605126903765,-0.2765273941651889,-0.11673846776420671
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,true_mean_nlr,high,296.0,296.0,-0.20017677901057385,-0.27453647282444676,-0.12786496142412052
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,true_mean_nlr,both,593.0,593.0,-0.19688541193515696,-0.2540866540290259,-0.1447039530373428
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,50,true_mean_nlr,high - low,,,-0.006571652106808851,-0.11606347033681538,0.1014736239968017
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,spec_mean_nlr,low,297.0,297.0,-0.008284823031053322,-0.05474532969774911,0.04029599977597207
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,spec_mean_nlr,high,296.0,296.0,-0.05923698377415906,-0.10310781642312515,-0.01760344957530772
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,spec_mean_nlr,both,593.0,593.0,-0.03371794205290711,-0.06670623249597145,-0.0024333452380611107
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,spec_mean_nlr,high - low,,,-0.05095216074310574,-0.11518526248225237,0.010768290031128235
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,true_mean_nlr,low,297.0,297.0,-0.1727908240853298,-0.24831658527106643,-0.10234493101988053
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,true_mean_nlr,high,296.0,296.0,-0.20742306392138343,-0.27643851895250265,-0.13836094515943848
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,true_mean_nlr,both,593.0,593.0,-0.19007774312659773,-0.2425301421230279,-0.14185162298256054
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,51,true_mean_nlr,high - low,,,-0.034632239836053624,-0.13392667860460444,0.0683347392774903
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,spec_mean_nlr,low,297.0,297.0,-0.017201850653547127,-0.06414443736124155,0.031696563286922094
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,spec_mean_nlr,high,296.0,296.0,-0.07490950804759298,-0.11948424181814858,-0.033174339012488854
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,spec_mean_nlr,both,593.0,593.0,-0.04600702196659531,-0.07882696935940811,-0.01458503374040406
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,spec_mean_nlr,high - low,,,-0.05770765739404586,-0.12209244592590725,0.006122673330539188
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,true_mean_nlr,low,297.0,297.0,-0.17711699731093086,-0.25363325811748677,-0.10542407931007439
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,true_mean_nlr,high,296.0,296.0,-0.21679275464865738,-0.2863740201809233,-0.14836383930990776
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,true_mean_nlr,both,593.0,593.0,-0.19692142255876738,-0.24911617110773815,-0.1464216796652245
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,52,true_mean_nlr,high - low,,,-0.03967575733772652,-0.14050022399796,0.06335131160245423
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,spec_mean_nlr,low,297.0,297.0,-0.007897791475980978,-0.05595942453567837,0.04147017908936303
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,spec_mean_nlr,high,296.0,296.0,-0.08135973806777667,-0.1253021679542278,-0.038728531835936976
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,spec_mean_nlr,both,593.0,593.0,-0.044566823838833466,-0.0775660614537932,-0.011895316625221248
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,spec_mean_nlr,high - low,,,-0.0734619465917957,-0.1383250562360673,-0.01040589976845804
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,true_mean_nlr,low,297.0,297.0,-0.16678637157138576,-0.2416641234296959,-0.09222051382794524
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,true_mean_nlr,high,296.0,296.0,-0.23154684485535065,-0.3012560434572345,-0.1615031970286072
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,true_mean_nlr,both,593.0,593.0,-0.19911200410435984,-0.2501467241352886,-0.1484432288147309
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,53,true_mean_nlr,high - low,,,-0.06476047328396489,-0.16617571734590886,0.038918690748140805
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,spec_mean_nlr,low,297.0,297.0,0.012773124183675844,-0.03474136141069192,0.06232338422789574
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,spec_mean_nlr,high,296.0,296.0,-0.06282087209063136,-0.1089007763266646,-0.019936038614551975
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,spec_mean_nlr,both,593.0,593.0,-0.02496013533941848,-0.05791853108086448,0.007269077676218525
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,spec_mean_nlr,high - low,,,-0.07559399627430721,-0.14061395483226408,-0.011749433565530059
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,true_mean_nlr,low,297.0,297.0,-0.15651706516586125,-0.23100273877691455,-0.07957885521076123
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,true_mean_nlr,high,296.0,296.0,-0.21851734592484548,-0.29060465810683245,-0.14854430672351493
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,true_mean_nlr,both,593.0,593.0,-0.18746492874876064,-0.24075035247541404,-0.13566174875606782
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,54,true_mean_nlr,high - low,,,-0.06200028075898423,-0.1669313458042458,0.04606972502127599
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,spec_mean_nlr,low,297.0,297.0,0.02814342718436243,-0.024276717447322304,0.08186534733363433
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,spec_mean_nlr,high,296.0,296.0,-0.04466973686274119,-0.09131941516638965,-0.000266631046460028
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,spec_mean_nlr,both,593.0,593.0,-0.008201760940330106,-0.04491690818090932,0.025504395710833908
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,spec_mean_nlr,high - low,,,-0.07281316404710363,-0.14497947177698087,-0.0057597811568542625
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,true_mean_nlr,low,297.0,297.0,-0.12419948778978057,-0.2025593538636802,-0.04225465656305212
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,true_mean_nlr,high,296.0,296.0,-0.20636962245221874,-0.28667417110484755,-0.13282781504505206
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,true_mean_nlr,both,593.0,593.0,-0.16521527170222863,-0.21972154250764472,-0.11339511107733595
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,55,true_mean_nlr,high - low,,,-0.08217013466243817,-0.18690668145349873,0.025783435636849126
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,spec_mean_nlr,low,297.0,297.0,0.04365658328711223,-0.01260181521353868,0.09988353326340861
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,spec_mean_nlr,high,296.0,296.0,-0.027464172209480872,-0.07875139146250293,0.020829636791134514
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,spec_mean_nlr,both,593.0,593.0,0.008156172449015169,-0.03139788240038924,0.045734452211540884
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,spec_mean_nlr,high - low,,,-0.07112075549659311,-0.14737230459741738,0.003238182787741221
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,true_mean_nlr,low,297.0,297.0,-0.09084674645694435,-0.1752230998363811,-0.00754722408339485
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,true_mean_nlr,high,296.0,296.0,-0.22341137572054875,-0.30787365554312857,-0.142731301964302
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,true_mean_nlr,both,593.0,593.0,-0.15701728652781602,-0.2158115425867281,-0.09889230228419617
+"exploratory (post hoc, not pre-registered)",stage11_1186,jlens_public,56,true_mean_nlr,high - low,,,-0.1325646292636044,-0.24625950428268278,-0.014588659926528667
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,spec_mean_nlr,low,1685.0,1744.0,0.0030540287827145623,-0.002985357343141436,0.009217942609235454
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,spec_mean_nlr,high,2852.0,476.0,0.0022812002389411335,-0.005716270816246239,0.010289894816209916
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,spec_mean_nlr,both,4537.0,2220.0,0.002804350214539507,-0.002098121682385967,0.0078260658295782
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,spec_mean_nlr,high - low,,,-0.0007728285437734288,-0.010783293286845718,0.008804023770757938
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,true_mean_nlr,low,1685.0,1744.0,0.005600257967882671,-0.013977992165103105,0.0257072247272527
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,true_mean_nlr,high,2852.0,476.0,-0.017787311368145275,-0.04718385976469826,0.010490326899507225
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,true_mean_nlr,both,4537.0,2220.0,-0.001955589796749319,-0.018513917293531315,0.01467503312806331
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,40,true_mean_nlr,high - low,,,-0.023387569336027945,-0.0585753538834377,0.00994838979100883
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,spec_mean_nlr,low,1685.0,1744.0,0.001181871214632384,-0.004485315098868547,0.007074441087038074
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,spec_mean_nlr,high,2852.0,476.0,0.011257514082053202,0.0026529279648217397,0.019977656548045505
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,spec_mean_nlr,both,4537.0,2220.0,0.004437020244581191,-0.0003048266659580005,0.009367072801575962
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,spec_mean_nlr,high - low,,,0.010075642867420818,1.0247756622856772e-05,0.019982549159866424
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,true_mean_nlr,low,1685.0,1744.0,-0.007472178447110376,-0.025576736069395662,0.010604565489518058
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,true_mean_nlr,high,2852.0,476.0,-0.022925999724011655,-0.05274439585869293,0.007132879162513548
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,true_mean_nlr,both,4537.0,2220.0,-0.012464861494776242,-0.02879995054173675,0.0037793490585610787
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,48,true_mean_nlr,high - low,,,-0.01545382127690128,-0.050562547779113245,0.017636370722322544
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,spec_mean_nlr,low,1685.0,1744.0,0.008473408653438146,0.0010585256272999124,0.016017036007516788
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,spec_mean_nlr,high,2852.0,476.0,0.0076054543218720145,-0.0024855071030027084,0.017564699530569813
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,spec_mean_nlr,both,4537.0,2220.0,0.008192997692310003,0.0021672584218312483,0.014539539350654636
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,spec_mean_nlr,high - low,,,-0.0008679543315661311,-0.013582742389527622,0.011007407630132485
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,true_mean_nlr,low,1685.0,1744.0,-0.0041229442586071495,-0.025381822459627126,0.01738240691375325
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,true_mean_nlr,high,2852.0,476.0,-0.05978492413859905,-0.09567104310672371,-0.023664705861696073
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,true_mean_nlr,both,4537.0,2220.0,-0.022105721357351872,-0.042396825653598466,-0.0031696284958383164
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,50,true_mean_nlr,high - low,,,-0.0556619798799919,-0.09645587081962917,-0.016486401603825813
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,spec_mean_nlr,low,1685.0,1744.0,0.013243484371434779,0.00577944995793783,0.020878311354370186
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,spec_mean_nlr,high,2852.0,476.0,0.009015396812246992,-0.0004839532588285492,0.018399174856989914
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,spec_mean_nlr,both,4537.0,2220.0,0.011877511470456813,0.0058018380284624435,0.01811410222404377
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,spec_mean_nlr,high - low,,,-0.0042280875591877865,-0.016591263663791895,0.007377289290806129
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,true_mean_nlr,low,1685.0,1744.0,0.005902498048390471,-0.017852447100008155,0.029415750057371078
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,true_mean_nlr,high,2852.0,476.0,-0.05407827310521682,-0.09274936409159452,-0.016160579719516562
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,true_mean_nlr,both,4537.0,2220.0,-0.013475555700176514,-0.034579565005572487,0.006363218920115953
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,51,true_mean_nlr,high - low,,,-0.05998077115360729,-0.10269132936592032,-0.018484868717733124
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,spec_mean_nlr,low,1685.0,1744.0,0.020334300921953857,0.011180926278030684,0.0294384455396884
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,spec_mean_nlr,high,2852.0,476.0,0.015521391494751563,0.0024662613880461217,0.02841284276874607
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,spec_mean_nlr,both,4537.0,2220.0,0.018779388976449433,0.011028431261576493,0.026500475994818033
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,spec_mean_nlr,high - low,,,-0.004812909427202293,-0.020697466359395265,0.00979076678650342
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,true_mean_nlr,low,1685.0,1744.0,0.0015845961952981812,-0.026466016503193503,0.02834151475859852
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,true_mean_nlr,high,2852.0,476.0,-0.05974187543041866,-0.10391461508506122,-0.017403464872881042
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,true_mean_nlr,both,4537.0,2220.0,-0.01822821448580688,-0.04367222537327055,0.005240381611775639
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,52,true_mean_nlr,high - low,,,-0.06132647162571684,-0.10928244236777197,-0.014146361659833295
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,spec_mean_nlr,low,1685.0,1744.0,0.021306677369157385,0.009737742843256401,0.03223773646090798
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,spec_mean_nlr,high,2852.0,476.0,0.01790983125951781,0.003041376707642306,0.03238741506970884
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,spec_mean_nlr,both,4537.0,2220.0,0.02020925455810959,0.011242913037996632,0.029299852629381968
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,spec_mean_nlr,high - low,,,-0.0033968461096395737,-0.021195920183496902,0.013781884511074954
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,true_mean_nlr,low,1685.0,1744.0,-0.0034223427626466755,-0.033181075409453344,0.025389772847988403
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,true_mean_nlr,high,2852.0,476.0,-0.06376085186283688,-0.10959846282169182,-0.019968083986951938
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,true_mean_nlr,both,4537.0,2220.0,-0.022915971303325493,-0.04913276711791472,0.0028006129098320683
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,53,true_mean_nlr,high - low,,,-0.0603385091001902,-0.11296342761547847,-0.011350093159040717
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,spec_mean_nlr,low,1685.0,1744.0,0.03220387964658591,0.01846954578461438,0.04522068434848083
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,spec_mean_nlr,high,2852.0,476.0,0.03216863535014114,0.013903558171438438,0.049740895010135434
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,spec_mean_nlr,both,4537.0,2220.0,0.032192493232945305,0.02117319815011471,0.04285947137516457
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,spec_mean_nlr,high - low,,,-3.5244296444768286e-05,-0.022565365833925002,0.02192164369224721
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,true_mean_nlr,low,1685.0,1744.0,0.010919655446456736,-0.02291321195019572,0.04295070709784175
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,true_mean_nlr,high,2852.0,476.0,-0.04434520314410968,-0.0922477012808372,0.004225461782805186
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,true_mean_nlr,both,4537.0,2220.0,-0.006934823240260581,-0.036521776452217644,0.02168710848384541
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,54,true_mean_nlr,high - low,,,-0.055264858590566415,-0.10877115937738986,-0.003084952818575924
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,spec_mean_nlr,low,1685.0,1744.0,0.0373516257585657,0.020141585872368546,0.05391895874298078
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,spec_mean_nlr,high,2852.0,476.0,0.044766672007921136,0.022488404766662973,0.06676614712266728
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,spec_mean_nlr,both,4537.0,2220.0,0.039747212910990606,0.02597781251698377,0.0529619291589198
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,spec_mean_nlr,high - low,,,0.007415046249355434,-0.01998871599347442,0.03552503597397385
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,true_mean_nlr,low,1685.0,1744.0,0.032324134799869335,-0.004113486877828171,0.06629857949934821
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,true_mean_nlr,high,2852.0,476.0,-0.04448325330267051,-0.09601494852856257,0.007742951145665801
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,true_mean_nlr,both,4537.0,2220.0,0.007509887395040008,-0.02449379042266401,0.03767571907040132
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,55,true_mean_nlr,high - low,,,-0.07680738810253984,-0.13235765879295994,-0.01949204860742768
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,spec_mean_nlr,low,1685.0,1744.0,0.06276642285232865,0.04329875982978587,0.08161848597179072
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,spec_mean_nlr,high,2852.0,476.0,0.07560715317628958,0.05208191872815938,0.09931292136694571
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,spec_mean_nlr,both,4537.0,2220.0,0.06691489172998503,0.051290046320644905,0.08182148954361375
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,spec_mean_nlr,high - low,,,0.012840730323960922,-0.01643890645526997,0.04298054296418681
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,true_mean_nlr,low,1685.0,1744.0,0.06045258596259467,0.02144485086876928,0.09807074484139662
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,true_mean_nlr,high,2852.0,476.0,-0.023706433443445443,-0.07735194887106771,0.03242786327375899
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,true_mean_nlr,both,4537.0,2220.0,0.03326323894168932,-0.0021273048352389106,0.06683323942640684
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,logit,56,true_mean_nlr,high - low,,,-0.0841590194060401,-0.1447344339028971,-0.02332129917243163
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,spec_mean_nlr,low,1685.0,1744.0,0.014111640400947428,-0.004182207661446719,0.03350572176780525
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,spec_mean_nlr,high,2852.0,476.0,-0.02298648880683171,-0.04679021387907651,3.621536760689992e-05
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,spec_mean_nlr,both,4537.0,2220.0,0.002126306969361625,-0.012607975227296342,0.016059825121475444
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,spec_mean_nlr,high - low,,,-0.037098129207779135,-0.06969910925005222,-0.007583623314993792
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,true_mean_nlr,low,1685.0,1744.0,-0.06236753972643736,-0.09110826257915158,-0.03274215139933833
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,true_mean_nlr,high,2852.0,476.0,-0.02012556540594014,-0.06350418787780507,0.02140551047232615
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,true_mean_nlr,both,4537.0,2220.0,-0.04872037859321555,-0.0732572244809747,-0.025422976040435127
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,40,true_mean_nlr,high - low,,,0.04224197432049722,-0.012575021942402427,0.09226364950132808
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,spec_mean_nlr,low,1685.0,1744.0,-0.022394216918290678,-0.03905111619718558,-0.005521755628869291
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,spec_mean_nlr,high,2852.0,476.0,-0.08703013027728614,-0.10913177260363763,-0.06502970573260769
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,spec_mean_nlr,both,4537.0,2220.0,-0.04327621258237952,-0.056901284970585664,-0.029692087832408027
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,spec_mean_nlr,high - low,,,-0.06463591335899546,-0.09277845826000451,-0.03754606887523695
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,true_mean_nlr,low,1685.0,1744.0,-0.12985332355180346,-0.16464078689980588,-0.09767954744042262
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,true_mean_nlr,high,2852.0,476.0,-0.1371097326427796,-0.18378898805112032,-0.09111338555902838
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,true_mean_nlr,both,4537.0,2220.0,-0.13219765962288227,-0.16042802745102652,-0.10594710495458512
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,48,true_mean_nlr,high - low,,,-0.007256409090976135,-0.06449610844601635,0.053599563239274034
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,spec_mean_nlr,low,1685.0,1744.0,-0.027526856107417598,-0.04870393613247252,-0.0064228137215362364
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,spec_mean_nlr,high,2852.0,476.0,-0.09644843444450295,-0.1235642347025835,-0.06928919602477025
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,spec_mean_nlr,both,4537.0,2220.0,-0.04979342627257607,-0.06723906290399607,-0.03250439201496667
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,spec_mean_nlr,high - low,,,-0.06892157833708534,-0.10259851221564258,-0.0352793115284888
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,true_mean_nlr,low,1685.0,1744.0,-0.16920542050442058,-0.2055335681172129,-0.13368646643768817
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,true_mean_nlr,high,2852.0,476.0,-0.2204292078926581,-0.26709005716066825,-0.17258568511495143
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,true_mean_nlr,both,4537.0,2220.0,-0.1857543458703916,-0.2149993174476801,-0.1576492561359059
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,50,true_mean_nlr,high - low,,,-0.05122378738823752,-0.10971971659421578,0.006314740316527164
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,spec_mean_nlr,low,1685.0,1744.0,-0.014701587610873475,-0.03497486010877486,0.0054957094689813656
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,spec_mean_nlr,high,2852.0,476.0,-0.08483535716694887,-0.11094165585954072,-0.0587759042841526
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,spec_mean_nlr,both,4537.0,2220.0,-0.0373597817272308,-0.053696785437488424,-0.020424899359736196
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,spec_mean_nlr,high - low,,,-0.07013376955607539,-0.10204979811588241,-0.03769397297657535
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,true_mean_nlr,low,1685.0,1744.0,-0.1561972882471189,-0.18969056204371954,-0.12262431388937584
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,true_mean_nlr,high,2852.0,476.0,-0.2193923604138328,-0.2654097910356231,-0.17362434089997283
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,true_mean_nlr,both,4537.0,2220.0,-0.17661378976149633,-0.20399795192038825,-0.148702238823612
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,51,true_mean_nlr,high - low,,,-0.06319507216671391,-0.11635908076028649,-0.006280061432252331
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,spec_mean_nlr,low,1685.0,1744.0,-0.01944110846473454,-0.04071295139580482,0.001345273934009747
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,spec_mean_nlr,high,2852.0,476.0,-0.09258451823197208,-0.11825664213161237,-0.06638827560392138
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,spec_mean_nlr,both,4537.0,2220.0,-0.043071630356378246,-0.06044141836648404,-0.025510115320968814
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,spec_mean_nlr,high - low,,,-0.07314340976723754,-0.1056257296702599,-0.039896594807263874
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,true_mean_nlr,low,1685.0,1744.0,-0.1548315662744183,-0.1884331717366123,-0.1208794894900397
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,true_mean_nlr,high,2852.0,476.0,-0.21687813255696958,-0.2614702663970319,-0.1730615424061013
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,true_mean_nlr,both,4537.0,2220.0,-0.17487701872880862,-0.2031721858836394,-0.14766531971887242
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,52,true_mean_nlr,high - low,,,-0.062046566282551285,-0.11559965550614791,-0.0077685550966465865
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,spec_mean_nlr,low,1685.0,1744.0,-0.013079966452303958,-0.03459978539463195,0.008907437030723461
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,spec_mean_nlr,high,2852.0,476.0,-0.08878650013235657,-0.115588170698228,-0.062130426124851285
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,spec_mean_nlr,both,4537.0,2220.0,-0.037538559607312554,-0.05512682356157519,-0.019187013828577328
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,spec_mean_nlr,high - low,,,-0.07570653368005262,-0.1095883937377484,-0.041835702832795175
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,true_mean_nlr,low,1685.0,1744.0,-0.13766356025496052,-0.1728421156228145,-0.10222503188267251
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,true_mean_nlr,high,2852.0,476.0,-0.2166717634298185,-0.262966023545117,-0.17144136675714633
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,true_mean_nlr,both,4537.0,2220.0,-0.1631888274073156,-0.19161325623991365,-0.13389141636539698
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,53,true_mean_nlr,high - low,,,-0.07900820317485799,-0.1355400859391832,-0.02472728731771024
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,spec_mean_nlr,low,1685.0,1744.0,0.0009102895552250514,-0.02106513723040279,0.023415113898862187
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,spec_mean_nlr,high,2852.0,476.0,-0.07089377251757309,-0.1007175430869332,-0.04249704375277167
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,spec_mean_nlr,both,4537.0,2220.0,-0.02228752780275403,-0.03997117256457025,-0.004837980533733145
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,spec_mean_nlr,high - low,,,-0.07180406207279814,-0.10795227174939823,-0.036330328160229
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,true_mean_nlr,low,1685.0,1744.0,-0.12553374655868593,-0.16127194411726348,-0.08872294272390402
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,true_mean_nlr,high,2852.0,476.0,-0.1970638707935984,-0.245154679406721,-0.15161540590646622
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,true_mean_nlr,both,4537.0,2220.0,-0.14864306251789638,-0.17822008615093274,-0.11842774805197566
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,54,true_mean_nlr,high - low,,,-0.07153012423491248,-0.12827390138677383,-0.017033840248004497
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,spec_mean_nlr,low,1685.0,1744.0,0.008680541211376567,-0.01470466256216828,0.03278724305478403
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,spec_mean_nlr,high,2852.0,476.0,-0.04572974625709201,-0.0761557606686202,-0.017995494369545884
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,spec_mean_nlr,both,4537.0,2220.0,-0.008897850242424446,-0.02786901792905469,0.010276660180516603
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,spec_mean_nlr,high - low,,,-0.05441028746846858,-0.0934477436359996,-0.019187164336853916
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,true_mean_nlr,low,1685.0,1744.0,-0.0985478205373553,-0.13529691568328847,-0.0610378256033609
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,true_mean_nlr,high,2852.0,476.0,-0.18191242567735197,-0.23098590733906033,-0.13380565098656166
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,true_mean_nlr,both,4537.0,2220.0,-0.12548051526703558,-0.1575174572697039,-0.09325824295359647
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,55,true_mean_nlr,high - low,,,-0.08336460513999668,-0.14062851844076343,-0.025985509360431664
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,spec_mean_nlr,low,1685.0,1744.0,0.02762083900603089,0.0026013802231980208,0.05400090146525066
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,spec_mean_nlr,high,2852.0,476.0,-0.035228311667269675,-0.06722707656011973,-0.0037453121855229483
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,spec_mean_nlr,both,4537.0,2220.0,0.007316094729235141,-0.013175600990416154,0.028067505465338424
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,spec_mean_nlr,high - low,,,-0.06284915067330056,-0.10329285861351187,-0.024814985693630713
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,true_mean_nlr,low,1685.0,1744.0,-0.06948785632601126,-0.11016353225494574,-0.027727608503672722
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,true_mean_nlr,high,2852.0,476.0,-0.18888375422642448,-0.24246199474762753,-0.13383721415630417
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,true_mean_nlr,both,4537.0,2220.0,-0.1080612204621187,-0.1441556272096401,-0.07246121465286426
+"exploratory (post hoc, not pre-registered); supplement",supplement_full_cohort,jlens_public,56,true_mean_nlr,high - low,,,-0.11939589790041322,-0.18090587500543487,-0.059317269306491255

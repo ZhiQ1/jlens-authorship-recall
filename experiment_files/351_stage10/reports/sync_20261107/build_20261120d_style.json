@@ -1,0 +1,125 @@
+{
+ "src": "../merged_deck/stage1_11_deck.html.before_20261120d",
+ "slides": {
+  "Exposure threshold (addendum 19)": {
+   "old_title": "Exposure: writing needs far more citations than recognising",
+   "new_title": "Writing an author needs about 276× the exposure that recognising does",
+   "font": [
+    50,
+    44
+   ],
+   "palette": null,
+   "key": "276×",
+   "bottom_y": 652.2,
+   "menu_hits": 1
+  },
+  "Answer format (B), addendum 16": {
+   "old_title": "Answer format (B): only a given first initial helps",
+   "new_title": "Only giving the first initial unlocks the name — format locks the rest",
+   "font": [
+    50,
+    44
+   ],
+   "palette": "B",
+   "key": "+0.085",
+   "bottom_y": 649.6,
+   "menu_hits": 1
+  },
+  "Name chain (D), addendum 16": {
+   "old_title": "Name chain (D): a true co-author helps, but not this paper",
+   "new_title": "A true co-author helps — through the co-author network, not this paper",
+   "font": [
+    50,
+    44
+   ],
+   "palette": "D",
+   "key": "+0.167",
+   "bottom_y": 652.2,
+   "menu_hits": 1
+  },
+  "C: fabricated names (exploratory)": {
+   "old_title": "Fabricated names: about half are not in the data",
+   "new_title": "Made-up names are not confused neighbours: half are not in the data",
+   "font": [
+    50,
+    45
+   ],
+   "palette": "C",
+   "key": "50.4%",
+   "bottom_y": 604.2,
+   "menu_hits": 1
+  },
+  "Addendum 18b item 1: readout map": {
+   "old_title": "Readout map: where does the paper signal show first?",
+   "new_title": "No clear earlier shelf: only small, scattered early traces",
+   "font": [
+    50,
+    50
+   ],
+   "palette": null,
+   "key": "+0.008 to +0.049",
+   "bottom_y": 527.6,
+   "menu_hits": 1
+  },
+  "Addendum 18b item 3: per-cell patching": {
+   "old_title": "Name positions carry the title, layer by layer",
+   "new_title": "By L52 the name positions carry most of the title’s signal",
+   "font": [
+    40,
+    40
+   ],
+   "palette": "I3",
+   "key": "0.835",
+   "bottom_y": 630.4,
+   "menu_hits": 1
+  },
+  "Addendum 18b item 2: windowed attention blocking": {
+   "old_title": "One attention edge at a time: name ← title, but small",
+   "new_title": "Name ← title carries the arrival in L44–L55; each cut costs ≤ 3.5%",
+   "font": [
+    40,
+    40
+   ],
+   "palette": null,
+   "key": "≤ 3.5%",
+   "bottom_y": 645.8,
+   "menu_hits": 1
+  },
+  "Addendum 18b item 6: MLP memory lookup": {
+   "old_title": "L52–L56: MLPs carry the paper signal, mostly not as author-name directions",
+   "new_title": "In L52–L56 the MLPs carry the paper, not yet the author’s name",
+   "font": [
+    40,
+    40
+   ],
+   "palette": null,
+   "key": "0.022–0.042",
+   "bottom_y": 604.2,
+   "menu_hits": 1
+  },
+  "Addendum 18b item 4: L57–L61 mean ablation": {
+   "old_title": "L57–L61: the last layers are written by the MLPs",
+   "new_title": "The MLPs, not attention, write the author signal in L57–L61",
+   "font": [
+    50,
+    50
+   ],
+   "palette": "I4",
+   "key": "+0.040",
+   "bottom_y": 587.6,
+   "menu_hits": 1
+  },
+  "Addendum 18b item 5: title-token importance": {
+   "old_title": "Which title words carry the paper signal?",
+   "new_title": "Content words carry the signal by meaning: synonyms keep most of it",
+   "font": [
+    50,
+    45
+   ],
+   "palette": null,
+   "key": "0.374 vs 0.087",
+   "bottom_y": 604.2,
+   "menu_hits": 1
+  }
+ }
+}
