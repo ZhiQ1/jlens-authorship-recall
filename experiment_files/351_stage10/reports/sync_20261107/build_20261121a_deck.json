@@ -1,0 +1,65 @@
+{
+ "ask": {
+  "1": "can we measure, per paper, whether Qwen3-32B holds its authors, and trust the numbers?",
+  "12": "is the author signal about this paper, or just easy names?",
+  "34": "which readout can see the author signal, and how early?",
+  "44": "when does the paper information arrive, and when is it used?",
+  "52": "which part of the name, and which cue in the prompt, carries it?",
+  "62": "what do the four lines add up to?",
+  "65": "if the middle layers do not hold the name, what do they hold?",
+  "71": "where does the information travel, and who writes the name?",
+  "77": "is it the title’s meaning, or the identity of this paper?",
+  "82": "are author names hidden in the middle layers, and are made-up names near-misses?",
+  "90": "does recognising a paper change how strong the signal is, or when it arrives?",
+  "95": "what could still be wrong?"
+ },
+ "so": {
+  "11": "one prompt, one score (rank of the true name among all tokens) and true vs 5 false titles give a per-paper measure, compared within citation bins with team-cluster CIs. [method]",
+  "33": "the signal is paper-specific: the true title beats false titles for every group, recognised papers lead only at the output (+0.21), and writing needs about 276× the exposure that recognising does. [confirmed]",
+  "43": "lenses read names only late; a probe at the title reads a little paper-specific signal early, and at the name positions a probe beats the J-lens on the same scale at L40 and L48. [fairly solid]",
+  "51": "it arrives early (mainly L40–L50, half by L45) and is said late (steepest rise L57–L61, written by the MLPs). [settled]",
+  "61": "the surname and full given names carry it, initials little; a given first initial helps; a true co-author helps through the co-author network, not this paper. [confirmed]",
+  "64": "read early, said late: the shelf is mostly filled by L50, and the name comes out only at the end. [summary]",
+  "70": "the middle layers hold the question and the paper’s facts, but nothing beyond what the title text gives at L4 [descriptive]; before L48 only faint, scattered author traces [exploratory]",
+  "76": "title → name positions through the name ← title attention edge (L44–L55, small) [fairly solid] → the L52–L56 MLPs carry the paper [descriptive] → the L57–L61 MLPs write the name [settled]",
+  "81": "a same-meaning made-up title recovers 75% of the gap; the real title adds +0.11, so H2 is partly supported and meaning explains most of the signal. [confirmed]",
+  "89": "on the same scale a probe reads more of the author than the J-lens at L40 and L48 (H3 supported) [fairly solid]; made-up names are not confused neighbours [exploratory]",
+  "94": "recognition changes the size, hardly the timing; the higher recovery in B is a small-denominator effect. [confirmed]",
+  "97": "one model, subsamples for interventions and a few post-hoc locks; none of the checks reverses a conclusion. [limits]"
+ },
+ "changed": [
+  1,
+  11,
+  12,
+  33,
+  34,
+  43,
+  44,
+  51,
+  52,
+  61,
+  62,
+  64,
+  65,
+  68,
+  70,
+  71,
+  76,
+  77,
+  81,
+  82,
+  89,
+  90,
+  94,
+  95,
+  97
+ ],
+ "svg_moved": {
+  "65": 14,
+  "71": 76
+ },
+ "p68": {
+  "rows": 3,
+  "removed_image_bytes": 572816
+ }
+}
