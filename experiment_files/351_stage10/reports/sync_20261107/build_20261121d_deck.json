@@ -1,0 +1,102 @@
+{
+ "values": {
+  "s77": "authors − year L48 (0.02430553184006623, 0.018857535380490183, 0.02967797487413985)",
+  "n": [
+   "ret Qwen L0 0.680, L4 1.000, L8 1.000 | BERT L0 0.837, L1 1.000, L2 0.999, L3 0.999, L4 0.999, L5 0.999, L6 0.994, L7 0.986, L8 0.944, L9 0.860, L10 0.848, L11 0.836, L12 0.981",
+   "same paper paraphrase (X3): L4 0.711, L8 0.740, L16 0.749, L24 0.755, L28 0.759, L32 0.768, L36 0.757, L40 0.760, L44 0.754, L48 0.778, L52 0.783, L56 0.787, L60 0.783, L62 0.795, L63 0.807",
+   "twins (all mutual NN): L4 0.345, L8 0.372, L16 0.354, L24 0.341, L28 0.347, L32 0.362, L36 0.346, L40 0.354, L44 0.347, L48 0.378, L52 0.377, L56 0.393, L60 0.378, L62 0.373, L63 0.385",
+   "lexical neighbour D (X3): L4 0.120, L8 0.131, L16 0.124, L24 0.118, L28 0.118, L32 0.125, L36 0.116, L40 0.124, L44 0.123, L48 0.142, L52 0.140, L56 0.153, L60 0.144, L62 0.145, L63 0.157",
+   "random pairs: L4 0.014, L8 0.018, L16 0.008, L24 0.001, L28 -0.001, L32 -0.000, L36 0.003, L40 -0.000, L44 -0.002, L48 -0.004, L52 -0.004, L56 -0.001, L60 -0.001, L62 -0.001, L63 -0.001"
+  ]
+ },
+ "x3_B_columns": [
+  "grouping",
+  "measure",
+  "n_low",
+  "n_high",
+  "low",
+  "low_lo",
+  "low_hi",
+  "high",
+  "high_lo",
+  "high_hi",
+  "high_minus_low",
+  "d_lo",
+  "d_hi"
+ ],
+ "right_bottom": 592,
+ "refs_remapped_on_slides": [
+  68,
+  78,
+  80,
+  81,
+  82,
+  83,
+  87,
+  89,
+  91,
+  95
+ ],
+ "toc": [
+  {
+   "id": "0",
+   "start": 1,
+   "name": "Overview and setup"
+  },
+  {
+   "id": "1",
+   "start": 12,
+   "name": "Line A · Is it about this paper?"
+  },
+  {
+   "id": "2",
+   "start": 34,
+   "name": "Line B · What can each readout see?"
+  },
+  {
+   "id": "3",
+   "start": 44,
+   "name": "Line C · When does it appear, and when is it used?"
+  },
+  {
+   "id": "4",
+   "start": 52,
+   "name": "Line D · Which token carries it?"
+  },
+  {
+   "id": "5",
+   "start": 62,
+   "name": "Synthesis"
+  },
+  {
+   "id": "6a",
+   "start": 65,
+   "name": "Stage 12–13 · What the middle layers hold"
+  },
+  {
+   "id": "6b",
+   "start": 71,
+   "name": "Stage 12–13 · The route"
+  },
+  {
+   "id": "6c",
+   "start": 77,
+   "name": "Stage 12–13 · Meaning or this paper?"
+  },
+  {
+   "id": "6d",
+   "start": 84,
+   "name": "Stage 12–13 · Names in the middle layers"
+  },
+  {
+   "id": "7",
+   "start": 93,
+   "name": "Group comparisons"
+  },
+  {
+   "id": "8",
+   "start": 98,
+   "name": "Checks and limits"
+  }
+ ]
+}

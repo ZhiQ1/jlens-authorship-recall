@@ -1,0 +1,39 @@
+{
+ "n_papers": 9108,
+ "mutual_nn_both_models": 106,
+ "composition": {
+  "other (excluded/guard)": 49,
+  "both target": 37,
+  "mixed T/C": 14,
+  "both control": 6
+ },
+ "bert>=0.9&mpnet>=0.8": {
+  "n": 7,
+  "composition": {
+   "other (excluded/guard)": 3,
+   "both target": 2,
+   "both control": 1,
+   "mixed T/C": 1
+  }
+ },
+ "bert>=0.93&mpnet>=0.85": {
+  "n": 0,
+  "composition": {}
+ },
+ "bert>=0.95&mpnet>=0.9": {
+  "n": 0,
+  "composition": {}
+ },
+ "all_pairs_quantiles": {
+  "bert": {
+   "0.5": 0.5932120084762573,
+   "0.99": 0.822586253285408,
+   "0.9999": 0.8960148729383908
+  },
+  "mpnet": {
+   "0.5": 0.002022936358116567,
+   "0.99": 0.304752379655838,
+   "0.9999": 0.576067027449605
+  }
+ }
+}

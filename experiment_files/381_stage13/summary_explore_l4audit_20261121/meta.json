@@ -1,0 +1,8 @@
+{
+ "qwen_L0_same_token_authors_year": 1.0,
+ "qwen_L0_same_token_authors_field": 1.0,
+ "qwen_L0_unique_last_token_share_all": 0.20355731225296442,
+ "qwen_L0_expected_top1_random_ties_all": 0.3278436539306105,
+ "qwen_L0_unique_last_token_share_test": 0.5945017182130584,
+ "qwen_L0_expected_top1_random_ties_test": 0.6804123711340206
+}
