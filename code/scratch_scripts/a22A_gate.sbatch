@@ -25,7 +25,7 @@ if [ $round -gt 4 ]; then echo "STOP: still missing after 4 rounds"; exit 1; fi
 deps=""
 for ((i=0; i<${#missing[@]}; i+=3)); do
   s=$(IFS=,; echo "${missing[*]:i:3}")
-  if [ $(( (i/3) % 2 )) -eq 0 ]; then SB=$W/a22A_gpu_h200.sbatch; else SB=$W/a22A_gpu.sbatch; fi   # alternate H200 / A100-80GB
+  SB=$W/a22A_gpu.sbatch   # A100-80GB (H200 queue far longer on 2026-11-22: 120 pending vs 7)
   j=$(SHARDS=$s sbatch --parsable --export=ALL $SB) || { echo "STOP: sbatch failed for $s (check squeue/sacct)"; exit 1; }
   echo "submitted $s -> $j"; deps="$deps:$j"
   [ $(( i/3 + 1 )) -ge 7 ] && break
