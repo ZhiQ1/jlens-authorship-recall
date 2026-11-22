@@ -1,0 +1,102 @@
+{
+ "values": {
+  "n": [
+   "L48 b1 own 0.0383",
+   "L48 b1 mis 0.0350",
+   "L48 b1 rand 0.0367",
+   "L48 b2 own 0.0350",
+   "L48 b2 mis 0.0367",
+   "L48 b2 rand 0.0417",
+   "L48 b4 own 0.0317",
+   "L48 b4 mis 0.0183",
+   "L48 b4 rand 0.0333",
+   "L52 b1 own 0.0433",
+   "L52 b1 mis 0.0317",
+   "L52 b1 rand 0.0400",
+   "L52 b2 own 0.0383",
+   "L52 b2 mis 0.0183",
+   "L52 b2 rand 0.0417",
+   "L52 b4 own 0.0283",
+   "L52 b4 mis 0.0167",
+   "L52 b4 rand 0.0200",
+   "TF L52 own b0 +0.000, b1 -0.025, b2 -0.048, b4 -0.102 | mis b0 +0.000, b1 -0.013, b2 -0.053, b4 -0.114",
+   "TF L48 own b0 +0.000, b1 -0.013, b2 -0.026, b4 -0.054 | mis b0 +0.000, b1 -0.000, b2 -0.020, b4 -0.063"
+  ]
+ },
+ "refs_remapped_on_slides": [
+  68,
+  75,
+  79,
+  80,
+  81,
+  82,
+  83,
+  84,
+  88,
+  90,
+  92,
+  96
+ ],
+ "toc": [
+  {
+   "id": "0",
+   "start": 1,
+   "name": "Overview and setup"
+  },
+  {
+   "id": "1",
+   "start": 12,
+   "name": "Line A · Is it about this paper?"
+  },
+  {
+   "id": "2",
+   "start": 34,
+   "name": "Line B · What can each readout see?"
+  },
+  {
+   "id": "3",
+   "start": 44,
+   "name": "Line C · When does it appear, and when is it used?"
+  },
+  {
+   "id": "4",
+   "start": 52,
+   "name": "Line D · Which token carries it?"
+  },
+  {
+   "id": "5",
+   "start": 62,
+   "name": "Synthesis"
+  },
+  {
+   "id": "6a",
+   "start": 65,
+   "name": "Stage 12–13 · What the middle layers hold"
+  },
+  {
+   "id": "6b",
+   "start": 71,
+   "name": "Stage 12–13 · The route"
+  },
+  {
+   "id": "6c",
+   "start": 78,
+   "name": "Stage 12–13 · Meaning or this paper?"
+  },
+  {
+   "id": "6d",
+   "start": 85,
+   "name": "Stage 12–13 · Names in the middle layers"
+  },
+  {
+   "id": "7",
+   "start": 94,
+   "name": "Group comparisons"
+  },
+  {
+   "id": "8",
+   "start": 99,
+   "name": "Checks and limits"
+  }
+ ]
+}

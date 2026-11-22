@@ -1,0 +1,13 @@
+{
+ "label": "addendum 21 (DRAFT rule)",
+ "n_papers": 1200,
+ "by_grp": {
+  "A": 600,
+  "B": 600
+ },
+ "verdict": "Not supported",
+ "cells_row1": [],
+ "cells_row1_unadjusted": [],
+ "borderline": false,
+ "best_cell": null
+}
