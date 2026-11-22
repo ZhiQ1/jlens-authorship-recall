@@ -1,0 +1,31 @@
+{
+ "verdict": "Rare words carry more of the real-title part",
+ "primary": {
+  "group": "target",
+  "quantity": "D = Rbar_a - Rbar_b",
+  "n": 418,
+  "est": 0.13435062830462743,
+  "lo": 0.1149775197251517,
+  "hi": 0.15445558141782154
+ },
+ "freeze": {
+  "n_papers": 1127,
+  "eligible": 836,
+  "eligible_by_group": {
+   "target": 420,
+   "control": 416
+  },
+  "changed_share": {
+   "a": 1.0,
+   "b": 1.0
+  },
+  "mean_replaced": {
+   "a": 3.444976076555024,
+   "b": 2.0974729241877257
+  },
+  "addendum_sha": "270f2157171bc5889d0dc9469dc63cf5f695628aafdcfd6bf0113be92a8ed917",
+  "variants_sha": "d7bb513fd1a01cd0dc4305b73c6af706d0d0ee06283dfdc7de829d8fc32fbb08",
+  "script_sha": "44ff403702e0e0ff04554466da374c1356fd0bf5edfc167ce5a9df92dbcf1b82"
+ },
+ "addendum_sha": "270f2157171bc5889d0dc9469dc63cf5f695628aafdcfd6bf0113be92a8ed917"
+}

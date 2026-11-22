@@ -6,7 +6,7 @@
 Change: E4b probe (stage10_extra_r0r1.probe, the version re-run by stage13_e4b_group.py) used mu, sd = X.mean(0), X.std(0) over all 9,108 papers, test folds included (stage10_extra_r0r1.py:244; same line in stage11_analyze.probe_section:176). Here mu, sd are fitted on the training folds of each fold (also for the fold-0 alpha search). Folds, exclusion rule, alpha grid, scoring and bootstrap seeds unchanged.
 The X1 controls (stage12_cpu.probe_controls) already standardised on the training fold (stage12_cpu.py:143); they are re-run unchanged and should reproduce the original exactly.
 
-Max |new - orig|: E4b pooled target - control 0.0020; E4b all-paper signal 0.0075; X1 spec_all 0.0000; X1 target - control 0.0000.
+Max |new - orig|: E4b pooled target - control 0.0020; E4b all-paper signal 0.0007 (corrected 2026-11-22; the 0.0075 printed here before came from the contaminated orig column, see the correction note at the top); X1 spec_all 0.0000; X1 target - control 0.0000.
 Rows where "CI contains 0" changed: E4b tc_pooled 1/36, tc_R0 0, tc_R1 0, C - A 0; E4b all-paper 0/36; X1 spec_all 0/48, X1 tc 0/48.
 Alpha changed in 0/36 (config, layer) cells.
 

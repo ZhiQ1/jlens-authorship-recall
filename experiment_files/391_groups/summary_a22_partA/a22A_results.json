@@ -1,0 +1,29 @@
+{
+ "label": "addendum 22 Part A (LOCKED)",
+ "n_papers": 1083,
+ "by_group": {
+  "target": 554,
+  "control": 529
+ },
+ "verdicts": {
+  "K1": true,
+  "K3": true,
+  "K4": false,
+  "K4c": false,
+  "K4_reversed": false,
+  "K4c_reversed": true,
+  "K2_surface_robust_from": 24,
+  "borderline": {
+   "K1": false,
+   "K3": false,
+   "K4": true,
+   "K4c": false
+  }
+ },
+ "readings": [
+  "Meaning is encoded in the middle layers",
+  "No identity beyond meaning",
+  "Reversed exposure dependence",
+  "Borderline: K4 supported only without Holm"
+ ]
+}
