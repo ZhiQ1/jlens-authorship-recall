@@ -1,0 +1,59 @@
+{
+ "label": "addendum 27 (LOCKED)",
+ "addendum_sha256": "eeb47f534207183fbb03d6561b843b7c31d7880fda8405c4f76cc4b398b1de23",
+ "n_papers": 1200,
+ "missing_shards": [],
+ "readings": [
+  "damage is direction-driven (O < 0 where N is not)",
+  "both norm and direction damage (N and O < 0 in the same cells)",
+  "reversed: own hurts more than mismatched at L56/L57"
+ ],
+ "N_cells_neg": [
+  [
+   56,
+   4
+  ],
+  [
+   57,
+   4
+  ]
+ ],
+ "O_cells_neg": [
+  [
+   48,
+   1
+  ],
+  [
+   48,
+   2
+  ],
+  [
+   48,
+   4
+  ],
+  [
+   56,
+   1
+  ],
+  [
+   56,
+   2
+  ],
+  [
+   56,
+   4
+  ],
+  [
+   57,
+   1
+  ],
+  [
+   57,
+   2
+  ],
+  [
+   57,
+   4
+  ]
+ ]
+}

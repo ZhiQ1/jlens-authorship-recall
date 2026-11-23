@@ -1,0 +1,17 @@
+{
+ "verdict": "Format gates the author signal",
+ "X": {
+  "year": 56,
+  "field": 56
+ },
+ "layers": {
+  "year": [
+   56
+  ],
+  "field": [
+   56
+  ]
+ },
+ "addendum_sha": "83b27d54c9745226b7dcb3c2afa45a64305550e7c935f84414b7bfd38fa2092c",
+ "n": 582
+}

@@ -1,0 +1,4 @@
+{
+ "time": "2026-11-22T21:15:50",
+ "note": "Run-budget change only (prereg unchanged, sha256 533e21b6\u2026): the internal gate cap for addendum 32 was raised from 2.0 to 3.2 GPU-h after the one-shard trial (371 s/shard on A100-80GB, projected 3.0 GPU-h). The 2.0 / 3 GPU-h batch caps were set by the assistant, not the user; total stays within the user's <= 5 GPU-h standing rule for new GPU experiments. Shard 0 (trial) is kept; shards 1-23 run under the same code."
+}

@@ -1,0 +1,96 @@
+{
+ "addendum_sha256": "533e21b694eb84f091de2e36b75bf15ded827966cc02c925e27408ac094bce74",
+ "n_shards": 24,
+ "carries": [
+  {
+   "window": "L44-44",
+   "edge": "name<-title",
+   "loss": 0.0020647584530826,
+   "share_of_S": 0.0062972835168051,
+   "p_holm": 0.0
+  },
+  {
+   "window": "L44-44",
+   "edge": "name<-colon",
+   "loss": 0.0013121115037934,
+   "share_of_S": 0.0040017940755795,
+   "p_holm": 0.04
+  },
+  {
+   "window": "L48-48",
+   "edge": "name<-title",
+   "loss": 0.0040873997313681,
+   "share_of_S": 0.0124661143372535,
+   "p_holm": 0.0
+  },
+  {
+   "window": "L50-50",
+   "edge": "colon<-title",
+   "loss": 0.0017652020041451,
+   "share_of_S": 0.0053836696820099,
+   "p_holm": 0.0
+  },
+  {
+   "window": "L52-52",
+   "edge": "name<-title",
+   "loss": 0.0035300893493918,
+   "share_of_S": 0.0107663796893945,
+   "p_holm": 0.0
+  },
+  {
+   "window": "L54-54",
+   "edge": "name<-title",
+   "loss": 0.0023888260063529,
+   "share_of_S": 0.0072856534922344,
+   "p_holm": 0.0
+  }
+ ],
+ "reversed": [],
+ "dominant_edge_rule": [
+  {
+   "window": "L40-40",
+   "top_edge": "tail<-title",
+   "verdict": "no single edge (rule not met)"
+  },
+  {
+   "window": "L42-42",
+   "top_edge": "name<-tail",
+   "verdict": "no single edge (rule not met)"
+  },
+  {
+   "window": "L44-44",
+   "top_edge": "name<-title",
+   "verdict": "no single edge (rule not met)"
+  },
+  {
+   "window": "L46-46",
+   "top_edge": "colon<-title",
+   "verdict": "no single edge (rule not met)"
+  },
+  {
+   "window": "L48-48",
+   "top_edge": "name<-title",
+   "verdict": "information in L48-48 travels over name<-title"
+  },
+  {
+   "window": "L50-50",
+   "top_edge": "colon<-title",
+   "verdict": "no single edge (rule not met)"
+  },
+  {
+   "window": "L52-52",
+   "top_edge": "name<-title",
+   "verdict": "information in L52-52 travels over name<-title"
+  },
+  {
+   "window": "L54-54",
+   "top_edge": "name<-title",
+   "verdict": "no single edge (rule not met)"
+  },
+  {
+   "window": "L56-56",
+   "top_edge": "colon<-title",
+   "verdict": "no single edge (rule not met)"
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "label": "addendum 28 (LOCKED)",
+ "addendum_sha256": "d98f36861b9605046efb02f972986e2f7389e43e9257cf295dda6071d8c3b28d",
+ "n_papers": 1178,
+ "missing_shards": [],
+ "verdict": "mixed (P reported with CI)",
+ "primary": {
+  "P": 0.24533481503740037,
+  "lo": -0.06735341349332472,
+  "hi": 0.49306853767027226,
+  "D_topic": 0.01627505804669142,
+  "D_topic_lo": -0.0035301150262725383,
+  "D_topic_hi": 0.03575442157823866
+ },
+ "sensitivity_bert": {
+  "P": 0.40850169319482815,
+  "lo": 0.10668475765027113,
+  "hi": 0.6779631105221299
+ }
+}

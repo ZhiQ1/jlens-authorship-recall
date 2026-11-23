@@ -1,0 +1,37 @@
+{
+ "n": 582,
+ "by_group": {
+  "control": 294,
+  "target": 288
+ },
+ "verdict": {
+  "authors": {
+   "locked_layer": "56",
+   "reading": "fixed only late",
+   "baseline_acc": 1.0,
+   "K_none": 1.0
+  },
+  "year": {
+   "locked_layer": null,
+   "reading": "odd / not interpretable",
+   "baseline_acc": 0.627147766323024,
+   "K_none": 0.6082474226804123
+  },
+  "field": {
+   "locked_layer": null,
+   "reading": "odd / not interpretable",
+   "baseline_acc": 0.10652920962199312,
+   "K_none": 0.10824742268041238
+  }
+ },
+ "S_from_layer": {
+  "authors>year": null,
+  "authors>field": null,
+  "year>authors": "48",
+  "year>field": null,
+  "field>authors": "40",
+  "field>year": null
+ },
+ "addendum_sha256": "34f7ea1e48d28cdf85853c5c1d61cfe4a8b234b578836df6f8f723eb31704b96",
+ "missing": []
+}

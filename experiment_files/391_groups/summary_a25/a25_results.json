@@ -1,0 +1,29 @@
+{
+ "verdict": "Probe direction usable, paper-specific",
+ "borderline": false,
+ "row1_cells": [
+  [
+   "first_sur",
+   "48",
+   "2"
+  ],
+  [
+   "first_sur",
+   "52",
+   "1"
+  ],
+  [
+   "first_sur",
+   "52",
+   "2"
+  ],
+  [
+   "first_sur",
+   "52",
+   "4"
+  ]
+ ],
+ "n_A": 599,
+ "n_B": 599,
+ "addendum_sha": "c87a1cb49e48fe830c2f3d1a43f57f4ecca7127157d7a5008ca50769d1519769"
+}

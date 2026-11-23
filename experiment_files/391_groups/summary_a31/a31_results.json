@@ -1,0 +1,48 @@
+{
+ "primary: first author surname-first token": {
+  "token_set": "primary: first author surname-first token",
+  "n_papers": 1186,
+  "share_target": 0.1281618887015177,
+  "t_lo": 0.10207255150864174,
+  "t_hi": 0.15580333808828972,
+  "share_control": 0.09106239460370995,
+  "c_lo": 0.06920254759973626,
+  "c_hi": 0.11512376154773059,
+  "tc_within_bin": 0.03709949409780776,
+  "tc_lo": 0.002010153612383513,
+  "tc_hi": 0.07285904273313516,
+  "reading": "Late-suppression subgroup specific to recognised papers"
+ },
+ "secondary: all name tokens": {
+  "token_set": "secondary: all name tokens",
+  "n_papers": 1186,
+  "share_target": 0.09381591798214113,
+  "t_lo": 0.08681991164362272,
+  "t_hi": 0.10135286492534376,
+  "share_control": 0.1033504192706098,
+  "c_lo": 0.09518640211765825,
+  "c_hi": 0.11187403308636182,
+  "tc_within_bin": -0.009534501288468663,
+  "tc_lo": -0.021128414606469408,
+  "tc_hi": 0.0013015353719558092,
+  "reading": "Late-suppression subgroup present, not specific to recognised papers"
+ },
+ "components": {
+  "n_rtf_tokens": 130,
+  "attn_after_peak_mean": -2.42021070163106,
+  "mlp_after_peak_mean": -2.188269131101081,
+  "C29_sum57_61_mlp_minus_attn_logit": 2.6219263712640855,
+  "C29_ci": [
+   2.4786312853468533,
+   2.7679433137283014
+  ]
+ },
+ "addendum_sha256": "e0691ef7ab596ec248fc8ba0fc1292d6fb026c660134d06e329103ee90e1500e",
+ "missing_shards": [],
+ "checks_status": {
+  "WARN": 22,
+  "PASS": 2
+ },
+ "min_exact_share": 0.998062015503876,
+ "min_stage10_equal": 0.6587926509186351
+}
