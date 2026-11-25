@@ -1,0 +1,20 @@
+{
+ "papers": 6841,
+ "name_items_MHP": 31364,
+ "items_with_two_names": 1,
+ "share": 3.188368830506313e-05,
+ "two_name_rule": "item splits on ',', '&' or ' and ' into >= 2 parts with >= 2 words each",
+ "examples_two": [
+  "Else-Quest, Nicole M"
+ ],
+ "true_author_names": 25776,
+ "true_names_ending_in_and": 4,
+ "examples_and": [
+  "M. A. P. and",
+  "Karsten Haupt and",
+  "Jui-Tang Chen and",
+  "Tamara D. Hamilton and"
+ ],
+ "P_items_total": 3,
+ "P_items_due_to_trailing_and": 1
+}

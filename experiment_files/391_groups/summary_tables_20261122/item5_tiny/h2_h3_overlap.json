@@ -1,0 +1,14 @@
+{
+ "label": "exploratory (post hoc, not pre-registered)",
+ "item5": {
+  "48": {
+   "n_a20_target": 566,
+   "n_a20_control": 561,
+   "n_name_T": 144,
+   "n_name_C": 56,
+   "norm_ID_T": 62.72549057006836,
+   "norm_ID_TC": 18.507089614868164,
+   "random_sd": 0.013975424859373685
+  }
+ }
+}

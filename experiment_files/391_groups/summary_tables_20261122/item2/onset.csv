@@ -1,0 +1,10 @@
+source,set,onset_layer
+jlens_public Rbar,T-C within bin,62.0
+jlens_public Rbar,control,56.0
+jlens_public Rbar,target,62.0
+logit Rbar,T-C within bin,62.0
+logit Rbar,control,56.0
+logit Rbar,target,56.0
+E1 rec_true - rec_fict,T-C plain,
+E1 rec_true - rec_fict,control,40.0
+E1 rec_true - rec_fict,target,24.0

@@ -1,0 +1,33 @@
+# diagnostics (exploratory, post hoc)
+
+cls_si x cls_si_rare:
+cls_si_rare   coauthor  common_key  not_in_data  other_cohort  repeat_true  same_field  single_token
+cls_si                                                                                              
+coauthor            26        1524            0            35            0          14             0
+not_in_data          0           0        20286             0            0           0             0
+other_cohort         0        1267            0          8936            0           0             0
+repeat_true          0           0            0             0           67           0             0
+same_field           0        4860            0             0            0        3271             0
+single_token         0           0            0             0            0           0           312
+
+si: papers with >=1 cohort neighbour (shared key) 4212 of 9108; median coauthor-key set 0.0; mean 27.0; common keys 0
+si_rare: papers with >=1 cohort neighbour (shared key) 3185 of 9108; median coauthor-key set 0.0; mean 2.4; common keys 514
+full: papers with >=1 cohort neighbour (shared key) 2502 of 9108; median coauthor-key set 0.0; mean 2.4; common keys 0
+
+si coauthor names: 1599 in 597 papers; top surnames:
+norm
+zhang    430
+li       248
+wang     206
+liu      153
+chen     104
+kim       93
+zhao      34
+lee       29
+yang      24
+park      20
+xu        19
+sun       16
+huang     12
+ma        11
+guo       11

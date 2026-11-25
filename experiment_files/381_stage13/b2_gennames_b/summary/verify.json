@@ -1,0 +1,295 @@
+{
+ "shards": 48,
+ "ok": true,
+ "problems": [],
+ "per_shard": {
+  "0": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11736874",
+   "ok": true,
+   "errors": []
+  },
+  "1": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11748857",
+   "ok": true,
+   "errors": []
+  },
+  "2": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760447",
+   "ok": true,
+   "errors": []
+  },
+  "3": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760447",
+   "ok": true,
+   "errors": []
+  },
+  "4": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760447",
+   "ok": true,
+   "errors": []
+  },
+  "5": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760447",
+   "ok": true,
+   "errors": []
+  },
+  "6": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760447",
+   "ok": true,
+   "errors": []
+  },
+  "7": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11751941",
+   "ok": true,
+   "errors": []
+  },
+  "8": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760030",
+   "ok": true,
+   "errors": []
+  },
+  "9": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760030",
+   "ok": true,
+   "errors": []
+  },
+  "10": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760030",
+   "ok": true,
+   "errors": []
+  },
+  "11": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760030",
+   "ok": true,
+   "errors": []
+  },
+  "12": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760030",
+   "ok": true,
+   "errors": []
+  },
+  "13": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760458",
+   "ok": true,
+   "errors": []
+  },
+  "14": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760458",
+   "ok": true,
+   "errors": []
+  },
+  "15": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760458",
+   "ok": true,
+   "errors": []
+  },
+  "16": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760458",
+   "ok": true,
+   "errors": []
+  },
+  "17": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760458",
+   "ok": true,
+   "errors": []
+  },
+  "18": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11760458",
+   "ok": true,
+   "errors": []
+  },
+  "19": {
+   "kind": "hash",
+   "job": "11764635",
+   "ok": true,
+   "errors": []
+  },
+  "20": {
+   "kind": "hash",
+   "job": "11764635",
+   "ok": true,
+   "errors": []
+  },
+  "21": {
+   "kind": "hash",
+   "job": "11764635",
+   "ok": true,
+   "errors": []
+  },
+  "22": {
+   "kind": "hash",
+   "job": "11764635",
+   "ok": true,
+   "errors": []
+  },
+  "23": {
+   "kind": "hash",
+   "job": "11764635",
+   "ok": true,
+   "errors": []
+  },
+  "24": {
+   "kind": "hash",
+   "job": "11764635",
+   "ok": true,
+   "errors": []
+  },
+  "25": {
+   "kind": "hash",
+   "job": "11764915",
+   "ok": true,
+   "errors": []
+  },
+  "26": {
+   "kind": "hash",
+   "job": "11764915",
+   "ok": true,
+   "errors": []
+  },
+  "27": {
+   "kind": "hash",
+   "job": "11764915",
+   "ok": true,
+   "errors": []
+  },
+  "28": {
+   "kind": "hash",
+   "job": "11764915",
+   "ok": true,
+   "errors": []
+  },
+  "29": {
+   "kind": "hash",
+   "job": "11764915",
+   "ok": true,
+   "errors": []
+  },
+  "30": {
+   "kind": "hash",
+   "job": "11764915",
+   "ok": true,
+   "errors": []
+  },
+  "31": {
+   "kind": "hash",
+   "job": "11765330",
+   "ok": true,
+   "errors": []
+  },
+  "32": {
+   "kind": "hash",
+   "job": "11765330",
+   "ok": true,
+   "errors": []
+  },
+  "33": {
+   "kind": "hash",
+   "job": "11765330",
+   "ok": true,
+   "errors": []
+  },
+  "34": {
+   "kind": "hash",
+   "job": "11765330",
+   "ok": true,
+   "errors": []
+  },
+  "35": {
+   "kind": "hash",
+   "job": "11765330",
+   "ok": true,
+   "errors": []
+  },
+  "36": {
+   "kind": "hash",
+   "job": "11765330",
+   "ok": true,
+   "errors": []
+  },
+  "37": {
+   "kind": "legacy (no run id; content check + single writer)",
+   "job": "11748431",
+   "ok": true,
+   "errors": []
+  },
+  "38": {
+   "kind": "hash",
+   "job": "11765872",
+   "ok": true,
+   "errors": []
+  },
+  "39": {
+   "kind": "hash",
+   "job": "11765872",
+   "ok": true,
+   "errors": []
+  },
+  "40": {
+   "kind": "hash",
+   "job": "11765872",
+   "ok": true,
+   "errors": []
+  },
+  "41": {
+   "kind": "hash",
+   "job": "11765872",
+   "ok": true,
+   "errors": []
+  },
+  "42": {
+   "kind": "hash",
+   "job": "11765872",
+   "ok": true,
+   "errors": []
+  },
+  "43": {
+   "kind": "hash",
+   "job": "11770136",
+   "ok": true,
+   "errors": []
+  },
+  "44": {
+   "kind": "hash",
+   "job": "11770136",
+   "ok": true,
+   "errors": []
+  },
+  "45": {
+   "kind": "hash",
+   "job": "11770136",
+   "ok": true,
+   "errors": []
+  },
+  "46": {
+   "kind": "hash",
+   "job": "11770136",
+   "ok": true,
+   "errors": []
+  },
+  "47": {
+   "kind": "hash",
+   "job": "11770136",
+   "ok": true,
+   "errors": []
+  }
+ }
+}

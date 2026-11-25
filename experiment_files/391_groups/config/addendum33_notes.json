@@ -1,0 +1,15 @@
+{
+ "addendum": 33,
+ "written": "2026-11-23, at lock, before any real-model run",
+ "implementation_choices_not_spelled_out_in_the_prereg": {
+  "eligible_groups": "Stage 10 group column: target and control only (the 994 'excluded' and 214 'guard' papers belong to neither group); papers outside the Stage 11 sample; first author has name tokens (context) and a field.",
+  "partners": "topic_mpnet / topic_bert = topic_partners() of explore_x4_source_20261121.py (same field, max cosine, other author team, no shared surname) searched over the whole 9,108-paper cohort; random partner = 381_stage13.freeze rule (same field, same title-span token count, no shared surname, has context, not A), rng seed 33.",
+  "exclusions": "rules (i)/(ii)/(iii) = flags() of explore_x4_source_20261121.py (a, b, c). Flagged papers are run on GPU too (for 'result with exclusions lifted'); the primary tests use unflagged papers only.",
+  "T2_units": "Qwen D is in log10(1/rank) and the BERT text D in log10 p, so T2 is computed exactly as the 2026-11-21 baseline code: standardised means (mean/sd) of each, difference with the team bootstrap, on papers where both are finite. Text model = logistic regression from bert-base-uncased mean-pooled title features to the first author's surname-first Qwen token (classes seen >= 5 times, rest OOV), 5 folds by author team, C = 0.03; D_text = log10 p(ans | own title) - log10 p(ans | topic_mpnet partner title).",
+  "T3_estimator": "within-citation-bin target - control with weights n_t n_c / (n_t + n_c) (Stage 10 estimator, as Boot.tc of the 2026-11-21 code); bins with < 3 papers in either group skipped.",
+  "holm_ci": "Holm-adjusted two-sided bootstrap p over T1-T3; Holm CIs at alpha = 0.05/(m - rank) (as addendum 30). 'Holm CI > 0' = Holm lower bound > 0; the 'decided' rows use the Holm CI against +/- delta.",
+  "L0_baseline": "source = the input hidden state of block 0 (token embedding, no context) at the last title token, captured by a forward pre-hook; injected at the X placeholder at each PS layer exactly like the other sources; computed for self and topic_mpnet sources, author target only.",
+  "shards": "eligible papers shuffled with seed 33, 64 papers per shard; one extra check unit (shard 999) = 50 Stage 11 sample papers of shard 0 with self + published partner, compared with raw/b2_pscope (the prereg's 50-paper overlap check; WARN only).",
+  "bootstrap": "team bootstrap 2,000 draws, seed 33, teams = stage13_cpu.group_folds over the cohort."
+ }
+}

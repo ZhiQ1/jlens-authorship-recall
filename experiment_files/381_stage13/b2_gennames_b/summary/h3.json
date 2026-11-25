@@ -1,0 +1,21 @@
+{
+ "papers": 6841,
+ "H3_counts_equal": 6828,
+ "parser_list_equal_pkg_names": 5765,
+ "pkg_names": 35490,
+ "parser_kept": 31364,
+ "parser_U_by_reason": {
+  "U_dup": 3694,
+  "U_trunc": 488,
+  "U_prose": 84,
+  "U_short": 257
+ },
+ "matcher_quirk_counts_stored_text": {
+  "true_authors": 25776,
+  "true_suffix_jr_sr_roman": 1,
+  "kept_items": 31364,
+  "kept_items_with_comma_and_4plus_words": 7,
+  "kept_items_et_al_stripped": 0
+ },
+ "status": "OK"
+}

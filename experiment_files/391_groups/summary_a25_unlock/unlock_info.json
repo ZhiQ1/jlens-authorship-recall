@@ -1,0 +1,21 @@
+{
+ "label": "exploratory (post hoc)",
+ "n_A": 596,
+ "n_B": 599,
+ "base_rates": {
+  "A": {
+   "w_gold": 0.025167785234899327,
+   "w_donor": 0.0016778523489932886,
+   "any_full": 0.03523489932885906,
+   "first_sur": 0.025167785234899327
+  },
+  "B": {
+   "w_gold": 0.011686143572621035,
+   "w_donor": 0.008347245409015025,
+   "any_full": 0.005008347245409015,
+   "first_sur": 0.01001669449081803
+  }
+ },
+ "tf_note": "stored TF scores only the true authors; donor-name rank under the donor direction is not available",
+ "offdist_note": "beta 4 is outside the natural norm range at L48/L52 (23_methods/a25_offdist_check.json); beta 1-2 within"
+}

@@ -1,0 +1,27 @@
+{
+ "verdict": {
+  "D1": "supported",
+  "D2": "borderline",
+  "D3": "supported",
+  "reversed": false
+ },
+ "layers": [
+  4,
+  8,
+  16,
+  24,
+  32,
+  40,
+  48
+ ],
+ "family": [
+  8,
+  16,
+  24,
+  32,
+  40,
+  48
+ ],
+ "lock_sha256": "d648ef11fe9bad02277ae495db86f56c4ee8e9d9d0758ebd1f890418a63bc79c",
+ "test": false
+}

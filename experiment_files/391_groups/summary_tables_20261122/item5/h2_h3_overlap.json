@@ -1,0 +1,23 @@
+{
+ "label": "exploratory (post hoc, not pre-registered)",
+ "item5": {
+  "40": {
+   "n_a20_target": 566,
+   "n_a20_control": 561,
+   "n_name_T": 3130,
+   "n_name_C": 1524,
+   "norm_ID_T": 41.22610855102539,
+   "norm_ID_TC": 14.904692649841309,
+   "random_sd": 0.013975424859373685
+  },
+  "48": {
+   "n_a20_target": 566,
+   "n_a20_control": 561,
+   "n_name_T": 3130,
+   "n_name_C": 1524,
+   "norm_ID_T": 62.72549057006836,
+   "norm_ID_TC": 18.507089614868164,
+   "random_sd": 0.013975424859373685
+  }
+ }
+}
