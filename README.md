@@ -1,3 +1,9 @@
+## Current progress (2026-11-25)
+
+**Current deck:** [Stage 1–13 deck, HTML v76 (184 slides)](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) — one-sentence answer: *read early, said late — the bottleneck is the late writing step, not reading.* The summary chapter (slides 133–161) shows the whole story layer by layer. (Private claude.ai artifact; ask the owner for access.)
+
+---
+
 **Talk slides (Google Slides, latest):** https://docs.google.com/presentation/d/1tYnNLexpAQw0V-gXuUh2Gj0qVws6E8_Vp74ThO7wbv8/edit  
 **Latest complete deck (pptx, 86 slides, 2026-11-13):** [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx)
 
@@ -7,7 +13,7 @@
 
 > **Current documents (Stages 1–13 and the post-defence work, kept up to date):**
 > - **Report:** [Stage 1–13 experiment report](https://claude.ai/artifact/QB335qoaBWvSdFyfvc2bSe) (v30, 2026-11-08: batch 1 complete, groups C / D completed, Stage 8 premises and new limitations)
-> - **Slides:** talk deck in Google Slides (link at the top) and [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx) (86 slides, 2026-11-13); older merged deck: [Stage 1–13 merged deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD)
+> - **Slides:** talk deck in Google Slides (link at the top) and [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx) (86 slides, 2026-11-13); current HTML deck: [Stage 1–13 deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) (v76, 2026-11-25; see the top of this page)
 > - **Methods handbook:** [Stage 1–13 methods handbook](https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo) (2026-11-08 c)
 > - **Downloads (PDF / pptx):** [download page](https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta)
 >
