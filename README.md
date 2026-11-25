@@ -1,8 +1,20 @@
 ## Current progress (2026-11-25)
 
-**Current deck:** [Stage 1–13 deck, HTML v76 (184 slides)](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) — one-sentence answer: *read early, said late — the bottleneck is the late writing step, not reading.* The summary chapter (slides 133–161) shows the whole story layer by layer. (Private claude.ai artifact; ask the owner for access.)
+One-sentence answer: *read early, said late — the bottleneck is the late writing step, not reading.*
+
+| Item | Current version | Link |
+|---|---|---|
+| **Stage 1–13 deck (HTML, 184 slides; summary chapter = slides 133–161)** | **v77** (2026-11-25) | [claude.ai artifact](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) |
+| Main PPT (pptx, 192 slides; same order as the HTML deck) | v23b | [download page](https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta) |
+| Main speaker script (184 pages, EN/ZH) | v71 | [script doc](https://claude.ai/artifact/RrbAADH9XQ8Pvi9cmoxa6S) · download page |
+| Leader deck (68 slides) | v17o | [preview](https://claude.ai/artifact/JwGbLB7mxszqDu1cTPWQdx) · download page |
+| Hypothesis → experiment → conclusion tree | final (2026-11-24) | [tree doc](https://claude.ai/artifact/TAHNtUL42juc24YN7bCYoh) |
+| Latest locked pre-registration | addendum 34 (H1 format-lock supplement; locked, not yet run) + deviations note D34-1 | `experiment_files/391_groups/config/` |
+
+All links are private claude.ai artifacts; ask the owner for access.
 
 ---
+
 
 **Talk slides (Google Slides, latest):** https://docs.google.com/presentation/d/1tYnNLexpAQw0V-gXuUh2Gj0qVws6E8_Vp74ThO7wbv8/edit  
 **Latest complete deck (pptx, 86 slides, 2026-11-13):** [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx)
@@ -13,7 +25,7 @@
 
 > **Current documents (Stages 1–13 and the post-defence work, kept up to date):**
 > - **Report:** [Stage 1–13 experiment report](https://claude.ai/artifact/QB335qoaBWvSdFyfvc2bSe) (v30, 2026-11-08: batch 1 complete, groups C / D completed, Stage 8 premises and new limitations)
-> - **Slides:** talk deck in Google Slides (link at the top) and [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx) (86 slides, 2026-11-13); current HTML deck: [Stage 1–13 deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) (v76, 2026-11-25; see the top of this page)
+> - **Slides:** talk deck in Google Slides (link at the top) and [Stage1-13_talk_deck_latest.pptx](Stage1-13_talk_deck_latest.pptx) (86 slides, 2026-11-13); current HTML deck: [Stage 1–13 deck](https://claude.ai/artifact/XcgK4YF2dYQxudWfhk8MsD) (v77, 2026-11-25; see the top of this page)
 > - **Methods handbook:** [Stage 1–13 methods handbook](https://claude.ai/artifact/W7r7xVte3eaNcbo8D8cybo) (2026-11-08 c)
 > - **Downloads (PDF / pptx):** [download page](https://claude.ai/artifact/5Tdt1mQa8xnPiqQEKvjzta)
 >
