@@ -1,0 +1,93 @@
+# (old, new) pairs applied to experiment_tree.md and to the Claude Doc (find/replace as text).
+# Prefix-only replacements so the rest of each line stays verbatim.
+PAIRS = [
+ # ---------- PART 1 fixes ----------
+ ("（settled · 第 41 页；数字见第 141 页）", "（settled · 第 41 页；数字见 Stage 10 结果）"),
+ ("(settled · slide 41; numbers on slide 141)", "(settled · slide 41; numbers from the Stage 10 results)"),
+ ("只有④给出了一个否定身份的信号。", "只有④给出了一个否定身份的信号，④ 的否定信号并入第二批的合并结论。"),
+ ("only ④ gave a signal against identity.", "only ④ gave a signal against identity; ④'s negative signal is carried into batch 2's combined conclusion."),
+ ("  - L48 上 lens 的 target − control 为负、probe 为正，方向相反，没有解释；\n", ""),
+ ("  - H3 只有相关性证据；", "  - H3 只有相关性证据：L48 上 lens 的 target − control 为负、probe 为正，方向相反，没有解释；"),
+ ("  - at L48 the lens's target − control is negative while the probe's is positive; no explanation yet;\n", ""),
+ ("  - H3 rests on correlational evidence;", "  - H3 rests on correlational evidence: at L48 the lens's target − control is negative while the probe's is positive, with no explanation yet;"),
+
+ # ---------- PART 2A relation labels: tree 1 ----------
+ ("合并结论（③ ④ ⑤ ⑥ ⑦ ⑧ ⑨）：", "合力（③④ 扣掉名字先验，⑤⑥⑦ 把差距定位在最后几层，⑧ 排除\"只是部分写出的论文在撑\"，⑨ 用同一篇论文里写出 vs 漏掉的作者作对照；少了③④分不清是不是名字好猜，少了⑧可能是 R1 论文在撑）："),
+ ("Combined (③ ④ ⑤ ⑥ ⑦ ⑧ ⑨):", "Joint (③④ remove the name prior, ⑤⑥⑦ place the gap in the last layers, ⑧ rules out \"only the partly written papers\", ⑨ contrasts written vs missed authors within a paper; without ③④ guessable names could explain it, without ⑧ the R1 papers could):"),
+ ("合并结论（⑩ ⑪）：", "合力（⑩ 显示曝光越多信号越强，⑪ 把认得和写出各需要的曝光量化成 ρ；只有⑩看不出两者差多少）："),
+ ("Combined (⑩ ⑪):", "Joint (⑩ shows more exposure gives a stronger signal, ⑪ puts numbers on the exposure each needs as ρ; ⑩ alone cannot tell how far apart they are):"),
+ # tree 2
+ ("合并结论（① ② ③）：冒号位置", "合力（① 距离比、② probe 迁移、③ lens 最高词，从三个角度看冒号 / 名字位置；单靠①只知道状态不同，不知道信息怎么组织）：冒号位置"),
+ ("Combined (① ② ③): the \":\" position", "Joint (① distance ratio, ② probe transfer, ③ top lens word, three angles on the \":\" / name positions; ① alone only says the state differs, not how the information is organised): the \":\" position"),
+ ("→ 补充实验（exploratory · 第 52 页）：为什么不单调？", "救场 → 补充实验（exploratory · 第 52 页）：为什么不单调？锁定曲线不单调才补做，它改写了\"L56 才固定\"的读法；没有它，切断 sink 造成的假象会被当成结论。"),
+ ("→ Supplement (exploratory · slide 52): why the dip?", "Rescue → Supplement (exploratory · slide 52): why the dip? Run because the locked curve was not monotonic; it rewrote the \"fixed only at L56\" reading, and without it a sink-cutting artefact would have been the conclusion."),
+ ("→ patching 交叉检验（第 52 页）：", "交叉验证 → patching 交叉检验（第 52 页；切断是\"拿走\"，patching 是\"给回去\"，两个方向的方法都不支持\"中间层就定下格式\"）："),
+ ("→ Patching cross-check (slide 52):", "Cross-check → Patching cross-check (slide 52; knockout takes away, patching gives back, and neither direction supports \"the format is fixed in the middle layers\"):"),
+ ("合并结论（④ + 补充实验 + patching + ⑤）：", "合力（④ 给出锁定读数，补充实验指出它受 sink 干扰，patching 从反方向交叉检验，⑤ 证明 L56 的冒号状态确实有作用；少了补充实验会误判固定层，少了⑤会低估冒号的作用）："),
+ ("Combined (④ + supplement + patching + ⑤):", "Joint (④ gives the locked reading, the supplement shows it is distorted by the sink, patching cross-checks from the other direction, ⑤ shows the L56 \":\" state does matter; without the supplement the layer would be misread, without ⑤ the \":\" role would be underrated):"),
+ # tree 3 batch 0
+ ("→ 0-⑤ 标题效应的稳健性", "救场 → 0-⑤ 标题效应的稳健性"),
+ ("→ 0-⑤ Robustness of the title effect", "Rescue → 0-⑤ Robustness of the title effect"),
+ ("→ 0-⑦ 认得 − 认不得的差距靠少数几对", "救场 → 0-⑦ 认得 − 认不得的差距靠少数几对"),
+ ("→ 0-⑦ The recognised − unrecognised gap rests on a few pairs", "Rescue → 0-⑦ The recognised − unrecognised gap rests on a few pairs"),
+ ("→ 0-⑧ Stage 8 在 CPU 上重算", "救场 → 0-⑧ Stage 8 在 CPU 上重算"),
+ ("→ 0-⑧ Stage 8 re-scored on CPU", "Rescue → 0-⑧ Stage 8 re-scored on CPU"),
+ ("合并结论（第 0 批）：小样本说明真标题有帮助", "合力（各实验分别说明真标题有帮助、认得 − 认不得靠少数论文、结果依赖层的选择；三点合起来才说明为什么必须改用全队列和预注册）：小样本说明真标题有帮助"),
+ ("Combined (batch 0): the small samples showed", "Joint (the experiments show, respectively, that the true title helps, that the recognised − unrecognised gap rests on a few papers, and that results depend on the layer choice; only together do they explain why the full cohort and pre-registration were needed): the small samples showed"),
+ # tree 3 batch 1
+ ("- → L4 基准审计（仅在探索性结果文件中）：", "- 救场 → L4 基准审计（仅在探索性结果文件中；为查清天花板从哪来而补做，没有它\"换问题后状态不变\"仍可能被读成支持身份）："),
+ ("- → L4 baseline audit (exploratory result files only):", "- Rescue → L4 baseline audit (exploratory result files only; run to find where the ceiling comes from, without it \"the state does not change across questions\" could still be read as identity):"),
+ ("合并结论（①–③）：", "救场（天花板审计撤回了\"换问题检验支持身份\"的读法；没有这次审计，早期检验会被误当成身份证据）："),
+ ("Combined (①–③):", "Rescue (the ceiling audit withdrew the reading \"the change-the-question test supports identity\"; without it the early tests would have been taken as evidence of identity):"),
+ # tree 3 batch 2
+ ("→ 这一小块在哪层出现、是什么？", "前导 → 这一小块在哪层出现、是什么？"),
+ ("→ Where does that small part appear, and what is it?", "Lead-in → Where does that small part appear, and what is it?"),
+ ("合并结论（⑥ ⑦ ⑧ ⑨a ⑨b ⑨c，加上第一批的④；⑤是前导，⑩不可行）：", "合力（⑥ 说明大部分靠意思、只剩一小块；⑦⑧ 说明这一小块出现得晚、在标题位置还不明显；⑨a 说明它挂在稀有具体词上；⑨b 说明它和\"认识\"无关；⑨c 说明统计上看不到身份；第一批的④说明属性子空间里没有作者信息。少了⑥不知道有这一小块，少了⑨b 不能排除\"只有认得的论文才有\"。⑤是前导，⑩不可行。跨树依赖：以路线树\"标题在 L52 前送到名字位置\"为前提）："),
+ ("Combined (⑥ ⑦ ⑧ ⑨a ⑨b ⑨c, plus batch 1's ④; ⑤ leads in, ⑩ not feasible):", "Joint (⑥ shows meaning does most of the work, leaving a small part; ⑦⑧ show that part appears late and is barely there at the title; ⑨a puts it on rare, specific words; ⑨b shows it is unrelated to recognition; ⑨c shows identity has no statistical room; batch 1's ④ shows the attribute subspace holds no author information. Without ⑥ there is no small part to explain, without ⑨b \"only recognised papers have it\" stays open. ⑤ leads in, ⑩ not feasible. Cross-tree dependency: premised on the route tree's \"the title reaches the name positions before L52\"):"),
+ # tree 3 batch 3
+ ("→ 来源检查（exploratory）：", "排除 → 来源检查（exploratory；排除字面重叠，本身不正面支持姓氏信号）："),
+ ("→ Source check (exploratory):", "Rule-out → Source check (exploratory; removes literal overlap, without positively supporting the surname signal):"),
+ ("→ 主题配对检验（pre-registered，1,178 篇）：", "排除 → 主题配对检验（pre-registered，1,178 篇；想排除主题先验，样本太小没有定论，促成确认检验）："),
+ ("→ Topic-matched test (pre-registered, 1,178 papers):", "Rule-out → Topic-matched test (pre-registered, 1,178 papers; meant to rule out the topic prior, too few papers to decide, which led to the confirmatory test):"),
+ ("→ 确认检验（locked，6,048 篇新论文，运行前锁定）：", "救场 → 确认检验（locked，6,048 篇新论文，运行前锁定；因主题配对样本太小才补做，把\"混合\"改写成锁定的小例外）："),
+ ("→ Confirmatory test (locked, 6,048 new papers, rules fixed before the run):", "Rescue → Confirmatory test (locked, 6,048 new papers, rules fixed before the run; run because the topic-matched test was too small, it turned \"mixed\" into a small locked exception):"),
+ # tree 4
+ ("→ ② 5 个假标题下时间一致", "排除 → ② 5 个假标题下时间一致"),
+ ("→ ② The timing holds for all five false titles", "Rule-out → ② The timing holds for all five false titles"),
+ ("合并结论（① ②）：标题在 L52 前读完", "交叉验证（① 里的放回（给回去能恢复）和拿走（切断会损失）方向相反，都指向 L52；② 排除\"只是某一个假标题碰巧\"）：标题在 L52 前读完"),
+ ("Combined (① ②): the title is read by L52", "Cross-check (in ① put-back (giving it back restores) and take-away (cutting it loses) run in opposite directions and both point to L52; ② rules out a lucky false title): the title is read by L52"),
+ ("合并结论（⑨ ⑩ ⑪ ⑫ ⑬ ⑭）：", "合力（⑨⑩ 说明送到哪些位置、主要落在名字位置，⑪ 找出名字 ← 标题这条边，⑬ 说明没有单层瓶颈、是多层并行，⑫ 说明 L52–L56 的 MLP 带的是论文信息，⑭ 给出各类信息出现的先后；少了⑬会误以为是单层单路径，少了⑫不知道送到的是什么形式）："),
+ ("Combined (⑨ ⑩ ⑪ ⑫ ⑬ ⑭):", "Joint (⑨⑩ show which positions receive it, mainly the names; ⑪ finds the name ← title edge; ⑬ shows no single-layer bottleneck, several layers in parallel; ⑫ shows the L52–L56 MLPs carry paper information; ⑭ gives the order in which kinds of information appear; without ⑬ it would look like one route at one layer, without ⑫ the form of what arrives is unknown):"),
+ # tree 5
+ ("合并结论（第 0 批）：lens 在中间层读不出", "前导（早期 lens 比较没有定论、probe 能读出一点，由此提出 H3，交给第一批的同尺度检验回答）：lens 在中间层读不出"),
+ ("Combined (batch 0): lenses could not read", "Lead-in (early lens comparisons were inconclusive and a probe read a little, which raised H3 and handed it to batch 1's same-scale test): lenses could not read"),
+ ("→ 同尺度检验（locked · 第 99 页）：为解决尺度不同的问题补做。", "救场 → 同尺度检验（locked · 第 99 页）：为解决尺度不同的问题补做；它把\"部分支持\"改写为\"同尺度下支持\"，没有它 probe 和 lens 的大小没法比。"),
+ ("→ Same-scale test (locked · slide 99), run to fix the scale problem.", "Rescue → Same-scale test (locked · slide 99), run to fix the scale problem; it turned \"partly supported\" into \"supported on the same scale\", and without it the probe and lens sizes could not be compared."),
+ ("合并结论（① ② ③ ④ + 同尺度检验）：", "合力（① 说明 lens 读不出，②③④ 说明 probe 在标题和名字位置都读得出，同尺度检验把两者放在同一把尺子上比；少了同尺度检验只能比方向不能比大小）："),
+ ("Combined (① ② ③ ④ + the same-scale test):", "Joint (① shows the lens cannot read it, ②③④ show the probe can at the title and name positions, and the same-scale test puts both on one ruler; without it only signs, not sizes, could be compared):"),
+ ("合并结论（⑤ ⑥ ⑦）：", "合力（⑤ 说明作者子空间只装一小部分，⑥ 说明差异分散在很多方向，⑦ 说明没有更早的集中存放处；三项分别排除\"干净子空间\"\"单一方向\"\"更早的架子\"）："),
+ ("Combined (⑤ ⑥ ⑦):", "Joint (⑤ shows the author subspace holds only a small part, ⑥ that the difference is spread over many directions, ⑦ that there is no earlier shelf; each rules out one of \"a clean subspace\", \"one direction\", \"an earlier shelf\"):"),
+ # tree 6
+ ("→ 0-② 认得 − 认不得的差距在名字后半部分", "救场 → 0-② 认得 − 认不得的差距在名字后半部分"),
+ ("→ 0-② The recognised − unrecognised gap sits on the rest of the name", "Rescue → 0-② The recognised − unrecognised gap sits on the rest of the name"),
+ ("合并结论（第 0 批）：小样本提示", "前导（小样本提出\"难在名字开头\"，交给全队列的第一、二批回答）：小样本提示"),
+ ("Combined (batch 0): the small samples hinted", "Lead-in (the small samples raised \"starting the name is hard\" and handed it to full-cohort batches 1 and 2): the small samples hinted"),
+ ("合并结论（① ② ③ ④）：信号主要在姓", "合力（① 拆开首 token 和其余部分，② 说明知道名有助于写姓，③ 给出信号在哪些 token 和剂量反应，④ 说明合作者也能帮上；少了①看不出难在开头）：信号主要在姓"),
+ ("Combined (① ② ③ ④): the signal sits mainly", "Joint (① splits the first token from the rest, ② shows the given name helps the surname, ③ shows which tokens carry the signal and the dose-response, ④ shows co-authors help too; without ① the hard start would not show): the signal sits mainly"),
+ ("合并结论（⑤ ⑥）：", "合力（⑤ 说明补上名字第一块有帮助、对认得的帮助更大，⑥ 说明合作者的帮助来自合作网络；少了⑥会把合作者的帮助误当成论文特有）："),
+ ("Combined (⑤ ⑥):", "Joint (⑤ shows supplying the first piece helps, more for recognised papers; ⑥ shows co-author help comes from the network; without ⑥ co-author help could be mistaken as paper-specific):"),
+ ("合并结论（⑦ ⑧）：", "排除（⑦ 说明模型内部对真假名只多知道一点点，⑧ 说明编造名不是记错的真名；两项一起排除\"把名字记混了\"）："),
+ ("Combined (⑦ ⑧):", "Rule-out (⑦ shows the states know only a little about true vs fabricated, ⑧ shows fabricated names are not misremembered true names; together they rule out \"names got mixed up\"):"),
+ ("合并结论（⑩ ⑪ ⑫ ⑬，加上第二批的⑤）：", "合力（⑩ 推翻\"信号太弱\"，⑪ 说明伤害来自方向，⑫ 给出少数论文后期被压下去，⑬ 排除反转诅咒，第二批的⑤ 说明补上名字开头有帮助；跨树依赖：以第四批⑨\"L57–L61 由 MLP 写出\"和路线树\"L52 前送到\"为前提）："),
+ ("Combined (⑩ ⑪ ⑫ ⑬, plus batch 2's ⑤):", "Joint (⑩ overturns \"the signal is too weak\", ⑪ shows the harm comes from direction, ⑫ shows a minority of papers are pushed down late, ⑬ rules out the reversal curse, batch 2's ⑤ shows supplying the start helps; cross-tree dependency: premised on batch 4's ⑨ \"the L57–L61 MLPs write it\" and the route tree's \"delivered before L52\"):"),
+ # tree 7
+ ("合并结论（① ② ③ ④）：预注册的复现", "合力（四批复现分别覆盖假标题、全 token probe、位置和组件 patching、补齐的组；任何一批改变结论都会动摇对应部分）：预注册的复现"),
+ ("Combined (① ② ③ ④): no pre-registered replication", "Joint (the four batches cover false titles, all-token probes, position and component patching, and the completed groups; a change in any one would shake the matching part): no pre-registered replication"),
+ ("合并结论（⑤ ⑥ ⑦ ⑧ ⑨）：", "排除（⑤ 天花板、⑥ 行为得分、⑦ 名字先验、⑧ 区间方法、⑨ 真假标题区分，各排除一种统计或方法上的假象）："),
+ ("Combined (⑤ ⑥ ⑦ ⑧ ⑨):", "Rule-out (⑤ ceiling, ⑥ behaviour scores, ⑦ name prior, ⑧ interval method, ⑨ true-vs-false separation, each removing one statistical or methodological artefact):"),
+ ("合并结论（⑩ ⑪ ⑫ ⑬ ⑭ ⑮）：", "排除（⑩⑪ 说明认得改变大小不改变时间，⑫⑬⑭⑮ 说明组间恢复率的差别是小分母效应；合起来排除\"认得的论文读得更早\"）："),
+ ("Combined (⑩ ⑪ ⑫ ⑬ ⑭ ⑮):", "Rule-out (⑩⑪ show recognition changes size, not timing; ⑫⑬⑭⑮ show recovery differences between groups are a small-denominator effect; together they rule out \"recognised papers are read earlier\"):"),
+ # legend lines
+ ("- \"合并结论\" = 几个实验共同得出的结论，注明是哪几个；", "- 关系类型：合力（几个实验各管一块，合起来才得出结论）/ 交叉验证（方向相反的两种方法得到同一答案）/ 救场（因前一个实验有缺陷才补做，并改写了它的结论）/ 前导（提出问题，由后面的实验回答）/ 排除（砍掉一个替代解释，本身不正面支持）/ 跨树依赖（一棵树的结论是另一棵树的前提）；每处写明为什么缺它不行；"),
+ ("- \"Combined\" = a conclusion several experiments reach together, with the experiments named;", "- Relation types: Joint (several experiments each cover one part; only together do they give the conclusion) / Cross-check (two opposite-direction methods give the same answer) / Rescue (run because the previous experiment had a flaw, and it rewrote that conclusion) / Lead-in (raises the question later experiments answer) / Rule-out (removes an alternative explanation without positive support) / Cross-tree dependency (one tree's conclusion is another's premise); each says why the conclusion fails without that piece;"),
+]

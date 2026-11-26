@@ -1,0 +1,4 @@
+x6_recovery.csv: 450 rows compared, max |diff| R/lo/hi = 7.41e-16 -> OK
+s1113_groups.csv E1 recovery: 112 rows, max |diff| est/lo/hi = 4.44e-16 -> OK
+s1113_groups.csv X6 recovery (mean of 5 false titles): 32 rows, max |diff| est/lo/hi = 2.22e-16 -> OK
+rerun_group_values.csv U0 E1 unwritten: 15 rows, max |diff| est = 1.11e-16 -> OK (CI: rerun used rerun_analyze paper filter consistent==True as here)

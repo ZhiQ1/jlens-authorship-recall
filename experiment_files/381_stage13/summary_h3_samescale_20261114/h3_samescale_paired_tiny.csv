@@ -1,0 +1,7 @@
+layer,lens,contrast,n_tc,spec_diff,spec_diff_lo,spec_diff_hi,tc_diff,tc_diff_lo,tc_diff_hi,tc_diff_check_percol,tc_diff_check_percol_lo,tc_diff_check_percol_hi,p_boot_tc_le0,p_boot_spec_le0,label
+40,jlens_public_b16,probe - lens,74,0.04748246971143807,0.00805987150030675,0.09334988106793311,0,0.0,0.0,0,0.0,0.0,1.0,0.0105,"post hoc (strengthening 2), descriptive"
+40,jlens_public_f32,probe - lens,74,0.048002758431689725,0.008982915988985003,0.09419586602235705,0,0.0,0.0,0,0.0,0.0,1.0,0.009,"post hoc (strengthening 2), descriptive"
+40,jlens_public_fullvocab,probe - lens,74,0.035465432484824436,-0.005011710431560463,0.08036277331862209,0,0.0,0.0,0,0.0,0.0,1.0,0.0405,"post hoc (strengthening 2), descriptive"
+40,logit_b16,probe - lens,74,0.0652856073308008,0.02014300160668914,0.11036887073273996,0,0.0,0.0,0,0.0,0.0,1.0,0.0025,"post hoc (strengthening 2), descriptive"
+40,logit_f32,probe - lens,74,0.06547727115246561,0.020443070491354652,0.11073675999260636,0,0.0,0.0,0,0.0,0.0,1.0,0.003,"post hoc (strengthening 2), descriptive"
+40,logit_fullvocab,probe - lens,74,0.06910170372694714,0.024214418876208295,0.11431160954871565,0,0.0,0.0,0,0.0,0.0,1.0,0.0005,"post hoc (strengthening 2), descriptive"

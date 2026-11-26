@@ -1,0 +1,25 @@
+{
+ "cells": 297,
+ "expected_cells": 297,
+ "max_abs_diff_point": 2.220446049250313e-16,
+ "tolerance": 0.005,
+ "status": "PASS",
+ "note_ci": "published CIs are paper-level (rng 3713); this analysis uses team-cluster CIs (addendum 10 statistics rule), so CIs are not compared for PASS",
+ "max_abs_diff_ci_info": 0.0030348904080950145,
+ "P1_names_L48": {
+  "new": 0.6118816098069024,
+  "published": 0.6118816098069024
+ },
+ "P1_p1_L48": {
+  "new": 0.07393831950855839,
+  "published": 0.0739383195085583
+ },
+ "P2_attn_L48": {
+  "new": 0.2314607788142753,
+  "published": 0.2314607788142753
+ },
+ "P2_mlp_L48": {
+  "new": 0.06798834999984465,
+  "published": 0.0679883499998446
+ }
+}

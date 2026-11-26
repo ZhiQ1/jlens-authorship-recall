@@ -1,0 +1,25 @@
+{
+ "regen": {
+  "shards": 48,
+  "missing": [],
+  "papers": 6841,
+  "papers_identical": 6841,
+  "share_papers_identical": 1.0,
+  "positions_stored": 226158,
+  "positions_common_prefix": 226158,
+  "share_positions_common_prefix": 1.0,
+  "replay_argmax_agreement": 0.9787493699095323,
+  "names_MH": 31561,
+  "names_gen_valid": 31561,
+  "d_lp_mean_median": 0.01291741265190971,
+  "d_lp_mean_mean": 0.016797346183628048,
+  "d_lp_mean_max": 0.18390274047851562,
+  "d_lp_mean_share_gt_0p01": 0.5914261271822819,
+  "rule_1a_median_lt_0p01": false
+ },
+ "counts": {
+  "names_MH_all": 31561,
+  "names_used": 31561,
+  "target_names_used": 21712
+ }
+}

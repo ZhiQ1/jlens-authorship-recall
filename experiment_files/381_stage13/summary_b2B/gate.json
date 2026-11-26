@@ -1,0 +1,31 @@
+{
+ "tolerance": 0.005,
+ "gross": 0.1,
+ "e1noise_orig_arms": {
+  "rows_match": true,
+  "rank_equal_share": 1.0,
+  "recovery_max_abs_diff": 0.0,
+  "threshold": 0.005,
+  "status": "PASS"
+ },
+ "e1t5_false0_rerun": {
+  "rows_match": true,
+  "rank_equal_share": 1.0,
+  "recovery_max_abs_diff": 0.0,
+  "threshold": 0.005,
+  "status": "PASS"
+ },
+ "x3tok": {
+  "value": 8.747962671711613e-17,
+  "pass_threshold": 0.005,
+  "gross_threshold": 0.1,
+  "status": "PASS"
+ },
+ "m3tok": {
+  "value": 5.377642775528102e-17,
+  "pass_threshold": 0.005,
+  "gross_threshold": 0.1,
+  "status": "PASS"
+ },
+ "status": "PASS"
+}

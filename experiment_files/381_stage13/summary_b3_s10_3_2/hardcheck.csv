@@ -1,0 +1,15 @@
+item,check,scope,value,threshold,status,kind,note
+3-2,rank_exact_L24_L48,all units pooled,1.0,0.99,PASS,HARD,3210200/3210200 exact
+3-2,mismatch_within_4_bf16,all units pooled,0.0,4.0,PASS,HARD,0/0 mismatches within 4 units
+3-2,rank_exact_jlens_public_L24,per pair (WARN),1.0,0.99,PASS,WARN,max ulps 0.00
+3-2,rank_exact_jlens_public_L48,per pair (WARN),1.0,0.99,PASS,WARN,max ulps 0.00
+3-2,rank_exact_logit_L24,per pair (WARN),1.0,0.99,PASS,WARN,max ulps 0.00
+3-2,rank_exact_logit_L48,per pair (WARN),1.0,0.99,PASS,WARN,max ulps 0.00
+3-2,paper_spec_L48_jlens_public_target_mean,all papers,9.540979117872439e-17,0.005,PASS,HARD,new -0.007401 vs published -0.007401
+3-2,paper_spec_L48_jlens_public_control_mean,all papers,4.85722573273506e-17,0.005,PASS,HARD,new 0.037819 vs published 0.037819
+3-2,paper_spec_L48_jlens_public_tc_within_bin,all papers,3.469446951953614e-17,0.005,PASS,HARD,new -0.043696 vs published -0.043696
+3-2,paper_spec_L48_jlens_public_share_within,per paper,1.0,0.99,PASS,WARN,max per-paper |diff| 0.00000
+3-2,paper_spec_L48_logit_target_mean,all papers,1.5612511283791264e-17,0.005,PASS,HARD,new 0.005090 vs published 0.005090
+3-2,paper_spec_L48_logit_control_mean,all papers,9.93129189996722e-17,0.005,PASS,HARD,new 0.002437 vs published 0.002437
+3-2,paper_spec_L48_logit_tc_within_bin,all papers,1.6479873021779667e-17,0.005,PASS,HARD,new 0.003548 vs published 0.003548
+3-2,paper_spec_L48_logit_share_within,per paper,1.0,0.99,PASS,WARN,max per-paper |diff| 0.00000

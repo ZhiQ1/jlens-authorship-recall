@@ -1,0 +1,81 @@
+{
+ "item": "2-10",
+ "cells": 9,
+ "expected_cells": 9,
+ "max_abs_diff": 2.220446049250313e-16,
+ "tolerance": 0.005,
+ "status": "PASS",
+ "cells_detail": [
+  {
+   "table": "by_group",
+   "group": "all",
+   "mean": -1.1735660360179203,
+   "mean_pub": -1.1735660360179203
+  },
+  {
+   "table": "by_group",
+   "group": "control",
+   "mean": -1.270471812327543,
+   "mean_pub": -1.270471812327543
+  },
+  {
+   "table": "by_group",
+   "group": "excluded",
+   "mean": -1.2034323926579413,
+   "mean_pub": -1.203432392657941
+  },
+  {
+   "table": "by_group",
+   "group": "guard",
+   "mean": -0.5484190339161698,
+   "mean_pub": -0.5484190339161698
+  },
+  {
+   "table": "by_group",
+   "group": "target",
+   "mean": -1.1426928494480109,
+   "mean_pub": -1.1426928494480109
+  },
+  {
+   "table": "target_minus_control",
+   "group": "all cohort target/control",
+   "mean": 0.14702966849703933,
+   "mean_pub": 0.1470296684970393
+  },
+  {
+   "table": "target_minus_control",
+   "group": "Stage 11 sample (1,186)",
+   "mean": 0.17005981341276533,
+   "mean_pub": 0.1700598134127653
+  },
+  {
+   "table": "target_minus_control",
+   "group": "pairs.parquet tune",
+   "mean": 0.09815990794332756,
+   "mean_pub": 0.0981599079433276
+  },
+  {
+   "table": "target_minus_control",
+   "group": "pairs.parquet test",
+   "mean": 0.26001197302795764,
+   "mean_pub": 0.2600119730279576
+  }
+ ],
+ "per_paper_exact": {
+  "n": 9108,
+  "mean_abs": 0.0,
+  "max_abs": 0.0,
+  "share_exact": 1.0
+ },
+ "in_sequence_warn": {
+  "value": 2.220446049250313e-16,
+  "threshold": 0.005,
+  "status": "OK",
+  "per_paper": {
+   "n": 9108,
+   "mean_abs": 0.0,
+   "max_abs": 0.0,
+   "share_exact": 1.0
+  }
+ }
+}

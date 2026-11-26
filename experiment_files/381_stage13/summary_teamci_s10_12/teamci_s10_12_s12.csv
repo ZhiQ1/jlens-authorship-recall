@@ -1,0 +1,2 @@
+conclusion,stage,quantity,source,n,estimate,paper_lo,paper_hi,replay_match,team_lo,team_hi,width_ratio,status,note
+C16,Stage 12,"F2 author-prompt lens, name position, target - control within bin, L62",R12/summary/F2_author_lens.csv (x5_layer_order.csv row 17),590 / 593 (10 bins),0.23768436538089963,0.2098532659147792,0.2672763466334123,True,0.20866908784622173,0.2684115079109722,1.0403903677248152,OK,

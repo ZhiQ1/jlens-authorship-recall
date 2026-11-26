@@ -1,0 +1,86 @@
+{
+ "check": "b2_ps_hard",
+ "status": "PASS",
+ "parts": [
+  {
+   "check": "2-7_D_title",
+   "status": "PASS",
+   "n": 63,
+   "n_missing": 0,
+   "max_abs_diff": 7.827939685345342e-17,
+   "tol": 0.005,
+   "worst": {
+    "split": "tune",
+    "answer": "author",
+    "pos": "title",
+    "layer": 32,
+    "_ref": -0.001940585341157564,
+    "_new": -0.0019405853411574858
+   },
+   "hard": true
+  },
+  {
+   "check": "2-7_named_test_author_title_L8",
+   "status": "PASS",
+   "new": 0.012971022866373614,
+   "ref": 0.012971022866373588,
+   "abs_diff": 2.6020852139652106e-17,
+   "tol": 0.005,
+   "hard": true
+  },
+  {
+   "check": "2-9_x4tok_title",
+   "status": "PASS",
+   "n": 8,
+   "n_missing": 0,
+   "max_abs_diff": 4.163336342344337e-17,
+   "tol": 0.005,
+   "worst": {
+    "layer": 8,
+    "role": "given_first",
+    "_ref": -0.0630427352660919,
+    "_new": -0.06304273526609186
+   },
+   "hard": true
+  },
+  {
+   "check": "2-9_x4tok_title_n",
+   "status": "PASS",
+   "n": 8,
+   "n_missing": 0,
+   "max_abs_diff": 0.0,
+   "tol": 0,
+   "worst": {
+    "layer": 8,
+    "role": "given_first",
+    "_ref": 20,
+    "_new": 20
+   },
+   "hard": true
+  }
+ ],
+ "warn_parts": [
+  {
+   "check": "2-7_D_colon",
+   "status": "PASS",
+   "n": 63,
+   "n_missing": 0,
+   "max_abs_diff": 8.4893030105615e-17,
+   "tol": 0.005,
+   "worst": {
+    "split": "tune",
+    "answer": "author",
+    "pos": "colon",
+    "layer": 24,
+    "_ref": -0.00038577317248975225,
+    "_new": -0.00038577317248983715
+   },
+   "hard": false
+  }
+ ],
+ "partial": true,
+ "tiny": false,
+ "shards": [
+  0
+ ]
+}

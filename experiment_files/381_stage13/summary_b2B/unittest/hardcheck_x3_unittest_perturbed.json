@@ -1,0 +1,12 @@
+{
+ "item": "2-3",
+ "tolerance": 0.005,
+ "recovery_cells": 96,
+ "recovery_expected": 96,
+ "behaviour_cells": 90,
+ "behaviour_expected": 90,
+ "recovery_max_abs_diff": 0.2060427986644573,
+ "behaviour_max_abs_diff": 0.02000000000000013,
+ "status": "FAIL",
+ "author_mean_check": "synthetic input (unit test)"
+}

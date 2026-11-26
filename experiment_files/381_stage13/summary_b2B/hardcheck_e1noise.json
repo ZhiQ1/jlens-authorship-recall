@@ -1,0 +1,25 @@
+{
+ "item": "2-4",
+ "tolerance": 0.005,
+ "shards": {
+  "0": {
+   "rows_match": true,
+   "rank_equal_share": 1.0,
+   "recovery_max_abs_diff": 0.0,
+   "threshold": 0.005,
+   "status": "PASS",
+   "b15_copies_identical_true": 1.0,
+   "b15_copies_identical_false": 1.0
+  },
+  "6": {
+   "rows_match": true,
+   "rank_equal_share": 1.0,
+   "recovery_max_abs_diff": 0.0,
+   "threshold": 0.005,
+   "status": "PASS",
+   "b15_copies_identical_true": 1.0,
+   "b15_copies_identical_false": 1.0
+  }
+ },
+ "status": "PASS"
+}

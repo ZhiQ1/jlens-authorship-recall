@@ -1,0 +1,24 @@
+{
+ "label": "post hoc (strengthening 2), descriptive",
+ "nan_kept_tc_L40": {
+  "probe": 0,
+  "jlens_public_b16": 0,
+  "jlens_public_f32": 0,
+  "jlens_public_fullvocab": 0,
+  "logit_b16": 0,
+  "logit_f32": 0,
+  "logit_fullvocab": 0
+ },
+ "n_tc_kept_L40": 74,
+ "vocab_rows_vs_hf_maxabs": 2.9802322387695312e-08,
+ "J_dtype": "torch.float16",
+ "p2_total_violations_b16": 0,
+ "p2_total_violations_f32": 0,
+ "p1_exact_share_jlens_public_L40": 0.9250177683013504,
+ "p1_status_jlens_public_L40": "WARN",
+ "p1_exact_share_logit_L40": 0.9068941009239516,
+ "p1_status_logit_L40": "WARN",
+ "p3_max_absdiff": 4580.0,
+ "p3_status": "WARN",
+ "funcs_identical_all": false
+}

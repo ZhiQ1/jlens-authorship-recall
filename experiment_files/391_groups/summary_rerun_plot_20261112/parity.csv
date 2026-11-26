@@ -1,0 +1,37 @@
+check,column,cells,max_abs_diff,status,value,slide
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",R,90,2.220446049250313e-16,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",R_lo,90,1.1102230246251565e-16,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",R_hi,90,2.220446049250313e-16,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",numerator,90,9.71445146547012e-17,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",num_lo,90,9.71445146547012e-17,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",num_hi,90,9.367506770274758e-17,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",denominator,90,8.326672684688674e-17,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",den_lo,90,5.551115123125783e-17,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",den_hi,90,5.551115123125783e-17,OK,,
+"cd_group_values.csv (A, B, C, D, C_stage11, D_stage11)",n_papers,90,0.0,OK,,
+"rerun_group_values.csv (U0, R2)",R,30,2.220446049250313e-16,OK,,
+"rerun_group_values.csv (U0, R2)",R_lo,30,1.1102230246251565e-16,OK,,
+"rerun_group_values.csv (U0, R2)",R_hi,30,2.220446049250313e-16,OK,,
+"rerun_group_values.csv (U0, R2)",n_papers,30,0.0,OK,,
+"e1_e2_num_den.csv (U0, R2)",numerator,12,5.551115123125783e-17,OK,,
+"e1_e2_num_den.csv (U0, R2)",num_lo,12,9.71445146547012e-17,OK,,
+"e1_e2_num_den.csv (U0, R2)",num_hi,12,7.632783294297951e-17,OK,,
+"e1_e2_num_den.csv (U0, R2)",denominator,12,5.551115123125783e-17,OK,,
+"e1_e2_num_den.csv (U0, R2)",den_lo,12,5.551115123125783e-17,OK,,
+"e1_e2_num_den.csv (U0, R2)",den_hi,12,0.0,OK,,
+rerun_curves_R0.csv E1 L48,R_L48,5,0.0,OK,,
+rerun_curves_R0.csv E1 L48,R_L48_lo,5,0.0,OK,,
+rerun_curves_R0.csv E1 L48,R_L48_hi,5,0.0,OK,,
+rerun_curves_R0.csv E1 L52,R_L52,5,2.220446049250313e-16,OK,,
+rerun_curves_R0.csv E1 L52,R_L52_lo,5,1.1102230246251565e-16,OK,,
+rerun_curves_R0.csv E1 L52,R_L52_hi,5,2.220446049250313e-16,OK,,
+rerun_curves_R0.csv E1 denominator / n,denominator,5,5.551115123125783e-17,OK,,
+rerun_curves_R0.csv E1 denominator / n,den_lo,5,8.326672684688674e-17,OK,,
+rerun_curves_R0.csv E1 denominator / n,den_hi,5,8.326672684688674e-17,OK,,
+rerun_curves_R0.csv E1 denominator / n,n_papers,5,0.0,OK,,
+slide numbers (rounded as on slide),denominator k=0,1,0.0004051991126142185,OK,0.18540519911261422,0.185
+slide numbers (rounded as on slide),denominator k=4,1,2.6832476674176764e-05,OK,0.4069731675233258,0.407
+slide numbers (rounded as on slide),R(L48) k=0,1,0.004096464091688956,OK,0.904096464091689,0.9
+slide numbers (rounded as on slide),R(L48) k=4,1,0.0010098234244892978,OK,0.8110098234244894,0.81
+slide numbers (rounded as on slide),n k=0,1,0.0,OK,241.0,241.0
+slide numbers (rounded as on slide),n k=4,1,0.0,OK,557.0,557.0

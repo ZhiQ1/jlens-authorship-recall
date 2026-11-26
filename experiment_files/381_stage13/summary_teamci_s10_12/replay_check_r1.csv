@@ -1,0 +1,2 @@
+conclusion,quantity,published_lo,published_hi,replay_lo,replay_hi,max_abs_diff,match_3dp
+C17,"R1 papers: written - missed author, title-specific, output (paired within paper)",0.1684150665559543,0.2322915814260286,0.1684150665559543,0.23229158142602865,5.551115123125783e-17,True

@@ -1,0 +1,58 @@
+readout,kind,primary,position,earliest_tc_ci_gt0,layers_meeting_rule,verdict
+logit,first,False,title_all,,,no earlier position
+logit,first,False,title_content,,,no earlier position
+logit,first,False,title_first,,,no earlier position
+logit,first,False,title_last,,,no earlier position
+logit,first,False,quote,,,no earlier position
+logit,first,False,year,24.0,24;36;40;41;44;45;46,shelf first at year (L24)
+logit,first,False,close,16.0,16;41,shelf first at close (L16)
+logit,first,False,authors,56.0,,no earlier position
+logit,first,False,colon,44.0,44;45;46;48,shelf first at colon (L44)
+logit,surname,True,title_all,56.0,,no earlier position
+logit,surname,True,title_content,56.0,,no earlier position
+logit,surname,True,title_first,47.0,47;48,shelf first at title_first (L47)
+logit,surname,True,title_last,56.0,,no earlier position
+logit,surname,True,quote,,,no earlier position
+logit,surname,True,year,40.0,40;41;42;43;44;45;46;47,shelf first at year (L40)
+logit,surname,True,close,56.0,,no earlier position
+logit,surname,True,authors,36.0,36,shelf first at authors (L36)
+logit,surname,True,colon,45.0,45;46;47;48,shelf first at colon (L45)
+logit,next_token,True,name_surname_first,52.0,,(reference)
+jlens_public,first,False,title_all,,,no earlier position
+jlens_public,first,False,title_content,,,no earlier position
+jlens_public,first,False,title_first,,,no earlier position
+jlens_public,first,False,title_last,,,no earlier position
+jlens_public,first,False,quote,,,no earlier position
+jlens_public,first,False,year,,,no earlier position
+jlens_public,first,False,close,40.0,40;41,shelf first at close (L40)
+jlens_public,first,False,authors,52.0,,no earlier position
+jlens_public,first,False,colon,,,no earlier position
+jlens_public,surname,True,title_all,56.0,,no earlier position
+jlens_public,surname,True,title_content,56.0,,no earlier position
+jlens_public,surname,True,title_first,8.0,8;24;46;47;48,shelf first at title_first (L8)
+jlens_public,surname,True,title_last,,,no earlier position
+jlens_public,surname,True,quote,,,no earlier position
+jlens_public,surname,True,year,42.0,42,shelf first at year (L42)
+jlens_public,surname,True,close,41.0,41,shelf first at close (L41)
+jlens_public,surname,True,authors,49.0,,no earlier position
+jlens_public,surname,True,colon,56.0,,no earlier position
+jlens_public,next_token,True,name_surname_first,56.0,,(reference)
+probe,first,False,title_all,60.0,,no earlier position
+probe,first,False,title_content,56.0,,no earlier position
+probe,first,False,title_first,40.0,40;41;42;43;44;45,shelf first at title_first (L40)
+probe,first,False,title_last,,,no earlier position
+probe,first,False,quote,,,no earlier position
+probe,first,False,year,49.0,,no earlier position
+probe,first,False,close,,,no earlier position
+probe,first,False,authors,,,no earlier position
+probe,first,False,colon,50.0,,no earlier position
+probe,surname,True,title_all,32.0,32;40;41;42;43,shelf first at title_all (L32)
+probe,surname,True,title_content,40.0,40;41,shelf first at title_content (L40)
+probe,surname,True,title_first,,,no earlier position
+probe,surname,True,title_last,,,no earlier position
+probe,surname,True,quote,,,no earlier position
+probe,surname,True,year,32.0,32;36;40;41;42;43;45;46;47,shelf first at year (L32)
+probe,surname,True,close,56.0,,no earlier position
+probe,surname,True,authors,,,no earlier position
+probe,surname,True,colon,49.0,,no earlier position
+probe,next_token,True,name_surname_first,48.0,,(reference)

@@ -1,0 +1,6 @@
+{
+ "shards": [
+  "shard_000.parquet"
+ ],
+ "note": "F0 only; any=full or surname match of any true author; first=true first author matched anywhere; co_only=only co-authors; c_any=same metric against chance control paper"
+}

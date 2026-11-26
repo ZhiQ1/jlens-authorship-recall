@@ -1,0 +1,2 @@
+conclusion,stage,quantity,source,n,estimate,paper_lo,paper_hi,replay_match,team_lo,team_hi,width_ratio,status,note
+C17,Stage 10,"R1 papers: written - missed author, title-specific, output (paired within paper)",R10/summary_r0r1/R1_author_written_minus_missed.csv row 2,495 papers,0.19914005830373088,0.1684150665559543,0.2322915814260286,True,0.16758711882281424,0.23162266305643323,1.0024896374491965,OK,

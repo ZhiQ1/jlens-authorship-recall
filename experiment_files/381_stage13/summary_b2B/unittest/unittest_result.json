@@ -1,0 +1,10 @@
+{
+ "2-8 identical -> PASS": true,
+ "2-8 perturbed -> FAIL": true,
+ "2-3 identical -> PASS": true,
+ "2-3 perturbed (+0.02 paraphrase) -> FAIL": true,
+ "2-10 identical -> PASS": true,
+ "2-10 perturbed (+0.01) -> FAIL": true,
+ "2-4 identical -> PASS": true,
+ "2-4 perturbed -> FAIL": true
+}

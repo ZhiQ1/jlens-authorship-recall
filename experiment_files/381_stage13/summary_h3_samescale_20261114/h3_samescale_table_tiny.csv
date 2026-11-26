@@ -1,0 +1,8 @@
+layer,readout,scale,n_tc,spec,spec_lo,spec_hi,tc,tc_lo,tc_hi,tc_bins,label
+40,probe,9137 name ids,74,0.07139729379359026,0.039982095163645835,0.1038007169362897,0,0.0,0.0,0,"post hoc (strengthening 2), descriptive"
+40,jlens_public_b16,9137 name ids,74,0.023914824082152203,-0.009987946729419307,0.055107930905446155,0,0.0,0.0,0,"post hoc (strengthening 2), descriptive"
+40,jlens_public_f32,9137 name ids,74,0.02339453536190054,-0.010638933484217393,0.053984849683265654,0,0.0,0.0,0,"post hoc (strengthening 2), descriptive"
+40,jlens_public_fullvocab,full vocabulary,74,0.035931861308765835,0.0004935153102004709,0.07201238264459824,0,0.0,0.0,0,"post hoc (strengthening 2), descriptive"
+40,logit_b16,9137 name ids,74,0.006111686462789466,-0.02758970327994891,0.0424650235400614,0,0.0,0.0,0,"post hoc (strengthening 2), descriptive"
+40,logit_f32,9137 name ids,74,0.005920022641124633,-0.02737453716745054,0.04210175593009592,0,0.0,0.0,0,"post hoc (strengthening 2), descriptive"
+40,logit_fullvocab,full vocabulary,74,0.0022955900666431312,-0.03131716857396401,0.037914342113702995,0,0.0,0.0,0,"post hoc (strengthening 2), descriptive"

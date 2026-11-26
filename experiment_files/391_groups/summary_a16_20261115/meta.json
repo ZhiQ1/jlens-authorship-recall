@@ -1,0 +1,32 @@
+{
+ "created": "2026-11-15T14:57:49",
+ "job": "11879060",
+ "script_sha256": "66d0806c895755c6d474763dcba297eaa9ff7f7e23b1ed577e3bb5c5b976527d",
+ "prereg_sha256": "c78daad08f77080e7dd49c84c2501f9ca31b1195ab9e38364e3c3bab9243e66a",
+ "deviations_sha256": "a1512fdae33b4a841afc99b8424cb3c28169b9bd81f3992db7ba6c6b6eb5049b",
+ "B_papers": 1500,
+ "D_papers": 1428,
+ "B_shards": "0-29 (30)",
+ "D_shards": "0-28 (29)",
+ "verdicts": [
+  "B F1 (any_full): Delta_A = +0.033 [Holm CI +0.003, +0.062], DiD = +0.022 [Holm CI -0.012, +0.055]; p_test 0.1640, Holm p 0.3280; fabrication change A -0.338 -> interpretable; criterion not met.",
+  "B F2 (any_sur): Delta_A = +0.047 [Holm CI +0.008, +0.084], DiD = +0.032 [Holm CI -0.012, +0.076]; p_test 0.0790, Holm p 0.2370; fabrication change A -0.033 -> interpretable; criterion not met.",
+  "B F3 (first_sur): Delta_A = -0.013 [Holm CI -0.027, +0.000], DiD = -0.007 [Holm CI -0.024, +0.011]; p_test 0.4430, Holm p 0.4430; fabrication change A -0.032 -> interpretable; criterion not met.",
+  "B F4 (first_sur): Delta_A = +0.103 [Holm CI +0.072, +0.133], DiD = +0.085 [Holm CI +0.047, +0.124]; p_test 0.0005, Holm p 0.0025; fabrication change A -0.007 -> interpretable; criterion met.",
+  "B overall: SUPPORTED via F4 (rule: >= 1 c with Delta_A > 0 and DiD > 0, Holm-adjusted CIs excluding 0).",
+  "D G_A(1) = +0.167 [95% +0.147, +0.185; Holm CI +0.141, +0.189], p 0.0005, Holm p 0.0025: chain effect SUPPORTED, direction helps (rule: Holm-adjusted 95% CI of G_A(1) excludes 0; two-sided)."
+ ],
+ "open_choices": [
+  "Holm-adjusted CI: percentile interval at level alpha/(5 - j) for the test at Holm step j (ascending p, step-down); each B condition is one test with intersection-union p = max(p Delta_A, p DiD). Bonferroni (0.01) CIs and plain 95% CIs reported beside.",
+  "Percentile p-value (two-sided) = groups_core.Engine.pval, floor 1/2000; bootstrap = the archived Engine draw (seed 391), shared by B and D.",
+  "Fabrication for the interpretability rule: share of papers with >= 1 generated item matching no true author, matcher comparable to the outcome (full for F1, surname for F2/F3/F4, same matcher for F0); rule applied as Delta fabrication_A(c) > 0 and > Delta_A(c) (point estimates; 'raises fabrication' read as a positive change). Item shares and empty-answer shares reported beside.",
+  "F0 comparison outcomes: F2 vs F0 any_sur (surname-only matcher on the F0 list); F3/F4 vs F0 first_sur (first author surname anywhere in the F0 list, D16-6); chance column of the same rule (F4 uses the same-initial control, F0 the +-1-author control).",
+  "Group C: TF scores use unwritten authors only (plan section 1); C generation outcomes use all authors (generation is not split by written status). C in B/D is reported, not part of any decision.",
+  "D \"first-author first-token version\": the first SCORED author (author 2 for k = 1, author 3 for k = 2), first token, since prefix authors are never scored.",
+  "D \"P_reverse vs forward\": reverse_minus_none_first = score(author 1 | prefix authors 2..n) - score(author 1 | no prefix); forward comparator = true1_minus_none = score(authors 2..n | author 1) - score(authors 2..n | no prefix) (both relative to P_none; the plan names no baseline).",
+  "D title-specific version = (true - mean of 5 false titles) of P_true1 minus the same of P_other1; deleted-title version = G on the deleted-title prompts; true_minus_delete reported as well.",
+  "fa_type \"other\" (B 10, D 7 papers) is included in the pooled analysis and omitted from the split.",
+  "Paper with a nan cell (e.g. F4 TF when the first author has no given name) is dropped from that cell only."
+ ],
+ "warnings": []
+}

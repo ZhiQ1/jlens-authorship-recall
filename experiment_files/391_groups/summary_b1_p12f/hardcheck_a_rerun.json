@@ -1,0 +1,20 @@
+{
+ "patch_comp": {
+  "rows_match": true,
+  "rank_true_equal": 1.0,
+  "rank_patch_equal": 1.0,
+  "max_abs_dnlr": 0.0,
+  "recovery_max_abs_diff": 0.0,
+  "status": "PASS"
+ },
+ "patch_pos": {
+  "rows_match": true,
+  "rank_true_equal": 1.0,
+  "rank_patch_equal": 1.0,
+  "max_abs_dnlr": 0.0,
+  "recovery_max_abs_diff": 0.0,
+  "status": "PASS"
+ },
+ "tolerance": 0.005,
+ "status": "PASS"
+}

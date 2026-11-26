@@ -1,0 +1,10 @@
+{
+ "item": "2-8",
+ "cells": 36,
+ "expected_cells": 36,
+ "point_max_abs_diff": 9.71445146547012e-17,
+ "tolerance": 0.005,
+ "frozen_patch_section_rerun_max_abs_diff_incl_CI": 0.0,
+ "frozen_rerun_threshold": 1e-09,
+ "status": "PASS"
+}

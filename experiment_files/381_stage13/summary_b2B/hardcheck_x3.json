@@ -1,0 +1,12 @@
+{
+ "item": "2-3",
+ "tolerance": 0.005,
+ "recovery_cells": 96,
+ "recovery_expected": 96,
+ "behaviour_cells": 90,
+ "behaviour_expected": 90,
+ "recovery_max_abs_diff": 1.8318679906315083e-15,
+ "behaviour_max_abs_diff": 1.1102230246251565e-16,
+ "status": "PASS",
+ "author_mean_check": "4039 author rows vs raw/b1_xall/para: mean |d| 7.39e-17, max |d| 8.88e-16, exact 1.000"
+}

@@ -1,0 +1,3 @@
+{"status": "PASS", "accepted_as": "WARN", "date": "2026-11-22", "trial_job": "12064701",
+ "reason": "frozen gate FAIL on paper_spec_L48_jlens_public target/control MEAN only: the stored reference averages all target+control papers of shard 0, the a29 units hold the within-bin subset (share_within 0.876); ranks at L24/L48 exact 36720/36720, mismatch within 4 bf16 units 0/0, per-paper max |diff| 0.00000. Subset artefact, not a numerical error. User standing rule: tolerance/parity misses are WARN, never stop GPU work.",
+ "original_gate_json": "summary_b3_s10_a29/gate.json (status FAIL, kept unchanged)"}

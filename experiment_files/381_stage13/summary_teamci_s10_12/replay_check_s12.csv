@@ -1,0 +1,2 @@
+conclusion,quantity,published_lo,published_hi,replay_lo,replay_hi,max_abs_diff,match_3dp
+C16,"F2 author-prompt lens, name position, target - control within bin, L62",0.2098532659147792,0.2672763466334123,0.2098532659147792,0.2672763466334123,0.0,True
